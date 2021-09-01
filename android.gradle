@@ -1,6 +1,6 @@
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.0"
+    buildToolsVersion "30.0.3"
 
     androidExtensions {
         experimental = true
@@ -24,7 +24,7 @@ android {
 
     defaultConfig {
         if (project.name == "app") {
-            applicationId "com.technzone.baseapp"
+            applicationId "com.technzone.miniborsa"
         }
 
         minSdkVersion 23
@@ -34,7 +34,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
-        setProperty("archivesBaseName", "BaseApp")
+        setProperty("archivesBaseName", "MiniBorsa")
         vectorDrawables {
             useSupportLibrary = true
         }

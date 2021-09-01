@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.baseapp.ui.base.dialogs.appupdate.UpdateAppDialog" />
+            type="com.technzone.miniborsa.ui.base.dialogs.appupdate.UpdateAppDialog" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
