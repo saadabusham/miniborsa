@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BaseApp</string>
+    <string name="app_name">Mini Borsa</string>
     <string name="app_license">Copyright@Technzone Company</string>
 
     <!-- SelectLanguageFragment-->
@@ -64,7 +64,7 @@
     <string name="time_not_valid_err">Enter a valid time</string>
     <string name="digits">digits</string>
     <string name="travllers">Travellers</string>
-    <string name="next">NEXT</string>
+    <string name="next">Next</string>
     <string name="select_time">Select time</string>
     <string name="adult">Adult</string>
     <string name="submit">Submit</string>
@@ -99,16 +99,16 @@
 
     <!--    Language    -->
     <string name="continue_">Continue</string>
-    <string name="please_choose_your_preferred_language">Please choose your preferred language!</string>
+    <string name="choose_your_language">Choose your language</string>
 
     <!--    OnBoarding  -->
-    <string name="title_on_boarding_1">title_on_boarding_1</string>
-    <string name="description_on_boarding_1">description_on_boarding_1</string>
-    <string name="title_on_boarding_2">title_on_boarding_2</string>
-    <string name="description_on_boarding_2">description_on_boarding_2</string>
-    <string name="title_on_boarding_3">title_on_boarding_3</string>
-    <string name="description_on_boarding_3">description_on_boarding_3</string>
-    <string name="title_on_boarding_4">title_on_boarding_4</string>
-    <string name="description_on_boarding_4">description_on_boarding_4</string>
+    <string name="title_on_boarding_1">Build</string>
+    <string name="description_on_boarding_1">Build your startup with Mini Bursa.</string>
+    <string name="title_on_boarding_2">Connect</string>
+    <string name="description_on_boarding_2">Connecting the most promising startups\nwith investors to create impactful change.</string>
+    <string name="title_on_boarding_3">Invest</string>
+    <string name="description_on_boarding_3">Invest in a Better Tomorrow!</string>
+    <string name="skip">Skip</string>
+    <string name="get_started">Get started</string>
 
 </resources>

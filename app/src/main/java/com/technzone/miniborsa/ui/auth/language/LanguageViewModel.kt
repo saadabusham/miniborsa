@@ -13,6 +13,7 @@ class LanguageViewModel @Inject constructor(
     private val configurationpref: ConfigurationPref
 ) : BaseViewModel() {
 
+    var languageSettled: Boolean = false
     val englishSelected: MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean>(true) }
     fun onEnglishClicked() {
         englishSelected.postValue(true)
@@ -21,10 +22,15 @@ class LanguageViewModel @Inject constructor(
     fun onArabicClicked() {
         englishSelected.postValue(false)
     }
+    fun getIsLanguageSelected(lang: String): Boolean {
+        return configurationpref.getAppLanguageValue() == lang
+    }
 
-    fun saveLanguage() = liveData {
-        configurationpref.setAppLanguageValue(if (englishSelected.value!!) CommonEnums.Languages.English.value else CommonEnums.Languages.Arabic.value)
+    fun saveLanguage(language: String) = liveData {
+        configurationpref.setAppLanguageValue(language)
+        languageSettled = true
         emit(null)
     }
+
 
 }

@@ -12,15 +12,6 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_on_boarding_bg"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,22 +20,24 @@
             android:scaleX="1.3"
             android:scaleY="1.3"
             android:src="@drawable/ic_back_white"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <com.technzone.miniborsa.ui.base.views.AppTextView
             android:id="@+id/ivClose"
+            style="@style/textview_normal_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_6sdp"
             android:layout_marginEnd="@dimen/_6sdp"
             android:padding="@dimen/_10sdp"
-            android:scaleX="1.3"
-            android:scaleY="1.3"
-            android:src="@drawable/ic_close"
+            android:text="@string/skip"
+            android:textAllCaps="true"
+            android:textColor="@color/text_dark_color"
+            android:textSize="@dimen/_11ssp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@android:color/white" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vpOnBoarding"
@@ -69,10 +62,10 @@
             android:layout_marginBottom="@dimen/_10sdp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/row_indecator"
             app:layout_constraintBottom_toTopOf="@id/btnNextOnBoarding"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:listitem="@layout/row_indecator" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnNextOnBoarding"
@@ -82,11 +75,11 @@
             android:layout_marginStart="@dimen/_16sdp"
             android:layout_marginEnd="@dimen/_16sdp"
             android:layout_marginBottom="@dimen/_10sdp"
-            android:text="@string/continue_"
+            android:text="@string/next"
+            android:textAllCaps="false"
             android:textAppearance="@style/textview_normal_medium"
             android:textColor="@android:color/white"
             android:textSize="@dimen/_14ssp"
-            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

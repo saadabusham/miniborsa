@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:layout_margin="@dimen/_3sdp"
         android:clickable="true"
-        app:cardBackgroundColor="@color/flyus_button_color"
+        app:cardBackgroundColor="@color/button_color"
         app:cardCornerRadius="@dimen/_13sdp"
         app:cardElevation="@dimen/_2sdp"
         app:rippleColor="@color/blue"/>

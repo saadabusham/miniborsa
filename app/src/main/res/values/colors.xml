@@ -4,14 +4,14 @@
     <!-- App Colors -->
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#FFFFFF</color>
-    <color name="colorAccent">#ED222F</color>
+    <color name="colorAccent">#E9591C</color>
     <color name="colorAccentDark">#4f5b74</color>
     <color name="color_app_background">#FFFFFF</color>
     <color name="ripple_color">#0be8252e</color>
     <color name="app_background_color">#FFFFFF</color>
     <!-- Views Default colors -->
     <color name="text_default_color">#7f8592</color>
-    <color name="text_dark_color">#3A4155</color>
+    <color name="text_dark_color">#1A1A1A</color>
     <color name="text_gray_color">#606060</color>
     <color name="text_header_dark_gray">#8C8896</color>
     <!--    divider color-->
@@ -44,8 +44,8 @@
 
     <!-- Blue -->
     <color name="lite_blue">#e7ecf2</color>
-    <color name="dark_blue">#0B256E</color>
-    <color name="flyus_button_color">#0B256E</color>
+    <color name="dark_blue">#012245</color>
+    <color name="button_color">#E9591C</color>
     <color name="blue">#259DDB</color>
     <color name="welcome_back_blue">#0E4A86</color>
     <color name="night_blue">#24253D</color>
@@ -110,4 +110,6 @@
     <color name="textview_number_black">#1E1F20</color>
 
     <color name="defaultTextColor">#2F2C37</color>
+    <color name="indecator_active">#4A4A4A</color>
+    <color name="indecator_diactive">#29000000</color>
 </resources>

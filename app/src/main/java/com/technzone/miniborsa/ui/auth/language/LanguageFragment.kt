@@ -20,6 +20,9 @@ class LanguageFragment : BaseBindingFragment<FragmentLanguageBinding>() {
         super.onViewVisible()
         setUpBinding()
         setUpListeners()
+        if (viewModel.languageSettled) {
+            navigationController.navigate(R.id.action_languageFragment_to_onBoardingFragment)
+        }
     }
 
     private fun setUpBinding() {
@@ -28,13 +31,14 @@ class LanguageFragment : BaseBindingFragment<FragmentLanguageBinding>() {
 
     private fun setUpListeners() {
         binding?.btnContinue?.setOnClickListener {
-            viewModel.saveLanguage().observe(viewLifecycleOwner, Observer {
-                activity?.let {
-                    (it as BaseBindingActivity<*>).setLanguage(if (viewModel.englishSelected.value!!)
-                        CommonEnums.Languages.English.value else CommonEnums.Languages.Arabic.value)
-                    navigationController.navigate(R.id.action_languageFragment_to_onBoardingFragment)
-                }
-            })
+            viewModel.saveLanguage(CommonEnums.Languages.English.value).observe(viewLifecycleOwner,
+                {
+                    activity?.let {
+                        if (!viewModel.getIsLanguageSelected(CommonEnums.Languages.English.value))
+                            (it as BaseBindingActivity<*>).setLanguage(CommonEnums.Languages.English.value)
+                        navigationController.navigate(R.id.action_languageFragment_to_onBoardingFragment)
+                    }
+                })
         }
 
     }

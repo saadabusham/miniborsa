@@ -37,7 +37,8 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
             hasToolbar = false
         )
         Handler(Looper.getMainLooper()).postDelayed({
-            viewModel.getConfigurationData().observe(this, configurationResultObserver())
+//            viewModel.getConfigurationData().observe(this, configurationResultObserver())
+            goToNextPage()
         }, 3000)
 
         RuntimeException("This is a RUNTIME EXCEPTION")

@@ -8,8 +8,8 @@
     <dimen name="small_button_height">@dimen/_45sdp</dimen>
     <dimen name="button_text_size">@dimen/_15ssp</dimen>
     <dimen name="Edittext_height">@dimen/_40sdp</dimen>
-    <dimen name="layouts_margin_start">@dimen/_16sdp</dimen>
-    <dimen name="layouts_margin_end">@dimen/_16sdp</dimen>
+    <dimen name="layouts_margin_start">@dimen/_12sdp</dimen>
+    <dimen name="layouts_margin_end">@dimen/_12sdp</dimen>
 
     <dimen name="dimen_zero">0dp</dimen>
     <dimen name="dimen_15sdp">@dimen/_15sdp</dimen>

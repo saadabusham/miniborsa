@@ -2,6 +2,7 @@
 <layout>
 
     <data>
+
         <variable
             name="data"
             type="com.technzone.miniborsa.data.models.auth.onboarding.OnBoardingItem" />
@@ -16,31 +17,41 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivOnBoarding"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_240sdp"
-            android:layout_marginTop="@dimen/_40sdp"
             ivSetSrcImageFromResources="@{data.icon}"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_280sdp"
+            android:layout_marginTop="@dimen/_40sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            tools:src="@drawable/ic_on_boarding_1" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvTitle"
+            style="@style/textview_normal_regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_60sdp"
+            android:layout_marginTop="@dimen/_30sdp"
             android:layout_marginEnd="@dimen/_16sdp"
-            android:textAlignment="center"
-            android:textAppearance="@style/textview_normal_medium"
-            android:textColor="@color/defaultTextColor"
-            android:textSize="@dimen/_16ssp"
             android:text="@{data.title}"
+            android:textAlignment="center"
+            android:textColor="@color/defaultTextColor"
+            android:textSize="@dimen/_19ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivOnBoarding"
-            tools:text="Discover the best property" />
+            tools:text="Build" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvDiv"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_7sdp"
+            app:cardBackgroundColor="@color/button_color"
+            app:layout_constraintEnd_toEndOf="@id/tvTitle"
+            app:layout_constraintStart_toStartOf="@id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvDescription"
@@ -49,15 +60,15 @@
             android:layout_marginStart="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_16sdp"
+            android:text="@{data.body}"
             android:textAlignment="center"
             android:textAppearance="@style/textview_normal_regular"
             android:textColor="@color/defaultTextColor"
             android:textSize="@dimen/_14ssp"
-            android:text="@{data.body}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@id/cvDiv"
             tools:lines="3"
-            tools:text="@tools:sample/lorem/random" />
+            tools:text="Build your startup with Mini Bursa." />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
