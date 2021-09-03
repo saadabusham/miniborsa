@@ -35,6 +35,7 @@
     <!-- Black -->
     <color name="black">#000000</color>
     <color name="black_alpha">#80000000</color>
+    <color name="black_alpha25">#40000000</color>
     <color name="divider_black">#1A000000</color>
 
     <!-- Gray -->
@@ -112,4 +113,9 @@
     <color name="defaultTextColor">#2F2C37</color>
     <color name="indecator_active">#4A4A4A</color>
     <color name="indecator_diactive">#29000000</color>
+    <!-- InputLayout Color -->
+    <color name="focused_color">#E9591C</color>
+    <color name="unfocused_color">#D8D8D8</color>
+    <color name="error_color">#DC0C0C</color>
+    <color name="valid">#60bf04</color>
 </resources>

@@ -230,7 +230,7 @@ abstract class BaseBindingActivity<BINDING : ViewDataBinding> : LocalizationActi
         super.startActivity(
             intent, ActivityOptions.makeCustomAnimation(
                 this,
-                R.anim.slide_in_right, R.anim.slide_out_left
+                R.anim.slide_in_end, R.anim.slide_out_left
             ).toBundle()
         )
 
@@ -239,7 +239,7 @@ abstract class BaseBindingActivity<BINDING : ViewDataBinding> : LocalizationActi
         super.startActivityForResult(
             intent, requestCode, ActivityOptions.makeCustomAnimation(
                 this,
-                R.anim.slide_in_right, R.anim.slide_out_left
+                R.anim.slide_in_end, R.anim.slide_out_left
             ).toBundle()
         )
 

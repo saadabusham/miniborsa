@@ -21,17 +21,22 @@ class OnBoardingFragment : BaseBindingFragment<FragmentOnBoardingBinding>() {
         setUpPager()
         setUpListeners()
     }
+
     private fun setUpListeners() {
-//        binding?.ivClose?.setOnClickListener {
-//            navigationController.navigate(R.id.action_onBoardingFragment_to_loginFragment)
-//        }
+        binding?.ivClose?.setOnClickListener {
+            navigationController.navigate(R.id.action_onBoardingFragment_to_loginFragment)
+        }
         binding?.btnNextOnBoarding?.setOnClickListener {
             if (binding?.vpOnBoarding?.currentItem ?: 0 < 2) {
-                binding?.vpOnBoarding?.setCurrentItem((binding?.vpOnBoarding?.currentItem ?: 0) + 1, true)
-            }
-//            navigationController.navigate(R.id.action_onBoardingFragment_to_loginFragment)
+                binding?.vpOnBoarding?.setCurrentItem(
+                    (binding?.vpOnBoarding?.currentItem ?: 0) + 1,
+                    true
+                )
+            } else
+                navigationController.navigate(R.id.action_onBoardingFragment_to_loginFragment)
         }
     }
+
     private fun setUpPager() {
 
         val items = arrayOf(

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+
+        <variable
+            name="canAuth"
+            type="Boolean" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/relativeHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_100sdp"
+            android:orientation="horizontal">
+
+            <include
+                android:id="@+id/layout_toolbar"
+                layout="@layout/layout_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/_10sdp" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_60sdp"
+            android:fillViewport="true">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:shapeAppearanceOverlay="@style/top_cardview_corner">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/_230sdp"
+                        android:layout_height="@dimen/_230sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:src="@drawable/ic_touchit_anim" />
+
+                    <com.technzone.miniborsa.ui.base.views.AppTextView
+                        style="@style/textview_normal_semibold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_40sdp"
+                        android:text="@string/touch_id_for_faster_login"
+                        android:textColor="@color/text_header_dark_gray"
+                        android:textSize="@dimen/_16ssp" />
+
+                    <com.technzone.miniborsa.ui.base.views.AppTextView
+                        style="@style/textview_normal_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:text="@string/enable_face_id_to_let_you_login_proceed_your_insurance_faster"
+                        android:textSize="@dimen/_11ssp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnEnableTouchId"
+                        style="@style/AppTheme.Button"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/button_height"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        tools:text="@string/enable_touch_id"
+                        android:textAppearance="@style/normalMediumFontStyle"
+                        android:textColor="@android:color/white"
+                        android:text="@{canAuth? @string/enable_touch_id :@string/go_to_home }"
+                        android:textSize="@dimen/_14ssp" />
+
+                    <com.technzone.miniborsa.ui.base.views.AppTextView
+                        android:id="@+id/tvSkip"
+                        style="@style/textview_normal_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:text="@string/skip_i_ll_do_this_later"
+                        android:textSize="@dimen/_11ssp"
+                        android:visibility="@{canAuth ? View.VISIBLE : View.GONE}" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </ScrollView>
+    </RelativeLayout>
+
+</layout>

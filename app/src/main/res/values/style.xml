@@ -205,22 +205,31 @@
     </style>
 
     <!-- TextInputLayout Style -->
-    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="android:textSize">@dimen/_12ssp</item>
-        <item name="boxBackgroundColor">@color/white</item>
-        <item name="boxStrokeColor">@color/edit_text_outline_color</item>
-        <item name="boxStrokeWidth">0.5dp</item>
-        <item name="android:layout_height">60dp</item>
-        <item name="materialThemeOverlay">@style/TextInputLayoutEditTextStyle</item>
-        <item name="errorEnabled">false</item>
-        <item name="hintEnabled">false</item>
-        <item name="errorIconDrawable">@null</item>
-        <item name="errorTextColor">@color/red</item>
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="android:textSize">@dimen/_14ssp</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="boxBackgroundColor">@android:color/transparent</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="errorEnabled">true</item>
+        <item name="hintEnabled">true</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="paddingStart">0dp</item>
+        <item name="paddingEnd">0dp</item>
+        <item name="hintAnimationEnabled">true</item>
+        <item name="colorControlNormal">#ffffff</item>
+        <item name="colorControlActivated">#ffffff</item>
+        <item name="colorControlHighlight">#ffffff</item>
 
-        <item name="boxCornerRadiusTopStart">15dp</item>
-        <item name="boxCornerRadiusTopEnd">15dp</item>
-        <item name="boxCornerRadiusBottomStart">15dp</item>
-        <item name="boxCornerRadiusBottomEnd">15dp</item>
+        <item name="errorTextColor">@color/error_color</item>
+        <item name="boxStrokeErrorColor">@color/error_color</item>
+        <item name="boxStrokeWidth">@dimen/_1sdp</item>
+        <item name="boxStrokeWidthFocused">@dimen/_1sdp</item>
+        <item name="hintTextColor">@color/focused_color</item>
+        <item name="boxStrokeColor">@color/edit_text_outline_color</item>
+
+        <item name="editTextStyle">@style/TextInputEditTextStyle</item>
     </style>
 
     <style name="TextInputLayoutEditTextStyle">
@@ -237,15 +246,21 @@
         <item name="android:button">@drawable/checkbox_selector</item>
     </style>
 
-    <!-- TextInputEditText Style -->
-    <style name="TextInputEditTextStyle" parent="@style/Base.Widget.MaterialComponents.TextInputEditText">
+    <!-- Default TextInputEditText Style -->
+    <style name="TextInputEditTextStyle" parent="Widget.AppCompat.EditText">
         <item name="android:maxLines">1</item>
+        <item name="android:background">@android:color/transparent</item>
         <item name="android:textColor">@color/edit_text_text_color</item>
-        <!--        <item name="etFontType">MEDIUM</item>-->
-        <item name="hintTextColor">@color/text_gray_color</item>
-        <item name="android:textSize">@dimen/_12ssp</item>
-        <item name="android:background">@drawable/edit_text_background</item>
-
+        <item name="backgroundTint">@color/white</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:textAppearance">@style/textview_normal_bold</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
+        <item name="fontFamily">@font/en_normal_regular</item>
+        <item name="android:fontFamily">@font/en_normal_bold</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="paddingStart">0dp</item>
+        <item name="paddingEnd">0dp</item>
     </style>
 
     <!-- Dialog Animation Style -->

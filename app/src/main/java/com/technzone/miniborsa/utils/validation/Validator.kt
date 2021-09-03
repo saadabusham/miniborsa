@@ -62,6 +62,9 @@ class Validator() {
         this.textToValidate = input
         this.context = context
         return when (validatorInputTypesEnums) {
+            ValidatorInputTypesEnums.FULL_NAME -> {
+                validateFullName()
+            }
             ValidatorInputTypesEnums.FIRST_NAME -> {
                 validateFirstName()
             }
@@ -113,6 +116,22 @@ class Validator() {
         }
     }
 
+    private fun validateFullName(): ValidatedData {
+        return if (textToValidate.isNullOrEmpty()) {
+            return ValidatedData(
+                isValid = false,
+                errorTitle = context.resources.getString(R.string.full_name),
+                errorMessage = context.resources.getString(R.string.must_not_be_empty)
+            )
+        } else if (textToValidate?.length ?: 0 < FIRST_NAME_MIN_LENGTH) {
+            ValidatedData(
+                isValid = false,
+                errorTitle = context.resources.getString(R.string.full_name),
+                errorMessage = context.resources.getString(R.string.must_be_at_least) + " " +
+                        FIRST_NAME_MIN_LENGTH + " " + context.resources.getString(R.string.characters)
+            )
+        } else ValidatedData(true, "", "")
+    }
 
     private fun validateFirstName(): ValidatedData {
         return if (textToValidate.isNullOrEmpty()) {
@@ -125,7 +144,7 @@ class Validator() {
             ValidatedData(
                 isValid = false,
                 errorTitle = context.resources.getString(R.string.first_name),
-                errorMessage = context.resources.getString(R.string.must_not_be_at_least) + " " +
+                errorMessage = context.resources.getString(R.string.must_be_at_least) + " " +
                         FIRST_NAME_MIN_LENGTH + " " + context.resources.getString(R.string.characters)
             )
         } else ValidatedData(true, "", "")
@@ -142,7 +161,7 @@ class Validator() {
             ValidatedData(
                 isValid = false,
                 errorTitle = context.resources.getString(R.string.last_name),
-                errorMessage = context.resources.getString(R.string.must_not_be_at_least) + " " +
+                errorMessage = context.resources.getString(R.string.must_be_at_least) + " " +
                         LAST_NAME_MIN_LENGTH + " " + context.resources.getString(R.string.characters)
             )
         } else ValidatedData(true, "", "")
@@ -175,7 +194,7 @@ class Validator() {
             ValidatedData(
                 isValid = false,
                 errorTitle = context.resources.getString(R.string.phone_number),
-                errorMessage = context.resources.getString(R.string.must_not_be_at_least) + " " +
+                errorMessage = context.resources.getString(R.string.must_be_at_least) + " " +
                         PHONE_MIN_LENGTH + " " + context.resources.getString(R.string.numbers)
             )
         } else if (!textToValidate.matches(Regex(JORDANIAN_PHONE_NUMBER_WITHOUT_COUNTRY_CODE_REGEX))) {
@@ -278,7 +297,7 @@ class Validator() {
             ValidatedData(
                 isValid = false,
                 errorTitle = context.resources.getString(R.string.otp),
-                errorMessage = context.resources.getString(R.string.must_not_be_at_least) + " " +
+                errorMessage = context.resources.getString(R.string.must_be_at_least) + " " +
                         OTP_LENGTH + " " + context.resources.getString(R.string.digits)
             )
         } else ValidatedData(true, "", "")
@@ -298,7 +317,7 @@ class Validator() {
                 ValidatedData(
                     isValid = false,
                     errorTitle = context.resources.getString(R.string.number),
-                    errorMessage = context.resources.getString(R.string.must_not_be_at_least)
+                    errorMessage = context.resources.getString(R.string.must_be_at_least)
                 )
             } else ValidatedData(true, "", "")
 

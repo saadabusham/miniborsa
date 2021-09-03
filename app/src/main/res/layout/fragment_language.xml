@@ -104,7 +104,7 @@
                     android:id="@+id/btnContinue"
                     style="@style/AppTheme.Button"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
+                    android:layout_height="@dimen/button_height"
                     android:layout_gravity="bottom"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginBottom="@dimen/_15sdp"

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.technzone.miniborsa.ui.auth.login.viewmodels.LoginViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/relativeHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_100sdp"
+            android:orientation="horizontal">
+
+            <include
+                android:id="@+id/layout_toolbar"
+                layout="@layout/layout_toolbar_with_skip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/_10sdp" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_60sdp"
+            android:fillViewport="true">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:shapeAppearanceOverlay="@style/top_cardview_corner">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/tv_license"
+                            style="@style/normalMediumFontStyle"
+                            android:layout_width="@dimen/_80sdp"
+                            android:layout_height="@dimen/_60sdp"
+                            android:layout_gravity="center|start"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:src="@drawable/ic_logo" />
+
+                        <com.technzone.miniborsa.ui.base.views.AppTextView
+                            android:id="@+id/tvHeader"
+                            style="@style/textview_normal_semibold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:textColor="@color/text_header_dark_gray"
+                            android:textSize="@dimen/_21ssp"
+                            tools:text="@string/sign_in_to_continue" />
+
+                        <com.technzone.miniborsa.ui.base.views.AppTextInputLayout
+                            android:id="@+id/tfEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:hint="@string/email">
+
+                            <com.technzone.miniborsa.ui.base.views.AppTextInputEditText
+                                android:id="@+id/edEmail"
+                                style="@style/TextInputEditTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textEmailAddress"
+                                android:text="@={viewModel.email}"
+                                android:textSize="@dimen/_10ssp" />
+
+                        </com.technzone.miniborsa.ui.base.views.AppTextInputLayout>
+
+                        <com.technzone.miniborsa.ui.base.views.AppTextInputLayout
+                            android:id="@+id/tfPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:hint="@string/password"
+                            app:passwordToggleEnabled="true">
+
+                            <com.technzone.miniborsa.ui.base.views.AppTextInputEditText
+                                android:id="@+id/edPassword"
+                                style="@style/TextInputEditTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textPassword"
+                                android:text="@={viewModel.passwordMutableLiveData}"
+                                android:textSize="@dimen/_10ssp" />
+
+                        </com.technzone.miniborsa.ui.base.views.AppTextInputLayout>
+
+                        <com.technzone.miniborsa.ui.base.views.AppTextView
+                            android:id="@+id/tvForgetPassword"
+                            style="@style/normalRegularFontStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:text="@string/reset_password"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnlogin"
+                            style="@style/AppTheme.Button"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/button_height"
+                            android:layout_gravity="bottom"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:layout_marginBottom="@dimen/_15sdp"
+                            android:text="@string/login"
+                            android:textAppearance="@style/normalMediumFontStyle"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/_14ssp" />
+
+                        <LinearLayout
+                            android:id="@+id/linear_SignInOption"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <View
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="1dp"
+                                android:background="@color/black_alpha" />
+
+                            <com.technzone.miniborsa.ui.base.views.AppTextView
+                                style="@style/textview_normal_regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                android:text="@string/or_sign_in_with" />
+
+                            <View
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="1dp"
+                                android:background="@color/black_alpha" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/imgIdRecognition"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_50sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:src="@drawable/ic_touchid"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <com.technzone.miniborsa.ui.base.views.AppTextView
+                            style="@style/textview_normal_medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/dont_have_an_account"
+                            android:textColor="@color/text_gray_color"
+                            android:textSize="@dimen/_11ssp" />
+
+                        <com.technzone.miniborsa.ui.base.views.AppTextView
+                            android:id="@+id/tvSignUp"
+                            style="@style/textview_normal_medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_3sdp"
+                            android:gravity="center"
+                            android:text="@string/sign_up_here"
+                            android:textAllCaps="false"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/_11ssp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </ScrollView>
+    </RelativeLayout>
+
+</layout>

@@ -8,6 +8,8 @@ import com.technzone.miniborsa.data.enums.UserEnums
 import com.technzone.miniborsa.data.pref.user.UserPref
 import com.technzone.miniborsa.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.miniborsa.data.repos.base.BaseRepo
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import javax.inject.Inject
 
 class UserRepoImp @Inject constructor(
@@ -26,6 +28,141 @@ class UserRepoImp @Inject constructor(
                 userName,
                 password
             ))
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun register(
+        password: String,
+        fullName: String,
+        email: String
+    ): APIResource<ResponseWrapper<String>> {
+        return try {
+            responseHandle.handleSuccess(
+                userRemoteDao.register(
+                    password, fullName,email
+                )
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun verify(
+        userId: String,
+        verificationCode: String
+    ): APIResource<ResponseWrapper<UserDetailsResponseModel>> {
+        return try {
+            responseHandle.handleSuccess(
+                userRemoteDao.verify(
+                    userId, verificationCode
+                )
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun resendCode(phoneNumber: String): APIResource<ResponseWrapper<String>> {
+        return try {
+            responseHandle.handleSuccess(
+                userRemoteDao.resendCode(
+                    phoneNumber
+                )
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun refreshToken(refreshToken: String): APIResource<ResponseWrapper<UserDetailsResponseModel>> {
+        return try {
+            responseHandle.handleSuccess(
+                userRemoteDao.refreshToken(
+                    refreshToken
+                )
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun getProfile(): APIResource<ResponseWrapper<UserDetailsResponseModel>> {
+        return try {
+            responseHandle.handleSuccess(userRemoteDao.getProfile())
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun updateProfile(
+        email: RequestBody?,
+        firstName: RequestBody,
+        lastName: RequestBody,
+        gender: RequestBody,
+        dateOfBirth: RequestBody?
+    ): APIResource<ResponseWrapper<UserDetailsResponseModel>> {
+        return try {
+            responseHandle.handleSuccess(
+                userRemoteDao.updateProfile(
+                    email, firstName, lastName, gender, dateOfBirth
+                )
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun updatePassword(
+        oldPassword: String,
+        newPassword: String
+    ): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(
+                userRemoteDao.updatePassword(
+                    oldPassword, newPassword
+                )
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun updateFcmToken(
+        registrationId: RequestBody,
+        deviceType: RequestBody
+    ): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(
+                userRemoteDao.updateFcmToken(
+                    registrationId, deviceType
+                )
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun updateProfilePicture(image: MultipartBody.Part): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(
+                userRemoteDao.updateProfilePicture(
+                    image
+                )
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun recoveryPassword(newPassword: String): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(
+                userRemoteDao.recoveryPassword(
+                    newPassword
+                )
+            )
         } catch (e: Exception) {
             responseHandle.handleException(e)
         }

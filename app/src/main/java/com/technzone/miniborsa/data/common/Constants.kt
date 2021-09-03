@@ -13,6 +13,8 @@ object Constants {
 
     object BundleData {
 
+        const val IS_LOGIN_SUCCESS: String ="isLoginSuccess"
+        const val IS_ACTIVITY_RESULT: String ="isActivityResult"
     }
 
     object NotificationsChannels {

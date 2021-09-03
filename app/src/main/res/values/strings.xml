@@ -49,7 +49,7 @@
 
     <!--  Validator strings  -->
     <string name="must_not_be_empty">must not be empty</string>
-    <string name="must_not_be_at_least">must not be at least </string>
+    <string name="must_be_at_least">must be at least </string>
     <string name="characters"> characters</string>
     <string name="numbers"> numbers</string>
     <string name="text">Text</string>
@@ -94,8 +94,6 @@
     <!--    Completed dialog-->
     <string name="completed_successfully">Completed Successfully</string>
 
-    <!--    Login-->
-    <string name="login">Login</string>
 
     <!--    Language    -->
     <string name="continue_">Continue</string>
@@ -110,5 +108,39 @@
     <string name="description_on_boarding_3">Invest in a Better Tomorrow!</string>
     <string name="skip">Skip</string>
     <string name="get_started">Get started</string>
+
+    <!--    Login-->
+    <string name="login">Login</string>
+    <string name="sign_in_to_continue">Sign in to Continue</string>
+    <string name="sign_up_here">Sign up here</string>
+    <string name="dont_have_an_account">Don\'t have account?</string>
+    <string name="or_sign_in_with">Or sign in with</string>
+    <string name="reset_password">Reset password?</string>
+    <string name="resend_again">Resend again</string>
+    <string name="didn_t_receive_the_code">Didn\'t receive your code?</string>
+    <string name="verify_your_account">Verify your account</string>
+    <string name="enter_the_verification_code_we_sent_to_your">Enter the verification code we sent to your</string>
+    <string name="verify">Verify</string>
+    <!--    register-->
+    <string name="full_name">Full Name</string>
+    <string name="sign_in_here">Sign in here</string>
+    <string name="sign_up">Sign up</string>
+    <string name="thousands_of_business_nwaiting_for_you">Thousands of business\nwaiting for you</string>
+    <!--    TouchId     -->
+    <string name="enable_touch_id">Enable Touch ID</string>
+    <string name="touch_id_for_faster_login">Touch ID for faster login</string>
+    <string name="enable_face_id_to_let_you_login_proceed_your_insurance_faster"><![CDATA[Enable Face ID to let you login & proceed your insurance faster.]]></string>
+    <string name="skip_i_ll_do_this_later">Skip, I’ll do this later</string>
+    <string name="go_to_home">Go to home</string>
+
+    <!--    Forget password-->
+    <string name="reset_your_password">Reset your password</string>
+    <string name="enter_your_email_below_to_receive_instructions_to_reset_nyour_password">Enter your email below to receive instructions to reset\nyour password</string>
+    <string name="you_successfully_changed_your_password_nuse_the_new_password_to_log_in_to_your_account">You successfully changed your password.\nUse the new password to log in to your account.</string>
+    <string name="success">Success!</string>
+    <string name="change_your_password">Change your password</string>
+    <string name="enter_a_new_password_below">Enter a new password below</string>
+    <string name="new_password">New Password</string>
+    <string name="enter_new_password">Enter your password</string>
 
 </resources>

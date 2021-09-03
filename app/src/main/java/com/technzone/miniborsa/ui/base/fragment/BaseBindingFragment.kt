@@ -87,7 +87,7 @@ abstract class BaseBindingFragment<BINDING : ViewDataBinding> : Fragment(),
         super.startActivity(
             intent, ActivityOptions.makeCustomAnimation(
                 context,
-                R.anim.slide_in_right, R.anim.slide_out_left
+                R.anim.slide_in_end, R.anim.slide_out_left
             ).toBundle()
         )
 
@@ -96,7 +96,7 @@ abstract class BaseBindingFragment<BINDING : ViewDataBinding> : Fragment(),
         super.startActivityForResult(
             intent, requestCode, ActivityOptions.makeCustomAnimation(
                 context,
-                R.anim.slide_in_right, R.anim.slide_out_left
+                R.anim.slide_in_end, R.anim.slide_out_left
             ).toBundle()
         )
 

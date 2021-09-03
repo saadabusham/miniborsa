@@ -4,7 +4,7 @@
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">@dimen/_3ssp
     </dimen>
 
-    <dimen name="button_height">@dimen/_55sdp</dimen>
+    <dimen name="button_height">@dimen/_40sdp</dimen>
     <dimen name="small_button_height">@dimen/_45sdp</dimen>
     <dimen name="button_text_size">@dimen/_15ssp</dimen>
     <dimen name="Edittext_height">@dimen/_40sdp</dimen>

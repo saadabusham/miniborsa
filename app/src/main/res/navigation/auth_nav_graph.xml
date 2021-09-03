@@ -13,9 +13,9 @@
         <action
             android:id="@+id/action_languageFragment_to_onBoardingFragment"
             app:destination="@id/onBoardingFragment"
-            app:enterAnim="@anim/slide_in_right"
+            app:enterAnim="@anim/slide_in_end"
             app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_start"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
@@ -23,16 +23,30 @@
         android:name="com.technzone.miniborsa.ui.auth.onboarding.OnBoardingFragment"
         android:label="OnBoardingFragment"
         tools:layout="@layout/fragment_on_boarding">
-<!--        <action-->
-<!--            android:id="@+id/action_onBoardingFragment_to_loginFragment"-->
-<!--            app:destination="@id/loginFragment"-->
-<!--            app:enterAnim="@anim/slide_in_right"-->
-<!--            app:exitAnim="@anim/slide_out_left"-->
-<!--            app:popEnterAnim="@anim/slide_in_left"-->
-<!--            app:popExitAnim="@anim/slide_out_right"  />-->
+        <action
+            android:id="@+id/action_onBoardingFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_end"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_start"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
-<!--    <fragment-->
-<!--        android:id="@+id/loginFragment"-->
-<!--        android:name="com.technzone.mysteryin.ui.auth.login.fragments.LoginFragment"-->
-<!--        android:label="LoginFragment" />-->
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.technzone.miniborsa.ui.auth.login.fragments.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_verificationLoginFragment"
+            app:destination="@id/verificationLoginFragment"
+            app:enterAnim="@anim/slide_in_end"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_start"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/verificationLoginFragment"
+        android:name="com.technzone.miniborsa.ui.auth.login.fragments.VerificationLoginFragment"
+        android:label="VerificationLoginFragment"
+        tools:layout="@layout/fragment_verification_login"/>
 </navigation>
