@@ -164,5 +164,14 @@
     <string name="sectors_of_specialisation">Sectors of Specialisation</string>
     <string name="select_specialisation">Select Specialisation</string>
     <string name="begin_search">Begin Search</string>
+    <string name="advertise_your_business_listing_today">Advertise your business listing today.</string>
+    <string name="mini_bursa_gives_you_an_easy_way_to_showcase_your_business_with_the_advert_it_deserves">Mini Bursa gives you an easy way to showcase your business with the advert it deserves.</string>
+    <string name="_7_days_free_trail">7 days free trail</string>
+    <string name="unlimited_business_description">Unlimited business description</string>
+    <string name="access_investors">Access Investors</string>
+    <string name="nav_listing">Liting</string>
+    <string name="nav_notification">Notification</string>
+    <string name="nav_statistics">Statistics</string>
+    <string name="nav_profile">Profile</string>
 
 </resources>

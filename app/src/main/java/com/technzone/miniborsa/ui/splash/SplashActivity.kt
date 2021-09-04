@@ -15,9 +15,9 @@ import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.data.models.configuration.ConfigurationWrapperResponse
 import com.technzone.miniborsa.databinding.ActivitySplashBinding
-import com.technzone.miniborsa.ui.MainActivity
 import com.technzone.miniborsa.ui.auth.AuthActivity
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
+import com.technzone.miniborsa.ui.main.activity.MainActivity
 import com.technzone.miniborsa.utils.pref.SharedPreferencesUtil
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

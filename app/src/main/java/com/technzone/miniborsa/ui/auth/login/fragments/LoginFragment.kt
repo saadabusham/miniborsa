@@ -11,11 +11,11 @@ import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.miniborsa.data.pref.user.UserPref
 import com.technzone.miniborsa.databinding.FragmentLoginBinding
-import com.technzone.miniborsa.ui.MainActivity
 import com.technzone.miniborsa.ui.auth.forgetpassword.ForgetPasswordActivity
 import com.technzone.miniborsa.ui.auth.login.viewmodels.LoginViewModel
 import com.technzone.miniborsa.ui.auth.register.RegisterActivity
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
+import com.technzone.miniborsa.ui.main.activity.MainActivity
 import com.technzone.miniborsa.utils.extensions.*
 import com.technzone.miniborsa.utils.validation.ValidatorInputTypesEnums
 import dagger.hilt.android.AndroidEntryPoint
