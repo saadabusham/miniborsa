@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="canDeleteItem"
+            type="Boolean" />
+
+        <variable
+            name="symptom"
+            type="com.technzone.miniborsa.data.models.general.GeneralLookup" />
+    </data>
+
+    <com.google.android.material.button.MaterialButton xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_28sdp"
+        android:layout_margin="@dimen/_2sdp"
+        android:backgroundTint="@color/orange_alpha_75"
+        android:text="@{symptom.name}"
+        android:textAppearance="@style/textview_normal_medium"
+        android:textSize="@dimen/_10ssp"
+        app:cornerRadius="@dimen/_8sdp"
+        app:icon="@{canDeleteItem==true ? @drawable/ic_remove : @drawable/tab_un_selected}"
+        app:iconGravity="end"
+        tools:text="Heat" />
+</layout>

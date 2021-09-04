@@ -135,12 +135,34 @@
 
     <!--    Forget password-->
     <string name="reset_your_password">Reset your password</string>
-    <string name="enter_your_email_below_to_receive_instructions_to_reset_nyour_password">Enter your email below to receive instructions to reset\nyour password</string>
+    <string name="enter_your_email_below_to_receive_instructions_to_reset_nyour_password">Enter your email below to receive instructions to reset your password</string>
     <string name="you_successfully_changed_your_password_nuse_the_new_password_to_log_in_to_your_account">You successfully changed your password.\nUse the new password to log in to your account.</string>
     <string name="success">Success!</string>
     <string name="change_your_password">Change your password</string>
     <string name="enter_a_new_password_below">Enter a new password below</string>
     <string name="new_password">New Password</string>
     <string name="enter_new_password">Enter your password</string>
+    <string name="reset_password_">Reset Password</string>
+    <string name="change_password">Change Password</string>
+
+    <!--    User Role-->
+    <string name="user_role">User Role</string>
+    <string name="please_select_your_role">Please select your role</string>
+    <string name="what_is_your_role">What is your Role?</string>
+    <string name="before_continuing_we_want_to_know_what_your_role">Before continuing we want to know what your role.</string>
+    <string name="i_am_an_business_owner">I am an Business Owner</string>
+    <string name="i_am_an_investor">I am an Investor</string>
+    <string name="continue_as_visitor">Continue as Visitor</string>
+
+    <!--    Investor Role-->
+    <string name="complete_your_investor_profile">Complete your Investor Profile</string>
+    <string name="complete">Complete</string>
+    <string name="available_on_request">Available On Request</string>
+    <string name="investment_budget">Investment Budget</string>
+    <string name="countries">Countries:</string>
+    <string name="select_country">Select Country</string>
+    <string name="sectors_of_specialisation">Sectors of Specialisation</string>
+    <string name="select_specialisation">Select Specialisation</string>
+    <string name="begin_search">Begin Search</string>
 
 </resources>

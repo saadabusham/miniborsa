@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/investor_nav_graph"
+    app:startDestination="@id/investorRoleStep1Fragment">
+
+
+    <fragment
+        android:id="@+id/investorRoleStep1Fragment"
+        android:name="com.technzone.miniborsa.ui.invistorroles.fragments.CompleteInvestorRoleFragment"
+        android:label="InvestorRoleStep1Fragment"
+        tools:layout="@layout/fragment_complete_invistor_role"/>
+</navigation>

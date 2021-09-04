@@ -11,24 +11,18 @@
     </data>
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:id="@+id/relativeHeader"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <RelativeLayout
-            android:id="@+id/relativeHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_100sdp"
-            android:orientation="horizontal">
-
-            <include
-                android:id="@+id/layout_toolbar"
-                layout="@layout/layout_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="@dimen/_10sdp" />
-        </RelativeLayout>
+        <include
+            android:id="@+id/layout_toolbar"
+            layout="@layout/layout_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/_10sdp" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -36,120 +30,118 @@
             android:layout_marginTop="@dimen/_60sdp"
             android:fillViewport="true">
 
-            <com.google.android.material.card.MaterialCardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:shapeAppearanceOverlay="@style/top_cardview_corner">
+                android:layout_marginStart="@dimen/layouts_margin_start"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    android:id="@+id/tvHeader"
+                    style="@style/textview_normal_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_27sdp"
+                    android:text="@string/verify_your_account"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_21ssp" />
+
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/enter_the_verification_code_we_sent_to_your"
+                    android:textColor="@color/black_alpha"
+                    android:textSize="@dimen/_11ssp" />
+
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:text="@{viewModel.emailMutableLiveData}"
+                    android:textColor="@color/black_alpha"
+                    android:textSize="@dimen/_11ssp"
+                    tools:text="John@gmail.com" />
+
+                <com.mukesh.OtpView
+                    android:id="@+id/otp_view"
+                    style="@style/textview_normal_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_40sdp"
+                    android:inputType="number"
+                    android:itemBackground="@color/white"
+                    android:text="@={viewModel.signUpVerificationCode}"
+                    android:textColor="@color/otp_color"
+                    android:textSize="@dimen/_39ssp"
+                    app:itemCount="5"
+                    app:itemHeight="@dimen/_50sdp"
+                    app:itemRadius="@dimen/_8sdp"
+                    app:itemSpacing="@dimen/_8sdp"
+                    app:itemWidth="@dimen/_43sdp"
+                    app:lineColor="@color/otp_outline_color"
+                    app:lineWidth="1dp"
+                    app:state_filled="true"
+                    app:validateMaxLength="@{viewModel.VALIDATION_CODE_LENGTH}"
+                    app:validateMinLength="@{viewModel.VALIDATION_CODE_LENGTH}"
+                    app:viewType="none"
+                    tools:text="12345" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <com.technzone.miniborsa.ui.base.views.AppTextView
-                        android:id="@+id/tvHeader"
-                        style="@style/textview_normal_semibold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_27sdp"
-                        android:text="@string/verify_your_account"
-                        android:textColor="@color/text_header_dark_gray"
-                        android:textSize="@dimen/_23ssp" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_40sdp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <com.technzone.miniborsa.ui.base.views.AppTextView
                         style="@style/textview_normal_regular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:text="@string/enter_the_verification_code_we_sent_to_your"
-                        android:textColor="@color/black_alpha"
-                        android:textSize="@dimen/_13ssp" />
-
-                    <com.technzone.miniborsa.ui.base.views.AppTextView
-                        style="@style/textview_normal_regular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_2sdp"
-                        android:text="@{viewModel.emailMutableLiveData}"
-                        android:textColor="@color/black_alpha"
-                        android:textSize="@dimen/_13ssp"
-                        tools:text="John@gmail.com" />
-
-                    <com.mukesh.OtpView
-                        android:id="@+id/otp_view"
-                        style="@style/normalBoldFontStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/_40sdp"
-                        android:inputType="number"
-                        android:itemBackground="@color/white"
-                        android:text="@={viewModel.signUpVerificationCode}"
-                        android:textColor="@color/text_gray_color"
-                        android:textSize="@dimen/_20ssp"
-                        app:itemCount="5"
-                        app:itemHeight="@dimen/_50sdp"
-                        app:itemRadius="@dimen/_8sdp"
-                        app:itemSpacing="@dimen/_8sdp"
-                        app:itemWidth="@dimen/_43sdp"
-                        app:lineColor="@color/colorAccent"
-                        app:lineWidth="1dp"
-                        app:state_filled="true"
-                        app:validateMaxLength="@{viewModel.VALIDATION_CODE_LENGTH}"
-                        app:validateMinLength="@{viewModel.VALIDATION_CODE_LENGTH}"
-                        app:viewType="none"
-                        tools:text="12345" />
+                        android:text="@string/didn_t_receive_the_code"
+                        android:textColor="@color/black_alpha"
+                        android:textSize="@dimen/_11ssp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <com.technzone.miniborsa.ui.base.views.AppTextView
+                        android:id="@+id/tvTimeToResend"
+                        style="@style/textview_normal_regular"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_40sdp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <com.technzone.miniborsa.ui.base.views.AppTextView
-                            style="@style/textview_normal_regular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/didn_t_receive_the_code"
-                            android:textSize="@dimen/_11ssp" />
-
-                        <com.technzone.miniborsa.ui.base.views.AppTextView
-                            android:id="@+id/tvTimeToResend"
-                            style="@style/textview_normal_medium"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginStart="@dimen/_5sdp"
-                            android:text="@{viewModel.signUpResendTimer}"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="@dimen/_11ssp"
-                            tools:text="@string/resend_again" />
-
-                    </LinearLayout>
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnConfirm"
-                        style="@style/AppTheme.Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/button_height"
-                        android:layout_gravity="bottom"
-                        android:layout_marginTop="@dimen/_20sdp"
-                        android:layout_marginBottom="@dimen/_15sdp"
-                        android:text="@string/verify"
-                        android:textAppearance="@style/normalMediumFontStyle"
-                        android:textColor="@android:color/white"
-                        android:textSize="@dimen/_14ssp" />
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:text="@{viewModel.signUpResendTimer}"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/_11ssp"
+                        tools:text="@string/resend_again" />
 
                 </LinearLayout>
 
-            </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
 
         </ScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirm"
+            style="@style/AppTheme.Button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/layouts_margin_start"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/layouts_margin_end"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:text="@string/verify"
+            android:textAppearance="@style/textview_normal_regular"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_11ssp" />
+
     </RelativeLayout>
 
 </layout>

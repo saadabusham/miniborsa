@@ -73,8 +73,7 @@
                                 style="@style/TextInputEditTextStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@={viewModel.fullNameMutableLiveData}"
-                                android:textSize="@dimen/_10ssp" />
+                                android:text="@={viewModel.fullNameMutableLiveData}" />
 
                         </com.technzone.miniborsa.ui.base.views.AppTextInputLayout>
 
@@ -82,7 +81,6 @@
                             android:id="@+id/tfEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_15sdp"
                             android:hint="@string/last_name">
 
                             <com.technzone.miniborsa.ui.base.views.AppTextInputEditText
@@ -97,8 +95,7 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_40sdp"
-                            android:layout_marginTop="@dimen/_15sdp"
+                            android:layout_height="wrap_content"
                             app:passwordToggleEnabled="true">
 
                             <com.technzone.miniborsa.ui.base.views.AppEditText
@@ -120,9 +117,7 @@
                             android:layout_marginTop="@dimen/_100sdp"
                             android:layout_marginBottom="@dimen/_15sdp"
                             android:text="@string/sign_up"
-                            android:textAppearance="@style/normalMediumFontStyle"
-                            android:textColor="@android:color/white"
-                            android:textSize="@dimen/_14ssp" />
+                            android:textSize="@dimen/_11ssp" />
 
                         <LinearLayout
                             android:id="@+id/linear_SignInOption"
@@ -177,7 +172,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="@string/already_have_an_account"
-                            android:textColor="@color/text_gray_color"
+                            android:textColor="@color/black"
                             android:textSize="@dimen/_11ssp" />
 
                         <com.technzone.miniborsa.ui.base.views.AppTextView

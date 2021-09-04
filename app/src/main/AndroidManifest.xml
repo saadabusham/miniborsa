@@ -34,6 +34,13 @@
         <activity
             android:name="com.technzone.miniborsa.ui.auth.forgetpassword.ForgetPasswordActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.technzone.miniborsa.ui.auth.userrole.activity.UserRolesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.technzone.miniborsa.ui.general.GeneralActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

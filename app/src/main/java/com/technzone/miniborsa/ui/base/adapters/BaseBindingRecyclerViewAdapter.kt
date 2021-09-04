@@ -50,5 +50,6 @@ abstract class BaseBindingRecyclerViewAdapter<MODEL>(
     interface OnItemClickListener {
         fun onItemClick(view: View?, position: Int, item: Any)
         fun onItemLongClick(view: View?, position: Int, item: Any){}
+        fun onItemChecked(isChecked: Boolean? = null, item: Any, position: Int){}
     }
 }

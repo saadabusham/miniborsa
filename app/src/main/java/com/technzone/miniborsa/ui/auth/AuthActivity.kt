@@ -42,7 +42,7 @@ class AuthActivity : BaseBindingActivity<ActivityAuthBinding>() {
         if (prefs.getIsFirstOpen()) {
             graph.startDestination = R.id.languageFragment
         } else {
-//            graph.startDestination = R.id.loginFragment
+            graph.startDestination = R.id.loginFragment
         }
 
         navHostFragment.navController.graph = graph

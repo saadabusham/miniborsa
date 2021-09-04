@@ -37,9 +37,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/app_name"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_28ssp"
-                    android:text="@string/app_name" />
+                    android:textSize="@dimen/_28ssp" />
             </LinearLayout>
 
             <LinearLayout
@@ -75,8 +75,9 @@
                         android:layout_height="@dimen/_40sdp"
                         android:gravity="center"
                         android:text="@string/english"
-                        android:textColor="@color/text_gray_color"
-                        android:textSize="@dimen/_12ssp" />
+                        android:textColor="@{viewModel.englishSelected ? @color/button_color : @color/text_gray_color}"
+                        android:textSize="@dimen/_14ssp"
+                        tools:textColor="@color/text_gray_color" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -96,8 +97,9 @@
                         android:gravity="center"
                         android:layoutDirection="ltr"
                         android:text="@string/arabic"
-                        android:textColor="@color/text_gray_color"
-                        android:textSize="@dimen/_12ssp" />
+                        android:textColor="@{viewModel.englishSelected ? @color/text_gray_color : @color/button_color}"
+                        android:textSize="@dimen/_12ssp"
+                        tools:textColor="@color/text_gray_color" />
                 </LinearLayout>
 
                 <com.google.android.material.button.MaterialButton
