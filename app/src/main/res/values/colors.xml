@@ -8,6 +8,7 @@
     <color name="orange_alpha_75">#BFEF7846</color>
     <color name="colorAccentDark">#4f5b74</color>
     <color name="color_app_background">#FFFFFF</color>
+    <color name="header_app_background">#F8F9FD</color>
     <color name="ripple_color">#0be8252e</color>
     <color name="app_background_color">#FFFFFF</color>
     <!-- Views Default colors -->
@@ -120,4 +121,5 @@
     <color name="error_color">#DC0C0C</color>
     <color name="valid">#60bf04</color>
     <color name="otp_color">#2E3A59</color>
+    <color name="green_color">#00AB6B</color>
 </resources>

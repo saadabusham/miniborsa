@@ -26,7 +26,7 @@
             android:name="com.technzone.miniborsa.ui.auth.AuthActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.technzone.miniborsa.ui.main.activity.MainActivity"
+            android:name="com.technzone.miniborsa.ui.invistormain.activity.InvestorMainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.technzone.miniborsa.ui.auth.register.RegisterActivity"
@@ -42,6 +42,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.technzone.miniborsa.ui.subscription.activity.SubscriptionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.technzone.miniborsa.ui.businessmain.activity.BusinessMainActivity"
             android:screenOrientation="portrait" />
 
     </application>

@@ -12,7 +12,7 @@ import com.technzone.miniborsa.data.pref.user.UserPref
 import com.technzone.miniborsa.databinding.FragmentVerificationLoginBinding
 import com.technzone.miniborsa.ui.auth.login.viewmodels.LoginViewModel
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
-import com.technzone.miniborsa.ui.main.activity.MainActivity
+import com.technzone.miniborsa.ui.invistormain.activity.InvestorMainActivity
 import com.technzone.miniborsa.utils.extensions.showErrorAlert
 import com.technzone.miniborsa.utils.extensions.validate
 import com.technzone.miniborsa.utils.validation.ValidatorInputTypesEnums
@@ -70,7 +70,7 @@ class VerificationLoginFragment : BaseBindingFragment<FragmentVerificationLoginB
                             })
                             requireActivity().finish()
                         } else {
-                            MainActivity.start(requireContext())
+                            InvestorMainActivity.start(requireContext())
                         }
                     }
                 }

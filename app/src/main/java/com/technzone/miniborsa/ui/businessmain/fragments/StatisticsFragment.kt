@@ -1,25 +1,19 @@
-package com.technzone.miniborsa.ui.main.fragment
+package com.technzone.miniborsa.ui.businessmain.fragments
 
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.technzone.miniborsa.R
-import com.technzone.miniborsa.data.models.general.GeneralLookup
-import com.technzone.miniborsa.databinding.FragmentCompleteInvistorRoleBinding
-import com.technzone.miniborsa.databinding.FragmentListingBinding
 import com.technzone.miniborsa.databinding.FragmentStatisticsBinding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
-import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
-import com.technzone.miniborsa.ui.general.adapters.SelectedGeneralRecyclerAdapter
-import com.technzone.miniborsa.ui.invistorroles.viewmodels.InvestorRoleViewModel
-import com.technzone.miniborsa.ui.main.viewmodels.MainViewModel
+import com.technzone.miniborsa.ui.invistormain.viewmodels.InvestorMainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class StatisticsFragment : BaseBindingFragment<FragmentStatisticsBinding>(),
         BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
-    private val viewModel: MainViewModel by activityViewModels()
+    private val viewModel: InvestorMainViewModel by activityViewModels()
 
     override fun getLayoutId(): Int = R.layout.fragment_statistics
 

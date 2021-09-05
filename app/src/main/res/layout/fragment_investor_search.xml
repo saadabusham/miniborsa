@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.technzone.miniborsa.ui.invistormain.viewmodels.InvestorMainViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:layout_anchorGravity="bottom|right|end">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/header_app_background"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="@color/white"
+                app:layout_scrollFlags="scroll|enterAlways|exitUntilCollapsed"
+                app:titleEnabled="false">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_150sdp"
+                    app:layout_collapseMode="pin">
+
+                    <com.technzone.miniborsa.ui.base.views.AppTextView
+                        android:id="@+id/tvWelcome"
+                        style="@style/textview_normal_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:text="@string/welcome"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_21ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.technzone.miniborsa.ui.base.views.AppImageView
+                        android:id="@+id/imgNotifications"
+                        android:layout_width="@dimen/_19sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:src="@drawable/ic_alerts_active"
+                        app:layout_constraintBottom_toBottomOf="@id/tvWelcome"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tvWelcome" />
+
+
+                    <com.technzone.miniborsa.ui.base.views.AppTextView
+                        android:id="@+id/tvHeader"
+                        style="@style/textview_normal_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@string/sell_or_buy_your_business"
+                        android:textColor="@color/black_alpha"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintStart_toStartOf="@id/tvWelcome"
+                        app:layout_constraintTop_toBottomOf="@id/tvWelcome" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cvSearch"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/Edittext_height"
+                        android:layout_marginTop="@dimen/_18sdp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_7sdp"
+                        app:cardElevation="@dimen/_3sdp"
+                        app:layout_constraintEnd_toEndOf="@id/imgNotifications"
+                        app:layout_constraintStart_toStartOf="@id/tvWelcome"
+                        app:layout_constraintTop_toBottomOf="@id/tvHeader">
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/etSearch"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:background="@null"
+                            android:drawableStart="@drawable/ic_search"
+                            android:drawablePadding="@dimen/_12sdp"
+                            android:hint="@string/begin_search"
+                            android:imeOptions="actionSearch"
+                            android:maxLines="1"
+                            android:paddingEnd="@dimen/_12sdp"
+                            android:textAppearance="@style/textview_normal_regular"
+                            android:textColorHint="#b7b7b7"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/ivSearch"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:clipToPadding="false"
+            android:fillViewport="true"
+            android:paddingBottom="@dimen/_35sdp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/layout_for_sale"
+                    layout="@layout/layout_for_sale" />
+
+                <include
+                    android:id="@+id/layout_share_for_sale"
+                    layout="@layout/layout_share_for_sale" />
+
+                <include
+                    android:id="@+id/layout_franchise"
+                    layout="@layout/layout_franchise" />
+
+                <include
+                    android:id="@+id/layout_business_news"
+                    layout="@layout/layout_business_news" />
+
+                <include
+                    android:id="@+id/layout_switch_business"
+                    layout="@layout/layout_switch_business" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

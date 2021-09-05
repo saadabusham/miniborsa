@@ -3,8 +3,10 @@ package com.technzone.miniborsa.utils.extensions
 import android.app.Activity
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.technzone.miniborsa.common.CommonEnums
+import com.technzone.miniborsa.utils.LocaleUtil.Companion.getLanguage
 
-fun Activity?.getSnapHelper(): LinearSnapHelper? {
+fun Activity.getSnapHelper(): LinearSnapHelper? {
     return object : LinearSnapHelper() {
         override fun findTargetSnapPosition(
             layoutManager: RecyclerView.LayoutManager,
@@ -15,24 +17,20 @@ fun Activity?.getSnapHelper(): LinearSnapHelper? {
             val position = layoutManager.getPosition(centerView)
             var targetPosition = -1
             if (layoutManager.canScrollHorizontally()) {
-//                targetPosition = if (Utils.isArabic(getActivity())) {
-//                    if (velocityX < 0) {
-//                        position + 1
-//                    } else {
-//                        position - 1
-//                    }
-//                } else {
-//                    if (velocityX < 0) {
-//                        position - 1
-//                    } else {
-//                        position + 1
-//                    }
-//                }
-                targetPosition = if (velocityX < 0) {
-                    position - 1
-                } else {
-                    position + 1
-                }
+                targetPosition =
+                    if (getLanguage() == CommonEnums.Languages.Arabic.value) {
+                        if (velocityX < 0) {
+                            position + 1
+                        } else {
+                            position - 1
+                        }
+                    } else {
+                        if (velocityX < 0) {
+                            position - 1
+                        } else {
+                            position + 1
+                        }
+                    }
             }
             if (layoutManager.canScrollVertically()) {
                 targetPosition = if (velocityY < 0) {

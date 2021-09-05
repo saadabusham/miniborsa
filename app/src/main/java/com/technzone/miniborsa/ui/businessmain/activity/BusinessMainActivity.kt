@@ -1,4 +1,4 @@
-package com.technzone.miniborsa.ui.main.activity
+package com.technzone.miniborsa.ui.businessmain.activity
 
 import android.content.Context
 import android.content.Intent
@@ -7,18 +7,19 @@ import androidx.activity.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.technzone.miniborsa.R
-import com.technzone.miniborsa.databinding.ActivityMainBinding
+import com.technzone.miniborsa.databinding.ActivityBusinessMainBinding
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
-import com.technzone.miniborsa.ui.main.viewmodels.MainViewModel
+import com.technzone.miniborsa.ui.businessmain.viewmodels.BusinessMainViewModel
+import com.technzone.miniborsa.ui.invistormain.viewmodels.InvestorMainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
+class BusinessMainActivity : BaseBindingActivity<ActivityBusinessMainBinding>() {
 
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: BusinessMainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main, hasToolbar = false)
+        setContentView(R.layout.activity_business_main, hasToolbar = false)
         setupNavigation()
     }
 
@@ -41,7 +42,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
         fun start(
             context: Context?
         ) {
-            val intent = Intent(context, MainActivity::class.java)
+            val intent = Intent(context, BusinessMainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             context?.startActivity(intent)
         }

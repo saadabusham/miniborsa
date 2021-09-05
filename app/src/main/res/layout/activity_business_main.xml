@@ -16,7 +16,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navGraph="@navigation/main_nav_graph"
+            app:navGraph="@navigation/business_main_nav_graph"
             android:layout_above="@id/bnv_main"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -32,7 +32,7 @@
             app:itemTextAppearanceInactive="@style/BottomNavigationView"
             app:itemTextColor="@color/color_activity_main_navigation_view_item"
             app:labelVisibilityMode="labeled"
-            app:menu="@menu/navigation_menu_main" />
+            app:menu="@menu/navigation_menu_business_main" />
 
     </RelativeLayout>
 </layout>

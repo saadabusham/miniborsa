@@ -9,7 +9,7 @@ import com.technzone.miniborsa.data.pref.user.UserPref
 import com.technzone.miniborsa.databinding.FragmentRegisterSuccessBinding
 import com.technzone.miniborsa.ui.auth.register.viewmodels.RegistrationViewModel
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
-import com.technzone.miniborsa.ui.main.activity.MainActivity
+import com.technzone.miniborsa.ui.invistormain.activity.InvestorMainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import javax.inject.Inject
@@ -52,7 +52,7 @@ class RegisterSuccessFragment : BaseBindingFragment<FragmentRegisterSuccessBindi
                 requireActivity().setResult(RESULT_OK)
                 requireActivity().finish()
             } else {
-                MainActivity.start(requireContext())
+                InvestorMainActivity.start(requireContext())
             }
         }
         binding?.tvSkip?.setOnClickListener {
@@ -67,7 +67,7 @@ class RegisterSuccessFragment : BaseBindingFragment<FragmentRegisterSuccessBindi
                 requireActivity().setResult(RESULT_OK)
                 requireActivity().finish()
             } else {
-                MainActivity.start(context)
+                InvestorMainActivity.start(context)
             }
         }
     }

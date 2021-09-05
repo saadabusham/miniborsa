@@ -68,7 +68,7 @@
 
                 <include
                     android:id="@+id/cvUpdateNow"
-                    layout="@layout/mystreyin_button"
+                    layout="@layout/app_button"
                     android:onClick="@{()->viewModel.onUpdateClicked()}" />
 
                 <androidx.appcompat.widget.AppCompatTextView

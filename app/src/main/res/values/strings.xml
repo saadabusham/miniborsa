@@ -169,9 +169,29 @@
     <string name="_7_days_free_trail">7 days free trail</string>
     <string name="unlimited_business_description">Unlimited business description</string>
     <string name="access_investors">Access Investors</string>
+
+    <!--    Business Main-->
     <string name="nav_listing">Liting</string>
     <string name="nav_notification">Notification</string>
     <string name="nav_statistics">Statistics</string>
+
+    <!--    Investor Main-->
+    <string name="nav_search">Search</string>
+    <string name="nav_favorite">Favorite</string>
+    <string name="nav_messages">Messages</string>
     <string name="nav_profile">Profile</string>
+    <string name="sell_or_buy_your_business">Sell or buy your business</string>
+    <string name="businesses_for_sale">Businesses For Sale</string>
+    <string name="see_all">See All</string>
+    <string name="share_for_sale">Share For Sale</string>
+    <string name="franchise">Franchise</string>
+    <string name="business_news">Business News</string>
+    <string name="wanna_list_your_business">Wanna List Your Business?</string>
+    <string name="list_business">List Business</string>
+    <string name="list_your_business_with_us_in_simple_steps">List your business with us in simple Steps.</string>
+    <string name="becoming_a_business_owner">Becoming a Business Owner ?</string>
+    <string name="complete_your_listing">Complete your Listing</string>
+    <string name="switch_to_your_business">Switch to your Business</string>
+    <string name="welcome_back">Welcome back</string>
 
 </resources>

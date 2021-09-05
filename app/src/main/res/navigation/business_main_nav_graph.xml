@@ -8,25 +8,25 @@
 
     <fragment
         android:id="@+id/nav_listing"
-        android:name="com.technzone.miniborsa.ui.main.fragment.ListingFragment"
+        android:name="com.technzone.miniborsa.ui.businessmain.fragments.ListingFragment"
         android:label="ListingFragment"
         tools:layout="@layout/fragment_listing" />
 
     <fragment
         android:id="@+id/nav_notification"
-        android:name="com.technzone.miniborsa.ui.main.fragment.NotificationFragment"
+        android:name="com.technzone.miniborsa.ui.businessmain.fragments.NotificationFragment"
         android:label="NotificationFragment"
         tools:layout="@layout/fragment_notification" />
 
     <fragment
         android:id="@+id/nav_statistics"
-        android:name="com.technzone.miniborsa.ui.main.fragment.StatisticsFragment"
+        android:name="com.technzone.miniborsa.ui.businessmain.fragments.StatisticsFragment"
         android:label="StatisticsFragment"
         tools:layout="@layout/fragment_statistics" />
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.technzone.miniborsa.ui.main.fragment.ProfileFragment"
+        android:name="com.technzone.miniborsa.ui.businessmain.fragments.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" />
 </navigation>

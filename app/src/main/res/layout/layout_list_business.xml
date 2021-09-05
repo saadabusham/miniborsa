@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_95sdp"
+        android:layout_marginStart="@dimen/layouts_margin_start"
+        android:layout_marginEnd="@dimen/layouts_margin_end"
+        android:layout_marginTop="@dimen/_20sdp">
+
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            android:id="@+id/tvTitle"
+            style="@style/textview_normal_semibold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layouts_margin_start"
+            android:layout_weight="1"
+            android:text="@string/wanna_list_your_business"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            android:id="@+id/tvDescription"
+            style="@style/textview_normal_regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:text="@string/list_your_business_with_us_in_simple_steps"
+            android:textColor="@color/black_alpha"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintEnd_toStartOf="@id/imgIcon"
+            app:layout_constraintStart_toStartOf="@id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+        <com.technzone.miniborsa.ui.base.views.AppButton
+            android:id="@+id/btnListBusiness"
+            style="@style/textview_normal_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_24sdp"
+            android:backgroundTint="@color/button_color"
+            android:gravity="center"
+            android:padding="@dimen/_7sdp"
+            android:paddingTop="@dimen/_7sdp"
+            android:paddingBottom="@dimen/_7sdp"
+            android:text="@string/list_business"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_9ssp"
+            app:cornerRadius="@dimen/_3sdp"
+            app:layout_constraintBottom_toBottomOf="@id/imgIcon"
+            app:layout_constraintStart_toStartOf="@id/tvTitle" />
+
+        <com.technzone.miniborsa.ui.base.views.AppImageView
+            android:id="@+id/imgIcon"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginEnd="@dimen/layouts_margin_end"
+            android:src="@drawable/ic_list_business_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
