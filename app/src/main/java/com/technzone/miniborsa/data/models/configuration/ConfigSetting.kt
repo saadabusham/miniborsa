@@ -1,21 +1,21 @@
 package com.technzone.miniborsa.data.models.configuration
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class ConfigSetting(
 
-	@Json(name="serviceCharge")
-	val serviceCharge: Double? = null,
+	@field:SerializedName("serviceCharge")
+	val serviceCharge: Int? = null,
 
-	@Json(name="maximumPrice")
-	val maximumPrice: Double? = null,
+	@field:SerializedName("showBusinesssList")
+	val showBusinesssList: Boolean? = null,
 
-	@Json(name="tax")
-	val tax: Double? = null,
+	@field:SerializedName("maximumPrice")
+	val maximumPrice: Int? = null,
 
-	@Json(name="minimumPrice")
-	val minimumPrice: Double? = null,
+	@field:SerializedName("tax")
+	val tax: Int? = null,
 
-	@Json(name="showJetsList")
-	val showJetsList: Boolean? = null
+	@field:SerializedName("minimumPrice")
+	val minimumPrice: Int? = null
 )

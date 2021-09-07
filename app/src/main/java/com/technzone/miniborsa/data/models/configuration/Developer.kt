@@ -1,36 +1,36 @@
 package com.technzone.miniborsa.data.models.configuration
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class Developer(
 
-	@field:Json(name ="twitter")
+	@field:SerializedName("twitter")
 	val twitter: String? = null,
 
-	@field:Json(name ="website")
+	@field:SerializedName("website")
 	val website: String? = null,
 
-	@field:Json(name ="phone")
+	@field:SerializedName("phone")
 	val phone: String? = null,
 
-	@field:Json(name ="englishDescription")
+	@field:SerializedName("englishDescription")
 	val englishDescription: String? = null,
 
-	@field:Json(name ="facebook")
+	@field:SerializedName("facebook")
 	val facebook: String? = null,
 
-	@field:Json(name ="name")
+	@field:SerializedName("name")
 	val name: String? = null,
 
-	@field:Json(name ="logo")
+	@field:SerializedName("logo")
 	val logo: String? = null,
 
-	@field:Json(name ="instagram")
+	@field:SerializedName("instagram")
 	val instagram: String? = null,
 
-	@field:Json(name ="arabicDescription")
+	@field:SerializedName("arabicDescription")
 	val arabicDescription: String? = null,
 
-	@field:Json(name ="email")
+	@field:SerializedName("email")
 	val email: String? = null
 )

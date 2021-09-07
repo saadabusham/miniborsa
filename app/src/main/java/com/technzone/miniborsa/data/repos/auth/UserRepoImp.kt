@@ -5,8 +5,8 @@ import com.technzone.miniborsa.data.api.response.ResponseHandler
 import com.technzone.miniborsa.data.api.response.ResponseWrapper
 import com.technzone.miniborsa.data.daos.remote.user.UserRemoteDao
 import com.technzone.miniborsa.data.enums.UserEnums
-import com.technzone.miniborsa.data.pref.user.UserPref
 import com.technzone.miniborsa.data.models.auth.login.UserDetailsResponseModel
+import com.technzone.miniborsa.data.pref.user.UserPref
 import com.technzone.miniborsa.data.repos.base.BaseRepo
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -24,10 +24,12 @@ class UserRepoImp @Inject constructor(
         password: String
     ): APIResource<ResponseWrapper<UserDetailsResponseModel>> {
         return try {
-            responseHandle.handleSuccess(userRemoteDao.login(
-                userName,
-                password
-            ))
+            responseHandle.handleSuccess(
+                userRemoteDao.login(
+                    userName,
+                    password
+                )
+            )
         } catch (e: Exception) {
             responseHandle.handleException(e)
         }
@@ -36,12 +38,27 @@ class UserRepoImp @Inject constructor(
     override suspend fun register(
         password: String,
         fullName: String,
-        email: String
+        email: String,
+        registrationId: String,
+        deviceType: Int,
+        applicationType: Int
     ): APIResource<ResponseWrapper<String>> {
         return try {
             responseHandle.handleSuccess(
                 userRemoteDao.register(
-                    password, fullName,email
+                    password, fullName, email, registrationId, deviceType, applicationType
+                )
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun forgetPassword(email: String): APIResource<ResponseWrapper<String>> {
+        return try {
+            responseHandle.handleSuccess(
+                userRemoteDao.forgetPassword(
+                    email
                 )
             )
         } catch (e: Exception) {
@@ -129,6 +146,20 @@ class UserRepoImp @Inject constructor(
         }
     }
 
+    override suspend fun resetPassword(
+        newPassword: String
+    ): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(
+                userRemoteDao.resetPassword(
+                    newPassword
+                )
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
     override suspend fun updateFcmToken(
         registrationId: RequestBody,
         deviceType: RequestBody
@@ -156,11 +187,17 @@ class UserRepoImp @Inject constructor(
         }
     }
 
-    override suspend fun recoveryPassword(newPassword: String): APIResource<ResponseWrapper<Any>> {
+    override suspend fun registerInvestor(
+        jobTitle: String,
+        investmentBudget: Double,
+        investmentBudgetNA: Boolean,
+        countries: List<Int>,
+        categories: List<Int>
+    ): APIResource<ResponseWrapper<Any>> {
         return try {
             responseHandle.handleSuccess(
-                userRemoteDao.recoveryPassword(
-                    newPassword
+                userRemoteDao.registerInvestor(
+                    jobTitle, investmentBudget, investmentBudgetNA, countries, categories
                 )
             )
         } catch (e: Exception) {

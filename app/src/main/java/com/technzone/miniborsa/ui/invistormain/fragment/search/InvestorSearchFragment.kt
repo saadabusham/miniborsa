@@ -4,6 +4,8 @@ import android.transition.TransitionManager
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.transition.TransitionInflater
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.models.investor.Business
 import com.technzone.miniborsa.data.models.news.BusinessNews
@@ -59,7 +61,19 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
         binding?.layoutBusinessNews?.tvAll?.setOnClickListener {
             handleBusinessNews(true)
         }
-
+        binding?.cvSearch?.setOnClickListener {
+            exitTransition = TransitionInflater.from(context)
+                .inflateTransition(R.transition.exit_transition)
+            val extras = FragmentNavigatorExtras(
+                binding?.cvSearch!! to binding?.cvSearch!!.transitionName
+            )
+            navigationController.navigate(
+                R.id.action_nav_search_to_searchBusinessFragment,
+                null,
+                null,
+                extras
+            )
+        }
         binding?.layoutSwitchBusiness?.layoutListBusiness?.btnListBusiness?.setOnClickListener {
             binding?.layoutSwitchBusiness?.layoutListBusiness?.root?.gone()
         }

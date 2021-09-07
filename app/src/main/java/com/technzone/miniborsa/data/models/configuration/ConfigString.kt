@@ -1,33 +1,30 @@
 package com.technzone.miniborsa.data.models.configuration
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class ConfigString(
 
-	@field:Json(name ="arabicTermsAndConditions")
+	@field:SerializedName("arabicTermsAndConditions")
 	val arabicTermsAndConditions: String? = null,
 
-	@field:Json(name ="englishTermsAndConditions")
+	@field:SerializedName("englishTermsAndConditions")
 	val englishTermsAndConditions: String? = null,
 
-	@field:Json(name ="arabicNewVersionText")
+	@field:SerializedName("arabicNewVersionText")
 	val arabicNewVersionText: String? = null,
 
-	@field:Json(name ="englishNewVersionText")
+	@field:SerializedName("englishNewVersionText")
 	val englishNewVersionText: String? = null,
 
-	@field:Json(name ="englishTellAFriend")
+	@field:SerializedName("englishTellAFriend")
 	val englishTellAFriend: String? = null,
 
-	@field:Json(name ="arabicPrivacyPolicy")
+	@field:SerializedName("arabicPrivacyPolicy")
 	val arabicPrivacyPolicy: String? = null,
 
-	@field:Json(name ="arabicTellAFriend")
+	@field:SerializedName("arabicTellAFriend")
 	val arabicTellAFriend: String? = null,
 
-	@field:Json(name ="medicationDeliveryNumber")
-	val medicationDeliveryNumber: String? = null,
-
-	@field:Json(name ="englishPrivacyPolicy")
+	@field:SerializedName("englishPrivacyPolicy")
 	val englishPrivacyPolicy: String? = null
 )

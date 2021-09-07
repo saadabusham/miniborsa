@@ -85,7 +85,7 @@ class ForgetPasswordViewModel @Inject constructor(
 
     fun resendVerificationCode() = liveData {
         emit(APIResource.loading())
-        val response = userRepo.resendCode(
+        val response = userRepo.forgetPassword(
             email.value.toString()
         )
         emit(response)
@@ -93,7 +93,7 @@ class ForgetPasswordViewModel @Inject constructor(
 
     fun recoveryPassword() = liveData {
         emit(APIResource.loading())
-        val response = userRepo.recoveryPassword(
+        val response = userRepo.resetPassword(
             passwordMutableLiveData.value.toString()
         )
         emit(response)

@@ -7,6 +7,7 @@ import androidx.lifecycle.liveData
 import co.infinum.goldfinger.Goldfinger
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.api.response.APIResource
+import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.enums.UserEnums
 import com.technzone.miniborsa.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.miniborsa.data.repos.auth.UserRepo
@@ -53,12 +54,12 @@ class RegistrationViewModel @Inject constructor(
 
     val forgetCountDownTimer: CountDownTimer by lazy {
         object : CountDownTimer(
-                RESEND_ENABLE_TIME_IN_MIN.minToMillisecond(),
-                RESEND_ENABLE_TIME_UPDATE_TIMER_IN_SECOND.secondToMillisecond()
+            RESEND_ENABLE_TIME_IN_MIN.minToMillisecond(),
+            RESEND_ENABLE_TIME_UPDATE_TIMER_IN_SECOND.secondToMillisecond()
         ) {
             override fun onTick(millisUntilFinished: Long) {
                 signUpResendTimer.value =
-                        millisUntilFinished.millisecondFormatting(DateTimeUtil.TIME_FORMATTING_MIN_AND_SECOND)
+                    millisUntilFinished.millisecondFormatting(DateTimeUtil.TIME_FORMATTING_MIN_AND_SECOND)
             }
 
             override fun onFinish() {
@@ -77,9 +78,12 @@ class RegistrationViewModel @Inject constructor(
     fun registerUser() = liveData {
         emit(APIResource.loading())
         val response = userRepo.register(
-                fullName = fullNameMutableLiveData.value.toString(),
-                email = emailMutableLiveData.value.toString(),
-                password = passwordMutableLiveData.value.toString()
+            fullName = fullNameMutableLiveData.value.toString(),
+            email = emailMutableLiveData.value.toString(),
+            password = passwordMutableLiveData.value.toString(),
+            applicationType = Constants.APPLICATION_TYPE,
+            deviceType = Constants.DEVICE_TYPE,
+            registrationId = ""
         )
         emit(response)
     }
@@ -87,8 +91,8 @@ class RegistrationViewModel @Inject constructor(
     fun verifyCode() = liveData {
         emit(APIResource.loading())
         val response = userRepo.verify(
-                userIdMutableLiveData.value.toString(),
-                signUpVerificationCode.value.toString()
+            userIdMutableLiveData.value.toString(),
+            signUpVerificationCode.value.toString()
         )
         emit(response)
     }
@@ -96,7 +100,7 @@ class RegistrationViewModel @Inject constructor(
     fun resendVerificationCode() = liveData {
         emit(APIResource.loading())
         val response = userRepo.resendCode(
-                emailMutableLiveData.value.toString()
+            emailMutableLiveData.value.toString()
         )
         emit(response)
     }
@@ -109,7 +113,7 @@ class RegistrationViewModel @Inject constructor(
         user.token?.let { it1 -> userRepo.saveAccessToken(it1) }
     }
 
-    fun isTouchIdShouldVisible():Boolean{
+    fun isTouchIdShouldVisible(): Boolean {
         return Goldfinger.Builder(context).build().canAuthenticate()
     }
 

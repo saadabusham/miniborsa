@@ -6,6 +6,7 @@ import com.technzone.miniborsa.data.api.response.ResponseHandler
 import com.technzone.miniborsa.data.api.response.ResponseWrapper
 import com.technzone.miniborsa.data.daos.remote.configuration.ConfigurationRemoteDao
 import com.technzone.miniborsa.data.models.configuration.ConfigurationWrapperResponse
+import com.technzone.miniborsa.data.models.country.Country
 import com.technzone.miniborsa.data.pref.configuration.ConfigurationPref
 import com.technzone.miniborsa.data.repos.base.BaseRepo
 import javax.inject.Inject
@@ -28,6 +29,14 @@ class ConfigurationRepoImp @Inject constructor(
             APIResource<ResponseWrapper<ConfigurationWrapperResponse>> {
         return try {
             responseHandle.handleSuccess(configurationRemoteDao.getAppConfiguration())
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun getCountries(): APIResource<ResponseWrapper<List<Country>>> {
+        return try {
+            responseHandle.handleSuccess(configurationRemoteDao.getCountries())
         } catch (e: Exception) {
             responseHandle.handleException(e)
         }

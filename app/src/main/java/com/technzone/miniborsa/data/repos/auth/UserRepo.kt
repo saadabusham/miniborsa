@@ -4,8 +4,11 @@ import com.technzone.miniborsa.data.api.response.APIResource
 import com.technzone.miniborsa.data.api.response.ResponseWrapper
 import com.technzone.miniborsa.data.enums.UserEnums
 import com.technzone.miniborsa.data.models.auth.login.UserDetailsResponseModel
+import io.reactivex.Single
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.http.Field
+import retrofit2.http.Path
 
 
 interface UserRepo {
@@ -19,6 +22,13 @@ interface UserRepo {
     suspend fun register(
         password: String,
         fullName: String,
+        email: String,
+        registrationId: String,
+        deviceType: Int,
+        applicationType: Int
+    ): APIResource<ResponseWrapper<String>>
+
+    suspend fun forgetPassword(
         email: String
     ): APIResource<ResponseWrapper<String>>
 
@@ -51,6 +61,10 @@ interface UserRepo {
         newPassword: String
     ): APIResource<ResponseWrapper<Any>>
 
+    suspend fun resetPassword(
+        newPassword: String
+    ): APIResource<ResponseWrapper<Any>>
+
     suspend fun updateFcmToken(
         registrationId: RequestBody,
         deviceType: RequestBody
@@ -60,8 +74,12 @@ interface UserRepo {
         image: MultipartBody.Part
     ): APIResource<ResponseWrapper<Any>>
 
-    suspend fun recoveryPassword(
-        newPassword: String
+    suspend fun registerInvestor(
+        jobTitle: String,
+        investmentBudget: Double,
+        investmentBudgetNA: Boolean,
+        countries: List<Int>,
+        categories: List<Int>
     ): APIResource<ResponseWrapper<Any>>
 
     fun saveNotificationStatus(flag: Boolean)

@@ -1,30 +1,30 @@
 package com.technzone.miniborsa.data.models.configuration
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class UpdateStatus(
 
-	@field:Json(name ="iosAppUrl")
+	@field:SerializedName("iosAppUrl")
 	val iosAppUrl: String? = null,
 
-	@field:Json(name ="iosIsMandatory")
+	@field:SerializedName("iosIsMandatory")
 	val iosIsMandatory: Boolean? = null,
 
-	@field:Json(name ="englishDescription")
+	@field:SerializedName("englishDescription")
 	val englishDescription: String? = null,
 
-	@field:Json(name ="appUrl")
+	@field:SerializedName("appUrl")
 	val appUrl: String? = null,
 
-	@field:Json(name ="iosVersion")
+	@field:SerializedName("iosVersion")
 	val iosVersion: String? = null,
 
-	@field:Json(name ="arabicDescription")
+	@field:SerializedName("arabicDescription")
 	val arabicDescription: String? = null,
 
-	@field:Json(name ="version")
+	@field:SerializedName("version")
 	val version: String? = null,
 
-	@field:Json(name ="isMandatory")
+	@field:SerializedName("isMandatory")
 	val isMandatory: Boolean? = null
 )

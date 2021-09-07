@@ -9,7 +9,15 @@
         android:id="@+id/nav_search"
         android:name="com.technzone.miniborsa.ui.invistormain.fragment.search.InvestorSearchFragment"
         android:label="BusnissSearchFragment"
-        tools:layout="@layout/fragment_investor_search" />
+        tools:layout="@layout/fragment_investor_search">
+        <action
+            android:id="@+id/action_nav_search_to_searchBusinessFragment"
+            app:destination="@id/searchBusinessFragment"
+            app:enterAnim="@anim/slide_in_end"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_start"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/nav_favorite"
         android:name="com.technzone.miniborsa.ui.invistormain.fragment.investorfavorite.InvestorFavoriteFragment"
@@ -25,6 +33,10 @@
         android:name="com.technzone.miniborsa.ui.businessmain.fragments.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/searchBusinessFragment"
+        android:name="com.technzone.miniborsa.ui.invistormain.fragment.search.searchbusiness.SearchBusinessFragment"
+        android:label="SearchBusinessFragment" />
 
 
 </navigation>

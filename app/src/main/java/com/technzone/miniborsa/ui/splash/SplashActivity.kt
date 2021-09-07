@@ -37,8 +37,7 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
             hasToolbar = false
         )
         Handler(Looper.getMainLooper()).postDelayed({
-//            viewModel.getConfigurationData().observe(this, configurationResultObserver())
-            goToNextPage()
+            viewModel.getConfigurationData().observe(this, configurationResultObserver())
         }, 3000)
 
         RuntimeException("This is a RUNTIME EXCEPTION")
@@ -63,39 +62,6 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
                 }
             })
     }
-
-    private val configurationResultObserver =
-        Observer<APIResource<ConfigurationWrapperResponse>> {
-            when (it.status) {
-                RequestStatusEnum.SUCCESS -> {
-                    hideLoadingView()
-                    when {
-                        it.statusSubCode == ResponseSubErrorsCodeEnum.Success -> {
-                            SharedPreferencesUtil.getInstance(this)
-                                .setConfigurationPreferences(it.data)
-                            goToNextPage()
-                        }
-                        else -> {
-                            handleRequestFailedMessages(
-                                it.statusCode,
-                                it?.statusSubCode,
-                                it.messages ?: ""
-                            )
-                        }
-                    }
-                }
-                RequestStatusEnum.FAILED -> {
-                    hideLoadingView()
-                    handleRequestFailedMessages(
-                        it.statusCode,
-                        it.statusSubCode,
-                        it.messages
-                    )
-                }
-                RequestStatusEnum.LOADING -> showLoadingView()
-            }
-        }
-
     private fun goToNextPage() {
         if (!viewModel.isUserLoggedIn()) {
             AuthActivity.start(this)
