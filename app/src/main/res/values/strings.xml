@@ -193,5 +193,10 @@
     <string name="complete_your_listing">Complete your Listing</string>
     <string name="switch_to_your_business">Switch to your Business</string>
     <string name="welcome_back">Welcome back</string>
+    <string name="showing_result">Showing Result</string>
+    <string name="filter">Filter</string>
+    <string name="my_favorites">My Favorites</string>
+    <string name="reset">Reset</string>
+    <string name="business_status">Business Status</string>
 
 </resources>
