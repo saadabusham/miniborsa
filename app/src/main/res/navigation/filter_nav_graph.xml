@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/filter_nav_graph"
+    app:startDestination="@id/searchBusinessFragment">
+
+    <fragment
+        android:id="@+id/searchBusinessFragment"
+        android:name="com.technzone.miniborsa.ui.investor.filter.search.SearchBusinessFragment"
+        android:label="SearchBusinessFragment"
+        tools:layout="@layout/fragment_search_business">
+        <action
+            android:id="@+id/action_searchBusinessFragment_to_filterBusinessFragment"
+            app:destination="@id/filterBusinessFragment"
+            app:enterAnim="@anim/slide_in_end"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_start"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/filterBusinessFragment"
+        android:name="com.technzone.miniborsa.ui.investor.filter.filter.FilterBusinessFragment"
+        android:label="FilterBusinessFragment"
+        tools:layout="@layout/fragment_filter"/>
+
+
+</navigation>

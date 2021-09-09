@@ -30,12 +30,12 @@
         tools:layout="@layout/fragment_investor_messages" />
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.technzone.miniborsa.ui.businessmain.fragments.ProfileFragment"
+        android:name="com.technzone.miniborsa.ui.business.businessmain.fragments.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/searchBusinessFragment"
-        android:name="com.technzone.miniborsa.ui.investor.invistormain.fragment.search.searchbusiness.SearchBusinessFragment"
+        android:name="com.technzone.miniborsa.ui.investor.filter.search.SearchBusinessFragment"
         android:label="SearchBusinessFragment"
         tools:layout="@layout/fragment_search_business">
     </fragment>

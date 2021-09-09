@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.technzone.miniborsa.data.models.investor.FieldsItem" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:foreground="?android:selectableItemBackground">
+
+        <TextView
+            style="@style/textview_normal_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|start"
+            android:textColor="@color/black_alpha"
+            android:text="Date Founded"
+            android:textSize="@dimen/_11ssp"/>
+
+        <TextView
+            style="@style/textview_normal_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2015"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11ssp"
+            android:layout_marginTop="@dimen/_3sdp"/>
+
+    </LinearLayout>
+</layout>

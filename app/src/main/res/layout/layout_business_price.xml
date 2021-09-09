@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            android:id="@+id/tvName"
+            style="@style/textview_normal_bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Business For Sale "
+            android:textColor="@color/green_color"
+            android:textSize="@dimen/_11ssp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            app:layout_constraintEnd_toStartOf="@id/tvAsking"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            android:id="@+id/tvType"
+            style="@style/textview_normal_regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Freehold"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColor="@color/black_alpha"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            android:id="@+id/tvAsking"
+            style="@style/textview_normal_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/asking"
+            android:textColor="@color/black_alpha"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="@id/tvPrice"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            android:id="@+id/tvPrice"
+            style="@style/textview_normal_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$340,000"
+            android:textColor="@color/green_color"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvType"
+            app:layout_constraintBottom_toBottomOf="@id/tvType"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

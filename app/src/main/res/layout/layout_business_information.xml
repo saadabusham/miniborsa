@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            android:id="@+id/tvName"
+            style="@style/textview_normal_bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/business_information"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13ssp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            android:id="@+id/tvType"
+            style="@style/textview_normal_regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Aumet is the first marketplace to sell SME's medical\nnmanufacturers' products directly to healthcare\nproviders.\n\n
+Aumet disrupts the market by automating assigning\ndistributors to the medical manufacturer and sell the\nproduct directly to healthcare providers getting the\nbest price directly from manufacturers."
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColor="@color/black_alpha"
+            android:textSize="@dimen/_11ssp"
+            android:lineSpacingExtra="@dimen/_3sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

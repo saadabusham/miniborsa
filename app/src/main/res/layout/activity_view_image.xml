@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="data"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_background_color"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/layout_toolbar"
+            layout="@layout/layout_toolbar" />
+
+        <com.technzone.miniborsa.ui.base.views.TouchImageView
+            android:id="@+id/imgPicture"
+            ivImageUrl="@{data}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:transitionName="image" />
+
+    </LinearLayout>
+</layout>

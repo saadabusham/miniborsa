@@ -7,14 +7,13 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.investor.invistormain.viewmodels.InvestorMainViewModel" />
+            type="com.technzone.miniborsa.ui.investor.filter.viewmodels.FilterBusinessViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/app_background_color">
-
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cvSearch"

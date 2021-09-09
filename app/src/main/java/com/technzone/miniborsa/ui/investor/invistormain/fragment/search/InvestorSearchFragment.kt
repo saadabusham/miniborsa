@@ -14,6 +14,7 @@ import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
 import com.technzone.miniborsa.ui.investor.businessdetails.activity.BusinessDetailsActivity
+import com.technzone.miniborsa.ui.investor.filter.activity.FilterActivity
 import com.technzone.miniborsa.ui.investor.invistormain.adapters.BusinessAdapter
 import com.technzone.miniborsa.ui.investor.invistormain.adapters.BusinessNewsAdapter
 import com.technzone.miniborsa.ui.investor.invistormain.viewmodels.InvestorMainViewModel
@@ -64,17 +65,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
             handleBusinessNews(true)
         }
         binding?.cvSearch?.setOnClickListener {
-            exitTransition = TransitionInflater.from(context)
-                .inflateTransition(R.transition.exit_transition)
-            val extras = FragmentNavigatorExtras(
-                binding?.cvSearch!! to binding?.cvSearch!!.transitionName
-            )
-            navigationController.navigate(
-                R.id.action_nav_search_to_searchBusinessFragment,
-                null,
-                null,
-                extras
-            )
+            FilterActivity.start(requireActivity(),binding?.cvSearch!!)
         }
         binding?.layoutSwitchBusiness?.layoutListBusiness?.btnListBusiness?.setOnClickListener {
             binding?.layoutSwitchBusiness?.layoutListBusiness?.root?.gone()
@@ -98,7 +89,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
         forSaleBusinessAdapter = BusinessAdapter(requireContext())
         binding?.layoutForSale?.recyclerView?.adapter = forSaleBusinessAdapter
         binding?.layoutForSale?.recyclerView.setOnItemClickListener(this)
-        requireActivity().getSnapHelper()
+        getSnapHelper()
             ?.attachToRecyclerView(binding?.layoutForSale?.recyclerView)
         loadBusinessForSale()
     }
@@ -127,7 +118,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
         shareForSaleBusinessAdapter = BusinessAdapter(requireContext())
         binding?.layoutShareForSale?.recyclerView?.adapter = shareForSaleBusinessAdapter
         binding?.layoutShareForSale?.recyclerView.setOnItemClickListener(this)
-        requireActivity().getSnapHelper()
+        getSnapHelper()
             ?.attachToRecyclerView(binding?.layoutShareForSale?.recyclerView)
         loadBusinessShareForSale()
     }
@@ -156,7 +147,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
         franchiseBusinessAdapter = BusinessAdapter(requireContext())
         binding?.layoutFranchise?.recyclerView?.adapter = franchiseBusinessAdapter
         binding?.layoutFranchise?.recyclerView.setOnItemClickListener(this)
-        requireActivity().getSnapHelper()
+        getSnapHelper()
             ?.attachToRecyclerView(binding?.layoutFranchise?.recyclerView)
         loadBusinessFranchise()
     }
@@ -185,7 +176,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
         businessNewsAdapter = BusinessNewsAdapter(requireContext())
         binding?.layoutBusinessNews?.recyclerView?.adapter = businessNewsAdapter
         binding?.layoutBusinessNews?.recyclerView.setOnItemClickListener(this)
-        requireActivity().getSnapHelper()
+        getSnapHelper()
             ?.attachToRecyclerView(binding?.layoutBusinessNews?.recyclerView)
         loadBusinessNews()
     }

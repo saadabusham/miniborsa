@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.technzone.miniborsa.common.CommonEnums
 import com.technzone.miniborsa.utils.LocaleUtil.Companion.getLanguage
 
-fun Activity.getSnapHelper(): LinearSnapHelper? {
+fun getSnapHelper(): LinearSnapHelper? {
     return object : LinearSnapHelper() {
         override fun findTargetSnapPosition(
             layoutManager: RecyclerView.LayoutManager,

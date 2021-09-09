@@ -33,8 +33,8 @@ class BusinessSliderAdapter(
 
         override fun bind(item: Media) {
             binding.data = item.name
-            binding.root.setOnClickListener {
-                itemClickListener?.onItemClick(it, adapterPosition, item)
+            binding.imgPicture.setOnClickListener {
+                itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
             }
         }
     }

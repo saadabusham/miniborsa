@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.technzone.miniborsa.ui.subscription.viewmodel.SubscriptionViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/relativeHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <include
+            android:id="@+id/layout_toolbar"
+            layout="@layout/layout_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/_10sdp" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/btnContinue"
+            android:layout_below="@id/layout_toolbar"
+            android:clipToPadding="false"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/layouts_margin_start"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:orientation="vertical">
+
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    android:id="@+id/tvHeader"
+                    style="@style/textview_normal_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/interested_contact_nbusiness_owners_now"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_19ssp" />
+
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_18sdp"
+                    android:text="@string/to_ensure_seriousness_and_preserve_the_privacy_of_the_business_owner_contact_information_form_sharing_it"
+                    android:textColor="@color/black_alpha"
+                    android:textSize="@dimen/_11ssp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/row_investor_subscription" />
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/by_clicking_on_continue_you_agree_on_the_terms_conditions"
+                    android:textColor="@color/black_alpha"
+                    android:textSize="@dimen/_11ssp" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnContinue"
+            style="@style/AppTheme.Button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/layouts_margin_start"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/layouts_margin_end"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:text="@string/start_subscription"
+            android:textSize="@dimen/_11ssp" />
+
+    </RelativeLayout>
+
+</layout>

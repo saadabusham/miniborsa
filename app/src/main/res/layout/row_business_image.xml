@@ -13,36 +13,40 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="@dimen/_280sdp"
         android:layout_height="@dimen/_180sdp"
-        app:cardCornerRadius="@dimen/_5sdp"
         android:layout_marginEnd="@dimen/_10sdp"
-        app:cardElevation="0dp">
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardElevation="0dp"
+        app:contentPadding="0dp">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/imgPicture"
-                ivImageUrl="@{data}"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_business_image_sample"
-                android:transitionName="image" />
+                android:transitionName="image"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/imgShadow"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignTop="@id/imgPicture"
-                android:layout_alignBottom="@id/imgPicture"
-                android:layout_alignStart="@id/imgPicture"
-                android:layout_alignEnd="@id/imgPicture"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:src="@drawable/ic_business_image_shadow" />
 
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
 </layout>

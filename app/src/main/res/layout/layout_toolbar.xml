@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -24,12 +25,13 @@
 
                 <TextView
                     android:id="@+id/tvTitle"
-                    style="@style/textview_header_bold"
+                    style="@style/textview_normal_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:textColor="@color/textview_header_gray"
-                    android:textSize="@dimen/_11ssp" />
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    tools:text="Title"/>
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 

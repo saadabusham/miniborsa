@@ -10,21 +10,5 @@ import javax.inject.Inject
 class InvestorMainViewModel @Inject constructor(
     val userRepo: UserRepo
 ) : BaseViewModel() {
-    val searchText: MutableLiveData<String> = MutableLiveData()
-    val addressStr: MutableLiveData<String> = MutableLiveData()
-    val filterActive: MutableLiveData<Boolean> = MutableLiveData(true)
-    val maleSelected: MutableLiveData<Boolean> = MutableLiveData(true)
 
-    fun onActiveClicked(){
-        filterActive.value = true
-    }
-    fun onInActiveClicked(){
-        filterActive.value = false
-    }
-    fun onMaleClicked(){
-        maleSelected.value = true
-    }
-    fun onFeMaleClicked(){
-        maleSelected.value = false
-    }
 }

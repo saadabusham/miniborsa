@@ -44,15 +44,16 @@
             android:name="com.technzone.miniborsa.ui.subscription.activity.SubscriptionActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.technzone.miniborsa.ui.businessmain.activity.BusinessMainActivity"
+            android:name="com.technzone.miniborsa.ui.business.businessmain.activity.BusinessMainActivity"
             android:screenOrientation="portrait" />
-
         <activity
-            android:name="com.technzone.miniborsa.ui.investor.invistormain.fragment.search.filter.FilterActivity"
+            android:name="com.technzone.miniborsa.ui.investor.filter.activity.FilterActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name="com.technzone.miniborsa.ui.investor.businessdetails.activity.BusinessDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.technzone.miniborsa.ui.dataview.viewimage.ViewImageActivity"
             android:screenOrientation="portrait" />
 
     </application>
