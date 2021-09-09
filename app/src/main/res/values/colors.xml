@@ -127,4 +127,7 @@
 
     <color name="toggle_active_background">#FFFFFF</color>
     <color name="toggle_inactive_background">#F5F5F5</color>
+
+    <color name="indicator_selected_color">#000000</color>
+    <color name="indicator_unselected_color">#40000000</color>
 </resources>

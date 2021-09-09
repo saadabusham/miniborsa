@@ -55,6 +55,9 @@
         <activity
             android:name="com.technzone.miniborsa.ui.dataview.viewimage.ViewImageActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.technzone.miniborsa.ui.investor.news.activity.NewsActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

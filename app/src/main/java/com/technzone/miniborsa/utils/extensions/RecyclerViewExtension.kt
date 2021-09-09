@@ -1,6 +1,5 @@
 package com.technzone.miniborsa.utils.extensions
 
-import android.app.Activity
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.technzone.miniborsa.common.CommonEnums

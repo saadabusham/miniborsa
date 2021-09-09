@@ -13,6 +13,7 @@ object Constants {
 
     object BundleData {
 
+        const val NEWS_ID: String = "newsId"
         const val IMAGE: String = "image"
         const val BUSINESS: String = "business"
         const val IS_LOGIN_SUCCESS: String ="isLoginSuccess"

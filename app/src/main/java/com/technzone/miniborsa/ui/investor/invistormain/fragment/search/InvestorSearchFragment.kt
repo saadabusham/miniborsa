@@ -18,6 +18,8 @@ import com.technzone.miniborsa.ui.investor.filter.activity.FilterActivity
 import com.technzone.miniborsa.ui.investor.invistormain.adapters.BusinessAdapter
 import com.technzone.miniborsa.ui.investor.invistormain.adapters.BusinessNewsAdapter
 import com.technzone.miniborsa.ui.investor.invistormain.viewmodels.InvestorMainViewModel
+import com.technzone.miniborsa.ui.investor.news.activity.NewsActivity
+import com.technzone.miniborsa.ui.investor.news.news.NewsDetailsFragment
 import com.technzone.miniborsa.utils.extensions.getSnapHelper
 import com.technzone.miniborsa.utils.extensions.gone
 import dagger.hilt.android.AndroidEntryPoint
@@ -209,6 +211,9 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
         when (item) {
             is Business -> {
                 BusinessDetailsActivity.start(requireContext(), item)
+            }
+            is BusinessNews -> {
+                NewsActivity.start(requireContext())
             }
         }
     }
