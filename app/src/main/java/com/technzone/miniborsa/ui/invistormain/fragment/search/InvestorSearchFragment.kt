@@ -36,6 +36,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
 
     override fun onViewVisible() {
         super.onViewVisible()
+
         setUpBinding()
         setUpListeners()
         setUpRvForSaleBusiness()

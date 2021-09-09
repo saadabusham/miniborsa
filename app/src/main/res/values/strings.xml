@@ -198,5 +198,14 @@
     <string name="my_favorites">My Favorites</string>
     <string name="reset">Reset</string>
     <string name="business_status">Business Status</string>
+    <string name="active">Active</string>
+    <string name="not_active">Not Active</string>
+    <string name="founder_gender">Founder Gender</string>
+    <string name="enter_postal_code_or_address">Enter Postal Code or Address</string>
+    <string name="selling_price">Selling Price</string>
 
+    <string name="price_">$%s</string>
+    <string name="business_type">Business Type</string>
+    <string name="industry">Industry</string>
+    <string name="show_properties">Show Properties</string>
 </resources>

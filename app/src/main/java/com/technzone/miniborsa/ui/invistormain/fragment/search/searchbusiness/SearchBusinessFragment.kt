@@ -9,6 +9,7 @@ import com.technzone.miniborsa.R
 import com.technzone.miniborsa.databinding.FragmentSearchBusinessBinding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
+import com.technzone.miniborsa.ui.invistormain.fragment.search.filter.FilterActivity
 import com.technzone.miniborsa.ui.invistormain.viewmodels.InvestorMainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,7 +47,7 @@ class SearchBusinessFragment : BaseBindingFragment<FragmentSearchBusinessBinding
             requireActivity().onBackPressed()
         }
         binding?.tvFilter?.setOnClickListener {
-            navigationController.navigate(R.id.action_searchBusinessFragment_to_filterBusinessFragment)
+            FilterActivity.start(requireContext())
         }
     }
 

@@ -47,6 +47,10 @@
             android:name="com.technzone.miniborsa.ui.businessmain.activity.BusinessMainActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.technzone.miniborsa.ui.invistormain.fragment.search.filter.FilterActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

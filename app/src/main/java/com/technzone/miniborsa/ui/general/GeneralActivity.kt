@@ -14,11 +14,13 @@ import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.general.adapters.ChooseGeneralRecyclerAdapter
 import com.technzone.miniborsa.ui.general.adapters.SelectedGeneralRecyclerAdapter
 import com.technzone.miniborsa.utils.plus
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
+@AndroidEntryPoint
 class GeneralActivity : BaseBindingActivity<ActivityChooseGeneralBinding>(),
         BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
