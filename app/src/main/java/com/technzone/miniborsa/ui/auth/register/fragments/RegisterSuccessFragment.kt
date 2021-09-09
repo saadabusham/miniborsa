@@ -9,7 +9,7 @@ import com.technzone.miniborsa.data.pref.user.UserPref
 import com.technzone.miniborsa.databinding.FragmentRegisterSuccessBinding
 import com.technzone.miniborsa.ui.auth.register.viewmodels.RegistrationViewModel
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
-import com.technzone.miniborsa.ui.invistormain.activity.InvestorMainActivity
+import com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import javax.inject.Inject

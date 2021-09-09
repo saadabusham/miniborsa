@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.invistormain.viewmodels.InvestorMainViewModel" />
+            type="com.technzone.miniborsa.ui.investor.invistormain.viewmodels.InvestorMainViewModel" />
     </data>
     <RelativeLayout
         android:layout_width="match_parent"

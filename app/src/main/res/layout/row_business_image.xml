@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="String" />
+    </data>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="@dimen/_280sdp"
+        android:layout_height="@dimen/_180sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        app:cardElevation="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgPicture"
+                ivImageUrl="@{data}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_business_image_sample"
+                android:transitionName="image" />
+
+            <ImageView
+                android:id="@+id/imgShadow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignTop="@id/imgPicture"
+                android:layout_alignBottom="@id/imgPicture"
+                android:layout_alignStart="@id/imgPicture"
+                android:layout_alignEnd="@id/imgPicture"
+                android:src="@drawable/ic_business_image_shadow" />
+
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

@@ -10,7 +10,7 @@ import com.technzone.miniborsa.R
 import com.technzone.miniborsa.databinding.ActivityBusinessMainBinding
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
 import com.technzone.miniborsa.ui.businessmain.viewmodels.BusinessMainViewModel
-import com.technzone.miniborsa.ui.invistormain.viewmodels.InvestorMainViewModel
+import com.technzone.miniborsa.ui.investor.invistormain.viewmodels.InvestorMainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

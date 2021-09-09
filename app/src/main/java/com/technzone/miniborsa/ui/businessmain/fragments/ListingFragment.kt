@@ -6,7 +6,7 @@ import com.technzone.miniborsa.R
 import com.technzone.miniborsa.databinding.FragmentListingBinding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
-import com.technzone.miniborsa.ui.invistormain.viewmodels.InvestorMainViewModel
+import com.technzone.miniborsa.ui.investor.invistormain.viewmodels.InvestorMainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

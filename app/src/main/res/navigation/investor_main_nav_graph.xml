@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_search"
-        android:name="com.technzone.miniborsa.ui.invistormain.fragment.search.InvestorSearchFragment"
+        android:name="com.technzone.miniborsa.ui.investor.invistormain.fragment.search.InvestorSearchFragment"
         android:label="BusnissSearchFragment"
         tools:layout="@layout/fragment_investor_search">
         <action
@@ -20,12 +20,12 @@
     </fragment>
     <fragment
         android:id="@+id/nav_favorite"
-        android:name="com.technzone.miniborsa.ui.invistormain.fragment.investorfavorite.InvestorFavoriteFragment"
+        android:name="com.technzone.miniborsa.ui.investor.invistormain.fragment.investorfavorite.InvestorFavoriteFragment"
         android:label="BusinessFavoriteFragment"
         tools:layout="@layout/fragment_investor_favorite" />
     <fragment
         android:id="@+id/nav_messages"
-        android:name="com.technzone.miniborsa.ui.invistormain.fragment.messages.InvestorMessagesFragment"
+        android:name="com.technzone.miniborsa.ui.investor.invistormain.fragment.messages.InvestorMessagesFragment"
         android:label="BusnissMessagesFragment"
         tools:layout="@layout/fragment_investor_messages" />
     <fragment
@@ -35,7 +35,7 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/searchBusinessFragment"
-        android:name="com.technzone.miniborsa.ui.invistormain.fragment.search.searchbusiness.SearchBusinessFragment"
+        android:name="com.technzone.miniborsa.ui.investor.invistormain.fragment.search.searchbusiness.SearchBusinessFragment"
         android:label="SearchBusinessFragment"
         tools:layout="@layout/fragment_search_business">
     </fragment>

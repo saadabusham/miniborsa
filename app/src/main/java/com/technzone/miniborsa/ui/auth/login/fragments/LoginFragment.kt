@@ -15,7 +15,7 @@ import com.technzone.miniborsa.ui.auth.forgetpassword.ForgetPasswordActivity
 import com.technzone.miniborsa.ui.auth.login.viewmodels.LoginViewModel
 import com.technzone.miniborsa.ui.auth.register.RegisterActivity
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
-import com.technzone.miniborsa.ui.invistormain.activity.InvestorMainActivity
+import com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity
 import com.technzone.miniborsa.utils.extensions.*
 import com.technzone.miniborsa.utils.validation.ValidatorInputTypesEnums
 import dagger.hilt.android.AndroidEntryPoint
