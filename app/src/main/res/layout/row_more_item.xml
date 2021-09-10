@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.technzone.miniborsa.data.enums.MoreEnums" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="data"
+            type="com.technzone.miniborsa.data.models.profile.More" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:background="?android:selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingEnd="@dimen/layouts_margin_end">
+
+            <ImageView
+                ivSetSrcImageFromResources="@{data.icon}"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                tools:src="@drawable/ic_more_my_profile" />
+
+            <com.technzone.miniborsa.ui.base.views.AppTextView
+                style="@style/textview_normal_regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:layout_marginBottom="@dimen/_9sdp"
+                android:layout_weight="1"
+                android:text="@{data.title}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                tools:text="Account" />
+
+            <com.technzone.miniborsa.ui.base.views.AppButton
+                android:id="@+id/tvPrice"
+                style="@style/textview_normal_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:layout_marginBottom="@dimen/_9sdp"
+                android:backgroundTint="@color/green_color"
+                android:gravity="center"
+                android:padding="@dimen/_8sdp"
+                android:text="@string/free_trial"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_9ssp"
+                android:visibility="gone"
+                app:cornerRadius="@dimen/_2sdp"
+                app:layout_constraintStart_toEndOf="@id/cvImage"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="@{data.moreEnums == MoreEnums.LIST_YOUR_BUSINESS ? View.VISIBLE : View.GONE}" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

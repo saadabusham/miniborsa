@@ -30,7 +30,7 @@
         tools:layout="@layout/fragment_investor_messages" />
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.technzone.miniborsa.ui.business.businessmain.fragments.ProfileFragment"
+        android:name="com.technzone.miniborsa.ui.profile.fragment.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" />
     <fragment

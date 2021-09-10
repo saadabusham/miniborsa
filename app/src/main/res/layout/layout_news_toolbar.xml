@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/AppTheme.ToolbarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="0dp"
+        app:layout_collapseMode="pin">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10sdp">
+
+            <LinearLayout
+                android:id="@+id/linTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:paddingEnd="@dimen/_50sdp">
+
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    android:id="@+id/tvTitle"
+                    style="@style/textview_normal_bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16ssp"
+                    android:visibility="gone"
+                    tools:text="Title" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imgShare"
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:layout_toStartOf="@id/imgMore"
+                android:layout_centerInParent="true"
+                android:background="?selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="@dimen/_3sdp"
+                android:src="@drawable/ic_share" />
+
+            <ImageView
+                android:id="@+id/imgMore"
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:background="?selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="@dimen/_3sdp"
+                android:src="@drawable/ic_more_menu" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+</layout>
+
+

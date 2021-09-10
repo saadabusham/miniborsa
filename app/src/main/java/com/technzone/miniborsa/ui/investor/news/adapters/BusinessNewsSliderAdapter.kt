@@ -6,18 +6,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.technzone.miniborsa.data.models.news.BusinessNews
 import com.technzone.miniborsa.databinding.RowBusinessNewsBinding
-import com.technzone.miniborsa.databinding.RowNewsBinding
+import com.technzone.miniborsa.databinding.RowBusinessNewsSliderBinding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.adapters.BaseViewHolder
 
-class NewsAdapter(
+class BusinessNewsSliderAdapter(
     context: Context
 ) :
     BaseBindingRecyclerViewAdapter<BusinessNews>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(
-            RowNewsBinding.inflate(
+            RowBusinessNewsSliderBinding.inflate(
                 LayoutInflater.from(context), parent, false
             )
         )
@@ -29,7 +29,7 @@ class NewsAdapter(
         }
     }
 
-    inner class ViewHolder(private val binding: RowNewsBinding) :
+    inner class ViewHolder(private val binding: RowBusinessNewsSliderBinding) :
         BaseViewHolder<BusinessNews>(binding.root) {
 
         override fun bind(item: BusinessNews) {

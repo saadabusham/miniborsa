@@ -53,7 +53,7 @@
             android:paddingStart="@dimen/layouts_margin_start"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:spanCount="3"
-            tools:listitem="@layout/row_news" />
+            tools:listitem="@layout/row_business_news_slider" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewImagesDot"

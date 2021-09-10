@@ -1,5 +1,6 @@
 package com.technzone.miniborsa.data.models.general
 
+import androidx.lifecycle.MutableLiveData
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
@@ -10,5 +11,6 @@ data class GeneralLookup(
 
     @field:SerializedName("name")
     val name: String?=null,
-    var selected: Boolean = false
+    var selected: Boolean = false,
+    val isSelected: MutableLiveData<Boolean> = MutableLiveData(false)
 ) : Serializable

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="data"
+            type="com.technzone.miniborsa.data.models.general.GeneralLookup" />
+
+        <variable
+            name="language"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/_25sdp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/_5sdp">
+
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            android:id="@+id/tvTitle"
+            style="@style/textview_normal_medium"
+            android:textSize="@dimen/_11ssp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:paddingEnd="@dimen/_8sdp"
+            android:paddingStart="@dimen/_8sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@{data.name}"
+            android:textColor="@{data.isSelected ? @color/button_color : @color/black_alpha}"
+            tools:text="All"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/color_not_valid"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.technzone.miniborsa.ui.base.views.AppImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            app:layout_constraintStart_toStartOf="@id/tvTitle"
+            app:layout_constraintEnd_toEndOf="@id/tvTitle"
+            android:layout_below="@id/tvTitle"
+            android:visibility="@{data.isSelected? View.VISIBLE : View.INVISIBLE}"
+            android:src="@drawable/ic_tab_underline"
+            app:cardElevation="0dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

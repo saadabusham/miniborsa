@@ -1,44 +1,39 @@
-package com.technzone.miniborsa.ui.investor.news.adapters
+package com.technzone.miniborsa.ui.profile.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.technzone.miniborsa.data.models.news.BusinessNews
-import com.technzone.miniborsa.databinding.RowBusinessNewsBinding
-import com.technzone.miniborsa.databinding.RowNewsBinding
+import com.technzone.miniborsa.data.models.profile.More
+import com.technzone.miniborsa.databinding.RowMoreItemBinding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.adapters.BaseViewHolder
 
-class NewsAdapter(
+class MoreRecyclerAdapter constructor(
     context: Context
-) :
-    BaseBindingRecyclerViewAdapter<BusinessNews>(context) {
+) : BaseBindingRecyclerViewAdapter<More>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return ViewHolder(
-            RowNewsBinding.inflate(
+        return NormalViewHolder(
+            RowMoreItemBinding.inflate(
                 LayoutInflater.from(context), parent, false
             )
         )
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is ViewHolder) {
+        if (holder is NormalViewHolder) {
             holder.bind(items[position])
         }
     }
 
-    inner class ViewHolder(private val binding: RowNewsBinding) :
-        BaseViewHolder<BusinessNews>(binding.root) {
-
-        override fun bind(item: BusinessNews) {
-            binding.item = item
+    inner class NormalViewHolder(private val binding: RowMoreItemBinding) :
+        BaseViewHolder<More>(binding.root) {
+        override fun bind(item: More) {
+            binding.data = item
             binding.root.setOnClickListener {
-                itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
+                itemClickListener?.onItemClick(binding.root, bindingAdapterPosition, item)
             }
         }
     }
-
-
 }

@@ -39,6 +39,7 @@
     <color name="black">#000000</color>
     <color name="black_alpha">#80000000</color>
     <color name="black_alpha25">#40000000</color>
+    <color name="black_alpha75">#BF000000</color>
     <color name="divider_black">#1A000000</color>
 
     <!-- Gray -->

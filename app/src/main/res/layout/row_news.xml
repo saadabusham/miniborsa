@@ -9,70 +9,99 @@
             type="com.technzone.miniborsa.data.models.news.BusinessNews" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="@dimen/_12sdp"
-        android:layout_marginBottom="@dimen/_5sdp"
-        app:cardCornerRadius="@dimen/_5sdp"
-        app:cardElevation="0dp">
+        android:layout_height="@dimen/_100sdp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvImage"
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="@dimen/_80sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:cardCornerRadius="@dimen/_7sdp"
+            app:cardElevation="0dp">
 
             <com.technzone.miniborsa.ui.base.views.AppImageView
                 android:id="@+id/imgPhoto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_news_sample"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:src="@drawable/ic_news_sample" />
 
-            <com.technzone.miniborsa.ui.base.views.AppImageView
-                android:id="@+id/imgShadow"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_70sdp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_news_shadow"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+        </com.google.android.material.card.MaterialCardView>
 
-            <com.technzone.miniborsa.ui.base.views.AppButton
-                android:id="@+id/tvPrice"
-                style="@style/textview_normal_regular"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_18sdp"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:backgroundTint="@color/green_color"
-                android:padding="@dimen/_5sdp"
-                android:gravity="center"
-                android:text="Startup News"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_7ssp"
-                app:cornerRadius="@dimen/_2sdp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <com.technzone.miniborsa.ui.base.views.AppButton
+            android:id="@+id/tvPrice"
+            style="@style/textview_normal_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_18sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:backgroundTint="@color/green_color"
+            android:gravity="center"
+            android:padding="@dimen/_5sdp"
+            android:text="Startup News"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_7ssp"
+            app:cornerRadius="@dimen/_2sdp"
+            app:layout_constraintStart_toEndOf="@id/cvImage"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
-                android:id="@+id/tvName"
-                style="@style/textview_normal_regular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:text="Swvl to list on NASDAQ: the $1.5Bn Unicorn story"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_13ssp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/tvPrice" />
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            android:id="@+id/tvDate"
+            style="@style/textview_normal_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:text="02/04/2021"
+            android:gravity="end|center"
+            android:drawableStart="@drawable/ic_calendar"
+            android:drawablePadding="@dimen/_3sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_7ssp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:layout_constraintTop_toTopOf="@id/tvPrice"
+            app:layout_constraintBottom_toBottomOf="@id/tvPrice"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            android:id="@+id/tvTitle"
+            style="@style/textview_normal_bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:text="Grocery delivery startup GoodsMart secures $3.6M"
+            android:textColor="@color/black"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintTop_toBottomOf="@id/tvPrice"
+            app:layout_constraintStart_toStartOf="@id/tvPrice"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            android:id="@+id/tvDescription"
+            style="@style/textview_normal_regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:text="Egypt-based grocery delivery platform GoodsMart recently secured $3.6M in a funding round led by"
+            android:textColor="@color/black_alpha"
+            android:textSize="@dimen/_9ssp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            app:layout_constraintStart_toStartOf="@id/tvTitle"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </layout>
