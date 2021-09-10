@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -29,10 +30,11 @@
                 android:layout_marginTop="@dimen/_10sdp" />
         </RelativeLayout>
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/_60sdp"
+            android:clipToPadding="false"
             android:fillViewport="true">
 
             <com.google.android.material.card.MaterialCardView
@@ -62,26 +64,93 @@
                             android:textSize="@dimen/_21ssp" />
 
                         <com.technzone.miniborsa.ui.base.views.AppTextInputLayout
-                            android:id="@+id/tfFullName"
+                            android:id="@+id/tfFirstName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_15sdp"
-                            android:hint="@string/full_name">
+                            android:hint="@string/first_name">
 
                             <com.technzone.miniborsa.ui.base.views.AppTextInputEditText
-                                android:id="@+id/edFullName"
+                                android:id="@+id/edFirstName"
                                 style="@style/TextInputEditTextStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@={viewModel.fullNameMutableLiveData}" />
+                                android:text="@={viewModel.firstNameMutableLiveData}" />
 
                         </com.technzone.miniborsa.ui.base.views.AppTextInputLayout>
+
+                        <com.technzone.miniborsa.ui.base.views.AppTextInputLayout
+                            android:id="@+id/tfLastName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/last_name">
+
+                            <com.technzone.miniborsa.ui.base.views.AppTextInputEditText
+                                android:id="@+id/edLastName"
+                                style="@style/TextInputEditTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@={viewModel.lastNameMutableLiveData}"
+                                android:textSize="@dimen/_10ssp" />
+
+                        </com.technzone.miniborsa.ui.base.views.AppTextInputLayout>
+
+                        <LinearLayout
+                            android:id="@+id/linearMobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@drawable/shape_edittext_not_focused"
+                            android:orientation="horizontal"
+                            android:paddingStart="@dimen/_10sdp">
+
+                            <com.technzone.miniborsa.ui.base.views.AppTextView
+                                android:id="@+id/tvCountryCode"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/Edittext_height"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="@dimen/_7sdp"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                android:background="?selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:drawableEnd="@drawable/ic_dropdown_arrow"
+                                android:drawablePadding="@dimen/_7sdp"
+                                android:focusable="true"
+                                android:gravity="center"
+                                android:text="@{viewModel.selectedCountryCode.code}"
+                                android:textColor="@color/text_color"
+                                android:textSize="@dimen/_10ssp"
+                                tools:text="+962" />
+
+                            <View
+                                android:id="@+id/dividerMobileNumber"
+                                android:layout_width="1dp"
+                                android:layout_height="@dimen/_40sdp"
+                                android:background="@color/edit_text_unfocused_color" />
+
+                            <com.technzone.miniborsa.ui.base.views.AppEditText
+                                android:id="@+id/edPhoneNumber"
+                                android:layout_width="match_parent"
+                                style="@style/TextInputEditTextStyle"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/_11ssp"
+                                android:paddingStart="@dimen/_12sdp"
+                                android:paddingBottom="0dp"
+                                android:paddingTop="0dp"
+                                android:background="@android:color/transparent"
+                                android:hint="@string/_700000000"
+                                android:inputType="phone"
+                                android:text="@={viewModel.phoneNumberWithoutCountryCode}" />
+
+                        </LinearLayout>
+
 
                         <com.technzone.miniborsa.ui.base.views.AppTextInputLayout
                             android:id="@+id/tfEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/last_name">
+                            android:hint="@string/email">
 
                             <com.technzone.miniborsa.ui.base.views.AppTextInputEditText
                                 android:id="@+id/edEmail"
@@ -102,10 +171,10 @@
                                 android:id="@+id/et_password"
                                 style="@style/TextInputEditTextStyle"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
                                 android:hint="@string/password"
                                 android:inputType="textPassword"
-                                android:text="@={viewModel.passwordMutableLiveData}" />
+                                android:text="@={viewModel.passwordMutableLiveData}"/>
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.button.MaterialButton
@@ -192,7 +261,7 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
     </RelativeLayout>
 
 </layout>

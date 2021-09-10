@@ -18,6 +18,7 @@ import com.technzone.miniborsa.databinding.ActivitySplashBinding
 import com.technzone.miniborsa.ui.auth.AuthActivity
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
 import com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity
+import com.technzone.miniborsa.ui.userrole.activity.UserRolesActivity
 import com.technzone.miniborsa.utils.pref.SharedPreferencesUtil
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -65,8 +66,9 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
     private fun goToNextPage() {
         if (!viewModel.isUserLoggedIn()) {
             AuthActivity.start(this)
+//            UserRolesActivity.start(this)
         } else
-            InvestorMainActivity.start(this)
+            UserRolesActivity.start(this)
 
     }
 

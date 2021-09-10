@@ -1,6 +1,7 @@
 package com.technzone.miniborsa.utils.extensions
 
 import android.app.Activity
+import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -16,7 +17,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.technzone.miniborsa.BuildConfig
 import java.lang.System.currentTimeMillis
 
-fun View?.hideKeyboard(activity: Activity?) {
+fun View?.hideKeyboard(activity: Context?) {
     val imm: InputMethodManager? =
         activity?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
     //Find the currently focused view, so we can grab the correct window token from it.

@@ -41,7 +41,6 @@ class InvestorFavoriteFragment : BaseBindingFragment<FragmentInvestorFavoriteBin
         favoriteAdapter = FavoritesAdapter(requireContext())
         binding?.recyclerView?.adapter = favoriteAdapter
         binding?.recyclerView.setOnItemClickListener(this)
-        getSnapHelper()?.attachToRecyclerView(binding?.recyclerView)
         loadBusinessForSale()
     }
 

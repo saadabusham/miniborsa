@@ -2,8 +2,10 @@ package com.technzone.miniborsa.data.pref.user
 
 import com.google.gson.Gson
 import com.technzone.miniborsa.data.enums.UserEnums
+import com.technzone.miniborsa.data.enums.UserRoleEnums
 import com.technzone.miniborsa.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.miniborsa.utils.pref.PrefConstants.ACCESS_TOKEN_VALUE
+import com.technzone.miniborsa.utils.pref.PrefConstants.CURRENT_ROLE
 import com.technzone.miniborsa.utils.pref.PrefConstants.NOTIFICATION_SWITCH_VALUE
 import com.technzone.miniborsa.utils.pref.PrefConstants.TOUCH_ID_SWITCH_VALUE
 import com.technzone.miniborsa.utils.pref.PrefConstants.USER_PASSWORD_VALUE
@@ -76,6 +78,17 @@ class UserPrefImp @Inject constructor(private val prefUtil: SharedPreferencesUti
         val gson = Gson()
         val json = gson.toJson(value)
         prefUtil.setStringPreferences("user", json)
+    }
+
+    override fun setCurrentRole(role: Int) {
+        prefUtil.setIntPreferences(CURRENT_ROLE, role)
+    }
+
+    override fun getCurrentRole(): Int {
+        return prefUtil.getIntPreferences(
+            CURRENT_ROLE,
+            UserRoleEnums.GUEST_ROLE.value
+        )
     }
 
 

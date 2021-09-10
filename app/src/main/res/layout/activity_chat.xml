@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.technzone.miniborsa.ui.twilio.chat.ChatViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/layout_chat_toolbar"
+            layout="@layout/layout_chat_toolbar" />
+
+        <include
+            android:id="@+id/layout_loadmore"
+            layout="@layout/layout_loadmore"
+            android:visibility="gone"/>
+
+        <include
+            android:id="@+id/layout_no_chat"
+            layout="@layout/layout_no_chat"
+            android:layout_below="@id/layout_loadmore"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/layout_no_chat"
+            android:layout_above="@id/cvInput">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/_7sdp"
+                android:paddingStart="@dimen/layouts_margin_start"
+                android:paddingEnd="@dimen/layouts_margin_end"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/raw_incoming_text"
+                android:layout_above="@id/layout_shimmer" />
+            <include
+                android:id="@+id/layout_shimmer"
+                layout="@layout/layout_shimmer_chat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/layouts_margin_start"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:cardBackgroundColor="#0B256E"
+            app:shapeAppearanceOverlay="@style/top_cardview_corner">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:minHeight="@dimen/_40sdp"
+                    app:cardBackgroundColor="@color/input_background_color"
+                    app:cardCornerRadius="@dimen/_13sdp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="@dimen/_12sdp"
+                        android:minHeight="@dimen/_40sdp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imgAttachment"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_gravity="center|bottom"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:background="?selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:padding="@dimen/_5sdp"
+                            app:srcCompat="@drawable/ic_attachment" />
+
+                        <EditText
+                            android:id="@+id/ed_message"
+                            style="@style/twillio_input_edittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:background="@null"
+                            android:elevation="@dimen/_3sdp"
+                            android:hint="@string/type_a_message"
+                            android:isScrollContainer="true"
+                            android:maxLines="5"
+                            android:minHeight="@dimen/_30sdp"
+                            android:nestedScrollingEnabled="true"
+                            android:overScrollMode="always"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvSend"
+                    android:layout_width="@dimen/_38sdp"
+                    android:layout_height="@dimen/_38sdp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardBackgroundColor="@color/send_background_color"
+                    app:cardCornerRadius="@dimen/_11sdp"
+                    app:cardElevation="0dp">
+
+                    <ImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/ic_send" />
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <include
+            android:id="@+id/progressBarr"
+            layout="@layout/progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+</layout>

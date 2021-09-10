@@ -8,7 +8,7 @@ import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.api.response.APIResource
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.pref.user.UserPref
-import com.technzone.miniborsa.data.repos.auth.UserRepo
+import com.technzone.miniborsa.data.repos.user.UserRepo
 import com.technzone.miniborsa.ui.base.viewmodel.BaseViewModel
 import com.technzone.miniborsa.utils.DateTimeUtil
 import com.technzone.miniborsa.utils.extensions.millisecondFormatting

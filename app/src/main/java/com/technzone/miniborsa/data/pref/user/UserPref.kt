@@ -24,8 +24,10 @@ interface UserPref {
     fun getUserStatus(): Int
 
     fun getUser(): UserDetailsResponseModel?
-
     fun setUser(value: UserDetailsResponseModel?)
+
+    fun setCurrentRole(role: Int)
+    fun getCurrentRole(): Int
 
     fun logout()
 }

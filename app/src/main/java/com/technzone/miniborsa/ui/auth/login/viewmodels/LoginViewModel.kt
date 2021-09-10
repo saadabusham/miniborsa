@@ -9,7 +9,7 @@ import com.technzone.miniborsa.data.api.response.APIResource
 import com.technzone.miniborsa.data.enums.UserEnums
 import com.technzone.miniborsa.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.miniborsa.data.models.configuration.UpdateStatus
-import com.technzone.miniborsa.data.repos.auth.UserRepo
+import com.technzone.miniborsa.data.repos.user.UserRepo
 import com.technzone.miniborsa.ui.base.viewmodel.BaseViewModel
 import com.technzone.miniborsa.utils.DateTimeUtil
 import com.technzone.miniborsa.utils.extensions.millisecondFormatting

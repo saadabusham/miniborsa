@@ -71,3 +71,19 @@ fun String.replaceArabicDigitsWithEnglish() :String{
     return result
 }
 
+fun String.checkPhoneNumberFormat(): String {
+    val mobile = if (this.startsWith("00962"))
+        this.replaceFirst("00962", "")
+    else if (this.startsWith("962"))
+        this.replaceFirst("962", "")
+    else if (this.startsWith("+962"))
+        this.replaceFirst("+962", "")
+    else this
+
+    return if (mobile.startsWith("07")) {
+        mobile.replaceFirst("07", "7")
+    } else {
+        mobile
+    }
+}
+

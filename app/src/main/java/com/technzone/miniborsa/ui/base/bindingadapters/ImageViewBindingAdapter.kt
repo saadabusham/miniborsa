@@ -86,6 +86,13 @@ fun ImageView.setImageFromUrl(
         .into(this)
 }
 
+fun ImageView.loadImage(url: String?, defaultImage: Int) {
+    Glide.with(this)
+        .load(getLoadingUrl(url ?: ""))
+        .placeholder(defaultImage)
+        .into(this)
+}
+
 fun setUpRequestOptions(
     imageIsCircle: Boolean,
     imageIsRoundedCorners: Boolean,
@@ -106,7 +113,7 @@ fun getLoadingUrl(imageUrl: String): Any {
         return Uri.fromFile(File(imageUrl))
     } else if (imageUrl.startsWith("content", true)) {
         return Uri.parse(imageUrl)
-    }else if (!imageUrl.startsWith("http")) {
+    } else if (!imageUrl.startsWith("http")) {
         return "$IMAGES_BASE_URL$imageUrl"
     }
     return imageUrl

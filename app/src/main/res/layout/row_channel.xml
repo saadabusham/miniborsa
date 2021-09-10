@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.technzone.miniborsa.R" />
+
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_65sdp"
+        app:contentPaddingRight="@dimen/layouts_margin_end"
+        app:contentPaddingLeft="@dimen/layouts_margin_start"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/white"
+        android:clickable="true"
+        android:focusable="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.github.siyamed.shapeimageview.RoundedImageView
+                android:id="@+id/ivProfileImage"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:siBorderAlpha="0.2"
+                app:siBorderWidth="0dp"
+                app:siRadius="@dimen/_12sdp"
+                app:siSquare="true"
+                tools:src="@tools:sample/avatars" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textAlignment="textStart"
+                android:textAppearance="@style/textview_normal_regular"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toTopOf="@id/tvMessage"
+                app:layout_constraintEnd_toStartOf="@id/tvTime"
+                app:layout_constraintStart_toEndOf="@id/ivProfileImage"
+                app:layout_constraintTop_toTopOf="@id/ivProfileImage"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Malik Jamal" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvMessage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textAlignment="textStart"
+                android:textAppearance="@style/textview_normal_regular"
+                android:textColor="@color/black_alpha"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintBottom_toBottomOf="@id/ivProfileImage"
+                app:layout_constraintEnd_toStartOf="@id/tvTime"
+                app:layout_constraintStart_toEndOf="@id/ivProfileImage"
+                app:layout_constraintTop_toBottomOf="@id/tvName"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Hi, almost . I will be there in 10 minutes " />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_17sdp"
+                android:src="@drawable/ic_arrow_next"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvName"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="3.23 AM" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

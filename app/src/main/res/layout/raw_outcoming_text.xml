@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="message"
+            type="com.twilio.chat.Message" />
+        <import type="com.technzone.miniborsa.utils.extensions.DataTimeExtensionsKt" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/bottom_right_cardview_no_corner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_70sdp"
+            android:clickable="true"
+            android:focusable="true"
+            android:minHeight="@dimen/_50sdp"
+            app:cardElevation="0dp"
+            app:shapeAppearanceOverlay="@style/bottom_right_cardview_no_corner">
+
+            <TextView
+                style="@style/outcoming_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|start"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="@{message.messageBody}"
+                tools:text="Are You Arrived?" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            style="@style/outcoming_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|end"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:drawableStart="@drawable/ic_incoming_seen"
+            android:drawablePadding="@dimen/_5sdp"
+            android:text="@{DataTimeExtensionsKt.getMessageDate(message.dateCreatedAsDate)}"
+            android:textColor="@color/outcoming_date_color"
+            android:textSize="@dimen/_10ssp"
+            tools:text="3.23 AM" />
+
+
+    </LinearLayout>
+</layout>

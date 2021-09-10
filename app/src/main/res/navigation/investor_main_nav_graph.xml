@@ -25,12 +25,12 @@
         tools:layout="@layout/fragment_investor_favorite" />
     <fragment
         android:id="@+id/nav_messages"
-        android:name="com.technzone.miniborsa.ui.investor.invistormain.fragment.messages.InvestorMessagesFragment"
+        android:name="com.technzone.miniborsa.ui.core.messages.MessagesFragment"
         android:label="BusnissMessagesFragment"
-        tools:layout="@layout/fragment_investor_messages" />
+        tools:layout="@layout/fragment_messages" />
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.technzone.miniborsa.ui.profile.fragment.ProfileFragment"
+        android:name="com.technzone.miniborsa.ui.core.profile.fragment.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" />
     <fragment

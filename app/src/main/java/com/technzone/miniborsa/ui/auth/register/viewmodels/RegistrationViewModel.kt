@@ -10,9 +10,11 @@ import com.technzone.miniborsa.data.api.response.APIResource
 import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.enums.UserEnums
 import com.technzone.miniborsa.data.models.auth.login.UserDetailsResponseModel
-import com.technzone.miniborsa.data.repos.auth.UserRepo
+import com.technzone.miniborsa.data.models.general.Countries
+import com.technzone.miniborsa.data.repos.user.UserRepo
 import com.technzone.miniborsa.ui.base.viewmodel.BaseViewModel
 import com.technzone.miniborsa.utils.DateTimeUtil
+import com.technzone.miniborsa.utils.extensions.checkPhoneNumberFormat
 import com.technzone.miniborsa.utils.extensions.millisecondFormatting
 import com.technzone.miniborsa.utils.extensions.minToMillisecond
 import com.technzone.miniborsa.utils.extensions.secondToMillisecond
@@ -39,8 +41,9 @@ class RegistrationViewModel @Inject constructor(
     }
 
     val phoneNumberWithoutCountryCode: MutableLiveData<String> by lazy { MutableLiveData<String>() }
-    val selectedCountryCode: MutableLiveData<String> by lazy { MutableLiveData<String>() }
-    val fullNameMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
+    val selectedCountryCode: MutableLiveData<Countries> by lazy { MutableLiveData<Countries>() }
+    val firstNameMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
+    val lastNameMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val emailMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val passwordMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val confirmPasswordMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
@@ -78,7 +81,10 @@ class RegistrationViewModel @Inject constructor(
     fun registerUser() = liveData {
         emit(APIResource.loading())
         val response = userRepo.register(
-            fullName = fullNameMutableLiveData.value.toString(),
+            firstName = firstNameMutableLiveData.value.toString(),
+            lastName = lastNameMutableLiveData.value.toString(),
+            phoneNumber = selectedCountryCode.value?.code + phoneNumberWithoutCountryCode.value.toString()
+                .checkPhoneNumberFormat(),
             email = emailMutableLiveData.value.toString(),
             password = passwordMutableLiveData.value.toString(),
             applicationType = Constants.APPLICATION_TYPE,

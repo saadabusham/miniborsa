@@ -13,6 +13,10 @@ object Constants {
 
     object BundleData {
 
+        const val ACTION_TITLE: String = "actionTitle"
+        const val TITLE: String = "title"
+        const val COUNTRY: String = "country"
+        const val BUSINESS_TYPE: String = "BusinessType"
         const val NEWS_ID: String = "newsId"
         const val IMAGE: String = "image"
         const val BUSINESS: String = "business"
@@ -23,5 +27,13 @@ object Constants {
     object NotificationsChannels {
         const val DEFAULT_CHANNEL: String = "Default channel"
     }
-
+    object Twilio {
+        const val CHAT_PUSH_CREDENTIALS: String = "CR39f07bd81e29ee23c8410d690b455eab"
+        const val VOICE_PUSH_CREDENTIALS: String = "CR39f07bd81e29ee23c8410d690b455eab"
+        const val CHAT_SID: String = "chat_sid"
+        const val USER_ID: String = "user_id"
+        const val USER_NAME: String = "user_name"
+        const val USER_PICTURE: String = "user_picture"
+        const val CHANNEL_ID: String = "channelId"
+    }
 }

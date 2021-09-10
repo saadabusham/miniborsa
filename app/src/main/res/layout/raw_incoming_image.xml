@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.technzone.miniborsa.R" />
+
+        <import type="com.technzone.miniborsa.utils.extensions.DataTimeExtensionsKt" />
+
+        <variable
+            name="message"
+            type="com.twilio.chat.Message" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvProfileImage"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:id="@+id/imgPicture"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/ic_profile_place_holder" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:orientation="vertical">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgMedia"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/_170sdp"
+                android:layout_marginEnd="@dimen/_70sdp"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_logo"
+                android:transitionName="media_image"
+                tools:src="@drawable/ic_logo" />
+
+            <TextView
+                style="@style/outcoming_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|start"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:drawableStart="@drawable/ic_incoming_seen"
+                android:drawablePadding="@dimen/_5sdp"
+                android:text="@{DataTimeExtensionsKt.getMessageDate(message.dateCreatedAsDate)}"
+                android:textColor="@color/incoming_date_color"
+                android:textSize="@dimen/_10ssp"
+                tools:text="3.23 AM" />
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

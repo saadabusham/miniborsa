@@ -44,30 +44,6 @@ allprojects {
     }
 }
 
-subprojects {
-
-    // SetUp Module Type
-    if (project.name == "app") {
-        apply plugin: "com.android.application"
-        apply plugin: 'com.google.firebase.crashlytics'
-    } else {
-        apply plugin: "com.android.library"
-    }
-
-    // SetUp Module Needed Apply's
-    apply plugin: 'kotlin-android'
-    apply plugin: 'kotlin-android-extensions'
-    apply plugin: "kotlin-kapt"
-    apply plugin: "androidx.navigation.safeargs.kotlin"
-    apply plugin: 'dagger.hilt.android.plugin'
-
-    // SetUp App Versions and Build Types
-    apply from: rootDir.path + "/android.gradle"
-
-    // SetUp Needed App library
-    apply from: rootDir.path + "/dependencies.gradle"
-}
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

@@ -229,4 +229,18 @@
     <string name="more_recent_viewed">Recent Viewed</string>
     <string name="more_languange">Languange</string>
     <string name="more_help">Get Help</string>
+    <string name="let_s_get_started">Let\'s Get Started</string>
+    <string name="list_your_home_with_simple_steps">List your home with\nsimple Steps.</string>
+    <string name="business_for_franchise">Business For Franchise</string>
+    <string name="my_listing">My Listing</string>
+    <string name="steps_number">STEP %s OF 4</string>
+    <string name="messages">Messages</string>
+    <string name="chat_with_invistor">Chat with investor</string>
+    <string name="investor">Investor</string>
+    <string name="type_a_message">"Type a message ... "</string>
+    <string name="_700000000">700000000</string>
+    <string name="done">Done</string>
+    <string name="please_select_item">Please select item</string>
+
+
 </resources>

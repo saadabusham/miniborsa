@@ -24,7 +24,9 @@ interface UserRemoteDao {
     @POST("api/user/register")
     suspend fun register(
         @Field("Password") password: String,
-        @Field("FullName") fullName: String,
+        @Field("FirstName") firstName: String,
+        @Field("LastName") lastName: String,
+        @Field("PhoneNumber") phoneNumber: String,
         @Field("Email") email: String,
         @Field("RegistrationId") registrationId: String,
         @Field("DeviceType") deviceType: Int,
