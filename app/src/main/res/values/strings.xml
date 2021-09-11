@@ -264,6 +264,17 @@
     <string name="can_the_business_be_relocated">Can the business be relocated?</string>
     <string name="don_t_list_under_a_location">Don\'t list under a location</string>
     <string name="build_your_listing">Build Your Listing</string>
+    <string name="freehold">Freehold</string>
+    <string name="leasehold">Leasehold</string>
+    <string name="both">Both</string>
+    <string name="property_status">Property Status</string>
+    <string name="asking_price">Asking Price</string>
+    <string name="are_the_asking_price_is_negotiable">Are the asking price is Negotiable?</string>
+    <string name="annual_net_profit">Annual Net Profit</string>
+    <string name="annual_turnover">Annual Turnover</string>
+    <string name="freehold_parentheses">(Freehold)</string>
+    <string name="leasehold_parentheses">(Leasehold)</string>
+    <string name="investment_percentage">Investment Percentage</string>
 
 
 </resources>

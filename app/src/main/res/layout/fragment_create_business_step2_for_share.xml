@@ -1,16 +1,399 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.technzone.miniborsa.ui.business.createbusiness.viewmodels.CreateBusinessViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/beginGuide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layouts_margin_start"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/layouts_margin_start"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/endGuide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintGuide_end="@dimen/layouts_margin_end" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/freehold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/freeholdBeginGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/layouts_margin_start"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/freeholdEndGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintGuide_end="@dimen/layouts_margin_end" />
+
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    android:id="@+id/tvFreeHoldPercentageTxt"
+                    style="@style/textview_normal_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:text="@string/investment_percentage"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintStart_toStartOf="@id/freeholdBeginGuide"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    android:id="@+id/tvFreeHoldPercentage"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="40 %"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvFreeHoldPercentageTxt"
+                    app:layout_constraintEnd_toEndOf="@id/freeholdEndGuide"
+                    app:layout_constraintTop_toTopOf="@id/tvFreeHoldPercentageTxt"
+                    tools:text="40 %" />
+
+                <androidx.appcompat.widget.AppCompatSeekBar
+                    android:id="@+id/seekBarFreeHoldPercentage"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:paddingStart="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_9sdp"
+                    android:progressDrawable="@drawable/seek_bar_progress"
+                    android:thumb="@drawable/ic_seek_bar_thumb"
+                    app:layout_constraintEnd_toEndOf="@id/freeholdEndGuide"
+                    app:layout_constraintStart_toStartOf="@id/freeholdBeginGuide"
+                    app:layout_constraintTop_toBottomOf="@id/tvFreeHoldPercentage"
+                    tools:max="78"
+                    tools:progress="0" />
+
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    android:id="@+id/tvFreeHoldAskingPriceTxt"
+                    style="@style/textview_normal_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:text="@string/asking_price"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintStart_toStartOf="@id/freeholdBeginGuide"
+                    app:layout_constraintTop_toBottomOf="@+id/seekBarFreeHoldPercentage" />
+
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    android:id="@+id/tvFreeHoldAskingPrice"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?selectableItemBackground"
+                    android:clickable="true"
+                    android:drawableEnd="@drawable/ic_edit"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:focusable="true"
+                    android:text="$400,000"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvFreeHoldAskingPriceTxt"
+                    app:layout_constraintEnd_toEndOf="@id/freeholdEndGuide"
+                    app:layout_constraintTop_toTopOf="@id/tvFreeHoldAskingPriceTxt"
+                    tools:text="$400,000" />
+
+                <androidx.appcompat.widget.AppCompatSeekBar
+                    android:id="@+id/seekBarFreeHoldAskingPrice"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:paddingStart="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_9sdp"
+                    android:progressDrawable="@drawable/seek_bar_progress"
+                    android:thumb="@drawable/ic_seek_bar_thumb"
+                    app:layout_constraintEnd_toEndOf="@id/freeholdEndGuide"
+                    app:layout_constraintStart_toStartOf="@id/freeholdBeginGuide"
+                    app:layout_constraintTop_toBottomOf="@id/tvFreeHoldAskingPriceTxt"
+                    tools:max="78"
+                    tools:progress="0" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/checkboxFreeHoldAskingPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:checked="false"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
+                    android:text="@string/available_on_request"
+                    app:layout_constraintStart_toStartOf="@id/freeholdBeginGuide"
+                    app:layout_constraintTop_toBottomOf="@id/seekBarFreeHoldAskingPrice" />
+
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    android:id="@+id/tvFreeholdIsNegotiable"
+                    style="@style/textview_normal_medium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:text="@string/are_the_asking_price_is_negotiable"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintEnd_toStartOf="@id/switchFreeholdIsNegotiable"
+                    app:layout_constraintStart_toStartOf="@id/freeholdBeginGuide"
+                    app:layout_constraintTop_toBottomOf="@id/checkboxFreeHoldAskingPrice" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchFreeholdIsNegotiable"
+                    style="@style/Widget.App.Switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:checked="@={viewModel.isNegotiable}"
+                    app:layout_constraintBottom_toBottomOf="@id/tvFreeholdIsNegotiable"
+                    app:layout_constraintEnd_toEndOf="@id/freeholdEndGuide"
+                    app:layout_constraintTop_toTopOf="@id/tvFreeholdIsNegotiable" />
+
+                <View
+                    android:id="@+id/divFreeHoldAskingPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@color/color_not_valid"
+                    app:layout_constraintEnd_toEndOf="@id/freeholdEndGuide"
+                    app:layout_constraintStart_toStartOf="@id/freeholdBeginGuide"
+                    app:layout_constraintTop_toBottomOf="@id/tvFreeholdIsNegotiable" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/netProfit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/freehold">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/netProfitBeginGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/layouts_margin_start"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/netProfitEndGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintGuide_end="@dimen/layouts_margin_end" />
+
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    android:id="@+id/tvNetProfitTxt"
+                    style="@style/textview_normal_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:text="@string/annual_net_profit"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintStart_toStartOf="@id/netProfitBeginGuide"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    android:id="@+id/tvNetProfit"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?selectableItemBackground"
+                    android:clickable="true"
+                    android:drawableEnd="@drawable/ic_edit"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:focusable="true"
+                    android:text="$400,000"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvNetProfitTxt"
+                    app:layout_constraintEnd_toEndOf="@id/netProfitEndGuide"
+                    app:layout_constraintTop_toTopOf="@id/tvNetProfitTxt"
+                    tools:text="$400,000" />
+
+                <androidx.appcompat.widget.AppCompatSeekBar
+                    android:id="@+id/seekBarNetProfit"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:paddingStart="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_9sdp"
+                    android:progressDrawable="@drawable/seek_bar_progress"
+                    android:thumb="@drawable/ic_seek_bar_thumb"
+                    app:layout_constraintEnd_toEndOf="@id/netProfitEndGuide"
+                    app:layout_constraintStart_toStartOf="@id/netProfitBeginGuide"
+                    app:layout_constraintTop_toBottomOf="@id/tvNetProfit"
+                    tools:max="78"
+                    tools:progress="20" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/checkboxNetProfit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:checked="false"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
+                    android:text="@string/available_on_request"
+                    app:layout_constraintStart_toStartOf="@id/netProfitBeginGuide"
+                    app:layout_constraintTop_toBottomOf="@id/seekBarNetProfit" />
+
+                <View
+                    android:id="@+id/divNetProfit"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@color/color_not_valid"
+                    app:layout_constraintEnd_toEndOf="@id/netProfitEndGuide"
+                    app:layout_constraintStart_toStartOf="@id/netProfitBeginGuide"
+                    app:layout_constraintTop_toBottomOf="@id/checkboxNetProfit" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/turnover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/netProfit">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/turnoverBeginGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/layouts_margin_start"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/turnoverEndGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintGuide_end="@dimen/layouts_margin_end" />
+
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    android:id="@+id/tvTurnoverTxt"
+                    style="@style/textview_normal_medium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:text="@string/annual_turnover"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintEnd_toStartOf="@id/tvTurnover"
+                    app:layout_constraintStart_toStartOf="@id/turnoverBeginGuide"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    android:id="@+id/tvTurnover"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?selectableItemBackground"
+                    android:clickable="true"
+                    android:drawableEnd="@drawable/ic_edit"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:focusable="true"
+                    android:text="$400,000"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvTurnoverTxt"
+                    app:layout_constraintEnd_toEndOf="@id/turnoverEndGuide"
+                    app:layout_constraintTop_toTopOf="@id/tvTurnoverTxt"
+                    tools:text="$400,000" />
+
+                <androidx.appcompat.widget.AppCompatSeekBar
+                    android:id="@+id/seekBarTurnover"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:paddingStart="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_9sdp"
+                    android:progressDrawable="@drawable/seek_bar_progress"
+                    android:thumb="@drawable/ic_seek_bar_thumb"
+                    app:layout_constraintEnd_toEndOf="@id/turnoverEndGuide"
+                    app:layout_constraintStart_toStartOf="@id/turnoverBeginGuide"
+                    app:layout_constraintTop_toBottomOf="@id/tvTurnover"
+                    tools:max="78"
+                    tools:progress="20" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/checkboxTurnover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_25sdp"
+                    android:checked="false"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
+                    android:text="@string/available_on_request"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/turnoverBeginGuide"
+                    app:layout_constraintTop_toBottomOf="@id/seekBarTurnover" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </layout>

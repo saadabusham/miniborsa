@@ -154,4 +154,8 @@
     <color name="chart_color_4">#00AB6B</color>
     <color name="chart_color_5">#E9591C</color>
 
+    <color name="switch_thumb_active">#00AA6A</color>
+    <color name="switch_thumb_unactive">#7E7E7E</color>
+    <color name="switch_track_active">#8000AB6B</color>
+    <color name="switch_track_unactive">#807E7E7E</color>
 </resources>

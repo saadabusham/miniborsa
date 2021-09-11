@@ -2,6 +2,7 @@ package com.technzone.miniborsa.ui.business.createbusiness.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import com.technzone.miniborsa.data.enums.BusinessTypeEnums
+import com.technzone.miniborsa.data.enums.PropertyStatusEnums
 import com.technzone.miniborsa.data.pref.user.UserPref
 import com.technzone.miniborsa.data.repos.user.UserRepo
 import com.technzone.miniborsa.ui.base.viewmodel.BaseViewModel
@@ -22,4 +23,6 @@ class CreateBusinessViewModel @Inject constructor(
     val summery: MutableLiveData<String> = MutableLiveData("")
     val addressStr: MutableLiveData<String> = MutableLiveData("")
     val date: MutableLiveData<String> = MutableLiveData()
+    val IsNegotiable: MutableLiveData<Boolean> = MutableLiveData()
+    val propertyStatus: MutableLiveData<PropertyStatusEnums> = MutableLiveData(PropertyStatusEnums.FREEHOLD)
 }

@@ -672,12 +672,10 @@
     <style name="ColorSwitchStyle">
         <item name="colorControlActivated">@color/main_green_color</item>
     </style>
-    "
 
     <style name="tablayout_item" parent="Widget.AppCompat.TextView">
-        <item name="android:textSize">@dimen/_10ssp</item>
-        <item name="android:fontFamily">@font/en_normal_semibold</item>
-        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/_9ssp</item>
+        <item name="android:fontFamily">@font/en_normal_regular</item>
     </style>
 
     <style name="rounded_ImageView" parent="">
@@ -852,4 +850,14 @@
         <item name="android:indeterminate">false</item>
         <item name="android:progressDrawable">@drawable/circular_progress_bar</item>
     </style>
+
+    <style name="Widget.App.Switch" parent="Widget.MaterialComponents.CompoundButton.Switch">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Switch</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Switch" parent="">
+        <item name="thumbTint">@color/switch_thumb_selector</item>
+        <item name="trackTint">@color/switch_track_selector</item>
+    </style>
+
 </resources>
