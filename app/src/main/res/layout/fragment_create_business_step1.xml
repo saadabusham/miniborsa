@@ -98,7 +98,7 @@
                 style="@style/textview_normal_medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_25sdp"
                 android:text="@string/general_summary"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13ssp"
@@ -178,7 +178,7 @@
                 style="@style/textview_normal_medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_25sdp"
                 android:text="@string/business_categories"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13ssp"
@@ -257,9 +257,9 @@
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:id="@+id/checkboxConfidential"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:checked="true"
                 android:paddingStart="@dimen/_15sdp"
                 android:paddingTop="0dp"
@@ -273,12 +273,168 @@
                 android:id="@+id/divConfidential"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_1sdp"
-                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginTop="@dimen/_17sdp"
                 android:background="@color/color_not_valid"
                 app:layout_constraintEnd_toEndOf="@id/endGuide"
                 app:layout_constraintStart_toStartOf="@id/beginGuide"
                 app:layout_constraintTop_toBottomOf="@id/checkboxConfidential" />
 
+            <com.technzone.miniborsa.ui.base.views.AppTextView
+                android:id="@+id/tvYear"
+                style="@style/textview_normal_medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:text="@string/established_year"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintEnd_toStartOf="@id/tvSummeryCount"
+                app:layout_constraintStart_toStartOf="@id/beginGuide"
+                app:layout_constraintTop_toBottomOf="@id/divConfidential" />
+
+            <com.technzone.miniborsa.ui.base.views.AppTextView
+                android:id="@+id/tvEstablishYear"
+                style="@style/textview_normal_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="2017"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintEnd_toEndOf="@id/endGuide"
+                app:layout_constraintTop_toTopOf="@id/tvYear"
+                tools:text="2017" />
+
+            <View
+                android:id="@+id/divYear"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:background="@color/color_not_valid"
+                app:layout_constraintEnd_toEndOf="@id/endGuide"
+                app:layout_constraintStart_toStartOf="@id/beginGuide"
+                app:layout_constraintTop_toBottomOf="@id/tvYear" />
+
+            <com.technzone.miniborsa.ui.base.views.AppTextView
+                android:id="@+id/tvLocation"
+                style="@style/textview_normal_medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_17sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:text="@string/location"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintEnd_toStartOf="@id/tvSummeryCount"
+                app:layout_constraintStart_toStartOf="@id/beginGuide"
+                app:layout_constraintTop_toBottomOf="@id/divYear" />
+
+            <View
+                android:id="@+id/divLocation"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/color_not_valid"
+                app:layout_constraintEnd_toEndOf="@id/endGuide"
+                app:layout_constraintStart_toStartOf="@id/beginGuide"
+                app:layout_constraintTop_toBottomOf="@id/tvLocation" />
+
+            <com.technzone.miniborsa.ui.base.views.AppTextInputLayout
+                android:id="@+id/tfAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_postal_code_or_address"
+                app:layout_constraintEnd_toEndOf="@id/endGuide"
+                app:layout_constraintStart_toStartOf="@id/beginGuide"
+                app:layout_constraintTop_toBottomOf="@id/divLocation">
+
+                <com.technzone.miniborsa.ui.base.views.AppTextInputEditText
+                    android:id="@+id/edAddress"
+                    style="@style/TextInputEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_business_pin"
+                    android:inputType="textEmailAddress"
+                    android:text="@={viewModel.addressStr}" />
+
+            </com.technzone.miniborsa.ui.base.views.AppTextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/linMapInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:gravity="center|start"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@id/endGuide"
+                app:layout_constraintStart_toStartOf="@id/beginGuide"
+                app:layout_constraintTop_toBottomOf="@id/tfAddress">
+
+                <com.technzone.miniborsa.ui.base.views.AppImageView
+                    android:layout_width="@dimen/_13sdp"
+                    android:layout_height="@dimen/_13sdp"
+                    android:src="@drawable/ic_info" />
+
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    android:id="@+id/tvMapInfo"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:gravity="center|start"
+                    android:text="@string/move_the_map_and_set_the_pin_location"
+                    android:textColor="@color/black_alpha"
+                    android:textSize="@dimen/_9ssp" />
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/checkboxListLocation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:checked="true"
+                android:paddingStart="@dimen/_15sdp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:text="@string/don_t_list_under_a_location"
+                app:layout_constraintEnd_toEndOf="@id/endGuide"
+                app:layout_constraintStart_toStartOf="@id/beginGuide"
+                app:layout_constraintTop_toBottomOf="@id/linMapInfo" />
+
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/checkboxRelocated"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:checked="true"
+                android:paddingStart="@dimen/_15sdp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:text="@string/can_the_business_be_relocated"
+                app:layout_constraintEnd_toEndOf="@id/endGuide"
+                app:layout_constraintStart_toStartOf="@id/beginGuide"
+                app:layout_constraintTop_toBottomOf="@id/checkboxListLocation" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/checkboxHome"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_25sdp"
+                android:checked="true"
+                android:paddingStart="@dimen/_15sdp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:text="@string/the_business_can_be_run_from_home"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/endGuide"
+                app:layout_constraintStart_toStartOf="@id/beginGuide"
+                app:layout_constraintTop_toBottomOf="@id/checkboxRelocated" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -257,6 +257,13 @@
     <string name="you_can_choose_up_to_3_categories">You can choose up to 3 categories</string>
     <string name="select_category">Select Category</string>
     <string name="show_as_confidential_sale">Show as confidential sale</string>
+    <string name="established_year">Established Year</string>
+    <string name="location">Location</string>
+    <string name="move_the_map_and_set_the_pin_location">Move the map and set the pin location</string>
+    <string name="the_business_can_be_run_from_home">The business can be run from home.</string>
+    <string name="can_the_business_be_relocated">Can the business be relocated?</string>
+    <string name="don_t_list_under_a_location">Don\'t list under a location</string>
+    <string name="build_your_listing">Build Your Listing</string>
 
 
 </resources>

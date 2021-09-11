@@ -2,19 +2,17 @@ package com.technzone.miniborsa.ui.business.createbusiness.fragments
 
 import androidx.fragment.app.activityViewModels
 import com.technzone.miniborsa.R
-import com.technzone.miniborsa.databinding.FragmentCreateBusinessStep1Binding
-import com.technzone.miniborsa.databinding.FragmentCreateBusinessStep2Binding
-import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
+import com.technzone.miniborsa.databinding.FragmentCreateBusinessStep2ForSaleBinding
 import com.technzone.miniborsa.ui.base.fragment.BaseFormBindingFragment
 import com.technzone.miniborsa.ui.business.createbusiness.viewmodels.CreateBusinessViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CreateBusinessStep2Fragment : BaseFormBindingFragment<FragmentCreateBusinessStep2Binding>() {
+class CreateBusinessStep2ForSaleFragment : BaseFormBindingFragment<FragmentCreateBusinessStep2ForSaleBinding>() {
 
     private val viewModel:CreateBusinessViewModel by activityViewModels()
 
-    override fun getLayoutId(): Int = R.layout.fragment_create_business_step2
+    override fun getLayoutId(): Int = R.layout.fragment_create_business_step2_for_sale
 
     override fun onViewVisible() {
         super.onViewVisible()

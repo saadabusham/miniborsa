@@ -119,6 +119,12 @@ object DateTimeUtil {
         return calendar.timeInMillis
     }
 
+    fun getDateInMillis(year: Int): Long {
+        val calendar: Calendar = Calendar.getInstance()
+        calendar.set(Calendar.YEAR,year)
+        return calendar.timeInMillis
+    }
+
     fun getFullDate(): String {
         val calendar = Calendar.getInstance()
         val dateFormat = SimpleDateFormat(FULL_DATE_TIME_FORMATTING, Locale.ENGLISH)

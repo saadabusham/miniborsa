@@ -56,9 +56,11 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
         }
         onBackPressedDispatcher.addCallback(callback)
     }
-    private fun setUpBinding(){
+
+    private fun setUpBinding() {
         binding?.viewModel = viewModel
     }
+
     private fun setUpListeners() {
         binding?.btnNext?.setOnClickListener {
             binding?.formsViewPager?.findCurrentFragment(supportFragmentManager).let {
@@ -105,10 +107,10 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
 
     private fun setUpPager() {
         binding?.formsViewPager?.offscreenPageLimit = 4
-        stepsPagerAdapter = StepsPagerAdapter(this)
+        stepsPagerAdapter = StepsPagerAdapter(this,viewModel.businessType)
         binding?.formsViewPager?.adapter = stepsPagerAdapter
         binding?.formsViewPager?.registerOnPageChangeCallback(pagerCallback)
-        binding?.formsViewPager?.currentItem
+        binding?.formsViewPager?.isUserInputEnabled = false
     }
 
     private var pagerCallback = object : ViewPager2.OnPageChangeCallback() {
@@ -121,16 +123,20 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
                 )
             )
             when (position) {
-                1 -> {
+                0 -> {
+                    binding?.tvTitle?.text = getString(R.string.build_your_listing)
                     viewModel.percentage.postValue(25)
                 }
-                2 -> {
+                1 -> {
+                    binding?.tvTitle?.text = getString(R.string.listing_score)
                     viewModel.percentage.postValue(50)
                 }
-                3 -> {
+                2 -> {
+                    binding?.tvTitle?.text = getString(R.string.listing_score)
                     viewModel.percentage.postValue(75)
                 }
-                4 -> {
+                3 -> {
+                    binding?.tvTitle?.text = getString(R.string.listing_score)
                     viewModel.percentage.postValue(100)
                 }
             }

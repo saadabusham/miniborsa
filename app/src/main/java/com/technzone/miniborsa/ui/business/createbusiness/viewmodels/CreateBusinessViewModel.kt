@@ -15,8 +15,11 @@ class CreateBusinessViewModel @Inject constructor(
     private val userPref: UserPref,
     private val sharedPreferencesUtil: SharedPreferencesUtil,
 ) : BaseViewModel() {
+
     var businessType: Int = BusinessTypeEnums.BUSINESS_FOR_SALE.value
     val percentage: MutableLiveData<Int> = MutableLiveData(0)
     val title: MutableLiveData<String> = MutableLiveData("")
     val summery: MutableLiveData<String> = MutableLiveData("")
+    val addressStr: MutableLiveData<String> = MutableLiveData("")
+    val date: MutableLiveData<String> = MutableLiveData()
 }
