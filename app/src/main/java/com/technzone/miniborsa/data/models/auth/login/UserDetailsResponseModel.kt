@@ -1,51 +1,51 @@
 package com.technzone.miniborsa.data.models.auth.login
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class UserDetailsResponseModel(
 
-    @field:Json(name = "lastName")
-    val lastName: String? = null,
+	@field:SerializedName("lastName")
+	val lastName: String? = null,
 
-    @field:Json(name = "gender")
-    val gender: Int? = null,
+	@field:SerializedName("gender")
+	val gender: Int? = null,
 
-    @field:Json(name = "roles")
-    val roles: List<UserRoles?>? = null,
+	@field:SerializedName("roles")
+	val roles: List<UserRoles>? = null,
 
-    @field:Json(name = "fullName")
-    val fullName: String? = null,
+	@field:SerializedName("fullName")
+	val fullName: String? = null,
 
-    @field:Json(name = "active")
-    val active: Boolean? = null,
+	@field:SerializedName("active")
+	val active: Boolean? = null,
 
-    @field:Json(name = "dateOfBirth")
-    val dateOfBirth: String? = null,
+	@field:SerializedName("dateOfBirth")
+	val dateOfBirth: String? = null,
 
-    @field:Json(name = "token")
-    val token: String? = null,
+	@field:SerializedName("picture")
+	val picture: String? = null,
 
-    @field:Json(name = "firstName")
-    val firstName: String? = null,
+	@field:SerializedName("token")
+	val token: String? = null,
 
-    @field:Json(name = "phoneNumber")
-    val phoneNumber: String? = null,
+	@field:SerializedName("firstName")
+	val firstName: String? = null,
 
-    @field:Json(name = "createdDate")
-    val createdDate: String? = null,
+	@field:SerializedName("phoneNumber")
+	val phoneNumber: String? = null,
 
-    @field:Json(name = "id")
-    val id: String? = null,
+	@field:SerializedName("createdDate")
+	val createdDate: String? = null,
 
-    @field:Json(name = "email")
-    val email: String? = null,
+	@field:SerializedName("id")
+	val id: String? = null,
 
-    @field:Json(name = "refreshToken")
-    val refreshToken: RefreshToken? = null,
+	@field:SerializedName("email")
+	val email: String? = null,
 
-    @field:Json(name = "username")
-    val username: String? = null,
+	@field:SerializedName("refreshToken")
+	val refreshToken: RefreshToken? = null,
 
-    @field:Json(name = "picture")
-    val picture: String? = null
+	@field:SerializedName("username")
+	val username: String? = null
 )

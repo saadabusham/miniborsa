@@ -16,11 +16,16 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
 
     override fun onViewVisible() {
         super.onViewVisible()
+        setUpBinding()
         setUpListeners()
     }
 
     private fun setUpListeners() {
 
+    }
+
+    private fun setUpBinding(){
+        binding?.viewModel = viewModel
     }
 
     override fun validateToMoveToNext(callback: (Boolean) -> Unit) {

@@ -1,4 +1,4 @@
-package com.technzone.miniborsa.ui.business.businessmain.fragments
+package com.technzone.miniborsa.ui.business.businessmain.fragments.listing
 
 import android.view.View
 import androidx.fragment.app.activityViewModels
@@ -7,13 +7,14 @@ import com.technzone.miniborsa.data.enums.BusinessTypeEnums
 import com.technzone.miniborsa.databinding.FragmentListingBinding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
+import com.technzone.miniborsa.ui.business.businessmain.fragments.listing.dialogs.SelectBusinessTypeDialog
 import com.technzone.miniborsa.ui.business.createbusiness.activity.CreateBusinessActivity
 import com.technzone.miniborsa.ui.investor.invistormain.viewmodels.InvestorMainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ListingFragment : BaseBindingFragment<FragmentListingBinding>(),
-        BaseBindingRecyclerViewAdapter.OnItemClickListener {
+    BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
     private val viewModel: InvestorMainViewModel by activityViewModels()
 
@@ -31,13 +32,32 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>(),
 
     private fun setUpListeners() {
         binding?.layoutAddBusiness?.btnBusinessForSale?.setOnClickListener {
-            CreateBusinessActivity.start(requireContext(),BusinessTypeEnums.BUSINESS_FOR_SALE.value)
+            CreateBusinessActivity.start(
+                requireContext(),
+                BusinessTypeEnums.BUSINESS_FOR_SALE.value
+            )
         }
         binding?.layoutAddBusiness?.btnBusinessForShare?.setOnClickListener {
-            CreateBusinessActivity.start(requireContext(),BusinessTypeEnums.BUSINESS_FOR_SHARE.value)
+            CreateBusinessActivity.start(
+                requireContext(),
+                BusinessTypeEnums.BUSINESS_FOR_SHARE.value
+            )
         }
         binding?.layoutAddBusiness?.btnBusinessFranchise?.setOnClickListener {
-            CreateBusinessActivity.start(requireContext(),BusinessTypeEnums.BUSINESS_FRANCHISE.value)
+            CreateBusinessActivity.start(
+                requireContext(),
+                BusinessTypeEnums.BUSINESS_FRANCHISE.value
+            )
+        }
+        binding?.imgAddBusiness?.setOnClickListener {
+            SelectBusinessTypeDialog(requireActivity(),object : SelectBusinessTypeDialog.CallBack{
+                override fun callBack(businessTypeEnums: BusinessTypeEnums) {
+                    CreateBusinessActivity.start(
+                        requireContext(),
+                        businessTypeEnums.value
+                    )
+                }
+            }).show()
         }
     }
 

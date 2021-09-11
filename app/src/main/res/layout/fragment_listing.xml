@@ -27,14 +27,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.technzone.miniborsa.ui.base.views.AppImageView
+            android:id="@+id/imgAddBusiness"
             android:layout_width="@dimen/_32sdp"
             android:layout_height="@dimen/_32sdp"
             android:background="?selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
             android:padding="@dimen/_7sdp"
-            android:src="@drawable/ic_nav_search"
-            android:tint="@color/black"
+            android:src="@drawable/ic_add_business"
             android:layout_marginEnd="@dimen/_7sdp"
             app:layout_constraintBottom_toBottomOf="@id/tvTitle"
             app:layout_constraintEnd_toEndOf="parent"

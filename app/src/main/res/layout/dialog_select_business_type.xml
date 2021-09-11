@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.technzone.miniborsa.ui.business.businessmain.fragments.listing.dialogs.SelectBusinessTypeDialog" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:elevation="0dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_20sdp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_15sdp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_gravity="end"
+                    android:onClick="@{() -> viewModel.onCloseClicked()}"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/ic_cancle"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?selectableItemBackgroundBorderless"
+                    app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvTitle" />
+
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    android:id="@+id/tvTitle"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:text="@string/choose_business_type"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.technzone.miniborsa.ui.base.views.AppButton
+                    android:id="@+id/btnBusinessForSale"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:backgroundTint="@color/white"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.onForSaleClicked()}"
+                    android:padding="@dimen/_7sdp"
+                    android:paddingTop="@dimen/_7sdp"
+                    android:paddingBottom="@dimen/_7sdp"
+                    android:stateListAnimator="@null"
+                    android:text="@string/businesses_for_sale"
+                    android:textColor="@color/black_alpha"
+                    android:textSize="@dimen/_10ssp"
+                    app:cornerRadius="@dimen/_5sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitle"
+                    app:strokeColor="@color/color_not_valid"
+                    app:rippleColor="@color/button_color"
+                    app:strokeWidth="@dimen/_1sdp" />
+
+                <com.technzone.miniborsa.ui.base.views.AppButton
+                    android:id="@+id/btnBusinessForShare"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:backgroundTint="@color/white"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.onForShareClicked()}"
+                    android:padding="@dimen/_7sdp"
+                    android:paddingTop="@dimen/_7sdp"
+                    android:paddingBottom="@dimen/_7sdp"
+                    android:stateListAnimator="@null"
+                    android:text="@string/share_for_sale"
+                    android:textColor="@color/black_alpha"
+                    android:textSize="@dimen/_10ssp"
+                    app:cornerRadius="@dimen/_5sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btnBusinessForSale"
+                    app:strokeColor="@color/color_not_valid"
+                    app:strokeWidth="@dimen/_1sdp"
+                    app:rippleColor="@color/button_color"/>
+
+                <com.technzone.miniborsa.ui.base.views.AppButton
+                    android:id="@+id/btnBusinessFranchise"
+                    style="@style/textview_normal_regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:layout_marginBottom="@dimen/_25sdp"
+                    android:backgroundTint="@color/white"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.onFranchiseClicked()}"
+                    android:padding="@dimen/_7sdp"
+                    android:paddingTop="@dimen/_7sdp"
+                    android:paddingBottom="@dimen/_7sdp"
+                    android:stateListAnimator="@null"
+                    android:text="@string/business_for_franchise"
+                    android:textColor="@color/black_alpha"
+                    android:textSize="@dimen/_9ssp"
+                    app:cornerRadius="@dimen/_5sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btnBusinessForShare"
+                    app:strokeColor="@color/color_not_valid"
+                    app:rippleColor="@color/button_color"
+                    app:strokeWidth="@dimen/_1sdp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </RelativeLayout>
+</layout>

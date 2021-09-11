@@ -105,7 +105,7 @@ class RegistrationViewModel @Inject constructor(
 
     fun resendVerificationCode() = liveData {
         emit(APIResource.loading())
-        val response = userRepo.resendCode(
+        val response = userRepo.forgetPassword(
             emailMutableLiveData.value.toString()
         )
         emit(response)

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.technzone.miniborsa.ui.business.createbusiness.viewmodels.CreateBusinessViewModel" />
@@ -19,6 +21,79 @@
             android:id="@+id/layout_toolbar"
             layout="@layout/layout_toolbar" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp">
+
+            <ImageView
+                android:id="@+id/imgPercentBg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_percent25_bg" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="@style/CircularDeterminateProgressBar"
+                android:layout_width="@dimen/_47sdp"
+                android:layout_height="@dimen/_47sdp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/layouts_margin_start"
+                android:indeterminate="false"
+                android:indeterminateOnly="false"
+                android:max="100"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:progress="@{viewModel.percentage}"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:progress="35" />
+
+            <com.technzone.miniborsa.ui.base.views.AppTextView
+                android:id="@+id/tvPercent"
+                style="@style/textview_normal_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.percentage.toString()}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintBottom_toBottomOf="@id/progressBar"
+                app:layout_constraintEnd_toEndOf="@id/progressBar"
+                app:layout_constraintStart_toStartOf="@id/progressBar"
+                app:layout_constraintTop_toTopOf="@id/progressBar"
+                tools:text="10" />
+
+            <com.technzone.miniborsa.ui.base.views.AppTextView
+                android:id="@+id/tvTitle"
+                style="@style/textview_normal_bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="@string/listing_score"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/progressBar"
+                app:layout_constraintTop_toTopOf="@id/progressBar" />
+
+            <com.technzone.miniborsa.ui.base.views.AppTextView
+                style="@style/textview_normal_regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:text="@string/having_a_high_score_will_be_easier_to_find_in_the_search_features_by_your_prospective_buyers"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/formsViewPager"
             android:layout_width="match_parent"
@@ -28,6 +103,13 @@
             android:clipToPadding="true"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@color/color_not_valid" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnNext"

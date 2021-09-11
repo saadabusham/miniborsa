@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.technzone.miniborsa.data.enums.MoreEnums" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="data"
+            type="com.technzone.miniborsa.data.models.profile.More" />
+    </data>
+
+    <com.technzone.miniborsa.ui.base.views.AppTextView
+        style="@style/textview_normal_regular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_15sdp"
+        android:paddingStart="@dimen/_20sdp"
+        android:paddingEnd="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_9sdp"
+        android:background="@drawable/ic_rectangle_unfocused"
+        android:drawableEnd="@drawable/ic_arrow_next"
+        android:text="@{data.title}"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_11ssp"
+        tools:text="Account" />
+</layout>

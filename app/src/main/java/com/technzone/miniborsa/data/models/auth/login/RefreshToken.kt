@@ -1,12 +1,12 @@
 package com.technzone.miniborsa.data.models.auth.login
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class RefreshToken(
 
-	@field:Json(name ="validUntil")
+	@field:SerializedName("validUntil")
 	val validUntil: String? = null,
 
-	@field:Json(name ="refreshToken")
+	@field:SerializedName("refreshToken")
 	val refreshToken: String? = null
 )

@@ -15,8 +15,6 @@ import com.technzone.miniborsa.ui.userrole.viewmodel.UserRolesViewModel
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.business.businessmain.activity.BusinessMainActivity
-import com.technzone.miniborsa.ui.general.adapters.ChooseGeneralRecyclerAdapter
-import com.technzone.miniborsa.ui.general.adapters.SelectedGeneralRecyclerAdapter
 import com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity
 import com.technzone.miniborsa.utils.extensions.showErrorAlert
 import dagger.hilt.android.AndroidEntryPoint

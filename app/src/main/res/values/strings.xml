@@ -241,6 +241,22 @@
     <string name="_700000000">700000000</string>
     <string name="done">Done</string>
     <string name="please_select_item">Please select item</string>
+    <string name="choose_business_type">Choose business type:</string>
+    <string name="listing_score">Listing Score</string>
+    <string name="having_a_high_score_will_be_easier_to_find_in_the_search_features_by_your_prospective_buyers">Having a high score will be easier to find in the search features by your prospective buyers.</string>
+
+<!--    Add Business-->
+    <string name="tittle_your_listing">Tittle your Listing</string>
+    <string name="use_words_to_describe_your_business">Use words to describe your business</string>
+    <string name="title_count">%s OF 35</string>
+    <string name="summery_count">%s OF 1000</string>
+    <string name="general_summary">General Summary</string>
+    <string name="highlight_the_selling_points_of_the_business_for_sale">Highlight the selling points of the business for sale.</string>
+    <string name="please_do_not_add_phone_numbers_or_email_addresses_to_the_description_we_will_remove_them_as_they_cannot_be_tracked">Please do not add phone numbers or email addresses to\nthe description. \nWe will remove them as they cannot be tracked</string>
+    <string name="business_categories">Business Categories</string>
+    <string name="you_can_choose_up_to_3_categories">You can choose up to 3 categories</string>
+    <string name="select_category">Select Category</string>
+    <string name="show_as_confidential_sale">Show as confidential sale</string>
 
 
 </resources>

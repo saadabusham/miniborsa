@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/nav_listing"
-        android:name="com.technzone.miniborsa.ui.business.businessmain.fragments.ListingFragment"
+        android:name="com.technzone.miniborsa.ui.business.businessmain.fragments.listing.ListingFragment"
         android:label="ListingFragment"
         tools:layout="@layout/fragment_listing" />
 

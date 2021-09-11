@@ -148,4 +148,10 @@
     <color name="incoming_date_color">#757575</color>
     <color name="edit_text_unfocused_color">#484949</color>
 
+    <color name="chart_color_1">#F5F5F5</color>
+    <color name="chart_color_2">#FF3674</color>
+    <color name="chart_color_3">#FEC031</color>
+    <color name="chart_color_4">#00AB6B</color>
+    <color name="chart_color_5">#E9591C</color>
+
 </resources>

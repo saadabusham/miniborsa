@@ -65,8 +65,8 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
     }
     private fun goToNextPage() {
         if (!viewModel.isUserLoggedIn()) {
-            AuthActivity.start(this)
-//            UserRolesActivity.start(this)
+//            AuthActivity.start(this)
+            UserRolesActivity.start(this)
         } else
             UserRolesActivity.start(this)
 

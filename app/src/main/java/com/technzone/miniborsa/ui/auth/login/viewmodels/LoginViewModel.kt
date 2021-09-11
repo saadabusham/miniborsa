@@ -127,7 +127,7 @@ class LoginViewModel @Inject constructor(
 
     fun resendVerificationCode() = liveData {
         emit(APIResource.loading())
-        val response = userRepo.resendCode(
+        val response = userRepo.forgetPassword(
             email.value.toString()
         )
         emit(response)

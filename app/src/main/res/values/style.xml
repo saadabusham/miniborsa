@@ -846,4 +846,10 @@
         <item name="android:background">@drawable/edittext_shape_selector</item>
         <item name="fontFamily">@font/en_normal_regular</item>
     </style>
+
+    <style name="CircularDeterminateProgressBar">
+        <item name="android:indeterminateOnly">true</item>
+        <item name="android:indeterminate">false</item>
+        <item name="android:progressDrawable">@drawable/circular_progress_bar</item>
+    </style>
 </resources>

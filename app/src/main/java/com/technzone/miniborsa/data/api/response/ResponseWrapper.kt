@@ -1,14 +1,14 @@
 package com.technzone.miniborsa.data.api.response
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class ResponseWrapper<RETURN_MODEL>(
-    @field:Json(name = "success")
+    @field:SerializedName("success")
     val success: Boolean,
-    @field:Json(name = "errorCode")
+    @field:SerializedName("errorCode")
     val code: Int,
-    @field:Json(name = "errorMessage")
+    @field:SerializedName("errorMessage")
     val message: String,
-    @field:Json(name = "data")
+    @field:SerializedName("data")
     val data: RETURN_MODEL?
 )

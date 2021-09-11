@@ -45,7 +45,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
             tools:itemCount="5"
-            tools:listitem="@layout/row_business_extra_info" />
+            tools:listitem="@layout/row_business_document" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

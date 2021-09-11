@@ -1,6 +1,8 @@
 package com.technzone.miniborsa.data.di
 
 import android.app.Application
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.readystatesoftware.chuck.ChuckInterceptor
 import com.technzone.miniborsa.BuildConfig
@@ -15,6 +17,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.greenrobot.eventbus.EventBus
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
@@ -73,16 +76,24 @@ object NetworkModule {
 
         return okHttpClient.build()
     }
-
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    fun provideRetrofit(
+        okHttpClient: OkHttpClient,
+        gson: Gson
+    ): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl(APP_BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
     }
 
+    @Singleton
+    @Provides
+    fun provideGson(): Gson {
+        return GsonBuilder()
+            .create()
+    }
 }

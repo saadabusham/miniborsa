@@ -1,5 +1,6 @@
 package com.technzone.miniborsa.ui.business.createbusiness.viewmodels
 
+import androidx.lifecycle.MutableLiveData
 import com.technzone.miniborsa.data.enums.BusinessTypeEnums
 import com.technzone.miniborsa.data.pref.user.UserPref
 import com.technzone.miniborsa.data.repos.user.UserRepo
@@ -15,4 +16,7 @@ class CreateBusinessViewModel @Inject constructor(
     private val sharedPreferencesUtil: SharedPreferencesUtil,
 ) : BaseViewModel() {
     var businessType: Int = BusinessTypeEnums.BUSINESS_FOR_SALE.value
+    val percentage: MutableLiveData<Int> = MutableLiveData(0)
+    val title: MutableLiveData<String> = MutableLiveData("")
+    val summery: MutableLiveData<String> = MutableLiveData("")
 }

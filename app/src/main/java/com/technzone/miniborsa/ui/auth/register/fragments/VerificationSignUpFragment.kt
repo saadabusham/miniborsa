@@ -1,7 +1,6 @@
 package com.technzone.miniborsa.ui.auth.register.fragments
 
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.navGraphViewModels
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.CustomObserverResponse

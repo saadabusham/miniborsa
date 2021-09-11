@@ -4,10 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.technzone.miniborsa.data.models.auth.login.UserRoles
 import com.technzone.miniborsa.data.models.general.GeneralLookup
 import com.technzone.miniborsa.databinding.RowSearchGeneralBinding
-import com.technzone.miniborsa.databinding.RowUserRoleBinding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.adapters.BaseViewHolder
 
