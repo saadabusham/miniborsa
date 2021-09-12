@@ -25,4 +25,16 @@ class CreateBusinessViewModel @Inject constructor(
     val date: MutableLiveData<String> = MutableLiveData()
     val IsNegotiable: MutableLiveData<Boolean> = MutableLiveData()
     val propertyStatus: MutableLiveData<PropertyStatusEnums> = MutableLiveData(PropertyStatusEnums.FREEHOLD)
+
+
+    val freeholdAskingPriceOnRequest: MutableLiveData<Boolean> = MutableLiveData(false)
+    val leaseHoldAskingPriceOnRequest: MutableLiveData<Boolean> = MutableLiveData(false)
+    val netProfitOnRequest: MutableLiveData<Boolean> = MutableLiveData(false)
+    val turnoverOnRequest: MutableLiveData<Boolean> = MutableLiveData(false)
+
+    val freeHoldAskingPrice: MutableLiveData<Int> = MutableLiveData(1000)
+    val leaseHoldAskingPrice: MutableLiveData<Int> = MutableLiveData(1000)
+    val netProfit: MutableLiveData<Int> = MutableLiveData(1000)
+    val turnOver: MutableLiveData<Int> = MutableLiveData(1000)
+    val sharePercentage: MutableLiveData<Int> = MutableLiveData(1000)
 }

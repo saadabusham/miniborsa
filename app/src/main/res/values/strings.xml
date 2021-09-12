@@ -205,6 +205,7 @@
     <string name="selling_price">Selling Price</string>
 
     <string name="price_">$%s</string>
+    <string name="percentage_">%s %</string>
     <string name="business_type">Business Type</string>
     <string name="industry">Industry</string>
     <string name="show_properties">Show Properties</string>

@@ -72,9 +72,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableEnd="@drawable/ic_edit"
+                        android:enabled="false"
                         android:drawablePadding="@dimen/_10sdp"
                         android:text="$400,000"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textview_text_color"
                         android:textSize="@dimen/_13ssp" />
                 </LinearLayout>
 
@@ -86,8 +87,9 @@
                     android:layout_marginTop="@dimen/_15sdp"
                     android:paddingStart="0dp"
                     android:paddingEnd="0dp"
-                    android:progressDrawable="@drawable/seek_bar_progress"
-                    android:thumb="@drawable/ic_seek_bar_thumb"
+                    android:enabled="@{viewModel.budgetOnRequest == false}"
+                    android:progressDrawable="@drawable/seekbar_selector"
+                    android:thumb="@drawable/seekbar_thumb_selector"
                     tools:max="78"
                     tools:progress="20" />
 
@@ -97,9 +99,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20sdp"
-                    android:checked="true"
                     android:paddingStart="@dimen/_15sdp"
                     android:paddingTop="0dp"
+                    android:checked="@={viewModel.budgetOnRequest}"
                     android:paddingBottom="0dp"
                     android:text="@string/available_on_request" />
 

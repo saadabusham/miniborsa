@@ -39,6 +39,7 @@ class CompleteInvestorRoleFragment : BaseBindingFragment<FragmentCompleteInvisto
         binding?.btnComplete?.setOnClickListener {
 
         }
+
     }
 
     private fun setUpSelectedCountriesAdapter() {
