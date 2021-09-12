@@ -18,7 +18,9 @@ class MediaRecyclerAdapter(
 ) : BaseBindingRecyclerViewAdapter<LocaleImage>(context) {
 
     override fun getItemViewType(position: Int): Int {
-        return items[position].contentType?.value ?: LocaleImageType.ADD_IMAGE.value
+        return if (position == 0 && items[position].contentType == LocaleImageType.IMAGE) LocaleImageType.MAIN_IMAGE.value else {
+            items[position].contentType?.value ?: LocaleImageType.ADD_IMAGE.value
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -47,14 +49,19 @@ class MediaRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is MainImageViewHolder) {
-            holder.bind(items[position])
-        }else if (holder is ImageViewHolder) {
-            holder.bind(items[position])
-        }else if (holder is AddImageViewHolder) {
-            holder.bind(items[position])
-        }else if (holder is AddFirstImageViewHolder) {
-            holder.bind(items[position])
+        when (holder) {
+            is MainImageViewHolder -> {
+                holder.bind(items[position])
+            }
+            is ImageViewHolder -> {
+                holder.bind(items[position])
+            }
+            is AddImageViewHolder -> {
+                holder.bind(items[position])
+            }
+            is AddFirstImageViewHolder -> {
+                holder.bind(items[position])
+            }
         }
     }
 
@@ -104,6 +111,7 @@ class MediaRecyclerAdapter(
             }
         }
     }
+
     inner class AddFirstImageViewHolder(private val binding: RowAddFirstImageBinding) :
         BaseViewHolder<LocaleImage>(binding.root) {
 

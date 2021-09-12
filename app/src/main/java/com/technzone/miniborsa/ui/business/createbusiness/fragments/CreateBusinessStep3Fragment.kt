@@ -80,7 +80,7 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
                 mediaAdapter.submitItemToPosition(
                     LocaleImage(
                         path = fileUri?.path,
-                        contentType = if (mediaAdapter.itemCount == 1) LocaleImageType.MAIN_IMAGE else LocaleImageType.IMAGE
+                        contentType = LocaleImageType.IMAGE
                     ), mediaAdapter.itemCount - 1
                 )
                 refreshImages()
