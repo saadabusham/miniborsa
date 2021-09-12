@@ -12,12 +12,12 @@
 
     <RelativeLayout
         android:id="@+id/relativePreview"
-        android:layout_width="@dimen/_187sdp"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/_90sdp"
         android:layout_margin="@dimen/_7sdp">
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="@dimen/_187sdp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_90sdp"
             app:cardBackgroundColor="@color/black"
             app:cardCornerRadius="@dimen/_5sdp"
@@ -46,5 +46,24 @@
             android:background="?selectableItemBackgroundBorderless"
             android:padding="@dimen/_1sdp"
             android:src="@drawable/ic_close_black"/>
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_22sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:backgroundTint="@color/green_color"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/main_photo"
+            android:textAllCaps="false"
+            style="@style/textview_normal_regular"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_8ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </RelativeLayout>
 </layout>

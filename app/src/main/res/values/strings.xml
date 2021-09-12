@@ -278,6 +278,7 @@
     <string name="investment_percentage">Investment Percentage</string>
     <string name="upload_images">Upload Images</string>
     <string name="you_can_upload_up_to_5_images_picture_format_must_be_a_jpg_gif_png_tiff_or_bmp">You can upload up to 5 images , picture format must be a jpg, gif, png, tiff or bmp.</string>
+    <string name="main_photo">Main Photo</string>
 
 
 </resources>

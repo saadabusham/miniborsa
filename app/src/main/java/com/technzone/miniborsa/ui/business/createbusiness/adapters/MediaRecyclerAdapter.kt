@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.technzone.miniborsa.data.enums.LocaleImageType
 import com.technzone.miniborsa.data.models.createbusiness.LocaleImage
+import com.technzone.miniborsa.databinding.RowAddFirstImageBinding
 import com.technzone.miniborsa.databinding.RowAddImageBinding
 import com.technzone.miniborsa.databinding.RowImageViewBinding
 import com.technzone.miniborsa.databinding.RowMainImageViewBinding
@@ -32,6 +33,11 @@ class MediaRecyclerAdapter(
                     LayoutInflater.from(context), parent, false
                 )
             )
+            LocaleImageType.ADD_FIRST.value -> AddFirstImageViewHolder(
+                RowAddFirstImageBinding.inflate(
+                    LayoutInflater.from(context), parent, false
+                )
+            )
             else -> AddImageViewHolder(
                 RowAddImageBinding.inflate(
                     LayoutInflater.from(context), parent, false
@@ -46,6 +52,8 @@ class MediaRecyclerAdapter(
         }else if (holder is ImageViewHolder) {
             holder.bind(items[position])
         }else if (holder is AddImageViewHolder) {
+            holder.bind(items[position])
+        }else if (holder is AddFirstImageViewHolder) {
             holder.bind(items[position])
         }
     }
@@ -92,6 +100,15 @@ class MediaRecyclerAdapter(
         override fun bind(item: LocaleImage) {
             binding.item = item
             binding.root.setOnClickListener {
+                itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
+            }
+        }
+    }
+    inner class AddFirstImageViewHolder(private val binding: RowAddFirstImageBinding) :
+        BaseViewHolder<LocaleImage>(binding.root) {
+
+        override fun bind(item: LocaleImage) {
+            binding.uploadImagesBtn.setOnClickListener {
                 itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
             }
         }

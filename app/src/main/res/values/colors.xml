@@ -42,6 +42,7 @@
     <color name="black_alpha75">#BF000000</color>
     <color name="divider_black">#1A000000</color>
 
+    <color name="dashStrokeColor">#EBEBEB</color>
     <!-- Gray -->
     <color name="default_gary">#dfe0e5</color>
     <color name="lite_gray">#f4f5f7</color>

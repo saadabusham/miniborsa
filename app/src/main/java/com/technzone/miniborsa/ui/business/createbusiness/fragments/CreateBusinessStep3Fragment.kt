@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.enums.LocaleImageType
 import com.technzone.miniborsa.data.models.createbusiness.LocaleImage
@@ -45,14 +46,28 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
 
     private fun setUpRvImages() {
         mediaAdapter = MediaRecyclerAdapter(requireContext())
-        binding?.layoutMedia?.recyclerView?.adapter = mediaAdapter
-        binding?.layoutMedia?.recyclerView?.setOnItemClickListener(this)
-        binding?.layoutMedia?.recyclerView?.addItemDecoration(
+        binding?.layoutMedia?.rvPhotos?.adapter = mediaAdapter
+        binding?.layoutMedia?.rvPhotos?.setOnItemClickListener(this)
+        binding?.layoutMedia?.rvPhotos?.addItemDecoration(
             VerticalSpaceDecoration(
                 0, resources.getDimension(R.dimen._10sdp).toInt()
             )
         )
-        addImage()
+        val photosLayoutManager = GridLayoutManager(requireContext(), 3)
+
+        photosLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return if (mediaAdapter.itemCount - 1 == 0) {
+                    3
+                } else if (mediaAdapter.itemCount - 1 > 0 && position == 0) {
+                    2
+                } else {
+                    1
+                }
+            }
+        }
+        binding?.layoutMedia?.rvPhotos?.layoutManager = photosLayoutManager
+        addFirstImage()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -62,16 +77,13 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
         when (requestCode) {
             TAKE_USER_IMAGE_REQUEST_CODE -> {
                 val fileUri = data?.data
-                mediaAdapter.submitItemToTop(
+                mediaAdapter.submitItemToPosition(
                     LocaleImage(
                         path = fileUri?.path,
                         contentType = if (mediaAdapter.itemCount == 1) LocaleImageType.MAIN_IMAGE else LocaleImageType.IMAGE
-                    )
+                    ), mediaAdapter.itemCount - 1
                 )
-                if (mediaAdapter.itemCount == 6) {
-                    mediaAdapter.items.removeAt(5)
-                    mediaAdapter.notifyItemRemoved(5)
-                }
+                refreshImages()
             }
         }
     }
@@ -80,13 +92,43 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
         mediaAdapter.submitItem(LocaleImage(path = null, contentType = LocaleImageType.ADD_IMAGE))
     }
 
+    private fun addFirstImage() {
+        mediaAdapter.submitItem(LocaleImage(path = null, contentType = LocaleImageType.ADD_FIRST))
+    }
+
+    private fun refreshImages() {
+        when (mediaAdapter.itemCount) {
+            0 -> {
+                addFirstImage()
+            }
+            1 -> {
+                if (mediaAdapter.items[0].contentType == LocaleImageType.ADD_IMAGE) {
+                    mediaAdapter.items.removeAt(mediaAdapter.itemCount - 1)
+                    addFirstImage()
+                }
+            }
+            5 -> {
+                if (mediaAdapter.items[4].contentType != LocaleImageType.ADD_IMAGE) {
+                    addImage()
+                }
+            }
+            6 -> {
+                mediaAdapter.items.removeAt(5)
+                mediaAdapter.notifyItemRemoved(5)
+            }
+            else -> {
+                mediaAdapter.items.removeAt(mediaAdapter.itemCount - 1)
+                addImage()
+            }
+        }
+    }
+
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as LocaleImage
         if (view?.id == R.id.imgRemove) {
             mediaAdapter.items.removeAt(position)
             mediaAdapter.notifyItemRemoved(position)
-            if (mediaAdapter.itemCount == 4)
-                addImage()
+            refreshImages()
         } else {
             pickImages(
                 requestCode = TAKE_USER_IMAGE_REQUEST_CODE
