@@ -12,12 +12,12 @@
 
     <RelativeLayout
         android:id="@+id/relativePreview"
-        android:layout_width="@dimen/_90sdp"
+        android:layout_width="@dimen/_187sdp"
         android:layout_height="@dimen/_90sdp"
         android:layout_margin="@dimen/_7sdp">
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="@dimen/_90sdp"
+            android:layout_width="@dimen/_187sdp"
             android:layout_height="@dimen/_90sdp"
             app:cardBackgroundColor="@color/black"
             app:cardCornerRadius="@dimen/_5sdp"

@@ -25,6 +25,10 @@ abstract class BaseBindingRecyclerViewAdapter<MODEL>(
         items.addAll(0,newItems)
         notifyDataSetChanged()
     }
+    fun submitItemToTop(newItem: MODEL) {
+        items.add(0,newItem)
+        notifyDataSetChanged()
+    }
 
     fun addItems(list: List<MODEL>?) {
         val oldItems = items

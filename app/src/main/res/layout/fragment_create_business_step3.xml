@@ -4,6 +4,7 @@
     <data>
 
         <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.technzone.miniborsa.ui.business.createbusiness.viewmodels.CreateBusinessViewModel" />
@@ -12,6 +13,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/layout_media"
+            layout="@layout/layout_media" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

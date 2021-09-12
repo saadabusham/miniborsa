@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.technzone.miniborsa.data.models.createbusiness.LocaleImage" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/relativePreview"
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="@dimen/_90sdp"
+        android:layout_margin="@dimen/_7sdp"
+        android:background="@drawable/ic_rectangle_dashed">
+
+        <ImageView
+            android:id="@+id/imgAdd"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_centerInParent="true"
+            android:background="?selectableItemBackgroundBorderless"
+            android:padding="@dimen/_3sdp"
+            android:src="@drawable/ic_add" />
+    </RelativeLayout>
+</layout>

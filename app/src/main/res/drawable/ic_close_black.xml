@@ -3,14 +3,10 @@
     android:height="16dp"
     android:viewportWidth="16"
     android:viewportHeight="16">
-    <path
-        android:fillAlpha="0"
-        android:fillColor="#FF000000"
-        android:pathData="M0,0h16v16h-16z"
-        android:strokeAlpha="0" />
+
     <path
         android:fillAlpha="0.997"
-        android:fillColor="#bebebe"
+        android:fillColor="#FF000000"
         android:pathData="M8,1.333a6.667,6.667 0,1 0,6.667 6.667A6.667,6.667 0,0 0,8 1.333ZM10.713,10 L10,10.713 8,8.713 6,10.713 5.287,10 7.287,8 5.287,6 6,5.287 8,7.287 10,5.287 10.713,6 8.713,8Z"
         android:strokeAlpha="0.997" />
     <path
