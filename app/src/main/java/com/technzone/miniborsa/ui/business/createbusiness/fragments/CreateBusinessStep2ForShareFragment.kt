@@ -11,8 +11,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CreateBusinessStep2ForShareFragment : BaseFormBindingFragment<FragmentCreateBusinessStep2ForShareBinding>() {
 
-    private val viewModel:CreateBusinessViewModel by activityViewModels()
-
     override fun getLayoutId(): Int = R.layout.fragment_create_business_step2_for_share
 
     override fun onViewVisible() {

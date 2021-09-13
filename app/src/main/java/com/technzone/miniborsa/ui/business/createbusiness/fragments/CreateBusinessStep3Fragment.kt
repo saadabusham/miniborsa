@@ -12,7 +12,8 @@ import com.technzone.miniborsa.databinding.FragmentCreateBusinessStep3Binding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.base.fragment.BaseFormBindingFragment
-import com.technzone.miniborsa.ui.business.createbusiness.adapters.MediaRecyclerAdapter
+import com.technzone.miniborsa.ui.business.createbusiness.adapters.DocumentsRecyclerAdapter
+import com.technzone.miniborsa.ui.business.createbusiness.adapters.ImageRecyclerAdapter
 import com.technzone.miniborsa.ui.business.createbusiness.viewmodels.CreateBusinessViewModel
 import com.technzone.miniborsa.utils.ImagePickerUtil.Companion.TAKE_USER_IMAGE_REQUEST_CODE
 import com.technzone.miniborsa.utils.pickImages
@@ -23,9 +24,9 @@ import dagger.hilt.android.AndroidEntryPoint
 class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusinessStep3Binding>(),
     BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
-    private val viewModel: CreateBusinessViewModel by activityViewModels()
+    private lateinit var imageRecyclerAdapter: ImageRecyclerAdapter
 
-    private lateinit var mediaAdapter: MediaRecyclerAdapter
+    lateinit var documentsAdapter: DocumentsRecyclerAdapter
 
     override fun getLayoutId(): Int = R.layout.fragment_create_business_step3
 
@@ -34,6 +35,7 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
         setUpBinding()
         setUpListeners()
         setUpRvImages()
+        setUpRvDocuments()
     }
 
     private fun setUpListeners() {
@@ -45,10 +47,10 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
     }
 
     private fun setUpRvImages() {
-        mediaAdapter = MediaRecyclerAdapter(requireContext())
-        binding?.layoutMedia?.rvPhotos?.adapter = mediaAdapter
-        binding?.layoutMedia?.rvPhotos?.setOnItemClickListener(this)
-        binding?.layoutMedia?.rvPhotos?.addItemDecoration(
+        imageRecyclerAdapter = ImageRecyclerAdapter(requireContext())
+        binding?.rvPhotos?.adapter = imageRecyclerAdapter
+        binding?.rvPhotos?.setOnItemClickListener(this)
+        binding?.rvPhotos?.addItemDecoration(
             VerticalSpaceDecoration(
                 0, resources.getDimension(R.dimen._10sdp).toInt()
             )
@@ -57,17 +59,38 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
 
         photosLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
-                return if (mediaAdapter.itemCount - 1 == 0) {
+                return if (imageRecyclerAdapter.itemCount - 1 == 0) {
                     3
-                } else if (mediaAdapter.itemCount - 1 > 0 && position == 0) {
+                } else if (imageRecyclerAdapter.itemCount - 1 > 0 && position == 0) {
                     2
                 } else {
                     1
                 }
             }
         }
-        binding?.layoutMedia?.rvPhotos?.layoutManager = photosLayoutManager
+        binding?.rvPhotos?.layoutManager = photosLayoutManager
         addFirstImage()
+    }
+
+    private fun setUpRvDocuments() {
+        documentsAdapter = DocumentsRecyclerAdapter(requireContext())
+        binding?.rvDocuments?.adapter = documentsAdapter
+        binding?.rvDocuments?.setOnItemClickListener(object :
+            BaseBindingRecyclerViewAdapter.OnItemClickListener {
+            override fun onItemClick(view: View?, position: Int, item: Any) {
+                item as LocaleImage
+                if (view?.id == R.id.imgRemove) {
+                    documentsAdapter.items.removeAt(position)
+                    documentsAdapter.notifyItemRemoved(position)
+                    refreshDocuments()
+                } else {
+                    pickImages(
+                        requestCode = REQUEST_CODE_PICK_FILE
+                    )
+                }
+            }
+        })
+        addFirstDocument()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -77,57 +100,122 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
         when (requestCode) {
             TAKE_USER_IMAGE_REQUEST_CODE -> {
                 val fileUri = data?.data
-                mediaAdapter.submitItemToPosition(
+                imageRecyclerAdapter.submitItemToPosition(
                     LocaleImage(
                         path = fileUri?.path,
                         contentType = LocaleImageType.IMAGE
-                    ), mediaAdapter.itemCount - 1
+                    ), imageRecyclerAdapter.itemCount - 1
                 )
                 refreshImages()
+            }
+            REQUEST_CODE_PICK_FILE -> {
+                val fileUri = data?.data
+                documentsAdapter.submitItemToPosition(
+                    LocaleImage(
+                        path = fileUri?.path,
+                        contentType = LocaleImageType.IMAGE
+                    ), documentsAdapter.itemCount - 1
+                )
+                refreshDocuments()
             }
         }
     }
 
     private fun addImage() {
-        mediaAdapter.submitItem(LocaleImage(path = null, contentType = LocaleImageType.ADD_IMAGE))
+        imageRecyclerAdapter.submitItem(
+            LocaleImage(
+                path = null,
+                contentType = LocaleImageType.ADD_IMAGE
+            )
+        )
     }
 
     private fun addFirstImage() {
-        mediaAdapter.submitItem(LocaleImage(path = null, contentType = LocaleImageType.ADD_FIRST))
+        imageRecyclerAdapter.submitItem(
+            LocaleImage(
+                path = null,
+                contentType = LocaleImageType.ADD_FIRST
+            )
+        )
     }
 
     private fun refreshImages() {
-        when (mediaAdapter.itemCount) {
+        when (imageRecyclerAdapter.itemCount) {
             0 -> {
                 addFirstImage()
             }
             1 -> {
-                if (mediaAdapter.items[0].contentType == LocaleImageType.ADD_IMAGE) {
-                    mediaAdapter.items.removeAt(mediaAdapter.itemCount - 1)
+                if (imageRecyclerAdapter.items[0].contentType == LocaleImageType.ADD_IMAGE) {
+                    imageRecyclerAdapter.items.removeAt(imageRecyclerAdapter.itemCount - 1)
                     addFirstImage()
                 }
             }
             5 -> {
-                if (mediaAdapter.items[4].contentType != LocaleImageType.ADD_IMAGE) {
+                if (imageRecyclerAdapter.items[4].contentType != LocaleImageType.ADD_IMAGE) {
                     addImage()
                 }
             }
             6 -> {
-                mediaAdapter.items.removeAt(5)
-                mediaAdapter.notifyItemRemoved(5)
+                imageRecyclerAdapter.items.removeAt(5)
+                imageRecyclerAdapter.notifyItemRemoved(5)
             }
             else -> {
-                mediaAdapter.items.removeAt(mediaAdapter.itemCount - 1)
+                imageRecyclerAdapter.items.removeAt(imageRecyclerAdapter.itemCount - 1)
                 addImage()
             }
         }
     }
 
+    private fun refreshDocuments() {
+        when (documentsAdapter.itemCount) {
+            0 -> {
+                addFirstDocument()
+            }
+            1 -> {
+                if (documentsAdapter.items[0].contentType == LocaleImageType.ADD_IMAGE) {
+                    documentsAdapter.items.removeAt(documentsAdapter.itemCount - 1)
+                    addFirstDocument()
+                }
+            }
+            5 -> {
+                if (documentsAdapter.items[4].contentType != LocaleImageType.ADD_IMAGE) {
+                    addFirstDocument()
+                }
+            }
+            6 -> {
+                documentsAdapter.items.removeAt(5)
+                documentsAdapter.notifyItemRemoved(5)
+            }
+            else -> {
+                documentsAdapter.items.removeAt(documentsAdapter.itemCount - 1)
+                addDocument()
+            }
+        }
+    }
+
+    private fun addDocument() {
+        documentsAdapter.submitItem(
+            LocaleImage(
+                path = null,
+                contentType = LocaleImageType.ADD_IMAGE
+            )
+        )
+    }
+
+    private fun addFirstDocument() {
+        documentsAdapter.submitItem(
+            LocaleImage(
+                path = null,
+                contentType = LocaleImageType.ADD_FIRST
+            )
+        )
+    }
+
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as LocaleImage
         if (view?.id == R.id.imgRemove) {
-            mediaAdapter.items.removeAt(position)
-            mediaAdapter.notifyItemRemoved(position)
+            imageRecyclerAdapter.items.removeAt(position)
+            imageRecyclerAdapter.notifyItemRemoved(position)
             refreshImages()
         } else {
             pickImages(
@@ -140,4 +228,7 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
         callback(true)
     }
 
+    companion object{
+        const val REQUEST_CODE_PICK_FILE = 232
+    }
 }

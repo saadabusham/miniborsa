@@ -12,8 +12,6 @@ import java.util.*
 @AndroidEntryPoint
 class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusinessStep1Binding>() {
 
-    private val viewModel: CreateBusinessViewModel by activityViewModels()
-
     override fun getLayoutId(): Int = R.layout.fragment_create_business_step1
 
     override fun onViewVisible() {

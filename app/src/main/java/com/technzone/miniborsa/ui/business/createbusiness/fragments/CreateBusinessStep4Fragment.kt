@@ -10,8 +10,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CreateBusinessStep4Fragment : BaseFormBindingFragment<FragmentCreateBusinessStep4Binding>() {
 
-    private val viewModel:CreateBusinessViewModel by activityViewModels()
-
     override fun getLayoutId(): Int = R.layout.fragment_create_business_step4
 
     override fun onViewVisible() {

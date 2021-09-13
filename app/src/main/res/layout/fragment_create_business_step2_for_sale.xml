@@ -177,7 +177,7 @@
                     android:enabled="@{viewModel.freeholdAskingPriceOnRequest == false}"
                     android:paddingStart="@dimen/_9sdp"
                     android:paddingEnd="@dimen/_9sdp"
-                    android:progress="@={viewModel.freeHoldAskingPrice}"
+                    android:progress="@{Integer.valueOf(viewModel.freeHoldAskingPrice)}"
                     android:max="10000000"
                     android:min="1000"
                     android:progressDrawable="@drawable/seekbar_selector"

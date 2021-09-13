@@ -13,7 +13,7 @@ import com.technzone.miniborsa.databinding.RowMainImageViewBinding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.adapters.BaseViewHolder
 
-class MediaRecyclerAdapter(
+class ImageRecyclerAdapter(
     context: Context
 ) : BaseBindingRecyclerViewAdapter<LocaleImage>(context) {
 

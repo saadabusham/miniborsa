@@ -12,8 +12,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CreateBusinessStep2FranchiseFragment : BaseFormBindingFragment<FragmentCreateBusinessStep2FranchiseBinding>() {
 
-    private val viewModel:CreateBusinessViewModel by activityViewModels()
-
     override fun getLayoutId(): Int = R.layout.fragment_create_business_step2_franchise
 
     override fun onViewVisible() {

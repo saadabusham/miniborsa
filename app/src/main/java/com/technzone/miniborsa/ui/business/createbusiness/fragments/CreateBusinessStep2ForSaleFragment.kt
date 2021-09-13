@@ -1,6 +1,7 @@
 package com.technzone.miniborsa.ui.business.createbusiness.fragments
 
 import android.graphics.Color
+import android.widget.SeekBar
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.tabs.TabLayout
 import com.technzone.miniborsa.R
@@ -13,7 +14,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CreateBusinessStep2ForSaleFragment : BaseFormBindingFragment<FragmentCreateBusinessStep2ForSaleBinding>() {
 
-    private val viewModel:CreateBusinessViewModel by activityViewModels()
 
     override fun getLayoutId(): Int = R.layout.fragment_create_business_step2_for_sale
 
@@ -25,7 +25,17 @@ class CreateBusinessStep2ForSaleFragment : BaseFormBindingFragment<FragmentCreat
     }
 
     private fun setUpListeners() {
+        binding?.seekBarFreeHoldAskingPrice?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                viewModel.freeHoldAskingPrice.postValue(progress.toString())
+            }
 
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+            }
+        })
     }
 
     private fun setUpBinding(){

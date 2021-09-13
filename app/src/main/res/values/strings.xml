@@ -279,6 +279,13 @@
     <string name="upload_images">Upload Images</string>
     <string name="you_can_upload_up_to_5_images_picture_format_must_be_a_jpg_gif_png_tiff_or_bmp">You can upload up to 5 images , picture format must be a jpg, gif, png, tiff or bmp.</string>
     <string name="main_photo">Main Photo</string>
+    <string name="upload_documents">Upload Document</string>
+    <string name="upload_attachment">Upload Attachment</string>
+    <string name="attachment">Attachment</string>
+    <string name="you_can_upload_up_to_one_document_including_pdf_word_excel_and_other_document_types">You can upload up to one document, including PDF, Word, Excel and other document types.</string>
+    <string name="embed_video">Embed Video</string>
+    <string name="video_url">Video URL</string>
+    <string name="dollar_sign">$</string>
 
 
 </resources>
