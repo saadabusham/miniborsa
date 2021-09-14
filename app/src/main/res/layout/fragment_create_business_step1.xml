@@ -391,11 +391,63 @@
 
             </LinearLayout>
 
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvMap"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_160sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:layout_constraintTop_toBottomOf="@id/linMapInfo"
+                app:layout_constraintStart_toStartOf="@id/beginGuide"
+                app:layout_constraintEnd_toEndOf="@id/endGuide"
+                app:cardElevation="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.technzone.miniborsa.ui.base.views.AppImageView
+                        android:id="@+id/imgPhoto"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/map_image"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.technzone.miniborsa.ui.base.views.AppButton
+                        android:id="@+id/btnPinLocation"
+                        style="@style/textview_normal_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:backgroundTint="@color/button_color"
+                        android:padding="@dimen/_5sdp"
+                        android:paddingStart="@dimen/_7sdp"
+                        android:paddingEnd="@dimen/_7sdp"
+                        android:gravity="center"
+                        android:text="@string/pin_location"
+                        app:iconGravity="textEnd"
+                        app:iconPadding="@dimen/_5sdp"
+                        app:icon="@drawable/ic_pin_location"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_9ssp"
+                        app:cornerRadius="@dimen/_5sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:id="@+id/checkboxListLocation"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:checked="true"
                 android:paddingStart="@dimen/_15sdp"
                 android:paddingTop="0dp"
@@ -403,7 +455,7 @@
                 android:text="@string/don_t_list_under_a_location"
                 app:layout_constraintEnd_toEndOf="@id/endGuide"
                 app:layout_constraintStart_toStartOf="@id/beginGuide"
-                app:layout_constraintTop_toBottomOf="@id/linMapInfo" />
+                app:layout_constraintTop_toBottomOf="@id/cvMap" />
 
 
             <androidx.appcompat.widget.AppCompatCheckBox

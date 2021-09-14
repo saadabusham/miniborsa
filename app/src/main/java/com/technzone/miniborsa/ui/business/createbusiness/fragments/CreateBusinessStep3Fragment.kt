@@ -15,6 +15,7 @@ import com.technzone.miniborsa.ui.base.fragment.BaseFormBindingFragment
 import com.technzone.miniborsa.ui.business.createbusiness.adapters.DocumentsRecyclerAdapter
 import com.technzone.miniborsa.ui.business.createbusiness.adapters.ImageRecyclerAdapter
 import com.technzone.miniborsa.ui.business.createbusiness.viewmodels.CreateBusinessViewModel
+import com.technzone.miniborsa.utils.ContentUriUtils.getFilePathFromURI
 import com.technzone.miniborsa.utils.ImagePickerUtil.Companion.TAKE_USER_IMAGE_REQUEST_CODE
 import com.technzone.miniborsa.utils.pickImages
 import com.technzone.miniborsa.utils.recycleviewutils.VerticalSpaceDecoration
@@ -84,22 +85,34 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
                     documentsAdapter.notifyItemRemoved(position)
                     refreshDocuments()
                 } else {
-                    pickImages(
-                        requestCode = REQUEST_CODE_PICK_FILE
-                    )
+                    openDocumentPicker()
                 }
             }
         })
         addFirstDocument()
     }
 
+    private fun openDocumentPicker() {
+        val intent = Intent("com.sec.android.app.myfiles.PICK_DATA")
+        intent.type = "application/pdf"
+        intent.action = Intent.ACTION_GET_CONTENT
+        val mimetypes = arrayOf("application/pdf")
+        intent.addCategory(Intent.CATEGORY_OPENABLE)
+        intent.putExtra("CONTENT_TYPE", "application/pdf");
+        intent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes)
+        intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true)
+        startActivityForResult(
+            Intent.createChooser(intent, "Choose Pdf"),
+            REQUEST_CODE_PICK_FILE
+        )
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode != Activity.RESULT_OK) return
-
+        if (resultCode != Activity.RESULT_OK || data == null) return
         when (requestCode) {
             TAKE_USER_IMAGE_REQUEST_CODE -> {
-                val fileUri = data?.data
+                val fileUri = data.data
                 imageRecyclerAdapter.submitItemToPosition(
                     LocaleImage(
                         path = fileUri?.path,
@@ -109,10 +122,12 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
                 refreshImages()
             }
             REQUEST_CODE_PICK_FILE -> {
-                val fileUri = data?.data
+                var realPath = data.data?.getFilePathFromURI(requireContext())
+                if (realPath == null)
+                    realPath = data.data?.toString()
                 documentsAdapter.submitItemToPosition(
                     LocaleImage(
-                        path = fileUri?.path,
+                        path = realPath,
                         contentType = LocaleImageType.IMAGE
                     ), documentsAdapter.itemCount - 1
                 )

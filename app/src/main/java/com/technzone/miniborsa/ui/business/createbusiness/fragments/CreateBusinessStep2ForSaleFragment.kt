@@ -1,15 +1,15 @@
 package com.technzone.miniborsa.ui.business.createbusiness.fragments
 
 import android.graphics.Color
-import android.widget.SeekBar
-import androidx.fragment.app.activityViewModels
+import android.view.inputmethod.EditorInfo
 import com.google.android.material.tabs.TabLayout
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.enums.PropertyStatusEnums
 import com.technzone.miniborsa.databinding.FragmentCreateBusinessStep2ForSaleBinding
 import com.technzone.miniborsa.ui.base.fragment.BaseFormBindingFragment
-import com.technzone.miniborsa.ui.business.createbusiness.viewmodels.CreateBusinessViewModel
+import com.technzone.miniborsa.utils.extensions.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.internal.toLongOrDefault
 
 @AndroidEntryPoint
 class CreateBusinessStep2ForSaleFragment : BaseFormBindingFragment<FragmentCreateBusinessStep2ForSaleBinding>() {
@@ -25,17 +25,42 @@ class CreateBusinessStep2ForSaleFragment : BaseFormBindingFragment<FragmentCreat
     }
 
     private fun setUpListeners() {
-        binding?.seekBarFreeHoldAskingPrice?.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                viewModel.freeHoldAskingPrice.postValue(progress.toString())
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-            }
-        })
+        binding?.edFreeHoldAskingPrice?.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                viewModel.freeHoldAskingPrice.postValue(
+                    binding?.edFreeHoldAskingPrice?.text.toString().toLongOrDefault(viewModel.defaultMinValue.toLong()).toInt()
+                )
+                binding?.root.hideKeyboard(requireActivity())
+                true
+            } else false
+        }
+        binding?.edLeaseHoldAskingPrice?.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                viewModel.leaseHoldAskingPrice.postValue(
+                    binding?.edLeaseHoldAskingPrice?.text.toString().toLongOrDefault(viewModel.defaultMinValue.toLong()).toInt()
+                )
+                binding?.root.hideKeyboard(requireActivity())
+                true
+            } else false
+        }
+        binding?.edNetProfit?.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                viewModel.netProfit.postValue(
+                    binding?.edNetProfit?.text.toString().toLongOrDefault(viewModel.defaultMinValue.toLong()).toInt()
+                )
+                binding?.root.hideKeyboard(requireActivity())
+                true
+            } else false
+        }
+        binding?.edTurnover?.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                viewModel.turnOver.postValue(
+                    binding?.edTurnover?.text.toString().toLongOrDefault(viewModel.defaultMinValue.toLong()).toInt()
+                )
+                binding?.root.hideKeyboard(requireActivity())
+                true
+            } else false
+        }
     }
 
     private fun setUpBinding(){

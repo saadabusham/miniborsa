@@ -1,26 +1,27 @@
-package com.technzone.miniborsa.ui.investor.businessdetails.adapters
+package com.technzone.miniborsa.ui.business.createbusiness.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.technzone.miniborsa.data.models.Media
-import com.technzone.miniborsa.data.models.investor.Field
-import com.technzone.miniborsa.data.models.investor.FieldsItem
-import com.technzone.miniborsa.databinding.RowBusinessDetailsBinding
-import com.technzone.miniborsa.databinding.RowBusinessDocumentBinding
-import com.technzone.miniborsa.databinding.RowBusinessImageBinding
+import com.technzone.miniborsa.data.models.investor.ExtraInfo
+import com.technzone.miniborsa.databinding.RowBusinessExtraInfoBinding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.adapters.BaseViewHolder
 
-class BusinessDocumentAdapter(
+class ExtraInfoAdapter(
     context: Context
 ) :
-    BaseBindingRecyclerViewAdapter<Media>(context) {
+    BaseBindingRecyclerViewAdapter<ExtraInfo>(context) {
+
+    fun getSelected(): List<ExtraInfo> {
+        return items.filter { it.selected.value == true }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(
-            RowBusinessDocumentBinding.inflate(
+            RowBusinessExtraInfoBinding.inflate(
                 LayoutInflater.from(context), parent, false
             )
         )
@@ -32,12 +33,14 @@ class BusinessDocumentAdapter(
         }
     }
 
-    inner class ViewHolder(private val binding: RowBusinessDocumentBinding) :
-        BaseViewHolder<Media>(binding.root) {
+    inner class ViewHolder(private val binding: RowBusinessExtraInfoBinding) :
+        BaseViewHolder<ExtraInfo>(binding.root) {
 
-        override fun bind(item: Media) {
+        override fun bind(item: ExtraInfo) {
             binding.item = item
+            binding.lifecycleOwner = (context as AppCompatActivity)
             binding.root.setOnClickListener {
+                item.selected.value = item.selected.value == false
                 itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
             }
         }

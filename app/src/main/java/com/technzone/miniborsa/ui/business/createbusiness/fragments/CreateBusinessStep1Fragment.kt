@@ -1,11 +1,18 @@
 package com.technzone.miniborsa.ui.business.createbusiness.fragments
 
+import android.app.Activity
+import android.content.Intent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.data.common.Constants
+import com.technzone.miniborsa.data.models.map.Address
 import com.technzone.miniborsa.databinding.FragmentCreateBusinessStep1Binding
 import com.technzone.miniborsa.ui.base.dialogs.DialogsUtil
 import com.technzone.miniborsa.ui.base.fragment.BaseFormBindingFragment
 import com.technzone.miniborsa.ui.business.createbusiness.viewmodels.CreateBusinessViewModel
+import com.technzone.miniborsa.ui.map.MapActivity
+import com.technzone.miniborsa.utils.getLocationName
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -28,8 +35,24 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
         binding?.tvEstablishYear?.setOnClickListener {
             onDateClicked()
         }
+        binding?.btnPinLocation?.setOnClickListener {
+            MapActivity.start(requireActivity(), resultLauncher)
+        }
     }
-
+    var resultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+                viewModel.address.value = data?.getSerializableExtra(Constants.BundleData.ADDRESS) as Address
+                binding?.tvLocation?.text =
+                    getLocationName(
+                        viewModel.address.value?.lat,
+                        viewModel.address.value?.lon
+                    ).also {
+                        viewModel.addressString.postValue(it)
+                    }
+            }
+        }
     private fun onDateClicked() {
         requireActivity().let {
             DialogsUtil.showDatePickerDialog(

@@ -39,7 +39,7 @@ class BusinessExtraInfoAdapter(
         override fun bind(item: ExtraInfo) {
             binding.item = item
             binding.root.setOnClickListener {
-                itemClickListener?.onItemClick(it, adapterPosition, item)
+                itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
             }
         }
     }

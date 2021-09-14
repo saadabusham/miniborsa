@@ -205,7 +205,7 @@
     <string name="selling_price">Selling Price</string>
 
     <string name="price_">$%s</string>
-    <string name="percentage_">%s %</string>
+    <string name="percentage_">%s %%</string>
     <string name="business_type">Business Type</string>
     <string name="industry">Industry</string>
     <string name="show_properties">Show Properties</string>
@@ -286,6 +286,13 @@
     <string name="embed_video">Embed Video</string>
     <string name="video_url">Video URL</string>
     <string name="dollar_sign">$</string>
+    <string name="website_link">Website Link</string>
+    <string name="enter_web">Enter Web</string>
+    <string name="training">Training</string>
+    <string name="selected_">%s Selected</string>
+    <string name="pin_location">Pin Location</string>
+    <string name="search_here">Search here ...</string>
+    <string name="please_pick_location">Please pick location</string>
 
 
 </resources>

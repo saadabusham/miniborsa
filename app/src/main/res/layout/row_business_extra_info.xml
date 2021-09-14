@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -17,15 +16,16 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_10sdp"
         android:background="@drawable/ic_rectangle_unfocused"
+        android:backgroundTint="@{item.selected ? @color/black : @color/cardview_stroke_gray ,default = @color/cardview_stroke_gray}"
+        android:gravity="center"
         android:padding="@dimen/_10sdp"
         android:paddingStart="@dimen/_3sdp"
         android:paddingTop="@dimen/_10sdp"
         android:paddingEnd="@dimen/_3sdp"
         android:paddingBottom="@dimen/_10sdp"
         android:text="Accommodation\nincluded"
-        android:gravity="center"
         android:textColor="@color/black"
         android:textSize="@dimen/_8ssp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imgPhoto"/>
+        app:layout_constraintTop_toBottomOf="@id/imgPhoto" />
 </layout>
