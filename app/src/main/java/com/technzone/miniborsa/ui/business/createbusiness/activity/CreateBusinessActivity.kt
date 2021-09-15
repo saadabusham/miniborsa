@@ -15,7 +15,10 @@ import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
 import com.technzone.miniborsa.ui.base.fragment.BaseFormBindingFragment
 import com.technzone.miniborsa.ui.business.createbusiness.adapters.StepsPagerAdapter
 import com.technzone.miniborsa.ui.business.createbusiness.viewmodels.CreateBusinessViewModel
+import com.technzone.miniborsa.ui.business.listingpreview.activity.ListingPreviewActivity
 import com.technzone.miniborsa.utils.extensions.findCurrentFragment
+import com.technzone.miniborsa.utils.extensions.gone
+import com.technzone.miniborsa.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import org.jetbrains.anko.textColor
@@ -107,7 +110,7 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
 
     private fun setUpPager() {
         binding?.formsViewPager?.offscreenPageLimit = 4
-        stepsPagerAdapter = StepsPagerAdapter(this,viewModel.businessType)
+        stepsPagerAdapter = StepsPagerAdapter(this, viewModel.businessType)
         binding?.formsViewPager?.adapter = stepsPagerAdapter
         binding?.formsViewPager?.registerOnPageChangeCallback(pagerCallback)
         binding?.formsViewPager?.isUserInputEnabled = false
@@ -138,6 +141,7 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
                 3 -> {
                     binding?.tvTitle?.text = getString(R.string.listing_score)
                     viewModel.percentage.postValue(100)
+                    showHeaderPercent()
                 }
             }
         }
@@ -154,7 +158,7 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
     private fun handleMoveToNext() {
         binding?.formsViewPager?.currentItem?.let {
             if (it == 3) {
-
+                ListingPreviewActivity.start(this)
             } else {
                 it.plus(1).let { it1 ->
                     binding?.formsViewPager?.setCurrentItem(
@@ -184,5 +188,13 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
             }
             context?.startActivity(intent)
         }
+    }
+
+    fun hideHeaderPercent() {
+        binding?.constraintHeaderPercent?.gone()
+    }
+
+    fun showHeaderPercent() {
+        binding?.constraintHeaderPercent?.visible()
     }
 }

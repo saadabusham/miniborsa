@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.technzone.miniborsa.ui.business.listingpreview.viewmodel.ListingPreviewViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/layout_toolbar"
+            layout="@layout/layout_toolbar" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/beginGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/layouts_margin_start"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/endGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintGuide_end="@dimen/layouts_margin_end" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintHeaderPercent"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_100sdp"
+                    app:layout_constraintEnd_toEndOf="@id/endGuide"
+                    app:layout_constraintStart_toStartOf="@id/beginGuide"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        style="@style/CircularDeterminateProgressBar"
+                        android:layout_width="@dimen/_47sdp"
+                        android:layout_height="@dimen/_47sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/layouts_margin_start"
+                        android:indeterminate="false"
+                        android:indeterminateOnly="false"
+                        android:max="100"
+                        android:paddingTop="0dp"
+                        android:paddingBottom="0dp"
+                        android:progress="@{viewModel.percentage}"
+                        android:scaleX="1.2"
+                        android:scaleY="1.2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:progress="35" />
+
+                    <com.technzone.miniborsa.ui.base.views.AppTextView
+                        android:id="@+id/tvPercent"
+                        style="@style/textview_normal_medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.percentage.toString()}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9ssp"
+                        app:layout_constraintBottom_toBottomOf="@id/progressBar"
+                        app:layout_constraintEnd_toEndOf="@id/progressBar"
+                        app:layout_constraintStart_toStartOf="@id/progressBar"
+                        app:layout_constraintTop_toTopOf="@id/progressBar"
+                        tools:text="10" />
+
+                    <com.technzone.miniborsa.ui.base.views.AppTextView
+                        android:id="@+id/tvTitle"
+                        style="@style/textview_normal_bold"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="@string/your_listing_score_is"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13ssp"
+                        app:layout_constraintStart_toEndOf="@id/progressBar"
+                        app:layout_constraintTop_toTopOf="@id/progressBar" />
+
+                    <com.technzone.miniborsa.ui.base.views.AppTextView
+                        android:id="@+id/tvPercentTxt"
+                        style="@style/textview_normal_semibold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:text="@{viewModel.percentage.toString()}"
+                        android:textColor="@color/button_color"
+                        android:textSize="@dimen/_13ssp"
+                        app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+                        app:layout_constraintStart_toEndOf="@id/tvTitle"
+                        app:layout_constraintTop_toTopOf="@id/tvTitle"
+                        tools:text="88" />
+
+                    <com.technzone.miniborsa.ui.base.views.AppTextView
+                        style="@style/textview_normal_regular"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/layouts_margin_end"
+                        android:text="@string/buyers_will_be_more_interested_in_seeing_your_listing"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/tvTitle"
+                        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvListingItems"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    app:chainUseRtl="true"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constrainedHeight="true"
+                    app:layout_constraintEnd_toEndOf="@id/endGuide"
+                    app:layout_constraintStart_toStartOf="@id/beginGuide"
+                    app:layout_constraintTop_toBottomOf="@id/constraintHeaderPercent"
+                    app:spanCount="3"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/row_listing_item" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSubmit"
+                    style="@style/AppTheme.Button"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:text="@string/next"
+                    app:layout_constraintEnd_toEndOf="@id/endGuide"
+                    app:layout_constraintStart_toStartOf="@id/beginGuide"
+                    app:layout_constraintTop_toBottomOf="@id/rvListingItems" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

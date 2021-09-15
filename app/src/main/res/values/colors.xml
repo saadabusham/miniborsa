@@ -159,4 +159,6 @@
     <color name="switch_thumb_unactive">#7E7E7E</color>
     <color name="switch_track_active">#8000AB6B</color>
     <color name="switch_track_unactive">#807E7E7E</color>
+
+    <color name="listing_bg">#F39A74</color>
 </resources>

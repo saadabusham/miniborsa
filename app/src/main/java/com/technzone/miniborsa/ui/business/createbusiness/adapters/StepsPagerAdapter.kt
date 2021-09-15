@@ -18,7 +18,7 @@ class StepsPagerAdapter(
     private val createBusinessStep4Fragment = CreateBusinessStep4Fragment()
 
     companion object {
-        private const val NUM_PAGES = 4
+        private const val NUM_PAGES = 5
     }
 
     override fun getItemCount(): Int = NUM_PAGES

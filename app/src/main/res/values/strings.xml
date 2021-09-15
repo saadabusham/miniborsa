@@ -293,6 +293,10 @@
     <string name="pin_location">Pin Location</string>
     <string name="search_here">Search here ...</string>
     <string name="please_pick_location">Please pick location</string>
+    <string name="preview_listing">Preview Listing</string>
+    <string name="submit_listing">Submit Listing</string>
+    <string name="your_listing_score_is">Your Listing Score is :</string>
+    <string name="buyers_will_be_more_interested_in_seeing_your_listing">Buyers will be more interested in seeing your listing</string>
 
 
 </resources>

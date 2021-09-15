@@ -157,6 +157,7 @@
                     android:layout_marginEnd="@dimen/layouts_margin_end"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    android:visibility="gone"
                     app:layout_constraintTop_toBottomOf="@id/layout_business_extra_info" />
 
                 <View

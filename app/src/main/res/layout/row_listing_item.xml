@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.technzone.miniborsa.data.models.business.ListingItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintHeaderPercent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_15sdp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.technzone.miniborsa.ui.base.views.AppButton
+            android:id="@+id/progressBar"
+            style="@style/textview_normal_medium"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:gravity="center"
+            android:stateListAnimator="@null"
+            android:text="@{item.percent.toString()}"
+            android:textColor="@color/button_color"
+            android:textSize="@dimen/_9ssp"
+            app:cornerRadius="@dimen/_15sdp"
+            android:backgroundTint="@color/listing_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="78" />
+
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            android:id="@+id/tvTitle"
+            style="@style/textview_normal_semibold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:text="@{item.title}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/progressBar"
+            app:layout_constraintTop_toTopOf="@id/progressBar"
+            tools:text="Title" />
+
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            style="@style/textview_normal_regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/layouts_margin_end"
+            android:text="@string/buyers_will_be_more_interested_in_seeing_your_listing"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_9ssp"
+            app:layout_constraintBottom_toBottomOf="@id/progressBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            tools:text="Lorem ipsum dolor sit amet." />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
