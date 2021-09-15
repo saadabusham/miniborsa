@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="item"
+            type="com.technzone.miniborsa.data.models.business.business.OwnerBusiness" />
+
+        <variable
+            name="image"
+            type="com.technzone.miniborsa.data.models.Media" />
+
+        <variable
+            name="editable"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/layouts_margin_end"
+        android:background="?selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvPhoto"
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="@dimen/_90sdp"
+            app:cardCornerRadius="@dimen/_4sdp"
+            app:cardElevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.technzone.miniborsa.ui.base.views.AppImageView
+                android:id="@+id/imgPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_business_sample" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.technzone.miniborsa.ui.base.views.AppButton
+            android:id="@+id/tvType"
+            style="@style/textview_normal_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:backgroundTint="@color/green_color_alpha"
+            android:gravity="center"
+            android:stateListAnimator="@null"
+            android:text="Business For Sale"
+            android:textColor="@color/green_color"
+            android:textSize="@dimen/_7ssp"
+            app:cornerRadius="@dimen/_2sdp"
+            app:layout_constraintStart_toEndOf="@id/cvPhoto"
+            app:layout_constraintTop_toTopOf="@id/cvPhoto" />
+
+        <com.technzone.miniborsa.ui.base.views.AppImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/ic_edit"
+            android:visibility="@{editable ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/tvType"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvType" />
+
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            android:id="@+id/tvName"
+            style="@style/textview_normal_bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="Development House "
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvType"
+            app:layout_constraintTop_toBottomOf="@id/tvType" />
+
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            android:id="@+id/tvBusinessType"
+            style="@style/textview_normal_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:drawableStart="@drawable/ic_business_pin"
+            android:drawablePadding="@dimen/_5sdp"
+            android:text="Amman, Jordan"
+            android:textColor="@color/black_alpha"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="@id/tvType"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            android:id="@+id/tvAskingPriceTxt"
+            style="@style/textview_normal_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:text="@string/asking_price_"
+            android:textColor="@color/button_color"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="@id/tvType"
+            app:layout_constraintTop_toBottomOf="@id/tvBusinessType" />
+
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            android:id="@+id/tvAskingPrice"
+            style="@style/textview_normal_regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:text="$400,000"
+            android:textColor="@color/textview_text_color"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvAskingPriceTxt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvAskingPriceTxt"
+            app:layout_constraintTop_toTopOf="@id/tvAskingPriceTxt"
+            tools:text="$400,000" />
+
+        <com.technzone.miniborsa.ui.base.views.AppButton
+            android:id="@+id/tvStatus"
+            style="@style/textview_normal_medium"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:backgroundTint="@color/button_color_alpha"
+            android:gravity="center"
+            android:stateListAnimator="@null"
+            android:text="Pending for Review"
+            android:textColor="@color/yalow"
+            android:textSize="@dimen/_9ssp"
+            app:cornerRadius="@dimen/_5sdp"
+            app:icon="@drawable/ic_timer"
+            app:iconGravity="textStart"
+            app:iconPadding="@dimen/_7sdp"
+            app:layout_constraintStart_toStartOf="@id/cvPhoto"
+            app:layout_constraintTop_toBottomOf="@id/cvPhoto" />
+
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            android:id="@+id/tvDateTxt"
+            style="@style/textview_normal_regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:gravity="end"
+            android:text="@string/date_submit"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_9ssp"
+            app:layout_constraintBottom_toBottomOf="@id/tvStatus"
+            app:layout_constraintEnd_toStartOf="@id/tvDate"
+            app:layout_constraintStart_toEndOf="@id/tvStatus"
+            app:layout_constraintTop_toTopOf="@id/tvStatus" />
+
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            android:id="@+id/tvDate"
+            style="@style/textview_normal_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_calendar"
+            android:drawablePadding="@dimen/_2sdp"
+            android:text="02/26/20"
+            android:textColor="@color/black_alpha"
+            android:textSize="@dimen/_7ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvDateTxt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvDateTxt"
+            tools:text="02/26/20" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

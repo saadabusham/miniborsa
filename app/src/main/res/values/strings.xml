@@ -297,6 +297,10 @@
     <string name="submit_listing">Submit Listing</string>
     <string name="your_listing_score_is">Your Listing Score is :</string>
     <string name="buyers_will_be_more_interested_in_seeing_your_listing">Buyers will be more interested in seeing your listing</string>
-
+    <string name="next_step">Next Step</string>
+    <string name="asking_price_">Asking Price :</string>
+    <string name="date_submit">Date Submit</string>
+    <string name="thank_you_for_submitting_there_notification_when_your_listing_was_active">Thank you for submitting.\nThere notification when your Listing \nwas active</string>
+    <string name="pending">Pending</string>
 
 </resources>

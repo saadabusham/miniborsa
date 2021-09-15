@@ -12,13 +12,15 @@ import com.technzone.miniborsa.databinding.ActivityListingPreviewBinding
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
+import com.technzone.miniborsa.ui.business.businessmain.activity.BusinessMainActivity
 import com.technzone.miniborsa.ui.business.listingpreview.adapters.ListingItemAdapter
+import com.technzone.miniborsa.ui.business.listingpreview.dialog.SubmittedDialogFragment
 import com.technzone.miniborsa.ui.business.listingpreview.viewmodel.ListingPreviewViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
-class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding>(){
+class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding>() {
 
 
     private val viewModel: ListingPreviewViewModel by viewModels()
@@ -32,6 +34,7 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
             toolbarView = toolbar,
             hasBackButton = true,
             showBackArrow = true,
+            hasTitle = true,
             title = R.string.list_business
         )
         setUpBinding()
@@ -45,8 +48,16 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
 
     private fun setUpListeners() {
         binding?.btnSubmit?.setOnClickListener {
-
+            showSubmittedDialog()
         }
+    }
+
+    private fun showSubmittedDialog() {
+        val dialog = SubmittedDialogFragment(this)
+        dialog.setOnDismissListener {
+            BusinessMainActivity.start(this)
+        }
+        dialog.show()
     }
 
     private fun setUpRvExtraInfo() {
@@ -65,10 +76,26 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
         })
         listingItemAdapter.submitItems(
             arrayListOf(
-                ListingItem(title = "Title",description = "Lorem ipsum dolor sit amet.",percent = 78),
-                ListingItem(title = "Location Info",description = "Lorem ipsum dolor sit amet.",percent = 80),
-                ListingItem(title = "Media",description = "Lorem ipsum dolor sit amet.",percent = 95),
-                ListingItem(title = "More Details",description = "Lorem ipsum dolor sit amet.",percent = 88)
+                ListingItem(
+                    title = "Title",
+                    description = "Lorem ipsum dolor sit amet.",
+                    percent = 78
+                ),
+                ListingItem(
+                    title = "Location Info",
+                    description = "Lorem ipsum dolor sit amet.",
+                    percent = 80
+                ),
+                ListingItem(
+                    title = "Media",
+                    description = "Lorem ipsum dolor sit amet.",
+                    percent = 95
+                ),
+                ListingItem(
+                    title = "More Details",
+                    description = "Lorem ipsum dolor sit amet.",
+                    percent = 88
+                )
             )
         )
     }

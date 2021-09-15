@@ -52,6 +52,8 @@
     <color name="lite_blue">#e7ecf2</color>
     <color name="dark_blue">#012245</color>
     <color name="button_color">#E9591C</color>
+    <color name="button_color_alpha">#33FEC031</color>
+    <color name="yalow">#FEC031</color>
     <color name="blue">#259DDB</color>
     <color name="welcome_back_blue">#0E4A86</color>
     <color name="night_blue">#24253D</color>
@@ -126,6 +128,7 @@
     <color name="valid">#60bf04</color>
     <color name="otp_color">#2E3A59</color>
     <color name="green_color">#00AB6B</color>
+    <color name="green_color_alpha">#1A00AB6B</color>
 
     <color name="toggle_active_background">#FFFFFF</color>
     <color name="toggle_inactive_background">#F5F5F5</color>
@@ -160,5 +163,5 @@
     <color name="switch_track_active">#8000AB6B</color>
     <color name="switch_track_unactive">#807E7E7E</color>
 
-    <color name="listing_bg">#F39A74</color>
+    <color name="listing_bg">#59F39A74</color>
 </resources>

@@ -175,7 +175,7 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
             (binding?.formsViewPager?.currentItem
                 ?: 1) - 1, true
         )
-        binding?.btnNext?.text = resources.getString(R.string.next)
+        binding?.btnNext?.text = resources.getString(R.string.next_step)
     }
 
     companion object {
