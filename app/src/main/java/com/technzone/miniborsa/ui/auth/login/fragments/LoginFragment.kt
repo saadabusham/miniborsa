@@ -8,6 +8,7 @@ import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.common.CustomObserverResponse
+import com.technzone.miniborsa.data.enums.UserRoleEnums
 import com.technzone.miniborsa.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.miniborsa.data.pref.user.UserPref
 import com.technzone.miniborsa.databinding.FragmentLoginBinding
@@ -15,7 +16,9 @@ import com.technzone.miniborsa.ui.auth.forgetpassword.ForgetPasswordActivity
 import com.technzone.miniborsa.ui.auth.login.viewmodels.LoginViewModel
 import com.technzone.miniborsa.ui.auth.register.RegisterActivity
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
+import com.technzone.miniborsa.ui.business.businessmain.activity.BusinessMainActivity
 import com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity
+import com.technzone.miniborsa.ui.userrole.activity.UserRolesActivity
 import com.technzone.miniborsa.utils.extensions.*
 import com.technzone.miniborsa.utils.validation.ValidatorInputTypesEnums
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,6 +66,46 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding>() {
         binding?.viewModel = viewModel
     }
 
+    private fun setUpListeners() {
+        binding?.btnlogin?.setOnClickListener {
+            if (validateInput())
+                viewModel.loginUser(
+                    viewModel.email.value.toString(),
+                    viewModel.passwordMutableLiveData.value.toString()
+                ).observe(this, loginResultObserver())
+        }
+        binding?.layoutToolbar?.tvAction?.setOnClickListener {
+            if (requireActivity().intent.getBooleanExtra(
+                    Constants.BundleData.IS_ACTIVITY_RESULT,
+                    false
+                )
+            ) {
+                requireActivity().finish()
+            } else {
+                InvestorMainActivity.start(requireContext())
+            }
+        }
+        tvSignUp?.setOnClickListener {
+            if (requireActivity().intent.getBooleanExtra(
+                    Constants.BundleData.IS_ACTIVITY_RESULT,
+                    false
+                )
+            ) {
+                RegisterActivity.startForResult(requireActivity(), true)
+            } else {
+                RegisterActivity.startForResult(requireActivity(), false)
+            }
+
+        }
+        tvForgetPassword?.setOnClickListener {
+            ForgetPasswordActivity.start(context)
+        }
+
+        binding?.imgIdRecognition?.setOnClickListener {
+            autoLogin()
+        }
+    }
+
     private fun loginResultObserver(): CustomObserverResponse<UserDetailsResponseModel> {
         return CustomObserverResponse(
             requireActivity(),
@@ -90,8 +133,8 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding>() {
                                         this.putExtra(Constants.BundleData.IS_LOGIN_SUCCESS, true)
                                     })
                                     requireActivity().finish()
-                                }else{
-                                    InvestorMainActivity.start(requireContext())
+                                } else {
+                                    goToNextScreen(it)
                                 }
                             }
                         }
@@ -100,44 +143,13 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding>() {
             })
     }
 
-    private fun setUpListeners() {
-        binding?.btnlogin?.setOnClickListener {
-            if (validateInput())
-                viewModel.loginUser(
-                    viewModel.email.value.toString(),
-                    viewModel.passwordMutableLiveData.value.toString()
-                ).observe(this, loginResultObserver())
-        }
-        binding?.layoutToolbar?.tvAction?.setOnClickListener {
-            if (requireActivity().intent.getBooleanExtra(
-                    Constants.BundleData.IS_ACTIVITY_RESULT,
-                    false
-                )
-            ) {
-                requireActivity().finish()
-            } else {
-                InvestorMainActivity.start(requireContext())
-            }
-        }
-        tvSignUp?.setOnClickListener {
-            if (requireActivity().intent.getBooleanExtra(
-                            Constants.BundleData.IS_ACTIVITY_RESULT,
-                            false
-                    )
-            ) {
-                RegisterActivity.startForResult(requireActivity(), true)
-            } else {
-                RegisterActivity.startForResult(requireActivity(), false)
-            }
-
-        }
-        tvForgetPassword?.setOnClickListener {
-            ForgetPasswordActivity.start(context)
-        }
-
-        binding?.imgIdRecognition?.setOnClickListener {
-            autoLogin()
-        }
+    private fun goToNextScreen(data: UserDetailsResponseModel) {
+        if (data.roles.isNullOrEmpty())
+            UserRolesActivity.start(requireContext())
+        else if (data.roles[0].role == null || data.roles[0].role != UserRoleEnums.BUSINESS_ROLE.value) {
+            InvestorMainActivity.start(requireContext())
+        } else
+            BusinessMainActivity.start(requireContext())
     }
 
     private fun checkIfThereUpdate() {

@@ -241,7 +241,7 @@
                     android:layout_height="@dimen/_25sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:background="?selectableItemBackgroundBorderless"
-                    android:checked="@={viewModel.isNegotiable}"
+                    android:checked="@={viewModel.isFreeHoldNegotiable}"
                     app:layout_constraintBottom_toBottomOf="@id/tvFreeholdIsNegotiable"
                     app:layout_constraintEnd_toEndOf="@id/freeholdEndGuide"
                     app:layout_constraintTop_toTopOf="@id/tvFreeholdIsNegotiable" />
@@ -405,7 +405,7 @@
                     android:layout_height="@dimen/_25sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:background="?selectableItemBackgroundBorderless"
-                    android:checked="@={viewModel.isNegotiable}"
+                    android:checked="@={viewModel.IsLeaseHoldNegotiable}"
                     app:layout_constraintBottom_toBottomOf="@id/tvLeaseholdIsNegotiable"
                     app:layout_constraintEnd_toEndOf="@id/leaseHoldEndGuide"
                     app:layout_constraintTop_toTopOf="@id/tvLeaseholdIsNegotiable" />

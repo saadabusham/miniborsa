@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.technzone.miniborsa.data.models.investor.investors.Investor" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="@dimen/_3sdp"
+        app:cardCornerRadius="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/layouts_margin_start"
+        android:layout_marginEnd="@dimen/layouts_margin_end"
+        android:layout_marginBottom="@dimen/_20sdp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_15sdp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvPhoto"
+                android:layout_width="@dimen/_48sdp"
+                android:layout_height="@dimen/_48sdp"
+                app:cardBackgroundColor="@color/black"
+                app:cardCornerRadius="@dimen/_24sdp"
+                app:cardElevation="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.technzone.miniborsa.ui.base.views.AppImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_profile_place_holder" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.technzone.miniborsa.ui.base.views.AppImageView
+                android:id="@+id/imgVerified"
+                android:layout_width="@dimen/_12sdp"
+                android:layout_height="@dimen/_22sdp"
+                android:layout_marginTop="@dimen/_37sdp"
+                android:src="@drawable/ic_verified"
+                app:layout_constraintEnd_toEndOf="@id/cvPhoto"
+                app:layout_constraintStart_toStartOf="@id/cvPhoto"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.technzone.miniborsa.ui.base.views.AppTextView
+                android:id="@+id/tvName"
+                style="@style/textview_normal_bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_18sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cvPhoto"
+                app:layout_constraintTop_toTopOf="@id/cvPhoto"
+                tools:text="Angelina Jora" />
+
+            <com.technzone.miniborsa.ui.base.views.AppTextView
+                android:id="@+id/tvTitle"
+                style="@style/textview_normal_regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_18sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textColor="@color/black_alpha"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cvPhoto"
+                app:layout_constraintTop_toBottomOf="@id/tvName"
+                tools:text="Featured Investor" />
+
+            <com.technzone.miniborsa.ui.base.views.AppButton
+                android:id="@+id/btnViewProfile"
+                android:layout_width="@dimen/_135sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:backgroundTint="@color/green_color"
+                android:text="@string/view_profile"
+                app:layout_constraintStart_toStartOf="@id/imgVerified"
+                app:layout_constraintTop_toBottomOf="@id/imgVerified" />
+
+            <com.technzone.miniborsa.ui.base.views.AppButton
+                android:id="@+id/btnMessage"
+                android:layout_width="@dimen/_95sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:backgroundTint="@color/green_color"
+                android:stateListAnimator="@null"
+                android:text="@string/message"
+                android:textColor="@color/green_color"
+                app:icon="@drawable/ic_nav_messages"
+                app:iconTint="@color/green_color"
+                app:layout_constraintBottom_toBottomOf="@id/btnViewProfile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/btnViewProfile"
+                app:strokeColor="@color/green_color"
+                app:strokeWidth="@dimen/_1sdp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

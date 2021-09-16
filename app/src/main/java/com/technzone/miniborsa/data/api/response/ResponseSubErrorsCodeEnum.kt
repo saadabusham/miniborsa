@@ -2,7 +2,7 @@ package com.technzone.miniborsa.data.api.response
 
 enum class ResponseSubErrorsCodeEnum(val value: Int) {
     GENERAL_FAILED(-1),
-    Success(200),
+    Success(0),
     EmailNotVerified(9),
     InvalidModel(1),
     Unauthorized(401),

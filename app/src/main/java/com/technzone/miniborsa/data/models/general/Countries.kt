@@ -17,6 +17,7 @@ data class Countries(
     override fun toString(): String {
         return "$code"
     }
+
     fun getDataString(): String {
         return "$name ($code)"
     }

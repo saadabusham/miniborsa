@@ -7,5 +7,7 @@ enum class MoreEnums {
     NOTIFICATION,
     RECENT_VIEWED,
     LANGUAGE,
-    GET_HELP
+    GET_HELP,
+    INVESTORS_LIST,
+    SWITCH_TO_INVESTOR
 }

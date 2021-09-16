@@ -10,18 +10,18 @@ import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.enums.UserRoleEnums
 import com.technzone.miniborsa.data.models.auth.login.UserRoles
 import com.technzone.miniborsa.databinding.ActivityUserRoleBinding
-import com.technzone.miniborsa.ui.userrole.adapters.UserRolesRecyclerAdapter
-import com.technzone.miniborsa.ui.userrole.viewmodel.UserRolesViewModel
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.business.businessmain.activity.BusinessMainActivity
 import com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity
+import com.technzone.miniborsa.ui.userrole.adapters.UserRolesRecyclerAdapter
+import com.technzone.miniborsa.ui.userrole.viewmodel.UserRolesViewModel
 import com.technzone.miniborsa.utils.extensions.showErrorAlert
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class UserRolesActivity : BaseBindingActivity<ActivityUserRoleBinding>(),
-        BaseBindingRecyclerViewAdapter.OnItemClickListener {
+    BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
     private val viewModel: UserRolesViewModel by viewModels()
     lateinit var adapter: UserRolesRecyclerAdapter
@@ -29,8 +29,8 @@ class UserRolesActivity : BaseBindingActivity<ActivityUserRoleBinding>(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(
-                layoutResID = R.layout.activity_user_role,
-                hasToolbar = false
+            layoutResID = R.layout.activity_user_role,
+            hasToolbar = false
         )
         init()
     }
@@ -43,7 +43,8 @@ class UserRolesActivity : BaseBindingActivity<ActivityUserRoleBinding>(),
     private fun setUpListeners() {
         binding?.btnContinue?.setOnClickListener {
             adapter.getSelectedItem()?.let {
-                when(it.role){
+                viewModel.setUserRole(it.role ?: UserRoleEnums.GUEST_ROLE.value)
+                when (it.role) {
                     UserRoleEnums.BUSINESS_ROLE.value -> {
                         BusinessMainActivity.start(this)
                     }
@@ -55,8 +56,10 @@ class UserRolesActivity : BaseBindingActivity<ActivityUserRoleBinding>(),
                     }
                 }
             } ?: also {
-                showErrorAlert(getString(R.string.user_role),
-                        getString(R.string.please_select_your_role))
+                showErrorAlert(
+                    getString(R.string.user_role),
+                    getString(R.string.please_select_your_role)
+                )
             }
         }
     }
@@ -65,21 +68,21 @@ class UserRolesActivity : BaseBindingActivity<ActivityUserRoleBinding>(),
         adapter = UserRolesRecyclerAdapter(this)
         binding?.recyclerView?.adapter = adapter
         adapter.submitItems(
-                arrayListOf(
-                        UserRoles(
-                                name = getString(R.string.i_am_an_business_owner),
-                                role = UserRoleEnums.BUSINESS_ROLE.value,
-                                selected = MutableLiveData(true)
-                        ),
-                        UserRoles(
-                                name = getString(R.string.i_am_an_investor),
-                                role = UserRoleEnums.INVESTOR_ROLE.value
-                        ),
-                        UserRoles(
-                                name = getString(R.string.continue_as_visitor),
-                                role = UserRoleEnums.VISITOR_ROLE.value
-                        )
+            arrayListOf(
+                UserRoles(
+                    name = getString(R.string.i_am_an_business_owner),
+                    role = UserRoleEnums.BUSINESS_ROLE.value,
+                    selected = MutableLiveData(true)
+                ),
+                UserRoles(
+                    name = getString(R.string.i_am_an_investor),
+                    role = UserRoleEnums.INVESTOR_ROLE.value
+                ),
+                UserRoles(
+                    name = getString(R.string.continue_as_visitor),
+                    role = UserRoleEnums.VISITOR_ROLE.value
                 )
+            )
         )
     }
 
@@ -87,6 +90,7 @@ class UserRolesActivity : BaseBindingActivity<ActivityUserRoleBinding>(),
 
         fun start(context: Context?) {
             val intent = Intent(context, UserRolesActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             context?.startActivity(intent)
         }
 
@@ -94,7 +98,7 @@ class UserRolesActivity : BaseBindingActivity<ActivityUserRoleBinding>(),
 
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as UserRoles
-        when(item.role){
+        when (item.role) {
             UserRoleEnums.BUSINESS_ROLE.value -> {
             }
             UserRoleEnums.INVESTOR_ROLE.value -> {

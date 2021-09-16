@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_nav_graph"
+    app:startDestination="@id/investorsFragment">
+
+
+    <fragment
+        android:id="@+id/investorsFragment"
+        android:name="com.technzone.miniborsa.ui.business.investors.fragments.InvestorsFragment"
+        android:label="InvestorsFragment"
+        tools:layout="@layout/fragment_investors"/>
+</navigation>

@@ -171,7 +171,7 @@
     <string name="access_investors">Access Investors</string>
 
     <!--    Business Main-->
-    <string name="nav_listing">Liting</string>
+    <string name="nav_listing">Listing</string>
     <string name="nav_notification">Notification</string>
     <string name="nav_statistics">Statistics</string>
 
@@ -230,6 +230,8 @@
     <string name="more_recent_viewed">Recent Viewed</string>
     <string name="more_languange">Languange</string>
     <string name="more_help">Get Help</string>
+    <string name="more_investor_list">Investors List</string>
+    <string name="more_switch_to_investor">Switch to Investor</string>
     <string name="let_s_get_started">Let\'s Get Started</string>
     <string name="list_your_home_with_simple_steps">List your home with\nsimple Steps.</string>
     <string name="business_for_franchise">Business For Franchise</string>
@@ -302,5 +304,8 @@
     <string name="date_submit">Date Submit</string>
     <string name="thank_you_for_submitting_there_notification_when_your_listing_was_active">Thank you for submitting.\nThere notification when your Listing \nwas active</string>
     <string name="pending">Pending</string>
+    <string name="view_profile">View Profile</string>
+    <string name="message">Message</string>
+    <string name="find_investor">Find Investor</string>
 
 </resources>

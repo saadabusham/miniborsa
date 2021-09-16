@@ -10,7 +10,9 @@ import javax.inject.Inject
 class InvestorRoleViewModel @Inject constructor(
     private val configurationpref: ConfigurationPref
 ) : BaseViewModel() {
-
+    val defaultMinValue: Int = 1000
+    val defaultMaxValue: Int = 1000000
     val budgetOnRequest: MutableLiveData<Boolean> = MutableLiveData(false)
+    val investmentPrice: MutableLiveData<Int> = MutableLiveData(1000)
 
 }

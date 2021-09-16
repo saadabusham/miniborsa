@@ -6,17 +6,17 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.common.MyApplication
-import com.technzone.miniborsa.data.api.response.APIResource
-import com.technzone.miniborsa.data.api.response.RequestStatusEnum
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.CustomObserverResponse
+import com.technzone.miniborsa.data.enums.UserRoleEnums
+import com.technzone.miniborsa.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.miniborsa.data.models.configuration.ConfigurationWrapperResponse
 import com.technzone.miniborsa.databinding.ActivitySplashBinding
 import com.technzone.miniborsa.ui.auth.AuthActivity
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
+import com.technzone.miniborsa.ui.business.businessmain.activity.BusinessMainActivity
 import com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity
 import com.technzone.miniborsa.ui.userrole.activity.UserRolesActivity
 import com.technzone.miniborsa.utils.pref.SharedPreferencesUtil
@@ -53,23 +53,29 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: ConfigurationWrapperResponse?
                 ) {
-                    when {
-                        subErrorCode == ResponseSubErrorsCodeEnum.Success -> {
-                            SharedPreferencesUtil.getInstance(this@SplashActivity)
-                                .setConfigurationPreferences(data)
-                            goToNextPage()
-                        }
-                    }
+                    SharedPreferencesUtil.getInstance(this@SplashActivity)
+                        .setConfigurationPreferences(data)
+                    goToNextPage()
                 }
             })
     }
+
     private fun goToNextPage() {
         if (!viewModel.isUserLoggedIn()) {
-//            AuthActivity.start(this)
-            UserRolesActivity.start(this)
+            AuthActivity.start(this)
+//            UserRolesActivity.start(this)
         } else
-            UserRolesActivity.start(this)
+            openMainActivity(viewModel.getUser())
 
+    }
+
+    private fun openMainActivity(data: UserDetailsResponseModel?) {
+        if (data?.roles.isNullOrEmpty())
+            UserRolesActivity.start(this)
+        else if (data?.roles?.get(0)?.role == null || data.roles[0].role != UserRoleEnums.BUSINESS_ROLE.value) {
+            InvestorMainActivity.start(this)
+        } else
+            BusinessMainActivity.start(this)
     }
 
     override fun onStart() {

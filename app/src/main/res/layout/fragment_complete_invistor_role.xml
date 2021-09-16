@@ -66,17 +66,43 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/_13ssp" />
 
-                    <TextView
-                        android:id="@+id/budget"
+                    <com.technzone.miniborsa.ui.base.views.AppTextView
+                        android:id="@+id/tvFreeHoldAskingPrice"
                         style="@style/textview_normal_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_edit"
-                        android:enabled="false"
-                        android:drawablePadding="@dimen/_10sdp"
-                        android:text="$400,000"
+                        android:enabled="@{viewModel.budgetOnRequest == false}"
+                        android:text="@string/dollar_sign"
                         android:textColor="@color/textview_text_color"
-                        android:textSize="@dimen/_13ssp" />
+                        android:textSize="@dimen/_13ssp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvFreeHoldAskingPriceTxt"
+                        app:layout_constraintEnd_toStartOf="@id/edFreeHoldAskingPrice"
+                        app:layout_constraintTop_toTopOf="@id/tvFreeHoldAskingPriceTxt" />
+
+
+                    <com.technzone.miniborsa.ui.base.views.AppEditText
+                        android:id="@+id/edBudget"
+                        style="@style/textview_normal_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?selectableItemBackground"
+                        android:clickable="true"
+                        android:digits="1234567890."
+                        android:drawableEnd="@drawable/ic_edit"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:enabled="@{viewModel.budgetOnRequest == false}"
+                        android:focusable="true"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="@{viewModel.investmentPrice.toString()}"
+                        android:textColor="@color/textview_text_color"
+                        android:textSize="@dimen/_13ssp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvFreeHoldAskingPriceTxt"
+                        app:layout_constraintEnd_toEndOf="@id/freeholdEndGuide"
+                        app:layout_constraintTop_toTopOf="@id/tvFreeHoldAskingPriceTxt"
+                        tools:text="400,000" />
                 </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatSeekBar
@@ -85,9 +111,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
+                    android:enabled="@{viewModel.budgetOnRequest == false}"
+                    android:max="@{viewModel.defaultMaxValue}"
+                    android:min="@{viewModel.defaultMinValue}"
                     android:paddingStart="0dp"
                     android:paddingEnd="0dp"
-                    android:enabled="@{viewModel.budgetOnRequest == false}"
+                    android:progress="@={viewModel.investmentPrice}"
                     android:progressDrawable="@drawable/seekbar_selector"
                     android:thumb="@drawable/seekbar_thumb_selector"
                     tools:max="78"
@@ -99,9 +128,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20sdp"
+                    android:checked="@={viewModel.budgetOnRequest}"
                     android:paddingStart="@dimen/_15sdp"
                     android:paddingTop="0dp"
-                    android:checked="@={viewModel.budgetOnRequest}"
                     android:paddingBottom="0dp"
                     android:text="@string/available_on_request" />
 

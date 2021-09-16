@@ -13,6 +13,7 @@ object Constants {
 
     object BundleData {
 
+        const val INVESTOR_ID: String = "investorId"
         const val ADDRESS: String = "address"
         const val ACTION_TITLE: String = "actionTitle"
         const val TITLE: String = "title"

@@ -1,5 +1,6 @@
 package com.technzone.miniborsa.data.di.daos
 
+import com.technzone.miniborsa.data.daos.remote.business.BusinessRemoteDao
 import com.technzone.miniborsa.data.daos.remote.configuration.ConfigurationRemoteDao
 import com.technzone.miniborsa.data.daos.remote.twilio.TwilioRemoteDao
 import com.technzone.miniborsa.data.daos.remote.user.UserRemoteDao
@@ -31,6 +32,7 @@ object RemoteDaosModule {
     ): ConfigurationRemoteDao {
         return retrofit.create(ConfigurationRemoteDao::class.java)
     }
+
     @Singleton
     @Provides
     fun provideTwillioRemoteDao(
@@ -38,4 +40,13 @@ object RemoteDaosModule {
     ): TwilioRemoteDao {
         return retrofit.create(TwilioRemoteDao::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun provideBusinessRemoteDao(
+        retrofit: Retrofit
+    ): BusinessRemoteDao {
+        return retrofit.create(BusinessRemoteDao::class.java)
+    }
+
 }
