@@ -263,11 +263,11 @@ class UserRepoImp @Inject constructor(
         return userPref.getUser()
     }
 
-    override fun setCurrentRole(role: Int) {
+    override fun setCurrentRole(role: String) {
         userPref.setCurrentRole(role)
     }
 
-    override fun getCurrentRole(): Int {
+    override fun getCurrentRole(): String {
         return userPref.getCurrentRole()
     }
 

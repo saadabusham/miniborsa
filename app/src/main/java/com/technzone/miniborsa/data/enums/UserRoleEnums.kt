@@ -1,10 +1,9 @@
 package com.technzone.miniborsa.data.enums
 
 
-enum class UserRoleEnums(val value: Int) {
-    BUSINESS_ROLE(1),
-    INVESTOR_ROLE(2),
-    VISITOR_ROLE(3),
-    GUEST_ROLE(4)
-
+enum class UserRoleEnums(val value: String) {
+    BUSINESS_ROLE("BusinessOwner"),
+    INVESTOR_ROLE("Investor"),
+    VISITOR_ROLE("User"),
+    GUEST_ROLE("GUEST")
 }

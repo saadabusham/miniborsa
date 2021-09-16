@@ -34,7 +34,7 @@
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_centerInParent="true"
             android:layout_alignParentStart="true"
-            android:text="@{item.name}"
+            android:text="@{item.title}"
             android:textSize="@dimen/_13ssp"
             style="@style/textview_normal_bold"
             android:textColor="@color/black"

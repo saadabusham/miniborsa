@@ -4,8 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.ActivityResultLauncher
 import com.jakewharton.rxbinding3.widget.textChangeEvents
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.models.general.GeneralLookup
 import com.technzone.miniborsa.databinding.ActivityChooseGeneralBinding
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
@@ -13,6 +15,7 @@ import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.general.adapters.ChooseGeneralRecyclerAdapter
 import com.technzone.miniborsa.ui.general.adapters.SelectedGeneralRecyclerAdapter
+import com.technzone.miniborsa.utils.extensions.showErrorAlert
 import com.technzone.miniborsa.utils.plus
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -22,9 +25,9 @@ import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class GeneralActivity : BaseBindingActivity<ActivityChooseGeneralBinding>(),
-        BaseBindingRecyclerViewAdapter.OnItemClickListener {
+    BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
-    lateinit var selectedSymptomsAdapter: SelectedGeneralRecyclerAdapter
+    lateinit var selectedGeneralRecyclerAdapter: SelectedGeneralRecyclerAdapter
 
     lateinit var adapter: ChooseGeneralRecyclerAdapter
     private var list = ArrayList<GeneralLookup>()
@@ -36,17 +39,31 @@ class GeneralActivity : BaseBindingActivity<ActivityChooseGeneralBinding>(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_general, hasToolbar = false)
         setAdapter()
-//        viewModel.getSymptoms(serviceId = args.appointmentsDetails.service?.id ?: 0)
-//        observe()
         initSearch()
+        setUpListeners()
+    }
+
+    private fun setUpListeners() {
+        binding?.btnConfirm?.setOnClickListener {
+            selectedGeneralRecyclerAdapter.getSelectedItems().let {
+                if (it.size > 0) {
+                    setResult(RESULT_OK, Intent().apply {
+                        putExtra(Constants.BundleData.GENERAL_LIST, it)
+                        finish()
+                    })
+                } else {
+                    showErrorAlert(getString(R.string.app_name), getString(R.string.please_select_item))
+                }
+            }
+        }
     }
 
     private fun setAdapter() {
         adapter = ChooseGeneralRecyclerAdapter(this)
         binding?.rvItems?.adapter = adapter
-        selectedSymptomsAdapter = SelectedGeneralRecyclerAdapter(this)
-        binding?.rvSelectedItems?.adapter = selectedSymptomsAdapter
-//        selectedSymptomsAdapter.submitItems(selectedSymptomsList)
+        selectedGeneralRecyclerAdapter = SelectedGeneralRecyclerAdapter(this)
+        binding?.rvSelectedItems?.adapter = selectedGeneralRecyclerAdapter
+        adapter.submitItems(intent.getSerializableExtra(Constants.BundleData.GENERAL_LIST) as ArrayList<GeneralLookup>)
         binding?.rvItems?.setOnItemClickListener(this)
         binding?.rvSelectedItems?.setOnItemClickListener(this)
 
@@ -59,41 +76,32 @@ class GeneralActivity : BaseBindingActivity<ActivityChooseGeneralBinding>(),
         }
 
         disposable + binding?.etSearch?.textChangeEvents()
-                ?.debounce(300, TimeUnit.MILLISECONDS)
-                ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribeOn(Schedulers.io())
-                ?.subscribe {
-                    if (it.text.isNotEmpty()) {
-                        searchList.clear()
-                        list.forEach { generalLookUp ->
-                            if (generalLookUp.name?.contains(it.text) == true) {
-                                searchList.add(generalLookUp)
-                            }
+            ?.debounce(300, TimeUnit.MILLISECONDS)
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribeOn(Schedulers.io())
+            ?.subscribe {
+                if (it.text.isNotEmpty()) {
+                    searchList.clear()
+                    list.forEach { generalLookUp ->
+                        if (generalLookUp.name?.contains(it.text) == true) {
+                            searchList.add(generalLookUp)
                         }
-                        if (searchList.size > 0) {
-                            adapter.submitItems(searchList)
-                        }
-                    } else {
-                        adapter.submitItems(list)
                     }
+                    if (searchList.size > 0) {
+                        adapter.submitItems(searchList)
+                    }
+                } else {
+                    adapter.submitItems(list)
                 }
+            }
     }
 
-    companion object {
-
-        fun start(context: Context?) {
-            val intent = Intent(context, GeneralActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-            context?.startActivity(intent)
-        }
-
-    }
 
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as GeneralLookup
         if (selectedList.contains(item)) {
             selectedList.remove(item)
-            selectedSymptomsAdapter.submitItems(selectedList)
+            selectedGeneralRecyclerAdapter.submitItems(selectedList)
             adapter.unCheckItem(item)
             onSelectedChanged()
         }
@@ -103,11 +111,11 @@ class GeneralActivity : BaseBindingActivity<ActivityChooseGeneralBinding>(),
         item as GeneralLookup
         if (isChecked == true && !selectedList.contains(item)) {
             selectedList.add(item)
-            selectedSymptomsAdapter.submitItems(selectedList)
+            selectedGeneralRecyclerAdapter.submitItems(selectedList)
             onSelectedChanged()
         } else if (isChecked == false && selectedList.contains(item)) {
             selectedList.remove(item)
-            selectedSymptomsAdapter.submitItems(selectedList)
+            selectedGeneralRecyclerAdapter.submitItems(selectedList)
             onSelectedChanged()
         }
     }
@@ -119,5 +127,18 @@ class GeneralActivity : BaseBindingActivity<ActivityChooseGeneralBinding>(),
     override fun onDestroy() {
         super.onDestroy()
         disposable.clear()
+    }
+
+    companion object {
+        fun start(
+            context: Context?,
+            list: ArrayList<GeneralLookup>,
+            resultLauncher: ActivityResultLauncher<Intent>
+        ) {
+            val intent = Intent(context, GeneralActivity::class.java).apply {
+                putExtra(Constants.BundleData.GENERAL_LIST, list)
+            }
+            resultLauncher.launch(intent)
+        }
     }
 }

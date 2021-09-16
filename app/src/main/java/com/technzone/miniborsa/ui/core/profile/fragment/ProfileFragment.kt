@@ -1,9 +1,11 @@
 package com.technzone.miniborsa.ui.core.profile.fragment
 
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.common.CommonEnums
+import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.enums.MoreEnums
 import com.technzone.miniborsa.data.enums.UserRoleEnums
 import com.technzone.miniborsa.data.models.profile.More
@@ -17,6 +19,8 @@ import com.technzone.miniborsa.ui.business.businessmain.activity.BusinessMainAct
 import com.technzone.miniborsa.ui.business.investors.activity.InvestorsActivity
 import com.technzone.miniborsa.ui.core.profile.adapters.MoreRecyclerAdapter
 import com.technzone.miniborsa.ui.core.profile.viewmodels.ProfileViewModel
+import com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity
+import com.technzone.miniborsa.ui.investor.invistorroles.activity.InvestorRolesActivity
 import com.technzone.miniborsa.utils.LocaleUtil
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -65,14 +69,6 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
             )
         )
         addItemsDependOnUserRoles(itemList)
-
-        itemList.add(
-            More(
-                resources.getString(R.string.more_notification),
-                R.drawable.ic_more_notifications,
-                MoreEnums.NOTIFICATION
-            )
-        )
         itemList.add(
             More(
                 resources.getString(R.string.more_recent_viewed),
@@ -107,6 +103,13 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
                         MoreEnums.LIST_YOUR_BUSINESS
                     )
                 )
+                itemList.add(
+                    More(
+                        resources.getString(R.string.more_notification),
+                        R.drawable.ic_more_notifications,
+                        MoreEnums.NOTIFICATION
+                    )
+                )
             }
             UserRoleEnums.BUSINESS_ROLE.value -> {
                 itemList.add(
@@ -139,6 +142,13 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
                         MoreEnums.BECOME_INVESTOR
                     )
                 )
+                itemList.add(
+                    More(
+                        resources.getString(R.string.more_notification),
+                        R.drawable.ic_more_notifications,
+                        MoreEnums.NOTIFICATION
+                    )
+                )
             }
             UserRoleEnums.GUEST_ROLE.value -> {
                 itemList.add(
@@ -155,15 +165,22 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
                         MoreEnums.BECOME_INVESTOR
                     )
                 )
+                itemList.add(
+                    More(
+                        resources.getString(R.string.more_notification),
+                        R.drawable.ic_more_notifications,
+                        MoreEnums.NOTIFICATION
+                    )
+                )
             }
         }
     }
 
     private fun switchLanguage() {
         viewModel.saveLanguage().observe(this, {
-            (this as BaseBindingActivity<*>)
+            (requireActivity() as BaseBindingActivity<*>)
                 .setLanguage(
-                    if (LocaleUtil.getLanguage() == CommonEnums.Languages.Arabic.value)
+                    if (LocaleUtil.getLanguage() == CommonEnums.Languages.English.value)
                         CommonEnums.Languages.Arabic.value
                     else CommonEnums.Languages.English.value
                 )
@@ -185,11 +202,14 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
             }
             MoreEnums.SWITCH_TO_INVESTOR -> {
                 viewModel.setCurrentUserRoles(UserRoleEnums.INVESTOR_ROLE.value)
+                InvestorMainActivity.start(requireContext())
             }
             MoreEnums.BECOME_INVESTOR -> {
-
+                InvestorRolesActivity.start(requireContext())
             }
             MoreEnums.NOTIFICATION -> {
+                navigationController.navigate(R.id.action_nav_profile_to_notificationFragment,
+                    bundleOf(Pair(Constants.BundleData.SHOW_BACK,true)))
 
             }
             MoreEnums.RECENT_VIEWED -> {

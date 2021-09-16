@@ -70,16 +70,16 @@ class UserRolesActivity : BaseBindingActivity<ActivityUserRoleBinding>(),
         adapter.submitItems(
             arrayListOf(
                 UserRoles(
-                    name = getString(R.string.i_am_an_business_owner),
+                    title = getString(R.string.i_am_an_business_owner),
                     role = UserRoleEnums.BUSINESS_ROLE.value,
                     selected = MutableLiveData(true)
                 ),
                 UserRoles(
-                    name = getString(R.string.i_am_an_investor),
+                    title = getString(R.string.i_am_an_investor),
                     role = UserRoleEnums.INVESTOR_ROLE.value
                 ),
                 UserRoles(
-                    name = getString(R.string.continue_as_visitor),
+                    title = getString(R.string.continue_as_visitor),
                     role = UserRoleEnums.VISITOR_ROLE.value
                 )
             )
@@ -98,7 +98,7 @@ class UserRolesActivity : BaseBindingActivity<ActivityUserRoleBinding>(),
 
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as UserRoles
-        when (item.role) {
+        when (item.title) {
             UserRoleEnums.BUSINESS_ROLE.value -> {
             }
             UserRoleEnums.INVESTOR_ROLE.value -> {

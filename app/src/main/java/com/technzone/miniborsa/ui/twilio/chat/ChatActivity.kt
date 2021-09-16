@@ -107,12 +107,6 @@ class ChatActivity : BaseBindingActivity<ActivityChatBinding>(),
         binding?.layoutChatToolbar?.imgBack?.setOnClickListener {
             finish()
         }
-        binding?.layoutChatToolbar?.imgVoiceCall?.setOnClickListener {
-
-        }
-//        if (intent.getStringExtra(Constants.Twilio.USER_ID).isNullOrEmpty())
-//            binding?.layoutChatToolbar?.imgVoiceCall?.gone()
-
     }
 
     private fun sendMessage() {

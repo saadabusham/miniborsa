@@ -3,10 +3,10 @@ package com.technzone.miniborsa.ui.investor.invistormain.fragment.search
 import android.transition.TransitionManager
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.FragmentNavigatorExtras
-import androidx.transition.TransitionInflater
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.models.investor.Business
 import com.technzone.miniborsa.data.models.news.BusinessNews
 import com.technzone.miniborsa.databinding.FragmentInvestorSearchBinding
@@ -19,7 +19,6 @@ import com.technzone.miniborsa.ui.investor.invistormain.adapters.BusinessAdapter
 import com.technzone.miniborsa.ui.investor.invistormain.adapters.BusinessNewsAdapter
 import com.technzone.miniborsa.ui.investor.invistormain.viewmodels.InvestorMainViewModel
 import com.technzone.miniborsa.ui.investor.news.activity.NewsActivity
-import com.technzone.miniborsa.ui.investor.news.news.NewsDetailsFragment
 import com.technzone.miniborsa.utils.extensions.getSnapHelper
 import com.technzone.miniborsa.utils.extensions.gone
 import dagger.hilt.android.AndroidEntryPoint
@@ -83,6 +82,10 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
         }
         binding?.layoutSwitchBusiness?.layoutSwitchToBusiness?.imgClose?.setOnClickListener {
             binding?.layoutSwitchBusiness?.layoutSwitchToBusiness?.root?.gone()
+        }
+        binding?.imgNotifications?.setOnClickListener {
+            navigationController.navigate(R.id.action_nav_search_to_notificationFragment,
+            bundleOf(Pair(Constants.BundleData.SHOW_BACK,true)))
         }
     }
 

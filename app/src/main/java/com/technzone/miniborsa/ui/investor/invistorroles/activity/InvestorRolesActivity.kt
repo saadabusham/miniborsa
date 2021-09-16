@@ -22,7 +22,6 @@ class InvestorRolesActivity : BaseBindingActivity<ActivityInvistorRoleBinding>()
                 context: Context?
         ) {
             val intent = Intent(context, InvestorRolesActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             context?.startActivity(intent)
         }
     }

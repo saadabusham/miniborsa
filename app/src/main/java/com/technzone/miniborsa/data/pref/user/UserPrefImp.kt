@@ -80,12 +80,12 @@ class UserPrefImp @Inject constructor(private val prefUtil: SharedPreferencesUti
         prefUtil.setStringPreferences("user", json)
     }
 
-    override fun setCurrentRole(role: Int) {
-        prefUtil.setIntPreferences(CURRENT_ROLE, role)
+    override fun setCurrentRole(role: String) {
+        prefUtil.setStringPreferences(CURRENT_ROLE, role)
     }
 
-    override fun getCurrentRole(): Int {
-        return prefUtil.getIntPreferences(
+    override fun getCurrentRole(): String {
+        return prefUtil.getStringPreferences(
             CURRENT_ROLE,
             UserRoleEnums.GUEST_ROLE.value
         )

@@ -1,4 +1,4 @@
-package com.technzone.miniborsa.ui.business.businessmain.fragments.notification.adapters
+package com.technzone.miniborsa.ui.core.notification.adapters
 
 import android.content.Context
 import android.view.LayoutInflater

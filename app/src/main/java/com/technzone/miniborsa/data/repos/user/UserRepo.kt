@@ -99,7 +99,7 @@ interface UserRepo {
     fun setUser(user: UserDetailsResponseModel)
     fun getUser(): UserDetailsResponseModel?
 
-    fun setCurrentRole(role: Int)
-    fun getCurrentRole(): Int
+    fun setCurrentRole(role: String)
+    fun getCurrentRole(): String
 
 }

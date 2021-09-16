@@ -4,8 +4,8 @@ import androidx.lifecycle.liveData
 import com.technzone.miniborsa.data.api.response.APIResource
 import com.technzone.miniborsa.data.enums.UserEnums
 import com.technzone.miniborsa.data.models.auth.login.UserDetailsResponseModel
-import com.technzone.miniborsa.data.repos.user.UserRepo
 import com.technzone.miniborsa.data.repos.configuration.ConfigurationRepo
+import com.technzone.miniborsa.data.repos.user.UserRepo
 import com.technzone.miniborsa.ui.base.viewmodel.BaseViewModel
 import com.technzone.miniborsa.utils.pref.SharedPreferencesUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -68,7 +68,12 @@ class SplashViewModel @Inject constructor(
 //    }
 
     fun isUserLoggedIn() = userRepo.getUserStatus() == UserEnums.UserState.LoggedIn
+
     fun getUser(): UserDetailsResponseModel? {
         return userRepo.getUser()
+    }
+
+    fun getCurrentUserRoles(): String {
+        return userRepo.getCurrentRole()
     }
 }

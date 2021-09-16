@@ -14,7 +14,7 @@
 
     <fragment
         android:id="@+id/nav_notification"
-        android:name="com.technzone.miniborsa.ui.business.businessmain.fragments.notification.fragment.NotificationFragment"
+        android:name="com.technzone.miniborsa.ui.core.notification.fragment.NotificationFragment"
         android:label="NotificationFragment"
         tools:layout="@layout/fragment_notification" />
 

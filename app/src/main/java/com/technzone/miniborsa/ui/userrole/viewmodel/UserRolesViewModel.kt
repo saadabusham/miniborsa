@@ -12,7 +12,7 @@ class UserRolesViewModel @Inject constructor(
         private val userRepo: UserRepo
 ) : BaseViewModel() {
 
-        fun setUserRole(role:Int){
+        fun setUserRole(role:String){
                 userRepo.setCurrentRole(role)
         }
 

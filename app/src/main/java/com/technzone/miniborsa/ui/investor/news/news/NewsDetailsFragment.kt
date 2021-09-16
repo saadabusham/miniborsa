@@ -13,7 +13,6 @@ import com.technzone.miniborsa.ui.investor.businessdetails.adapters.BusinessExtr
 import com.technzone.miniborsa.ui.investor.news.adapters.NewsAdapter
 import com.technzone.miniborsa.ui.investor.news.viewmodels.NewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.layout_news_toolbar.*
 
 @AndroidEntryPoint
 class NewsDetailsFragment : BaseBindingFragment<FragmentNewsDetailsBinding>(),

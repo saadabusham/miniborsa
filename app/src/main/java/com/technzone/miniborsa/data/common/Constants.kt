@@ -13,6 +13,7 @@ object Constants {
 
     object BundleData {
 
+        const val SHOW_BACK: String = "showBack"
         const val INVESTOR_ID: String = "investorId"
         const val ADDRESS: String = "address"
         const val ACTION_TITLE: String = "actionTitle"
@@ -24,6 +25,7 @@ object Constants {
         const val BUSINESS: String = "business"
         const val IS_LOGIN_SUCCESS: String ="isLoginSuccess"
         const val IS_ACTIVITY_RESULT: String ="isActivityResult"
+        const val GENERAL_LIST: String ="generalList"
     }
 
     object NotificationsChannels {

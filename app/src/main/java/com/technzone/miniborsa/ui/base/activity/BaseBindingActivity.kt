@@ -127,11 +127,11 @@ abstract class BaseBindingActivity<BINDING : ViewDataBinding> : LocalizationActi
                 toolbar?.navigationIcon = ContextCompat.getDrawable(this, navigationIcon)
             }
         } else {
-            toolbar?.navigationIcon = null
+            supportActionBar?.setDisplayHomeAsUpEnabled(false)
         }
 
         if (!showBackArrow) {
-            toolbar?.navigationIcon = null
+            supportActionBar?.setDisplayHomeAsUpEnabled(false)
         } else {
             if (backArrowTint != null)
                 toolbar?.navigationIcon?.setTint(ContextCompat.getColor(this, backArrowTint))

@@ -7,6 +7,9 @@ import com.technzone.miniborsa.data.api.response.ResponseWrapper
 import com.technzone.miniborsa.data.daos.remote.configuration.ConfigurationRemoteDao
 import com.technzone.miniborsa.data.models.configuration.ConfigurationWrapperResponse
 import com.technzone.miniborsa.data.models.country.Country
+import com.technzone.miniborsa.data.models.general.ListWrapper
+import com.technzone.miniborsa.data.models.investor.CategoriesRequest
+import com.technzone.miniborsa.data.models.investor.investors.CategoriesItem
 import com.technzone.miniborsa.data.pref.configuration.ConfigurationPref
 import com.technzone.miniborsa.data.repos.base.BaseRepo
 import javax.inject.Inject
@@ -37,6 +40,20 @@ class ConfigurationRepoImp @Inject constructor(
     override suspend fun getCountries(): APIResource<ResponseWrapper<List<Country>>> {
         return try {
             responseHandle.handleSuccess(configurationRemoteDao.getCountries())
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun getCategories(
+        categoriesRequest: CategoriesRequest
+    ): APIResource<ResponseWrapper<ListWrapper<CategoriesItem>>> {
+        return try {
+            responseHandle.handleSuccess(
+                configurationRemoteDao.getCategories(
+                   categoriesRequest
+                )
+            )
         } catch (e: Exception) {
             responseHandle.handleException(e)
         }

@@ -7,14 +7,17 @@ import androidx.activity.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.common.interfaces.BaseActivityCallback
 import com.technzone.miniborsa.databinding.ActivityBusinessMainBinding
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
 import com.technzone.miniborsa.ui.business.businessmain.viewmodels.BusinessMainViewModel
-import com.technzone.miniborsa.ui.investor.invistormain.viewmodels.InvestorMainViewModel
+import com.technzone.miniborsa.utils.extensions.gone
+import com.technzone.miniborsa.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class BusinessMainActivity : BaseBindingActivity<ActivityBusinessMainBinding>() {
+class BusinessMainActivity : BaseBindingActivity<ActivityBusinessMainBinding>(),
+    BaseActivityCallback {
 
     private val viewModel: BusinessMainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,5 +49,13 @@ class BusinessMainActivity : BaseBindingActivity<ActivityBusinessMainBinding>() 
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             context?.startActivity(intent)
         }
+    }
+
+    override fun hideBottomSheet() {
+        binding?.bnvMain?.gone()
+    }
+
+    override fun showBottomSheet() {
+        binding?.bnvMain?.visible()
     }
 }

@@ -19,7 +19,7 @@
     <string name="camera_permission_denied">Grant camera permission to take the 3 seconds video</string>
     <string name="screen_shot">take screenshot</string>
 
-    <string name="alert_dialog_title">Fly US VIP</string>
+    <string name="alert_dialog_title">Mini Borsa</string>
     <string name="alert_dialog_all_info_in_english">All information entered must be in English</string>
     <string name="not_available_yet">This feature is coming soon to Al Alami app!</string>
     <!-- General -->
@@ -307,5 +307,6 @@
     <string name="view_profile">View Profile</string>
     <string name="message">Message</string>
     <string name="find_investor">Find Investor</string>
+    <string name="confirm">Confirm</string>
 
 </resources>

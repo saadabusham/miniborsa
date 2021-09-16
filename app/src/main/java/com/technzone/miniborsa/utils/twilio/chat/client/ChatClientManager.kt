@@ -22,15 +22,15 @@ class ChatClientManager(private val context: Context) {
     }
 
     fun setupFcmToken() {
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            if (!task.isSuccessful) {
-                return@OnCompleteListener
-            }
-            chatClient?.registerFCMToken(ChatClient.FCMToken(task.result ?: ""),
-                ToastStatusListener(
-                    "Firebase Messaging registration successful",
-                    "Firebase Messaging registration not successful"))
-        })
+//        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+//            if (!task.isSuccessful) {
+//                return@OnCompleteListener
+//            }
+//            chatClient?.registerFCMToken(ChatClient.FCMToken(task.result ?: ""),
+//                ToastStatusListener(
+//                    "Firebase Messaging registration successful",
+//                    "Firebase Messaging registration not successful"))
+//        })
 
     }
 

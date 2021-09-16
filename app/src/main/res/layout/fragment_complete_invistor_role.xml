@@ -114,13 +114,13 @@
                     android:enabled="@{viewModel.budgetOnRequest == false}"
                     android:max="@{viewModel.defaultMaxValue}"
                     android:min="@{viewModel.defaultMinValue}"
-                    android:paddingStart="0dp"
-                    android:paddingEnd="0dp"
+                    android:paddingStart="@dimen/_9sdp"
+                    android:paddingEnd="@dimen/_9sdp"
                     android:progress="@={viewModel.investmentPrice}"
                     android:progressDrawable="@drawable/seekbar_selector"
                     android:thumb="@drawable/seekbar_thumb_selector"
                     tools:max="78"
-                    tools:progress="20" />
+                    tools:progress="0" />
 
 
                 <androidx.appcompat.widget.AppCompatCheckBox
@@ -144,6 +144,7 @@
                     android:textSize="@dimen/_13ssp" />
 
                 <TextView
+                    android:id="@+id/tvCountries"
                     style="@style/textview_normal_regular"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/button_height"
@@ -179,6 +180,7 @@
                     android:textSize="@dimen/_13ssp" />
 
                 <TextView
+                    android:id="@+id/tvCategories"
                     style="@style/textview_normal_regular"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/button_height"

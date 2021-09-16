@@ -13,8 +13,8 @@ class SelectedGeneralRecyclerAdapter constructor(
         context: Context
 ) : BaseBindingRecyclerViewAdapter<GeneralLookup>(context) {
 
-    fun getSelectedItem(): GeneralLookup? {
-        return items.singleOrNull { it.selected }
+    fun getSelectedItems(): ArrayList<GeneralLookup> {
+        return ArrayList(items.filter { it.selected })
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

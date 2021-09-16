@@ -8,10 +8,8 @@ import com.technzone.miniborsa.databinding.FragmentInvestorFavoriteBinding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
-import com.technzone.miniborsa.ui.investor.invistormain.adapters.BusinessAdapter
 import com.technzone.miniborsa.ui.investor.invistormain.fragment.investorfavorite.adapters.FavoritesAdapter
 import com.technzone.miniborsa.ui.investor.invistormain.viewmodels.InvestorMainViewModel
-import com.technzone.miniborsa.utils.extensions.getSnapHelper
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

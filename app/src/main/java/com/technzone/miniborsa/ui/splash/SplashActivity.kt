@@ -70,12 +70,17 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
     }
 
     private fun openMainActivity(data: UserDetailsResponseModel?) {
-        if (data?.roles.isNullOrEmpty())
-            UserRolesActivity.start(this)
-        else if (data?.roles?.get(0)?.role == null || data.roles[0].role != UserRoleEnums.BUSINESS_ROLE.value) {
-            InvestorMainActivity.start(this)
-        } else
-            BusinessMainActivity.start(this)
+        when (viewModel.getCurrentUserRoles()) {
+            UserRoleEnums.GUEST_ROLE.value -> {
+                UserRolesActivity.start(this)
+            }
+            UserRoleEnums.VISITOR_ROLE.value, UserRoleEnums.INVESTOR_ROLE.value -> {
+                InvestorMainActivity.start(this)
+            }
+            UserRoleEnums.BUSINESS_ROLE.value -> {
+                BusinessMainActivity.start(this)
+            }
+        }
     }
 
     override fun onStart() {

@@ -19,10 +19,10 @@ class ProfileViewModel @Inject constructor(
     private val configurationPref: ConfigurationPref
 ) : BaseViewModel() {
 
-    fun getCurrentUserRoles(): Int {
+    fun getCurrentUserRoles(): String {
         return userRepo.getCurrentRole()
     }
-    fun setCurrentUserRoles(role:Int) {
+    fun setCurrentUserRoles(role:String) {
         return userRepo.setCurrentRole(role)
     }
 
@@ -35,7 +35,7 @@ class ProfileViewModel @Inject constructor(
 
     fun saveLanguage() = liveData {
         configurationPref.setAppLanguageValue(
-            if (LocaleUtil.getLanguage() == CommonEnums.Languages.Arabic.value)
+            if (LocaleUtil.getLanguage() == CommonEnums.Languages.English.value)
                 CommonEnums.Languages.Arabic.value
             else CommonEnums.Languages.English.value
         )
