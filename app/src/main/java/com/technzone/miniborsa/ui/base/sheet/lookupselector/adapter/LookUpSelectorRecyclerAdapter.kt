@@ -1,30 +1,29 @@
-package com.technzone.miniborsa.ui.investor.filter.filter.adapters
+package com.technzone.miniborsa.ui.base.sheet.lookupselector.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.technzone.miniborsa.data.models.general.GeneralLookup
-import com.technzone.miniborsa.databinding.RowGeneralBinding
+import com.technzone.miniborsa.databinding.RowLookupSelectorBinding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.adapters.BaseViewHolder
+import com.technzone.miniborsa.utils.extensions.gone
+import com.technzone.miniborsa.utils.extensions.visible
 
-class GeneralLookupRecyclerAdapter constructor(
-    context: Context,
-    private val singleSelection: Boolean = false
+class LookUpSelectorRecyclerAdapter constructor(
+    context: Context
 ) : BaseBindingRecyclerViewAdapter<GeneralLookup>(context) {
 
-    fun getSelectedItem(): GeneralLookup? {
-        return items.singleOrNull { it.selected }
-    }
+    var selectedPosition: Int = -1
 
-    fun getSelectedItems(): List<GeneralLookup> {
-        return items.filter { it.selected }
+    fun getSelectedItem(): GeneralLookup? {
+        return if (selectedPosition != -1) items[selectedPosition] else null
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(
-            RowGeneralBinding.inflate(
+            RowLookupSelectorBinding.inflate(
                 LayoutInflater.from(context), parent, false
             )
         )
@@ -36,22 +35,27 @@ class GeneralLookupRecyclerAdapter constructor(
         }
     }
 
-    inner class ViewHolder(private val binding: RowGeneralBinding) :
+    inner class ViewHolder(private val binding: RowLookupSelectorBinding) :
         BaseViewHolder<GeneralLookup>(binding.root) {
 
         override fun bind(item: GeneralLookup) {
             binding.item = item
             binding.root.setOnClickListener {
-                if (singleSelection) {
-                    items.withIndex().singleOrNull { it.value.selected }?.let {
-                        it.value.selected = false
-                        notifyItemChanged(it.index)
-                    }
+                if (selectedPosition != -1) {
+                    items[selectedPosition].selected = false
+                    notifyItemChanged(selectedPosition)
                 }
-                item.selected = item.selected == false
+                selectedPosition = bindingAdapterPosition
+                item.selected = true
                 notifyItemChanged(bindingAdapterPosition)
-                itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
+                itemClickListener?.onItemClick(it,bindingAdapterPosition,item)
+            }
+            if (item.selected) {
+                binding.imgSelected.visible()
+            } else {
+                binding.imgSelected.gone()
             }
         }
     }
+
 }

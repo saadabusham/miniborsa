@@ -2,18 +2,19 @@ package com.technzone.miniborsa.data.repos.business
 
 import com.technzone.miniborsa.data.api.response.APIResource
 import com.technzone.miniborsa.data.api.response.ResponseWrapper
-import com.technzone.miniborsa.data.enums.UserEnums
-import com.technzone.miniborsa.data.models.auth.login.UserDetailsResponseModel
-import com.technzone.miniborsa.data.models.investor.investors.Investor
-import com.technzone.miniborsa.data.models.investor.investors.InvestorFilter
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-
+import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
+import com.technzone.miniborsa.data.models.general.ListWrapper
+import retrofit2.http.Path
 
 interface BusinessRepo {
 
-    suspend fun getInvestors(
-        investorFilter: InvestorFilter
-    ): APIResource<ResponseWrapper<List<Investor>>>
+    suspend fun getBusinessByType(
+        type: Int?,
+        pageSize: Int,
+        pageNumber: Int
+    ): APIResource<ResponseWrapper<ListWrapper<OwnerBusiness>>>
 
+    suspend fun getBusinessById(
+        id: Int?
+    ): APIResource<ResponseWrapper<OwnerBusiness>>
 }

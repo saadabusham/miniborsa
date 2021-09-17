@@ -4,7 +4,8 @@ import com.technzone.miniborsa.data.api.response.ResponseWrapper
 import com.technzone.miniborsa.data.models.configuration.ConfigurationWrapperResponse
 import com.technzone.miniborsa.data.models.country.Country
 import com.technzone.miniborsa.data.models.general.ListWrapper
-import com.technzone.miniborsa.data.models.investor.CategoriesRequest
+import com.technzone.miniborsa.data.models.investor.GeneralRequest
+import com.technzone.miniborsa.data.models.investor.PropertiesItem
 import com.technzone.miniborsa.data.models.investor.investors.CategoriesItem
 import retrofit2.http.*
 
@@ -16,8 +17,19 @@ interface ConfigurationRemoteDao {
     @GET("api/owner/company/country")
     suspend fun getCountries(): ResponseWrapper<List<Country>>
 
-    @POST("api/category")
+    @GET("api/category")
     suspend fun getCategories(
-        @Body categoriesRequest: CategoriesRequest
+        @Query("parentId") parentId:Int,
+        @Query("Name") name:String?,
+        @Query("PageSize") pageSize: Int,
+        @Query("PageNumber") pageNumber: Int
     ): ResponseWrapper<ListWrapper<CategoriesItem>>
+
+    @GET("api/Property")
+    suspend fun getProperty(
+        @Query("parentId") parentId:Int,
+        @Query("Name") name:String?,
+        @Query("PageSize") pageSize: Int,
+        @Query("PageNumber") pageNumber: Int
+    ): ResponseWrapper<ListWrapper<PropertiesItem>>
 }

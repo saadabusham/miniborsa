@@ -1,7 +1,9 @@
 package com.technzone.miniborsa.data.di.daos
 
 import com.technzone.miniborsa.data.daos.remote.business.BusinessRemoteDao
+import com.technzone.miniborsa.data.daos.remote.common.CommonRemoteDao
 import com.technzone.miniborsa.data.daos.remote.configuration.ConfigurationRemoteDao
+import com.technzone.miniborsa.data.daos.remote.investor.InvestorRemoteDao
 import com.technzone.miniborsa.data.daos.remote.twilio.TwilioRemoteDao
 import com.technzone.miniborsa.data.daos.remote.user.UserRemoteDao
 import dagger.Module
@@ -47,6 +49,22 @@ object RemoteDaosModule {
         retrofit: Retrofit
     ): BusinessRemoteDao {
         return retrofit.create(BusinessRemoteDao::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideInvestorRemoteDao(
+        retrofit: Retrofit
+    ): InvestorRemoteDao {
+        return retrofit.create(InvestorRemoteDao::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideCommonRemoteDao(
+        retrofit: Retrofit
+    ): CommonRemoteDao {
+        return retrofit.create(CommonRemoteDao::class.java)
     }
 
 }

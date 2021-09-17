@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.models.business.ListingItem
+import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.data.models.investor.ExtraInfo
 import com.technzone.miniborsa.databinding.ActivityListingPreviewBinding
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
@@ -26,6 +28,7 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
     private val viewModel: ListingPreviewViewModel by viewModels()
 
     private lateinit var listingItemAdapter: ListingItemAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(
@@ -102,9 +105,12 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
 
     companion object {
         fun start(
-            context: Context?
+            context: Context?,
+            ownerBusiness:OwnerBusiness
         ) {
-            val intent = Intent(context, ListingPreviewActivity::class.java)
+            val intent = Intent(context, ListingPreviewActivity::class.java).apply {
+                putExtra(Constants.BundleData.OWNER_BUSINESS,ownerBusiness)
+            }
             context?.startActivity(intent)
         }
     }

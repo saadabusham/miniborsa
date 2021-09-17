@@ -1,6 +1,7 @@
 package com.technzone.miniborsa.data.models.business.business
 
 import com.google.gson.annotations.SerializedName
+import com.technzone.miniborsa.data.models.investor.FieldsItem
 import java.io.Serializable
 
 data class OwnerBusiness(

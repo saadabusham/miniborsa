@@ -6,7 +6,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.transition.Transition
 import androidx.transition.TransitionInflater
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
+import com.technzone.miniborsa.data.common.CustomObserverResponse
+import com.technzone.miniborsa.data.enums.BusinessTypeEnums
 import com.technzone.miniborsa.data.models.general.GeneralLookup
+import com.technzone.miniborsa.data.models.general.ListWrapper
+import com.technzone.miniborsa.data.models.investor.investors.CategoriesItem
 import com.technzone.miniborsa.databinding.FragmentFilterBinding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
@@ -69,28 +74,52 @@ class FilterBusinessFragment : BaseBindingFragment<FragmentFilterBinding>(),
         binding?.rvIndustry?.adapter = inustryAdapter
         binding?.rvIndustry?.setOnItemClickListener(this)
         binding?.rvIndustry?.itemAnimator = null
-        inustryAdapter.submitItems(
-            arrayListOf(
-                GeneralLookup(name = "Blockchain"),
-                GeneralLookup(name = "Agriculture"),
-                GeneralLookup(name = "Robotics"),
-                GeneralLookup(name = "EdTech"),
-                GeneralLookup(name = "Food & Beverage"),
-                GeneralLookup(name = "IT"),
-            )
-        )
+        viewModel.getCategories().observe(this, categoriesResultObserver())
+    }
+
+    private fun categoriesResultObserver(): CustomObserverResponse<ListWrapper<CategoriesItem>> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<ListWrapper<CategoriesItem>> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: ListWrapper<CategoriesItem>?
+                ) {
+                    if (!data?.data.isNullOrEmpty())
+                        data?.data?.map { GeneralLookup(id = it.id, name = it.name) }?.let {
+                            inustryAdapter.submitItems(it)
+                        }
+                }
+            })
     }
 
     private fun setUpRvBusinessType() {
         businessTypeAdapter = GeneralLookupRecyclerAdapter(requireContext())
         binding?.rvBusinessType?.adapter = businessTypeAdapter
-        binding?.rvBusinessType?.setOnItemClickListener(this)
+        binding?.rvBusinessType?.setOnItemClickListener(object : BaseBindingRecyclerViewAdapter.OnItemClickListener{
+            override fun onItemClick(view: View?, position: Int, item: Any) {
+//                viewModel.selectedBusinessType = businessTypeAdapter.getSelectedItem()?.id
+            }
+        })
         binding?.rvBusinessType?.itemAnimator = null
         businessTypeAdapter.submitItems(
             arrayListOf(
-                GeneralLookup(name = "Business for Sale"),
-                GeneralLookup(name = "Share For Sale"),
-                GeneralLookup(name = "Franchise")
+                GeneralLookup(
+                    name = getString(R.string.businesses_for_sale),
+                    id = BusinessTypeEnums.BUSINESS_FOR_SALE.value,
+                    selected = viewModel.selectedBusinessType == BusinessTypeEnums.BUSINESS_FOR_SALE.value
+                ),
+                GeneralLookup(
+                    name = getString(R.string.businesses_for_sale),
+                    id = BusinessTypeEnums.BUSINESS_FOR_SHARE.value,
+                    selected = viewModel.selectedBusinessType == BusinessTypeEnums.BUSINESS_FOR_SHARE.value
+                ),
+                GeneralLookup(
+                    name = getString(R.string.franchise),
+                    id = BusinessTypeEnums.BUSINESS_FRANCHISE.value,
+                    selected = viewModel.selectedBusinessType == BusinessTypeEnums.BUSINESS_FRANCHISE.value
+                )
             )
         )
     }

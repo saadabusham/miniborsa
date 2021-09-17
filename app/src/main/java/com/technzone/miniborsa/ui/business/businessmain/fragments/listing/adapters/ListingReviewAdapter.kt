@@ -3,11 +3,8 @@ package com.technzone.miniborsa.ui.business.businessmain.fragments.listing.adapt
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
-import com.technzone.miniborsa.data.models.investor.ExtraInfo
-import com.technzone.miniborsa.databinding.RowBusinessExtraInfoBinding
 import com.technzone.miniborsa.databinding.RowListingPendingBinding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.adapters.BaseViewHolder

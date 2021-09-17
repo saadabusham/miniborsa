@@ -6,7 +6,11 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.Constants
+import com.technzone.miniborsa.data.common.CustomObserverResponse
+import com.technzone.miniborsa.data.enums.BusinessTypeEnums
+import com.technzone.miniborsa.data.models.general.ListWrapper
 import com.technzone.miniborsa.data.models.investor.Business
 import com.technzone.miniborsa.data.models.news.BusinessNews
 import com.technzone.miniborsa.databinding.FragmentInvestorSearchBinding
@@ -39,7 +43,6 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
 
     override fun onViewVisible() {
         super.onViewVisible()
-
         setUpBinding()
         setUpListeners()
         setUpRvForSaleBusiness()
@@ -66,7 +69,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
             handleBusinessNews(true)
         }
         binding?.cvSearch?.setOnClickListener {
-            FilterActivity.start(requireActivity(),binding?.cvSearch!!)
+            FilterActivity.start(requireActivity(), binding?.cvSearch!!, null)
         }
         binding?.layoutSwitchBusiness?.layoutListBusiness?.btnListBusiness?.setOnClickListener {
             binding?.layoutSwitchBusiness?.layoutListBusiness?.root?.gone()
@@ -84,8 +87,10 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
             binding?.layoutSwitchBusiness?.layoutSwitchToBusiness?.root?.gone()
         }
         binding?.imgNotifications?.setOnClickListener {
-            navigationController.navigate(R.id.action_nav_search_to_notificationFragment,
-            bundleOf(Pair(Constants.BundleData.SHOW_BACK,true)))
+            navigationController.navigate(
+                R.id.action_nav_search_to_notificationFragment,
+                bundleOf(Pair(Constants.BundleData.SHOW_BACK, true))
+            )
         }
     }
 
@@ -100,23 +105,43 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
     }
 
     private fun handleForSaleSelected(fullScreen: Boolean) {
-        viewFullScreen(fullScreen)
-        loadBusinessForSale()
+//        viewFullScreen(fullScreen)
+//        loadBusinessForSale()
+        FilterActivity.start(
+            requireActivity(),
+            binding?.cvSearch!!,
+            BusinessTypeEnums.BUSINESS_FOR_SALE.value
+        )
     }
 
     private fun loadBusinessForSale() {
-        forSaleBusinessAdapter.submitItems(
-            arrayListOf(
-                Business(),
-                Business(),
-                Business(),
-                Business(),
-                Business(),
-                Business(),
-                Business()
-            )
-        )
+        viewModel.getBusiness(BusinessTypeEnums.BUSINESS_FOR_SALE.value)
+            .observe(this, forSaleResultObserver())
     }
+
+    private fun forSaleResultObserver(): CustomObserverResponse<ListWrapper<Business>> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<ListWrapper<Business>> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: ListWrapper<Business>?
+                ) {
+                    data?.data?.let {
+                        forSaleBusinessAdapter.submitItems(it)
+                    }?.also {
+                        binding?.layoutForSale?.linearRoot?.gone()
+                    }
+                }
+
+                override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
+                    super.onError(subErrorCode, message)
+                    binding?.layoutForSale?.linearRoot?.gone()
+                }
+            })
+    }
+
 
     //    ShareForSale
     private fun setUpRvShareForSaleBusiness() {
@@ -129,22 +154,41 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
     }
 
     private fun handleShareForSaleSelected(fullScreen: Boolean) {
-        viewFullScreen(fullScreen)
-        loadBusinessShareForSale()
+//        viewFullScreen(fullScreen)
+//        loadBusinessShareForSale()
+        FilterActivity.start(
+            requireActivity(),
+            binding?.cvSearch!!,
+            BusinessTypeEnums.BUSINESS_FOR_SHARE.value
+        )
     }
 
     private fun loadBusinessShareForSale() {
-        shareForSaleBusinessAdapter.submitItems(
-            arrayListOf(
-                Business(),
-                Business(),
-                Business(),
-                Business(),
-                Business(),
-                Business(),
-                Business()
-            )
-        )
+        viewModel.getBusiness(BusinessTypeEnums.BUSINESS_FOR_SHARE.value)
+            .observe(this, forShareResultObserver())
+    }
+
+    private fun forShareResultObserver(): CustomObserverResponse<ListWrapper<Business>> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<ListWrapper<Business>> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: ListWrapper<Business>?
+                ) {
+                    data?.data?.let {
+                        shareForSaleBusinessAdapter.submitItems(it)
+                    }?.also {
+                        binding?.layoutShareForSale?.linearRoot?.gone()
+                    }
+                }
+
+                override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
+                    super.onError(subErrorCode, message)
+                    binding?.layoutForSale?.linearRoot?.gone()
+                }
+            })
     }
 
     //    ShareForSale
@@ -158,23 +202,43 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
     }
 
     private fun handleFranchiseSelected(fullScreen: Boolean) {
-        viewFullScreen(fullScreen)
-        loadBusinessFranchise()
+//        viewFullScreen(fullScreen)
+//        loadBusinessFranchise()
+        FilterActivity.start(
+            requireActivity(),
+            binding?.cvSearch!!,
+            BusinessTypeEnums.BUSINESS_FRANCHISE.value
+        )
     }
 
     private fun loadBusinessFranchise() {
-        franchiseBusinessAdapter.submitItems(
-            arrayListOf(
-                Business(),
-                Business(),
-                Business(),
-                Business(),
-                Business(),
-                Business(),
-                Business()
-            )
-        )
+        viewModel.getBusiness(BusinessTypeEnums.BUSINESS_FRANCHISE.value)
+            .observe(this, franchiseResultObserver())
     }
+
+    private fun franchiseResultObserver(): CustomObserverResponse<ListWrapper<Business>> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<ListWrapper<Business>> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: ListWrapper<Business>?
+                ) {
+                    data?.data?.let {
+                        franchiseBusinessAdapter.submitItems(it)
+                    }?.also {
+                        binding?.layoutFranchise?.linearRoot?.gone()
+                    }
+                }
+
+                override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
+                    super.onError(subErrorCode, message)
+                    binding?.layoutFranchise?.linearRoot?.gone()
+                }
+            })
+    }
+
 
     //    Business News
     private fun setUpRvBusinessNews() {

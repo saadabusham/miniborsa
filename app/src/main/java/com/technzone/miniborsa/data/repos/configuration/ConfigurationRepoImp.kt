@@ -8,7 +8,8 @@ import com.technzone.miniborsa.data.daos.remote.configuration.ConfigurationRemot
 import com.technzone.miniborsa.data.models.configuration.ConfigurationWrapperResponse
 import com.technzone.miniborsa.data.models.country.Country
 import com.technzone.miniborsa.data.models.general.ListWrapper
-import com.technzone.miniborsa.data.models.investor.CategoriesRequest
+import com.technzone.miniborsa.data.models.investor.GeneralRequest
+import com.technzone.miniborsa.data.models.investor.PropertiesItem
 import com.technzone.miniborsa.data.models.investor.investors.CategoriesItem
 import com.technzone.miniborsa.data.pref.configuration.ConfigurationPref
 import com.technzone.miniborsa.data.repos.base.BaseRepo
@@ -46,17 +47,36 @@ class ConfigurationRepoImp @Inject constructor(
     }
 
     override suspend fun getCategories(
-        categoriesRequest: CategoriesRequest
+        parentId:Int,
+        name:String?,
+        pageSize: Int,
+        pageNumber: Int
     ): APIResource<ResponseWrapper<ListWrapper<CategoriesItem>>> {
         return try {
             responseHandle.handleSuccess(
                 configurationRemoteDao.getCategories(
-                   categoriesRequest
+                   parentId, name, pageSize, pageNumber
                 )
             )
         } catch (e: Exception) {
             responseHandle.handleException(e)
         }
     }
+
+    override suspend fun getProperties(
+        parentId:Int,
+        name:String?,
+        pageSize: Int,
+        pageNumber: Int
+    ): APIResource<ResponseWrapper<ListWrapper<PropertiesItem>>> {
+        return try {
+            responseHandle.handleSuccess(
+                configurationRemoteDao.getProperty(
+                    parentId, name, pageSize, pageNumber
+                )
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }    }
 
 }

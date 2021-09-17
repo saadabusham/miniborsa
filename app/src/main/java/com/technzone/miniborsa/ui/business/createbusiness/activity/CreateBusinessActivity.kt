@@ -158,7 +158,7 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
     private fun handleMoveToNext() {
         binding?.formsViewPager?.currentItem?.let {
             if (it == 3) {
-                ListingPreviewActivity.start(this)
+                ListingPreviewActivity.start(this, viewModel.getOwnerBusiness())
             } else {
                 it.plus(1).let { it1 ->
                     binding?.formsViewPager?.setCurrentItem(

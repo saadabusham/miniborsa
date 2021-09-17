@@ -308,5 +308,8 @@
     <string name="message">Message</string>
     <string name="find_investor">Find Investor</string>
     <string name="confirm">Confirm</string>
+    <string name="please_select_your_countries">Please select your countries</string>
+    <string name="please_select_your_specialisations">Please select your specialisations</string>
+    <string name="select_item">Select Item</string>
 
 </resources>

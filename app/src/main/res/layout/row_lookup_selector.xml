@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.technzone.miniborsa.data.models.general.GeneralLookup" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/relativeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_42sdp">
+
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            android:id="@+id/tvTitle"
+            style="@style/textview_normal_semibold"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_41sdp"
+            android:paddingStart="@dimen/layouts_margin_start"
+            android:layout_toStartOf="@id/imgSelected"
+            android:gravity="center|start"
+            android:text="@{item.name}"
+            android:textSize="@dimen/_13ssp"
+            tools:text="JOR +962"
+            android:textColor="@color/text_default_color" />
+
+        <ImageView
+            android:id="@+id/imgSelected"
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="@dimen/_10sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="@dimen/layouts_margin_end"
+            android:src="@drawable/ic_true"
+            android:visibility="gone"
+            app:tint="@color/divider_gray" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/divider_gray"
+            android:layout_below="@id/tvTitle"/>
+    </RelativeLayout>
+
+</layout>

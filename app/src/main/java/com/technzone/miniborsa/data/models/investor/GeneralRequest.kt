@@ -2,7 +2,7 @@ package com.technzone.miniborsa.data.models.investor
 
 import com.google.gson.annotations.SerializedName
 
-data class CategoriesRequest(
+data class GeneralRequest(
 
 	@field:SerializedName("pageNumber")
 	val pageNumber: Int? = null,

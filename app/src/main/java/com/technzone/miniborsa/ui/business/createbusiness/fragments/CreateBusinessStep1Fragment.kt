@@ -4,11 +4,17 @@ import android.app.Activity
 import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContracts
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.Constants
+import com.technzone.miniborsa.data.common.CustomObserverResponse
+import com.technzone.miniborsa.data.models.general.GeneralLookup
+import com.technzone.miniborsa.data.models.general.ListWrapper
+import com.technzone.miniborsa.data.models.investor.investors.CategoriesItem
 import com.technzone.miniborsa.data.models.map.Address
 import com.technzone.miniborsa.databinding.FragmentCreateBusinessStep1Binding
 import com.technzone.miniborsa.ui.base.dialogs.DialogsUtil
 import com.technzone.miniborsa.ui.base.fragment.BaseFormBindingFragment
+import com.technzone.miniborsa.ui.base.sheet.lookupselector.LookupSelectorBottomSheet
 import com.technzone.miniborsa.ui.map.MapActivity
 import com.technzone.miniborsa.utils.getLocationName
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,6 +42,51 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
         binding?.btnPinLocation?.setOnClickListener {
             MapActivity.start(requireActivity(), resultLauncher)
         }
+        binding?.tvCat1?.setOnClickListener {
+            viewModel.getCategories().observe(this, categoriesResultObserver(1))
+        }
+        binding?.tvCat2?.setOnClickListener {
+            viewModel.getCategories().observe(this, categoriesResultObserver(2))
+        }
+        binding?.tvCat3?.setOnClickListener {
+            viewModel.getCategories().observe(this, categoriesResultObserver(3))
+        }
+    }
+
+    private fun categoriesResultObserver(categoryNumber: Int): CustomObserverResponse<ListWrapper<CategoriesItem>> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<ListWrapper<CategoriesItem>> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: ListWrapper<CategoriesItem>?
+                ) {
+                    if (!data?.data.isNullOrEmpty())
+                        data?.data?.map { GeneralLookup(id = it.id, name = it.name) }?.let {
+                            showCategorySheet(categoryNumber, it)
+                        }
+                }
+            })
+    }
+
+    private fun showCategorySheet(categoryNumber: Int, list: List<GeneralLookup>) {
+        LookupSelectorBottomSheet(callBack = object :
+            LookupSelectorBottomSheet.LookupSelectorCallBack {
+            override fun callBack(selectedItem: GeneralLookup) {
+                when (categoryNumber) {
+                    1 -> {
+                        binding?.tvCat1?.text = selectedItem.name
+                    }
+                    2 -> {
+                        binding?.tvCat2?.text = selectedItem.name
+                    }
+                    else -> {
+                        binding?.tvCat2?.text = selectedItem.name
+                    }
+                }
+            }
+        }, list = list, fullScreen = true)
     }
 
     var resultLauncher =

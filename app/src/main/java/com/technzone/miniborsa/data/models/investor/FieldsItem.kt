@@ -1,17 +1,16 @@
 package com.technzone.miniborsa.data.models.investor
 
-import com.squareup.moshi.Json
-import com.technzone.miniborsa.data.models.investor.Field
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class FieldsItem(
 
-    @Json(name="field")
+	@field:SerializedName("field")
 	val field: Field? = null,
 
-    @Json(name="id")
+	@field:SerializedName("id")
 	val id: Int? = null,
 
-    @Json(name="value")
+	@field:SerializedName("value")
 	val value: String? = null
-):Serializable
+): Serializable

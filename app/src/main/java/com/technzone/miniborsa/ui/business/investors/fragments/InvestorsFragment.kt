@@ -5,6 +5,7 @@ import androidx.fragment.app.activityViewModels
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.CustomObserverResponse
+import com.technzone.miniborsa.data.models.general.ListWrapper
 import com.technzone.miniborsa.data.models.investor.investors.Investor
 import com.technzone.miniborsa.databinding.FragmentInvestorsBinding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
@@ -50,17 +51,17 @@ class InvestorsFragment : BaseBindingFragment<FragmentInvestorsBinding>(),
         binding?.rvInvestors?.setOnItemClickListener(this)
     }
 
-    private fun investorsResultObserver(): CustomObserverResponse<List<Investor>> {
+    private fun investorsResultObserver(): CustomObserverResponse<ListWrapper<Investor>> {
         return CustomObserverResponse(
             requireActivity(),
-            object : CustomObserverResponse.APICallBack<List<Investor>> {
+            object : CustomObserverResponse.APICallBack<ListWrapper<Investor>> {
                 override fun onSuccess(
                     statusCode: Int,
                     subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: List<Investor>?
+                    data: ListWrapper<Investor>?
                 ) {
-                    if (data != null) {
-                        investorsRecyclerAdapter.submitItems(data)
+                    if (data?.data != null) {
+                        investorsRecyclerAdapter.submitItems(data.data)
                     }
                 }
             })

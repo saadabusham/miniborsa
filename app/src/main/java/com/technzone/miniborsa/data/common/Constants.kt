@@ -13,6 +13,8 @@ object Constants {
 
     object BundleData {
 
+        const val OWNER_BUSINESS: String = "ownerBusiness"
+        const val BUSINESS_ID: String ="businessId"
         const val SHOW_BACK: String = "showBack"
         const val INVESTOR_ID: String = "investorId"
         const val ADDRESS: String = "address"

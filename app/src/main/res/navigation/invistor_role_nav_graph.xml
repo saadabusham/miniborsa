@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/investorRoleStep1Fragment"
-        android:name="com.technzone.miniborsa.ui.investor.invistorroles.fragments.CompleteInvestorRoleFragment"
+        android:name="com.technzone.miniborsa.ui.investor.invistorroles.fragments.BecomeInvestorRoleFragment"
         android:label="InvestorRoleStep1Fragment"
-        tools:layout="@layout/fragment_complete_invistor_role"/>
+        tools:layout="@layout/fragment_become_invistor"/>
 </navigation>

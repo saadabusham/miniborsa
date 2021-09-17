@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.investor.invistormain.viewmodels.InvestorMainViewModel" />
+            type="com.technzone.miniborsa.ui.business.businessmain.viewmodels.BusinessMainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,6 +35,7 @@
             android:clickable="true"
             android:focusable="true"
             android:padding="@dimen/_7sdp"
+            android:visibility="gone"
             android:src="@drawable/ic_add_business"
             app:layout_constraintBottom_toBottomOf="@id/tvTitle"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +69,7 @@
             <include
                 android:id="@+id/layout_listing"
                 layout="@layout/layout_listing"
-                android:visibility="visible"/>
+                android:visibility="gone"/>
 
             <include
                 android:id="@+id/layout_add_business"

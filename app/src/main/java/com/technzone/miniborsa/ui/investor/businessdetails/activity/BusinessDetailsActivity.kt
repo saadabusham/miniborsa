@@ -6,11 +6,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.Constants
+import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.data.models.Media
 import com.technzone.miniborsa.data.models.investor.Business
 import com.technzone.miniborsa.data.models.investor.ExtraInfo
-import com.technzone.miniborsa.data.models.investor.FieldsItem
 import com.technzone.miniborsa.databinding.ActivityBusinessDetailsBinding
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
@@ -48,6 +49,21 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
         )
         setUpBinding()
         setUpListeners()
+        initData()
+    }
+
+    private fun initData() {
+        intent.getIntExtra(Constants.BundleData.BUSINESS_ID, -1)?.let {
+            if (it == -1) {
+                viewModel.businessToView.value =
+                    intent.getSerializableExtra(Constants.BundleData.BUSINESS) as Business
+                handleData()
+            } else
+                viewModel.getBusiness(it).observe(this, businessDetailsResultObserver())
+        }
+    }
+
+    private fun handleData() {
         setUpRvSlider()
         setUpRvFields()
         setUpRvExtraInfo()
@@ -70,61 +86,52 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
         binding?.viewModel = viewModel
     }
 
+    private fun businessDetailsResultObserver(): CustomObserverResponse<Business> {
+        return CustomObserverResponse(
+            this,
+            object : CustomObserverResponse.APICallBack<Business> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: Business?
+                ) {
+                    viewModel.businessToView.value = data
+                    handleData()
+                }
+            })
+    }
+
     private fun setUpRvSlider() {
         businessSliderAdapter = BusinessSliderAdapter(this)
         binding?.layoutBusinessSlider?.vpPictures?.adapter = businessSliderAdapter
         getSnapHelper()?.attachToRecyclerView(binding?.layoutBusinessSlider?.vpPictures)
         binding?.layoutBusinessSlider?.vpPictures?.setOnItemClickListener(this)
-        businessSliderAdapter.submitItems(
-            arrayListOf(
-                Media(name = null),
-                Media(name = null),
-                Media(name = null),
-                Media(name = null),
-                Media(name = null),
-                Media(name = null),
-                Media(name = null),
-                Media(name = null)
+        viewModel.businessToView.value?.images?.let {
+            businessSliderAdapter.submitItems(
+                it
             )
-        )
+        }
     }
 
     private fun setUpRvFields() {
         businessFieldAdapter = BusinessFieldAdapter(this)
         binding?.layoutBusinessDetails?.rvFields?.adapter = businessFieldAdapter
-        businessFieldAdapter.submitItems(
-            arrayListOf(
-                FieldsItem(),
-                FieldsItem(),
-                FieldsItem(),
-                FieldsItem(),
-                FieldsItem(),
-                FieldsItem(),
-                FieldsItem(),
-                FieldsItem(),
-                FieldsItem(),
-                FieldsItem()
+        viewModel.businessToView.value?.fields?.let {
+            businessFieldAdapter.submitItems(
+                it
             )
-        )
+        }
     }
 
     private fun setUpRvExtraInfo() {
         businessExtraInfoAdapter = BusinessExtraInfoAdapter(this)
         binding?.layoutBusinessExtraInfo?.rvExtraInfo?.adapter = businessExtraInfoAdapter
-        businessExtraInfoAdapter.submitItems(
-            arrayListOf(
-                ExtraInfo(),
-                ExtraInfo(),
-                ExtraInfo(),
-                ExtraInfo(),
-                ExtraInfo(),
-                ExtraInfo(),
-                ExtraInfo(),
-                ExtraInfo(),
-                ExtraInfo(),
-                ExtraInfo()
-            )
-        )
+        viewModel.businessToView.value?.properties?.map { ExtraInfo(name = it.name, id = it.id) }
+            ?.let {
+                businessExtraInfoAdapter.submitItems(
+                    it
+                )
+            }
     }
 
     private fun setUpRvDocuments() {
@@ -149,10 +156,12 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
     companion object {
         fun start(
             context: Context?,
-            business: Business
+            business: Business,
+            businessId: Int = -1
         ) {
             val intent = Intent(context, BusinessDetailsActivity::class.java).apply {
                 putExtra(Constants.BundleData.BUSINESS, business)
+                putExtra(Constants.BundleData.BUSINESS_ID, businessId)
             }
             context?.startActivity(intent)
         }

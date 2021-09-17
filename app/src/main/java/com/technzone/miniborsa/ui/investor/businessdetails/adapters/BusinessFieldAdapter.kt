@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.technzone.miniborsa.data.models.Media
-import com.technzone.miniborsa.data.models.investor.Field
 import com.technzone.miniborsa.data.models.investor.FieldsItem
 import com.technzone.miniborsa.databinding.RowBusinessDetailsBinding
 import com.technzone.miniborsa.databinding.RowBusinessImageBinding
