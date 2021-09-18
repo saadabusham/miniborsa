@@ -15,6 +15,20 @@
         android:layout_height="match_parent">
 
 
+        <com.technzone.miniborsa.ui.base.views.AppImageView
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/_7sdp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvTitle" />
+
         <com.technzone.miniborsa.ui.base.views.AppTextView
             android:id="@+id/tvTitle"
             style="@style/textview_normal_bold"
@@ -29,15 +43,29 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.technzone.miniborsa.ui.base.views.AppImageView
-            android:id="@+id/imgAddBusiness"
+            android:id="@+id/imgSearch"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/ic_nav_search"
+            android:tint="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+            app:layout_constraintEnd_toStartOf="@id/imgFilter"
+            app:layout_constraintTop_toTopOf="@id/tvTitle" />
+
+        <com.technzone.miniborsa.ui.base.views.AppImageView
+            android:id="@+id/imgFilter"
             android:layout_width="@dimen/_32sdp"
             android:layout_height="@dimen/_32sdp"
             android:layout_marginEnd="@dimen/_7sdp"
             android:background="?selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
-            android:padding="@dimen/_7sdp"
-            android:src="@drawable/ic_setting"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/ic_filter_investor"
             app:layout_constraintBottom_toBottomOf="@id/tvTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvTitle" />
@@ -51,10 +79,10 @@
             android:nestedScrollingEnabled="false"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
-            app:layout_constraintBottom_toBottomOf="parent"
             tools:listitem="@layout/row_investor" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

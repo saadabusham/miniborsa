@@ -14,6 +14,7 @@ import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
 import com.technzone.miniborsa.ui.business.investors.adapters.InvestorsRecyclerAdapter
 import com.technzone.miniborsa.ui.business.investors.viewmodels.InvestorsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
 class InvestorsFragment : BaseBindingFragment<FragmentInvestorsBinding>(),
@@ -42,7 +43,9 @@ class InvestorsFragment : BaseBindingFragment<FragmentInvestorsBinding>(),
     }
 
     private fun setUpListeners() {
-
+        binding?.imgBack?.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 
     private fun setUpRvInvestors() {
