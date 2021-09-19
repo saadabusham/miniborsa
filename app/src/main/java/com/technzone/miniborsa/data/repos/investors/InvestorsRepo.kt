@@ -17,6 +17,10 @@ interface InvestorsRepo {
     suspend fun getInvestor(
     ): APIResource<ResponseWrapper<Investor>>
 
+    suspend fun getInvestorById(
+        id: Int
+    ): APIResource<ResponseWrapper<Investor>>
+
     suspend fun becomeInvestor(
         jobTitle : String?,
         investmentBudget : Double,

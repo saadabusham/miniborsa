@@ -12,6 +12,7 @@ object PrefConstants {
     const val USER_PHONE_NUMBER_VALUE = "userPhoneNumberValue"
     const val NOTIFICATION_SWITCH_VALUE = "userNotificationStatusVale"
     const val TOUCH_ID_SWITCH_VALUE = "userTouchIdStatusVale"
+    const val FIRST_LOGIN = "firstLogin"
 
     // User
     const val USER_STATUS_VALUE = "userStatusValue"

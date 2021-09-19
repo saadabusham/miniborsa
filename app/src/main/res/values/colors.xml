@@ -122,6 +122,7 @@
     <color name="indecator_diactive">#29000000</color>
     <!-- InputLayout Color -->
     <color name="light_orange_color">#F39A74</color>
+    <color name="light_orange_color_alpha20">#33F39A74</color>
     <color name="focused_color">#E9591C</color>
     <color name="unfocused_color">#D8D8D8</color>
     <color name="error_color">#DC0C0C</color>

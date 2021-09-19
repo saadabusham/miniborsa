@@ -31,8 +31,11 @@ class InvestorsRecyclerAdapter constructor(
         BaseViewHolder<Investor>(binding.root) {
         override fun bind(item: Investor) {
             binding.item = item
-            binding.root.setOnClickListener {
-                itemClickListener?.onItemClick(binding.root, bindingAdapterPosition, item)
+            binding.btnViewProfile.setOnClickListener {
+                itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
+            }
+            binding.btnMessage.setOnClickListener {
+                itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
             }
         }
     }

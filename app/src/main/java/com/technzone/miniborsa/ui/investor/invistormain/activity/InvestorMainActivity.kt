@@ -8,6 +8,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.common.interfaces.BaseActivityCallback
+import com.technzone.miniborsa.common.interfaces.LoginCallBack
+import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.databinding.ActivityInvestorMainBinding
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
 import com.technzone.miniborsa.ui.investor.invistormain.viewmodels.InvestorMainViewModel
@@ -19,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class InvestorMainActivity : BaseBindingActivity<ActivityInvestorMainBinding>(),
     BaseActivityCallback {
 
+    var loginCallBack: LoginCallBack? = null
     private val viewModel: InvestorMainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +49,12 @@ class InvestorMainActivity : BaseBindingActivity<ActivityInvestorMainBinding>(),
 
     override fun showBottomSheet() {
         binding?.bnvMain?.visible()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (data?.getBooleanExtra(Constants.BundleData.IS_LOGIN_SUCCESS, false) == true)
+            loginCallBack?.loggedInSuccess()
     }
 
     companion object {

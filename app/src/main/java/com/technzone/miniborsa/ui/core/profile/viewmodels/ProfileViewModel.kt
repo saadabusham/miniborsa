@@ -2,6 +2,8 @@ package com.technzone.miniborsa.ui.core.profile.viewmodels
 
 import androidx.lifecycle.liveData
 import com.technzone.miniborsa.common.CommonEnums
+import com.technzone.miniborsa.data.enums.UserEnums
+import com.technzone.miniborsa.data.enums.UserRoleEnums
 import com.technzone.miniborsa.data.pref.configuration.ConfigurationPref
 import com.technzone.miniborsa.data.pref.user.UserPref
 import com.technzone.miniborsa.data.repos.user.UserRepo
@@ -22,6 +24,12 @@ class ProfileViewModel @Inject constructor(
     fun getCurrentUserRoles(): String {
         return userRepo.getCurrentRole()
     }
+    fun isUserHasBusinessRoles(): Boolean {
+        return userRepo.getUser()?.roles?.singleOrNull { it.role == UserRoleEnums.BUSINESS_ROLE.value } !=null
+    }
+    fun isUserHasInvestorRoles(): Boolean {
+        return userRepo.getUser()?.roles?.singleOrNull { it.role == UserRoleEnums.INVESTOR_ROLE.value } !=null
+    }
     fun setCurrentUserRoles(role:String) {
         return userRepo.setCurrentRole(role)
     }
@@ -41,4 +49,6 @@ class ProfileViewModel @Inject constructor(
         )
         emit(null)
     }
+    fun isUserLoggedIn() = userRepo.getUserStatus() == UserEnums.UserState.LoggedIn
+
 }

@@ -14,6 +14,8 @@ import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.business.businessmain.activity.BusinessMainActivity
 import com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity
+import com.technzone.miniborsa.ui.investor.invistorroles.activity.InvestorRolesActivity
+import com.technzone.miniborsa.ui.subscription.activity.SubscriptionActivity
 import com.technzone.miniborsa.ui.userrole.adapters.UserRolesRecyclerAdapter
 import com.technzone.miniborsa.ui.userrole.viewmodel.UserRolesViewModel
 import com.technzone.miniborsa.utils.extensions.showErrorAlert
@@ -100,10 +102,13 @@ class UserRolesActivity : BaseBindingActivity<ActivityUserRoleBinding>(),
         item as UserRoles
         when (item.title) {
             UserRoleEnums.BUSINESS_ROLE.value -> {
+                SubscriptionActivity.start(this, true)
             }
             UserRoleEnums.INVESTOR_ROLE.value -> {
+                InvestorRolesActivity.start(this)
             }
             UserRoleEnums.VISITOR_ROLE.value -> {
+                InvestorMainActivity.start(this)
             }
         }
     }

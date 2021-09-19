@@ -1,5 +1,6 @@
 package com.technzone.miniborsa.ui.base.dialogs
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.app.TimePickerDialog
@@ -185,5 +186,9 @@ object DialogsUtil {
         } else {
             positiveBtn.visibility = View.GONE
         }
+    }
+
+    fun Activity.showLoginDialog(callBack:LoginDialog.CallBack){
+        LoginDialog(this,callBack).show()
     }
 }

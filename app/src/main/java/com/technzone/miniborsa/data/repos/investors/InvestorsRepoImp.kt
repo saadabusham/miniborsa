@@ -37,6 +37,16 @@ class InvestorsRepoImp @Inject constructor(
         }
     }
 
+    override suspend fun getInvestorById(id: Int): APIResource<ResponseWrapper<Investor>> {
+        return try {
+            responseHandle.handleSuccess(
+                investorRemoteDao.getInvestorById(id)
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
     override suspend fun becomeInvestor(
         jobTitle: String?,
         investmentBudget: Double,

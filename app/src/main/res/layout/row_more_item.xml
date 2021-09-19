@@ -68,7 +68,7 @@
                 app:cornerRadius="@dimen/_2sdp"
                 app:layout_constraintStart_toEndOf="@id/cvImage"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="@{data.moreEnums == MoreEnums.LIST_YOUR_BUSINESS ? View.VISIBLE : View.GONE}" />
+                tools:visibility="@{data.moreEnums == MoreEnums.SWITCH_TO_BUSINESS ? View.VISIBLE : View.GONE}" />
         </LinearLayout>
 
     </LinearLayout>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.technzone.miniborsa.ui.business.investors.dialogs.InvestorFilterBottomSheet" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_60sdp"
+            app:cardBackgroundColor="@color/white"
+            app:shapeAppearance="@style/top_cardview_corner">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_4sdp"
+                    android:layout_gravity="center"
+                    app:cardBackgroundColor="#E0E0E0"
+                    app:cardCornerRadius="@dimen/_3sdp"
+                    app:cardElevation="0dp" />
+
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    android:id="@+id/tvLocation"
+                    style="@style/textview_normal_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_17sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:text="@string/location"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp" />
+
+                <View
+                    android:id="@+id/divLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:background="@color/color_not_valid" />
+
+                <com.technzone.miniborsa.ui.base.views.AppTextInputLayout
+                    android:id="@+id/tfAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:hint="@string/enter_postal_code_or_address"
+                    app:layout_constraintEnd_toEndOf="@id/endGuide"
+                    app:layout_constraintStart_toStartOf="@id/beginGuide"
+                    app:layout_constraintTop_toBottomOf="@id/divLocation">
+
+                    <com.technzone.miniborsa.ui.base.views.AppTextInputEditText
+                        android:id="@+id/edAddress"
+                        style="@style/TextInputEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_business_pin"
+                        android:inputType="textEmailAddress"
+                        android:text="@={viewModel.addressStr}" />
+
+                </com.technzone.miniborsa.ui.base.views.AppTextInputLayout>
+
+                <TextView
+                    android:id="@+id/tvHeader"
+                    style="@style/textview_normal_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|start"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:gravity="center|start"
+                    android:text="@string/alphabetical"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="true"
+                    android:orientation="vertical"
+                    tools:itemCount="3"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/row_sort" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:background="@color/color_not_valid" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:orientation="horizontal">
+
+                    <com.technzone.miniborsa.ui.base.views.AppTextView
+                        android:id="@+id/tvFreeholdIsNegotiable"
+                        style="@style/textview_normal_medium"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:text="@string/only_show_featured_investors"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchFeatures"
+                        style="@style/Widget.App.Switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="?selectableItemBackgroundBorderless"
+                        android:checked="@={viewModel.isShowFeatured}" />
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDone"
+                    style="@style/AppTheme.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:onClick="@{()->viewModel.onDoneClicked()}"
+                    android:stateListAnimator="@null"
+                    android:backgroundTint="@color/green_color"
+                    android:text="@string/done"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </RelativeLayout>
+</layout>

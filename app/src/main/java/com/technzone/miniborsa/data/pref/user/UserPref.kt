@@ -7,9 +7,11 @@ interface UserPref {
     fun setIsFirstOpen(isFirstOpen: Boolean)
     fun getIsFirstOpen(): Boolean
 
+    fun setIsFirstLogin(isFirstLogin: Boolean)
+    fun getIsFirstLogin(): Boolean
+
     fun saveAccessToken(accessToken: String)
     fun getAccessToken(): String
-
 
     fun saveUserPassword(password: String)
     fun getUserPassword(): String

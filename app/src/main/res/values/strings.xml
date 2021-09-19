@@ -159,7 +159,8 @@
     <string name="complete">Complete</string>
     <string name="available_on_request">Available On Request</string>
     <string name="investment_budget">Investment Budget</string>
-    <string name="countries">Countries:</string>
+    <string name="countries_">Countries:</string>
+    <string name="countries">Countries</string>
     <string name="select_country">Select Country</string>
     <string name="sectors_of_specialisation">Sectors of Specialisation</string>
     <string name="select_specialisation">Select Specialisation</string>
@@ -224,8 +225,7 @@
     <string name="sign_out">Sign out</string>
     <string name="free_trial">Free Trial</string>
     <string name="more_edit_profile">Edit Profile</string>
-    <string name="more_list_your_business">List Your Business</string>
-    <string name="more_become_an_investor">Become an Investor</string>
+    <string name="more_switch_to_business_owner">Switch to business owner</string>
     <string name="more_notification">Notification</string>
     <string name="more_recent_viewed">Recent Viewed</string>
     <string name="more_languange">Languange</string>
@@ -248,7 +248,7 @@
     <string name="listing_score">Listing Score</string>
     <string name="having_a_high_score_will_be_easier_to_find_in_the_search_features_by_your_prospective_buyers">Having a high score will be easier to find in the search features by your prospective buyers.</string>
 
-<!--    Add Business-->
+    <!--    Add Business-->
     <string name="tittle_your_listing">Tittle your Listing</string>
     <string name="use_words_to_describe_your_business">Use words to describe your business</string>
     <string name="title_count">%s OF 35</string>
@@ -311,5 +311,23 @@
     <string name="please_select_your_countries">Please select your countries</string>
     <string name="please_select_your_specialisations">Please select your specialisations</string>
     <string name="select_item">Select Item</string>
+    <string name="only_show_featured_investors">Only Show Featured Investors</string>
+
+    <!--    Sorting-->
+    <string name="alphabetical">Alphabetical</string>
+    <string name="sort_a_z">Sort by A-Z</string>
+    <string name="sort_by_default">Sort by Default</string>
+    <string name="sort_by_investments">Sort by investments</string>
+    <string name="about">About</string>
+
+    <!--    Login-->
+    <string name="you_have_to_login">You have to login!</string>
+    <string name="you_can_t_see_the_business_details_you_have_to_login_first">You can’t see the business details, you have to login first.</string>
+    <string name="start_connect_with_business_messages_you_have_to_login">Start connect with business messages you have to login.</string>
+    <string name="you_have_to_be_investor">You have to be investor!</string>
+    <string name="to_start_connect_with_business_messages_you_have_to_be_investor">To Start connect with business messages you have to be investor.</string>
+    <string name="become_investor">Become Investor</string>
+    <string name="startups_found">%s Startups Found</string>
+
 
 </resources>

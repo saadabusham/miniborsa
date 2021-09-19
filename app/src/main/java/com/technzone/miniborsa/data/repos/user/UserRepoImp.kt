@@ -271,4 +271,12 @@ class UserRepoImp @Inject constructor(
         return userPref.getCurrentRole()
     }
 
+    override fun setIsFirstLogin(isFirstLogin: Boolean) {
+        userPref.setIsFirstLogin(isFirstLogin)
+    }
+
+    override fun getIsFirstLogin(): Boolean {
+        return userPref.getIsFirstLogin()
+    }
+
 }

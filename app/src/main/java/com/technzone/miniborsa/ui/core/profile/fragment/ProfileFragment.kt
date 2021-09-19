@@ -5,6 +5,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.common.CommonEnums
+import com.technzone.miniborsa.common.interfaces.LoginCallBack
 import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.enums.MoreEnums
 import com.technzone.miniborsa.data.enums.UserRoleEnums
@@ -14,6 +15,8 @@ import com.technzone.miniborsa.ui.auth.AuthActivity
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
+import com.technzone.miniborsa.ui.base.dialogs.DialogsUtil.showLoginDialog
+import com.technzone.miniborsa.ui.base.dialogs.LoginDialog
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
 import com.technzone.miniborsa.ui.business.businessmain.activity.BusinessMainActivity
 import com.technzone.miniborsa.ui.business.investors.activity.InvestorsActivity
@@ -21,12 +24,13 @@ import com.technzone.miniborsa.ui.core.profile.adapters.MoreRecyclerAdapter
 import com.technzone.miniborsa.ui.core.profile.viewmodels.ProfileViewModel
 import com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity
 import com.technzone.miniborsa.ui.investor.invistorroles.activity.InvestorRolesActivity
+import com.technzone.miniborsa.ui.subscription.activity.SubscriptionActivity
 import com.technzone.miniborsa.utils.LocaleUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
-    BaseBindingRecyclerViewAdapter.OnItemClickListener {
+    BaseBindingRecyclerViewAdapter.OnItemClickListener, LoginCallBack {
 
     private val viewModel: ProfileViewModel by activityViewModels()
 
@@ -36,6 +40,13 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
 
     override fun onViewVisible() {
         super.onViewVisible()
+        init()
+    }
+
+    private fun init() {
+        if (requireActivity() is InvestorMainActivity) (requireActivity() as InvestorMainActivity).loginCallBack =
+            this
+//        else (requireActivity() as BusinessMainActivity).loginCallBack = this
         setUpBinding()
         setUpListeners()
         setUpAccountRecyclerView()
@@ -71,13 +82,6 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
         addItemsDependOnUserRoles(itemList)
         itemList.add(
             More(
-                resources.getString(R.string.more_recent_viewed),
-                R.drawable.ic_more_recent_viewed,
-                MoreEnums.RECENT_VIEWED
-            )
-        )
-        itemList.add(
-            More(
                 resources.getString(R.string.more_languange),
                 R.drawable.ic_more_languange,
                 MoreEnums.LANGUAGE
@@ -98,9 +102,9 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
             UserRoleEnums.INVESTOR_ROLE.value -> {
                 itemList.add(
                     More(
-                        resources.getString(R.string.more_list_your_business),
+                        resources.getString(R.string.more_switch_to_business_owner),
                         R.drawable.ic_more_list_business,
-                        MoreEnums.LIST_YOUR_BUSINESS
+                        MoreEnums.SWITCH_TO_BUSINESS
                     )
                 )
                 itemList.add(
@@ -130,16 +134,16 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
             UserRoleEnums.VISITOR_ROLE.value -> {
                 itemList.add(
                     More(
-                        resources.getString(R.string.more_list_your_business),
+                        resources.getString(R.string.more_switch_to_business_owner),
                         R.drawable.ic_more_list_business,
-                        MoreEnums.LIST_YOUR_BUSINESS
+                        MoreEnums.SWITCH_TO_BUSINESS
                     )
                 )
                 itemList.add(
                     More(
-                        resources.getString(R.string.more_become_an_investor),
+                        resources.getString(R.string.more_switch_to_investor),
                         R.drawable.ic_more_become_investor,
-                        MoreEnums.BECOME_INVESTOR
+                        MoreEnums.SWITCH_TO_INVESTOR
                     )
                 )
                 itemList.add(
@@ -149,20 +153,27 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
                         MoreEnums.NOTIFICATION
                     )
                 )
+                itemList.add(
+                    More(
+                        resources.getString(R.string.more_recent_viewed),
+                        R.drawable.ic_more_recent_viewed,
+                        MoreEnums.RECENT_VIEWED
+                    )
+                )
             }
             UserRoleEnums.GUEST_ROLE.value -> {
                 itemList.add(
                     More(
-                        resources.getString(R.string.more_list_your_business),
+                        resources.getString(R.string.more_switch_to_business_owner),
                         R.drawable.ic_more_list_business,
-                        MoreEnums.LIST_YOUR_BUSINESS
+                        MoreEnums.SWITCH_TO_BUSINESS
                     )
                 )
                 itemList.add(
                     More(
-                        resources.getString(R.string.more_become_an_investor),
+                        resources.getString(R.string.more_switch_to_investor),
                         R.drawable.ic_more_become_investor,
-                        MoreEnums.BECOME_INVESTOR
+                        MoreEnums.SWITCH_TO_INVESTOR
                     )
                 )
                 itemList.add(
@@ -187,34 +198,62 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
         })
     }
 
+    private fun showLoginDialog(){
+        requireActivity().showLoginDialog(object : LoginDialog.CallBack {
+            override fun callBackLogin() {
+                AuthActivity.startForResult(requireActivity(),true)
+            }
+        })
+    }
+
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as More
         when (item.moreEnums) {
             MoreEnums.MY_PROFILE -> {
+                if (viewModel.isUserLoggedIn()) {
 
+                } else {
+                   showLoginDialog()
+                }
             }
-            MoreEnums.LIST_YOUR_BUSINESS -> {
-                viewModel.setCurrentUserRoles(UserRoleEnums.BUSINESS_ROLE.value)
-                BusinessMainActivity.start(requireContext())
+            MoreEnums.SWITCH_TO_BUSINESS -> {
+                if (viewModel.isUserHasBusinessRoles()) {
+                    viewModel.setCurrentUserRoles(UserRoleEnums.BUSINESS_ROLE.value)
+                    BusinessMainActivity.start(requireContext())
+                } else {
+                    SubscriptionActivity.start(requireContext(), true)
+                }
             }
             MoreEnums.INVESTORS_LIST -> {
                 InvestorsActivity.start(requireContext())
             }
             MoreEnums.SWITCH_TO_INVESTOR -> {
-                viewModel.setCurrentUserRoles(UserRoleEnums.INVESTOR_ROLE.value)
-                InvestorMainActivity.start(requireContext())
-            }
-            MoreEnums.BECOME_INVESTOR -> {
-                InvestorRolesActivity.start(requireContext())
+                if (viewModel.isUserHasInvestorRoles()) {
+                    viewModel.setCurrentUserRoles(UserRoleEnums.INVESTOR_ROLE.value)
+                    InvestorMainActivity.start(requireContext())
+                } else {
+                    InvestorRolesActivity.start(requireContext())
+                }
             }
             MoreEnums.NOTIFICATION -> {
-                navigationController.navigate(R.id.action_nav_profile_to_notificationFragment,
-                    bundleOf(Pair(Constants.BundleData.SHOW_BACK,true)))
-
+                if (viewModel.isUserLoggedIn()) {
+                    navigationController.navigate(
+                        R.id.action_nav_profile_to_notificationFragment,
+                        bundleOf(Pair(Constants.BundleData.SHOW_BACK, true))
+                    )
+                } else {
+                    showLoginDialog()
+                }
             }
+
             MoreEnums.RECENT_VIEWED -> {
+                if (viewModel.isUserLoggedIn()) {
 
+                } else {
+                    showLoginDialog()
+                }
             }
+
             MoreEnums.LANGUAGE -> {
                 switchLanguage()
             }
@@ -224,4 +263,8 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
         }
     }
 
+    override fun loggedInSuccess() {
+        moreRecyclerAdapter.clear()
+        initData()
+    }
 }

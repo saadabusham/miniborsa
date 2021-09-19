@@ -179,6 +179,7 @@
         <item name="shapeAppearanceOverlay">@style/Button_Rounded</item>
         <item name="shapeAppearance">@style/Button_Rounded</item>
         <item name="fontFamily">@font/en_normal_regular</item>
+        <item name="android:fontFamily">@font/en_normal_regular</item>
     </style>
 
     <style name="Button_Rounded">

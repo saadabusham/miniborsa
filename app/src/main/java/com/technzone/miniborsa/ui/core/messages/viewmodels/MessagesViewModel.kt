@@ -6,8 +6,10 @@ import androidx.lifecycle.liveData
 import com.technzone.flyus_owner.data.models.twilio.chat.ChatChannel
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.api.response.APIResource
-import com.technzone.miniborsa.data.repos.user.UserRepo
+import com.technzone.miniborsa.data.enums.UserEnums
+import com.technzone.miniborsa.data.enums.UserRoleEnums
 import com.technzone.miniborsa.data.repos.twilio.TwilioRepo
+import com.technzone.miniborsa.data.repos.user.UserRepo
 import com.technzone.miniborsa.ui.base.viewmodel.BaseViewModel
 import com.technzone.miniborsa.utils.extensions.getFullDate
 import com.technzone.miniborsa.utils.extensions.getNotificationDateForamteed
@@ -111,5 +113,11 @@ class MessagesViewModel @Inject constructor(
     fun getDateFormated(date: String): String {
         return date?.getFullDate().toDate()?.time?.getNotificationDateForamteed()
             ?: ""
+    }
+
+    fun isUserLoggedIn() = userRepo.getUserStatus() == UserEnums.UserState.LoggedIn
+    fun canViewMessages(): Boolean {
+        return userRepo.getUser()?.roles?.filter { it.role == UserRoleEnums.INVESTOR_ROLE.value || it.role == UserRoleEnums.BUSINESS_ROLE.value }
+            ?.isNotEmpty() == true
     }
 }

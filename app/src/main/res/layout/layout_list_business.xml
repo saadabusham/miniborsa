@@ -11,7 +11,8 @@
         android:layout_height="@dimen/_95sdp"
         android:layout_marginStart="@dimen/layouts_margin_start"
         android:layout_marginEnd="@dimen/layouts_margin_end"
-        android:layout_marginTop="@dimen/_20sdp">
+        android:layout_marginTop="@dimen/_20sdp"
+        android:visibility="gone">
 
         <com.technzone.miniborsa.ui.base.views.AppTextView
             android:id="@+id/tvTitle"

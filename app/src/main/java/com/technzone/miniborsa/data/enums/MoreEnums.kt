@@ -2,8 +2,7 @@ package com.technzone.miniborsa.data.enums
 
 enum class MoreEnums {
     MY_PROFILE,
-    LIST_YOUR_BUSINESS,
-    BECOME_INVESTOR,
+    SWITCH_TO_BUSINESS,
     NOTIFICATION,
     RECENT_VIEWED,
     LANGUAGE,

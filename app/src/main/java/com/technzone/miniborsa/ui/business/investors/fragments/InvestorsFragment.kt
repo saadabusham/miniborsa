@@ -7,14 +7,15 @@ import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.data.models.general.ListWrapper
 import com.technzone.miniborsa.data.models.investor.investors.Investor
+import com.technzone.miniborsa.data.models.investor.investors.InvestorFilter
 import com.technzone.miniborsa.databinding.FragmentInvestorsBinding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
 import com.technzone.miniborsa.ui.business.investors.adapters.InvestorsRecyclerAdapter
+import com.technzone.miniborsa.ui.business.investors.dialogs.InvestorFilterBottomSheet
 import com.technzone.miniborsa.ui.business.investors.viewmodels.InvestorsViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
 class InvestorsFragment : BaseBindingFragment<FragmentInvestorsBinding>(),
@@ -46,6 +47,22 @@ class InvestorsFragment : BaseBindingFragment<FragmentInvestorsBinding>(),
         binding?.imgBack?.setOnClickListener {
             requireActivity().onBackPressed()
         }
+        binding?.imgFilter?.setOnClickListener {
+            showFilterSheet()
+        }
+        binding?.imgSearch?.setOnClickListener {
+
+        }
+    }
+
+    private fun showFilterSheet() {
+        InvestorFilterBottomSheet(viewModel.investorFilter,
+            object : InvestorFilterBottomSheet.InvestorsFilterCallBack {
+                override fun callBack(investorFilter: InvestorFilter) {
+                    viewModel.investorFilter = investorFilter
+                    loadData()
+                }
+            }).show(childFragmentManager, "FilterSheet")
     }
 
     private fun setUpRvInvestors() {
@@ -72,6 +89,12 @@ class InvestorsFragment : BaseBindingFragment<FragmentInvestorsBinding>(),
 
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as Investor
+        viewModel.investorToView?.value = item
+        if (view?.id == R.id.btnViewProfile) {
+            navigationController.navigate(R.id.action_investorsFragment_to_investorDetailsFragment)
+        } else if (view?.id == R.id.btnMessage) {
+
+        }
 
     }
 

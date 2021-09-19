@@ -102,4 +102,7 @@ interface UserRepo {
     fun setCurrentRole(role: String)
     fun getCurrentRole(): String
 
+    fun setIsFirstLogin(isFirstLogin: Boolean)
+    fun getIsFirstLogin(): Boolean
+
 }

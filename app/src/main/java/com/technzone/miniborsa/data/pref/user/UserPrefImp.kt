@@ -6,6 +6,7 @@ import com.technzone.miniborsa.data.enums.UserRoleEnums
 import com.technzone.miniborsa.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.miniborsa.utils.pref.PrefConstants.ACCESS_TOKEN_VALUE
 import com.technzone.miniborsa.utils.pref.PrefConstants.CURRENT_ROLE
+import com.technzone.miniborsa.utils.pref.PrefConstants.FIRST_LOGIN
 import com.technzone.miniborsa.utils.pref.PrefConstants.NOTIFICATION_SWITCH_VALUE
 import com.technzone.miniborsa.utils.pref.PrefConstants.TOUCH_ID_SWITCH_VALUE
 import com.technzone.miniborsa.utils.pref.PrefConstants.USER_PASSWORD_VALUE
@@ -22,6 +23,14 @@ class UserPrefImp @Inject constructor(private val prefUtil: SharedPreferencesUti
 
     override fun getIsFirstOpen(): Boolean {
       return  prefUtil.getBooleanPreferences("first_open", true)
+    }
+
+    override fun setIsFirstLogin(isFirstLogin: Boolean) {
+        prefUtil.setBooleanPreferences(FIRST_LOGIN, isFirstLogin)
+    }
+
+    override fun getIsFirstLogin(): Boolean {
+        return prefUtil.getBooleanPreferences(FIRST_LOGIN, true)
     }
 
     override fun saveAccessToken(accessToken: String) {

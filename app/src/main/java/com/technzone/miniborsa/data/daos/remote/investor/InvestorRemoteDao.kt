@@ -22,6 +22,12 @@ interface InvestorRemoteDao {
     ): ResponseWrapper<Investor>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @GET("api/Investors/{id}")
+    suspend fun getInvestorById(
+        @Path("id") id: Int
+    ): ResponseWrapper<Investor>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @FormUrlEncoded
     @POST("api/Investors")
     suspend fun becomeInvestor(

@@ -10,5 +10,18 @@
         android:id="@+id/investorsFragment"
         android:name="com.technzone.miniborsa.ui.business.investors.fragments.InvestorsFragment"
         android:label="InvestorsFragment"
-        tools:layout="@layout/fragment_investors"/>
+        tools:layout="@layout/fragment_investors">
+        <action
+            android:id="@+id/action_investorsFragment_to_investorDetailsFragment"
+            app:destination="@id/investorDetailsFragment"
+            app:enterAnim="@anim/slide_in_end"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_start"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/investorDetailsFragment"
+        android:name="com.technzone.miniborsa.ui.business.investors.fragments.InvestorDetailsFragment"
+        android:label="InvestorDetailsFragment"
+        tools:layout="@layout/fragment_investor_details" />
 </navigation>

@@ -6,30 +6,39 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.common.interfaces.LoginCallBack
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.data.enums.BusinessTypeEnums
+import com.technzone.miniborsa.data.enums.UserRoleEnums
 import com.technzone.miniborsa.data.models.general.ListWrapper
 import com.technzone.miniborsa.data.models.investor.Business
 import com.technzone.miniborsa.data.models.news.BusinessNews
 import com.technzone.miniborsa.databinding.FragmentInvestorSearchBinding
+import com.technzone.miniborsa.ui.auth.AuthActivity
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
+import com.technzone.miniborsa.ui.base.dialogs.DialogsUtil.showLoginDialog
+import com.technzone.miniborsa.ui.base.dialogs.LoginDialog
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
+import com.technzone.miniborsa.ui.business.businessmain.activity.BusinessMainActivity
 import com.technzone.miniborsa.ui.investor.businessdetails.activity.BusinessDetailsActivity
 import com.technzone.miniborsa.ui.investor.filter.activity.FilterActivity
+import com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity
 import com.technzone.miniborsa.ui.investor.invistormain.adapters.BusinessAdapter
 import com.technzone.miniborsa.ui.investor.invistormain.adapters.BusinessNewsAdapter
 import com.technzone.miniborsa.ui.investor.invistormain.viewmodels.InvestorMainViewModel
 import com.technzone.miniborsa.ui.investor.news.activity.NewsActivity
+import com.technzone.miniborsa.ui.subscription.activity.SubscriptionActivity
 import com.technzone.miniborsa.utils.extensions.getSnapHelper
 import com.technzone.miniborsa.utils.extensions.gone
+import com.technzone.miniborsa.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding>(),
-    BaseBindingRecyclerViewAdapter.OnItemClickListener {
+    BaseBindingRecyclerViewAdapter.OnItemClickListener, LoginCallBack {
 
     private val viewModel: InvestorMainViewModel by activityViewModels()
 
@@ -43,6 +52,8 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
 
     override fun onViewVisible() {
         super.onViewVisible()
+        (requireActivity() as InvestorMainActivity).loginCallBack =
+            this
         setUpBinding()
         setUpListeners()
         setUpRvForSaleBusiness()
@@ -92,8 +103,29 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
                 bundleOf(Pair(Constants.BundleData.SHOW_BACK, true))
             )
         }
+        handleStickyBusiness()
     }
 
+
+    private fun handleStickyBusiness(){
+        if(viewModel.isInvestor()){
+            binding?.layoutSwitchBusiness?.layoutListBusiness?.root?.visible()
+        }
+        else if (viewModel.isBusinessOwner()){
+
+        }
+    }
+    private fun removeIsFirstLogin(){
+        viewModel.setIsFirstLogin(false)
+    }
+    private fun switchToBusinessOwner(){
+        if (viewModel.isUserHasBusinessRoles()) {
+            viewModel.setCurrentUserRoles(UserRoleEnums.BUSINESS_ROLE.value)
+            BusinessMainActivity.start(requireContext())
+        } else {
+            SubscriptionActivity.start(requireContext(), true)
+        }
+    }
     //    ForSale
     private fun setUpRvForSaleBusiness() {
         forSaleBusinessAdapter = BusinessAdapter(requireContext())
@@ -131,7 +163,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
                     data?.data?.let {
                         forSaleBusinessAdapter.submitItems(it)
                     }?.also {
-                        binding?.layoutForSale?.linearRoot?.gone()
+//                        binding?.layoutForSale?.linearRoot?.gone()
                     }
                 }
 
@@ -274,10 +306,26 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
         TransitionManager.beginDelayedTransition(binding?.root as ViewGroup)
     }
 
+    private fun showLoginDialog(){
+        requireActivity().showLoginDialog(object : LoginDialog.CallBack {
+            override fun callBackLogin() {
+                AuthActivity.startForResult(requireActivity(),true)
+            }
+        })
+    }
+
+    override fun loggedInSuccess() {
+
+    }
+
     override fun onItemClick(view: View?, position: Int, item: Any) {
         when (item) {
             is Business -> {
-                BusinessDetailsActivity.start(requireContext(), item)
+                if (viewModel.isUserLoggedIn()) {
+                    BusinessDetailsActivity.start(requireContext(), item)
+                } else {
+                    showLoginDialog()
+                }
             }
             is BusinessNews -> {
                 NewsActivity.start(requireContext())
