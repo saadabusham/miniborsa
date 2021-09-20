@@ -14,67 +14,139 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <com.technzone.miniborsa.ui.base.views.AppImageView
-            android:id="@+id/imgBack"
-            android:layout_width="@dimen/_32sdp"
-            android:layout_height="@dimen/_32sdp"
-            android:layout_marginStart="@dimen/_7sdp"
-            android:background="?selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="@dimen/_7sdp"
-            android:src="@drawable/ic_back"
-            app:layout_constraintBottom_toBottomOf="@id/tvTitle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tvTitle" />
-
-        <com.technzone.miniborsa.ui.base.views.AppTextView
-            android:id="@+id/tvTitle"
-            style="@style/textview_normal_bold"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linTools"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:text="@string/find_investor"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_13ssp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <com.technzone.miniborsa.ui.base.views.AppImageView
-            android:id="@+id/imgSearch"
-            android:layout_width="@dimen/_32sdp"
-            android:layout_height="@dimen/_32sdp"
-            android:background="?selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="@dimen/_5sdp"
-            android:src="@drawable/ic_nav_search"
-            android:tint="@color/black"
-            app:layout_constraintBottom_toBottomOf="@id/tvTitle"
-            app:layout_constraintEnd_toStartOf="@id/imgFilter"
-            app:layout_constraintTop_toTopOf="@id/tvTitle" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvSearch"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_41sdp"
+                android:layout_marginStart="@dimen/layouts_margin_start"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:transitionName="search_transition"
+                android:visibility="gone"
+                app:cardElevation="@dimen/_3sdp">
 
-        <com.technzone.miniborsa.ui.base.views.AppImageView
-            android:id="@+id/imgFilter"
-            android:layout_width="@dimen/_32sdp"
-            android:layout_height="@dimen/_32sdp"
-            android:layout_marginEnd="@dimen/_7sdp"
-            android:background="?selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="@dimen/_5sdp"
-            android:src="@drawable/ic_filter_investor"
-            app:layout_constraintBottom_toBottomOf="@id/tvTitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tvTitle" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|start"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imgBack"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_32sdp"
+                        android:padding="@dimen/_10sdp"
+                        android:src="@drawable/ic_back" />
+
+                    <EditText
+                        android:id="@+id/edSearch"
+                        style="@style/textview_normal_medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center|start"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/begin_search"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_7sdp"
+                        android:singleLine="true"
+                        android:textSize="@dimen/_13ssp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/linToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_41sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:transitionName="search_transition"
+                android:visibility="visible">
+
+                <com.technzone.miniborsa.ui.base.views.AppImageView
+                    android:id="@+id/imgBack2"
+                    android:layout_width="@dimen/_32sdp"
+                    android:layout_height="@dimen/_32sdp"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="@dimen/_7sdp"
+                    android:src="@drawable/ic_back"
+                    app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvTitle" />
+
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    android:id="@+id/tvTitle"
+                    style="@style/textview_normal_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/find_investor"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.technzone.miniborsa.ui.base.views.AppImageView
+                    android:id="@+id/imgSearch"
+                    android:layout_width="@dimen/_32sdp"
+                    android:layout_height="@dimen/_32sdp"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/ic_nav_search"
+                    android:tint="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+                    app:layout_constraintEnd_toStartOf="@id/imgFilter"
+                    app:layout_constraintTop_toTopOf="@id/tvTitle" />
+
+                <com.technzone.miniborsa.ui.base.views.AppImageView
+                    android:id="@+id/imgFilter"
+                    android:layout_width="@dimen/_32sdp"
+                    android:layout_height="@dimen/_32sdp"
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/ic_filter_investor"
+                    app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvTitle" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/layoutShimmer"
+            layout="@layout/layout_shimmer_investors"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@id/linTools"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvInvestors"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_20sdp"
             android:clipToPadding="false"
             android:nestedScrollingEnabled="false"
             android:orientation="vertical"
@@ -82,7 +154,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@id/layoutShimmer"
             tools:listitem="@layout/row_investor" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

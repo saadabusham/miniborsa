@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_country_code"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_179sdp"
+        android:layout_marginStart="@dimen/layouts_margin_start"
+        android:layout_marginEnd="@dimen/layouts_margin_end"
+        app:cardBackgroundColor="@color/shimmer_background"
+        android:layout_marginBottom="@dimen/_15sdp"
+        app:cardCornerRadius="@dimen/_25sdp"
+        app:cardElevation="0dp" />
+
+</layout>

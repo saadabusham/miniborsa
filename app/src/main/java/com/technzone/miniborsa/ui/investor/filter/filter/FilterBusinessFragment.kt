@@ -1,10 +1,7 @@
 package com.technzone.miniborsa.ui.investor.filter.filter
 
-import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
-import androidx.transition.Transition
-import androidx.transition.TransitionInflater
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.CustomObserverResponse
@@ -19,6 +16,7 @@ import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
 import com.technzone.miniborsa.ui.investor.filter.filter.adapters.GeneralLookupRecyclerAdapter
 import com.technzone.miniborsa.ui.investor.filter.viewmodels.FilterBusinessViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_filter.*
 
 
 @AndroidEntryPoint
@@ -31,13 +29,6 @@ class FilterBusinessFragment : BaseBindingFragment<FragmentFilterBinding>(),
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_filter
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val transition: Transition = TransitionInflater.from(context)
-            .inflateTransition(R.transition.image_shared_element_transition)
-        sharedElementEnterTransition = transition
     }
 
     override fun onViewVisible() {
@@ -54,19 +45,27 @@ class FilterBusinessFragment : BaseBindingFragment<FragmentFilterBinding>(),
 
     private fun setUpListeners() {
         binding?.imgBack?.setOnClickListener {
-            requireActivity().onBackPressed()
+            applyData()
         }
-
+        binding?.btnContinue?.setOnClickListener {
+            applyData()
+        }
         binding?.rangeSeekBar?.setOnRangeSeekbarChangeListener { minValue: Number, maxValue: Number ->
-//            filter.minPrice = minValue.toFloat()
-//            filter.maxPrice = maxValue.toFloat()
-//            tvMin.setText(minValue.toString() + " " + getString(R.string.jd));
-//            tvMax.setText(maxValue.toString() + " " + getString(R.string.jd));
             binding?.tvMin?.text = String.format(getString(R.string.price_), minValue.toString())
             binding?.tvMax?.text = String.format(getString(R.string.price_), maxValue.toString())
         }
         binding?.rangeSeekBar?.setMinValue(100000f)?.apply()
         binding?.rangeSeekBar?.setMaxValue(100000000f)?.apply()
+    }
+
+    private fun applyData() {
+        viewModel.apply {
+            categories = inustryAdapter.items.map { it.id ?: 0 }
+            selectedBusinessType = businessTypeAdapter.getSelectedItem()?.id
+            min.value = rangeSeekBar.selectedMinValue.toInt()
+            max.value = rangeSeekBar.selectedMaxValue.toInt()
+        }
+        requireActivity().onBackPressed()
     }
 
     private fun setUpRvIndustries() {
@@ -91,15 +90,16 @@ class FilterBusinessFragment : BaseBindingFragment<FragmentFilterBinding>(),
                             inustryAdapter.submitItems(it)
                         }
                 }
-            })
+            }, withProgress = false
+        )
     }
 
     private fun setUpRvBusinessType() {
-        businessTypeAdapter = GeneralLookupRecyclerAdapter(requireContext())
+        businessTypeAdapter = GeneralLookupRecyclerAdapter(requireContext(), singleSelection = true)
         binding?.rvBusinessType?.adapter = businessTypeAdapter
-        binding?.rvBusinessType?.setOnItemClickListener(object : BaseBindingRecyclerViewAdapter.OnItemClickListener{
+        binding?.rvBusinessType?.setOnItemClickListener(object :
+            BaseBindingRecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(view: View?, position: Int, item: Any) {
-//                viewModel.selectedBusinessType = businessTypeAdapter.getSelectedItem()?.id
             }
         })
         binding?.rvBusinessType?.itemAnimator = null
@@ -122,6 +122,10 @@ class FilterBusinessFragment : BaseBindingFragment<FragmentFilterBinding>(),
                 )
             )
         )
+        if (businessTypeAdapter.items.singleOrNull { it.selected } == null) {
+            businessTypeAdapter.items[0].selected = true
+            businessTypeAdapter.notifyItemChanged(0)
+        }
     }
 
     override fun onItemClick(view: View?, position: Int, item: Any) {

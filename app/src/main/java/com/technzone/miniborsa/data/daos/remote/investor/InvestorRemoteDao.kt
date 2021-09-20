@@ -43,12 +43,16 @@ interface InvestorRemoteDao {
     suspend fun getBusinessByType(
         @Query("Title") title: String?,
         @Query("BusinessType") businessType: Int?,
-        @Query("AskingPriceRange.From") AskingPriceRangeFrom: Int?,
-        @Query("AskingPriceRange.To") AskingPriceRangeTo: Int?,
+        @Query("AskingPriceRange.From") askingPriceRangeFrom: Int?,
+        @Query("AskingPriceRange.To") askingPriceRangeTo: Int?,
         @Query("Countries") countries: List<Int>?,
         @Query("Categories") categories: List<Int>?,
         @Query("PageSize") pageSize: Int,
-        @Query("PageNumber") pageNumber: Int
+        @Query("PageNumber") pageNumber: Int,
+        @Query("Gender") gender: Int?,
+        @Query("Active") active: Boolean?,
+        @Query("Latitude") latitude: Int?,
+        @Query("Longitude") longitude: Int?,
     ): ResponseWrapper<ListWrapper<Business>>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")

@@ -72,24 +72,32 @@ class InvestorsRepoImp @Inject constructor(
     override suspend fun getBusinessByType(
         title: String?,
         businessType: Int?,
-        AskingPriceRangeFrom: Int?,
-        AskingPriceRangeTo: Int?,
+        askingPriceRangeFrom: Int?,
+        askingPriceRangeTo: Int?,
         countries: List<Int>?,
         categories: List<Int>?,
         pageSize: Int,
-        pageNumber: Int
+        pageNumber: Int,
+        gender: Int?,
+        active: Boolean?,
+        latitude: Int?,
+        longitude: Int?
     ): APIResource<ResponseWrapper<ListWrapper<Business>>> {
         return try {
             responseHandle.handleSuccess(
                 investorRemoteDao.getBusinessByType(
                     title,
                     businessType,
-                    AskingPriceRangeFrom,
-                    AskingPriceRangeTo,
+                    askingPriceRangeFrom,
+                    askingPriceRangeTo,
                     countries,
                     categories,
                     pageSize,
-                    pageNumber
+                    pageNumber,
+                    gender,
+                    active,
+                    latitude,
+                    longitude
                 )
             )
         } catch (e: Exception) {

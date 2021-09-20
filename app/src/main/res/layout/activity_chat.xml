@@ -63,8 +63,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            app:cardBackgroundColor="#0B256E"
-            app:shapeAppearanceOverlay="@style/top_cardview_corner">
+            android:layout_marginTop="@dimen/_5sdp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_3sdp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -105,7 +106,7 @@
                             android:clickable="true"
                             android:focusable="true"
                             android:padding="@dimen/_5sdp"
-                            app:srcCompat="@drawable/ic_attachment" />
+                            app:srcCompat="@drawable/ic_cam" />
 
                         <EditText
                             android:id="@+id/ed_message"
@@ -124,8 +125,8 @@
                             android:minHeight="@dimen/_30sdp"
                             android:nestedScrollingEnabled="true"
                             android:overScrollMode="always"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/white"
+                            android:textColor="@color/black_alpha"
+                            android:textColorHint="@color/black_alpha"
                             android:textSize="14sp" />
 
                     </LinearLayout>
@@ -139,7 +140,7 @@
                     android:layout_marginStart="@dimen/_10sdp"
                     android:clickable="true"
                     android:focusable="true"
-                    app:cardBackgroundColor="@color/send_background_color"
+                    app:cardBackgroundColor="@color/outgoing_bubble_color"
                     app:cardCornerRadius="@dimen/_11sdp"
                     app:cardElevation="0dp">
 

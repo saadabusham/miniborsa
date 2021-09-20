@@ -61,7 +61,7 @@ interface UserRemoteDao {
     ): ResponseWrapper<UserDetailsResponseModel>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @GET("api/user/profile")
+    @GET("api/user")
     suspend fun getProfile(
     ): ResponseWrapper<UserDetailsResponseModel>
 
@@ -72,9 +72,8 @@ interface UserRemoteDao {
         @Part("Email") email: RequestBody?,
         @Part("FirstName") firstName: RequestBody,
         @Part("LastName") lastName: RequestBody,
-        @Part("Gender") gender: RequestBody,
-        @Part("Birthdate") dateOfBirth: RequestBody?
-    ): ResponseWrapper<UserDetailsResponseModel>
+        @Part("PhoneNumber") phoneNumber: RequestBody
+    ): ResponseWrapper<Any>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @FormUrlEncoded

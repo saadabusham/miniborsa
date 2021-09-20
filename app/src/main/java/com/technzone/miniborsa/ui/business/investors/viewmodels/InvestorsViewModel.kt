@@ -19,7 +19,6 @@ class InvestorsViewModel @Inject constructor(
 
     var investorFilter: InvestorFilter = InvestorFilter()
     var investorToView: MutableLiveData<Investor>? = MutableLiveData()
-
     fun getInvestors() = liveData {
         emit(APIResource.loading())
         val response = investorsRepo.getInvestors(investorFilter)

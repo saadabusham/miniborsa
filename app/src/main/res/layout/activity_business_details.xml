@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.technzone.miniborsa.ui.investor.businessdetails.viewmodels.BusinessDetailsViewModel" />
@@ -42,13 +44,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            tools:text="The Slebew Residence"
             android:text="@{viewModel.businessToView.title}"
             android:textColor="@color/black"
             android:textSize="@dimen/_17ssp"
             app:layout_constraintEnd_toEndOf="@id/endGuide"
             app:layout_constraintStart_toStartOf="@id/beginGuide"
-            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            tools:text="The Slebew Residence" />
 
         <com.technzone.miniborsa.ui.base.views.AppTextView
             android:id="@+id/tvBusinessType"
@@ -59,11 +61,11 @@
             android:layout_marginBottom="@dimen/_10sdp"
             android:drawableStart="@drawable/ic_business_type"
             android:drawablePadding="@dimen/_5sdp"
-            tools:text="Healthtech"
             android:textColor="@color/black_alpha"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintStart_toStartOf="@id/beginGuide"
-            app:layout_constraintTop_toBottomOf="@id/tvName" />
+            app:layout_constraintTop_toBottomOf="@id/tvName"
+            tools:text="Healthtech" />
 
         <com.technzone.miniborsa.ui.base.views.AppTextView
             android:id="@+id/tvBusinessLocation"
@@ -73,13 +75,13 @@
             android:layout_marginStart="@dimen/_17sdp"
             android:drawableStart="@drawable/ic_business_pin"
             android:drawablePadding="@dimen/_5sdp"
-            tools:text="Amman, Jordan"
             android:text="@{viewModel.businessToView.address}"
             android:textColor="@color/black_alpha"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintBottom_toBottomOf="@id/tvBusinessType"
             app:layout_constraintStart_toEndOf="@id/tvBusinessType"
-            app:layout_constraintTop_toTopOf="@id/tvBusinessType" />
+            app:layout_constraintTop_toTopOf="@id/tvBusinessType"
+            tools:text="Amman, Jordan" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -126,6 +128,89 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/layout_business_price" />
 
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvBecomeInvestor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:elevation="0dp"
+                    android:visibility="@{viewModel.isInvestor ? View.GONE : View.VISIBLE}"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_10sdp"
+                    app:cardElevation="@dimen/_20sdp"
+                    app:layout_constraintTop_toBottomOf="@id/layout_business_information"
+                    tools:visibility="gone">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_15sdp"
+                        android:orientation="vertical">
+
+                        <com.technzone.miniborsa.ui.base.views.AppTextView
+                            android:id="@+id/tvTitle"
+                            style="@style/textview_normal_semibold"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/layouts_margin_start"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:gravity="center"
+                            android:text="@string/become_an_investor_"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_15ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.technzone.miniborsa.ui.base.views.AppTextView
+                            android:id="@+id/tvDescription"
+                            style="@style/textview_normal_regular"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/layouts_margin_start"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:gravity="center"
+                            android:text="@string/looking_for_more_information_you_have_to_become_an_investor"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+
+                        <com.technzone.miniborsa.ui.base.views.AppButton
+                            android:id="@+id/btnLogin"
+                            style="@style/AppTheme.Button"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_38sdp"
+                            android:layout_marginStart="@dimen/layouts_margin_start"
+                            android:layout_marginTop="@dimen/_17sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:gravity="center"
+                            android:padding="@dimen/_7sdp"
+                            android:paddingTop="@dimen/_7sdp"
+                            android:paddingBottom="@dimen/_7sdp"
+                            android:text="@string/become_investor"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_10ssp"
+                            app:cornerRadius="@dimen/_5sdp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvDescription"
+                            app:rippleColor="@color/button_color" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
                 <include
                     android:id="@+id/layout_business_details"
                     layout="@layout/layout_business_details"
@@ -134,9 +219,11 @@
                     android:layout_marginStart="@dimen/layouts_margin_start"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:visibility="@{viewModel.isInvestor ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layout_business_information" />
+                    app:layout_constraintTop_toBottomOf="@id/cvBecomeInvestor"
+                    tools:visibility="visible" />
 
                 <include
                     android:id="@+id/layout_business_extra_info"
@@ -146,9 +233,11 @@
                     android:layout_marginStart="@dimen/layouts_margin_start"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:visibility="@{viewModel.isInvestor ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layout_business_details" />
+                    app:layout_constraintTop_toBottomOf="@id/layout_business_details"
+                    tools:visibility="visible" />
 
                 <include
                     android:id="@+id/layout_business_documents"
@@ -158,10 +247,11 @@
                     android:layout_marginStart="@dimen/layouts_margin_start"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:visibility="@{viewModel.isInvestor ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:visibility="gone"
-                    app:layout_constraintTop_toBottomOf="@id/layout_business_extra_info" />
+                    app:layout_constraintTop_toBottomOf="@id/layout_business_extra_info"
+                    tools:visibility="visible" />
 
                 <View
                     android:id="@+id/div"
@@ -181,14 +271,16 @@
                     android:layout_marginStart="@dimen/layouts_margin_start"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:backgroundTint="@color/button_background_color"
+                    android:enabled="@{viewModel.isInvestor()}"
                     android:text="@string/connect"
                     android:textAppearance="@style/normalMediumFontStyle"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/_14ssp"
                     app:icon="@drawable/ic_connect"
-                    app:iconTint="@color/white"
-                    app:iconPadding="@dimen/_9sdp"
                     app:iconGravity="textStart"
+                    app:iconPadding="@dimen/_9sdp"
+                    app:iconTint="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/div" />

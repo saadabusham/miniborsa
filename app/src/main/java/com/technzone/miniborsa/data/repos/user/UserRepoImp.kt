@@ -126,13 +126,12 @@ class UserRepoImp @Inject constructor(
         email: RequestBody?,
         firstName: RequestBody,
         lastName: RequestBody,
-        gender: RequestBody,
-        dateOfBirth: RequestBody?
-    ): APIResource<ResponseWrapper<UserDetailsResponseModel>> {
+        phoneNumber: RequestBody
+    ): APIResource<ResponseWrapper<Any>> {
         return try {
             responseHandle.handleSuccess(
                 userRemoteDao.updateProfile(
-                    email, firstName, lastName, gender, dateOfBirth
+                    email, firstName, lastName, phoneNumber
                 )
             )
         } catch (e: Exception) {

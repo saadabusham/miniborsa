@@ -140,6 +140,7 @@
     <string name="success">Success!</string>
     <string name="change_your_password">Change your password</string>
     <string name="enter_a_new_password_below">Enter a new password below</string>
+    <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
     <string name="enter_new_password">Enter your password</string>
     <string name="reset_password_">Reset Password</string>
@@ -328,6 +329,10 @@
     <string name="to_start_connect_with_business_messages_you_have_to_be_investor">To Start connect with business messages you have to be investor.</string>
     <string name="become_investor">Become Investor</string>
     <string name="startups_found">%s Startups Found</string>
+    <string name="become_an_investor_">Become an investor!</string>
+    <string name="looking_for_more_information_you_have_to_become_an_investor">Looking for more information you have to become an investor</string>
+    <string name="save">Save</string>
 
+    <string name="concat_string">%s %s</string>
 
 </resources>

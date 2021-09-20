@@ -3,6 +3,7 @@ package com.technzone.miniborsa.ui.investor.filter.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.technzone.miniborsa.data.api.response.APIResource
+import com.technzone.miniborsa.data.enums.GenderEnums
 import com.technzone.miniborsa.data.enums.UserEnums
 import com.technzone.miniborsa.data.models.investor.GeneralRequest
 import com.technzone.miniborsa.data.repos.configuration.ConfigurationRepo
@@ -24,7 +25,10 @@ class FilterBusinessViewModel @Inject constructor(
     val filterActive: MutableLiveData<Boolean> = MutableLiveData(true)
     val maleSelected: MutableLiveData<Boolean> = MutableLiveData(true)
     val itemFoundCount: MutableLiveData<Int> = MutableLiveData(0)
-    val pageNumber: Int = 1
+    val min: MutableLiveData<Int> = MutableLiveData(0)
+    val max: MutableLiveData<Int> = MutableLiveData(0)
+    var categories:List<Int> = mutableListOf()
+    var pageNumber: Int = 1
     fun onActiveClicked() {
         filterActive.value = true
     }
@@ -48,7 +52,13 @@ class FilterBusinessViewModel @Inject constructor(
             investorsRepo.getBusinessByType(
                 businessType = selectedBusinessType,
                 pageNumber = pageNumber,
-                pageSize = 10
+                pageSize = 10,
+                categories = categories,
+                gender = if(maleSelected.value == true ) GenderEnums.MALE.ordinal else GenderEnums.FEMALE.ordinal,
+                active = filterActive.value,
+                askingPriceRangeFrom = min.value,
+                askingPriceRangeTo = max.value,
+                title = searchText.value
             )
         emit(response)
     }

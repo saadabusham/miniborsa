@@ -163,7 +163,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
                     data?.data?.let {
                         forSaleBusinessAdapter.submitItems(it)
                     }?.also {
-//                        binding?.layoutForSale?.linearRoot?.gone()
+                        binding?.layoutForSale?.linearRoot?.gone()
                     }
                 }
 

@@ -88,16 +88,6 @@ class UserRolesActivity : BaseBindingActivity<ActivityUserRoleBinding>(),
         )
     }
 
-    companion object {
-
-        fun start(context: Context?) {
-            val intent = Intent(context, UserRolesActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-            context?.startActivity(intent)
-        }
-
-    }
-
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as UserRoles
         when (item.title) {
@@ -111,6 +101,16 @@ class UserRolesActivity : BaseBindingActivity<ActivityUserRoleBinding>(),
                 InvestorMainActivity.start(this)
             }
         }
+    }
+
+    companion object {
+
+        fun start(context: Context?) {
+            val intent = Intent(context, UserRolesActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            context?.startActivity(intent)
+        }
+
     }
 
 }

@@ -6,13 +6,13 @@ import com.technzone.miniborsa.data.common.Constants.PAGE_SIZE
 data class InvestorFilter(
 
 	@field:SerializedName("pageNumber")
-	val pageNumber: Int? = 1,
+	var pageNumber: Int = 1,
 
 	@field:SerializedName("investmentBudget")
 	val investmentBudget: Int? = null,
 
 	@field:SerializedName("name")
-	val name: String? = null,
+	var name: String? = null,
 
 	@field:SerializedName("pageSize")
 	val pageSize: Int? = PAGE_SIZE,

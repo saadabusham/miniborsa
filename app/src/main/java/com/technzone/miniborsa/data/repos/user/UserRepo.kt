@@ -48,12 +48,11 @@ interface UserRepo {
     ): APIResource<ResponseWrapper<UserDetailsResponseModel>>
 
     suspend fun updateProfile(
-        email: RequestBody?,
+        email: RequestBody? =null,
         firstName: RequestBody,
         lastName: RequestBody,
-        gender: RequestBody,
-        dateOfBirth: RequestBody?
-    ): APIResource<ResponseWrapper<UserDetailsResponseModel>>
+        phoneNumber: RequestBody
+    ): APIResource<ResponseWrapper<Any>>
 
     suspend fun updatePassword(
         oldPassword: String,

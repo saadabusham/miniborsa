@@ -4,11 +4,15 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.transition.Transition
 import androidx.transition.TransitionInflater
 import androidx.transition.TransitionManager
 import com.jakewharton.rxbinding3.widget.textChangeEvents
+import com.paginate.Paginate
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.common.interfaces.LoginCallBack
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
@@ -42,9 +46,33 @@ class SearchBusinessFragment : BaseBindingFragment<FragmentSearchBusinessBinding
 
     private val viewModel: FilterBusinessViewModel by activityViewModels()
     lateinit var businessAdapter: BusinessAdapter
+    private val loading: MutableLiveData<Boolean> = MutableLiveData(false)
+    private var isFinished = false
+
+    var firstIn: Boolean = true
+
+    override fun onDestroy() {
+        super.onDestroy()
+        callback.isEnabled = false
+    }
+
+    private val callback = object : OnBackPressedCallback(false) {
+        override fun handleOnBackPressed() {
+
+        }
+    }
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_search_business
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (firstIn && viewModel.selectedBusinessType == null) {
+            loadData()
+        } else {
+            applyFilter()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,13 +103,12 @@ class SearchBusinessFragment : BaseBindingFragment<FragmentSearchBusinessBinding
                 return true
             }
         })
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
         setUpBinding()
+        observeLoading()
         setUpListeners()
         setUpRvBusiness()
         initSearch()
-        if (viewModel.selectedBusinessType == null) {
-            loadData()
-        }
     }
 
     private fun setUpBinding() {
@@ -110,12 +137,46 @@ class SearchBusinessFragment : BaseBindingFragment<FragmentSearchBusinessBinding
             binding?.linToolbar?.gone()
         }
     }
+
     private fun setUpRvBusiness() {
         businessAdapter = BusinessAdapter(requireContext())
         binding?.recyclerView?.adapter = businessAdapter
         binding?.recyclerView.setOnItemClickListener(this)
+        Paginate.with(binding?.recyclerView, object : Paginate.Callbacks {
+            override fun onLoadMore() {
+                if (loading.value == false && businessAdapter.itemCount > 0 && !isFinished) {
+                    viewModel.pageNumber++
+                    loadData()
+                }
+            }
+
+            override fun isLoading(): Boolean {
+                return loading.value ?: false
+            }
+
+            override fun hasLoadedAllItems(): Boolean {
+                return isFinished
+            }
+
+        })
+            .setLoadingTriggerThreshold(1)
+            .addLoadingListItem(false)
+            .build()
     }
 
+    private fun observeLoading() {
+        loading.observe(this, {
+            if (it) {
+                binding?.recyclerView?.gone()
+                binding?.layoutShimmer?.shimmerViewContainer?.visible()
+                binding?.layoutShimmer?.shimmerViewContainer?.startShimmer()
+            } else {
+                binding?.layoutShimmer?.shimmerViewContainer?.gone()
+                binding?.layoutShimmer?.shimmerViewContainer?.stopShimmer()
+                binding?.recyclerView?.visible()
+            }
+        })
+    }
 
     private fun initSearch() {
         binding?.edSearch?.setupClearButtonWithAction()
@@ -126,17 +187,19 @@ class SearchBusinessFragment : BaseBindingFragment<FragmentSearchBusinessBinding
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribeOn(Schedulers.io())
             ?.subscribe {
+                viewModel.searchText.value = it.text.toString()
                 applyFilter()
             }
     }
 
     private fun applyFilter() {
         businessAdapter.clear()
+        viewModel.pageNumber = 1
         loadData()
     }
 
     private fun loadData() {
-        viewModel.getBusiness().observe(this,businessResultObserver())
+        viewModel.getBusiness().observe(this, businessResultObserver())
     }
 
     private fun businessResultObserver(): CustomObserverResponse<ListWrapper<Business>> {
@@ -148,19 +211,44 @@ class SearchBusinessFragment : BaseBindingFragment<FragmentSearchBusinessBinding
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: ListWrapper<Business>?
                 ) {
+                    isFinished =
+                        data?.data?.size?.plus(businessAdapter.itemCount) ?: 0 >= data?.totalRows ?: 0
+
                     data?.data?.let {
-                        businessAdapter.submitItems(it)
                         viewModel.itemFoundCount.value = data.data.size
+                        if (viewModel.pageNumber == 1) {
+                            businessAdapter.submitItems(it)
+                        } else {
+                            businessAdapter.addItems(it)
+                        }
                     }?.also {
                         viewModel.itemFoundCount.value = 0
                     }
+                    loading.postValue(false)
+                    hideShowNoData()
                 }
 
                 override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
                     super.onError(subErrorCode, message)
                     viewModel.itemFoundCount.value = 0
+                    loading.postValue(false)
+                    hideShowNoData()
                 }
-            })
+
+                override fun onLoading() {
+                    super.onLoading()
+                    loading.postValue(true)
+                }
+            }, withProgress = false
+        )
+    }
+
+    private fun hideShowNoData() {
+//        if (investorsRecyclerAdapter.itemCount == 0) {
+//            binding?.layoutNoPolicies?.linearNoResult?.visible()
+//        } else {
+//            binding?.layoutNoPolicies?.linearNoResult?.gone()
+//        }
     }
 
     private fun showLoginDialog() {

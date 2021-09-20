@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.technzone.miniborsa.R" />
+
+        <variable
+            name="viewModel"
+            type="com.technzone.miniborsa.ui.core.profile.viewmodels.ProfileViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:padding="@dimen/_10sdp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvTitle" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/textview_normal_bold"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="center|start"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_7sdp"
+            android:singleLine="true"
+            android:text="@string/more_edit_profile"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvSave"
+            style="@style/textview_normal_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/layouts_margin_end"
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/save"
+            android:textAllCaps="true"
+            android:textColor="@color/button_color"
+            android:textSize="@dimen/_9ssp"
+            app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvTitle" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvProfileImage"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_90sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:cardBackgroundColor="@color/black_alpha"
+            app:cardCornerRadius="@dimen/_45sdp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle">
+
+            <com.technzone.miniborsa.ui.base.views.AppImageView
+                ivImageErrorPlaceholder="@{R.drawable.ic_profile_place_holder}"
+                ivImagePlaceholder="@{R.drawable.ic_profile_place_holder}"
+                ivImageUrl="@{viewModel.userImageMutableLiveData}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/ic_profile_place_holder" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvUpdateImage"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_15sdp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/cvProfileImage"
+            app:layout_constraintEnd_toEndOf="@id/cvProfileImage">
+
+            <com.technzone.miniborsa.ui.base.views.AppImageView
+                android:layout_width="@dimen/_17sdp"
+                android:layout_height="@dimen/_17sdp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_cam" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layouts_margin_start"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/layouts_margin_end"
+            app:layout_constraintTop_toBottomOf="@id/cvUpdateImage">
+
+            <com.technzone.miniborsa.ui.base.views.AppTextInputLayout
+                android:id="@+id/tfFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layouts_margin_start"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:hint="@string/first_name"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:errorEnabled="false">
+
+                <com.technzone.miniborsa.ui.base.views.AppTextInputEditText
+                    android:id="@+id/edFirstName"
+                    style="@style/TextInputEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:drawableEnd="@drawable/ic_profile"
+                    android:text="@={viewModel.firstNameMutableLiveData}" />
+
+            </com.technzone.miniborsa.ui.base.views.AppTextInputLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layouts_margin_start"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/layouts_margin_end"
+            app:layout_constraintTop_toBottomOf="@id/cvFirstName">
+
+            <com.technzone.miniborsa.ui.base.views.AppTextInputLayout
+                android:id="@+id/tfLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layouts_margin_start"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:hint="@string/last_name"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:errorEnabled="false">
+
+                <com.technzone.miniborsa.ui.base.views.AppTextInputEditText
+                    android:id="@+id/edLastName"
+                    style="@style/TextInputEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:drawableEnd="@drawable/ic_profile"
+                    android:text="@={viewModel.lastNameMutableLiveData}"
+                    android:textSize="@dimen/_10ssp" />
+
+            </com.technzone.miniborsa.ui.base.views.AppTextInputLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layouts_margin_start"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/layouts_margin_end"
+            app:layout_constraintTop_toBottomOf="@id/cvLastName">
+
+            <com.technzone.miniborsa.ui.base.views.AppTextInputLayout
+                android:id="@+id/tfEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layouts_margin_start"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:enabled="false"
+                android:hint="@string/email"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:errorEnabled="false">
+
+                <com.technzone.miniborsa.ui.base.views.AppTextInputEditText
+                    android:id="@+id/edEmail"
+                    style="@style/TextInputEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_email"
+                    android:drawableTint="@color/black_alpha"
+                    android:enabled="false"
+                    android:text="@={viewModel.emailMutableLiveData}"
+                    android:textSize="@dimen/_10ssp" />
+
+            </com.technzone.miniborsa.ui.base.views.AppTextInputLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layouts_margin_start"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/layouts_margin_end"
+            app:layout_constraintTop_toBottomOf="@id/cvEmail">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layouts_margin_start"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:orientation="vertical">
+
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/phone_number" />
+
+                <LinearLayout
+                    android:id="@+id/linearMobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.technzone.miniborsa.ui.base.views.AppTextView
+                        android:id="@+id/tvCountryCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="?selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:drawableEnd="@drawable/ic_dropdown_arrow"
+                        android:drawablePadding="@dimen/_7sdp"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:text="@{viewModel.selectedCountryCode.code}"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_10ssp"
+                        tools:text="+962" />
+
+                    <View
+                        android:id="@+id/dividerMobileNumber"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/edit_text_unfocused_color"
+                        android:visibility="gone" />
+
+                    <com.technzone.miniborsa.ui.base.views.AppEditText
+                        android:id="@+id/edPhoneNumber"
+                        style="@style/textview_normal_regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:layout_weight="1"
+                        android:drawableEnd="@drawable/ic_phone"
+                        android:hint="@string/_700000000"
+                        android:inputType="phone"
+                        android:text="@={viewModel.phoneNumberWithoutCountryCode}"
+                        android:textSize="@dimen/_11ssp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvPassword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_marginStart="@dimen/layouts_margin_start"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/layouts_margin_end"
+            app:layout_constraintTop_toBottomOf="@id/cvPhoneNumber">
+
+            <com.technzone.miniborsa.ui.base.views.AppTextView
+                android:id="@+id/tvPassword"
+                style="@style/textview_normal_regular"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/layouts_margin_start"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:drawableEnd="@drawable/ic_arrow_next"
+                android:text="@string/change_password"
+                android:textSize="@dimen/_11ssp" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -22,22 +22,26 @@ interface InvestorsRepo {
     ): APIResource<ResponseWrapper<Investor>>
 
     suspend fun becomeInvestor(
-        jobTitle : String?,
-        investmentBudget : Double,
-        InvestmentBudgetNA : Boolean,
-        countries : List<Int>,
-        categories : List<Int>
+        jobTitle: String?,
+        investmentBudget: Double,
+        InvestmentBudgetNA: Boolean,
+        countries: List<Int>,
+        categories: List<Int>
     ): APIResource<ResponseWrapper<Int>>
 
     suspend fun getBusinessByType(
-        title: String?= null,
+        title: String? = null,
         businessType: Int? = null,
-        AskingPriceRangeFrom: Int?= null,
-        AskingPriceRangeTo: Int?= null,
-        countries: List<Int>?= null,
-        categories: List<Int>?= null,
+        askingPriceRangeFrom: Int? = null,
+        askingPriceRangeTo: Int? = null,
+        countries: List<Int>? = null,
+        categories: List<Int>? = null,
         pageSize: Int,
-        pageNumber: Int
+        pageNumber: Int,
+        gender: Int? = null,
+        active: Boolean? = null,
+        latitude: Int? = null,
+        longitude: Int? = null
     ): APIResource<ResponseWrapper<ListWrapper<Business>>>
 
     suspend fun getBusinessById(

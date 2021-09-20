@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="com.technzone.miniborsa.R" />
 
         <variable
             name="viewModel"
@@ -26,6 +28,9 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.technzone.miniborsa.ui.base.views.AppImageView
+                ivImageErrorPlaceholder="@{R.drawable.ic_profile_place_holder}"
+                ivImagePlaceholder="@{R.drawable.ic_profile_place_holder}"
+                ivImageUrl="@{viewModel.userImageMutableLiveData}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_profile_place_holder" />
@@ -36,15 +41,16 @@
             style="@style/textview_normal_medium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="John Smith"
             android:layout_marginTop="@dimen/_15sdp"
-            android:textColor="@color/black"
+            android:layout_weight="1"
             android:gravity="center"
+            android:text="@{@string/concat_string(viewModel.firstNameMutableLiveData,viewModel.lastNameMutableLiveData)}"
+            android:textColor="@color/black"
             android:textSize="@dimen/_17ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cvPicture" />
+            app:layout_constraintTop_toBottomOf="@id/cvPicture"
+            tools:text="John Smith" />
 
         <com.technzone.miniborsa.ui.base.views.AppTextView
             android:id="@+id/tvEmail"
@@ -54,22 +60,23 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="John@gmail.com"
+            android:text="@{viewModel.emailMutableLiveData}"
             android:textColor="@color/black_alpha75"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvName" />
+            app:layout_constraintTop_toBottomOf="@id/tvName"
+            tools:text="John@gmail.com" />
 
         <View
             android:id="@+id/div"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
-            app:layout_constraintTop_toBottomOf="@id/tvEmail"
-            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginStart="@dimen/layouts_margin_start"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/layouts_margin_end"
-            android:background="@color/color_not_valid"/>
+            android:background="@color/color_not_valid"
+            app:layout_constraintTop_toBottomOf="@id/tvEmail" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvMore"
@@ -94,28 +101,28 @@
             android:id="@+id/div2"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
-            app:layout_constraintTop_toBottomOf="@id/rvMore"
-            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginStart="@dimen/layouts_margin_start"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/layouts_margin_end"
-            android:background="@color/color_not_valid"/>
+            android:background="@color/color_not_valid"
+            app:layout_constraintTop_toBottomOf="@id/rvMore" />
 
         <com.technzone.miniborsa.ui.base.views.AppTextView
             android:id="@+id/tvLogout"
             style="@style/textview_normal_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_5sdp"
-            android:layout_weight="1"
-            android:text="@string/sign_out"
             android:layout_marginTop="@dimen/_15sdp"
-            android:textColor="@color/black_alpha"
-            android:clickable="true"
-            android:focusable="true"
+            android:layout_weight="1"
             android:background="?selectableItemBackground"
-            android:gravity="center"
+            android:clickable="true"
             android:drawableStart="@drawable/ic_logout"
             android:drawablePadding="@dimen/_8sdp"
+            android:focusable="true"
+            android:gravity="center"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/sign_out"
+            android:textColor="@color/black_alpha"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -40,7 +40,7 @@
             android:drawablePadding="@dimen/_5sdp"
             android:text="@{DataTimeExtensionsKt.getMessageDate(message.dateCreatedAsDate)}"
             android:textColor="@color/outcoming_date_color"
-            android:textSize="@dimen/_10ssp"
+            android:textSize="@dimen/_7ssp"
             tools:text="3.23 AM" />
 
 
