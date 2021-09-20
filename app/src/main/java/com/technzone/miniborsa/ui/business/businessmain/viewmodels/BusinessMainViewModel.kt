@@ -16,12 +16,15 @@ class BusinessMainViewModel @Inject constructor(
 
     fun getPendingListing() = liveData {
         emit(APIResource.loading())
-        val response = businessRepo.getBusinessByType(1, pageSize = 1000, pageNumber = 1)
+        val response =
+            businessRepo.getBusinessByType(arrayListOf(1), pageSize = 1000, pageNumber = 1)
         emit(response)
     }
+
     fun getListing() = liveData {
         emit(APIResource.loading())
-        val response = businessRepo.getBusinessByType(2, pageSize = 1000, pageNumber = 1)
+        val response =
+            businessRepo.getBusinessByType(arrayListOf(2), pageSize = 1000, pageNumber = 1)
         emit(response)
     }
 }
