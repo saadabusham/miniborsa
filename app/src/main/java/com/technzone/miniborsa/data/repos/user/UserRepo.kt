@@ -72,14 +72,6 @@ interface UserRepo {
         image: MultipartBody.Part
     ): APIResource<ResponseWrapper<Any>>
 
-    suspend fun registerInvestor(
-        jobTitle: String,
-        investmentBudget: Double,
-        investmentBudgetNA: Boolean,
-        countries: List<Int>,
-        categories: List<Int>
-    ): APIResource<ResponseWrapper<Any>>
-
     fun saveNotificationStatus(flag: Boolean)
     fun getNotificationStatus(): Boolean
 

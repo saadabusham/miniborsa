@@ -14,8 +14,12 @@ interface ConfigurationRemoteDao {
     @GET("api/configuration")
     suspend fun getAppConfiguration(): ResponseWrapper<ConfigurationWrapperResponse>
 
-    @GET("api/owner/company/country")
-    suspend fun getCountries(): ResponseWrapper<List<Country>>
+    @GET("api/country")
+    suspend fun getCountries(
+        @Query("Name") name:String?,
+        @Query("PageSize") pageSize: Int,
+        @Query("PageNumber") pageNumber: Int
+    ): ResponseWrapper<List<Country>>
 
     @GET("api/category")
     suspend fun getCategories(

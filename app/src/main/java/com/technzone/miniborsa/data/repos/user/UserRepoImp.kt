@@ -195,24 +195,6 @@ class UserRepoImp @Inject constructor(
         }
     }
 
-    override suspend fun registerInvestor(
-        jobTitle: String,
-        investmentBudget: Double,
-        investmentBudgetNA: Boolean,
-        countries: List<Int>,
-        categories: List<Int>
-    ): APIResource<ResponseWrapper<Any>> {
-        return try {
-            responseHandle.handleSuccess(
-                userRemoteDao.registerInvestor(
-                    jobTitle, investmentBudget, investmentBudgetNA, countries, categories
-                )
-            )
-        } catch (e: Exception) {
-            responseHandle.handleException(e)
-        }
-    }
-
     override fun saveAccessToken(accessToken: String) {
         userPref.saveAccessToken(accessToken)
     }
