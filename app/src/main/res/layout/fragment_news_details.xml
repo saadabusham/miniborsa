@@ -41,7 +41,8 @@
                     android:layout_marginTop="@dimen/_8sdp"
                     android:layout_marginEnd="@dimen/layouts_margin_end"
                     android:layout_marginBottom="@dimen/_10sdp"
-                    android:text="Swvl to list on NASDAQ: the $1.5Bn Unicorn story"
+                    android:text="@{viewModel.blogToView.title}"
+                    tools:text="Swvl to list on NASDAQ: the $1.5Bn Unicorn story"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_17ssp" />
 
@@ -76,7 +77,8 @@
                         android:ellipsize="end"
                         android:gravity="end|center"
                         android:maxLines="2"
-                        android:text="02/04/2021"
+                        android:text="@{viewModel.blogToView.createdAt}"
+                        tools:text="02/04/2021"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_7ssp"
                         android:layout_marginStart="@dimen/_15sdp"/>
@@ -98,6 +100,7 @@
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_news_sample"
+                        ivImageUrl="@{viewModel.blogToView.image}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -113,7 +116,8 @@
                     android:layout_marginTop="@dimen/_8sdp"
                     android:layout_marginEnd="@dimen/layouts_margin_end"
                     android:layout_marginBottom="@dimen/_10sdp"
-                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tempus, orci vel sollicitudin malesuada, lorem nibh
+                    android:text="@{viewModel.blogToView.description}"
+                    tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tempus, orci vel sollicitudin malesuada, lorem nibh
                     \n\nscelerisque sem, a rhoncus leo.
 
 Fusce viverra lacinia elit, vitae aliquet leo. Aliquam blandit erat sed gravida tempor. Quisque eget tincidunt ipsum. Suspendisse ullamcorper malesuada tellus sit amet\n\ndignissim.
@@ -128,6 +132,7 @@ Integer condimentum, odio id scelerisque elementum, lectus mauris dignissim nunc
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/tags"
+                    android:visibility="gone"
                     android:layout_marginStart="@dimen/layouts_margin_start"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_11ssp"
@@ -147,6 +152,7 @@ Integer condimentum, odio id scelerisque elementum, lectus mauris dignissim nunc
                     android:paddingStart="@dimen/layouts_margin_start"
                     android:paddingEnd="@dimen/layouts_margin_end"
                     app:chainUseRtl="true"
+                    android:visibility="gone"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     tools:listitem="@layout/row_business_extra_info"
                     tools:itemCount="5"
@@ -156,7 +162,8 @@ Integer condimentum, odio id scelerisque elementum, lectus mauris dignissim nunc
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_15sdp"
-                    android:background="#F5F5F5" />
+                    android:background="#F5F5F5"
+                    android:visibility="gone"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvArticles"
@@ -175,6 +182,7 @@ Integer condimentum, odio id scelerisque elementum, lectus mauris dignissim nunc
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:itemCount="1"
+                    android:visibility="gone"
                     tools:listitem="@layout/row_news" />
 
             </LinearLayout>

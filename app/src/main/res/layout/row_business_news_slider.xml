@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -23,6 +24,7 @@
 
             <com.technzone.miniborsa.ui.base.views.AppImageView
                 android:id="@+id/imgPhoto"
+                ivImageUrl="@{item.image}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -49,8 +51,8 @@
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:backgroundTint="@color/green_color"
-                android:padding="@dimen/_5sdp"
                 android:gravity="center"
+                android:padding="@dimen/_5sdp"
                 android:text="Startup News"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_7ssp"
@@ -65,11 +67,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:text="Swvl to list on NASDAQ: the $1.5Bn Unicorn story"
+                android:text="@{item.title}"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/tvPrice" />
+                app:layout_constraintStart_toStartOf="@id/tvPrice"
+                tools:text="Swvl to list on NASDAQ: the $1.5Bn Unicorn story" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

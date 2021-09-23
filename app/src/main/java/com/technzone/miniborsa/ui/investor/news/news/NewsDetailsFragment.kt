@@ -3,6 +3,8 @@ package com.technzone.miniborsa.ui.investor.news.news
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
+import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.data.models.investor.ExtraInfo
 import com.technzone.miniborsa.data.models.news.BusinessNews
 import com.technzone.miniborsa.databinding.FragmentNewsDetailsBinding
@@ -37,8 +39,9 @@ class NewsDetailsFragment : BaseBindingFragment<FragmentNewsDetailsBinding>(),
         )
         setUpBinding()
         setUpListeners()
-        setUpRvExtraInfo()
-        setUpRvNews()
+//        setUpRvExtraInfo()
+//        setUpRvNews()
+        loadNewsDetails()
     }
 
     private fun setUpBinding() {
@@ -73,6 +76,25 @@ class NewsDetailsFragment : BaseBindingFragment<FragmentNewsDetailsBinding>(),
         binding?.rvArticles?.adapter = newsRecyclerAdapter
         binding?.rvArticles.setOnItemClickListener(this)
         loadNews()
+    }
+
+    private fun loadNewsDetails() {
+        viewModel.getBlogDetails(viewModel.blogId).observe(this, newsDetailsResultObserver())
+    }
+
+    private fun newsDetailsResultObserver(): CustomObserverResponse<BusinessNews> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<BusinessNews> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: BusinessNews?
+                ) {
+                    viewModel.blogToView?.value = data
+                }
+            }
+        )
     }
 
     private fun loadNews() {

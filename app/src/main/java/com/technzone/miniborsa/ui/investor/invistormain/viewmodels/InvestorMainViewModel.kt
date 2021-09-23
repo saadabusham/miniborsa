@@ -5,6 +5,7 @@ import com.technzone.miniborsa.data.api.response.APIResource
 import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.enums.UserEnums
 import com.technzone.miniborsa.data.enums.UserRoleEnums
+import com.technzone.miniborsa.data.repos.common.CommonRepo
 import com.technzone.miniborsa.data.repos.investors.InvestorsRepo
 import com.technzone.miniborsa.data.repos.user.UserRepo
 import com.technzone.miniborsa.ui.base.viewmodel.BaseViewModel
@@ -14,7 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class InvestorMainViewModel @Inject constructor(
     private val userRepo: UserRepo,
-    private val investorsRepo: InvestorsRepo
+    private val investorsRepo: InvestorsRepo,
+    private val commonRepo: CommonRepo
 ) : BaseViewModel() {
 
     fun getBusiness(
@@ -26,6 +28,18 @@ class InvestorMainViewModel @Inject constructor(
                 businessType = type,
                 pageNumber = 1,
                 pageSize = Constants.PAGE_SIZE
+            )
+        emit(response)
+    }
+
+    fun getBlogs(
+    ) = liveData {
+        emit(APIResource.loading())
+        val response =
+            commonRepo.getBlogs(
+                pageNumber = 1,
+                pageSize = Constants.PAGE_SIZE,
+                banner = true
             )
         emit(response)
     }
@@ -54,12 +68,14 @@ class InvestorMainViewModel @Inject constructor(
     }
 
     fun isUserHasBusinessRoles(): Boolean {
-        return userRepo.getUser()?.roles?.singleOrNull { it.role == UserRoleEnums.BUSINESS_ROLE.value } !=null
+        return userRepo.getUser()?.roles?.singleOrNull { it.role == UserRoleEnums.BUSINESS_ROLE.value } != null
     }
+
     fun isUserHasInvestorRoles(): Boolean {
-        return userRepo.getUser()?.roles?.singleOrNull { it.role == UserRoleEnums.INVESTOR_ROLE.value } !=null
+        return userRepo.getUser()?.roles?.singleOrNull { it.role == UserRoleEnums.INVESTOR_ROLE.value } != null
     }
-    fun setCurrentUserRoles(role:String) {
+
+    fun setCurrentUserRoles(role: String) {
         return userRepo.setCurrentRole(role)
     }
 }

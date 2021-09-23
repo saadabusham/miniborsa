@@ -97,7 +97,17 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/layout_business_news"
                     tools:itemCount="4"
+                    android:visibility="gone"
                     tools:listitem="@layout/row_news_tab" />
+
+                <include
+                    android:id="@+id/layoutShimmer"
+                    layout="@layout/layout_shimmer_investors"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/tvResult" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvNews"
@@ -115,7 +125,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rvTabs"
+                    app:layout_constraintTop_toBottomOf="@id/layoutShimmer"
                     tools:itemCount="5"
                     tools:listitem="@layout/row_news" />
 

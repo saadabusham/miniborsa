@@ -70,11 +70,11 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
             BaseBindingRecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(view: View?, position: Int, item: Any) {
                 item as ExtraInfo
-                if (item.selected.value == true)
-                    viewModel.selectedItemsCount.value = viewModel.selectedItemsCount.value?.plus(1)
-                else
-                    viewModel.selectedItemsCount.value =
-                        viewModel.selectedItemsCount.value?.minus(1)
+//                if (item.selected.value == true)
+//                    viewModel.selectedItemsCount.value = viewModel.selectedItemsCount.value?.plus(1)
+//                else
+//                    viewModel.selectedItemsCount.value =
+//                        viewModel.selectedItemsCount.value?.minus(1)
             }
         })
         listingItemAdapter.submitItems(

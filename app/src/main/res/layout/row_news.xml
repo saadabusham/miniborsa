@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -17,14 +18,15 @@
             android:id="@+id/cvImage"
             android:layout_width="@dimen/_110sdp"
             android:layout_height="@dimen/_80sdp"
-            app:layout_constraintTop_toTopOf="parent"
+            app:cardCornerRadius="@dimen/_7sdp"
+            app:cardElevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:cardCornerRadius="@dimen/_7sdp"
-            app:cardElevation="0dp">
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.technzone.miniborsa.ui.base.views.AppImageView
                 android:id="@+id/imgPhoto"
+                ivImageUrl="@{item.image}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -56,17 +58,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_10sdp"
-            android:text="02/04/2021"
-            android:gravity="end|center"
             android:drawableStart="@drawable/ic_calendar"
             android:drawablePadding="@dimen/_3sdp"
+            android:ellipsize="end"
+            android:gravity="end|center"
+            android:maxLines="2"
+            android:text="@{item.createdAt}"
             android:textColor="@color/black"
             android:textSize="@dimen/_7ssp"
-            android:maxLines="2"
-            android:ellipsize="end"
-            app:layout_constraintTop_toTopOf="@id/tvPrice"
             app:layout_constraintBottom_toBottomOf="@id/tvPrice"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvPrice"
+            tools:text="02/04/2021" />
 
 
         <com.technzone.miniborsa.ui.base.views.AppTextView
@@ -76,14 +79,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_10sdp"
-            android:text="Grocery delivery startup GoodsMart secures $3.6M"
-            android:textColor="@color/black"
-            android:maxLines="1"
             android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{item.title}"
+            android:textColor="@color/black"
             android:textSize="@dimen/_11ssp"
-            app:layout_constraintTop_toBottomOf="@id/tvPrice"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tvPrice"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/tvPrice"
+            tools:text="Grocery delivery startup GoodsMart secures $3.6M" />
 
         <com.technzone.miniborsa.ui.base.views.AppTextView
             android:id="@+id/tvDescription"
@@ -92,14 +96,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_10sdp"
-            android:text="Egypt-based grocery delivery platform GoodsMart recently secured $3.6M in a funding round led by"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{item.description}"
             android:textColor="@color/black_alpha"
             android:textSize="@dimen/_9ssp"
-            android:maxLines="2"
-            android:ellipsize="end"
-            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tvTitle"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            tools:text="Egypt-based grocery delivery platform GoodsMart recently secured $3.6M in a funding round led by" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

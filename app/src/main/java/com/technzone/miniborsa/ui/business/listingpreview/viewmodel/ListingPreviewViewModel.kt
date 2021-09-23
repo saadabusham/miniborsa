@@ -1,5 +1,6 @@
 package com.technzone.miniborsa.ui.business.listingpreview.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.technzone.miniborsa.data.api.response.APIResource
 import com.technzone.miniborsa.data.models.business.businessrequest.BusinessRequest
@@ -20,6 +21,7 @@ class ListingPreviewViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     var businessRequest:BusinessRequest? = null
+    val percentage: MutableLiveData<Int> = MutableLiveData(0)
 
     fun updateRequest() = liveData {
         emit(APIResource.loading())

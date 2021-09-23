@@ -1,6 +1,11 @@
 package com.technzone.miniborsa.ui.investor.news.viewmodels
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
+import com.technzone.miniborsa.data.api.response.APIResource
+import com.technzone.miniborsa.data.common.Constants
+import com.technzone.miniborsa.data.models.news.BusinessNews
+import com.technzone.miniborsa.data.repos.common.CommonRepo
 import com.technzone.miniborsa.data.repos.user.UserRepo
 import com.technzone.miniborsa.ui.base.viewmodel.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -8,23 +13,46 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NewsViewModel @Inject constructor(
-    val userRepo: UserRepo
+    private val userRepo: UserRepo,
+    private val commonRepo: CommonRepo
 ) : BaseViewModel() {
-    val searchText: MutableLiveData<String> = MutableLiveData()
-    val addressStr: MutableLiveData<String> = MutableLiveData()
-    val filterActive: MutableLiveData<Boolean> = MutableLiveData(true)
-    val maleSelected: MutableLiveData<Boolean> = MutableLiveData(true)
 
-    fun onActiveClicked(){
-        filterActive.value = true
+    var blogToView: MutableLiveData<BusinessNews>? = MutableLiveData()
+    var blogId: Int = -1
+    val searchText: MutableLiveData<String> = MutableLiveData()
+
+    fun getBannerBlogs(
+    ) = liveData {
+        emit(APIResource.loading())
+        val response =
+            commonRepo.getBlogs(
+                pageNumber = 1,
+                pageSize = Constants.PAGE_SIZE,
+                banner = true
+            )
+        emit(response)
     }
-    fun onInActiveClicked(){
-        filterActive.value = false
+
+    fun getBlogs(
+        pageNumber: Int
+    ) = liveData {
+        emit(APIResource.loading())
+        val response =
+            commonRepo.getBlogs(
+                pageNumber = pageNumber,
+                pageSize = Constants.PAGE_SIZE,
+                banner = true
+            )
+        emit(response)
     }
-    fun onMaleClicked(){
-        maleSelected.value = true
+
+    fun getBlogDetails(
+        blogId: Int
+    ) = liveData {
+        emit(APIResource.loading())
+        val response =
+            commonRepo.getBlogDetails(blogId)
+        emit(response)
     }
-    fun onFeMaleClicked(){
-        maleSelected.value = false
-    }
+
 }

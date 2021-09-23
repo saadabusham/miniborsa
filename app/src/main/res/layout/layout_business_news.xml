@@ -32,7 +32,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/see_all"
-                android:visibility="gone"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:selectableItemBackground"
+                android:visibility="visible"
                 android:textColor="@color/green_color"
                 android:textSize="@dimen/_9ssp" />
         </LinearLayout>

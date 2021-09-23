@@ -283,23 +283,37 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
     }
 
     private fun handleBusinessNews(fullScreen: Boolean) {
-        viewFullScreen(fullScreen)
-        loadBusinessNews()
+        NewsActivity.start(requireContext())
     }
 
     private fun loadBusinessNews() {
-        businessNewsAdapter.submitItems(
-            arrayListOf(
-                BusinessNews(),
-                BusinessNews(),
-                BusinessNews(),
-                BusinessNews(),
-                BusinessNews(),
-                BusinessNews(),
-                BusinessNews()
-            )
-        )
+        viewModel.getBlogs()
+            .observe(this, newsResultObserver())
     }
+
+    private fun newsResultObserver(): CustomObserverResponse<ListWrapper<BusinessNews>> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<ListWrapper<BusinessNews>> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: ListWrapper<BusinessNews>?
+                ) {
+                    data?.data?.let {
+                        businessNewsAdapter.submitItems(it)
+                    }?.also {
+                        binding?.layoutBusinessNews?.linearRoot?.gone()
+                    }
+                }
+
+                override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
+                    super.onError(subErrorCode, message)
+                    binding?.layoutBusinessNews?.linearRoot?.gone()
+                }
+            })
+    }
+
 
     private fun viewFullScreen(fullScreen: Boolean) {
         isFullScreen = fullScreen
