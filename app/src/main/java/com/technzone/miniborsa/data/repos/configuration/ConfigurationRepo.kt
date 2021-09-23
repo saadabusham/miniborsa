@@ -6,10 +6,8 @@ import com.technzone.miniborsa.data.api.response.ResponseWrapper
 import com.technzone.miniborsa.data.models.configuration.ConfigurationWrapperResponse
 import com.technzone.miniborsa.data.models.country.Country
 import com.technzone.miniborsa.data.models.general.ListWrapper
-import com.technzone.miniborsa.data.models.investor.GeneralRequest
 import com.technzone.miniborsa.data.models.investor.PropertiesItem
 import com.technzone.miniborsa.data.models.investor.investors.CategoriesItem
-import retrofit2.http.Query
 
 interface ConfigurationRepo {
 
@@ -18,18 +16,22 @@ interface ConfigurationRepo {
 
     suspend fun loadConfigurationData(): APIResource<ResponseWrapper<ConfigurationWrapperResponse>>
 
-    suspend fun getCountries(): APIResource<ResponseWrapper<List<Country>>>
+    suspend fun getCountries(
+        name: String?,
+        pageSize: Int,
+        pageNumber: Int
+    ): APIResource<ResponseWrapper<List<Country>>>
 
     suspend fun getCategories(
-        parentId:Int,
-        name:String? ="",
+        parentId: Int,
+        name: String? = "",
         pageSize: Int,
         pageNumber: Int
     ): APIResource<ResponseWrapper<ListWrapper<CategoriesItem>>>
 
     suspend fun getProperties(
-        parentId:Int,
-        name:String? ="",
+        parentId: Int,
+        name: String? = "",
         pageSize: Int,
         pageNumber: Int
     ): APIResource<ResponseWrapper<ListWrapper<PropertiesItem>>>

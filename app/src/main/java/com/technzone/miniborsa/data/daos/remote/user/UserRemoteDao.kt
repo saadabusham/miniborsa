@@ -104,16 +104,4 @@ interface UserRemoteDao {
     suspend fun updateProfilePicture(
         @Part image: MultipartBody.Part
     ): ResponseWrapper<Any>
-
-    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @FormUrlEncoded
-    @POST("api/Investors")
-    suspend fun registerInvestor(
-        @Field("JobTitle") jobTitle: String,
-        @Field("InvestmentBudget") investmentBudget: Double,
-        @Field("InvestmentBudgetNA") investmentBudgetNA: Boolean,
-        @Field("Countries") countries: List<Int>,
-        @Field("Categories") categories: List<Int>
-    ): ResponseWrapper<Any>
-
 }

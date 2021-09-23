@@ -38,9 +38,13 @@ class ConfigurationRepoImp @Inject constructor(
         }
     }
 
-    override suspend fun getCountries(): APIResource<ResponseWrapper<List<Country>>> {
+    override suspend fun getCountries(
+        name:String?,
+        pageSize: Int,
+        pageNumber: Int
+    ): APIResource<ResponseWrapper<List<Country>>> {
         return try {
-            responseHandle.handleSuccess(configurationRemoteDao.getCountries())
+            responseHandle.handleSuccess(configurationRemoteDao.getCountries(name,pageSize,pageNumber))
         } catch (e: Exception) {
             responseHandle.handleException(e)
         }
