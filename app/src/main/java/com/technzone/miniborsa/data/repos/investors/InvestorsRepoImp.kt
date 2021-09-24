@@ -54,7 +54,8 @@ class InvestorsRepoImp @Inject constructor(
         investmentBudget: Double,
         InvestmentBudgetNA: Boolean,
         countries: List<Int>,
-        categories: List<Int>
+        categories: List<Int>,
+        isOnline: Boolean
     ): APIResource<ResponseWrapper<Int>> {
         return try {
             responseHandle.handleSuccess(
@@ -64,7 +65,8 @@ class InvestorsRepoImp @Inject constructor(
                     investmentBudget,
                     InvestmentBudgetNA,
                     countries,
-                    categories
+                    categories,
+                    isOnline
                 )
             )
         } catch (e: Exception) {

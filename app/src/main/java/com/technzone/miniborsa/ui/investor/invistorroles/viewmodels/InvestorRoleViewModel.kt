@@ -56,7 +56,8 @@ class InvestorRoleViewModel @Inject constructor(
                 investmentPrice.value?.toDouble() ?: 0.0,
                 budgetOnRequest.value ?: false,
                 countries,
-                categories
+                categories,
+                true
             )
         emit(response)
     }

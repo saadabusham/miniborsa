@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.technzone.miniborsa.data.api.response.APIResource
 import com.technzone.miniborsa.data.common.Constants
+import com.technzone.miniborsa.data.enums.NewsSectionEnums
+import com.technzone.miniborsa.data.enums.NewsTypeEnums
 import com.technzone.miniborsa.data.models.news.BusinessNews
 import com.technzone.miniborsa.data.repos.common.CommonRepo
 import com.technzone.miniborsa.data.repos.user.UserRepo
@@ -19,7 +21,7 @@ class NewsViewModel @Inject constructor(
 
     var blogToView: MutableLiveData<BusinessNews>? = MutableLiveData()
     var blogId: Int = -1
-    val searchText: MutableLiveData<String> = MutableLiveData()
+    val searchText: MutableLiveData<String> = MutableLiveData("")
 
     fun getBannerBlogs(
     ) = liveData {
@@ -28,20 +30,24 @@ class NewsViewModel @Inject constructor(
             commonRepo.getBlogs(
                 pageNumber = 1,
                 pageSize = Constants.PAGE_SIZE,
-                banner = true
+                section = NewsSectionEnums.ALL.value,
+                type = null
             )
         emit(response)
     }
 
     fun getBlogs(
-        pageNumber: Int
+        pageNumber: Int,
+        section:Int? = NewsSectionEnums.ALL.value
     ) = liveData {
         emit(APIResource.loading())
         val response =
             commonRepo.getBlogs(
                 pageNumber = pageNumber,
                 pageSize = Constants.PAGE_SIZE,
-                banner = true
+                section = section,
+                type = null,
+                searchTxt = searchText.value
             )
         emit(response)
     }

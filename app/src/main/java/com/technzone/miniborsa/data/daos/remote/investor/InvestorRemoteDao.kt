@@ -36,7 +36,8 @@ interface InvestorRemoteDao {
         @Field("InvestmentBudget") investmentBudget: Double,
         @Field("InvestmentBudgetNA") InvestmentBudgetNA: Boolean,
         @Field("Countries") countries: List<Int>,
-        @Field("Categories") categories: List<Int>
+        @Field("Categories") categories: List<Int>,
+        @Field("IsOnline") isOnline: Boolean
     ): ResponseWrapper<Int>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")

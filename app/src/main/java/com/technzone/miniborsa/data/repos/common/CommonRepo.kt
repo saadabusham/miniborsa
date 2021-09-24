@@ -18,8 +18,9 @@ interface CommonRepo {
     suspend fun getBlogs(
         pageSize: Int,
         pageNumber: Int,
-        banner: Boolean,
-        searchTxt: String? = ""
+        section: Int?,
+        searchTxt: String? = "",
+        type: Int?
     ): APIResource<ResponseWrapper<ListWrapper<BusinessNews>>>
 
     suspend fun getBlogDetails(

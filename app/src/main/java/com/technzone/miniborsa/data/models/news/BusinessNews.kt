@@ -23,6 +23,9 @@ data class BusinessNews(
     @field:SerializedName("type")
     val type: Int? = null,
 
+    @field:SerializedName("section")
+    val section: Int? = null,
+
     @field:SerializedName("serviceId")
     val serviceId: Int? = null,
 

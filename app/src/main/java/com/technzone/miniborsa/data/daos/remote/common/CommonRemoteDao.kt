@@ -22,8 +22,9 @@ interface CommonRemoteDao {
     suspend fun getBlogs(
         @Query("PageSize") pageSize: Int,
         @Query("PageNumber") pageNumber: Int,
-        @Query("banner") banner: Boolean,
-        @Query("title") searchTxt: String?
+        @Query("Section") section: Int?,
+        @Query("EnglishTitle") searchTxt: String?,
+        @Query("Type") type: Int?
     ): ResponseWrapper<ListWrapper<BusinessNews>>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
@@ -33,13 +34,13 @@ interface CommonRemoteDao {
     ): ResponseWrapper<BusinessNews>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @POST("api/user/card")
+    @POST("api/user/favorite")
     suspend fun addFavorite(
         @Body favoriteRequest: FavoriteRequest
     ): ResponseWrapper<Any>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @DELETE("api/user/card")
+    @DELETE("api/user/favorite")
     suspend fun removeFavorite(
         @Body favoriteRequest: FavoriteRequest
     ): ResponseWrapper<Any>

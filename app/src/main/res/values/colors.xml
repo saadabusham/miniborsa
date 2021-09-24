@@ -165,4 +165,9 @@
     <color name="switch_track_unactive">#807E7E7E</color>
 
     <color name="listing_bg">#59F39A74</color>
+
+    <!--    News Sections Color-->
+    <color name="startup_news">#E9591C</color>
+    <color name="investment">#00AB6B</color>
+    <color name="tips">#F6A923</color>
 </resources>

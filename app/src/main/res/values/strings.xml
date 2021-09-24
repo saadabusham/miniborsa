@@ -340,5 +340,9 @@
     <string name="news_on_mini_bursa">News Mini Bursa</string>
     <string name="share_this_news">Share this news</string>
     <string name="share_on_mini_bursa">Share on mini bursa</string>
+    <string name="all">All</string>
+    <string name="startup_news">Startup News</string>
+    <string name="investment">Investment</string>
+    <string name="tips">Tips</string>
 
 </resources>

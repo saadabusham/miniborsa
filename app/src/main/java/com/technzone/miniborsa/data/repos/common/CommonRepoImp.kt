@@ -32,12 +32,13 @@ class CommonRepoImp @Inject constructor(
     override suspend fun getBlogs(
         pageSize: Int,
         pageNumber: Int,
-        banner: Boolean,
-        searchTxt: String?
+        section: Int?,
+        searchTxt: String?,
+        type: Int?
     ): APIResource<ResponseWrapper<ListWrapper<BusinessNews>>> {
         return try {
             responseHandle.handleSuccess(
-                commonRemoteDao.getBlogs(pageSize, pageNumber, banner,searchTxt)
+                commonRemoteDao.getBlogs(pageSize, pageNumber, section,searchTxt,type)
             )
         } catch (e: Exception) {
             responseHandle.handleException(e)

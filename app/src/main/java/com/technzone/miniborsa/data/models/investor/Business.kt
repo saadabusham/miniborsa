@@ -124,7 +124,7 @@ data class Business(
 	@ColumnInfo(name = "annualTurnoverNA")
 	val annualTurnoverNA: Boolean? = null,
 
-	@field:SerializedName("isFavorite")
+	@field:SerializedName("isFav")
 	@ColumnInfo(name = "isFavorite")
 	var isFavorite: Boolean? = null,
 

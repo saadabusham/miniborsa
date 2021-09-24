@@ -59,10 +59,11 @@
                         style="@style/textview_normal_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/_18sdp"
-                        android:backgroundTint="@color/green_color"
                         android:gravity="center"
                         android:padding="@dimen/_5sdp"
-                        android:text="Startup News"
+                        tools:text="Startup News"
+                        setTextBySection="@{viewModel.blogToView.section}"
+                        setColorBySection="@{viewModel.blogToView.section}"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_7ssp"
                         app:cornerRadius="@dimen/_2sdp" />

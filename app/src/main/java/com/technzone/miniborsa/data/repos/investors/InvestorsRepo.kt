@@ -27,7 +27,8 @@ interface InvestorsRepo {
         investmentBudget: Double,
         InvestmentBudgetNA: Boolean,
         countries: List<Int>,
-        categories: List<Int>
+        categories: List<Int>,
+        isOnline: Boolean
     ): APIResource<ResponseWrapper<Int>>
 
     suspend fun getBusinessByType(

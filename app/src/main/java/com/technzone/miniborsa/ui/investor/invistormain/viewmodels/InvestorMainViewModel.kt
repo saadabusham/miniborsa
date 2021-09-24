@@ -3,6 +3,8 @@ package com.technzone.miniborsa.ui.investor.invistormain.viewmodels
 import androidx.lifecycle.liveData
 import com.technzone.miniborsa.data.api.response.APIResource
 import com.technzone.miniborsa.data.common.Constants
+import com.technzone.miniborsa.data.enums.NewsSectionEnums
+import com.technzone.miniborsa.data.enums.NewsTypeEnums
 import com.technzone.miniborsa.data.enums.UserEnums
 import com.technzone.miniborsa.data.enums.UserRoleEnums
 import com.technzone.miniborsa.data.repos.common.CommonRepo
@@ -39,7 +41,8 @@ class InvestorMainViewModel @Inject constructor(
             commonRepo.getBlogs(
                 pageNumber = 1,
                 pageSize = Constants.PAGE_SIZE,
-                banner = true
+                section = NewsSectionEnums.ALL.value,
+                type = null
             )
         emit(response)
     }

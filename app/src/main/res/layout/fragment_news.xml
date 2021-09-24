@@ -97,7 +97,7 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/layout_business_news"
                     tools:itemCount="4"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     tools:listitem="@layout/row_news_tab" />
 
                 <include

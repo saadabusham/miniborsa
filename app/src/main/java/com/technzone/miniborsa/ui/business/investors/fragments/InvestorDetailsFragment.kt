@@ -62,7 +62,7 @@ class InvestorDetailsFragment : BaseBindingFragment<FragmentInvestorDetailsBindi
     private fun setUpRvCountries() {
         countriesAdapter = BusinessExtraInfoAdapter(requireContext())
         binding?.rvCountries?.adapter = countriesAdapter
-        viewModel.investorToView?.value?.countries?.map { ExtraInfo(name = it?.name, id = it?.id) }
+        viewModel.investorToView?.value?.countries?.map { ExtraInfo(name = it.name, id = it.id) }
             ?.let {
                 countriesAdapter.submitItems(
                     it
@@ -76,7 +76,7 @@ class InvestorDetailsFragment : BaseBindingFragment<FragmentInvestorDetailsBindi
         binding?.rvCategories?.adapter = categoriesAdapter
         viewModel.investorToView?.value?.categories?.map { ExtraInfo(name = it?.name, id = it?.id) }
             ?.let {
-                countriesAdapter.submitItems(
+                categoriesAdapter.submitItems(
                     it
                 )
             }

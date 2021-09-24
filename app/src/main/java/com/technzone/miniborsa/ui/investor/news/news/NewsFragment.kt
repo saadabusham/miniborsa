@@ -8,6 +8,7 @@ import com.jakewharton.rxbinding3.widget.textChangeEvents
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.CustomObserverResponse
+import com.technzone.miniborsa.data.enums.NewsSectionEnums
 import com.technzone.miniborsa.data.models.general.GeneralLookup
 import com.technzone.miniborsa.data.models.general.ListWrapper
 import com.technzone.miniborsa.data.models.news.BusinessNews
@@ -42,7 +43,7 @@ class NewsFragment : BaseBindingFragment<FragmentNewsBinding>(),
     private val loading: MutableLiveData<Boolean> = MutableLiveData(false)
     private var isFinished = false
     var pageNumber: Int = 1
-
+    private var selectedSectionsEnum: Int? = NewsSectionEnums.ALL.value
     override fun getLayoutId(): Int {
         return R.layout.fragment_news
     }
@@ -145,10 +146,10 @@ class NewsFragment : BaseBindingFragment<FragmentNewsBinding>(),
     private fun loadTabNews() {
         tabNewsAdapter.submitItems(
             arrayListOf(
-                GeneralLookup(name = "All", isSelected = MutableLiveData(true)),
-                GeneralLookup(name = "Startup  News"),
-                GeneralLookup(name = "Investment"),
-                GeneralLookup(name = "Tips")
+                GeneralLookup(name = getString(R.string.all), isSelected = MutableLiveData(true)),
+                GeneralLookup(name = getString(R.string.startup_news)),
+                GeneralLookup(name = getString(R.string.investment)),
+                GeneralLookup(name = getString(R.string.tips))
             )
         )
         setUpIndicator()
@@ -196,7 +197,7 @@ class NewsFragment : BaseBindingFragment<FragmentNewsBinding>(),
     }
 
     private fun loadNews() {
-        viewModel.getBlogs(pageNumber).observe(this, newsResultObserver())
+        viewModel.getBlogs(pageNumber,selectedSectionsEnum).observe(this, newsResultObserver())
     }
 
     private fun newsResultObserver(): CustomObserverResponse<ListWrapper<BusinessNews>> {
@@ -248,6 +249,10 @@ class NewsFragment : BaseBindingFragment<FragmentNewsBinding>(),
         when (item) {
             is GeneralLookup -> {
                 binding?.rvTabs?.smoothScrollToPosition(position)
+                selectedSectionsEnum = NewsSectionEnums.getSectionByValue(position)?.value
+                pageNumber = 1
+                newsRecyclerAdapter.clear()
+                loadNews()
             }
             is BusinessNews -> {
                 viewModel.blogId = item.id ?: -1
