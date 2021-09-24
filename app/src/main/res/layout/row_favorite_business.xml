@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="item"
             type="com.technzone.miniborsa.data.models.investor.Business" />
+
+        <variable
+            name="favorite"
+            type="Boolean" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -36,7 +40,11 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_5sdp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_favorite"
+                tools:src="@drawable/ic_favorite"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@{favorite ? @drawable/ic_favorite : @drawable/ic_unfavorite}"
+                android:background="?selectableItemBackgroundBorderless"
                 app:layout_constraintEnd_toEndOf="@id/imgPhoto"
                 app:layout_constraintTop_toTopOf="@id/imgPhoto" />
 

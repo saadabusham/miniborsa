@@ -11,7 +11,7 @@ data class UserDetailsResponseModel(
 	val gender: Int? = null,
 
 	@field:SerializedName("roles")
-	val roles: List<UserRoles>? = null,
+	val roles: MutableList<UserRoles>? = null,
 
 	@field:SerializedName("fullName")
 	val fullName: String? = null,

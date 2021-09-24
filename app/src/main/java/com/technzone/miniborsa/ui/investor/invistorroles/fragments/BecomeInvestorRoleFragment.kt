@@ -20,9 +20,12 @@ import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
 import com.technzone.miniborsa.ui.general.GeneralActivity
 import com.technzone.miniborsa.ui.general.adapters.SelectedGeneralRecyclerAdapter
+import com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity
 import com.technzone.miniborsa.ui.investor.invistorroles.viewmodels.InvestorRoleViewModel
 import com.technzone.miniborsa.utils.extensions.hideKeyboard
 import com.technzone.miniborsa.utils.extensions.showErrorAlert
+import com.technzone.miniborsa.utils.extensions.validate
+import com.technzone.miniborsa.utils.validation.ValidatorInputTypesEnums
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
 import okhttp3.internal.toLongOrDefault
@@ -62,7 +65,7 @@ class BecomeInvestorRoleFragment : BaseBindingFragment<FragmentBecomeInvistorBin
                 viewModel.becomeInvestor(
                     countries = selectedCountriesAdapter.getSelectedItems().map { it.id ?: 0 },
                     categories = selectedSpecialisationAdapter.getSelectedItems().map { it.id ?: 0 }
-                ).observe(this,becomeInvestorResultObserver())
+                ).observe(this, becomeInvestorResultObserver())
             }
         }
         binding?.tvCountries?.setOnClickListener {
@@ -84,12 +87,30 @@ class BecomeInvestorRoleFragment : BaseBindingFragment<FragmentBecomeInvistorBin
     }
 
     private fun isDataValid(): Boolean {
-        if(selectedCountriesAdapter.getSelectedItems().isNullOrEmpty()){
-            requireActivity().showErrorAlert(getString(R.string.app_name),getString(R.string.please_select_your_countries))
+        binding?.edJobTitle?.text?.toString()?.validate(ValidatorInputTypesEnums.TEXT,requireContext())?.let {
+            if(!it.isValid){
+                requireActivity().showErrorAlert(getString(R.string.job_title),it.errorMessage)
+                return false
+            }
+        }
+        binding?.edBio?.text?.toString()?.validate(ValidatorInputTypesEnums.TEXT,requireContext())?.let {
+            if(!it.isValid){
+                requireActivity().showErrorAlert(getString(R.string.bio),it.errorMessage)
+                return false
+            }
+        }
+        if (selectedCountriesAdapter.getSelectedItems().isNullOrEmpty()) {
+            requireActivity().showErrorAlert(
+                getString(R.string.app_name),
+                getString(R.string.please_select_your_countries)
+            )
             return false
         }
-        if(selectedSpecialisationAdapter.getSelectedItems().isNullOrEmpty()){
-            requireActivity().showErrorAlert(getString(R.string.app_name),getString(R.string.please_select_your_specialisations))
+        if (selectedSpecialisationAdapter.getSelectedItems().isNullOrEmpty()) {
+            requireActivity().showErrorAlert(
+                getString(R.string.app_name),
+                getString(R.string.please_select_your_specialisations)
+            )
             return false
         }
         return true
@@ -101,17 +122,17 @@ class BecomeInvestorRoleFragment : BaseBindingFragment<FragmentBecomeInvistorBin
         binding?.rvSelectedCountries?.setOnItemClickListener(this)
     }
 
-    private fun countriesResultObserver(): CustomObserverResponse<List<Country>> {
+    private fun countriesResultObserver(): CustomObserverResponse<ListWrapper<Country>> {
         return CustomObserverResponse(
             requireActivity(),
-            object : CustomObserverResponse.APICallBack<List<Country>> {
+            object : CustomObserverResponse.APICallBack<ListWrapper<Country>> {
                 override fun onSuccess(
                     statusCode: Int,
                     subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: List<Country>?
+                    data: ListWrapper<Country>?
                 ) {
-                    if (!data.isNullOrEmpty())
-                        data.map { GeneralLookup(id = it.id, name = it.name) }.let {
+                    if (!data?.data.isNullOrEmpty())
+                        data?.data?.map { GeneralLookup(id = it.id, name = it.name) }.let {
                             GeneralActivity.start(
                                 requireContext(),
                                 ArrayList(it),
@@ -126,7 +147,7 @@ class BecomeInvestorRoleFragment : BaseBindingFragment<FragmentBecomeInvistorBin
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val data: Intent? = result.data
-                selectedCountriesAdapter.submitItems(data?.getSerializableExtra(Constants.BundleData.GENERAL_LIST) as List<GeneralLookup>)
+                selectedCountriesAdapter.submitNewItems(data?.getSerializableExtra(Constants.BundleData.GENERAL_LIST) as List<GeneralLookup>)
             }
         }
 
@@ -161,7 +182,7 @@ class BecomeInvestorRoleFragment : BaseBindingFragment<FragmentBecomeInvistorBin
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val data: Intent? = result.data
-                selectedSpecialisationAdapter.submitItems(data?.getSerializableExtra(Constants.BundleData.GENERAL_LIST) as List<GeneralLookup>)
+                selectedSpecialisationAdapter.submitNewItems(data?.getSerializableExtra(Constants.BundleData.GENERAL_LIST) as List<GeneralLookup>)
             }
         }
 
@@ -175,7 +196,8 @@ class BecomeInvestorRoleFragment : BaseBindingFragment<FragmentBecomeInvistorBin
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: Int?
                 ) {
-
+                    viewModel.addInvestorRole()
+                    InvestorMainActivity.start(requireContext())
                 }
             })
     }

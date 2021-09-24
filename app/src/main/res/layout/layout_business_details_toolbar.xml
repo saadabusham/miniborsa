@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="favorite"
+            type="Boolean" />
     </data>
 
     <androidx.appcompat.widget.Toolbar
@@ -48,8 +51,8 @@
                 android:id="@+id/imgShare"
                 android:layout_width="@dimen/_28sdp"
                 android:layout_height="@dimen/_28sdp"
-                android:layout_toStartOf="@id/imgFavorite"
                 android:layout_centerInParent="true"
+                android:layout_toStartOf="@id/imgFavorite"
                 android:background="?selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true"
@@ -66,7 +69,8 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:padding="@dimen/_3sdp"
-                android:src="@drawable/ic_favorite" />
+                android:src="@{favorite ? @drawable/ic_favorite : @drawable/ic_unfavorite}"
+                tools:src="@drawable/ic_favorite" />
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 </layout>

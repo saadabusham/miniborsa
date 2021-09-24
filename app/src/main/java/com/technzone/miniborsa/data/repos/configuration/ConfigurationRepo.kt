@@ -17,13 +17,13 @@ interface ConfigurationRepo {
     suspend fun loadConfigurationData(): APIResource<ResponseWrapper<ConfigurationWrapperResponse>>
 
     suspend fun getCountries(
-        name: String?,
+        name: String?="",
         pageSize: Int,
         pageNumber: Int
-    ): APIResource<ResponseWrapper<List<Country>>>
+    ): APIResource<ResponseWrapper<ListWrapper<Country>>>
 
     suspend fun getCategories(
-        parentId: Int,
+        parentId: Int?=null,
         name: String? = "",
         pageSize: Int,
         pageNumber: Int

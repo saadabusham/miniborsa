@@ -8,6 +8,7 @@ import com.technzone.miniborsa.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.miniborsa.databinding.FragmentVerificationRegisterBinding
 import com.technzone.miniborsa.ui.auth.register.viewmodels.RegistrationViewModel
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
+import com.technzone.miniborsa.ui.userrole.activity.UserRolesActivity
 import com.technzone.miniborsa.utils.extensions.showErrorAlert
 import com.technzone.miniborsa.utils.extensions.validate
 import com.technzone.miniborsa.utils.validation.ValidatorInputTypesEnums
@@ -25,12 +26,12 @@ class VerificationSignUpFragment : BaseBindingFragment<FragmentVerificationRegis
     override fun onViewVisible() {
         super.onViewVisible()
         addToolbar(
-                hasToolbar = true,
-                toolbarView = toolbar,
-                hasBackButton = true,
-                showBackArrow = true,
-                hasTitle = true,
-                title = R.string.empty_string
+            hasToolbar = true,
+            toolbarView = toolbar,
+            hasBackButton = true,
+            showBackArrow = true,
+            hasTitle = true,
+            title = R.string.empty_string
         )
         setUpViewsListeners()
         setUpData()
@@ -42,22 +43,35 @@ class VerificationSignUpFragment : BaseBindingFragment<FragmentVerificationRegis
     }
 
     private fun verifyOtpResultObserver(): CustomObserverResponse<UserDetailsResponseModel> {
-        return CustomObserverResponse(requireActivity(), object : CustomObserverResponse.APICallBack<UserDetailsResponseModel> {
-            override fun onSuccess(statusCode: Int, subErrorCode: ResponseSubErrorsCodeEnum, data: UserDetailsResponseModel?) {
-                data?.let {
-                    viewModel.storeUser(it)
-                    navigationController.navigate(R.id.action_verificationSignUpFragment_to_registerSuccessFragment)
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<UserDetailsResponseModel> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: UserDetailsResponseModel?
+                ) {
+                    data?.let {
+                        viewModel.storeUser(it)
+//                    navigationController.navigate(R.id.action_verificationSignUpFragment_to_registerSuccessFragment)
+                        UserRolesActivity.start(requireContext())
+                    }
                 }
-            }
-        })
+            })
     }
 
     private fun sendOtpResultObserver(): CustomObserverResponse<String> {
-        return CustomObserverResponse(requireActivity(), object : CustomObserverResponse.APICallBack<String> {
-            override fun onSuccess(statusCode: Int, subErrorCode: ResponseSubErrorsCodeEnum, data: String?) {
-                viewModel.startHandleResendSignUpPinCodeTimer()
-            }
-        })
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<String> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: String?
+                ) {
+                    viewModel.startHandleResendSignUpPinCodeTimer()
+                }
+            })
     }
 
     private fun setUpViewsListeners() {

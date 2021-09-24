@@ -221,7 +221,7 @@ class SearchBusinessFragment : BaseBindingFragment<FragmentSearchBusinessBinding
                         } else {
                             businessAdapter.addItems(it)
                         }
-                    }?.also {
+                    }?:also {
                         viewModel.itemFoundCount.value = 0
                     }
                     loading.postValue(false)

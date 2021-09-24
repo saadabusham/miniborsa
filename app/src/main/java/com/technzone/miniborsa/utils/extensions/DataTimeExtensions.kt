@@ -2,6 +2,7 @@ package com.technzone.miniborsa.utils.extensions
 
 import com.technzone.miniborsa.utils.DateTimeUtil
 import com.technzone.miniborsa.utils.DateTimeUtil.DAY_MONTH_NAME_YEAR_DATE_TIME_FORMATTING
+import com.technzone.miniborsa.utils.DateTimeUtil.DAY_MONTH_YEAR_DATE_TIME_FORMATTING
 import com.technzone.miniborsa.utils.DateTimeUtil.DAY_NAME_MONTH_NAME_DAY_YEAR_DATE_TIME_FORMATTING
 import com.technzone.miniborsa.utils.DateTimeUtil.FULL_DATE_AT_TIME_FORMATTING
 import com.technzone.miniborsa.utils.DateTimeUtil.FULL_DATE_TIME_FORMATTING
@@ -70,6 +71,8 @@ fun String?.toMillieSecconds(format: String = DateTimeUtil.FULL_DATE_TIME_FORMAT
     } catch (e: IllegalArgumentException) {
         0
     } catch (e: ParseException) {
+        0
+    } catch (e: NullPointerException) {
         0
     }
 }
@@ -261,8 +264,8 @@ fun String.getMonthName(): String {
     return dateFormat.format(this.toMillieSecconds())
 }
 
-fun String.getDateFormattedForJet(): String {
-    val dateFormat = SimpleDateFormat(FULL_DATE_AT_TIME_FORMATTING, Locale.ENGLISH)
+fun String?.getDateFormattedForNews(): String {
+    val dateFormat = SimpleDateFormat(DAY_MONTH_YEAR_DATE_TIME_FORMATTING, Locale.ENGLISH)
     return dateFormat.format(this.toMillieSecconds())
 }
 

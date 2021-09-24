@@ -94,10 +94,11 @@ class NewsFragment : BaseBindingFragment<FragmentNewsBinding>(),
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: ListWrapper<BusinessNews>?
                 ) {
-                    data?.data?.let {
-                        businessNewsSliderAdapter.submitItems(it)
-                        setUpIndicator()
-                    }?.also {
+                    if (data?.data != null && data.data.size > 0)
+                        data.data.let {
+                            businessNewsSliderAdapter.submitItems(it)
+                            setUpIndicator()
+                        } else {
                         binding?.layoutBusinessNews?.linearRoot?.gone()
                     }
                 }

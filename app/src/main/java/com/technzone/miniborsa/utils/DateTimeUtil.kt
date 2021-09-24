@@ -15,7 +15,7 @@ object DateTimeUtil {
     const val MESSAGE_DATE_FORMATE = "MMM/dd HH:mm"
     const val YEAR_MONTH_DAY_DATE_TIME_FORMATTING = "yyyy-MM-dd"
     const val DATE_TIME_FORMATTING = "dd/mm/yyyy hh:mm a"
-    const val DAY_MONTH_YEAR_DATE_TIME_FORMATTING = "dd /mm/ yyyy"
+    const val DAY_MONTH_YEAR_DATE_TIME_FORMATTING = "dd/mm/yyyy"
     const val DAY_MONTH_NAME_YEAR_DATE_TIME_FORMATTING = "dd MMM yyyy"
     const val MONTH_NAME_DAY_YEAR_DATE_FORMATTING = "MMM d , yyyy"
     const val MONTH_NAME_DAY_YEAR_DATE_TIME_FORMATTING = "MMM d , yyyy | HH:mm"

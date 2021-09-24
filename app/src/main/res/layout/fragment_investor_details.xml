@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="com.technzone.miniborsa.R" />
+
         <variable
             name="viewModel"
             type="com.technzone.miniborsa.ui.business.investors.viewmodels.InvestorsViewModel" />
@@ -57,6 +59,7 @@
             android:focusable="true"
             android:padding="@dimen/_5sdp"
             android:src="@drawable/ic_filter_investor"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/imgBack"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/imgBack" />
@@ -73,8 +76,12 @@
             app:layout_constraintTop_toBottomOf="@id/imgBack">
 
             <com.technzone.miniborsa.ui.base.views.AppImageView
+                ivImageErrorPlaceholder="@{R.drawable.ic_profile_place_holder}"
+                ivImagePlaceholder="@{R.drawable.ic_profile_place_holder}"
+                ivImageUrl="@{viewModel.investorToView.picture}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_profile_place_holder" />
         </com.google.android.material.card.MaterialCardView>
 
@@ -95,6 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_18sdp"
             android:layout_marginTop="@dimen/_10sdp"
+            android:text="@{viewModel.investorToView.fullName}"
             android:textColor="@color/black"
             android:textSize="@dimen/_13ssp"
             app:layout_constraintEnd_toEndOf="@id/endGuide"
@@ -109,6 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_18sdp"
             android:layout_marginTop="@dimen/_5sdp"
+            android:text="@{viewModel.investorToView.jobTitle}"
             android:textColor="@color/black_alpha"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintEnd_toEndOf="@id/endGuide"
@@ -150,7 +159,7 @@
                     android:layout_marginTop="@dimen/_15sdp"
                     android:drawableStart="@drawable/ic_email"
                     android:drawablePadding="@dimen/_10sdp"
-                    android:text="@string/about"
+                    android:text="@{viewModel.investorToView.email}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_11ssp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -184,7 +193,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="@string/about"
+                    android:text="@{viewModel.investorToView.bio}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_11ssp"
                     app:layout_constraintEnd_toEndOf="parent"

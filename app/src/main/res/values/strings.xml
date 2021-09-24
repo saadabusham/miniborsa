@@ -334,5 +334,7 @@
     <string name="save">Save</string>
 
     <string name="concat_string">%s %s</string>
+    <string name="job_title">Job Title</string>
+    <string name="bio">Bio</string>
 
 </resources>

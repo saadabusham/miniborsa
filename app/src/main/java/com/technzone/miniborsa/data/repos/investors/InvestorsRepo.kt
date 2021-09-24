@@ -23,6 +23,7 @@ interface InvestorsRepo {
 
     suspend fun becomeInvestor(
         jobTitle: String?,
+        bio: String?,
         investmentBudget: Double,
         InvestmentBudgetNA: Boolean,
         countries: List<Int>,

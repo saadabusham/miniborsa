@@ -24,6 +24,7 @@
             android:textColor="#1E1F20"
             android:textAlignment="viewStart"
             android:textSize="@dimen/_13ssp"
+            android:text="@{item.name}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/checkbox"

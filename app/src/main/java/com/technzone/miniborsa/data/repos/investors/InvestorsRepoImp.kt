@@ -1,5 +1,6 @@
 package com.technzone.miniborsa.data.repos.investors
 
+import androidx.lifecycle.MutableLiveData
 import com.technzone.miniborsa.data.api.response.APIResource
 import com.technzone.miniborsa.data.api.response.ResponseHandler
 import com.technzone.miniborsa.data.api.response.ResponseWrapper
@@ -48,7 +49,8 @@ class InvestorsRepoImp @Inject constructor(
     }
 
     override suspend fun becomeInvestor(
-        jobTitle: String?,
+        jobTitle:String?,
+        bio: String?,
         investmentBudget: Double,
         InvestmentBudgetNA: Boolean,
         countries: List<Int>,
@@ -58,6 +60,7 @@ class InvestorsRepoImp @Inject constructor(
             responseHandle.handleSuccess(
                 investorRemoteDao.becomeInvestor(
                     jobTitle,
+                    bio,
                     investmentBudget,
                     InvestmentBudgetNA,
                     countries,

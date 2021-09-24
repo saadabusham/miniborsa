@@ -8,6 +8,7 @@ import androidx.fragment.app.activityViewModels
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.common.interfaces.LoginCallBack
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
+import com.technzone.miniborsa.data.api.response.ResponseWrapper
 import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.data.enums.BusinessTypeEnums
@@ -28,6 +29,7 @@ import com.technzone.miniborsa.ui.investor.filter.activity.FilterActivity
 import com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity
 import com.technzone.miniborsa.ui.investor.invistormain.adapters.BusinessAdapter
 import com.technzone.miniborsa.ui.investor.invistormain.adapters.BusinessNewsAdapter
+import com.technzone.miniborsa.ui.investor.invistormain.viewmodels.FavoritesViewModel
 import com.technzone.miniborsa.ui.investor.invistormain.viewmodels.InvestorMainViewModel
 import com.technzone.miniborsa.ui.investor.news.activity.NewsActivity
 import com.technzone.miniborsa.ui.subscription.activity.SubscriptionActivity
@@ -41,6 +43,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
     BaseBindingRecyclerViewAdapter.OnItemClickListener, LoginCallBack {
 
     private val viewModel: InvestorMainViewModel by activityViewModels()
+    private val favoriteViewModel: FavoritesViewModel by activityViewModels()
 
     lateinit var forSaleBusinessAdapter: BusinessAdapter
     lateinit var shareForSaleBusinessAdapter: BusinessAdapter
@@ -107,18 +110,19 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
     }
 
 
-    private fun handleStickyBusiness(){
-        if(viewModel.isInvestor()){
+    private fun handleStickyBusiness() {
+        if (viewModel.isInvestor()) {
             binding?.layoutSwitchBusiness?.layoutListBusiness?.root?.visible()
-        }
-        else if (viewModel.isBusinessOwner()){
+        } else if (viewModel.isBusinessOwner()) {
 
         }
     }
-    private fun removeIsFirstLogin(){
+
+    private fun removeIsFirstLogin() {
         viewModel.setIsFirstLogin(false)
     }
-    private fun switchToBusinessOwner(){
+
+    private fun switchToBusinessOwner() {
         if (viewModel.isUserHasBusinessRoles()) {
             viewModel.setCurrentUserRoles(UserRoleEnums.BUSINESS_ROLE.value)
             BusinessMainActivity.start(requireContext())
@@ -126,6 +130,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
             SubscriptionActivity.start(requireContext(), true)
         }
     }
+
     //    ForSale
     private fun setUpRvForSaleBusiness() {
         forSaleBusinessAdapter = BusinessAdapter(requireContext())
@@ -160,9 +165,10 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: ListWrapper<Business>?
                 ) {
-                    data?.data?.let {
-                        forSaleBusinessAdapter.submitItems(it)
-                    }?.also {
+                    if (data?.data != null && data.data.size > 0)
+                        data.data.let {
+                            forSaleBusinessAdapter.submitItems(it)
+                        } else {
                         binding?.layoutForSale?.linearRoot?.gone()
                     }
                 }
@@ -209,9 +215,10 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: ListWrapper<Business>?
                 ) {
-                    data?.data?.let {
-                        shareForSaleBusinessAdapter.submitItems(it)
-                    }?.also {
+                    if (data?.data != null && data.data.size > 0)
+                        data.data.let {
+                            shareForSaleBusinessAdapter.submitItems(it)
+                        } else {
                         binding?.layoutShareForSale?.linearRoot?.gone()
                     }
                 }
@@ -257,9 +264,10 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: ListWrapper<Business>?
                 ) {
-                    data?.data?.let {
-                        franchiseBusinessAdapter.submitItems(it)
-                    }?.also {
+                    if (data?.data != null && data.data.size > 0)
+                        data.data.let {
+                            franchiseBusinessAdapter.submitItems(it)
+                        } else {
                         binding?.layoutFranchise?.linearRoot?.gone()
                     }
                 }
@@ -300,9 +308,10 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: ListWrapper<BusinessNews>?
                 ) {
-                    data?.data?.let {
-                        businessNewsAdapter.submitItems(it)
-                    }?.also {
+                    if (data?.data != null && data.data.size > 0)
+                        data.data.let {
+                            businessNewsAdapter.submitItems(it)
+                        } else {
                         binding?.layoutBusinessNews?.linearRoot?.gone()
                     }
                 }
@@ -320,10 +329,10 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
         TransitionManager.beginDelayedTransition(binding?.root as ViewGroup)
     }
 
-    private fun showLoginDialog(){
+    private fun showLoginDialog() {
         requireActivity().showLoginDialog(object : LoginDialog.CallBack {
             override fun callBackLogin() {
-                AuthActivity.startForResult(requireActivity(),true)
+                AuthActivity.startForResult(requireActivity(), true)
             }
         })
     }
@@ -332,17 +341,44 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
 
     }
 
+    private fun wishListObserver(): CustomObserverResponse<Any> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<Any> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: ResponseWrapper<Any>?
+                ) {
+
+                }
+            }, false, showError = false
+        )
+    }
+
     override fun onItemClick(view: View?, position: Int, item: Any) {
         when (item) {
             is Business -> {
                 if (viewModel.isUserLoggedIn()) {
-                    BusinessDetailsActivity.start(requireContext(), item)
+                    if (view?.id == R.id.imgFavorite) {
+                        if (item.isFavorite == true) {
+                            favoriteViewModel.addToWishList(item.id ?: 0)
+                                .observe(this, wishListObserver())
+                        } else {
+                            favoriteViewModel.removeFromWishList(
+                                item.id
+                                    ?: 0
+                            ).observe(this, wishListObserver())
+                        }
+                    } else {
+                        BusinessDetailsActivity.start(requireContext(), item)
+                    }
                 } else {
                     showLoginDialog()
                 }
             }
             is BusinessNews -> {
-                NewsActivity.start(requireContext())
+                NewsActivity.start(requireContext(), item.id)
             }
         }
     }

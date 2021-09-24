@@ -50,6 +50,7 @@
                 android:layout_height="@dimen/_28sdp"
                 android:layout_toStartOf="@id/imgMore"
                 android:layout_centerInParent="true"
+                android:layout_alignParentEnd="true"
                 android:background="?selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true"
@@ -65,6 +66,7 @@
                 android:background="?selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true"
+                android:visibility="gone"
                 android:padding="@dimen/_3sdp"
                 android:src="@drawable/ic_more_menu" />
         </RelativeLayout>

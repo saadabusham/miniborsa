@@ -12,7 +12,6 @@ import com.technzone.miniborsa.data.models.auth.login.UserRoles
 import com.technzone.miniborsa.databinding.ActivityUserRoleBinding
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
-import com.technzone.miniborsa.ui.business.businessmain.activity.BusinessMainActivity
 import com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity
 import com.technzone.miniborsa.ui.investor.invistorroles.activity.InvestorRolesActivity
 import com.technzone.miniborsa.ui.subscription.activity.SubscriptionActivity
@@ -45,15 +44,15 @@ class UserRolesActivity : BaseBindingActivity<ActivityUserRoleBinding>(),
     private fun setUpListeners() {
         binding?.btnContinue?.setOnClickListener {
             adapter.getSelectedItem()?.let {
-                viewModel.setUserRole(it.role ?: UserRoleEnums.GUEST_ROLE.value)
                 when (it.role) {
                     UserRoleEnums.BUSINESS_ROLE.value -> {
-                        BusinessMainActivity.start(this)
+                        SubscriptionActivity.start(this, true)
                     }
                     UserRoleEnums.INVESTOR_ROLE.value -> {
-                        InvestorMainActivity.start(this)
+                        InvestorRolesActivity.start(this)
                     }
                     UserRoleEnums.VISITOR_ROLE.value -> {
+                        viewModel.setUserRole(UserRoleEnums.VISITOR_ROLE.value)
                         InvestorMainActivity.start(this)
                     }
                 }
@@ -90,17 +89,6 @@ class UserRolesActivity : BaseBindingActivity<ActivityUserRoleBinding>(),
 
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as UserRoles
-        when (item.title) {
-            UserRoleEnums.BUSINESS_ROLE.value -> {
-                SubscriptionActivity.start(this, true)
-            }
-            UserRoleEnums.INVESTOR_ROLE.value -> {
-                InvestorRolesActivity.start(this)
-            }
-            UserRoleEnums.VISITOR_ROLE.value -> {
-                InvestorMainActivity.start(this)
-            }
-        }
     }
 
     companion object {

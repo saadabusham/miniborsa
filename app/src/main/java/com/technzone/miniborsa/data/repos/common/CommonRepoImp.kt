@@ -5,6 +5,7 @@ import com.technzone.miniborsa.data.api.response.ResponseHandler
 import com.technzone.miniborsa.data.api.response.ResponseWrapper
 import com.technzone.miniborsa.data.daos.remote.common.CommonRemoteDao
 import com.technzone.miniborsa.data.models.general.ListWrapper
+import com.technzone.miniborsa.data.models.investor.request.FavoriteRequest
 import com.technzone.miniborsa.data.models.news.BusinessNews
 import com.technzone.miniborsa.data.models.notification.Notification
 import com.technzone.miniborsa.data.repos.base.BaseRepo
@@ -47,6 +48,26 @@ class CommonRepoImp @Inject constructor(
         return try {
             responseHandle.handleSuccess(
                 commonRemoteDao.getBlogDetails(id)
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun addFavorite(favoriteRequest: FavoriteRequest): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(
+                commonRemoteDao.addFavorite(favoriteRequest)
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun removeFavorite(favoriteRequest: FavoriteRequest): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(
+                commonRemoteDao.removeFavorite(favoriteRequest)
             )
         } catch (e: Exception) {
             responseHandle.handleException(e)

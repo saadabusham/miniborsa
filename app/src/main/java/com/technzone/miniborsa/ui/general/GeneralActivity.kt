@@ -49,8 +49,8 @@ class GeneralActivity : BaseBindingActivity<ActivityChooseGeneralBinding>(),
                 if (it.size > 0) {
                     setResult(RESULT_OK, Intent().apply {
                         putExtra(Constants.BundleData.GENERAL_LIST, it)
-                        finish()
                     })
+                    finish()
                 } else {
                     showErrorAlert(getString(R.string.app_name), getString(R.string.please_select_item))
                 }
@@ -61,9 +61,11 @@ class GeneralActivity : BaseBindingActivity<ActivityChooseGeneralBinding>(),
     private fun setAdapter() {
         adapter = ChooseGeneralRecyclerAdapter(this)
         binding?.rvItems?.adapter = adapter
-        selectedGeneralRecyclerAdapter = SelectedGeneralRecyclerAdapter(this)
+        selectedGeneralRecyclerAdapter = SelectedGeneralRecyclerAdapter(this,true)
         binding?.rvSelectedItems?.adapter = selectedGeneralRecyclerAdapter
-        adapter.submitItems(intent.getSerializableExtra(Constants.BundleData.GENERAL_LIST) as ArrayList<GeneralLookup>)
+        adapter.submitNewItems((intent.getSerializableExtra(Constants.BundleData.GENERAL_LIST) as ArrayList<GeneralLookup>).also {
+            list = it
+        })
         binding?.rvItems?.setOnItemClickListener(this)
         binding?.rvSelectedItems?.setOnItemClickListener(this)
 
@@ -72,10 +74,11 @@ class GeneralActivity : BaseBindingActivity<ActivityChooseGeneralBinding>(),
 
     private fun initSearch() {
         if (binding?.etSearch?.text?.isEmpty() == true) {
-            adapter.submitItems(list)
+            adapter.submitNewItems(list)
         }
 
         disposable + binding?.etSearch?.textChangeEvents()
+            ?.skipInitialValue()
             ?.debounce(300, TimeUnit.MILLISECONDS)
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribeOn(Schedulers.io())
@@ -83,15 +86,15 @@ class GeneralActivity : BaseBindingActivity<ActivityChooseGeneralBinding>(),
                 if (it.text.isNotEmpty()) {
                     searchList.clear()
                     list.forEach { generalLookUp ->
-                        if (generalLookUp.name?.contains(it.text) == true) {
+                        if (generalLookUp.name?.toUpperCase()?.contains(it.text.toString().toUpperCase()) == true) {
                             searchList.add(generalLookUp)
                         }
                     }
                     if (searchList.size > 0) {
-                        adapter.submitItems(searchList)
+                        adapter.submitNewItems(searchList)
                     }
                 } else {
-                    adapter.submitItems(list)
+                    adapter.submitNewItems(list)
                 }
             }
     }
@@ -101,7 +104,7 @@ class GeneralActivity : BaseBindingActivity<ActivityChooseGeneralBinding>(),
         item as GeneralLookup
         if (selectedList.contains(item)) {
             selectedList.remove(item)
-            selectedGeneralRecyclerAdapter.submitItems(selectedList)
+            selectedGeneralRecyclerAdapter.submitNewItems(selectedList)
             adapter.unCheckItem(item)
             onSelectedChanged()
         }
@@ -111,11 +114,11 @@ class GeneralActivity : BaseBindingActivity<ActivityChooseGeneralBinding>(),
         item as GeneralLookup
         if (isChecked == true && !selectedList.contains(item)) {
             selectedList.add(item)
-            selectedGeneralRecyclerAdapter.submitItems(selectedList)
+            selectedGeneralRecyclerAdapter.submitNewItems(selectedList)
             onSelectedChanged()
         } else if (isChecked == false && selectedList.contains(item)) {
             selectedList.remove(item)
-            selectedGeneralRecyclerAdapter.submitItems(selectedList)
+            selectedGeneralRecyclerAdapter.submitNewItems(selectedList)
             onSelectedChanged()
         }
     }

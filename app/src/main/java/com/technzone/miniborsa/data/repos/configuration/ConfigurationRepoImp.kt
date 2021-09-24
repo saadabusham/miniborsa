@@ -8,7 +8,6 @@ import com.technzone.miniborsa.data.daos.remote.configuration.ConfigurationRemot
 import com.technzone.miniborsa.data.models.configuration.ConfigurationWrapperResponse
 import com.technzone.miniborsa.data.models.country.Country
 import com.technzone.miniborsa.data.models.general.ListWrapper
-import com.technzone.miniborsa.data.models.investor.GeneralRequest
 import com.technzone.miniborsa.data.models.investor.PropertiesItem
 import com.technzone.miniborsa.data.models.investor.investors.CategoriesItem
 import com.technzone.miniborsa.data.pref.configuration.ConfigurationPref
@@ -42,7 +41,7 @@ class ConfigurationRepoImp @Inject constructor(
         name:String?,
         pageSize: Int,
         pageNumber: Int
-    ): APIResource<ResponseWrapper<List<Country>>> {
+    ): APIResource<ResponseWrapper<ListWrapper<Country>>> {
         return try {
             responseHandle.handleSuccess(configurationRemoteDao.getCountries(name,pageSize,pageNumber))
         } catch (e: Exception) {
@@ -51,7 +50,7 @@ class ConfigurationRepoImp @Inject constructor(
     }
 
     override suspend fun getCategories(
-        parentId:Int,
+        parentId:Int?,
         name:String?,
         pageSize: Int,
         pageNumber: Int

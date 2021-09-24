@@ -40,15 +40,12 @@ class InvestorDetailsFragment : BaseBindingFragment<FragmentInvestorDetailsBindi
         binding?.imgBack?.setOnClickListener {
             requireActivity().onBackPressed()
         }
-        binding?.imgFilter?.setOnClickListener {
-
-        }
     }
 
     private fun initData() {
-        if (viewModel.investorToView?.value == null) {
+        if (viewModel.investorId != null) {
             loadData()
-        } else {
+        } else if(viewModel.investorToView?.value != null) {
             setData()
         }
     }
@@ -59,13 +56,13 @@ class InvestorDetailsFragment : BaseBindingFragment<FragmentInvestorDetailsBindi
     }
 
     private fun loadData() {
-        viewModel.getInvestorById(0).observe(this, investorDetailsResultObserver())
+        viewModel.investorId?.let { viewModel.getInvestorById(it).observe(this, investorDetailsResultObserver()) }
     }
 
     private fun setUpRvCountries() {
         countriesAdapter = BusinessExtraInfoAdapter(requireContext())
         binding?.rvCountries?.adapter = countriesAdapter
-        viewModel.investorToView?.value?.countries?.map { ExtraInfo(name = it.name, id = it.id) }
+        viewModel.investorToView?.value?.countries?.map { ExtraInfo(name = it?.name, id = it?.id) }
             ?.let {
                 countriesAdapter.submitItems(
                     it
@@ -77,7 +74,7 @@ class InvestorDetailsFragment : BaseBindingFragment<FragmentInvestorDetailsBindi
     private fun setUpRvCategories() {
         categoriesAdapter = BusinessExtraInfoAdapter(requireContext())
         binding?.rvCategories?.adapter = categoriesAdapter
-        viewModel.investorToView?.value?.categories?.map { ExtraInfo(name = it.name, id = it.id) }
+        viewModel.investorToView?.value?.categories?.map { ExtraInfo(name = it?.name, id = it?.id) }
             ?.let {
                 countriesAdapter.submitItems(
                     it

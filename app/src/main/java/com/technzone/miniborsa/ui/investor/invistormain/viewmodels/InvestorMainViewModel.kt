@@ -44,24 +44,16 @@ class InvestorMainViewModel @Inject constructor(
         emit(response)
     }
 
-    fun getFavorites(
-        pageNumber: Int
-    ) = liveData {
-        emit(APIResource.loading())
-        val response =
-            investorsRepo.getFavorites(pageNumber = pageNumber, pageSize = Constants.PAGE_SIZE)
-        emit(response)
-    }
 
     fun isUserLoggedIn() = userRepo.getUserStatus() == UserEnums.UserState.LoggedIn
 
     fun isFirstLogin() = userRepo.getIsFirstLogin()
 
     fun isInvestor() =
-        userRepo.getUser()?.roles?.single { it.role == UserRoleEnums.INVESTOR_ROLE.value } != null
+        userRepo.getUser()?.roles?.singleOrNull { it.role == UserRoleEnums.INVESTOR_ROLE.value } != null
 
     fun isBusinessOwner() =
-        userRepo.getUser()?.roles?.single { it.role == UserRoleEnums.BUSINESS_ROLE.value } != null
+        userRepo.getUser()?.roles?.singleOrNull { it.role == UserRoleEnums.BUSINESS_ROLE.value } != null
 
     fun setIsFirstLogin(b: Boolean) {
         userRepo.setIsFirstLogin(b)

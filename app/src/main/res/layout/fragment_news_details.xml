@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="com.technzone.miniborsa.utils.extensions.DataTimeExtensionsKt"/>
         <variable
             name="viewModel"
             type="com.technzone.miniborsa.ui.investor.news.viewmodels.NewsViewModel" />
@@ -77,7 +77,7 @@
                         android:ellipsize="end"
                         android:gravity="end|center"
                         android:maxLines="2"
-                        android:text="@{viewModel.blogToView.createdAt}"
+                        android:text="@{DataTimeExtensionsKt.getDateFormattedForNews(viewModel.blogToView.createdAt)}"
                         tools:text="02/04/2021"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_7ssp"

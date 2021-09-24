@@ -12,6 +12,15 @@ abstract class BaseBindingRecyclerViewAdapter<MODEL>(
     var itemClickListener: OnItemClickListener? = null
 
 
+    fun submitNewItems(list: List<MODEL>?) {
+        items = ArrayList()
+        list?.let {
+            items.addAll(it)
+            notifyDataSetChanged()
+        }
+
+    }
+
     fun submitItems(newItems: List<MODEL>) {
         if (items == newItems) {
             return

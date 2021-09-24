@@ -87,7 +87,7 @@ class RegistrationFragment :
         return CustomObserverResponse(requireActivity(), object : CustomObserverResponse.APICallBack<String> {
             override fun onSuccess(statusCode: Int, subErrorCode: ResponseSubErrorsCodeEnum, data: String?) {
                 viewModel.userIdMutableLiveData.value = data
-//                navigationController.navigate(R.id.action_registrationFragment_to_verificationSignUpFragment)
+                navigationController.navigate(R.id.action_registrationFragment_to_verificationSignUpFragment)
             }
         })
     }

@@ -16,7 +16,6 @@ import com.technzone.miniborsa.ui.auth.forgetpassword.ForgetPasswordActivity
 import com.technzone.miniborsa.ui.auth.login.viewmodels.LoginViewModel
 import com.technzone.miniborsa.ui.auth.register.RegisterActivity
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
-import com.technzone.miniborsa.ui.business.businessmain.activity.BusinessMainActivity
 import com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity
 import com.technzone.miniborsa.ui.userrole.activity.UserRolesActivity
 import com.technzone.miniborsa.utils.extensions.*
@@ -144,12 +143,12 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding>() {
     }
 
     private fun goToNextScreen(data: UserDetailsResponseModel) {
-        if (data.roles.isNullOrEmpty())
+        if (data.roles.isNullOrEmpty() || (data.roles[0].role == UserRoleEnums.VISITOR_ROLE.value && data.roles.size == 1))
             UserRolesActivity.start(requireContext())
-        else if (data.roles[0].role == null || data.roles[0].role != UserRoleEnums.BUSINESS_ROLE.value) {
+        else {
             InvestorMainActivity.start(requireContext())
-        } else
-            BusinessMainActivity.start(requireContext())
+            viewModel.setUserRole(UserRoleEnums.INVESTOR_ROLE.value)
+        }
     }
 
     private fun checkIfThereUpdate() {

@@ -132,4 +132,7 @@ class LoginViewModel @Inject constructor(
         )
         emit(response)
     }
+    fun setUserRole(role:String){
+        userRepo.setCurrentRole(role)
+    }
 }

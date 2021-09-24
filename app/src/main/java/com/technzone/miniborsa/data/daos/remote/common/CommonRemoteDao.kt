@@ -3,12 +3,10 @@ package com.technzone.miniborsa.data.daos.remote.common
 import com.technzone.miniborsa.data.api.response.ResponseWrapper
 import com.technzone.miniborsa.data.common.NetworkConstants
 import com.technzone.miniborsa.data.models.general.ListWrapper
+import com.technzone.miniborsa.data.models.investor.request.FavoriteRequest
 import com.technzone.miniborsa.data.models.news.BusinessNews
 import com.technzone.miniborsa.data.models.notification.Notification
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface CommonRemoteDao {
 
@@ -33,5 +31,17 @@ interface CommonRemoteDao {
     suspend fun getBlogDetails(
         @Path("id") id: Int
     ): ResponseWrapper<BusinessNews>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @POST("api/user/card")
+    suspend fun addFavorite(
+        @Body favoriteRequest: FavoriteRequest
+    ): ResponseWrapper<Any>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @DELETE("api/user/card")
+    suspend fun removeFavorite(
+        @Body favoriteRequest: FavoriteRequest
+    ): ResponseWrapper<Any>
 
 }

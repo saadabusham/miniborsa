@@ -8,7 +8,7 @@
             type="Boolean" />
 
         <variable
-            name="symptom"
+            name="item"
             type="com.technzone.miniborsa.data.models.general.GeneralLookup" />
     </data>
 
@@ -19,7 +19,7 @@
         android:layout_height="@dimen/_28sdp"
         android:layout_margin="@dimen/_2sdp"
         android:backgroundTint="@color/orange_alpha_75"
-        android:text="@{symptom.name}"
+        android:text="@{item.name}"
         android:textAppearance="@style/textview_normal_medium"
         android:textSize="@dimen/_10ssp"
         app:cornerRadius="@dimen/_8sdp"

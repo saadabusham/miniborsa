@@ -36,6 +36,9 @@ class ChooseGeneralRecyclerAdapter constructor(
 
         override fun bind(item: GeneralLookup) {
             binding.item = item
+            binding.root.setOnClickListener {
+                binding.checkbox.isChecked = !binding.checkbox.isChecked
+            }
             binding.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
                 itemClickListener?.onItemChecked(isChecked,item,bindingAdapterPosition)
                 item.selected = isChecked

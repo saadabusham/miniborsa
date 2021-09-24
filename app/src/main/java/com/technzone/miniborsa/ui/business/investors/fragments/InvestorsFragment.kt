@@ -58,6 +58,7 @@ class InvestorsFragment : BaseBindingFragment<FragmentInvestorsBinding>(),
         super.onResume()
         loadData()
     }
+
     override fun onViewVisible() {
         super.onViewVisible()
         setUpBinding()
@@ -182,7 +183,8 @@ class InvestorsFragment : BaseBindingFragment<FragmentInvestorsBinding>(),
                 override fun onLoading() {
                     loading.postValue(true)
                 }
-            },withProgress = false)
+            }, withProgress = false
+        )
     }
 
     private fun hideShowNoData() {
@@ -210,6 +212,7 @@ class InvestorsFragment : BaseBindingFragment<FragmentInvestorsBinding>(),
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as Investor
         viewModel.investorToView?.value = item
+        viewModel.investorId = item.id
         if (view?.id == R.id.btnViewProfile) {
             navigationController.navigate(R.id.action_investorsFragment_to_investorDetailsFragment)
         } else if (view?.id == R.id.btnMessage) {

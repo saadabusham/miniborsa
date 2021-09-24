@@ -32,6 +32,7 @@ interface InvestorRemoteDao {
     @POST("api/Investors")
     suspend fun becomeInvestor(
         @Field("JobTitle") jobTitle: String?,
+        @Field("Bio") bio: String?,
         @Field("InvestmentBudget") investmentBudget: Double,
         @Field("InvestmentBudgetNA") InvestmentBudgetNA: Boolean,
         @Field("Countries") countries: List<Int>,

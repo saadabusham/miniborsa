@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import com.paginate.Paginate
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
+import com.technzone.miniborsa.data.api.response.ResponseWrapper
 import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.data.models.general.ListWrapper
 import com.technzone.miniborsa.data.models.investor.Business
@@ -16,6 +17,7 @@ import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
 import com.technzone.miniborsa.ui.investor.businessdetails.activity.BusinessDetailsActivity
 import com.technzone.miniborsa.ui.investor.invistormain.fragment.investorfavorite.adapters.FavoritesAdapter
+import com.technzone.miniborsa.ui.investor.invistormain.viewmodels.FavoritesViewModel
 import com.technzone.miniborsa.ui.investor.invistormain.viewmodels.InvestorMainViewModel
 import com.technzone.miniborsa.utils.extensions.gone
 import com.technzone.miniborsa.utils.extensions.visible
@@ -26,6 +28,7 @@ class InvestorFavoriteFragment : BaseBindingFragment<FragmentInvestorFavoriteBin
     BaseBindingRecyclerViewAdapter.OnItemClickListener {
 
     private val viewModel: InvestorMainViewModel by activityViewModels()
+    private val favoriteViewModel: FavoritesViewModel by activityViewModels()
     private var page: Int = 1
     private val loading: MutableLiveData<Boolean> = MutableLiveData(false)
     private var isFinished = false
@@ -78,7 +81,7 @@ class InvestorFavoriteFragment : BaseBindingFragment<FragmentInvestorFavoriteBin
     }
 
     private fun loadFavorites() {
-        viewModel.getFavorites(pageNumber = page).observe(this, favoritesResultObserver())
+        favoriteViewModel.getFavorites(pageNumber = page).observe(this, favoritesResultObserver())
     }
 
     private fun favoritesResultObserver(): CustomObserverResponse<ListWrapper<Business>> {
@@ -140,9 +143,36 @@ class InvestorFavoriteFragment : BaseBindingFragment<FragmentInvestorFavoriteBin
         })
     }
 
+    private fun wishListObserver(): CustomObserverResponse<Any> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<Any> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: ResponseWrapper<Any>?
+                ) {
+
+                }
+            }, false, showError = false
+        )
+    }
+
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as Business
-        BusinessDetailsActivity.start(requireContext(), item)
+        if (view?.id == R.id.imgFavorite) {
+            if (item.isFavorite == true) {
+                favoriteViewModel.addToWishList(item.id ?: 0)
+                    .observe(this, wishListObserver())
+            } else {
+                favoriteViewModel.removeFromWishList(
+                    item.id
+                        ?: 0
+                ).observe(this, wishListObserver())
+            }
+        } else {
+            BusinessDetailsActivity.start(requireContext(), item)
+        }
     }
 
 }

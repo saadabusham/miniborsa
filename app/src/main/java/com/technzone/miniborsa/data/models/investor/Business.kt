@@ -90,6 +90,9 @@ data class Business(
 	@field:SerializedName("annualTurnoverNA")
 	val annualTurnoverNA: Boolean? = null,
 
+	@field:SerializedName("isFavorite")
+	var isFavorite: Boolean? = null,
+
 	@field:SerializedName("businessType")
 	val businessType: Int? = null,
 
@@ -98,4 +101,4 @@ data class Business(
 
 	@field:SerializedName("properties")
 	val properties: List<PropertiesItem>? = null
-):Serializable
+) : Serializable
