@@ -66,6 +66,9 @@ class UpdateProfileActivity : BaseBindingActivity<ActivityUpdateProfileBinding>(
     }
 
     private fun setUpListeners() {
+        binding?.imgBack?.setOnClickListener {
+            onBackPressed()
+        }
         binding?.cvUpdateImage?.setOnClickListener {
             pickImages(
                 requestCode = TAKE_USER_IMAGE_REQUEST_CODE

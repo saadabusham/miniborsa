@@ -2,22 +2,27 @@ package com.technzone.miniborsa.ui.investor.filter.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.technzone.miniborsa.data.api.response.APIResource
 import com.technzone.miniborsa.data.enums.GenderEnums
 import com.technzone.miniborsa.data.enums.UserEnums
+import com.technzone.miniborsa.data.models.investor.Business
 import com.technzone.miniborsa.data.models.investor.GeneralRequest
 import com.technzone.miniborsa.data.repos.configuration.ConfigurationRepo
 import com.technzone.miniborsa.data.repos.investors.InvestorsRepo
+import com.technzone.miniborsa.data.repos.searchbusiness.SearchedBusinessRepo
 import com.technzone.miniborsa.data.repos.user.UserRepo
 import com.technzone.miniborsa.ui.base.viewmodel.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class FilterBusinessViewModel @Inject constructor(
-    val userRepo: UserRepo,
+    private val userRepo: UserRepo,
     private val investorsRepo: InvestorsRepo,
-    private val configurationRepo: ConfigurationRepo
+    private val configurationRepo: ConfigurationRepo,
+    private val searchedBusinessRepo: SearchedBusinessRepo
 ) : BaseViewModel() {
     var selectedBusinessType: Int? = null
     val searchText: MutableLiveData<String> = MutableLiveData()
@@ -74,4 +79,11 @@ class FilterBusinessViewModel @Inject constructor(
     }
 
     fun isUserLoggedIn() = userRepo.getUserStatus() == UserEnums.UserState.LoggedIn
+
+    fun saveSearchBusinesses(list:List<Business>)= viewModelScope.launch{
+        searchedBusinessRepo.saveBusinesses(list)
+    }
+    fun saveSearchBusiness(business:Business)= viewModelScope.launch{
+        searchedBusinessRepo.saveBusiness(business)
+    }
 }

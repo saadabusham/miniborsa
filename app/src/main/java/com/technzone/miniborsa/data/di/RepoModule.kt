@@ -9,6 +9,8 @@ import com.technzone.miniborsa.data.repos.configuration.ConfigurationRepo
 import com.technzone.miniborsa.data.repos.configuration.ConfigurationRepoImp
 import com.technzone.miniborsa.data.repos.investors.InvestorsRepo
 import com.technzone.miniborsa.data.repos.investors.InvestorsRepoImp
+import com.technzone.miniborsa.data.repos.searchbusiness.SearchedBusinessRepo
+import com.technzone.miniborsa.data.repos.searchbusiness.SearchedBusinessRepoImp
 import com.technzone.miniborsa.data.repos.twilio.TwilioRepo
 import com.technzone.miniborsa.data.repos.twilio.TwilioRepoImp
 import com.technzone.miniborsa.data.repos.user.UserRepo
@@ -46,5 +48,9 @@ abstract class RepoModule {
     @Singleton
     @Binds
     abstract fun bindCommonRepo(commonRepoImp: CommonRepoImp): CommonRepo
+
+    @Singleton
+    @Binds
+    abstract fun bindSearchedBusinessRepo(searchedBusinessRepoImp: SearchedBusinessRepoImp): SearchedBusinessRepo
 
 }

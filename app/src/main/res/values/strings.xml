@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mini Borsa</string>
+    <string name="app_name">Mini Bursa</string>
     <string name="app_license">Copyright@Technzone Company</string>
 
     <!-- SelectLanguageFragment-->
@@ -19,7 +19,7 @@
     <string name="camera_permission_denied">Grant camera permission to take the 3 seconds video</string>
     <string name="screen_shot">take screenshot</string>
 
-    <string name="alert_dialog_title">Mini Borsa</string>
+    <string name="alert_dialog_title">Mini Bursa</string>
     <string name="alert_dialog_all_info_in_english">All information entered must be in English</string>
     <string name="not_available_yet">This feature is coming soon to Al Alami app!</string>
     <!-- General -->
@@ -336,5 +336,9 @@
     <string name="concat_string">%s %s</string>
     <string name="job_title">Job Title</string>
     <string name="bio">Bio</string>
+    <string name="no_available_data">-- No Available Data --</string>
+    <string name="news_on_mini_bursa">News Mini Bursa</string>
+    <string name="share_this_news">Share this news</string>
+    <string name="share_on_mini_bursa">Share on mini bursa</string>
 
 </resources>

@@ -7,7 +7,6 @@ import android.view.ViewTreeObserver
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.transition.Transition
 import androidx.transition.TransitionInflater
 import androidx.transition.TransitionManager
@@ -221,7 +220,7 @@ class SearchBusinessFragment : BaseBindingFragment<FragmentSearchBusinessBinding
                         } else {
                             businessAdapter.addItems(it)
                         }
-                    }?:also {
+                    } ?: also {
                         viewModel.itemFoundCount.value = 0
                     }
                     loading.postValue(false)
@@ -263,6 +262,7 @@ class SearchBusinessFragment : BaseBindingFragment<FragmentSearchBusinessBinding
         when (item) {
             is Business -> {
                 if (viewModel.isUserLoggedIn()) {
+                    viewModel.saveSearchBusiness(item)
                     BusinessDetailsActivity.start(requireContext(), item)
                 } else {
                     showLoginDialog()

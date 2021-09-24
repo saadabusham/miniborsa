@@ -1,5 +1,6 @@
 package com.technzone.miniborsa.ui.base.bindingadapters
 
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.view.View
@@ -20,6 +21,7 @@ import com.bumptech.glide.request.target.Target
 import com.technzone.miniborsa.BuildConfig
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.utils.extensions.px
+import com.technzone.miniborsa.utils.pref.SharedPreferencesUtil
 import java.io.File
 
 @BindingAdapter("ivSetSrcImageFromResources")
@@ -117,6 +119,9 @@ fun getLoadingUrl(imageUrl: String): Any {
         return "$IMAGES_BASE_URL$imageUrl"
     }
     return imageUrl
+}
+fun getFullUrl(url: String?): String {
+    return "$IMAGES_BASE_URL$url"
 }
 
 @BindingAdapter("imageRec")

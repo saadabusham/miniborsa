@@ -186,10 +186,10 @@ class MessagesFragment : BaseBindingFragment<FragmentMessagesBinding>(),
                 }
                 is Result.CustomError -> {
                     binding?.layoutShimmer?.shimmerViewContainer?.gone()
-                    HandleRequestFailedUtil.showDialogMessage(
-                        it.message,
-                        requireActivity()
-                    )
+//                    HandleRequestFailedUtil.showDialogMessage(
+//                        it.message,
+//                        requireActivity()
+//                    )
                 }
             }
         })

@@ -21,11 +21,19 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:layout_centerInParent="true"
             android:layout_alignParentTop="true"
             android:text="@string/messages"
             android:textColor="@color/black"
             android:textSize="@dimen/_13ssp" />
+
+        <View
+            android:id="@+id/div"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_below="@id/tvTitle"
+            android:background="@color/color_not_valid"/>
 
         <include
             android:id="@+id/layout_not_logged_in"

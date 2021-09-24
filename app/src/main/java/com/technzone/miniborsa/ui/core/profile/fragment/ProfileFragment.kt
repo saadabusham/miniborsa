@@ -25,6 +25,7 @@ import com.technzone.miniborsa.ui.core.profile.viewmodels.ProfileViewModel
 import com.technzone.miniborsa.ui.core.updateprofile.UpdateProfileActivity
 import com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity
 import com.technzone.miniborsa.ui.investor.invistorroles.activity.InvestorRolesActivity
+import com.technzone.miniborsa.ui.investor.recentviewed.activity.RecentViewActivity
 import com.technzone.miniborsa.utils.LocaleUtil
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -112,6 +113,13 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
                         resources.getString(R.string.more_notification),
                         R.drawable.ic_more_notifications,
                         MoreEnums.NOTIFICATION
+                    )
+                )
+                itemList.add(
+                    More(
+                        resources.getString(R.string.more_recent_viewed),
+                        R.drawable.ic_more_recent_viewed,
+                        MoreEnums.RECENT_VIEWED
                     )
                 )
             }
@@ -250,7 +258,7 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
 
             MoreEnums.RECENT_VIEWED -> {
                 if (viewModel.isUserLoggedIn()) {
-
+                    RecentViewActivity.start(requireContext())
                 } else {
                     showLoginDialog()
                 }
