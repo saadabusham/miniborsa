@@ -38,7 +38,15 @@ class BusinessSubscriptionRecyclerAdapter constructor(
             binding.item = item
             binding.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
                 itemClickListener?.onItemChecked(isChecked, item, bindingAdapterPosition)
-                item.selected = isChecked
+                item.promote = isChecked
+            }
+            binding.root.setOnClickListener {
+                items.withIndex().singleOrNull { it.value.selected }?.let {
+                    it.value.selected = false
+                    notifyItemChanged(it.index)
+                }
+                item.selected = true
+                notifyItemChanged(bindingAdapterPosition)
             }
         }
     }

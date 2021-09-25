@@ -56,7 +56,7 @@ class InvestorsFragment : BaseBindingFragment<FragmentInvestorsBinding>(),
 
     override fun onResume() {
         super.onResume()
-        loadData()
+        applyFilter()
     }
 
     override fun onViewVisible() {
@@ -100,7 +100,7 @@ class InvestorsFragment : BaseBindingFragment<FragmentInvestorsBinding>(),
             object : InvestorFilterBottomSheet.InvestorsFilterCallBack {
                 override fun callBack(investorFilter: InvestorFilter) {
                     viewModel.investorFilter = investorFilter
-                    loadData()
+                    applyFilter()
                 }
             }).show(childFragmentManager, "FilterSheet")
     }

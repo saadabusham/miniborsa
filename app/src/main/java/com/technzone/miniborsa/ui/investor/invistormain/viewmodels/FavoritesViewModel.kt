@@ -22,6 +22,7 @@ class FavoritesViewModel @Inject constructor(
 ) : BaseViewModel() {
     var businessToView: MutableLiveData<Business> = MutableLiveData(null)
     val isInvestor: MutableLiveData<Boolean> = MutableLiveData(getIsInvestor())
+
     fun getBusiness(
         id: Int
     ) = liveData {
@@ -37,7 +38,7 @@ class FavoritesViewModel @Inject constructor(
     ) = liveData {
         emit(APIResource.loading())
         val response =
-            investorsRepo.getFavorites(pageNumber = pageNumber, pageSize = Constants.PAGE_SIZE)
+            commonRepo.getFavorites(pageNumber = pageNumber, pageSize = Constants.PAGE_SIZE)
         emit(response)
     }
     fun addToWishList(

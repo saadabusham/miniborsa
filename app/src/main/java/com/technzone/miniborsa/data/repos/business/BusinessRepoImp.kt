@@ -46,7 +46,7 @@ class BusinessRepoImp @Inject constructor(
         }
     }
 
-    override suspend fun getRequestBusiness(id: Int): APIResource<ResponseWrapper<BusinessRequest>> {
+    override suspend fun getRequestBusiness(id: Int): APIResource<ResponseWrapper<OwnerBusiness>> {
         return try {
             responseHandle.handleSuccess(
                 businessRemoteDao.getRequestBusiness(id)
@@ -80,13 +80,13 @@ class BusinessRepoImp @Inject constructor(
         }
     }
 
-    override suspend fun addRequestFiles(
+    override suspend fun addBusinessRequestFiles(
         id: Int?,
         list: List<MultipartBody.Part>
     ): APIResource<ResponseWrapper<Any>> {
         return try {
             responseHandle.handleSuccess(
-                businessRemoteDao.addRequestFiles(
+                businessRemoteDao.addBusinessRequestFiles(
                     id, list
                 )
             )
@@ -95,10 +95,10 @@ class BusinessRepoImp @Inject constructor(
         }
     }
 
-    override suspend fun deleteRequestFiles(id: Int?): APIResource<ResponseWrapper<Any>> {
+    override suspend fun deleteBusinessRequestFiles(id: Int?): APIResource<ResponseWrapper<Any>> {
         return try {
             responseHandle.handleSuccess(
-                businessRemoteDao.deleteRequestFiles(
+                businessRemoteDao.deleteBusinessRequestFiles(
                     id
                 )
             )
@@ -107,13 +107,13 @@ class BusinessRepoImp @Inject constructor(
         }
     }
 
-    override suspend fun addRequestImage(
+    override suspend fun addBusinessRequestImage(
         id: Int?,
         list: List<MultipartBody.Part>
     ): APIResource<ResponseWrapper<Any>> {
         return try {
             responseHandle.handleSuccess(
-                businessRemoteDao.addRequestImage(
+                businessRemoteDao.addBusinessRequestImage(
                     id, list
                 )
             )
@@ -122,10 +122,10 @@ class BusinessRepoImp @Inject constructor(
         }
     }
 
-    override suspend fun deleteRequestImage(id: Int?): APIResource<ResponseWrapper<Any>> {
+    override suspend fun deleteBusinessRequestImage(id: Int?): APIResource<ResponseWrapper<Any>> {
         return try {
             responseHandle.handleSuccess(
-                businessRemoteDao.deleteRequestFiles(
+                businessRemoteDao.deleteBusinessRequestFiles(
                     id
                 )
             )
@@ -140,6 +140,92 @@ class BusinessRepoImp @Inject constructor(
                 businessRemoteDao.sendBusinessRequest(
                     id
                 )
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun getRequestCompany(): APIResource<ResponseWrapper<OwnerBusiness>> {
+        return try {
+            responseHandle.handleSuccess(
+                businessRemoteDao.getRequestCompany()
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun requestCompany(businessRequest: BusinessRequest): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(
+                businessRemoteDao.requestCompany(businessRequest)
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun updateCompanyRequest(businessRequest: BusinessRequest): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(
+                businessRemoteDao.updateCompanyRequest(businessRequest)
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun addCompanyRequestFiles(
+        id: Int?,
+        list: List<MultipartBody.Part>
+    ): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(
+                businessRemoteDao.addCompanyRequestFiles(id,list)
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun deleteCompanyRequestFiles(id: Int?): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(
+                businessRemoteDao.deleteCompanyRequestFiles(id)
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun addCompanyRequestImage(
+        id: Int?,
+        list: List<MultipartBody.Part>
+    ): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(
+                businessRemoteDao.addCompanyRequestImage(id,list)
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun deleteCompanyRequestImage(id: Int?): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(
+                businessRemoteDao.deleteCompanyRequestImage(id)
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun sendCompanyRequest(id: Int?): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(
+                businessRemoteDao.sendCompanyRequest(id)
             )
         } catch (e: Exception) {
             responseHandle.handleException(e)

@@ -344,5 +344,8 @@
     <string name="startup_news">Startup News</string>
     <string name="investment">Investment</string>
     <string name="tips">Tips</string>
+    <string name="please_select_subscription">Please select subscription</string>
+    <string name="remove_draft">Remove Draft</string>
+    <string name="draft">Draft</string>
 
 </resources>

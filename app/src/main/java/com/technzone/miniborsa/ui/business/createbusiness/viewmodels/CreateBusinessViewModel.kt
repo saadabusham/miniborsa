@@ -5,6 +5,7 @@ import androidx.lifecycle.liveData
 import com.technzone.miniborsa.data.api.response.APIResource
 import com.technzone.miniborsa.data.enums.BusinessTypeEnums
 import com.technzone.miniborsa.data.enums.PropertyStatusEnums
+import com.technzone.miniborsa.data.enums.UserRoleEnums
 import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.data.models.business.businessrequest.BusinessRequest
 import com.technzone.miniborsa.data.models.map.Address
@@ -158,14 +159,21 @@ class CreateBusinessViewModel @Inject constructor(
     fun requestBusiness() = liveData {
         emit(APIResource.loading())
         val response =
+            if (isUserHasBusinessRoles())
             businessRepo.requestBusiness(businessRequest)
+        else businessRepo.requestCompany(businessRequest)
         emit(response)
     }
 
     fun addFile(file: String) = liveData {
         emit(APIResource.loading())
         val response =
-            businessRepo.addRequestFiles(
+            if (isUserHasBusinessRoles())
+                businessRepo.addBusinessRequestFiles(
+                    businessRequest.businessId,
+                    arrayListOf(file.createImageMultipart("Files"))
+                )
+            else businessRepo.addBusinessRequestFiles(
                 businessRequest.businessId,
                 arrayListOf(file.createImageMultipart("Files"))
             )
@@ -175,14 +183,21 @@ class CreateBusinessViewModel @Inject constructor(
     fun deleteFile(fileId: Int) = liveData {
         emit(APIResource.loading())
         val response =
-            businessRepo.deleteRequestFiles(fileId)
+            if (isUserHasBusinessRoles())
+                businessRepo.deleteBusinessRequestFiles(fileId)
+            else businessRepo.deleteCompanyRequestFiles(fileId)
         emit(response)
     }
 
     fun addImage(file: String) = liveData {
         emit(APIResource.loading())
         val response =
-            businessRepo.addRequestImage(
+            if (isUserHasBusinessRoles())
+                businessRepo.addBusinessRequestImage(
+                    businessRequest.businessId,
+                    arrayListOf(file.createImageMultipart("Files"))
+                )
+            else businessRepo.addCompanyRequestImage(
                 businessRequest.businessId,
                 arrayListOf(file.createImageMultipart("Files"))
             )
@@ -192,7 +207,13 @@ class CreateBusinessViewModel @Inject constructor(
     fun deleteImage(fileId: Int) = liveData {
         emit(APIResource.loading())
         val response =
-            businessRepo.deleteRequestImage(fileId)
+            if (isUserHasBusinessRoles())
+                businessRepo.deleteBusinessRequestImage(fileId)
+            else businessRepo.deleteCompanyRequestImage(fileId)
         emit(response)
+    }
+
+    fun isUserHasBusinessRoles(): Boolean {
+        return userRepo.getUser()?.roles?.singleOrNull { it.role == UserRoleEnums.BUSINESS_ROLE.value } != null
     }
 }

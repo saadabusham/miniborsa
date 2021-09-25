@@ -42,7 +42,7 @@ class InvestorMainViewModel @Inject constructor(
                 pageNumber = 1,
                 pageSize = Constants.PAGE_SIZE,
                 section = NewsSectionEnums.ALL.value,
-                type = null
+                isPinned = true
             )
         emit(response)
     }

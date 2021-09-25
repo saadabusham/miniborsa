@@ -10,5 +10,8 @@ data class Subscription(
 
     @field:SerializedName("name")
     val name: String?=null,
+
+    @field:SerializedName("promote")
+    var promote: Boolean?=null,
     var selected: Boolean = false
 ) : Serializable

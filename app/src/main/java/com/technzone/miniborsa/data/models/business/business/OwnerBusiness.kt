@@ -1,10 +1,14 @@
 package com.technzone.miniborsa.data.models.business.business
 
 import com.google.gson.annotations.SerializedName
+import com.technzone.miniborsa.data.models.Media
 import com.technzone.miniborsa.data.models.investor.FieldsItem
 import java.io.Serializable
 
 data class OwnerBusiness(
+
+	@field:SerializedName("businessId")
+	val businessId: Int? = null,
 
 	@field:SerializedName("websiteLink")
 	val websiteLink: String? = null,
@@ -84,12 +88,25 @@ data class OwnerBusiness(
 	@field:SerializedName("annualTurnoverNA")
 	val annualTurnoverNA: Boolean? = null,
 
-	@field:SerializedName("fields")
+	@field:SerializedName("fields",alternate = ["businessFields"])
 	val fields: List<FieldsItem>? = null,
 
 	@field:SerializedName("businessType")
 	val businessType: Int? = null,
 
-	@field:SerializedName("properties")
-	val properties: List<PropertiesItem>? = null
-):Serializable
+	@field:SerializedName("properties",alternate = ["businessProperties"])
+	val properties: List<PropertiesItem>? = null,
+
+	@field:SerializedName("images",alternate = ["businessImages"] )
+	val images: List<Media>? = null,
+
+	@field:SerializedName("files",alternate = ["businessFiles"])
+	val files: List<Media>? = null,
+
+	@field:SerializedName("countries")
+	val countries: List<Int>? = null,
+
+	@field:SerializedName("categories")
+	val categories: List<Int?>? = null
+
+) : Serializable

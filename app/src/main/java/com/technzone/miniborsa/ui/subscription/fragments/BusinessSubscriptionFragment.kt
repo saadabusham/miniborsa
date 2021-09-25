@@ -3,13 +3,17 @@ package com.technzone.miniborsa.ui.subscription.fragments
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.data.enums.BusinessTypeEnums
 import com.technzone.miniborsa.data.models.subscrption.Subscription
 import com.technzone.miniborsa.databinding.FragmentBusinessSubscriptionBinding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
+import com.technzone.miniborsa.ui.business.businessmain.fragments.listing.dialogs.SelectBusinessTypeDialog
+import com.technzone.miniborsa.ui.business.createbusiness.activity.CreateBusinessActivity
 import com.technzone.miniborsa.ui.subscription.adapter.BusinessSubscriptionRecyclerAdapter
 import com.technzone.miniborsa.ui.subscription.viewmodel.SubscriptionViewModel
+import com.technzone.miniborsa.utils.extensions.showErrorAlert
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
@@ -44,8 +48,26 @@ class BusinessSubscriptionFragment : BaseBindingFragment<FragmentBusinessSubscri
 
     private fun setUpListeners() {
         binding?.btnContinue?.setOnClickListener {
-
+            subscriptionRecyclerAdapter.getSelectedItem().let {
+                if(it == null){
+                    requireActivity().showErrorAlert(getString(R.string.app_name),
+                    getString(R.string.please_select_subscription))
+                }else{
+                    showSelectTypeDialog()
+                }
+            }
         }
+    }
+
+    private fun showSelectTypeDialog() {
+        SelectBusinessTypeDialog(requireActivity(), object : SelectBusinessTypeDialog.CallBack {
+            override fun callBack(businessTypeEnums: BusinessTypeEnums) {
+                CreateBusinessActivity.start(
+                    requireContext(),
+                    businessTypeEnums.value
+                )
+            }
+        }).show()
     }
 
     private fun setUpSelectedCountriesAdapter() {

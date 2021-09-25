@@ -26,6 +26,7 @@ import com.technzone.miniborsa.ui.core.updateprofile.UpdateProfileActivity
 import com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity
 import com.technzone.miniborsa.ui.investor.invistorroles.activity.InvestorRolesActivity
 import com.technzone.miniborsa.ui.investor.recentviewed.activity.RecentViewActivity
+import com.technzone.miniborsa.ui.subscription.activity.SubscriptionActivity
 import com.technzone.miniborsa.utils.LocaleUtil
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -229,9 +230,9 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
                     viewModel.setCurrentUserRoles(UserRoleEnums.BUSINESS_ROLE.value)
                     BusinessMainActivity.start(requireContext())
                 } else {
-//                    SubscriptionActivity.start(requireContext(), true)
-                    viewModel.setCurrentUserRoles(UserRoleEnums.BUSINESS_ROLE.value)
-                    BusinessMainActivity.start(requireContext())
+                    SubscriptionActivity.start(requireContext(), true)
+//                    viewModel.setCurrentUserRoles(UserRoleEnums.BUSINESS_ROLE.value)
+//                    BusinessMainActivity.start(requireContext())
                 }
             }
             MoreEnums.INVESTORS_LIST -> {

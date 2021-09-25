@@ -63,11 +63,4 @@ interface InvestorRemoteDao {
         @Path("id") id: Int
     ): ResponseWrapper<Business>
 
-    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @GET("api/Business")
-    suspend fun getFavorites(
-        @Query("PageSize") pageSize: Int,
-        @Query("PageNumber") pageNumber: Int
-    ): ResponseWrapper<ListWrapper<Business>>
-
 }

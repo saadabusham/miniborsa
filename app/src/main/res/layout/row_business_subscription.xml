@@ -17,6 +17,8 @@
         android:background="@{item.selected ? @drawable/ic_rectangle_focused : @drawable/ic_rectangle_unfocused}"
         android:minHeight="@dimen/_95sdp"
         android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
         tools:background="@drawable/ic_rectangle_focused">
 
         <ImageView
@@ -73,7 +75,7 @@
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_15sdp"
-            android:checked="true"
+            android:checked="@{item.promote}"
             android:paddingStart="@dimen/_10sdp"
             android:paddingTop="0dp"
             android:paddingBottom="0dp"

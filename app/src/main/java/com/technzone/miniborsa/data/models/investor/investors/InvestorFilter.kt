@@ -2,6 +2,7 @@ package com.technzone.miniborsa.data.models.investor.investors
 
 import com.google.gson.annotations.SerializedName
 import com.technzone.miniborsa.data.common.Constants.PAGE_SIZE
+import com.technzone.miniborsa.data.models.general.GeneralLookup
 
 data class InvestorFilter(
 
@@ -18,7 +19,10 @@ data class InvestorFilter(
 	val pageSize: Int? = PAGE_SIZE,
 
 	@field:SerializedName("countries")
-	val countries: List<Int>? = null,
+	var countries: List<Int>? = null,
+
+	@field:SerializedName("selectedCountries")
+	var selectedCountries: List<GeneralLookup>? = null,
 
 	@field:SerializedName("categories")
 	val categories: List<Int>? = null,
@@ -26,6 +30,12 @@ data class InvestorFilter(
 	@field:SerializedName("investmentBudgetNA")
 	val investmentBudgetNA: Boolean? = null,
 
+	@field:SerializedName("isFeatured")
+	var isFeatured: Boolean? = null,
+
 	@field:SerializedName("parentId")
-	val parentId: Int? = null
+	val parentId: Int? = null,
+
+	@field:SerializedName("sort")
+	var sort: Int? = null
 )

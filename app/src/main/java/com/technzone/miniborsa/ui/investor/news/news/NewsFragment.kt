@@ -43,7 +43,7 @@ class NewsFragment : BaseBindingFragment<FragmentNewsBinding>(),
     private val loading: MutableLiveData<Boolean> = MutableLiveData(false)
     private var isFinished = false
     var pageNumber: Int = 1
-    private var selectedSectionsEnum: Int? = NewsSectionEnums.ALL.value
+    private var selectedSectionsEnum: Int = NewsSectionEnums.ALL.value
     override fun getLayoutId(): Int {
         return R.layout.fragment_news
     }
@@ -249,7 +249,7 @@ class NewsFragment : BaseBindingFragment<FragmentNewsBinding>(),
         when (item) {
             is GeneralLookup -> {
                 binding?.rvTabs?.smoothScrollToPosition(position)
-                selectedSectionsEnum = NewsSectionEnums.getSectionByValue(position)?.value
+                selectedSectionsEnum = NewsSectionEnums.getSectionByValue(position).value
                 pageNumber = 1
                 newsRecyclerAdapter.clear()
                 loadNews()

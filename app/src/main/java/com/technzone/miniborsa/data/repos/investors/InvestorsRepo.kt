@@ -50,9 +50,4 @@ interface InvestorsRepo {
         id: Int
     ): APIResource<ResponseWrapper<Business>>
 
-    suspend fun getFavorites(
-        pageSize: Int,
-        pageNumber: Int
-    ): APIResource<ResponseWrapper<ListWrapper<Business>>>
-
 }

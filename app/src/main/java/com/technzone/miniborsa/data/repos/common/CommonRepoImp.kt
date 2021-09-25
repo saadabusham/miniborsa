@@ -5,6 +5,7 @@ import com.technzone.miniborsa.data.api.response.ResponseHandler
 import com.technzone.miniborsa.data.api.response.ResponseWrapper
 import com.technzone.miniborsa.data.daos.remote.common.CommonRemoteDao
 import com.technzone.miniborsa.data.models.general.ListWrapper
+import com.technzone.miniborsa.data.models.investor.Business
 import com.technzone.miniborsa.data.models.investor.request.FavoriteRequest
 import com.technzone.miniborsa.data.models.news.BusinessNews
 import com.technzone.miniborsa.data.models.notification.Notification
@@ -34,11 +35,11 @@ class CommonRepoImp @Inject constructor(
         pageNumber: Int,
         section: Int?,
         searchTxt: String?,
-        type: Int?
+        isPinned: Boolean?
     ): APIResource<ResponseWrapper<ListWrapper<BusinessNews>>> {
         return try {
             responseHandle.handleSuccess(
-                commonRemoteDao.getBlogs(pageSize, pageNumber, section,searchTxt,type)
+                commonRemoteDao.getBlogs(pageSize, pageNumber, section,searchTxt,isPinned)
             )
         } catch (e: Exception) {
             responseHandle.handleException(e)
@@ -49,6 +50,22 @@ class CommonRepoImp @Inject constructor(
         return try {
             responseHandle.handleSuccess(
                 commonRemoteDao.getBlogDetails(id)
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun getFavorites(
+        pageSize: Int,
+        pageNumber: Int
+    ): APIResource<ResponseWrapper<ListWrapper<Business>>> {
+        return try {
+            responseHandle.handleSuccess(
+                commonRemoteDao.getFavorites(
+                    pageSize,
+                    pageNumber
+                )
             )
         } catch (e: Exception) {
             responseHandle.handleException(e)

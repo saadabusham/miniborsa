@@ -28,7 +28,7 @@ interface BusinessRemoteDao {
     @GET("api/owner/Business/request/{id}")
     suspend fun getRequestBusiness(
         @Path("id") id: Int
-    ): ResponseWrapper<BusinessRequest>
+    ): ResponseWrapper<OwnerBusiness>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @POST("api/owner/Business/request")
@@ -45,34 +45,85 @@ interface BusinessRemoteDao {
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @Multipart
     @POST("api/owner/Business/request/file")
-    suspend fun addRequestFiles(
+    suspend fun addBusinessRequestFiles(
         @Field("id") id: Int?,
         @Part list: List<MultipartBody.Part>
     ): ResponseWrapper<Any>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @DELETE("api/owner/Business/request/file/{id}")
-    suspend fun deleteRequestFiles(
+    suspend fun deleteBusinessRequestFiles(
         @Path("id") id: Int?
     ): ResponseWrapper<Any>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @Multipart
     @POST("api/owner/Business/request/image")
-    suspend fun addRequestImage(
+    suspend fun addBusinessRequestImage(
         @Field("id") id: Int?,
         @Part list: List<MultipartBody.Part>
     ): ResponseWrapper<Any>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @DELETE("api/owner/Business/request/image/{id}")
-    suspend fun deleteRequestImage(
+    suspend fun deleteBusinessRequestImage(
         @Path("id") id: Int?
     ): ResponseWrapper<Any>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @PATCH("api/owner/Business/request/send/{id}")
     suspend fun sendBusinessRequest(
+        @Path("id") id: Int?
+    ): ResponseWrapper<Any>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @GET("api/owner/company/request")
+    suspend fun getRequestCompany(
+    ): ResponseWrapper<OwnerBusiness>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @POST("api/owner/company/request")
+    suspend fun requestCompany(
+        @Body businessRequest: BusinessRequest
+    ): ResponseWrapper<Any>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @PUT("api/owner/company/request")
+    suspend fun updateCompanyRequest(
+        @Body businessRequest: BusinessRequest
+    ): ResponseWrapper<Any>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @Multipart
+    @POST("api/owner/company/request/file")
+    suspend fun addCompanyRequestFiles(
+        @Field("id") id: Int?,
+        @Part list: List<MultipartBody.Part>
+    ): ResponseWrapper<Any>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @DELETE("api/owner/company/request/file/{id}")
+    suspend fun deleteCompanyRequestFiles(
+        @Path("id") id: Int?
+    ): ResponseWrapper<Any>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @Multipart
+    @POST("api/owner/company/request/image")
+    suspend fun addCompanyRequestImage(
+        @Field("id") id: Int?,
+        @Part list: List<MultipartBody.Part>
+    ): ResponseWrapper<Any>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @DELETE("api/owner/company/request/image/{id}")
+    suspend fun deleteCompanyRequestImage(
+        @Path("id") id: Int?
+    ): ResponseWrapper<Any>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @PATCH("api/owner/company/request/send/{id}")
+    suspend fun sendCompanyRequest(
         @Path("id") id: Int?
     ): ResponseWrapper<Any>
 

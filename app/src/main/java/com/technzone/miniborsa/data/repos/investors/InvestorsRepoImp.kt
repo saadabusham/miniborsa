@@ -120,19 +120,4 @@ class InvestorsRepoImp @Inject constructor(
         }
     }
 
-    override suspend fun getFavorites(
-        pageSize: Int,
-        pageNumber: Int
-    ): APIResource<ResponseWrapper<ListWrapper<Business>>> {
-        return try {
-            responseHandle.handleSuccess(
-                investorRemoteDao.getFavorites(
-                    pageSize,
-                    pageNumber
-                )
-            )
-        } catch (e: Exception) {
-            responseHandle.handleException(e)
-        }
-    }
 }

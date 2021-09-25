@@ -63,15 +63,19 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>(),
             )
         }
         binding?.imgAddBusiness?.setOnClickListener {
-            SelectBusinessTypeDialog(requireActivity(), object : SelectBusinessTypeDialog.CallBack {
-                override fun callBack(businessTypeEnums: BusinessTypeEnums) {
-                    CreateBusinessActivity.start(
-                        requireContext(),
-                        businessTypeEnums.value
-                    )
-                }
-            }).show()
+           showSelectTypeDialog()
         }
+    }
+
+    private fun showSelectTypeDialog(){
+        SelectBusinessTypeDialog(requireActivity(), object : SelectBusinessTypeDialog.CallBack {
+            override fun callBack(businessTypeEnums: BusinessTypeEnums) {
+                CreateBusinessActivity.start(
+                    requireContext(),
+                    businessTypeEnums.value
+                )
+            }
+        }).show()
     }
 
     private fun setUpListingPending() {
@@ -93,6 +97,8 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>(),
                     data?.data?.let {
                         listingReviewAdapter.submitItems(it)
                         binding?.layoutListing?.constraintRoot?.visible()
+                        binding?.layoutListing?.tvPending?.visible()
+                        binding?.layoutListing?.rvPending?.visible()
                         binding?.imgAddBusiness?.visible()
                     }?.also {
                         binding?.layoutListing?.tvPending?.gone()
@@ -127,6 +133,8 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>(),
                     data?.data?.let {
                         listingAdapter.submitItems(it)
                         binding?.layoutListing?.constraintRoot?.visible()
+                        binding?.layoutListing?.tvListing?.visible()
+                        binding?.layoutListing?.rvListing?.visible()
                         binding?.imgAddBusiness?.visible()
                     }?.also {
                         binding?.layoutListing?.tvListing?.gone()

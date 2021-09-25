@@ -21,7 +21,7 @@ interface BusinessRepo {
 
     suspend fun getRequestBusiness(
         id: Int
-    ): APIResource<ResponseWrapper<BusinessRequest>>
+    ): APIResource<ResponseWrapper<OwnerBusiness>>
 
     suspend fun requestBusiness(
         businessRequest: BusinessRequest
@@ -31,25 +31,59 @@ interface BusinessRepo {
         businessRequest: BusinessRequest
     ): APIResource<ResponseWrapper<Any>>
 
-    suspend fun addRequestFiles(
+    suspend fun addBusinessRequestFiles(
         id: Int?,
         list: List<MultipartBody.Part>
     ): APIResource<ResponseWrapper<Any>>
 
-    suspend fun deleteRequestFiles(
+    suspend fun deleteBusinessRequestFiles(
         id: Int?
     ): APIResource<ResponseWrapper<Any>>
 
-    suspend fun addRequestImage(
+    suspend fun addBusinessRequestImage(
         id: Int?,
         list: List<MultipartBody.Part>
     ): APIResource<ResponseWrapper<Any>>
 
-    suspend fun deleteRequestImage(
+    suspend fun deleteBusinessRequestImage(
         id: Int?
     ): APIResource<ResponseWrapper<Any>>
 
     suspend fun sendBusinessRequest(
+        id: Int?
+    ): APIResource<ResponseWrapper<Any>>
+
+
+    suspend fun getRequestCompany(
+    ): APIResource<ResponseWrapper<OwnerBusiness>>
+
+    suspend fun requestCompany(
+        businessRequest: BusinessRequest
+    ): APIResource<ResponseWrapper<Any>>
+
+    suspend fun updateCompanyRequest(
+        businessRequest: BusinessRequest
+    ): APIResource<ResponseWrapper<Any>>
+
+    suspend fun addCompanyRequestFiles(
+        id: Int?,
+        list: List<MultipartBody.Part>
+    ): APIResource<ResponseWrapper<Any>>
+
+    suspend fun deleteCompanyRequestFiles(
+        id: Int?
+    ): APIResource<ResponseWrapper<Any>>
+
+    suspend fun addCompanyRequestImage(
+        id: Int?,
+        list: List<MultipartBody.Part>
+    ): APIResource<ResponseWrapper<Any>>
+
+    suspend fun deleteCompanyRequestImage(
+        id: Int?
+    ): APIResource<ResponseWrapper<Any>>
+
+    suspend fun sendCompanyRequest(
         id: Int?
     ): APIResource<ResponseWrapper<Any>>
 }

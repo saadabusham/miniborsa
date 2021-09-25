@@ -60,7 +60,7 @@
 
                     <include
                         android:id="@+id/row_listing_pending"
-                        layout="@layout/row_listing_pending" />
+                        layout="@layout/layout_listing_pending" />
 
                     <ProgressBar
                         android:id="@+id/progressBar"

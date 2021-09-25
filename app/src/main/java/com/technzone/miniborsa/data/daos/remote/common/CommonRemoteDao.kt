@@ -3,6 +3,7 @@ package com.technzone.miniborsa.data.daos.remote.common
 import com.technzone.miniborsa.data.api.response.ResponseWrapper
 import com.technzone.miniborsa.data.common.NetworkConstants
 import com.technzone.miniborsa.data.models.general.ListWrapper
+import com.technzone.miniborsa.data.models.investor.Business
 import com.technzone.miniborsa.data.models.investor.request.FavoriteRequest
 import com.technzone.miniborsa.data.models.news.BusinessNews
 import com.technzone.miniborsa.data.models.notification.Notification
@@ -24,7 +25,7 @@ interface CommonRemoteDao {
         @Query("PageNumber") pageNumber: Int,
         @Query("Section") section: Int?,
         @Query("EnglishTitle") searchTxt: String?,
-        @Query("Type") type: Int?
+        @Query("IsPinned") isPinned: Boolean?
     ): ResponseWrapper<ListWrapper<BusinessNews>>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
@@ -32,6 +33,13 @@ interface CommonRemoteDao {
     suspend fun getBlogDetails(
         @Path("id") id: Int
     ): ResponseWrapper<BusinessNews>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @GET("api/user/favorite")
+    suspend fun getFavorites(
+        @Query("PageSize") pageSize: Int,
+        @Query("PageNumber") pageNumber: Int
+    ): ResponseWrapper<ListWrapper<Business>>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @POST("api/user/favorite")

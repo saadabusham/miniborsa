@@ -36,6 +36,9 @@ class ListingReviewAdapter(
             binding.root.setOnClickListener {
                 itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
             }
+            binding.tvStatus.setOnClickListener {
+                itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
+            }
         }
     }
 

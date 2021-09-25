@@ -31,14 +31,14 @@ class NewsViewModel @Inject constructor(
                 pageNumber = 1,
                 pageSize = Constants.PAGE_SIZE,
                 section = NewsSectionEnums.ALL.value,
-                type = null
+                isPinned = true
             )
         emit(response)
     }
 
     fun getBlogs(
         pageNumber: Int,
-        section:Int? = NewsSectionEnums.ALL.value
+        section:Int = NewsSectionEnums.ALL.value
     ) = liveData {
         emit(APIResource.loading())
         val response =
@@ -46,8 +46,8 @@ class NewsViewModel @Inject constructor(
                 pageNumber = pageNumber,
                 pageSize = Constants.PAGE_SIZE,
                 section = section,
-                type = null,
-                searchTxt = searchText.value
+                searchTxt = searchText.value,
+                isPinned = false
             )
         emit(response)
     }

@@ -35,48 +35,43 @@
                     app:cardCornerRadius="@dimen/_3sdp"
                     app:cardElevation="0dp" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
-                    android:id="@+id/tvLocation"
+                <TextView
                     style="@style/textview_normal_medium"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/layouts_margin_start"
-                    android:layout_marginTop="@dimen/_17sdp"
-                    android:layout_marginEnd="@dimen/layouts_margin_end"
-                    android:text="@string/location"
+                    android:layout_marginTop="@dimen/_18sdp"
+                    android:text="@string/countries_"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp" />
 
-                <View
-                    android:id="@+id/divLocation"
+                <TextView
+                    android:id="@+id/tvCountries"
+                    style="@style/textview_normal_regular"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginStart="@dimen/layouts_margin_start"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/layouts_margin_end"
-                    android:background="@color/color_not_valid" />
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@drawable/ic_rectangle_unfocused"
+                    android:drawableEnd="@drawable/ic_arrow_next"
+                    android:onClick="@{() -> viewModel.onCountriesClicked()}"
+                    android:padding="@dimen/_10sdp"
+                    android:text="@string/select_country"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextInputLayout
-                    android:id="@+id/tfAddress"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSelectedCountries"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/layouts_margin_start"
-                    android:layout_marginEnd="@dimen/layouts_margin_end"
-                    android:hint="@string/enter_postal_code_or_address"
-                    app:layout_constraintEnd_toEndOf="@id/endGuide"
-                    app:layout_constraintStart_toStartOf="@id/beginGuide"
-                    app:layout_constraintTop_toBottomOf="@id/divLocation">
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="horizontal"
+                    app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cvSearch"
+                    tools:listitem="@layout/row_selected_general" />
 
-                    <com.technzone.miniborsa.ui.base.views.AppTextInputEditText
-                        android:id="@+id/edAddress"
-                        style="@style/TextInputEditTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_business_pin"
-                        android:inputType="textEmailAddress"
-                        android:text="@={viewModel.addressStr}" />
-
-                </com.technzone.miniborsa.ui.base.views.AppTextInputLayout>
 
                 <TextView
                     android:id="@+id/tvHeader"
@@ -85,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|start"
                     android:layout_marginStart="@dimen/layouts_margin_start"
-                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
                     android:gravity="center|start"
                     android:text="@string/alphabetical"
                     android:textColor="@color/black"
@@ -99,8 +94,8 @@
                     android:clipToPadding="false"
                     android:nestedScrollingEnabled="true"
                     android:orientation="vertical"
-                    tools:itemCount="3"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="3"
                     tools:listitem="@layout/row_sort" />
 
                 <View
@@ -147,13 +142,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/button_height"
                     android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginBottom="@dimen/_20sdp"
                     android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:backgroundTint="@color/green_color"
                     android:onClick="@{()->viewModel.onDoneClicked()}"
                     android:stateListAnimator="@null"
-                    android:backgroundTint="@color/green_color"
                     android:text="@string/done"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_12ssp" />

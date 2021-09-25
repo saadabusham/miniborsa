@@ -62,6 +62,7 @@
 
     <!-- Alert !-->
     <color name="alert_red">#DC0C0C</color>
+    <color name="remove_red">#E91C1C</color>
 
     <!-- Orange -->
     <color name="orange">#DAA42A</color>
