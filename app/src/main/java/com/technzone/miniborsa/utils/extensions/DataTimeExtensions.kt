@@ -11,6 +11,7 @@ import com.technzone.miniborsa.utils.DateTimeUtil.MESSAGE_DATE_FORMATE
 import com.technzone.miniborsa.utils.DateTimeUtil.MONTH_NAME_DAY_YEAR_DATE_FORMATTING
 import com.technzone.miniborsa.utils.DateTimeUtil.MONTH_NAME_DAY_YEAR_DATE_TIME_FORMATTING
 import com.technzone.miniborsa.utils.DateTimeUtil.TIME_FORMATTING_HOUR_MIN_24
+import com.technzone.miniborsa.utils.DateTimeUtil.YEAR_NUMBER_FORMATTING
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -141,6 +142,12 @@ fun getCurrentHour(): String {
 
 fun getCurrentDate(): String {
     val formatter = SimpleDateFormat(FULL_DATE_TIME_FORMATTING)
+    val date = Date()
+    return formatter.format(date)
+}
+
+fun getCurrentYear(): String {
+    val formatter = SimpleDateFormat(YEAR_NUMBER_FORMATTING)
     val date = Date()
     return formatter.format(date)
 }

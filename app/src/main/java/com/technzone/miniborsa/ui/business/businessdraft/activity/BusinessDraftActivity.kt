@@ -16,11 +16,11 @@ import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.business.businessdraft.viewmodels.BusinessDraftViewModel
 import com.technzone.miniborsa.ui.business.businessmain.fragments.listing.adapters.ListingReviewAdapter
-import com.technzone.miniborsa.ui.business.businessmain.fragments.listing.dialogs.SelectBusinessTypeDialog
 import com.technzone.miniborsa.ui.business.createbusiness.activity.CreateBusinessActivity
 import com.technzone.miniborsa.utils.extensions.gone
 import com.technzone.miniborsa.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
 class BusinessDraftActivity : BaseBindingActivity<ActivityBusinessDraftBinding>(),
@@ -28,9 +28,22 @@ class BusinessDraftActivity : BaseBindingActivity<ActivityBusinessDraftBinding>(
 
     private val viewModel: BusinessDraftViewModel by viewModels()
     private lateinit var listingReviewAdapter: ListingReviewAdapter
+    override fun onResume() {
+        super.onResume()
+        viewModel.getPendingListing().observe(this, pendingResultObserver())
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_business_draft, hasToolbar = false)
+        setContentView(
+            R.layout.activity_business_draft,
+            hasToolbar = true,
+            toolbarView = toolbar,
+            hasBackButton = true,
+            showBackArrow = true,
+            hasTitle = true,
+            title = R.string.my_listing
+        )
         setUpBinding()
         setUpListeners()
         setUpListingPending()
@@ -66,10 +79,9 @@ class BusinessDraftActivity : BaseBindingActivity<ActivityBusinessDraftBinding>(
     }
 
     private fun setUpListingPending() {
-        listingReviewAdapter = ListingReviewAdapter(this,true)
+        listingReviewAdapter = ListingReviewAdapter(this, true)
         binding?.layoutListing?.rvPending?.adapter = listingReviewAdapter
         binding?.layoutListing?.rvPending?.setOnItemClickListener(this)
-        viewModel.getPendingListing().observe(this, pendingResultObserver())
     }
 
     private fun pendingResultObserver(): CustomObserverResponse<OwnerBusiness> {
@@ -82,11 +94,12 @@ class BusinessDraftActivity : BaseBindingActivity<ActivityBusinessDraftBinding>(
                     data: OwnerBusiness?
                 ) {
                     data?.let {
+                        listingReviewAdapter.clear()
                         listingReviewAdapter.submitItem(it)
                         binding?.layoutListing?.constraintRoot?.visible()
                         binding?.layoutListing?.tvPending?.visible()
                         binding?.layoutListing?.rvPending?.visible()
-                    }?:also {
+                    } ?: also {
                         binding?.layoutListing?.tvPending?.gone()
                         binding?.layoutListing?.rvPending?.gone()
                     }

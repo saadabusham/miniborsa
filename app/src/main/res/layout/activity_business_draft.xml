@@ -13,18 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
-            android:id="@+id/tvTitle"
-            style="@style/textview_normal_bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:text="@string/my_listing"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_13ssp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <include
+            android:id="@+id/layout_toolbar"
+            layout="@layout/layout_toolbar" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/beginGuide"
@@ -49,12 +40,12 @@
             android:layout_height="0dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTitle">
+            app:layout_constraintTop_toBottomOf="@id/layout_toolbar">
 
             <include
                 android:id="@+id/layout_listing"
                 layout="@layout/layout_listing"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <include
                 android:id="@+id/layout_add_business"

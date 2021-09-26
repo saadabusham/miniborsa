@@ -16,6 +16,7 @@ import com.technzone.miniborsa.data.repos.configuration.ConfigurationRepo
 import com.technzone.miniborsa.data.repos.user.UserRepo
 import com.technzone.miniborsa.ui.base.viewmodel.BaseViewModel
 import com.technzone.miniborsa.utils.extensions.createImageMultipart
+import com.technzone.miniborsa.utils.extensions.getCurrentYear
 import com.technzone.miniborsa.utils.pref.SharedPreferencesUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -40,7 +41,7 @@ class CreateBusinessViewModel @Inject constructor(
     val summery: MutableLiveData<String> = MutableLiveData("")
     val addressStr: MutableLiveData<String> = MutableLiveData("")
     val address: MutableLiveData<Address> = MutableLiveData()
-    val date: MutableLiveData<String> = MutableLiveData()
+    val date: MutableLiveData<String> = MutableLiveData(getCurrentYear())
     val IsFreeHoldNegotiable: MutableLiveData<Boolean> = MutableLiveData()
     val IsLeaseHoldNegotiable: MutableLiveData<Boolean> = MutableLiveData()
     val propertyStatus: MutableLiveData<PropertyStatusEnums> =
@@ -115,32 +116,32 @@ class CreateBusinessViewModel @Inject constructor(
     fun buildBusinessRequestFromBusiness(business: OwnerBusiness) {
         business.let {
             businessId = it.id
-            webLink.value = it.websiteLink
+            webLink.postValue(it.websiteLink)
 //            counrty = "",
 //            city = "",
-            summery.value = it.englishDescription
-            runFromHome.value = it.canRunfromHome
-            training.value = it.training
-            title.value = it.title
-            relocated.value = it.isRelocated
-            leaseHoldAskingPrice.value = it.askingPriceBoth
-            leaseHoldAskingPriceOnRequest.value = it.askingPriceNABoth
-            percentage.value = it.investmentPercentage
-            propertyStatus.value = PropertyStatusEnums.getStatusByValue(
+            summery.postValue(it.englishDescription)
+            runFromHome.postValue(it.canRunfromHome)
+            training.postValue(it.training)
+            title.postValue(it.title)
+            relocated.postValue(it.isRelocated)
+            leaseHoldAskingPrice.postValue(it.askingPriceBoth)
+            leaseHoldAskingPriceOnRequest.postValue(it.askingPriceNABoth)
+            percentage.postValue(it.investmentPercentage)
+            propertyStatus.postValue(PropertyStatusEnums.getStatusByValue(
                 it.propertyStatus ?: PropertyStatusEnums.FREEHOLD.value
-            )
-            turnOver.value = it.annualTurnover
-            turnoverOnRequest.value = it.annualTurnoverNA
-            listLocation.value = it.listLocation
-            date.value = it.establishedYear
+            ))
+            turnOver.postValue(it.annualTurnover)
+            turnoverOnRequest.postValue(it.annualTurnoverNA)
+            listLocation.postValue(it.listLocation)
+            date.postValue(it.establishedYear?:getCurrentYear())
             categories = it.categories?.toMutableList() ?: mutableListOf()
-            addressStr.value = it.address
-            confidential.value = it.isConfidential
-            freeHoldAskingPrice.value = it.askingPrice
-            freeholdAskingPriceOnRequest.value = it.askingPriceNA
+            addressStr.postValue(it.address)
+            confidential.postValue(it.isConfidential)
+            freeHoldAskingPrice.postValue(it.askingPrice)
+            freeholdAskingPriceOnRequest.postValue(it.askingPriceNA)
             countries = it.countries?.toMutableList() ?: mutableListOf()
-            netProfit.value = it.annualNetProfit
-            netProfitOnRequest.value = it.annualNetProfitNA
+            netProfit.postValue(it.annualNetProfit)
+            netProfitOnRequest.postValue(it.annualNetProfitNA)
             businessType = it.businessType ?: 0
             fields = it.fields?.toMutableList() ?: mutableListOf()
             properties = it.properties?.map { it.id }?.toMutableList() ?: mutableListOf()
