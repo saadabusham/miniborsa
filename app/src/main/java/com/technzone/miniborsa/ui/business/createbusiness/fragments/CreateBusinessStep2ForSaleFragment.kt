@@ -5,6 +5,8 @@ import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import com.google.android.material.tabs.TabLayout
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
+import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.data.enums.PropertyStatusEnums
 import com.technzone.miniborsa.databinding.FragmentCreateBusinessStep2ForSaleBinding
 import com.technzone.miniborsa.ui.base.fragment.BaseFormBindingFragment
@@ -101,7 +103,24 @@ class CreateBusinessStep2ForSaleFragment : BaseFormBindingFragment<FragmentCreat
     }
 
     override fun validateToMoveToNext(callback: (Boolean) -> Unit) {
-        callback(true)
+        viewModel.updateRequestBusiness().observe(this,updateRequestResultObserver(callback))
     }
+
+    private fun updateRequestResultObserver(
+        callback: (Boolean) -> Unit
+    ): CustomObserverResponse<Any> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<Any> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: Any?
+                ) {
+                    callback(true)
+                }
+            })
+    }
+
 
 }

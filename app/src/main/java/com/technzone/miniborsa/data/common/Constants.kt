@@ -14,6 +14,8 @@ object Constants {
 
     object BundleData {
 
+        const val COMPANY_DRAFT: String ="comapnyDraft"
+        const val HAS_BUSINESS: String = "hasBusiness"
         const val OWNER_BUSINESS: String = "ownerBusiness"
         const val BUSINESS_ID: String = "businessId"
         const val SHOW_BACK: String = "showBack"

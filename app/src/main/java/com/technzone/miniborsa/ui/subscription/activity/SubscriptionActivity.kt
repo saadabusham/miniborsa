@@ -38,10 +38,12 @@ class SubscriptionActivity : BaseBindingActivity<ActivitySubscriptionBinding>() 
     companion object {
         fun start(
             context: Context?,
-            isBusiness: Boolean
+            isBusiness: Boolean,
+            hasBusiness:Boolean = false
         ) {
             val intent = Intent(context, SubscriptionActivity::class.java).apply {
                 putExtra(Constants.BundleData.BUSINESS, isBusiness)
+                putExtra(Constants.BundleData.HAS_BUSINESS, hasBusiness)
             }
             context?.startActivity(intent)
         }

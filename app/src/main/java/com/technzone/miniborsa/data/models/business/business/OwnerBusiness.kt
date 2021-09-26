@@ -107,6 +107,9 @@ data class OwnerBusiness(
 	val countries: List<Int>? = null,
 
 	@field:SerializedName("categories")
-	val categories: List<Int>? = null
+	val categories: List<Int>? = null,
+
+	@field:SerializedName("createdAt")
+	val createdAt: String? = null
 
 ) : Serializable

@@ -8,6 +8,7 @@ import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.data.enums.LocaleImageType
+import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.data.models.createbusiness.LocaleImage
 import com.technzone.miniborsa.databinding.FragmentCreateBusinessStep3Binding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
@@ -20,6 +21,7 @@ import com.technzone.miniborsa.utils.ImagePickerUtil.Companion.TAKE_USER_IMAGE_R
 import com.technzone.miniborsa.utils.pickImages
 import com.technzone.miniborsa.utils.recycleviewutils.VerticalSpaceDecoration
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.row_sort.*
 
 @AndroidEntryPoint
 class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusinessStep3Binding>(),
@@ -119,7 +121,7 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
 //                        contentType = LocaleImageType.IMAGE
 //                    ), imageRecyclerAdapter.itemCount - 1
 //                )
-                fileUri?.path?.let { viewModel.addImage(it).observe(this,uploadResultObserver()) }
+                fileUri?.path?.let { viewModel.addImage(it).observe(this, uploadResultObserver()) }
             }
             REQUEST_CODE_PICK_FILE -> {
                 var realPath = data.data?.getFilePathFromURI(requireContext())
@@ -132,7 +134,7 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
 //                    ), documentsAdapter.itemCount - 1
 //                )
 
-                realPath?.let { viewModel.addImage(it).observe(this,uploadResultObserver()) }
+                realPath?.let { viewModel.addFile(it).observe(this, uploadResultObserver()) }
             }
         }
     }
@@ -146,6 +148,33 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: Any?
                 ) {
+                    refreshPhotosAndDocs()
+                    if (viewModel.hasBusiness) {
+                        viewModel.getCompanyRequest().observe(this@CreateBusinessStep3Fragment,businessResultObserver())
+                    } else {
+                        viewModel.getBusinessRequest().observe(this@CreateBusinessStep3Fragment,businessResultObserver())
+                    }
+                }
+            })
+    }
+
+    private fun businessResultObserver(): CustomObserverResponse<OwnerBusiness> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<OwnerBusiness> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: OwnerBusiness?
+                ) {
+                    data?.images?.toMutableList()?.let {
+                        viewModel.images = it
+                        imageRecyclerAdapter.submitNewItems(it.map { LocaleImage(path = it.name,id = it.id) })
+                    }
+                    data?.files?.toMutableList()?.let {
+                        viewModel.files = it
+                        documentsAdapter.submitNewItems(it.map { LocaleImage(path = it.name,id = it.id) })
+                    }
                     refreshPhotosAndDocs()
                 }
             })
@@ -168,12 +197,19 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
             )
         )
     }
-    private fun refreshPhotosAndDocs(){
+
+    private fun refreshPhotosAndDocs() {
         refreshImages()
         refreshDocuments()
     }
+
     private fun refreshImages() {
-        imageRecyclerAdapter.submitNewItems(viewModel.images.map { LocaleImage(path = it.name,id = it.id) })
+        imageRecyclerAdapter.submitNewItems(viewModel.images.map {
+            LocaleImage(
+                path = it.name,
+                id = it.id
+            )
+        })
         when (imageRecyclerAdapter.itemCount) {
             0 -> {
                 addFirstImage()
@@ -201,7 +237,12 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
     }
 
     private fun refreshDocuments() {
-        documentsAdapter.submitNewItems(viewModel.images.map { LocaleImage(path = it.name,id = it.id) })
+        documentsAdapter.submitNewItems(viewModel.images.map {
+            LocaleImage(
+                path = it.name,
+                id = it.id
+            )
+        })
         when (documentsAdapter.itemCount) {
             0 -> {
                 addFirstDocument()
@@ -260,8 +301,25 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
     }
 
     override fun validateToMoveToNext(callback: (Boolean) -> Unit) {
-        callback(true)
+        viewModel.updateRequestBusiness().observe(this, updateRequestResultObserver(callback))
     }
+
+    private fun updateRequestResultObserver(
+        callback: (Boolean) -> Unit
+    ): CustomObserverResponse<Any> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<Any> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: Any?
+                ) {
+                    callback(true)
+                }
+            })
+    }
+
 
     companion object {
         const val REQUEST_CODE_PICK_FILE = 232

@@ -15,6 +15,7 @@ import com.technzone.miniborsa.databinding.FragmentCreateBusinessStep1Binding
 import com.technzone.miniborsa.ui.base.dialogs.DialogsUtil
 import com.technzone.miniborsa.ui.base.fragment.BaseFormBindingFragment
 import com.technzone.miniborsa.ui.base.sheet.lookupselector.LookupSelectorBottomSheet
+import com.technzone.miniborsa.ui.business.createbusiness.dialogs.CreateCompanyDialog
 import com.technzone.miniborsa.ui.map.MapActivity
 import com.technzone.miniborsa.utils.getLocationName
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,7 +30,7 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
         super.onViewVisible()
         setUpBinding()
         setUpListeners()
-        viewModel.getCategories().observe(this, categoriesResultObserver(0,true))
+        handleBuniness()
     }
 
     private fun setUpBinding() {
@@ -44,17 +45,65 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
             MapActivity.start(requireActivity(), resultLauncher)
         }
         binding?.tvCat1?.setOnClickListener {
-            viewModel.getCategories().observe(this, categoriesResultObserver(viewModel.getCategoriesCount(1)))
+            viewModel.getCategories()
+                .observe(this, requestCompanyResultObserver(viewModel.getCategoriesCount(1)))
         }
         binding?.tvCat2?.setOnClickListener {
-            viewModel.getCategories().observe(this, categoriesResultObserver(viewModel.getCategoriesCount(2)))
+            viewModel.getCategories()
+                .observe(this, requestCompanyResultObserver(viewModel.getCategoriesCount(2)))
         }
         binding?.tvCat3?.setOnClickListener {
-            viewModel.getCategories().observe(this, categoriesResultObserver(viewModel.getCategoriesCount(3)))
+            viewModel.getCategories()
+                .observe(this, requestCompanyResultObserver(viewModel.getCategoriesCount(3)))
         }
     }
 
-    private fun categoriesResultObserver(
+    private fun handleBuniness() {
+        if (viewModel.hasBusiness && !viewModel.businessDraft) {
+            showCreateDialog(true)
+        } else if (viewModel.hasBusiness || viewModel.companyDraft) {
+            viewModel.getCategories().observe(this, requestCompanyResultObserver(0, true))
+        } else {
+            showCreateDialog(false)
+        }
+    }
+
+    private fun showCreateDialog(request: Boolean) {
+        CreateCompanyDialog(requireActivity(), object : CreateCompanyDialog.CompanyNameCallBack {
+            override fun save(name: String, dialog: CreateCompanyDialog) {
+                if (request)
+                    viewModel.requestCompany(name)
+                        .observe(
+                            this@CreateBusinessStep1Fragment,
+                            requestCompanyResultObserver(dialog = dialog)
+                        )
+                else viewModel.requestBusiness()
+                        .observe(
+                            this@CreateBusinessStep1Fragment,
+                            requestCompanyResultObserver(dialog = dialog)
+                        )
+            }
+        }).show()
+    }
+
+    private fun requestCompanyResultObserver(
+        dialog: CreateCompanyDialog
+    ): CustomObserverResponse<Int> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<Int> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: Int?
+                ) {
+                    viewModel.businessId = data
+                    dialog.dismiss()
+                }
+            })
+    }
+
+    private fun requestCompanyResultObserver(
         categoryNumber: Int,
         fillOldData: Boolean = false
     ): CustomObserverResponse<ListWrapper<CategoriesItem>> {
@@ -101,19 +150,28 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
             1 -> {
                 binding?.tvCat1?.text = selectedItem.name
                 selectedItem.id?.let {
-                    if(viewModel.categories.size >= 1 ) viewModel.categories.set(0, it) else viewModel.categories.add(0,it)
+                    if (viewModel.categories.size >= 1) viewModel.categories.set(
+                        0,
+                        it
+                    ) else viewModel.categories.add(0, it)
                 }
             }
             2 -> {
                 binding?.tvCat2?.text = selectedItem.name
                 selectedItem.id?.let {
-                    if(viewModel.categories.size >= 2) viewModel.categories.set(1, it) else viewModel.categories.add(1,it)
+                    if (viewModel.categories.size >= 2) viewModel.categories.set(
+                        1,
+                        it
+                    ) else viewModel.categories.add(1, it)
                 }
             }
             else -> {
                 binding?.tvCat3?.text = selectedItem.name
                 selectedItem.id?.let {
-                    if(viewModel.categories.size >= 3) viewModel.categories.set(2, it) else viewModel.categories.add(2,it)
+                    if (viewModel.categories.size >= 3) viewModel.categories.set(
+                        2,
+                        it
+                    ) else viewModel.categories.add(2, it)
                 }
             }
         }
@@ -160,7 +218,23 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
     }
 
     override fun validateToMoveToNext(callback: (Boolean) -> Unit) {
-        callback(true)
+        viewModel.updateRequestBusiness().observe(this, updateRequestResultObserver(callback))
+    }
+
+    private fun updateRequestResultObserver(
+        callback: (Boolean) -> Unit
+    ): CustomObserverResponse<Any> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<Any> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: Any?
+                ) {
+                    callback(true)
+                }
+            })
     }
 
 }

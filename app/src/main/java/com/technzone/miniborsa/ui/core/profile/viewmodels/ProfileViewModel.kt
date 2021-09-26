@@ -10,6 +10,7 @@ import com.technzone.miniborsa.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.miniborsa.data.models.general.Countries
 import com.technzone.miniborsa.data.pref.configuration.ConfigurationPref
 import com.technzone.miniborsa.data.pref.user.UserPref
+import com.technzone.miniborsa.data.repos.business.BusinessRepo
 import com.technzone.miniborsa.data.repos.user.UserRepo
 import com.technzone.miniborsa.ui.base.viewmodel.BaseViewModel
 import com.technzone.miniborsa.utils.LocaleUtil
@@ -25,7 +26,8 @@ class ProfileViewModel @Inject constructor(
     private val userRepo: UserRepo,
     private val userPref: UserPref,
     private val sharedPreferencesUtil: SharedPreferencesUtil,
-    private val configurationPref: ConfigurationPref
+    private val configurationPref: ConfigurationPref,
+    private val businessRepo: BusinessRepo
 ) : BaseViewModel() {
 
     val phoneNumberWithoutCountryCode: MutableLiveData<String> by lazy { MutableLiveData<String>() }
@@ -108,5 +110,4 @@ class ProfileViewModel @Inject constructor(
         )
         emit(response)
     }
-
 }

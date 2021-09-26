@@ -2,6 +2,8 @@ package com.technzone.miniborsa.ui.business.createbusiness.fragments
 
 import android.view.inputmethod.EditorInfo
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
+import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.databinding.FragmentCreateBusinessStep2FranchiseBinding
 import com.technzone.miniborsa.ui.base.fragment.BaseFormBindingFragment
 import com.technzone.miniborsa.utils.extensions.hideKeyboard
@@ -54,7 +56,24 @@ class CreateBusinessStep2FranchiseFragment : BaseFormBindingFragment<FragmentCre
     }
 
     override fun validateToMoveToNext(callback: (Boolean) -> Unit) {
-        callback(true)
+        viewModel.updateRequestBusiness().observe(this,updateRequestResultObserver(callback))
     }
+
+    private fun updateRequestResultObserver(
+        callback: (Boolean) -> Unit
+    ): CustomObserverResponse<Any> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<Any> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: Any?
+                ) {
+                    callback(true)
+                }
+            })
+    }
+
 
 }

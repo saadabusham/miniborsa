@@ -10,7 +10,6 @@ import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.data.enums.BusinessTypeEnums
 import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
-import com.technzone.miniborsa.data.models.general.ListWrapper
 import com.technzone.miniborsa.databinding.ActivityBusinessDraftBinding
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
@@ -18,7 +17,6 @@ import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.business.businessdraft.viewmodels.BusinessDraftViewModel
 import com.technzone.miniborsa.ui.business.businessmain.fragments.listing.adapters.ListingReviewAdapter
 import com.technzone.miniborsa.ui.business.businessmain.fragments.listing.dialogs.SelectBusinessTypeDialog
-import com.technzone.miniborsa.ui.business.businessmain.viewmodels.BusinessMainViewModel
 import com.technzone.miniborsa.ui.business.createbusiness.activity.CreateBusinessActivity
 import com.technzone.miniborsa.utils.extensions.gone
 import com.technzone.miniborsa.utils.extensions.visible
@@ -47,35 +45,28 @@ class BusinessDraftActivity : BaseBindingActivity<ActivityBusinessDraftBinding>(
         binding?.layoutAddBusiness?.btnBusinessForSale?.setOnClickListener {
             CreateBusinessActivity.start(
                 this,
-                BusinessTypeEnums.BUSINESS_FOR_SALE.value
+                BusinessTypeEnums.BUSINESS_FOR_SALE.value,
+                hasBusiness = false
             )
         }
         binding?.layoutAddBusiness?.btnBusinessForShare?.setOnClickListener {
             CreateBusinessActivity.start(
                 this,
-                BusinessTypeEnums.BUSINESS_FOR_SHARE.value
+                BusinessTypeEnums.BUSINESS_FOR_SHARE.value,
+                hasBusiness = false
             )
         }
         binding?.layoutAddBusiness?.btnBusinessFranchise?.setOnClickListener {
             CreateBusinessActivity.start(
                 this,
-                BusinessTypeEnums.BUSINESS_FRANCHISE.value
+                BusinessTypeEnums.BUSINESS_FRANCHISE.value,
+                hasBusiness = false
             )
-        }
-        binding?.imgAddBusiness?.setOnClickListener {
-            SelectBusinessTypeDialog(this, object : SelectBusinessTypeDialog.CallBack {
-                override fun callBack(businessTypeEnums: BusinessTypeEnums) {
-                    CreateBusinessActivity.start(
-                        this@BusinessDraftActivity,
-                        businessTypeEnums.value
-                    )
-                }
-            }).show()
         }
     }
 
     private fun setUpListingPending() {
-        listingReviewAdapter = ListingReviewAdapter(this)
+        listingReviewAdapter = ListingReviewAdapter(this,true)
         binding?.layoutListing?.rvPending?.adapter = listingReviewAdapter
         binding?.layoutListing?.rvPending?.setOnItemClickListener(this)
         viewModel.getPendingListing().observe(this, pendingResultObserver())
@@ -95,8 +86,7 @@ class BusinessDraftActivity : BaseBindingActivity<ActivityBusinessDraftBinding>(
                         binding?.layoutListing?.constraintRoot?.visible()
                         binding?.layoutListing?.tvPending?.visible()
                         binding?.layoutListing?.rvPending?.visible()
-                        binding?.imgAddBusiness?.visible()
-                    }?.also {
+                    }?:also {
                         binding?.layoutListing?.tvPending?.gone()
                         binding?.layoutListing?.rvPending?.gone()
                     }
@@ -112,8 +102,16 @@ class BusinessDraftActivity : BaseBindingActivity<ActivityBusinessDraftBinding>(
 
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as OwnerBusiness
-        if(view?.id == R.id.tvStatus){
+        if (view?.id == R.id.tvStatus) {
 
+        } else {
+            CreateBusinessActivity.start(
+                this,
+                businessType = -1,
+                business = item,
+                hasBusiness = false,
+                companyDraft = true
+            )
         }
     }
 

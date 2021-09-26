@@ -10,7 +10,8 @@ import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.adapters.BaseViewHolder
 
 class ListingReviewAdapter(
-    context: Context
+    context: Context,
+    private val editable:Boolean = false
 ) :
     BaseBindingRecyclerViewAdapter<OwnerBusiness>(context) {
 
@@ -33,6 +34,10 @@ class ListingReviewAdapter(
 
         override fun bind(item: OwnerBusiness) {
             binding.item = item
+            binding.editable = editable
+            binding.imgEdit.setOnClickListener {
+                itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
+            }
             binding.root.setOnClickListener {
                 itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
             }

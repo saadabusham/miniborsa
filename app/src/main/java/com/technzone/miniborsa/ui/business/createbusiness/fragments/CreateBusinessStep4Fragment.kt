@@ -71,6 +71,7 @@ class CreateBusinessStep4Fragment : BaseFormBindingFragment<FragmentCreateBusine
                                     it.selected.value = true
                                 }
                             }
+                            viewModel.selectedItemsCount.value = list.filter { it.selected.value == true }.size
                             businessExtraInfoAdapter.submitItems(list)
                         }
                 }
@@ -78,7 +79,24 @@ class CreateBusinessStep4Fragment : BaseFormBindingFragment<FragmentCreateBusine
     }
 
     override fun validateToMoveToNext(callback: (Boolean) -> Unit) {
-        callback(true)
+        viewModel.updateRequestBusiness().observe(this,updateRequestResultObserver(callback))
     }
+
+    private fun updateRequestResultObserver(
+        callback: (Boolean) -> Unit
+    ): CustomObserverResponse<Any> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<Any> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: Any?
+                ) {
+                    callback(true)
+                }
+            })
+    }
+
 
 }

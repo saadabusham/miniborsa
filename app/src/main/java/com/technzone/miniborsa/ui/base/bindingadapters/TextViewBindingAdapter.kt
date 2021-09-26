@@ -4,6 +4,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.data.enums.BusinessTypeEnums
 import com.technzone.miniborsa.data.enums.NewsSectionEnums
 
 @BindingAdapter("setTextBySection")
@@ -27,6 +28,19 @@ fun TextView.setColorBySection(
             NewsSectionEnums.START_UP_NEWS.value -> R.color.startup_news
             NewsSectionEnums.INVESTMENT.value -> R.color.investment
             else -> R.color.tips
+        }
+    )
+}
+
+@BindingAdapter("setTextByBusinessType")
+fun TextView.setTextByBusinessType(
+    type: Int
+) {
+    text = context.getString(
+        when (type) {
+            BusinessTypeEnums.BUSINESS_FOR_SALE.value -> R.string.businesses_for_sale
+            BusinessTypeEnums.BUSINESS_FOR_SHARE.value -> R.string.share_for_sale
+            else -> R.string.franchise
         }
     )
 }

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.technzone.miniborsa.ui.business.createbusiness.dialogs.CreateCompanyDialog" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/_24sdp"
+        android:layout_marginEnd="@dimen/_24sdp"
+        android:elevation="0dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/_20sdp"
+        app:cardElevation="@dimen/_20sdp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_15sdp"
+            android:gravity="center"
+            android:minWidth="@dimen/_250sdp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:src="@drawable/ic_logo" />
+
+            <TextView
+                android:id="@+id/tvFillField"
+                style="@style/textview_normal_semibold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:text="@string/create_company"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14ssp" />
+
+            <com.technzone.miniborsa.ui.base.views.AppTextInputLayout
+                android:id="@+id/tfName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:hint="@string/company_name">
+
+                <com.technzone.miniborsa.ui.base.views.AppTextInputEditText
+                    android:id="@+id/edName"
+                    style="@style/TextInputEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:maxLength="15"
+                    android:singleLine="true"
+                    android:text="@={viewModel.companyName}"/>
+
+            </com.technzone.miniborsa.ui.base.views.AppTextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <com.technzone.miniborsa.ui.base.views.AppMaterialButton
+                    android:id="@+id/cvCancel"
+                    style="@style/AppTheme.Button.TransparentOutline"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/white"
+                    android:gravity="center"
+                    android:onClick="@{()->viewModel.onCancelClicked()}"
+                    android:text="@string/cancel"
+                    android:textAllCaps="true"
+                    android:textAppearance="@style/textview_normal_semibold"
+                    android:textSize="@dimen/_9ssp" />
+
+                <com.technzone.miniborsa.ui.base.views.AppMaterialButton
+                    android:id="@+id/btnAddMarkets"
+                    style="@style/AppTheme.Button.Outline"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/trade_header_color"
+                    android:onClick="@{()->viewModel.onSaveClicked()}"
+                    android:text="@string/create"
+                    android:textAllCaps="true"
+                    android:textAppearance="@style/textview_normal_semibold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_9ssp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

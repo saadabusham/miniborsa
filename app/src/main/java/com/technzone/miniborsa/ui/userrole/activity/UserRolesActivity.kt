@@ -46,7 +46,7 @@ class UserRolesActivity : BaseBindingActivity<ActivityUserRoleBinding>(),
             adapter.getSelectedItem()?.let {
                 when (it.role) {
                     UserRoleEnums.BUSINESS_ROLE.value -> {
-                        SubscriptionActivity.start(this, true)
+                        SubscriptionActivity.start(this, isBusiness = true, hasBusiness = false)
                     }
                     UserRoleEnums.INVESTOR_ROLE.value -> {
                         InvestorRolesActivity.start(this)

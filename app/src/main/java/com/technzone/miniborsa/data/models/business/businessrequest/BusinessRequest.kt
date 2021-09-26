@@ -23,7 +23,7 @@ data class BusinessRequest(
     @field:SerializedName("canRunfromHome")
     val canRunfromHome: Boolean? = null,
 
-    @field:SerializedName("businessId")
+    @field:SerializedName("id")
     val businessId: Int? = null,
 
     @field:SerializedName("training")

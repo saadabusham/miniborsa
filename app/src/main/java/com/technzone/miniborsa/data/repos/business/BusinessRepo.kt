@@ -58,7 +58,7 @@ interface BusinessRepo {
     ): APIResource<ResponseWrapper<OwnerBusiness>>
 
     suspend fun requestCompany(
-        businessRequest: BusinessRequest
+        name: String
     ): APIResource<ResponseWrapper<Int>>
 
     suspend fun updateCompanyRequest(

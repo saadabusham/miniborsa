@@ -125,7 +125,7 @@
                     android:min="@{viewModel.defaultMinValue}"
                     android:paddingStart="@dimen/_9sdp"
                     android:paddingEnd="@dimen/_9sdp"
-                    android:progress="@{viewModel.freeHoldAskingPrice}"
+                    android:progress="@={viewModel.freeHoldAskingPrice}"
                     android:progressDrawable="@drawable/seekbar_selector"
                     android:thumb="@drawable/seekbar_thumb_selector"
                     app:layout_constraintEnd_toEndOf="@id/freeholdEndGuide"

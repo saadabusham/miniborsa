@@ -47,19 +47,22 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>(),
         binding?.layoutAddBusiness?.btnBusinessForSale?.setOnClickListener {
             CreateBusinessActivity.start(
                 requireContext(),
-                BusinessTypeEnums.BUSINESS_FOR_SALE.value
+                BusinessTypeEnums.BUSINESS_FOR_SALE.value,
+                hasBusiness = true
             )
         }
         binding?.layoutAddBusiness?.btnBusinessForShare?.setOnClickListener {
             CreateBusinessActivity.start(
                 requireContext(),
-                BusinessTypeEnums.BUSINESS_FOR_SHARE.value
+                BusinessTypeEnums.BUSINESS_FOR_SHARE.value,
+                hasBusiness = true
             )
         }
         binding?.layoutAddBusiness?.btnBusinessFranchise?.setOnClickListener {
             CreateBusinessActivity.start(
                 requireContext(),
-                BusinessTypeEnums.BUSINESS_FRANCHISE.value
+                BusinessTypeEnums.BUSINESS_FRANCHISE.value,
+                hasBusiness = true
             )
         }
         binding?.imgAddBusiness?.setOnClickListener {
@@ -71,8 +74,9 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>(),
         SelectBusinessTypeDialog(requireActivity(), object : SelectBusinessTypeDialog.CallBack {
             override fun callBack(businessTypeEnums: BusinessTypeEnums) {
                 CreateBusinessActivity.start(
-                    requireContext(),
-                    businessTypeEnums.value
+                    context = requireContext(),
+                    businessType = businessTypeEnums.value,
+                    hasBusiness = true
                 )
             }
         }).show()
@@ -81,7 +85,11 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>(),
     private fun setUpListingPending() {
         listingReviewAdapter = ListingReviewAdapter(requireContext())
         binding?.layoutListing?.rvPending?.adapter = listingReviewAdapter
-        binding?.layoutListing?.rvPending?.setOnItemClickListener(this)
+        binding?.layoutListing?.rvPending?.setOnItemClickListener(object : BaseBindingRecyclerViewAdapter.OnItemClickListener{
+            override fun onItemClick(view: View?, position: Int, item: Any) {
+
+            }
+        })
         viewModel.getPendingListing().observe(this, pendingResultObserver())
     }
 
@@ -117,7 +125,11 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>(),
     private fun setUpListing() {
         listingAdapter = ListingAdapter(requireContext())
         binding?.layoutListing?.rvListing?.adapter = listingAdapter
-        binding?.layoutListing?.rvListing?.setOnItemClickListener(this)
+        binding?.layoutListing?.rvListing?.setOnItemClickListener(object : BaseBindingRecyclerViewAdapter.OnItemClickListener{
+            override fun onItemClick(view: View?, position: Int, item: Any) {
+
+            }
+        })
         viewModel.getListing().observe(this, listingResultObserver())
     }
 

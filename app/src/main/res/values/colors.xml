@@ -171,4 +171,11 @@
     <color name="startup_news">#E9591C</color>
     <color name="investment">#00AB6B</color>
     <color name="tips">#F6A923</color>
+
+
+    <color name="transparent_outline_button_stroke">#979797</color>
+    <color name="trade_header_color">#141414</color>
+    <color name="outline_button_background_tint">@android:color/transparent</color>
+    <color name="outline_button_stroke">#E9591C</color>
+    <color name="outline_button_text_color">#E9591C</color>
 </resources>

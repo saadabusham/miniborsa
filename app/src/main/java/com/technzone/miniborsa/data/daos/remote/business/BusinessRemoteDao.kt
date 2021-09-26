@@ -82,9 +82,10 @@ interface BusinessRemoteDao {
     ): ResponseWrapper<OwnerBusiness>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @FormUrlEncoded
     @POST("api/owner/company/request")
     suspend fun requestCompany(
-        @Body businessRequest: BusinessRequest
+        @Field("Name") name: String
     ): ResponseWrapper<Int>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
@@ -97,7 +98,7 @@ interface BusinessRemoteDao {
     @Multipart
     @POST("api/owner/company/request/file")
     suspend fun addCompanyRequestFiles(
-        @Field("id") id: Int?,
+        @Query("id") id: Int?,
         @Part list: List<MultipartBody.Part>
     ): ResponseWrapper<Any>
 
@@ -111,7 +112,7 @@ interface BusinessRemoteDao {
     @Multipart
     @POST("api/owner/company/request/image")
     suspend fun addCompanyRequestImage(
-        @Field("id") id: Int?,
+        @Query("id") id: Int?,
         @Part list: List<MultipartBody.Part>
     ): ResponseWrapper<Any>
 

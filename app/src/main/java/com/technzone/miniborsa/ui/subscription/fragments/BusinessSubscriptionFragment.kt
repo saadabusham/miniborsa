@@ -3,6 +3,7 @@ package com.technzone.miniborsa.ui.subscription.fragments
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.enums.BusinessTypeEnums
 import com.technzone.miniborsa.data.models.subscrption.Subscription
 import com.technzone.miniborsa.databinding.FragmentBusinessSubscriptionBinding
@@ -63,8 +64,9 @@ class BusinessSubscriptionFragment : BaseBindingFragment<FragmentBusinessSubscri
         SelectBusinessTypeDialog(requireActivity(), object : SelectBusinessTypeDialog.CallBack {
             override fun callBack(businessTypeEnums: BusinessTypeEnums) {
                 CreateBusinessActivity.start(
-                    requireContext(),
-                    businessTypeEnums.value
+                    context = requireContext(),
+                    businessType = businessTypeEnums.value,
+                    hasBusiness = requireActivity().intent.getBooleanExtra(Constants.BundleData.HAS_BUSINESS,false)
                 )
             }
         }).show()

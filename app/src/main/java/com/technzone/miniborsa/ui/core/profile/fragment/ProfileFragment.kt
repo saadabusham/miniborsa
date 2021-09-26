@@ -6,9 +6,12 @@ import androidx.fragment.app.activityViewModels
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.common.CommonEnums
 import com.technzone.miniborsa.common.interfaces.LoginCallBack
+import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.Constants
+import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.data.enums.MoreEnums
 import com.technzone.miniborsa.data.enums.UserRoleEnums
+import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.data.models.profile.More
 import com.technzone.miniborsa.databinding.FragmentProfileBinding
 import com.technzone.miniborsa.ui.auth.AuthActivity
@@ -18,6 +21,8 @@ import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.base.dialogs.DialogsUtil.showLoginDialog
 import com.technzone.miniborsa.ui.base.dialogs.LoginDialog
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
+import com.technzone.miniborsa.ui.business.businessdraft.activity.BusinessDraftActivity
+import com.technzone.miniborsa.ui.business.businessdraft.viewmodels.BusinessDraftViewModel
 import com.technzone.miniborsa.ui.business.businessmain.activity.BusinessMainActivity
 import com.technzone.miniborsa.ui.business.investors.activity.InvestorsActivity
 import com.technzone.miniborsa.ui.core.profile.adapters.MoreRecyclerAdapter
@@ -28,6 +33,8 @@ import com.technzone.miniborsa.ui.investor.invistorroles.activity.InvestorRolesA
 import com.technzone.miniborsa.ui.investor.recentviewed.activity.RecentViewActivity
 import com.technzone.miniborsa.ui.subscription.activity.SubscriptionActivity
 import com.technzone.miniborsa.utils.LocaleUtil
+import com.technzone.miniborsa.utils.extensions.gone
+import com.technzone.miniborsa.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,6 +42,7 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
     BaseBindingRecyclerViewAdapter.OnItemClickListener, LoginCallBack {
 
     private val viewModel: ProfileViewModel by activityViewModels()
+    private val businessDraftViewModel: BusinessDraftViewModel by activityViewModels()
 
     private lateinit var moreRecyclerAdapter: MoreRecyclerAdapter
 
@@ -230,7 +238,7 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
                     viewModel.setCurrentUserRoles(UserRoleEnums.BUSINESS_ROLE.value)
                     BusinessMainActivity.start(requireContext())
                 } else {
-                    SubscriptionActivity.start(requireContext(), true)
+                    businessDraftViewModel.getPendingListing().observe(this,pendingResultObserver())
 //                    viewModel.setCurrentUserRoles(UserRoleEnums.BUSINESS_ROLE.value)
 //                    BusinessMainActivity.start(requireContext())
                 }
@@ -272,6 +280,31 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
 
             }
         }
+    }
+
+    private fun pendingResultObserver(): CustomObserverResponse<OwnerBusiness> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<OwnerBusiness> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: OwnerBusiness?
+                ) {
+                    data?.let {
+                        BusinessDraftActivity.start(requireContext())
+                    }?:also {
+                        SubscriptionActivity.start(requireContext(),
+                            isBusiness = true,
+                            hasBusiness = false
+                        )
+                    }
+                }
+                override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
+                    super.onError(subErrorCode, message)
+                    SubscriptionActivity.start(requireContext(), isBusiness = true, hasBusiness = false)
+                }
+            },showError = false)
     }
 
     override fun loggedInSuccess() {
