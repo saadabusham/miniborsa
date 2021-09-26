@@ -1,6 +1,7 @@
 package com.technzone.miniborsa.ui.business.createbusiness.fragments
 
 import android.graphics.Color
+import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import com.google.android.material.tabs.TabLayout
 import com.technzone.miniborsa.R
@@ -32,7 +33,7 @@ class CreateBusinessStep2ForSaleFragment : BaseFormBindingFragment<FragmentCreat
                 )
                 binding?.root.hideKeyboard(requireActivity())
                 true
-            } else false
+            }else false
         }
         binding?.edLeaseHoldAskingPrice?.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {

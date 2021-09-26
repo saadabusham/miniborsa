@@ -301,7 +301,7 @@
                 android:background="?selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="2017"
+                android:text="@{viewModel.date}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintEnd_toEndOf="@id/endGuide"

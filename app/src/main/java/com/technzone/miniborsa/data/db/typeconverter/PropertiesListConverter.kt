@@ -3,8 +3,7 @@ package com.technzone.miniborsa.data.db.typeconverter
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.technzone.miniborsa.data.models.Media
-import com.technzone.miniborsa.data.models.investor.PropertiesItem
+import com.technzone.miniborsa.data.models.business.business.PropertiesItem
 import java.lang.reflect.Type
 
 class PropertiesListConverter {

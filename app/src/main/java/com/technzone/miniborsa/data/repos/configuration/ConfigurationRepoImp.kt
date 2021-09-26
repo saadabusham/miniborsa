@@ -5,10 +5,10 @@ import com.technzone.miniborsa.data.api.response.APIResource
 import com.technzone.miniborsa.data.api.response.ResponseHandler
 import com.technzone.miniborsa.data.api.response.ResponseWrapper
 import com.technzone.miniborsa.data.daos.remote.configuration.ConfigurationRemoteDao
+import com.technzone.miniborsa.data.models.business.business.PropertiesItem
 import com.technzone.miniborsa.data.models.configuration.ConfigurationWrapperResponse
 import com.technzone.miniborsa.data.models.country.Country
 import com.technzone.miniborsa.data.models.general.ListWrapper
-import com.technzone.miniborsa.data.models.investor.PropertiesItem
 import com.technzone.miniborsa.data.models.investor.investors.CategoriesItem
 import com.technzone.miniborsa.data.pref.configuration.ConfigurationPref
 import com.technzone.miniborsa.data.repos.base.BaseRepo
@@ -67,7 +67,7 @@ class ConfigurationRepoImp @Inject constructor(
     }
 
     override suspend fun getProperties(
-        parentId:Int,
+        parentId:Int?,
         name:String?,
         pageSize: Int,
         pageNumber: Int

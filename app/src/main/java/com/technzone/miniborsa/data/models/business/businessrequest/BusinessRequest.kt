@@ -8,6 +8,9 @@ data class BusinessRequest(
     @field:SerializedName("websiteLink")
     val websiteLink: String? = null,
 
+    @field:SerializedName("videoLink")
+    val videoLink: String? = null,
+
     @field:SerializedName("counrty")
     val counrty: String? = null,
 
@@ -60,7 +63,7 @@ data class BusinessRequest(
     val establishedYear: String? = null,
 
     @field:SerializedName("categories")
-    val categories: List<Int?>? = null,
+    val categories: List<Int>? = null,
 
     @field:SerializedName("arabicDescription")
     val arabicDescription: String? = null,
@@ -93,5 +96,5 @@ data class BusinessRequest(
     val fields: List<FieldsItem>? = null,
 
     @field:SerializedName("properties")
-    val properties: List<Int>? = null
+    val properties: List<Int?>? = null
 )

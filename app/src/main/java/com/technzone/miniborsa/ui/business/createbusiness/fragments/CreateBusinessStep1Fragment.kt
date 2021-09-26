@@ -29,6 +29,7 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
         super.onViewVisible()
         setUpBinding()
         setUpListeners()
+        viewModel.getCategories().observe(this, categoriesResultObserver(0,true))
     }
 
     private fun setUpBinding() {
@@ -43,17 +44,20 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
             MapActivity.start(requireActivity(), resultLauncher)
         }
         binding?.tvCat1?.setOnClickListener {
-            viewModel.getCategories().observe(this, categoriesResultObserver(1))
+            viewModel.getCategories().observe(this, categoriesResultObserver(viewModel.getCategoriesCount(1)))
         }
         binding?.tvCat2?.setOnClickListener {
-            viewModel.getCategories().observe(this, categoriesResultObserver(2))
+            viewModel.getCategories().observe(this, categoriesResultObserver(viewModel.getCategoriesCount(2)))
         }
         binding?.tvCat3?.setOnClickListener {
-            viewModel.getCategories().observe(this, categoriesResultObserver(3))
+            viewModel.getCategories().observe(this, categoriesResultObserver(viewModel.getCategoriesCount(3)))
         }
     }
 
-    private fun categoriesResultObserver(categoryNumber: Int): CustomObserverResponse<ListWrapper<CategoriesItem>> {
+    private fun categoriesResultObserver(
+        categoryNumber: Int,
+        fillOldData: Boolean = false
+    ): CustomObserverResponse<ListWrapper<CategoriesItem>> {
         return CustomObserverResponse(
             requireActivity(),
             object : CustomObserverResponse.APICallBack<ListWrapper<CategoriesItem>> {
@@ -63,8 +67,21 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
                     data: ListWrapper<CategoriesItem>?
                 ) {
                     if (!data?.data.isNullOrEmpty())
-                        data?.data?.map { GeneralLookup(id = it.id, name = it.name) }?.let {
-                            showCategorySheet(categoryNumber, it)
+                        if (fillOldData) {
+                            viewModel.categories.withIndex().forEach { cat ->
+                                data?.data?.singleOrNull { it.id == cat.value }?.let {
+                                    updateCategories(
+                                        cat.index,
+                                        GeneralLookup(id = it.id, name = it.name)
+                                    )
+                                }
+                            }
+                        } else {
+                            data?.data?.filter { !viewModel.categories.contains(it.id) }?.let {
+                                it.map { GeneralLookup(id = it.id, name = it.name) }?.let {
+                                    showCategorySheet(categoryNumber, it)
+                                }
+                            }
                         }
                 }
             })
@@ -74,19 +91,32 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
         LookupSelectorBottomSheet(callBack = object :
             LookupSelectorBottomSheet.LookupSelectorCallBack {
             override fun callBack(selectedItem: GeneralLookup) {
-                when (categoryNumber) {
-                    1 -> {
-                        binding?.tvCat1?.text = selectedItem.name
-                    }
-                    2 -> {
-                        binding?.tvCat2?.text = selectedItem.name
-                    }
-                    else -> {
-                        binding?.tvCat2?.text = selectedItem.name
-                    }
+                updateCategories(categoryNumber, selectedItem)
+            }
+        }, list = list, fullScreen = true).show(childFragmentManager, "Lookup")
+    }
+
+    private fun updateCategories(categoryNumber: Int, selectedItem: GeneralLookup) {
+        when (categoryNumber) {
+            1 -> {
+                binding?.tvCat1?.text = selectedItem.name
+                selectedItem.id?.let {
+                    if(viewModel.categories.size >= 1 ) viewModel.categories.set(0, it) else viewModel.categories.add(0,it)
                 }
             }
-        }, list = list, fullScreen = true)
+            2 -> {
+                binding?.tvCat2?.text = selectedItem.name
+                selectedItem.id?.let {
+                    if(viewModel.categories.size >= 2) viewModel.categories.set(1, it) else viewModel.categories.add(1,it)
+                }
+            }
+            else -> {
+                binding?.tvCat3?.text = selectedItem.name
+                selectedItem.id?.let {
+                    if(viewModel.categories.size >= 3) viewModel.categories.set(2, it) else viewModel.categories.add(2,it)
+                }
+            }
+        }
     }
 
     var resultLauncher =

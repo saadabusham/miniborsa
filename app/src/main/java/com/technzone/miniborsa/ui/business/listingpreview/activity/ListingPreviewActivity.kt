@@ -106,10 +106,10 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
     companion object {
         fun start(
             context: Context?,
-            ownerBusiness:OwnerBusiness
+            ownerBusiness: OwnerBusiness
         ) {
             val intent = Intent(context, ListingPreviewActivity::class.java).apply {
-                putExtra(Constants.BundleData.OWNER_BUSINESS,ownerBusiness)
+                putExtra(Constants.BundleData.OWNER_BUSINESS, ownerBusiness)
             }
             context?.startActivity(intent)
         }

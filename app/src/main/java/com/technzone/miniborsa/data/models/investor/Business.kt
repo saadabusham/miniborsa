@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import com.technzone.miniborsa.data.db.ApplicationDB
 import com.technzone.miniborsa.data.models.Media
+import com.technzone.miniborsa.data.models.business.business.PropertiesItem
 import java.io.Serializable
 
 @Entity(tableName = ApplicationDB.TABLE_SEARCHED_BUSINESS)

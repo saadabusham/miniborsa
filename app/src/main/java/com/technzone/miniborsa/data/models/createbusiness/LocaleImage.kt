@@ -10,5 +10,8 @@ data class LocaleImage(
     val path: String? = null,
 
     @field:SerializedName("contentType")
-    val contentType: LocaleImageType? = null
+    val contentType: LocaleImageType? = null,
+
+    @field:SerializedName("id")
+    val id: Int? = null
 ) : Serializable

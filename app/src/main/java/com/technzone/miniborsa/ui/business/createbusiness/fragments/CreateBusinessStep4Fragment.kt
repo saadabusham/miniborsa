@@ -1,24 +1,17 @@
 package com.technzone.miniborsa.ui.business.createbusiness.fragments
 
-import android.app.Activity
-import android.content.Intent
 import android.view.View
-import androidx.activity.result.contract.ActivityResultContracts
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
-import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.common.CustomObserverResponse
-import com.technzone.miniborsa.data.models.country.Country
-import com.technzone.miniborsa.data.models.general.GeneralLookup
+import com.technzone.miniborsa.data.models.business.business.PropertiesItem
 import com.technzone.miniborsa.data.models.general.ListWrapper
 import com.technzone.miniborsa.data.models.investor.ExtraInfo
-import com.technzone.miniborsa.data.models.investor.PropertiesItem
 import com.technzone.miniborsa.databinding.FragmentCreateBusinessStep4Binding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.base.fragment.BaseFormBindingFragment
 import com.technzone.miniborsa.ui.business.createbusiness.adapters.ExtraInfoAdapter
-import com.technzone.miniborsa.ui.general.GeneralActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -49,11 +42,14 @@ class CreateBusinessStep4Fragment : BaseFormBindingFragment<FragmentCreateBusine
             BaseBindingRecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(view: View?, position: Int, item: Any) {
                 item as ExtraInfo
-                if (item.selected.value == true)
+                if (item.selected.value == true) {
                     viewModel.selectedItemsCount.value = viewModel.selectedItemsCount.value?.plus(1)
-                else
+                    viewModel.properties.add(item.id)
+                } else {
+                    viewModel.properties.remove(item.id)
                     viewModel.selectedItemsCount.value =
                         viewModel.selectedItemsCount.value?.minus(1)
+                }
             }
         })
         viewModel.getProperties().observe(this, propertiesResultObserver())
@@ -69,8 +65,13 @@ class CreateBusinessStep4Fragment : BaseFormBindingFragment<FragmentCreateBusine
                     data: ListWrapper<PropertiesItem>?
                 ) {
                     if (!data?.data.isNullOrEmpty())
-                        data?.data?.map { ExtraInfo(id = it.id, name = it.name) }?.let {
-                            businessExtraInfoAdapter.submitItems(it)
+                        data?.data?.map { ExtraInfo(id = it.id, name = it.name) }?.let { list ->
+                            viewModel.properties.forEach { prop ->
+                                list.singleOrNull { it.id == prop }?.let {
+                                    it.selected.value = true
+                                }
+                            }
+                            businessExtraInfoAdapter.submitItems(list)
                         }
                 }
             })

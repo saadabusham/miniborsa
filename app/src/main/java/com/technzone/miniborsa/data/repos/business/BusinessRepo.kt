@@ -25,7 +25,7 @@ interface BusinessRepo {
 
     suspend fun requestBusiness(
         businessRequest: BusinessRequest
-    ): APIResource<ResponseWrapper<Any>>
+    ): APIResource<ResponseWrapper<Int>>
 
     suspend fun updateBusinessRequest(
         businessRequest: BusinessRequest
@@ -59,7 +59,7 @@ interface BusinessRepo {
 
     suspend fun requestCompany(
         businessRequest: BusinessRequest
-    ): APIResource<ResponseWrapper<Any>>
+    ): APIResource<ResponseWrapper<Int>>
 
     suspend fun updateCompanyRequest(
         businessRequest: BusinessRequest

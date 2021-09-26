@@ -34,7 +34,7 @@ interface BusinessRemoteDao {
     @POST("api/owner/Business/request")
     suspend fun requestBusiness(
         @Body businessRequest: BusinessRequest
-    ): ResponseWrapper<Any>
+    ): ResponseWrapper<Int>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @PUT("api/owner/Business/request")
@@ -85,7 +85,7 @@ interface BusinessRemoteDao {
     @POST("api/owner/company/request")
     suspend fun requestCompany(
         @Body businessRequest: BusinessRequest
-    ): ResponseWrapper<Any>
+    ): ResponseWrapper<Int>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @PUT("api/owner/company/request")

@@ -10,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.enums.BusinessTypeEnums
+import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.databinding.ActivityCreateBusinessBinding
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
 import com.technzone.miniborsa.ui.base.fragment.BaseFormBindingFragment
@@ -36,6 +37,10 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
             Constants.BundleData.BUSINESS_TYPE,
             BusinessTypeEnums.BUSINESS_FOR_SALE.value
         )
+        intent.getSerializableExtra(Constants.BundleData.BUSINESS)?.let {
+            it as OwnerBusiness
+            viewModel.buildBusinessRequestFromBusiness(it)
+        }
         setContentView(
             R.layout.activity_create_business,
             hasToolbar = true,
@@ -181,10 +186,12 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
     companion object {
         fun start(
             context: Context?,
-            businessType: Int
+            businessType: Int,
+            business: OwnerBusiness? = null
         ) {
             val intent = Intent(context, CreateBusinessActivity::class.java).apply {
                 putExtra(Constants.BundleData.BUSINESS_TYPE, businessType)
+                putExtra(Constants.BundleData.BUSINESS, business)
             }
             context?.startActivity(intent)
         }

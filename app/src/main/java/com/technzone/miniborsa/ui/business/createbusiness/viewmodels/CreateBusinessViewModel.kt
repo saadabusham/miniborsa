@@ -6,8 +6,11 @@ import com.technzone.miniborsa.data.api.response.APIResource
 import com.technzone.miniborsa.data.enums.BusinessTypeEnums
 import com.technzone.miniborsa.data.enums.PropertyStatusEnums
 import com.technzone.miniborsa.data.enums.UserRoleEnums
+import com.technzone.miniborsa.data.models.Media
 import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
+import com.technzone.miniborsa.data.models.business.business.PropertiesItem
 import com.technzone.miniborsa.data.models.business.businessrequest.BusinessRequest
+import com.technzone.miniborsa.data.models.investor.FieldsItem
 import com.technzone.miniborsa.data.models.map.Address
 import com.technzone.miniborsa.data.pref.user.UserPref
 import com.technzone.miniborsa.data.repos.business.BusinessRepo
@@ -27,7 +30,7 @@ class CreateBusinessViewModel @Inject constructor(
     private val configurationRepo: ConfigurationRepo,
     private val businessRepo: BusinessRepo
 ) : BaseViewModel() {
-
+    var businessId: Int? = null
     var businessRequest: BusinessRequest = BusinessRequest()
     val defaultMinValue: Int = 1000
     val defaultMaxValue: Int = 1000000
@@ -63,6 +66,17 @@ class CreateBusinessViewModel @Inject constructor(
     val runFromHome: MutableLiveData<Boolean> = MutableLiveData(false)
     val confidential: MutableLiveData<Boolean> = MutableLiveData(false)
 
+    var categories: MutableList<Int> = mutableListOf()
+    var countries: MutableList<Int> = mutableListOf()
+    var fields: MutableList<FieldsItem> = mutableListOf()
+    var properties: MutableList<Int?> = mutableListOf()
+    var images: MutableList<Media> = mutableListOf()
+    var docs: MutableList<Media> = mutableListOf()
+
+    fun getCategoriesCount(catNumber: Int): Int {
+        return if (categories.size >= 3) catNumber else categories.size + 1
+    }
+
     fun buildBusinessRequest(): BusinessRequest {
         return BusinessRequest(
             websiteLink = webLink.value,
@@ -82,22 +96,24 @@ class CreateBusinessViewModel @Inject constructor(
             annualTurnoverNA = turnoverOnRequest.value,
             listLocation = listLocation.value,
             establishedYear = date.value,
-            categories = arrayListOf(),
+            categories = categories,
             address = addressStr.value,
             isConfidential = confidential.value,
             askingPrice = freeHoldAskingPrice.value,
             askingPriceNA = freeholdAskingPriceOnRequest.value,
-            countries = arrayListOf(),
+            countries = countries,
             annualNetProfitNA = netProfitOnRequest.value,
             annualNetProfit = netProfit.value,
             businessType = businessType,
-            fields = arrayListOf(),
-            properties = arrayListOf()
+            fields = fields,
+            properties = properties,
+            videoLink = videoUrl.value
         )
     }
 
-    fun buildBusinessRequestFromBusiness() {
-        businessRequest.let {
+    fun buildBusinessRequestFromBusiness(business: OwnerBusiness) {
+        business.let {
+            businessId = it.businessId
             webLink.value = it.websiteLink
 //            counrty = "",
 //            city = "",
@@ -116,17 +132,17 @@ class CreateBusinessViewModel @Inject constructor(
             turnoverOnRequest.value = it.annualTurnoverNA
             listLocation.value = it.listLocation
             date.value = it.establishedYear
-//            categories = arrayListOf(),
+            categories = it.categories?.toMutableList() ?: mutableListOf()
             addressStr.value = it.address
             confidential.value = it.isConfidential
             freeHoldAskingPrice.value = it.askingPrice
             freeholdAskingPriceOnRequest.value = it.askingPriceNA
-//            countries = arrayListOf(),
+            countries = it.countries?.toMutableList() ?: mutableListOf()
             netProfit.value = it.annualNetProfit
             netProfitOnRequest.value = it.annualNetProfitNA
             businessType = it.businessType ?: 0
-//            fields = arrayListOf(),
-//            properties = arrayListOf()
+            fields = it.fields?.toMutableList() ?: mutableListOf()
+            properties = it.properties?.map { it.id }?.toMutableList() ?: mutableListOf()
         }
     }
 
@@ -134,7 +150,7 @@ class CreateBusinessViewModel @Inject constructor(
         emit(APIResource.loading())
         val response =
             configurationRepo.getCategories(
-                parentId = 0,
+                parentId = null,
                 pageSize = 1000,
                 pageNumber = 1
             )
@@ -145,7 +161,7 @@ class CreateBusinessViewModel @Inject constructor(
         emit(APIResource.loading())
         val response =
             configurationRepo.getProperties(
-                parentId = 0,
+                parentId = null,
                 pageSize = 1000,
                 pageNumber = 1
             )
@@ -160,8 +176,17 @@ class CreateBusinessViewModel @Inject constructor(
         emit(APIResource.loading())
         val response =
             if (isUserHasBusinessRoles())
-            businessRepo.requestBusiness(businessRequest)
-        else businessRepo.requestCompany(businessRequest)
+                businessRepo.requestCompany(businessRequest)
+            else businessRepo.requestBusiness(businessRequest)
+        emit(response)
+    }
+
+    fun sendRequestBusiness(businessId: Int) = liveData {
+        emit(APIResource.loading())
+        val response =
+            if (isUserHasBusinessRoles())
+                businessRepo.sendBusinessRequest(businessId)
+            else businessRepo.sendCompanyRequest(businessId)
         emit(response)
     }
 
@@ -173,7 +198,7 @@ class CreateBusinessViewModel @Inject constructor(
                     businessRequest.businessId,
                     arrayListOf(file.createImageMultipart("Files"))
                 )
-            else businessRepo.addBusinessRequestFiles(
+            else businessRepo.addCompanyRequestFiles(
                 businessRequest.businessId,
                 arrayListOf(file.createImageMultipart("Files"))
             )

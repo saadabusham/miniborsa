@@ -56,7 +56,7 @@ class BusinessRepoImp @Inject constructor(
         }
     }
 
-    override suspend fun requestBusiness(businessRequest: BusinessRequest): APIResource<ResponseWrapper<Any>> {
+    override suspend fun requestBusiness(businessRequest: BusinessRequest): APIResource<ResponseWrapper<Int>> {
         return try {
             responseHandle.handleSuccess(
                 businessRemoteDao.requestBusiness(
@@ -156,7 +156,7 @@ class BusinessRepoImp @Inject constructor(
         }
     }
 
-    override suspend fun requestCompany(businessRequest: BusinessRequest): APIResource<ResponseWrapper<Any>> {
+    override suspend fun requestCompany(businessRequest: BusinessRequest): APIResource<ResponseWrapper<Int>> {
         return try {
             responseHandle.handleSuccess(
                 businessRemoteDao.requestCompany(businessRequest)

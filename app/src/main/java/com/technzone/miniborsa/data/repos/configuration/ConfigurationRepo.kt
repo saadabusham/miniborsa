@@ -3,10 +3,10 @@ package com.technzone.miniborsa.data.repos.configuration
 import com.technzone.miniborsa.common.CommonEnums
 import com.technzone.miniborsa.data.api.response.APIResource
 import com.technzone.miniborsa.data.api.response.ResponseWrapper
+import com.technzone.miniborsa.data.models.business.business.PropertiesItem
 import com.technzone.miniborsa.data.models.configuration.ConfigurationWrapperResponse
 import com.technzone.miniborsa.data.models.country.Country
 import com.technzone.miniborsa.data.models.general.ListWrapper
-import com.technzone.miniborsa.data.models.investor.PropertiesItem
 import com.technzone.miniborsa.data.models.investor.investors.CategoriesItem
 
 interface ConfigurationRepo {
@@ -30,7 +30,7 @@ interface ConfigurationRepo {
     ): APIResource<ResponseWrapper<ListWrapper<CategoriesItem>>>
 
     suspend fun getProperties(
-        parentId: Int,
+        parentId: Int? = null,
         name: String? = "",
         pageSize: Int,
         pageNumber: Int
