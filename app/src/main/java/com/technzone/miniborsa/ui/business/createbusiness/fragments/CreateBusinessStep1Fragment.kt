@@ -44,6 +44,9 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
         binding?.btnPinLocation?.setOnClickListener {
             MapActivity.start(requireActivity(), resultLauncher)
         }
+        binding?.edAddress?.setOnClickListener {
+            MapActivity.start(requireActivity(), resultLauncher)
+        }
         binding?.tvCat1?.setOnClickListener {
             viewModel.getCategories()
                 .observe(this, requestCompanyResultObserver(viewModel.getCategoriesCount(1)))
@@ -125,7 +128,7 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
                             viewModel.categories.withIndex().forEach { cat ->
                                 data?.data?.singleOrNull { it.id == cat.value }?.let {
                                     updateCategories(
-                                        cat.index,
+                                        cat.index+1,
                                         GeneralLookup(id = it.id, name = it.name)
                                     )
                                 }

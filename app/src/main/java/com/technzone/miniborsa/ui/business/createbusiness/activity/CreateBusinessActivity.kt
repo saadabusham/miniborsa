@@ -8,7 +8,9 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.Constants
+import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.data.enums.BusinessTypeEnums
 import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.databinding.ActivityCreateBusinessBinding
@@ -38,13 +40,13 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
             BusinessTypeEnums.BUSINESS_FOR_SALE.value
         )
         viewModel.hasBusiness = intent.getBooleanExtra(
-            Constants.BundleData.HAS_BUSINESS,false
+            Constants.BundleData.HAS_BUSINESS, false
         )
         viewModel.companyDraft = intent.getBooleanExtra(
-            Constants.BundleData.COMPANY_DRAFT,false
+            Constants.BundleData.COMPANY_DRAFT, false
         )
         viewModel.businessDraft = intent.getBooleanExtra(
-            Constants.BundleData.BUSINESS_DRAFT,false
+            Constants.BundleData.BUSINESS_DRAFT, false
         )
         intent.getSerializableExtra(Constants.BundleData.BUSINESS)?.let {
             it as OwnerBusiness
@@ -172,7 +174,7 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
     private fun handleMoveToNext() {
         binding?.formsViewPager?.currentItem?.let {
             if (it == 3) {
-                ListingPreviewActivity.start(this, viewModel.getOwnerBusiness())
+                viewModel.getCompanyRequest().observe(this, businessResultObserver())
             } else {
                 it.plus(1).let { it1 ->
                     binding?.formsViewPager?.setCurrentItem(
@@ -182,6 +184,26 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
                 }
             }
         }
+    }
+
+    private fun businessResultObserver(): CustomObserverResponse<OwnerBusiness> {
+        return CustomObserverResponse(
+            this,
+            object : CustomObserverResponse.APICallBack<OwnerBusiness> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: OwnerBusiness?
+                ) {
+                    ListingPreviewActivity.start(
+                        context = this@CreateBusinessActivity,
+                        business = data,
+                        hasBusiness = viewModel.hasBusiness,
+                        companyDraft = viewModel.companyDraft,
+                        businessDraft = viewModel.businessDraft
+                    )
+                }
+            })
     }
 
     private fun goToPrevious() {
@@ -197,9 +219,9 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
             context: Context?,
             businessType: Int,
             business: OwnerBusiness? = null,
-            hasBusiness:Boolean = true,
-            companyDraft:Boolean = false,
-            businessDraft:Boolean = false
+            hasBusiness: Boolean = true,
+            companyDraft: Boolean = false,
+            businessDraft: Boolean = false
         ) {
             val intent = Intent(context, CreateBusinessActivity::class.java).apply {
                 putExtra(Constants.BundleData.BUSINESS_TYPE, businessType)

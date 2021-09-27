@@ -8,6 +8,7 @@ import com.technzone.miniborsa.data.enums.PropertyStatusEnums
 import com.technzone.miniborsa.data.models.Media
 import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.data.models.business.businessrequest.BusinessRequest
+import com.technzone.miniborsa.data.models.createbusiness.LocaleImage
 import com.technzone.miniborsa.data.models.investor.FieldsItem
 import com.technzone.miniborsa.data.models.map.Address
 import com.technzone.miniborsa.data.pref.user.UserPref
@@ -42,8 +43,7 @@ class CreateBusinessViewModel @Inject constructor(
     val addressStr: MutableLiveData<String> = MutableLiveData("")
     val address: MutableLiveData<Address> = MutableLiveData()
     val date: MutableLiveData<String> = MutableLiveData(getCurrentYear())
-    val IsFreeHoldNegotiable: MutableLiveData<Boolean> = MutableLiveData()
-    val IsLeaseHoldNegotiable: MutableLiveData<Boolean> = MutableLiveData()
+    val isNegotiable: MutableLiveData<Boolean> = MutableLiveData()
     val propertyStatus: MutableLiveData<PropertyStatusEnums> =
         MutableLiveData(PropertyStatusEnums.FREEHOLD)
     val videoUrl: MutableLiveData<String> = MutableLiveData("")
@@ -109,7 +109,8 @@ class CreateBusinessViewModel @Inject constructor(
             businessType = businessType,
             fields = fields,
             properties = properties,
-            videoLink = videoUrl.value
+            videoLink = videoUrl.value,
+            isNegotiable = isNegotiable.value
         )
     }
 
@@ -134,7 +135,7 @@ class CreateBusinessViewModel @Inject constructor(
             turnoverOnRequest.postValue(it.annualTurnoverNA)
             listLocation.postValue(it.listLocation)
             date.postValue(it.establishedYear?:getCurrentYear())
-            categories = it.categories?.toMutableList() ?: mutableListOf()
+            categories = it.categories?.map { it.id?:0 }?.toMutableList() ?: mutableListOf()
             addressStr.postValue(it.address)
             confidential.postValue(it.isConfidential)
             freeHoldAskingPrice.postValue(it.askingPrice)
@@ -145,8 +146,13 @@ class CreateBusinessViewModel @Inject constructor(
             businessType = it.businessType ?: 0
             fields = it.fields?.toMutableList() ?: mutableListOf()
             properties = it.properties?.map { it.id }?.toMutableList() ?: mutableListOf()
-            images = it.images?.toMutableList() ?: mutableListOf()
+            images = (it.images?.toMutableList() ?: mutableListOf()).apply {
+                it.icon?.let {
+                    add(0,Media(name = it,id = -1))
+                }
+            }
             files = it.files?.toMutableList() ?: mutableListOf()
+            isNegotiable.postValue(it.isNegotiable)
         }
     }
 
@@ -172,10 +178,6 @@ class CreateBusinessViewModel @Inject constructor(
         emit(response)
     }
 
-    fun getOwnerBusiness(): OwnerBusiness {
-        return OwnerBusiness()
-    }
-
     fun requestBusiness() = liveData {
         emit(APIResource.loading())
         val response = businessRepo.requestBusiness(buildBusinessRequest())
@@ -188,15 +190,6 @@ class CreateBusinessViewModel @Inject constructor(
             if (isHasBusiness())
                 businessRepo.updateBusinessRequest(buildBusinessRequest())
             else businessRepo.updateCompanyRequest(buildBusinessRequest())
-        emit(response)
-    }
-
-    fun sendRequestBusiness(businessId: Int) = liveData {
-        emit(APIResource.loading())
-        val response =
-            if (isHasBusiness())
-                businessRepo.sendBusinessRequest(businessId)
-            else businessRepo.sendCompanyRequest(businessId)
         emit(response)
     }
 
@@ -235,6 +228,21 @@ class CreateBusinessViewModel @Inject constructor(
             else businessRepo.addCompanyRequestImage(
                 businessId,
                 arrayListOf(file.createImageMultipart("Files"))
+            )
+        emit(response)
+    }
+
+    fun addIconImage(file: String) = liveData {
+        emit(APIResource.loading())
+        val response =
+            if (isHasBusiness())
+                businessRepo.addBusinessIcon(
+                    businessId,
+                    file.createImageMultipart("Icon")
+                )
+            else businessRepo.addCompanyIcon(
+                businessId,
+                file.createImageMultipart("Icon")
             )
         emit(response)
     }

@@ -6,6 +6,7 @@ import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.data.models.business.businessrequest.BusinessRequest
 import com.technzone.miniborsa.data.models.general.ListWrapper
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface BusinessRemoteDao {
@@ -46,7 +47,7 @@ interface BusinessRemoteDao {
     @Multipart
     @POST("api/owner/Business/request/file")
     suspend fun addBusinessRequestFiles(
-        @Field("id") id: Int?,
+        @Part("id") id: RequestBody?,
         @Part list: List<MultipartBody.Part>
     ): ResponseWrapper<Any>
 
@@ -56,11 +57,21 @@ interface BusinessRemoteDao {
         @Path("id") id: Int?
     ): ResponseWrapper<Any>
 
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @Multipart
+    @PATCH("api/owner/Business/request/icon/add")
+    suspend fun addBusinessIcon(
+        @Part("id") id: RequestBody?,
+        @Part icon: MultipartBody.Part
+    ): ResponseWrapper<Any>
+
+
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @Multipart
     @POST("api/owner/Business/request/image")
     suspend fun addBusinessRequestImage(
-        @Field("id") id: Int?,
+        @Part("id") id: RequestBody?,
         @Part list: List<MultipartBody.Part>
     ): ResponseWrapper<Any>
 
@@ -98,7 +109,7 @@ interface BusinessRemoteDao {
     @Multipart
     @POST("api/owner/company/request/file")
     suspend fun addCompanyRequestFiles(
-        @Query("id") id: Int?,
+        @Part("CompanyRequestId") id: RequestBody?,
         @Part list: List<MultipartBody.Part>
     ): ResponseWrapper<Any>
 
@@ -110,9 +121,22 @@ interface BusinessRemoteDao {
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @Multipart
+    @PATCH("api/owner/company/request/icon/add")
+    suspend fun addCompanyIcon(
+        @Part("CompanyRequestId") id: RequestBody?,
+        @Part icon: MultipartBody.Part
+    ): ResponseWrapper<Any>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @DELETE("api/owner/company/request/icon/remove")
+    suspend fun deleteCompanyIcon(
+    ): ResponseWrapper<Any>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @Multipart
     @POST("api/owner/company/request/image")
     suspend fun addCompanyRequestImage(
-        @Query("id") id: Int?,
+        @Part("CompanyRequestId") id: RequestBody?,
         @Part list: List<MultipartBody.Part>
     ): ResponseWrapper<Any>
 
@@ -126,6 +150,11 @@ interface BusinessRemoteDao {
     @PATCH("api/owner/company/request/send/{id}")
     suspend fun sendCompanyRequest(
         @Path("id") id: Int?
+    ): ResponseWrapper<Any>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @DELETE("api/owner/company/request")
+    suspend fun deleteCompanyRequest(
     ): ResponseWrapper<Any>
 
 }

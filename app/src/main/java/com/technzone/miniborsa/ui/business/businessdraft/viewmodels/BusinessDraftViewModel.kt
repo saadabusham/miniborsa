@@ -20,4 +20,11 @@ class BusinessDraftViewModel @Inject constructor(
             businessRepo.getRequestCompany()
         emit(response)
     }
+    fun deleteCompanyRequest() = liveData {
+        emit(APIResource.loading())
+        val response =
+            businessRepo.deleteCompanyRequest()
+        emit(response)
+    }
+
 }

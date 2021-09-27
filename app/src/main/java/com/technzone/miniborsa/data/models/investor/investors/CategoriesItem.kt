@@ -1,6 +1,7 @@
 package com.technzone.miniborsa.data.models.investor.investors
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class CategoriesItem(
 
@@ -21,4 +22,4 @@ data class CategoriesItem(
 
 	@field:SerializedName("parentId")
 	val parentId: Int? = null
-)
+) : Serializable

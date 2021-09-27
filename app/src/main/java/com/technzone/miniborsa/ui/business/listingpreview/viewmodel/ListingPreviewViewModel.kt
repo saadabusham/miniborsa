@@ -3,7 +3,7 @@ package com.technzone.miniborsa.ui.business.listingpreview.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.technzone.miniborsa.data.api.response.APIResource
-import com.technzone.miniborsa.data.models.business.businessrequest.BusinessRequest
+import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.data.pref.user.UserPref
 import com.technzone.miniborsa.data.repos.business.BusinessRepo
 import com.technzone.miniborsa.data.repos.user.UserRepo
@@ -20,20 +20,30 @@ class ListingPreviewViewModel @Inject constructor(
     private val businessRepo: BusinessRepo
 ) : BaseViewModel() {
 
-    var businessRequest:BusinessRequest? = null
+    var business: OwnerBusiness? = null
     val percentage: MutableLiveData<Int> = MutableLiveData(0)
+    var hasBusiness: Boolean = false
+    var companyDraft: Boolean = false
+    var businessDraft: Boolean = false
 
-    fun updateRequest() = liveData {
+    private fun isHasBusiness(): Boolean {
+        return hasBusiness && !companyDraft
+    }
+
+    fun sendRequestBusiness(businessId: Int) = liveData {
         emit(APIResource.loading())
         val response =
-            businessRepo.updateBusinessRequest(businessRequest?:BusinessRequest())
+            if (isHasBusiness())
+                businessRepo.sendBusinessRequest(businessId)
+            else businessRepo.sendCompanyRequest(businessId)
         emit(response)
     }
 
-    fun sendRequest() = liveData {
+    fun deleteCompanyRequest() = liveData {
         emit(APIResource.loading())
         val response =
-            businessRepo.sendBusinessRequest(businessRequest?.businessId)
+            businessRepo.deleteCompanyRequest()
         emit(response)
     }
+
 }

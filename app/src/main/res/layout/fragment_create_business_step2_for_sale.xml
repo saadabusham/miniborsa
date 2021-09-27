@@ -170,15 +170,15 @@
                     android:layout_height="wrap_content"
                     android:background="?selectableItemBackground"
                     android:clickable="true"
-                    android:imeOptions="actionDone"
-                    android:inputType="number"
                     android:digits="1234567890."
-                    android:singleLine="true"
-                    android:maxLines="1"
                     android:drawableEnd="@drawable/ic_edit"
                     android:drawablePadding="@dimen/_10sdp"
                     android:enabled="@{viewModel.freeholdAskingPriceOnRequest == false}"
                     android:focusable="true"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:text="@{viewModel.freeHoldAskingPrice.toString()}"
                     android:textColor="@color/textview_text_color"
                     android:textSize="@dimen/_13ssp"
@@ -194,11 +194,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:enabled="@{viewModel.freeholdAskingPriceOnRequest == false}"
+                    android:max="@{viewModel.defaultMaxValue}"
+                    android:min="@{viewModel.defaultMinValue}"
                     android:paddingStart="@dimen/_9sdp"
                     android:paddingEnd="@dimen/_9sdp"
                     android:progress="@={viewModel.freeHoldAskingPrice}"
-                    android:max="@{viewModel.defaultMaxValue}"
-                    android:min="@{viewModel.defaultMinValue}"
                     android:progressDrawable="@drawable/seekbar_selector"
                     android:thumb="@drawable/seekbar_thumb_selector"
                     app:layout_constraintEnd_toEndOf="@id/freeholdEndGuide"
@@ -219,42 +219,6 @@
                     android:text="@string/available_on_request"
                     app:layout_constraintStart_toStartOf="@id/freeholdBeginGuide"
                     app:layout_constraintTop_toBottomOf="@id/seekBarFreeHoldAskingPrice" />
-
-                <com.technzone.miniborsa.ui.base.views.AppTextView
-                    android:id="@+id/tvFreeholdIsNegotiable"
-                    style="@style/textview_normal_medium"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:text="@string/are_the_asking_price_is_negotiable"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_13ssp"
-                    app:layout_constraintEnd_toStartOf="@id/switchFreeholdIsNegotiable"
-                    app:layout_constraintStart_toStartOf="@id/freeholdBeginGuide"
-                    app:layout_constraintTop_toBottomOf="@id/checkboxFreeHoldAskingPrice" />
-
-                <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:id="@+id/switchFreeholdIsNegotiable"
-                    style="@style/Widget.App.Switch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_25sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:background="?selectableItemBackgroundBorderless"
-                    android:checked="@={viewModel.isFreeHoldNegotiable}"
-                    app:layout_constraintBottom_toBottomOf="@id/tvFreeholdIsNegotiable"
-                    app:layout_constraintEnd_toEndOf="@id/freeholdEndGuide"
-                    app:layout_constraintTop_toTopOf="@id/tvFreeholdIsNegotiable" />
-
-                <View
-                    android:id="@+id/divFreeHoldAskingPrice"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@color/color_not_valid"
-                    app:layout_constraintEnd_toEndOf="@id/freeholdEndGuide"
-                    app:layout_constraintStart_toStartOf="@id/freeholdBeginGuide"
-                    app:layout_constraintTop_toBottomOf="@id/tvFreeholdIsNegotiable" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -334,15 +298,15 @@
                     android:layout_height="wrap_content"
                     android:background="?selectableItemBackground"
                     android:clickable="true"
-                    android:imeOptions="actionDone"
-                    android:inputType="number"
                     android:digits="1234567890."
-                    android:singleLine="true"
-                    android:maxLines="1"
                     android:drawableEnd="@drawable/ic_edit"
                     android:drawablePadding="@dimen/_10sdp"
                     android:enabled="@{viewModel.leaseHoldAskingPriceOnRequest == false}"
                     android:focusable="true"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:text="@{viewModel.leaseHoldAskingPrice.toString()}"
                     android:textColor="@color/textview_text_color"
                     android:textSize="@dimen/_13ssp"
@@ -358,11 +322,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:enabled="@{viewModel.leaseHoldAskingPriceOnRequest == false}"
+                    android:max="@{viewModel.defaultMaxValue}"
+                    android:min="@{viewModel.defaultMinValue}"
                     android:paddingStart="@dimen/_9sdp"
                     android:paddingEnd="@dimen/_9sdp"
                     android:progress="@={viewModel.leaseHoldAskingPrice}"
-                    android:max="@{viewModel.defaultMaxValue}"
-                    android:min="@{viewModel.defaultMinValue}"
                     android:progressDrawable="@drawable/seekbar_selector"
                     android:thumb="@drawable/seekbar_thumb_selector"
                     app:layout_constraintEnd_toEndOf="@id/leaseHoldEndGuide"
@@ -384,32 +348,6 @@
                     app:layout_constraintStart_toStartOf="@id/leaseHoldBeginGuide"
                     app:layout_constraintTop_toBottomOf="@id/seekBarLeaseHoldAskingPrice" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
-                    android:id="@+id/tvLeaseholdIsNegotiable"
-                    style="@style/textview_normal_medium"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:text="@string/are_the_asking_price_is_negotiable"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_13ssp"
-                    app:layout_constraintEnd_toStartOf="@id/switchLeaseholdIsNegotiable"
-                    app:layout_constraintStart_toStartOf="@id/leaseHoldBeginGuide"
-                    app:layout_constraintTop_toBottomOf="@id/checkboxLeaseHoldAskingPrice" />
-
-                <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:id="@+id/switchLeaseholdIsNegotiable"
-                    style="@style/Widget.App.Switch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_25sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:background="?selectableItemBackgroundBorderless"
-                    android:checked="@={viewModel.IsLeaseHoldNegotiable}"
-                    app:layout_constraintBottom_toBottomOf="@id/tvLeaseholdIsNegotiable"
-                    app:layout_constraintEnd_toEndOf="@id/leaseHoldEndGuide"
-                    app:layout_constraintTop_toTopOf="@id/tvLeaseholdIsNegotiable" />
-
                 <View
                     android:id="@+id/divLeaseHoldAskingPrice"
                     android:layout_width="0dp"
@@ -418,15 +356,52 @@
                     android:background="@color/color_not_valid"
                     app:layout_constraintEnd_toEndOf="@id/leaseHoldEndGuide"
                     app:layout_constraintStart_toStartOf="@id/leaseHoldBeginGuide"
-                    app:layout_constraintTop_toBottomOf="@id/tvLeaseholdIsNegotiable" />
+                    app:layout_constraintTop_toBottomOf="@id/checkboxLeaseHoldAskingPrice" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.technzone.miniborsa.ui.base.views.AppTextView
+                android:id="@+id/tvFreeholdIsNegotiable"
+                style="@style/textview_normal_medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layouts_margin_start"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:text="@string/are_the_asking_price_is_negotiable"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/leaseHold" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchFreeholdIsNegotiable"
+                style="@style/Widget.App.Switch"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:background="?selectableItemBackgroundBorderless"
+                android:checked="@={viewModel.isNegotiable}"
+                app:layout_constraintBottom_toBottomOf="@id/tvFreeholdIsNegotiable"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvFreeholdIsNegotiable" />
+
+            <View
+                android:id="@+id/divFreeHoldAskingPrice"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@color/color_not_valid"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/switchFreeholdIsNegotiable" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/netProfit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/leaseHold">
+                app:layout_constraintTop_toBottomOf="@id/divFreeHoldAskingPrice">
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/netProfitBeginGuide"
@@ -471,7 +446,7 @@
                     android:textSize="@dimen/_13ssp"
                     app:layout_constraintBottom_toBottomOf="@+id/tvNetProfitTxt"
                     app:layout_constraintEnd_toStartOf="@id/edNetProfit"
-                    app:layout_constraintTop_toTopOf="@id/tvNetProfitTxt"/>
+                    app:layout_constraintTop_toTopOf="@id/tvNetProfitTxt" />
 
                 <com.technzone.miniborsa.ui.base.views.AppEditText
                     android:id="@+id/edNetProfit"
@@ -480,15 +455,15 @@
                     android:layout_height="wrap_content"
                     android:background="?selectableItemBackground"
                     android:clickable="true"
-                    android:imeOptions="actionDone"
-                    android:inputType="number"
                     android:digits="1234567890."
-                    android:singleLine="true"
-                    android:maxLines="1"
                     android:drawableEnd="@drawable/ic_edit"
                     android:drawablePadding="@dimen/_10sdp"
                     android:enabled="@{viewModel.netProfitOnRequest == false}"
                     android:focusable="true"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:text="@{viewModel.netProfit.toString()}"
                     android:textColor="@color/textview_text_color"
                     android:textSize="@dimen/_13ssp"
@@ -504,11 +479,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:enabled="@{viewModel.netProfitOnRequest == false}"
+                    android:max="@{viewModel.defaultMaxValue}"
+                    android:min="@{viewModel.defaultMinValue}"
                     android:paddingStart="@dimen/_9sdp"
                     android:paddingEnd="@dimen/_9sdp"
                     android:progress="@={viewModel.netProfit}"
-                    android:max="@{viewModel.defaultMaxValue}"
-                    android:min="@{viewModel.defaultMinValue}"
                     android:progressDrawable="@drawable/seekbar_selector"
                     android:thumb="@drawable/seekbar_thumb_selector"
                     app:layout_constraintEnd_toEndOf="@id/netProfitEndGuide"
@@ -591,7 +566,7 @@
                     android:textSize="@dimen/_13ssp"
                     app:layout_constraintBottom_toBottomOf="@+id/tvTurnoverTxt"
                     app:layout_constraintEnd_toStartOf="@id/edTurnover"
-                    app:layout_constraintTop_toTopOf="@id/tvTurnoverTxt"/>
+                    app:layout_constraintTop_toTopOf="@id/tvTurnoverTxt" />
 
                 <com.technzone.miniborsa.ui.base.views.AppEditText
                     android:id="@+id/edTurnover"
@@ -600,15 +575,15 @@
                     android:layout_height="wrap_content"
                     android:background="?selectableItemBackground"
                     android:clickable="true"
-                    android:imeOptions="actionDone"
-                    android:inputType="number"
                     android:digits="1234567890."
-                    android:singleLine="true"
-                    android:maxLines="1"
                     android:drawableEnd="@drawable/ic_edit"
                     android:drawablePadding="@dimen/_10sdp"
                     android:enabled="@{viewModel.turnoverOnRequest == false}"
                     android:focusable="true"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:text="@{viewModel.turnOver.toString()}"
                     android:textColor="@color/textview_text_color"
                     android:textSize="@dimen/_13ssp"
@@ -624,11 +599,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:enabled="@{viewModel.turnoverOnRequest == false}"
+                    android:max="@{viewModel.defaultMaxValue}"
+                    android:min="@{viewModel.defaultMinValue}"
                     android:paddingStart="@dimen/_9sdp"
                     android:paddingEnd="@dimen/_9sdp"
                     android:progress="@={viewModel.turnOver}"
-                    android:max="@{viewModel.defaultMaxValue}"
-                    android:min="@{viewModel.defaultMinValue}"
                     android:progressDrawable="@drawable/seekbar_selector"
                     android:thumb="@drawable/seekbar_thumb_selector"
                     app:layout_constraintEnd_toEndOf="@id/turnoverEndGuide"

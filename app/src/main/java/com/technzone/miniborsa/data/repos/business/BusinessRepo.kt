@@ -2,10 +2,15 @@ package com.technzone.miniborsa.data.repos.business
 
 import com.technzone.miniborsa.data.api.response.APIResource
 import com.technzone.miniborsa.data.api.response.ResponseWrapper
+import com.technzone.miniborsa.data.common.NetworkConstants
 import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.data.models.business.businessrequest.BusinessRequest
 import com.technzone.miniborsa.data.models.general.ListWrapper
 import okhttp3.MultipartBody
+import retrofit2.http.DELETE
+import retrofit2.http.Headers
+import retrofit2.http.Part
+import retrofit2.http.Query
 
 interface BusinessRepo {
 
@@ -38,6 +43,11 @@ interface BusinessRepo {
 
     suspend fun deleteBusinessRequestFiles(
         id: Int?
+    ): APIResource<ResponseWrapper<Any>>
+
+    suspend fun addBusinessIcon(
+        id: Int?,
+        icon: MultipartBody.Part
     ): APIResource<ResponseWrapper<Any>>
 
     suspend fun addBusinessRequestImage(
@@ -74,6 +84,14 @@ interface BusinessRepo {
         id: Int?
     ): APIResource<ResponseWrapper<Any>>
 
+    suspend fun addCompanyIcon(
+        id: Int?,
+        icon: MultipartBody.Part
+    ): APIResource<ResponseWrapper<Any>>
+
+    suspend fun deleteCompanyIcon(
+    ): APIResource<ResponseWrapper<Any>>
+
     suspend fun addCompanyRequestImage(
         id: Int?,
         list: List<MultipartBody.Part>
@@ -85,5 +103,8 @@ interface BusinessRepo {
 
     suspend fun sendCompanyRequest(
         id: Int?
+    ): APIResource<ResponseWrapper<Any>>
+
+    suspend fun deleteCompanyRequest(
     ): APIResource<ResponseWrapper<Any>>
 }

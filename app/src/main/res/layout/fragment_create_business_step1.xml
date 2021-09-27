@@ -342,25 +342,19 @@
                 app:layout_constraintStart_toStartOf="@id/beginGuide"
                 app:layout_constraintTop_toBottomOf="@id/tvLocation" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextInputLayout
-                android:id="@+id/tfAddress"
+            <com.technzone.miniborsa.ui.base.views.AppTextView
+                android:id="@+id/edAddress"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/Edittext_height"
+                android:background="@drawable/edittext_underline_background"
+                android:drawableEnd="@drawable/ic_business_pin"
+                android:textAlignment="viewStart"
+                android:gravity="center|start"
                 android:hint="@string/enter_postal_code_or_address"
+                android:text="@={viewModel.addressStr}"
                 app:layout_constraintEnd_toEndOf="@id/endGuide"
                 app:layout_constraintStart_toStartOf="@id/beginGuide"
-                app:layout_constraintTop_toBottomOf="@id/divLocation">
-
-                <com.technzone.miniborsa.ui.base.views.AppTextInputEditText
-                    android:id="@+id/edAddress"
-                    style="@style/TextInputEditTextStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/ic_business_pin"
-                    android:inputType="textEmailAddress"
-                    android:text="@={viewModel.addressStr}" />
-
-            </com.technzone.miniborsa.ui.base.views.AppTextInputLayout>
+                app:layout_constraintTop_toBottomOf="@id/divLocation" />
 
             <LinearLayout
                 android:id="@+id/linMapInfo"
@@ -369,9 +363,10 @@
                 android:layout_marginTop="@dimen/_18sdp"
                 android:gravity="center|start"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@id/endGuide"
                 app:layout_constraintStart_toStartOf="@id/beginGuide"
-                app:layout_constraintTop_toBottomOf="@id/tfAddress">
+                app:layout_constraintTop_toBottomOf="@id/edAddress">
 
                 <com.technzone.miniborsa.ui.base.views.AppImageView
                     android:layout_width="@dimen/_13sdp"
@@ -398,6 +393,7 @@
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 app:cardCornerRadius="@dimen/_5sdp"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/linMapInfo"
                 app:layout_constraintStart_toStartOf="@id/beginGuide"
                 app:layout_constraintEnd_toEndOf="@id/endGuide"

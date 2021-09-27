@@ -288,7 +288,7 @@
     <string name="you_can_upload_up_to_one_document_including_pdf_word_excel_and_other_document_types">You can upload up to one document, including PDF, Word, Excel and other document types.</string>
     <string name="embed_video">Embed Video</string>
     <string name="video_url">Video URL</string>
-    <string name="dollar_sign">$</string>
+    <string name="dollar_sign">$%s</string>
     <string name="website_link">Website Link</string>
     <string name="enter_web">Enter Web</string>
     <string name="training">Training</string>
@@ -345,11 +345,15 @@
     <string name="investment">Investment</string>
     <string name="tips">Tips</string>
     <string name="please_select_subscription">Please select subscription</string>
-    <string name="remove_draft">Remove Draft</string>
     <string name="draft">Draft</string>
     <string name="create_company">Create Company</string>
     <string name="company_name">Company name</string>
     <string name="create">Create</string>
     <string name="please_enter_a_valid_company_name">Please enter a valid compny name</string>
+    <string name="upload_photos">Upload Photos</string>
+    <string name="pending_for_review">Pending for review</string>
+    <string name="remove_draft">Remove Draft</string>
+    <string name="approved_business">Approved Business</string>
+    <string name="rejected_business">Rejected Business</string>
 
 </resources>

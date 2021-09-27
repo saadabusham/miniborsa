@@ -8,6 +8,7 @@ import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.data.models.business.businessrequest.BusinessRequest
 import com.technzone.miniborsa.data.models.general.ListWrapper
 import com.technzone.miniborsa.data.repos.base.BaseRepo
+import com.technzone.miniborsa.utils.extensions.getRequestBody
 import okhttp3.MultipartBody
 import javax.inject.Inject
 
@@ -87,7 +88,7 @@ class BusinessRepoImp @Inject constructor(
         return try {
             responseHandle.handleSuccess(
                 businessRemoteDao.addBusinessRequestFiles(
-                    id, list
+                    id.toString().getRequestBody(), list
                 )
             )
         } catch (e: Exception) {
@@ -107,6 +108,19 @@ class BusinessRepoImp @Inject constructor(
         }
     }
 
+    override suspend fun addBusinessIcon(
+        id: Int?,
+        icon: MultipartBody.Part
+    ): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(
+                businessRemoteDao.addBusinessIcon(id.toString().getRequestBody(), icon)
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
     override suspend fun addBusinessRequestImage(
         id: Int?,
         list: List<MultipartBody.Part>
@@ -114,7 +128,7 @@ class BusinessRepoImp @Inject constructor(
         return try {
             responseHandle.handleSuccess(
                 businessRemoteDao.addBusinessRequestImage(
-                    id, list
+                    id.toString().getRequestBody(), list
                 )
             )
         } catch (e: Exception) {
@@ -182,7 +196,7 @@ class BusinessRepoImp @Inject constructor(
     ): APIResource<ResponseWrapper<Any>> {
         return try {
             responseHandle.handleSuccess(
-                businessRemoteDao.addCompanyRequestFiles(id,list)
+                businessRemoteDao.addCompanyRequestFiles(id.toString().getRequestBody(), list)
             )
         } catch (e: Exception) {
             responseHandle.handleException(e)
@@ -199,13 +213,36 @@ class BusinessRepoImp @Inject constructor(
         }
     }
 
+    override suspend fun addCompanyIcon(
+        id: Int?,
+        icon: MultipartBody.Part
+    ): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(
+                businessRemoteDao.addCompanyIcon(id.toString().getRequestBody(), icon)
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun deleteCompanyIcon(): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(
+                businessRemoteDao.deleteCompanyIcon()
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
     override suspend fun addCompanyRequestImage(
         id: Int?,
         list: List<MultipartBody.Part>
     ): APIResource<ResponseWrapper<Any>> {
         return try {
             responseHandle.handleSuccess(
-                businessRemoteDao.addCompanyRequestImage(id,list)
+                businessRemoteDao.addCompanyRequestImage(id.toString().getRequestBody(), list)
             )
         } catch (e: Exception) {
             responseHandle.handleException(e)
@@ -226,6 +263,16 @@ class BusinessRepoImp @Inject constructor(
         return try {
             responseHandle.handleSuccess(
                 businessRemoteDao.sendCompanyRequest(id)
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
+    override suspend fun deleteCompanyRequest(): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(
+                businessRemoteDao.deleteCompanyRequest()
             )
         } catch (e: Exception) {
             responseHandle.handleException(e)

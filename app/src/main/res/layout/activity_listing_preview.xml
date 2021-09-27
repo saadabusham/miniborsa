@@ -54,12 +54,12 @@
                     android:id="@+id/constraintHeaderPercent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="@id/endGuide"
                     android:layout_marginStart="@dimen/layouts_margin_start"
+                    app:layout_constraintEnd_toEndOf="@id/endGuide"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <include
-                        android:id="@+id/row_listing_pending"
+                        android:id="@+id/layout_listing_pending"
                         layout="@layout/layout_listing_pending" />
 
                     <ProgressBar
@@ -67,8 +67,8 @@
                         style="@style/CircularDeterminateProgressBar"
                         android:layout_width="@dimen/_47sdp"
                         android:layout_height="@dimen/_47sdp"
-                        android:layout_marginTop="@dimen/_25sdp"
                         android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_25sdp"
                         android:indeterminate="false"
                         android:indeterminateOnly="false"
                         android:max="100"
@@ -79,7 +79,7 @@
                         android:scaleY="1.2"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/row_listing_pending"
+                        app:layout_constraintTop_toBottomOf="@id/layout_listing_pending"
                         tools:progress="35" />
 
                     <com.technzone.miniborsa.ui.base.views.AppTextView

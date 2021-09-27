@@ -8,6 +8,7 @@ import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.data.enums.LocaleImageType
+import com.technzone.miniborsa.data.models.Media
 import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.data.models.createbusiness.LocaleImage
 import com.technzone.miniborsa.databinding.FragmentCreateBusinessStep3Binding
@@ -83,9 +84,7 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
             override fun onItemClick(view: View?, position: Int, item: Any) {
                 item as LocaleImage
                 if (view?.id == R.id.imgRemove) {
-                    documentsAdapter.items.removeAt(position)
-                    documentsAdapter.notifyItemRemoved(position)
-                    refreshDocuments()
+                    item.id?.let { viewModel.deleteFile(it).observe(this@CreateBusinessStep3Fragment,uploadResultObserver()) }
                 } else {
                     openDocumentPicker()
                 }
@@ -115,25 +114,18 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
         when (requestCode) {
             TAKE_USER_IMAGE_REQUEST_CODE -> {
                 val fileUri = data.data
-//                imageRecyclerAdapter.submitItemToPosition(
-//                    LocaleImage(
-//                        path = fileUri?.path,
-//                        contentType = LocaleImageType.IMAGE
-//                    ), imageRecyclerAdapter.itemCount - 1
-//                )
-                fileUri?.path?.let { viewModel.addImage(it).observe(this, uploadResultObserver()) }
+                if (imageRecyclerAdapter.itemCount == 1)
+                    fileUri?.path?.let {
+                        viewModel.addIconImage(it).observe(this, uploadResultObserver())
+                    }
+                else fileUri?.path?.let {
+                    viewModel.addImage(it).observe(this, uploadResultObserver())
+                }
             }
             REQUEST_CODE_PICK_FILE -> {
                 var realPath = data.data?.getFilePathFromURI(requireContext())
                 if (realPath == null)
                     realPath = data.data?.toString()
-//                documentsAdapter.submitItemToPosition(
-//                    LocaleImage(
-//                        path = realPath,
-//                        contentType = LocaleImageType.IMAGE
-//                    ), documentsAdapter.itemCount - 1
-//                )
-
                 realPath?.let { viewModel.addFile(it).observe(this, uploadResultObserver()) }
             }
         }
@@ -148,11 +140,12 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: Any?
                 ) {
-                    refreshPhotosAndDocs()
-                    if (viewModel.hasBusiness) {
-                        viewModel.getCompanyRequest().observe(this@CreateBusinessStep3Fragment,businessResultObserver())
+                    if (!viewModel.hasBusiness) {
+                        viewModel.getCompanyRequest()
+                            .observe(this@CreateBusinessStep3Fragment, businessResultObserver())
                     } else {
-                        viewModel.getBusinessRequest().observe(this@CreateBusinessStep3Fragment,businessResultObserver())
+                        viewModel.getBusinessRequest()
+                            .observe(this@CreateBusinessStep3Fragment, businessResultObserver())
                     }
                 }
             })
@@ -168,13 +161,35 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
                     data: OwnerBusiness?
                 ) {
                     data?.images?.toMutableList()?.let {
+                        it.apply {
+                            data.icon?.let {
+                                add(0, Media(name = it,id = -1))
+                            }
+                        }
                         viewModel.images = it
-                        imageRecyclerAdapter.submitNewItems(it.map { LocaleImage(path = it.name,id = it.id) })
+                        imageRecyclerAdapter.submitNewItems(it.map {
+                            LocaleImage(
+                                path = it.name,
+                                id = it.id
+                            )
+                        })
+                    }?:also {
+                        viewModel.images = mutableListOf()
+                        viewModel.images.apply {
+                            data?.icon?.let {
+                                add(0, Media(name = it,id = -1))
+                            }
+                        }
                     }
                     data?.files?.toMutableList()?.let {
                         viewModel.files = it
-                        documentsAdapter.submitNewItems(it.map { LocaleImage(path = it.name,id = it.id) })
-                    }
+                        documentsAdapter.submitNewItems(it.map {
+                            LocaleImage(
+                                path = it.name,
+                                id = it.id
+                            )
+                        })
+                    }?:also {viewModel.files = mutableListOf()}
                     refreshPhotosAndDocs()
                 }
             })
@@ -207,7 +222,8 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
         imageRecyclerAdapter.submitNewItems(viewModel.images.map {
             LocaleImage(
                 path = it.name,
-                id = it.id
+                id = it.id,
+                contentType = LocaleImageType.IMAGE
             )
         })
         when (imageRecyclerAdapter.itemCount) {
@@ -218,29 +234,28 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
                 if (imageRecyclerAdapter.items[0].contentType == LocaleImageType.ADD_IMAGE) {
                     imageRecyclerAdapter.items.removeAt(imageRecyclerAdapter.itemCount - 1)
                     addFirstImage()
-                }
-            }
-            5 -> {
-                if (imageRecyclerAdapter.items[4].contentType != LocaleImageType.ADD_IMAGE) {
+                }else if (imageRecyclerAdapter.items[0].contentType != LocaleImageType.ADD_FIRST) {
                     addImage()
                 }
             }
-            6 -> {
-                imageRecyclerAdapter.items.removeAt(5)
-                imageRecyclerAdapter.notifyItemRemoved(5)
+            4 -> {
+                if (imageRecyclerAdapter.items[3].contentType != LocaleImageType.ADD_IMAGE) {
+                    addImage()
+                }
             }
-            else -> {
-                imageRecyclerAdapter.items.removeAt(imageRecyclerAdapter.itemCount - 1)
+            2,3 -> {
+//                imageRecyclerAdapter.items.removeAt(imageRecyclerAdapter.itemCount - 1)
                 addImage()
             }
         }
     }
 
     private fun refreshDocuments() {
-        documentsAdapter.submitNewItems(viewModel.images.map {
+        documentsAdapter.submitNewItems(viewModel.files.map {
             LocaleImage(
                 path = it.name,
-                id = it.id
+                id = it.id,
+                contentType = LocaleImageType.IMAGE
             )
         })
         when (documentsAdapter.itemCount) {
@@ -251,19 +266,17 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
                 if (documentsAdapter.items[0].contentType == LocaleImageType.ADD_IMAGE) {
                     documentsAdapter.items.removeAt(documentsAdapter.itemCount - 1)
                     addFirstDocument()
+                }else if (documentsAdapter.items[0].contentType != LocaleImageType.ADD_FIRST) {
+                    addDocument()
                 }
             }
-            5 -> {
-                if (documentsAdapter.items[4].contentType != LocaleImageType.ADD_IMAGE) {
-                    addFirstDocument()
+            4 -> {
+                if (documentsAdapter.items[3].contentType != LocaleImageType.ADD_IMAGE) {
+                    addDocument()
                 }
             }
-            6 -> {
-                documentsAdapter.items.removeAt(5)
-                documentsAdapter.notifyItemRemoved(5)
-            }
-            else -> {
-                documentsAdapter.items.removeAt(documentsAdapter.itemCount - 1)
+            2,3 -> {
+//                documentsAdapter.items.removeAt(documentsAdapter.itemCount - 1)
                 addDocument()
             }
         }
@@ -290,9 +303,7 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as LocaleImage
         if (view?.id == R.id.imgRemove) {
-            imageRecyclerAdapter.items.removeAt(position)
-            imageRecyclerAdapter.notifyItemRemoved(position)
-            refreshImages()
+            item.id?.let { viewModel.deleteImage(it).observe(this,uploadResultObserver()) }
         } else {
             pickImages(
                 requestCode = TAKE_USER_IMAGE_REQUEST_CODE

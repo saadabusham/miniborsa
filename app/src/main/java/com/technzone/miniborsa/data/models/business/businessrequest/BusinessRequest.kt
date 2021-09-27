@@ -80,6 +80,9 @@ data class BusinessRequest(
     @field:SerializedName("askingPriceNA")
     val askingPriceNA: Boolean? = null,
 
+    @field:SerializedName("isNegotiable")
+    val isNegotiable: Boolean? = null,
+
     @field:SerializedName("countries")
     val countries: List<Int>? = null,
 

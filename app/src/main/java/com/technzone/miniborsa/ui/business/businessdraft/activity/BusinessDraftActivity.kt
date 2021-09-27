@@ -17,6 +17,7 @@ import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.business.businessdraft.viewmodels.BusinessDraftViewModel
 import com.technzone.miniborsa.ui.business.businessmain.fragments.listing.adapters.ListingReviewAdapter
 import com.technzone.miniborsa.ui.business.createbusiness.activity.CreateBusinessActivity
+import com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity
 import com.technzone.miniborsa.utils.extensions.gone
 import com.technzone.miniborsa.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
@@ -116,7 +117,7 @@ class BusinessDraftActivity : BaseBindingActivity<ActivityBusinessDraftBinding>(
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as OwnerBusiness
         if (view?.id == R.id.tvStatus) {
-
+            viewModel.deleteCompanyRequest().observe(this, deleteRequestResultObserver())
         } else {
             CreateBusinessActivity.start(
                 this,
@@ -126,6 +127,21 @@ class BusinessDraftActivity : BaseBindingActivity<ActivityBusinessDraftBinding>(
                 companyDraft = true
             )
         }
+    }
+
+    private fun deleteRequestResultObserver(
+    ): CustomObserverResponse<Any> {
+        return CustomObserverResponse(
+            this,
+            object : CustomObserverResponse.APICallBack<Any> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: Any?
+                ) {
+                    InvestorMainActivity.start(this@BusinessDraftActivity)
+                }
+            })
     }
 
     companion object {

@@ -3,6 +3,7 @@ package com.technzone.miniborsa.data.models.business.business
 import com.google.gson.annotations.SerializedName
 import com.technzone.miniborsa.data.models.Media
 import com.technzone.miniborsa.data.models.investor.FieldsItem
+import com.technzone.miniborsa.data.models.investor.investors.CategoriesItem
 import java.io.Serializable
 
 data class OwnerBusiness(
@@ -25,7 +26,7 @@ data class OwnerBusiness(
 	@field:SerializedName("canRunfromHome")
 	val canRunfromHome: Boolean? = null,
 
-	@field:SerializedName("icon")
+	@field:SerializedName("businessIcon")
 	val icon: String? = null,
 
 	@field:SerializedName("training")
@@ -45,6 +46,9 @@ data class OwnerBusiness(
 
 	@field:SerializedName("propertyStatus")
 	val propertyStatus: Int? = null,
+
+	@field:SerializedName("status")
+	val status: Int? = null,
 
 	@field:SerializedName("rate")
 	val rate: Int? = null,
@@ -88,28 +92,31 @@ data class OwnerBusiness(
 	@field:SerializedName("annualTurnoverNA")
 	val annualTurnoverNA: Boolean? = null,
 
-	@field:SerializedName("fields",alternate = ["businessFields"])
+	@field:SerializedName("fields", alternate = ["businessFields"])
 	val fields: List<FieldsItem>? = null,
 
 	@field:SerializedName("businessType")
 	val businessType: Int? = null,
 
-	@field:SerializedName("properties",alternate = ["businessProperties"])
+	@field:SerializedName("properties", alternate = ["businessProperties"])
 	val properties: List<PropertiesItem>? = null,
 
-	@field:SerializedName("images",alternate = ["businessImages"] )
+	@field:SerializedName("images", alternate = ["businessImages"])
 	val images: List<Media>? = null,
 
-	@field:SerializedName("files",alternate = ["businessFiles"])
+	@field:SerializedName("files", alternate = ["businessFiles"])
 	val files: List<Media>? = null,
 
 	@field:SerializedName("countries")
 	val countries: List<Int>? = null,
 
 	@field:SerializedName("categories")
-	val categories: List<Int>? = null,
+	val categories: List<CategoriesItem>? = null,
 
 	@field:SerializedName("createdAt")
-	val createdAt: String? = null
+	val createdAt: String? = null,
+
+	@field:SerializedName("isNegotiable")
+	val isNegotiable: Boolean? = null
 
 ) : Serializable

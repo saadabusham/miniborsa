@@ -25,7 +25,6 @@ class DocumentsRecyclerAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return items[position].contentType?.value ?: LocaleImageType.ADD_IMAGE.value
-
     }
 
 

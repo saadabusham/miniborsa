@@ -22,6 +22,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <com.technzone.miniborsa.ui.base.views.AppTextView
+                android:id="@+id/tvImages"
+                style="@style/textview_normal_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layouts_margin_start"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:text="@string/upload_photos"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPhotos"
                 android:layout_width="match_parent"
@@ -35,10 +49,25 @@
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvImages"
                 app:spanCount="1"
                 tools:itemCount="1"
                 tools:listitem="@layout/row_add_first_image" />
+
+
+            <com.technzone.miniborsa.ui.base.views.AppTextView
+                android:id="@+id/tvDocs"
+                style="@style/textview_normal_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layouts_margin_start"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                android:text="@string/upload_documents"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rvPhotos"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvDocuments"
@@ -51,11 +80,10 @@
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rvPhotos"
+                app:layout_constraintTop_toBottomOf="@id/tvDocs"
                 app:spanCount="1"
                 tools:itemCount="1"
                 tools:listitem="@layout/row_add_first_document" />
-
 
             <com.technzone.miniborsa.ui.base.views.AppTextView
                 android:id="@+id/tvTitle"
@@ -68,6 +96,7 @@
                 android:text="@string/embed_video"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13ssp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rvDocuments" />
 
@@ -82,6 +111,7 @@
                 android:hint="@string/video_url"
                 android:maxLines="1"
                 android:singleLine="true"
+                android:visibility="gone"
                 android:text="@={viewModel.videoUrl}"
                 android:textColor="@color/black_alpha"
                 android:textSize="@dimen/_11ssp"
@@ -94,6 +124,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_1sdp"
                 android:layout_marginTop="@dimen/_7sdp"
+                android:visibility="gone"
                 android:background="@color/color_not_valid"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

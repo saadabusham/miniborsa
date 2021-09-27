@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.technzone.miniborsa.data.enums.BusinessStatusEnums
 import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.databinding.RowListingPendingBinding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
@@ -11,7 +12,7 @@ import com.technzone.miniborsa.ui.base.adapters.BaseViewHolder
 
 class ListingReviewAdapter(
     context: Context,
-    private val editable:Boolean = false
+    private val editable: Boolean = false
 ) :
     BaseBindingRecyclerViewAdapter<OwnerBusiness>(context) {
 
@@ -42,7 +43,8 @@ class ListingReviewAdapter(
                 itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
             }
             binding.tvStatus.setOnClickListener {
-                itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
+                if (item.status == BusinessStatusEnums.DRAFT.value)
+                    itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
             }
         }
     }
