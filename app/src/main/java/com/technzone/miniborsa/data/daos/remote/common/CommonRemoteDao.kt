@@ -2,6 +2,7 @@ package com.technzone.miniborsa.data.daos.remote.common
 
 import com.technzone.miniborsa.data.api.response.ResponseWrapper
 import com.technzone.miniborsa.data.common.NetworkConstants
+import com.technzone.miniborsa.data.models.FaqsResponse
 import com.technzone.miniborsa.data.models.general.ListWrapper
 import com.technzone.miniborsa.data.models.investor.Business
 import com.technzone.miniborsa.data.models.investor.request.FavoriteRequest
@@ -52,5 +53,13 @@ interface CommonRemoteDao {
     suspend fun removeFavorite(
         @Body favoriteRequest: FavoriteRequest
     ): ResponseWrapper<Any>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:true")
+    @GET("api/faq")
+    suspend fun getFaqs(
+        @Query("PageSize") pageSize: Int,
+        @Query("PageNumber") pageNumber: Int
+    ): ResponseWrapper<ListWrapper<FaqsResponse>>
+
 
 }

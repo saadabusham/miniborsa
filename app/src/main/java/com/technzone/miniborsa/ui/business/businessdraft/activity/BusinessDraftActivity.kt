@@ -8,7 +8,9 @@ import androidx.activity.viewModels
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.CustomObserverResponse
+import com.technzone.miniborsa.data.enums.BusinessStatusEnums
 import com.technzone.miniborsa.data.enums.BusinessTypeEnums
+import com.technzone.miniborsa.data.models.Media
 import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.databinding.ActivityBusinessDraftBinding
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
@@ -17,6 +19,7 @@ import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.business.businessdraft.viewmodels.BusinessDraftViewModel
 import com.technzone.miniborsa.ui.business.businessmain.fragments.listing.adapters.ListingReviewAdapter
 import com.technzone.miniborsa.ui.business.createbusiness.activity.CreateBusinessActivity
+import com.technzone.miniborsa.ui.business.listingpreview.activity.ListingPreviewActivity
 import com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity
 import com.technzone.miniborsa.utils.extensions.gone
 import com.technzone.miniborsa.utils.extensions.visible
@@ -119,13 +122,22 @@ class BusinessDraftActivity : BaseBindingActivity<ActivityBusinessDraftBinding>(
         if (view?.id == R.id.tvStatus) {
             viewModel.deleteCompanyRequest().observe(this, deleteRequestResultObserver())
         } else {
-            CreateBusinessActivity.start(
-                this,
-                businessType = -1,
-                business = item,
-                hasBusiness = false,
-                companyDraft = true
-            )
+            if (item.status == BusinessStatusEnums.DRAFT.value)
+                CreateBusinessActivity.start(
+                    this,
+                    businessType = -1,
+                    business = item,
+                    hasBusiness = false,
+                    companyDraft = true
+                )
+            else {
+                ListingPreviewActivity.start(
+                    this,
+                    business = item,
+                    hasBusiness = false,
+                    companyDraft = true
+                )
+            }
         }
     }
 

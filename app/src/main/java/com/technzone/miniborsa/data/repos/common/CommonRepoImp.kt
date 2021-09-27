@@ -4,6 +4,7 @@ import com.technzone.miniborsa.data.api.response.APIResource
 import com.technzone.miniborsa.data.api.response.ResponseHandler
 import com.technzone.miniborsa.data.api.response.ResponseWrapper
 import com.technzone.miniborsa.data.daos.remote.common.CommonRemoteDao
+import com.technzone.miniborsa.data.models.FaqsResponse
 import com.technzone.miniborsa.data.models.general.ListWrapper
 import com.technzone.miniborsa.data.models.investor.Business
 import com.technzone.miniborsa.data.models.investor.request.FavoriteRequest
@@ -91,4 +92,16 @@ class CommonRepoImp @Inject constructor(
             responseHandle.handleException(e)
         }
     }
+
+    override suspend fun getFaqs(
+        pageSize: Int,
+        pageNumber: Int
+    ): APIResource<ResponseWrapper<ListWrapper<FaqsResponse>>> {
+        return try {
+            responseHandle.handleSuccess(commonRemoteDao.getFaqs(pageSize, pageNumber))
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
 }

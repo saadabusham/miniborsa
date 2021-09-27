@@ -43,7 +43,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_business_sample" />
+                ivImageUrl="@{item.icon}"
+                tools:src="@drawable/ic_business_sample" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.technzone.miniborsa.ui.base.views.AppButton
@@ -143,7 +144,6 @@
             android:layout_width="@dimen/_130sdp"
             android:layout_height="@dimen/_28sdp"
             android:layout_marginTop="@dimen/_15sdp"
-            android:backgroundTint="@color/remove_red"
             android:gravity="center"
             android:stateListAnimator="@null"
             android:text="@string/remove_draft"

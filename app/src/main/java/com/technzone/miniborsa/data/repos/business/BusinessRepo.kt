@@ -102,7 +102,6 @@ interface BusinessRepo {
     ): APIResource<ResponseWrapper<Any>>
 
     suspend fun sendCompanyRequest(
-        id: Int?
     ): APIResource<ResponseWrapper<Any>>
 
     suspend fun deleteCompanyRequest(

@@ -356,4 +356,7 @@
     <string name="approved_business">Approved Business</string>
     <string name="rejected_business">Rejected Business</string>
 
+    <!--    Faqs    -->
+    <string name="no_faq_s_found">No Faq\'a Found</string>
+    <string name="help_center">Help Center</string>
 </resources>

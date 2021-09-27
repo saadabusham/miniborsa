@@ -35,7 +35,7 @@ class ListingPreviewViewModel @Inject constructor(
         val response =
             if (isHasBusiness())
                 businessRepo.sendBusinessRequest(businessId)
-            else businessRepo.sendCompanyRequest(businessId)
+            else businessRepo.sendCompanyRequest()
         emit(response)
     }
 

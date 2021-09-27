@@ -8,6 +8,7 @@ import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.common.CustomObserverResponse
+import com.technzone.miniborsa.data.models.Media
 import com.technzone.miniborsa.data.models.business.ListingItem
 import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.databinding.ActivityListingPreviewBinding
@@ -17,7 +18,7 @@ import com.technzone.miniborsa.ui.business.listingpreview.adapters.ListingItemAd
 import com.technzone.miniborsa.ui.business.listingpreview.dialog.SubmittedDialogFragment
 import com.technzone.miniborsa.ui.business.listingpreview.viewmodel.ListingPreviewViewModel
 import com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity
-import com.technzone.miniborsa.utils.extensions.calculatePercentage
+import com.technzone.miniborsa.utils.extensions.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
@@ -31,20 +32,7 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.hasBusiness = intent.getBooleanExtra(
-            Constants.BundleData.HAS_BUSINESS, false
-        )
-        viewModel.companyDraft = intent.getBooleanExtra(
-            Constants.BundleData.COMPANY_DRAFT, false
-        )
-        viewModel.businessDraft = intent.getBooleanExtra(
-            Constants.BundleData.BUSINESS_DRAFT, false
-        )
-        intent.getSerializableExtra(Constants.BundleData.OWNER_BUSINESS)?.let {
-            it as OwnerBusiness
-            viewModel.business = it
-            viewModel.percentage.postValue(it.calculatePercentage())
-        }
+        handleReceivedData()
         setContentView(
             R.layout.activity_listing_preview,
             hasToolbar = true,
@@ -59,6 +47,28 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
         setUpRvExtraInfo()
     }
 
+    private fun handleReceivedData(){
+        viewModel.hasBusiness = intent.getBooleanExtra(
+            Constants.BundleData.HAS_BUSINESS, false
+        )
+        viewModel.companyDraft = intent.getBooleanExtra(
+            Constants.BundleData.COMPANY_DRAFT, false
+        )
+        viewModel.businessDraft = intent.getBooleanExtra(
+            Constants.BundleData.BUSINESS_DRAFT, false
+        )
+        intent.getSerializableExtra(Constants.BundleData.OWNER_BUSINESS)?.let { item->
+            item as OwnerBusiness
+            item.icon?.let {
+                if(item.images == null)
+                    item.images = mutableListOf()
+                item.images?.add(0, Media(name = it, id = -1))
+            }
+            viewModel.business = item
+            viewModel.percentage.postValue(item.calculatePercentage())
+        }
+    }
+
     private fun setUpBinding() {
         binding?.viewModel = viewModel
         binding?.layoutListingPending?.item = viewModel.business
@@ -67,7 +77,9 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
     private fun setUpListeners() {
         binding?.btnSubmit?.setOnClickListener {
             if (viewModel.percentage.value ?: 0 > 85)
-                showSubmittedDialog()
+                viewModel.business?.id?.let { it1 ->
+                    viewModel.sendRequestBusiness(it1).observe(this, sendRequestResultObserver())
+                }
             else {
                 InvestorMainActivity.start(this)
             }
@@ -81,9 +93,6 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
         val dialog = SubmittedDialogFragment(this)
         dialog.setOnDismissListener {
             BusinessMainActivity.start(this)
-            viewModel.business?.id?.let { it1 ->
-                viewModel.sendRequestBusiness(it1).observe(this, sendRequestResultObserver())
-            }
         }
         dialog.show()
     }
@@ -99,7 +108,7 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: Any?
                 ) {
-                    BusinessMainActivity.start(this@ListingPreviewActivity)
+                    showSubmittedDialog()
                 }
             })
     }
@@ -127,22 +136,22 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
                 ListingItem(
                     title = "Title",
                     description = "Lorem ipsum dolor sit amet.",
-                    percent = 78
+                    percent = viewModel.business?.calculateFirstStepPercentage() ?: 0
                 ),
                 ListingItem(
                     title = "Location Info",
                     description = "Lorem ipsum dolor sit amet.",
-                    percent = 80
+                    percent = viewModel.business?.calculateSecondStepPercentage() ?: 0
                 ),
                 ListingItem(
                     title = "Media",
                     description = "Lorem ipsum dolor sit amet.",
-                    percent = 95
+                    percent = viewModel.business?.calculateThirdPercentage() ?: 0
                 ),
                 ListingItem(
                     title = "More Details",
                     description = "Lorem ipsum dolor sit amet.",
-                    percent = 88
+                    percent = viewModel.business?.calculateFourthPercentage() ?: 0
                 )
             )
         )

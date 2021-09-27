@@ -6,7 +6,7 @@
     <data>
 
         <import type="android.view.View" />
-
+        <import type="com.technzone.miniborsa.data.enums.BusinessStatusEnums"/>
         <variable
             name="viewModel"
             type="com.technzone.miniborsa.ui.business.listingpreview.viewmodel.ListingPreviewViewModel" />
@@ -165,6 +165,8 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:text="@string/submit_listing"
+                    tools:visibility="visible"
+                    android:visibility="@{viewModel.business.status == BusinessStatusEnums.DRAFT.value ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@id/endGuide"
                     app:layout_constraintStart_toStartOf="@id/beginGuide" />

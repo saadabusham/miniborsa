@@ -25,6 +25,7 @@ import com.technzone.miniborsa.ui.business.businessdraft.activity.BusinessDraftA
 import com.technzone.miniborsa.ui.business.businessdraft.viewmodels.BusinessDraftViewModel
 import com.technzone.miniborsa.ui.business.businessmain.activity.BusinessMainActivity
 import com.technzone.miniborsa.ui.business.investors.activity.InvestorsActivity
+import com.technzone.miniborsa.ui.core.faqs.FaqsActivity
 import com.technzone.miniborsa.ui.core.profile.adapters.MoreRecyclerAdapter
 import com.technzone.miniborsa.ui.core.profile.viewmodels.ProfileViewModel
 import com.technzone.miniborsa.ui.core.updateprofile.UpdateProfileActivity
@@ -33,8 +34,6 @@ import com.technzone.miniborsa.ui.investor.invistorroles.activity.InvestorRolesA
 import com.technzone.miniborsa.ui.investor.recentviewed.activity.RecentViewActivity
 import com.technzone.miniborsa.ui.subscription.activity.SubscriptionActivity
 import com.technzone.miniborsa.utils.LocaleUtil
-import com.technzone.miniborsa.utils.extensions.gone
-import com.technzone.miniborsa.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -238,7 +237,8 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
                     viewModel.setCurrentUserRoles(UserRoleEnums.BUSINESS_ROLE.value)
                     BusinessMainActivity.start(requireContext())
                 } else {
-                    businessDraftViewModel.getPendingListing().observe(this,pendingResultObserver())
+                    businessDraftViewModel.getPendingListing()
+                        .observe(this, pendingResultObserver())
 //                    viewModel.setCurrentUserRoles(UserRoleEnums.BUSINESS_ROLE.value)
 //                    BusinessMainActivity.start(requireContext())
                 }
@@ -277,7 +277,7 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
                 switchLanguage()
             }
             MoreEnums.GET_HELP -> {
-
+                FaqsActivity.start(requireContext())
             }
         }
     }
@@ -293,18 +293,25 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
                 ) {
                     data?.let {
                         BusinessDraftActivity.start(requireContext())
-                    }?:also {
-                        SubscriptionActivity.start(requireContext(),
+                    } ?: also {
+                        SubscriptionActivity.start(
+                            requireContext(),
                             isBusiness = true,
                             hasBusiness = false
                         )
                     }
                 }
+
                 override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
                     super.onError(subErrorCode, message)
-                    SubscriptionActivity.start(requireContext(), isBusiness = true, hasBusiness = false)
+                    SubscriptionActivity.start(
+                        requireContext(),
+                        isBusiness = true,
+                        hasBusiness = false
+                    )
                 }
-            },showError = false)
+            }, showError = false
+        )
     }
 
     override fun loggedInSuccess() {

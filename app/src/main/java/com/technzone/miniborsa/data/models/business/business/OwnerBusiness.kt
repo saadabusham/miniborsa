@@ -102,10 +102,10 @@ data class OwnerBusiness(
 	val properties: List<PropertiesItem>? = null,
 
 	@field:SerializedName("images", alternate = ["businessImages"])
-	val images: List<Media>? = null,
+    var images: MutableList<Media>? = mutableListOf(),
 
 	@field:SerializedName("files", alternate = ["businessFiles"])
-	val files: List<Media>? = null,
+	val files: MutableList<Media>? = mutableListOf(),
 
 	@field:SerializedName("countries")
 	val countries: List<Int>? = null,

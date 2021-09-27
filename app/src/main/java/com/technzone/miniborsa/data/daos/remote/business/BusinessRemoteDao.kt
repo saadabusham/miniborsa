@@ -147,9 +147,8 @@ interface BusinessRemoteDao {
     ): ResponseWrapper<Any>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @PATCH("api/owner/company/request/send/{id}")
+    @PATCH("api/owner/company/request/send")
     suspend fun sendCompanyRequest(
-        @Path("id") id: Int?
     ): ResponseWrapper<Any>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")

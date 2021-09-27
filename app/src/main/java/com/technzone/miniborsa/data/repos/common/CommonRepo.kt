@@ -2,6 +2,7 @@ package com.technzone.miniborsa.data.repos.common
 
 import com.technzone.miniborsa.data.api.response.APIResource
 import com.technzone.miniborsa.data.api.response.ResponseWrapper
+import com.technzone.miniborsa.data.models.FaqsResponse
 import com.technzone.miniborsa.data.models.general.ListWrapper
 import com.technzone.miniborsa.data.models.investor.Business
 import com.technzone.miniborsa.data.models.investor.request.FavoriteRequest
@@ -41,4 +42,8 @@ interface CommonRepo {
         favoriteRequest: FavoriteRequest
     ): APIResource<ResponseWrapper<Any>>
 
+    suspend fun getFaqs(
+        pageSize: Int,
+        pageNumber: Int
+    ): APIResource<ResponseWrapper<ListWrapper<FaqsResponse>>>
 }
