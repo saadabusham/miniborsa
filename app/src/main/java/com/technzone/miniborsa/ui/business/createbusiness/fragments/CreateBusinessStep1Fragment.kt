@@ -71,7 +71,7 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
     private fun showCreateDialog(request: Boolean) {
         CreateCompanyDialog(requireActivity(), object : CreateCompanyDialog.CompanyNameCallBack {
             override fun save(name: String, dialog: CreateCompanyDialog) {
-                if (request)
+                if (!request)
                     viewModel.requestCompany(name)
                         .observe(
                             this@CreateBusinessStep1Fragment,
@@ -82,6 +82,10 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
                             this@CreateBusinessStep1Fragment,
                             requestCompanyResultObserver(dialog = dialog)
                         )
+            }
+
+            override fun cancel() {
+                requireActivity().finish()
             }
         }).show()
     }
@@ -100,6 +104,7 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
                     viewModel.businessId = data
                     dialog.dismiss()
                 }
+
             })
     }
 

@@ -66,7 +66,8 @@ class BusinessSubscriptionFragment : BaseBindingFragment<FragmentBusinessSubscri
                 CreateBusinessActivity.start(
                     context = requireContext(),
                     businessType = businessTypeEnums.value,
-                    hasBusiness = requireActivity().intent.getBooleanExtra(Constants.BundleData.HAS_BUSINESS,false)
+                    hasBusiness = requireActivity().intent.getBooleanExtra(Constants.BundleData.HAS_BUSINESS,false),
+                    companyDraft = false
                 )
             }
         }).show()

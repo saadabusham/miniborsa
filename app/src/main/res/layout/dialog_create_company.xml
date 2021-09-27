@@ -101,13 +101,8 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/trade_header_color"
                     android:onClick="@{()->viewModel.onSaveClicked()}"
-                    android:text="@string/create"
-                    android:textAllCaps="true"
-                    android:textAppearance="@style/textview_normal_semibold"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_9ssp" />
+                    android:text="@string/create" />
             </LinearLayout>
 
         </LinearLayout>

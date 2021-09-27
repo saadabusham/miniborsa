@@ -127,8 +127,8 @@ class CreateBusinessViewModel @Inject constructor(
             leaseHoldAskingPrice.postValue(it.askingPriceBoth)
             leaseHoldAskingPriceOnRequest.postValue(it.askingPriceNABoth)
             percentage.postValue(it.investmentPercentage)
-            propertyStatus.postValue(PropertyStatusEnums.getStatusByValue(
-                it.propertyStatus ?: PropertyStatusEnums.FREEHOLD.value
+            propertyStatus.value = (PropertyStatusEnums.getStatusByValue(
+                it.propertyStatus
             ))
             turnOver.postValue(it.annualTurnover)
             turnoverOnRequest.postValue(it.annualTurnoverNA)

@@ -43,6 +43,9 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
         viewModel.companyDraft = intent.getBooleanExtra(
             Constants.BundleData.COMPANY_DRAFT,false
         )
+        viewModel.businessDraft = intent.getBooleanExtra(
+            Constants.BundleData.BUSINESS_DRAFT,false
+        )
         intent.getSerializableExtra(Constants.BundleData.BUSINESS)?.let {
             it as OwnerBusiness
             viewModel.buildBusinessRequestFromBusiness(it)
@@ -195,13 +198,15 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
             businessType: Int,
             business: OwnerBusiness? = null,
             hasBusiness:Boolean = true,
-            companyDraft:Boolean = true
+            companyDraft:Boolean = false,
+            businessDraft:Boolean = false
         ) {
             val intent = Intent(context, CreateBusinessActivity::class.java).apply {
                 putExtra(Constants.BundleData.BUSINESS_TYPE, businessType)
                 putExtra(Constants.BundleData.BUSINESS, business)
                 putExtra(Constants.BundleData.HAS_BUSINESS, hasBusiness)
                 putExtra(Constants.BundleData.COMPANY_DRAFT, companyDraft)
+                putExtra(Constants.BundleData.BUSINESS_DRAFT, businessDraft)
             }
             context?.startActivity(intent)
         }

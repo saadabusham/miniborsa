@@ -1,7 +1,6 @@
 package com.technzone.miniborsa.ui.business.createbusiness.fragments
 
 import android.graphics.Color
-import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import com.google.android.material.tabs.TabLayout
 import com.technzone.miniborsa.R
@@ -15,7 +14,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.internal.toLongOrDefault
 
 @AndroidEntryPoint
-class CreateBusinessStep2ForSaleFragment : BaseFormBindingFragment<FragmentCreateBusinessStep2ForSaleBinding>() {
+class CreateBusinessStep2ForSaleFragment :
+    BaseFormBindingFragment<FragmentCreateBusinessStep2ForSaleBinding>() {
 
 
     override fun getLayoutId(): Int = R.layout.fragment_create_business_step2_for_sale
@@ -31,16 +31,18 @@ class CreateBusinessStep2ForSaleFragment : BaseFormBindingFragment<FragmentCreat
         binding?.edFreeHoldAskingPrice?.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.freeHoldAskingPrice.postValue(
-                    binding?.edFreeHoldAskingPrice?.text.toString().toLongOrDefault(viewModel.defaultMinValue.toLong()).toInt()
+                    binding?.edFreeHoldAskingPrice?.text.toString()
+                        .toLongOrDefault(viewModel.defaultMinValue.toLong()).toInt()
                 )
                 binding?.root.hideKeyboard(requireActivity())
                 true
-            }else false
+            } else false
         }
         binding?.edLeaseHoldAskingPrice?.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.leaseHoldAskingPrice.postValue(
-                    binding?.edLeaseHoldAskingPrice?.text.toString().toLongOrDefault(viewModel.defaultMinValue.toLong()).toInt()
+                    binding?.edLeaseHoldAskingPrice?.text.toString()
+                        .toLongOrDefault(viewModel.defaultMinValue.toLong()).toInt()
                 )
                 binding?.root.hideKeyboard(requireActivity())
                 true
@@ -49,7 +51,8 @@ class CreateBusinessStep2ForSaleFragment : BaseFormBindingFragment<FragmentCreat
         binding?.edNetProfit?.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.netProfit.postValue(
-                    binding?.edNetProfit?.text.toString().toLongOrDefault(viewModel.defaultMinValue.toLong()).toInt()
+                    binding?.edNetProfit?.text.toString()
+                        .toLongOrDefault(viewModel.defaultMinValue.toLong()).toInt()
                 )
                 binding?.root.hideKeyboard(requireActivity())
                 true
@@ -58,7 +61,8 @@ class CreateBusinessStep2ForSaleFragment : BaseFormBindingFragment<FragmentCreat
         binding?.edTurnover?.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.turnOver.postValue(
-                    binding?.edTurnover?.text.toString().toLongOrDefault(viewModel.defaultMinValue.toLong()).toInt()
+                    binding?.edTurnover?.text.toString()
+                        .toLongOrDefault(viewModel.defaultMinValue.toLong()).toInt()
                 )
                 binding?.root.hideKeyboard(requireActivity())
                 true
@@ -66,7 +70,7 @@ class CreateBusinessStep2ForSaleFragment : BaseFormBindingFragment<FragmentCreat
         }
     }
 
-    private fun setUpBinding(){
+    private fun setUpBinding() {
         binding?.viewModel = viewModel
     }
 
@@ -87,7 +91,7 @@ class CreateBusinessStep2ForSaleFragment : BaseFormBindingFragment<FragmentCreat
         binding?.tabLayout?.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 viewModel.propertyStatus.postValue(
-                    when(tab.position){
+                    when (tab.position) {
                         0 -> PropertyStatusEnums.FREEHOLD
                         1 -> PropertyStatusEnums.LEASEHOLD
                         else -> PropertyStatusEnums.BOTH
@@ -99,11 +103,22 @@ class CreateBusinessStep2ForSaleFragment : BaseFormBindingFragment<FragmentCreat
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
 
+        when (viewModel.propertyStatus.value) {
+            PropertyStatusEnums.FREEHOLD -> {
+                binding?.tabLayout?.selectTab(binding?.tabLayout?.getTabAt(0))
+            }
+            PropertyStatusEnums.LEASEHOLD -> {
+                binding?.tabLayout?.selectTab(binding?.tabLayout?.getTabAt(1))
+            }
+            PropertyStatusEnums.BOTH -> {
+                binding?.tabLayout?.selectTab(binding?.tabLayout?.getTabAt(2))
+            }
+        }
 
     }
 
     override fun validateToMoveToNext(callback: (Boolean) -> Unit) {
-        viewModel.updateRequestBusiness().observe(this,updateRequestResultObserver(callback))
+        viewModel.updateRequestBusiness().observe(this, updateRequestResultObserver(callback))
     }
 
     private fun updateRequestResultObserver(

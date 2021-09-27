@@ -35,6 +35,7 @@ class CreateCompanyDialog(
     }
 
     fun onCancelClicked() {
+        companyNameCallBack?.cancel()
         dismiss()
     }
 
@@ -46,12 +47,12 @@ class CreateCompanyDialog(
             )
             return
         } else {
-            dismiss()
             companyNameCallBack?.save(companyName.value.toString(),this)
         }
     }
 
     interface CompanyNameCallBack {
         fun save(name: String,dialog:CreateCompanyDialog)
+        fun cancel()
     }
 }

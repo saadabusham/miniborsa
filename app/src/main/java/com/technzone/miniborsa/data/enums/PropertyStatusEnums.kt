@@ -7,7 +7,7 @@ enum class PropertyStatusEnums(val value: Int) {
     BOTH(3);
 
     companion object {
-        fun getStatusByValue(value: Int): PropertyStatusEnums {
+        fun getStatusByValue(value: Int?): PropertyStatusEnums {
             return when (value) {
                 1 -> FREEHOLD
                 2 -> LEASEHOLD
