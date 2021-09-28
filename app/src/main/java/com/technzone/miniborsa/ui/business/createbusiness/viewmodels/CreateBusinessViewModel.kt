@@ -90,7 +90,7 @@ class CreateBusinessViewModel @Inject constructor(
             training = training.value,
             title = title.value,
             isRelocated = relocated.value,
-            askingPriceBoth = leaseHoldAskingPrice.value,
+            askingPriceBoth =leaseHoldAskingPrice.value,
             askingPriceNABoth = leaseHoldAskingPriceOnRequest.value,
             investmentPercentage = percentage.value,
             propertyStatus = propertyStatus.value?.value,
