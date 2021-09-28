@@ -5,19 +5,15 @@ import com.technzone.miniborsa.data.api.response.ResponseWrapper
 import com.technzone.miniborsa.data.common.NetworkConstants
 import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.data.models.business.businessrequest.BusinessRequest
+import com.technzone.miniborsa.data.models.business.request.BusinessSearchRequest
 import com.technzone.miniborsa.data.models.general.ListWrapper
 import okhttp3.MultipartBody
-import retrofit2.http.DELETE
-import retrofit2.http.Headers
-import retrofit2.http.Part
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface BusinessRepo {
 
     suspend fun getBusinessByType(
-        type: List<Int>,
-        pageSize: Int,
-        pageNumber: Int
+        businessSearchRequest: BusinessSearchRequest
     ): APIResource<ResponseWrapper<ListWrapper<OwnerBusiness>>>
 
     suspend fun getBusinessById(

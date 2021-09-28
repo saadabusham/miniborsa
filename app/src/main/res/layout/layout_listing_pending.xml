@@ -129,7 +129,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
-            android:text="@{@string/dollar_sign(item.askingPrice)}"
+            android:text="@{@string/dollar_sign_concated(item.askingPrice)}"
             android:textColor="@color/textview_text_color"
             android:textSize="@dimen/_13ssp"
             app:layout_constraintBottom_toBottomOf="@+id/tvAskingPriceTxt"

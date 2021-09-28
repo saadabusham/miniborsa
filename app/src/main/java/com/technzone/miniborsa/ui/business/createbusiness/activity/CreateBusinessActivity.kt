@@ -144,19 +144,19 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
             when (position) {
                 0 -> {
                     binding?.tvTitle?.text = getString(R.string.build_your_listing)
-                    viewModel.percentage.postValue(25)
+//                    viewModel.percentage.postValue(25)
                 }
                 1 -> {
                     binding?.tvTitle?.text = getString(R.string.listing_score)
-                    viewModel.percentage.postValue(50)
+//                    viewModel.percentage.postValue(50)
                 }
                 2 -> {
                     binding?.tvTitle?.text = getString(R.string.listing_score)
-                    viewModel.percentage.postValue(75)
+//                    viewModel.percentage.postValue(75)
                 }
                 3 -> {
                     binding?.tvTitle?.text = getString(R.string.listing_score)
-                    viewModel.percentage.postValue(100)
+//                    viewModel.percentage.postValue(100)
                     showHeaderPercent()
                 }
             }
@@ -174,7 +174,7 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
     private fun handleMoveToNext() {
         binding?.formsViewPager?.currentItem?.let {
             if (it == 3) {
-                viewModel.getCompanyRequest().observe(this, businessResultObserver())
+                getBusinessDetails()
             } else {
                 it.plus(1).let { it1 ->
                     binding?.formsViewPager?.setCurrentItem(
@@ -183,6 +183,14 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
                     )
                 }
             }
+        }
+    }
+
+    private fun getBusinessDetails() {
+        if (viewModel.isHasBusiness())
+            viewModel.getBusinessRequest().observe(this,businessResultObserver())
+        else{
+            viewModel.getCompanyRequest().observe(this, businessResultObserver())
         }
     }
 

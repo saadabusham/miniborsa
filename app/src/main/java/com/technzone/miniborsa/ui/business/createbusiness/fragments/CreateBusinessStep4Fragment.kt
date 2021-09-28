@@ -12,6 +12,7 @@ import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.base.fragment.BaseFormBindingFragment
 import com.technzone.miniborsa.ui.business.createbusiness.adapters.ExtraInfoAdapter
+import com.technzone.miniborsa.utils.extensions.calculatePercentage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,6 +26,7 @@ class CreateBusinessStep4Fragment : BaseFormBindingFragment<FragmentCreateBusine
         setUpBinding()
         setUpListeners()
         setUpRvExtraInfo()
+        observeInputs()
     }
 
     private fun setUpBinding() {
@@ -50,6 +52,7 @@ class CreateBusinessStep4Fragment : BaseFormBindingFragment<FragmentCreateBusine
                     viewModel.selectedItemsCount.value =
                         viewModel.selectedItemsCount.value?.minus(1)
                 }
+                calculatePercentage()
             }
         })
         viewModel.getProperties().observe(this, propertiesResultObserver())
@@ -96,6 +99,19 @@ class CreateBusinessStep4Fragment : BaseFormBindingFragment<FragmentCreateBusine
                     callback(true)
                 }
             })
+    }
+
+    private fun observeInputs() {
+        viewModel.webLink.observe(this,{
+            calculatePercentage()
+        })
+        viewModel.training.observe(this,{
+            calculatePercentage()
+        })
+    }
+
+    override fun calculatePercentage() {
+        viewModel.percentage.postValue(viewModel.buildBusinessRequest().calculatePercentage())
     }
 
 

@@ -6,6 +6,7 @@ import com.technzone.miniborsa.data.api.response.ResponseWrapper
 import com.technzone.miniborsa.data.daos.remote.business.BusinessRemoteDao
 import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.data.models.business.businessrequest.BusinessRequest
+import com.technzone.miniborsa.data.models.business.request.BusinessSearchRequest
 import com.technzone.miniborsa.data.models.general.ListWrapper
 import com.technzone.miniborsa.data.repos.base.BaseRepo
 import com.technzone.miniborsa.utils.extensions.getRequestBody
@@ -18,16 +19,12 @@ class BusinessRepoImp @Inject constructor(
 ) : BaseRepo(responseHandler), BusinessRepo {
 
     override suspend fun getBusinessByType(
-        type: List<Int>,
-        pageSize: Int,
-        pageNumber: Int
+        businessSearchRequest: BusinessSearchRequest
     ): APIResource<ResponseWrapper<ListWrapper<OwnerBusiness>>> {
         return try {
             responseHandle.handleSuccess(
                 businessRemoteDao.getBusinessByType(
-                    type,
-                    pageSize,
-                    pageNumber
+                    businessSearchRequest
                 )
             )
         } catch (e: Exception) {

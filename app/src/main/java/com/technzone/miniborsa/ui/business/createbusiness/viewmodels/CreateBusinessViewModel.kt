@@ -8,7 +8,6 @@ import com.technzone.miniborsa.data.enums.PropertyStatusEnums
 import com.technzone.miniborsa.data.models.Media
 import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.data.models.business.businessrequest.BusinessRequest
-import com.technzone.miniborsa.data.models.createbusiness.LocaleImage
 import com.technzone.miniborsa.data.models.investor.FieldsItem
 import com.technzone.miniborsa.data.models.map.Address
 import com.technzone.miniborsa.data.pref.user.UserPref
@@ -110,7 +109,9 @@ class CreateBusinessViewModel @Inject constructor(
             fields = fields,
             properties = properties,
             videoLink = videoUrl.value,
-            isNegotiable = isNegotiable.value
+            isNegotiable = isNegotiable.value,
+            images = images,
+            files = files
         )
     }
 
@@ -134,8 +135,8 @@ class CreateBusinessViewModel @Inject constructor(
             turnOver.postValue(it.annualTurnover)
             turnoverOnRequest.postValue(it.annualTurnoverNA)
             listLocation.postValue(it.listLocation)
-            date.postValue(it.establishedYear?:getCurrentYear())
-            categories = it.categories?.map { it.id?:0 }?.toMutableList() ?: mutableListOf()
+            date.postValue(it.establishedYear ?: getCurrentYear())
+            categories = it.categories?.map { it.id ?: 0 }?.toMutableList() ?: mutableListOf()
             addressStr.postValue(it.address)
             confidential.postValue(it.isConfidential)
             freeHoldAskingPrice.postValue(it.askingPrice)
@@ -148,7 +149,7 @@ class CreateBusinessViewModel @Inject constructor(
             properties = it.properties?.map { it.id }?.toMutableList() ?: mutableListOf()
             images = (it.images?.toMutableList() ?: mutableListOf()).apply {
                 it.icon?.let {
-                    add(0,Media(name = it,id = -1))
+                    add(0, Media(name = it, id = -1))
                 }
             }
             files = it.files?.toMutableList() ?: mutableListOf()
@@ -256,13 +257,20 @@ class CreateBusinessViewModel @Inject constructor(
         emit(response)
     }
 
+    fun deleteCompanyIcon() = liveData {
+        emit(APIResource.loading())
+        val response =
+            businessRepo.deleteCompanyIcon()
+        emit(response)
+    }
+
     fun requestCompany(name: String) = liveData {
         emit(APIResource.loading())
         val response = businessRepo.requestCompany(name)
         emit(response)
     }
 
-    private fun isHasBusiness(): Boolean {
+    fun isHasBusiness(): Boolean {
         return hasBusiness && !companyDraft
     }
 
@@ -272,10 +280,11 @@ class CreateBusinessViewModel @Inject constructor(
             businessRepo.getRequestCompany()
         emit(response)
     }
+
     fun getBusinessRequest() = liveData {
         emit(APIResource.loading())
         val response =
-            businessRepo.getRequestBusiness(businessId?:0)
+            businessRepo.getRequestBusiness(businessId ?: 0)
         emit(response)
     }
 }

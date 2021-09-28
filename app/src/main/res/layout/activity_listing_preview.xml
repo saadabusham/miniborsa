@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="com.technzone.miniborsa.data.common.Constants"/>
         <import type="android.view.View" />
         <import type="com.technzone.miniborsa.data.enums.BusinessStatusEnums"/>
         <variable
@@ -164,7 +164,8 @@
                     android:layout_height="@dimen/button_height"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
-                    android:text="@string/submit_listing"
+                    tools:text="@string/go_to_home"
+                    android:text="@{viewModel.percentage >= Constants.MIN_PERCENTAGE_TO_SEND ? @string/submit_listing : @string/go_to_home}"
                     tools:visibility="visible"
                     android:visibility="@{viewModel.business.status == BusinessStatusEnums.DRAFT.value ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toBottomOf="parent"

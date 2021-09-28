@@ -19,6 +19,7 @@ import com.technzone.miniborsa.ui.business.createbusiness.adapters.DocumentsRecy
 import com.technzone.miniborsa.ui.business.createbusiness.adapters.ImageRecyclerAdapter
 import com.technzone.miniborsa.utils.ContentUriUtils.getFilePathFromURI
 import com.technzone.miniborsa.utils.ImagePickerUtil.Companion.TAKE_USER_IMAGE_REQUEST_CODE
+import com.technzone.miniborsa.utils.extensions.calculatePercentage
 import com.technzone.miniborsa.utils.pickImages
 import com.technzone.miniborsa.utils.recycleviewutils.VerticalSpaceDecoration
 import dagger.hilt.android.AndroidEntryPoint
@@ -84,7 +85,10 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
             override fun onItemClick(view: View?, position: Int, item: Any) {
                 item as LocaleImage
                 if (view?.id == R.id.imgRemove) {
-                    item.id?.let { viewModel.deleteFile(it).observe(this@CreateBusinessStep3Fragment,uploadResultObserver()) }
+                    item.id?.let {
+                        viewModel.deleteFile(it)
+                            .observe(this@CreateBusinessStep3Fragment, uploadResultObserver())
+                    }
                 } else {
                     openDocumentPicker()
                 }
@@ -163,7 +167,7 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
                     data?.images?.toMutableList()?.let {
                         it.apply {
                             data.icon?.let {
-                                add(0, Media(name = it,id = -1))
+                                add(0, Media(name = it, id = -1))
                             }
                         }
                         viewModel.images = it
@@ -173,11 +177,11 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
                                 id = it.id
                             )
                         })
-                    }?:also {
+                    } ?: also {
                         viewModel.images = mutableListOf()
                         viewModel.images.apply {
                             data?.icon?.let {
-                                add(0, Media(name = it,id = -1))
+                                add(0, Media(name = it, id = -1))
                             }
                         }
                     }
@@ -189,7 +193,7 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
                                 id = it.id
                             )
                         })
-                    }?:also {viewModel.files = mutableListOf()}
+                    } ?: also { viewModel.files = mutableListOf() }
                     refreshPhotosAndDocs()
                 }
             })
@@ -234,7 +238,7 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
                 if (imageRecyclerAdapter.items[0].contentType == LocaleImageType.ADD_IMAGE) {
                     imageRecyclerAdapter.items.removeAt(imageRecyclerAdapter.itemCount - 1)
                     addFirstImage()
-                }else if (imageRecyclerAdapter.items[0].contentType != LocaleImageType.ADD_FIRST) {
+                } else if (imageRecyclerAdapter.items[0].contentType != LocaleImageType.ADD_FIRST) {
                     addImage()
                 }
             }
@@ -243,11 +247,12 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
                     addImage()
                 }
             }
-            2,3 -> {
+            2, 3 -> {
 //                imageRecyclerAdapter.items.removeAt(imageRecyclerAdapter.itemCount - 1)
                 addImage()
             }
         }
+        calculatePercentage()
     }
 
     private fun refreshDocuments() {
@@ -266,7 +271,7 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
                 if (documentsAdapter.items[0].contentType == LocaleImageType.ADD_IMAGE) {
                     documentsAdapter.items.removeAt(documentsAdapter.itemCount - 1)
                     addFirstDocument()
-                }else if (documentsAdapter.items[0].contentType != LocaleImageType.ADD_FIRST) {
+                } else if (documentsAdapter.items[0].contentType != LocaleImageType.ADD_FIRST) {
                     addDocument()
                 }
             }
@@ -275,11 +280,12 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
                     addDocument()
                 }
             }
-            2,3 -> {
+            2, 3 -> {
 //                documentsAdapter.items.removeAt(documentsAdapter.itemCount - 1)
                 addDocument()
             }
         }
+        calculatePercentage()
     }
 
     private fun addDocument() {
@@ -303,7 +309,11 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as LocaleImage
         if (view?.id == R.id.imgRemove) {
-            item.id?.let { viewModel.deleteImage(it).observe(this,uploadResultObserver()) }
+            if (position == 0) {
+                viewModel.deleteCompanyIcon().observe(this, uploadResultObserver())
+            } else {
+                item.id?.let { viewModel.deleteImage(it).observe(this, uploadResultObserver()) }
+            }
         } else {
             pickImages(
                 requestCode = TAKE_USER_IMAGE_REQUEST_CODE
@@ -329,6 +339,10 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
                     callback(true)
                 }
             })
+    }
+
+    override fun calculatePercentage() {
+        viewModel.percentage.postValue(viewModel.buildBusinessRequest().calculatePercentage())
     }
 
 

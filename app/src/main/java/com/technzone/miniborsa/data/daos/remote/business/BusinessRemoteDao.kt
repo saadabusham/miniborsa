@@ -4,6 +4,7 @@ import com.technzone.miniborsa.data.api.response.ResponseWrapper
 import com.technzone.miniborsa.data.common.NetworkConstants
 import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.data.models.business.businessrequest.BusinessRequest
+import com.technzone.miniborsa.data.models.business.request.BusinessSearchRequest
 import com.technzone.miniborsa.data.models.general.ListWrapper
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -12,11 +13,9 @@ import retrofit2.http.*
 interface BusinessRemoteDao {
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @GET("api/owner/Business/request/search")
+    @POST("api/owner/Business/request/search")
     suspend fun getBusinessByType(
-        @Query("statuses") type: List<Int>?,
-        @Query("PageSize") pageSize: Int,
-        @Query("PageNumber") pageNumber: Int
+       @Body businessSearchRequest: BusinessSearchRequest
     ): ResponseWrapper<ListWrapper<OwnerBusiness>>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")

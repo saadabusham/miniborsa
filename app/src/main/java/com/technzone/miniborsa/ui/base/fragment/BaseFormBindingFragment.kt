@@ -11,4 +11,6 @@ abstract class BaseFormBindingFragment<BINDING : ViewDataBinding> :
 
     abstract fun validateToMoveToNext(callback: (Boolean) -> (Unit))
 
+    abstract fun calculatePercentage()
+
 }

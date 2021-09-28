@@ -1,6 +1,7 @@
 package com.technzone.miniborsa.data.models.business.businessrequest
 
 import com.google.gson.annotations.SerializedName
+import com.technzone.miniborsa.data.models.Media
 import com.technzone.miniborsa.data.models.investor.FieldsItem
 
 data class BusinessRequest(
@@ -99,5 +100,11 @@ data class BusinessRequest(
     val fields: List<FieldsItem>? = null,
 
     @field:SerializedName("properties")
-    val properties: List<Int?>? = null
+    val properties: List<Int?>? = null,
+
+    @field:SerializedName("images", alternate = ["businessImages"])
+    var images: MutableList<Media>? = mutableListOf(),
+
+    @field:SerializedName("files", alternate = ["businessFiles"])
+    val files: MutableList<Media>? = mutableListOf(),
 )

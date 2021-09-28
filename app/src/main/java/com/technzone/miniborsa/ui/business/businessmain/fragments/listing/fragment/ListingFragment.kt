@@ -5,6 +5,7 @@ import androidx.fragment.app.activityViewModels
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.CustomObserverResponse
+import com.technzone.miniborsa.data.enums.BusinessStatusEnums
 import com.technzone.miniborsa.data.enums.BusinessTypeEnums
 import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.data.models.general.ListWrapper
@@ -17,6 +18,7 @@ import com.technzone.miniborsa.ui.business.businessmain.fragments.listing.adapte
 import com.technzone.miniborsa.ui.business.businessmain.fragments.listing.dialogs.SelectBusinessTypeDialog
 import com.technzone.miniborsa.ui.business.businessmain.viewmodels.BusinessMainViewModel
 import com.technzone.miniborsa.ui.business.createbusiness.activity.CreateBusinessActivity
+import com.technzone.miniborsa.ui.business.listingpreview.activity.ListingPreviewActivity
 import com.technzone.miniborsa.utils.extensions.gone
 import com.technzone.miniborsa.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,6 +32,11 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>(),
     private lateinit var listingAdapter: ListingAdapter
 
     override fun getLayoutId(): Int = R.layout.fragment_listing
+
+    override fun onResume() {
+        super.onResume()
+        loadData()
+    }
 
     override fun onViewVisible() {
         super.onViewVisible()
@@ -66,11 +73,11 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>(),
             )
         }
         binding?.imgAddBusiness?.setOnClickListener {
-           showSelectTypeDialog()
+            showSelectTypeDialog()
         }
     }
 
-    private fun showSelectTypeDialog(){
+    private fun showSelectTypeDialog() {
         SelectBusinessTypeDialog(requireActivity(), object : SelectBusinessTypeDialog.CallBack {
             override fun callBack(businessTypeEnums: BusinessTypeEnums) {
                 CreateBusinessActivity.start(
@@ -85,13 +92,63 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>(),
     private fun setUpListingPending() {
         listingReviewAdapter = ListingReviewAdapter(requireContext())
         binding?.layoutListing?.rvPending?.adapter = listingReviewAdapter
-        binding?.layoutListing?.rvPending?.setOnItemClickListener(object : BaseBindingRecyclerViewAdapter.OnItemClickListener{
+        binding?.layoutListing?.rvPending?.setOnItemClickListener(object :
+            BaseBindingRecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(view: View?, position: Int, item: Any) {
-
+                item as OwnerBusiness
+                if (view?.id == R.id.tvStatus) {
+                    viewModel.deleteCompanyRequest()
+                        .observe(requireActivity(), deleteRequestResultObserver())
+                } else {
+                    if (item.status == BusinessStatusEnums.DRAFT.value || item.status == BusinessStatusEnums.D.value)
+                        CreateBusinessActivity.start(
+                            requireContext(),
+                            businessType = -1,
+                            business = item,
+                            hasBusiness = true,
+                            businessDraft = true
+                        )
+                    else {
+                        ListingPreviewActivity.start(
+                            requireContext(),
+                            business = item,
+                            hasBusiness = true,
+                            businessDraft = true
+                        )
+                    }
+                }
             }
         })
+    }
+
+    private fun loadData() {
+        getPendingList()
+        getListing()
+    }
+
+    private fun getPendingList() {
         viewModel.getPendingListing().observe(this, pendingResultObserver())
     }
+
+    private fun getListing() {
+        viewModel.getListing().observe(this, listingResultObserver())
+    }
+
+    private fun deleteRequestResultObserver(
+    ): CustomObserverResponse<Any> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<Any> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: Any?
+                ) {
+                    getPendingList()
+                }
+            })
+    }
+
 
     private fun pendingResultObserver(): CustomObserverResponse<ListWrapper<OwnerBusiness>> {
         return CustomObserverResponse(
@@ -103,34 +160,39 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>(),
                     data: ListWrapper<OwnerBusiness>?
                 ) {
                     data?.data?.let {
-                        listingReviewAdapter.submitItems(it)
-                        binding?.layoutListing?.constraintRoot?.visible()
-                        binding?.layoutListing?.tvPending?.visible()
-                        binding?.layoutListing?.rvPending?.visible()
-                        binding?.imgAddBusiness?.visible()
-                    }?.also {
-                        binding?.layoutListing?.tvPending?.gone()
-                        binding?.layoutListing?.rvPending?.gone()
+                        listingReviewAdapter.submitNewItems(it)
                     }
+                    handlePendingListingViews()
                 }
 
                 override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
                     super.onError(subErrorCode, message)
-                    binding?.layoutListing?.tvPending?.gone()
-                    binding?.layoutListing?.rvPending?.gone()
+                    handlePendingListingViews()
                 }
             })
+    }
+
+    private fun handlePendingListingViews() {
+        if (listingReviewAdapter.itemCount > 0) {
+            binding?.layoutListing?.constraintRoot?.visible()
+            binding?.layoutListing?.tvPending?.visible()
+            binding?.layoutListing?.rvPending?.visible()
+            binding?.imgAddBusiness?.visible()
+        } else {
+            binding?.layoutListing?.tvPending?.gone()
+            binding?.layoutListing?.rvPending?.gone()
+        }
     }
 
     private fun setUpListing() {
         listingAdapter = ListingAdapter(requireContext())
         binding?.layoutListing?.rvListing?.adapter = listingAdapter
-        binding?.layoutListing?.rvListing?.setOnItemClickListener(object : BaseBindingRecyclerViewAdapter.OnItemClickListener{
+        binding?.layoutListing?.rvListing?.setOnItemClickListener(object :
+            BaseBindingRecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(view: View?, position: Int, item: Any) {
 
             }
         })
-        viewModel.getListing().observe(this, listingResultObserver())
     }
 
     private fun listingResultObserver(): CustomObserverResponse<ListWrapper<OwnerBusiness>> {
@@ -143,25 +205,29 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>(),
                     data: ListWrapper<OwnerBusiness>?
                 ) {
                     data?.data?.let {
-                        listingAdapter.submitItems(it)
-                        binding?.layoutListing?.constraintRoot?.visible()
-                        binding?.layoutListing?.tvListing?.visible()
-                        binding?.layoutListing?.rvListing?.visible()
-                        binding?.imgAddBusiness?.visible()
-                    }?.also {
-                        binding?.layoutListing?.tvListing?.gone()
-                        binding?.layoutListing?.rvListing?.gone()
+                        listingAdapter.submitNewItems(it)
                     }
+                    handleListingViews()
                 }
 
                 override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
                     super.onError(subErrorCode, message)
-                    binding?.layoutListing?.tvListing?.gone()
-                    binding?.layoutListing?.rvListing?.gone()
+                    handleListingViews()
                 }
             })
     }
 
+    private fun handleListingViews() {
+        if (listingAdapter.itemCount > 0) {
+            binding?.layoutListing?.constraintRoot?.visible()
+            binding?.layoutListing?.tvListing?.visible()
+            binding?.layoutListing?.rvListing?.visible()
+            binding?.imgAddBusiness?.visible()
+        } else {
+            binding?.layoutListing?.tvListing?.gone()
+            binding?.layoutListing?.rvListing?.gone()
+        }
+    }
 
     override fun onItemClick(view: View?, position: Int, item: Any) {
 

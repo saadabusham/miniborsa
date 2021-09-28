@@ -1,11 +1,14 @@
 package com.technzone.miniborsa.ui.business.createbusiness.fragments
 
 import android.view.inputmethod.EditorInfo
+import android.widget.SeekBar
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.common.interfaces.SeekbarCallback
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.databinding.FragmentCreateBusinessStep2ForShareBinding
 import com.technzone.miniborsa.ui.base.fragment.BaseFormBindingFragment
+import com.technzone.miniborsa.utils.extensions.calculatePercentage
 import com.technzone.miniborsa.utils.extensions.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.internal.toLongOrDefault
@@ -28,6 +31,11 @@ class CreateBusinessStep2ForShareFragment :
     }
 
     private fun setUpListeners() {
+        binding?.seekBarFreeHoldAskingPrice?.setOnSeekBarChangeListener(object : SeekbarCallback{
+            override fun onFromUserChange(progress: Int) {
+                viewModel.freeHoldAskingPrice.postValue(progress)
+            }
+        })
         binding?.edFreeHoldAskingPrice?.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.freeHoldAskingPrice.postValue(
@@ -37,15 +45,26 @@ class CreateBusinessStep2ForShareFragment :
                 true
             } else false
         }
+        binding?.seekBarNetProfit?.setOnSeekBarChangeListener(object : SeekbarCallback{
+            override fun onFromUserChange(progress: Int) {
+                viewModel.netProfit.postValue(progress)
+            }
+        })
         binding?.edNetProfit?.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.netProfit.postValue(
-                    binding?.edNetProfit?.text.toString().toLongOrDefault(viewModel.defaultMinValue.toLong()).toInt()
+                    binding?.edNetProfit?.text.toString()
+                        .toLongOrDefault(viewModel.defaultMinValue.toLong()).toInt()
                 )
                 binding?.root.hideKeyboard(requireActivity())
                 true
             } else false
         }
+        binding?.seekBarTurnover?.setOnSeekBarChangeListener(object : SeekbarCallback{
+            override fun onFromUserChange(progress: Int) {
+                viewModel.turnOver.postValue(progress)
+            }
+        })
         binding?.edTurnover?.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.turnOver.postValue(
@@ -75,6 +94,10 @@ class CreateBusinessStep2ForShareFragment :
                     callback(true)
                 }
             })
+    }
+
+    override fun calculatePercentage() {
+        viewModel.percentage.postValue(viewModel.buildBusinessRequest().calculatePercentage())
     }
 
 

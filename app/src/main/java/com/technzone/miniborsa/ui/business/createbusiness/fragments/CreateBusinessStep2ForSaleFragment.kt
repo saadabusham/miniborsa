@@ -2,13 +2,16 @@ package com.technzone.miniborsa.ui.business.createbusiness.fragments
 
 import android.graphics.Color
 import android.view.inputmethod.EditorInfo
+import android.widget.SeekBar
 import com.google.android.material.tabs.TabLayout
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.common.interfaces.SeekbarCallback
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.data.enums.PropertyStatusEnums
 import com.technzone.miniborsa.databinding.FragmentCreateBusinessStep2ForSaleBinding
 import com.technzone.miniborsa.ui.base.fragment.BaseFormBindingFragment
+import com.technzone.miniborsa.utils.extensions.calculatePercentage
 import com.technzone.miniborsa.utils.extensions.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.internal.toLongOrDefault
@@ -28,6 +31,11 @@ class CreateBusinessStep2ForSaleFragment :
     }
 
     private fun setUpListeners() {
+        binding?.seekBarFreeHoldAskingPrice?.setOnSeekBarChangeListener(object : SeekbarCallback {
+            override fun onFromUserChange(progress: Int) {
+                viewModel.freeHoldAskingPrice.postValue(progress)
+            }
+        })
         binding?.edFreeHoldAskingPrice?.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.freeHoldAskingPrice.postValue(
@@ -38,6 +46,11 @@ class CreateBusinessStep2ForSaleFragment :
                 true
             } else false
         }
+        binding?.seekBarLeaseHoldAskingPrice?.setOnSeekBarChangeListener(object : SeekbarCallback {
+            override fun onFromUserChange(progress: Int) {
+                viewModel.leaseHoldAskingPrice.postValue(progress)
+            }
+        })
         binding?.edLeaseHoldAskingPrice?.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.leaseHoldAskingPrice.postValue(
@@ -48,6 +61,12 @@ class CreateBusinessStep2ForSaleFragment :
                 true
             } else false
         }
+
+        binding?.seekBarNetProfit?.setOnSeekBarChangeListener(object : SeekbarCallback {
+            override fun onFromUserChange(progress: Int) {
+                viewModel.netProfit.postValue(progress)
+            }
+        })
         binding?.edNetProfit?.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.netProfit.postValue(
@@ -58,6 +77,11 @@ class CreateBusinessStep2ForSaleFragment :
                 true
             } else false
         }
+        binding?.seekBarTurnover?.setOnSeekBarChangeListener(object : SeekbarCallback {
+            override fun onFromUserChange(progress: Int) {
+                viewModel.turnOver.postValue(progress)
+            }
+        })
         binding?.edTurnover?.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.turnOver.postValue(
@@ -135,6 +159,10 @@ class CreateBusinessStep2ForSaleFragment :
                     callback(true)
                 }
             })
+    }
+
+    override fun calculatePercentage() {
+        viewModel.percentage.postValue(viewModel.buildBusinessRequest().calculatePercentage())
     }
 
 

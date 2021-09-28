@@ -288,7 +288,8 @@
     <string name="you_can_upload_up_to_one_document_including_pdf_word_excel_and_other_document_types">You can upload up to one document, including PDF, Word, Excel and other document types.</string>
     <string name="embed_video">Embed Video</string>
     <string name="video_url">Video URL</string>
-    <string name="dollar_sign">$%s</string>
+    <string name="dollar_sign">$</string>
+    <string name="dollar_sign_concated">$%s</string>
     <string name="website_link">Website Link</string>
     <string name="enter_web">Enter Web</string>
     <string name="training">Training</string>

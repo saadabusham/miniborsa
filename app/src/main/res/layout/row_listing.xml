@@ -43,7 +43,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_business_sample" />
+                ivImageUrl="@{item.icon}"
+                tools:src="@drawable/ic_business_sample" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.technzone.miniborsa.ui.base.views.AppButton
@@ -56,7 +57,8 @@
             android:backgroundTint="@color/green_color_alpha"
             android:gravity="center"
             android:stateListAnimator="@null"
-            android:text="Business For Sale"
+            setTextByBusinessType="@{item.businessType}"
+            tools:text="Business For Sale"
             android:textColor="@color/green_color"
             android:textSize="@dimen/_7ssp"
             app:cornerRadius="@dimen/_2sdp"
@@ -84,7 +86,8 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:maxLines="1"
             android:singleLine="true"
-            android:text="Development House "
+            tools:text="Development House "
+            android:text="@{item.title}"
             android:textColor="@color/black"
             android:textSize="@dimen/_13ssp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +103,8 @@
             android:layout_marginBottom="@dimen/_10sdp"
             android:drawableStart="@drawable/ic_business_pin"
             android:drawablePadding="@dimen/_5sdp"
-            android:text="Amman, Jordan"
+            tools:text="Amman, Jordan"
+            android:text="@{item.address}"
             android:textColor="@color/black_alpha"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintStart_toStartOf="@id/tvType"
@@ -125,7 +129,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
-            android:text="$400,000"
+            android:text="@{@string/dollar_sign_concated(item.askingPrice)}"
             android:textColor="@color/textview_text_color"
             android:textSize="@dimen/_13ssp"
             app:layout_constraintBottom_toBottomOf="@+id/tvAskingPriceTxt"

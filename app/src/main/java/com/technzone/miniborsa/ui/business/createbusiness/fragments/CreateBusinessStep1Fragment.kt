@@ -17,6 +17,7 @@ import com.technzone.miniborsa.ui.base.fragment.BaseFormBindingFragment
 import com.technzone.miniborsa.ui.base.sheet.lookupselector.LookupSelectorBottomSheet
 import com.technzone.miniborsa.ui.business.createbusiness.dialogs.CreateCompanyDialog
 import com.technzone.miniborsa.ui.map.MapActivity
+import com.technzone.miniborsa.utils.extensions.calculatePercentage
 import com.technzone.miniborsa.utils.getLocationName
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -31,6 +32,8 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
         setUpBinding()
         setUpListeners()
         handleBuniness()
+        observeInputs()
+        calculatePercentage()
     }
 
     private fun setUpBinding() {
@@ -60,11 +63,10 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
                 .observe(this, requestCompanyResultObserver(viewModel.getCategoriesCount(3)))
         }
     }
-
     private fun handleBuniness() {
         if (viewModel.hasBusiness && !viewModel.businessDraft) {
-            showCreateDialog(true)
-        } else if (viewModel.hasBusiness || viewModel.companyDraft) {
+            viewModel.requestBusiness().observe(this, requestBusinessResultObserver())
+        } else if (viewModel.hasBusiness || viewModel.companyDraft || viewModel.businessDraft) {
             viewModel.getCategories().observe(this, requestCompanyResultObserver(0, true))
         } else {
             showCreateDialog(false)
@@ -81,10 +83,10 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
                             requestCompanyResultObserver(dialog = dialog)
                         )
                 else viewModel.requestBusiness()
-                        .observe(
-                            this@CreateBusinessStep1Fragment,
-                            requestCompanyResultObserver(dialog = dialog)
-                        )
+                    .observe(
+                        this@CreateBusinessStep1Fragment,
+                        requestCompanyResultObserver(dialog = dialog)
+                    )
             }
 
             override fun cancel() {
@@ -111,6 +113,26 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
             })
     }
 
+    private fun requestBusinessResultObserver(
+    ): CustomObserverResponse<Int> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<Int> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: Int?
+                ) {
+                    viewModel.businessId = data
+                }
+
+                override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
+                    super.onError(subErrorCode, message)
+                    requireActivity().finish()
+                }
+            })
+    }
+
     private fun requestCompanyResultObserver(
         categoryNumber: Int,
         fillOldData: Boolean = false
@@ -128,7 +150,7 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
                             viewModel.categories.withIndex().forEach { cat ->
                                 data?.data?.singleOrNull { it.id == cat.value }?.let {
                                     updateCategories(
-                                        cat.index+1,
+                                        cat.index + 1,
                                         GeneralLookup(id = it.id, name = it.name)
                                     )
                                 }
@@ -183,6 +205,7 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
                 }
             }
         }
+        calculatePercentage()
     }
 
     var resultLauncher =
@@ -243,6 +266,26 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
                     callback(true)
                 }
             })
+    }
+
+
+    private fun observeInputs() {
+        viewModel.title.observe(this,{
+            calculatePercentage()
+        })
+        viewModel.summery.observe(this,{
+            calculatePercentage()
+        })
+        viewModel.addressStr.observe(this,{
+            calculatePercentage()
+        })
+        viewModel.date.observe(this,{
+            calculatePercentage()
+        })
+    }
+
+    override fun calculatePercentage() {
+        viewModel.percentage.postValue(viewModel.buildBusinessRequest().calculatePercentage())
     }
 
 }

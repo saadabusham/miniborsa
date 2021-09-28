@@ -5,6 +5,7 @@ object Constants {
     const val NEWS_ID: String = "NEWS_ID"
     const val DEVICE_TYPE = 1
     const val APPLICATION_TYPE = 1
+    const val MIN_PERCENTAGE_TO_SEND = 80
 
     const val PAGE_SIZE = 10
 
