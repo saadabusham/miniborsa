@@ -1,6 +1,7 @@
 package com.technzone.miniborsa.data.models.investor.investors
 
 import com.google.gson.annotations.SerializedName
+import com.technzone.miniborsa.data.models.general.GeneralLookup
 
 data class Investor(
 
@@ -20,7 +21,7 @@ data class Investor(
 	val isOnline: Boolean? = null,
 
 	@field:SerializedName("countries")
-	val countries: List<CountriesItem>? = null,
+	val countries: List<GeneralLookup>? = null,
 
 	@field:SerializedName("userId")
 	val userId: String? = null,

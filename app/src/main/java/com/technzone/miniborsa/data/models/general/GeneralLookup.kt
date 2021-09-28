@@ -7,11 +7,15 @@ import java.io.Serializable
 
 data class GeneralLookup(
 
-    @field:SerializedName("Id")
+    @field:SerializedName("id")
     val id: Int? = null,
 
     @field:SerializedName("name")
     val name: String?=null,
+
+    @field:SerializedName("desc")
+    val desc: String?=null,
+
     var selected: Boolean = false,
     @Transient
     val isSelected: MutableLiveData<Boolean> = MutableLiveData(false)

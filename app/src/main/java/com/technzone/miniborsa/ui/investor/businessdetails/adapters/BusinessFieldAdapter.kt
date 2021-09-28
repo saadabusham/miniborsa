@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.technzone.miniborsa.data.models.Media
+import com.technzone.miniborsa.data.models.general.GeneralLookup
 import com.technzone.miniborsa.data.models.investor.FieldsItem
 import com.technzone.miniborsa.databinding.RowBusinessDetailsBinding
 import com.technzone.miniborsa.databinding.RowBusinessImageBinding
@@ -14,7 +15,7 @@ import com.technzone.miniborsa.ui.base.adapters.BaseViewHolder
 class BusinessFieldAdapter(
     context: Context
 ) :
-    BaseBindingRecyclerViewAdapter<FieldsItem>(context) {
+    BaseBindingRecyclerViewAdapter<GeneralLookup>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(
@@ -31,9 +32,9 @@ class BusinessFieldAdapter(
     }
 
     inner class ViewHolder(private val binding: RowBusinessDetailsBinding) :
-        BaseViewHolder<FieldsItem>(binding.root) {
+        BaseViewHolder<GeneralLookup>(binding.root) {
 
-        override fun bind(item: FieldsItem) {
+        override fun bind(item: GeneralLookup) {
             binding.item = item
             binding.root.setOnClickListener {
                 itemClickListener?.onItemClick(it, bindingAdapterPosition, item)

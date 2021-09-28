@@ -7,6 +7,8 @@ import com.google.gson.annotations.SerializedName
 import com.technzone.miniborsa.data.db.ApplicationDB
 import com.technzone.miniborsa.data.models.Media
 import com.technzone.miniborsa.data.models.business.business.PropertiesItem
+import com.technzone.miniborsa.data.models.general.GeneralLookup
+import com.technzone.miniborsa.data.models.investor.investors.CategoriesItem
 import java.io.Serializable
 
 @Entity(tableName = ApplicationDB.TABLE_SEARCHED_BUSINESS)
@@ -97,10 +99,6 @@ data class Business(
 	@ColumnInfo(name = "arabicDescription")
 	val arabicDescription: String? = null,
 
-	@field:SerializedName("images")
-	@ColumnInfo(name = "images")
-	val images: List<Media>? = null,
-
 	@field:SerializedName("address")
 	@ColumnInfo(name = "address")
 	val address: String? = null,
@@ -139,6 +137,18 @@ data class Business(
 
 	@field:SerializedName("properties")
 	@ColumnInfo(name = "properties")
-	val properties: List<PropertiesItem>? = null
+	val properties: List<PropertiesItem>? = null,
+
+	@field:SerializedName("images")
+	var images: MutableList<Media>? = mutableListOf(),
+
+	@field:SerializedName("files")
+	val files: MutableList<Media>? = mutableListOf(),
+
+	@field:SerializedName("countries")
+	val countries: List<GeneralLookup>? = null,
+
+	@field:SerializedName("categories")
+	val categories: List<CategoriesItem>? = null
 
 ) : Serializable

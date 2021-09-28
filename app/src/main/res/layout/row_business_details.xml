@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.technzone.miniborsa.data.models.investor.FieldsItem" />
+            type="com.technzone.miniborsa.data.models.general.GeneralLookup" />
     </data>
 
     <LinearLayout
@@ -25,14 +25,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|start"
             android:textColor="@color/black_alpha"
-            android:text="Date Founded"
+            tools:text="Date Founded"
+            android:text="@{item.name}"
             android:textSize="@dimen/_11ssp"/>
 
         <TextView
             style="@style/textview_normal_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2015"
+            tools:text="2015"
+            android:text="@{item.desc}"
             android:textColor="@color/black"
             android:textSize="@dimen/_11ssp"
             android:layout_marginTop="@dimen/_3sdp"/>

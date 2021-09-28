@@ -8,6 +8,7 @@ import com.technzone.miniborsa.data.enums.PropertyStatusEnums
 import com.technzone.miniborsa.data.models.Media
 import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.data.models.business.businessrequest.BusinessRequest
+import com.technzone.miniborsa.data.models.general.GeneralLookup
 import com.technzone.miniborsa.data.models.investor.FieldsItem
 import com.technzone.miniborsa.data.models.map.Address
 import com.technzone.miniborsa.data.pref.user.UserPref
@@ -54,10 +55,10 @@ class CreateBusinessViewModel @Inject constructor(
     val netProfitOnRequest: MutableLiveData<Boolean> = MutableLiveData(false)
     val turnoverOnRequest: MutableLiveData<Boolean> = MutableLiveData(false)
 
-    val freeHoldAskingPrice: MutableLiveData<Int> = MutableLiveData(1000)
-    val leaseHoldAskingPrice: MutableLiveData<Int> = MutableLiveData(1000)
-    val netProfit: MutableLiveData<Int> = MutableLiveData(1000)
-    val turnOver: MutableLiveData<Int> = MutableLiveData(1000)
+    val freeHoldAskingPrice: MutableLiveData<Double> = MutableLiveData(1000.0)
+    val leaseHoldAskingPrice: MutableLiveData<Double> = MutableLiveData(1000.0)
+    val netProfit: MutableLiveData<Double> = MutableLiveData(1000.0)
+    val turnOver: MutableLiveData<Double> = MutableLiveData(1000.0)
     val sharePercentage: MutableLiveData<Int> = MutableLiveData(1000)
     val selectedItemsCount: MutableLiveData<Int> = MutableLiveData(0)
 
@@ -67,7 +68,7 @@ class CreateBusinessViewModel @Inject constructor(
     val confidential: MutableLiveData<Boolean> = MutableLiveData(false)
 
     var categories: MutableList<Int> = mutableListOf()
-    var countries: MutableList<Int> = mutableListOf()
+    var countries: MutableList<GeneralLookup> = mutableListOf()
     var fields: MutableList<FieldsItem> = mutableListOf()
     var properties: MutableList<Int?> = mutableListOf()
     var images: MutableList<Media> = mutableListOf()
@@ -102,7 +103,7 @@ class CreateBusinessViewModel @Inject constructor(
             isConfidential = confidential.value,
             askingPrice = freeHoldAskingPrice.value,
             askingPriceNA = freeholdAskingPriceOnRequest.value,
-            countries = countries,
+            countries = countries.map { it.id },
             annualNetProfitNA = netProfitOnRequest.value,
             annualNetProfit = netProfit.value,
             businessType = businessType,
@@ -287,4 +288,14 @@ class CreateBusinessViewModel @Inject constructor(
             businessRepo.getRequestBusiness(businessId ?: 0)
         emit(response)
     }
+
+    fun getCountries() = liveData {
+        emit(APIResource.loading())
+        val response = configurationRepo.getCountries(
+            pageSize = 1000,
+            pageNumber = 1
+        )
+        emit(response)
+    }
+
 }

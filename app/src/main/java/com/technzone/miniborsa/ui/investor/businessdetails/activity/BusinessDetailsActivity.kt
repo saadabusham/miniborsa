@@ -11,6 +11,7 @@ import com.technzone.miniborsa.data.api.response.ResponseWrapper
 import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.data.models.Media
+import com.technzone.miniborsa.data.models.general.GeneralLookup
 import com.technzone.miniborsa.data.models.investor.Business
 import com.technzone.miniborsa.data.models.investor.ExtraInfo
 import com.technzone.miniborsa.databinding.ActivityBusinessDetailsBinding
@@ -24,6 +25,7 @@ import com.technzone.miniborsa.ui.investor.businessdetails.adapters.BusinessFiel
 import com.technzone.miniborsa.ui.investor.businessdetails.adapters.BusinessSliderAdapter
 import com.technzone.miniborsa.ui.investor.businessdetails.viewmodels.BusinessDetailsViewModel
 import com.technzone.miniborsa.ui.investor.invistormain.viewmodels.FavoritesViewModel
+import com.technzone.miniborsa.ui.investor.invistorroles.activity.InvestorRolesActivity
 import com.technzone.miniborsa.ui.subscription.activity.SubscriptionActivity
 import com.technzone.miniborsa.utils.extensions.getSnapHelper
 import dagger.hilt.android.AndroidEntryPoint
@@ -55,14 +57,22 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
         initData()
     }
 
+    private fun setUpBinding() {
+        binding?.viewModel = viewModel
+        binding?.layoutBusinessInformation?.viewModel = viewModel
+    }
+
     private fun initData() {
         intent.getIntExtra(Constants.BundleData.BUSINESS_ID, -1).let {
             if (it == -1) {
                 (intent.getSerializableExtra(Constants.BundleData.BUSINESS) as Business).let {
-                    favoriteViewModel.businessToView.value = it
-                    viewModel.businessToView.value = it
+//                    favoriteViewModel.businessToView.value = it
+//                    viewModel.businessToView.value = it
+                    it.id?.let { it1 ->
+                        viewModel.getBusiness(it1).observe(this, businessDetailsResultObserver())
+                    }
                 }
-                handleData()
+//                handleData()
             } else
                 viewModel.getBusiness(it).observe(this, businessDetailsResultObserver())
         }
@@ -78,6 +88,9 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
     private fun setUpListeners() {
         binding?.btnConnect?.setOnClickListener {
             SubscriptionActivity.start(this, false)
+        }
+        binding?.btnBecomeInvestor?.setOnClickListener {
+            InvestorRolesActivity.start(this)
         }
         binding?.toolbar?.imgFavorite?.setOnClickListener {
             viewModel.businessToView.value?.isFavorite =
@@ -117,10 +130,6 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
         binding?.layoutBusinessSlider?.favorite = viewModel.businessToView.value?.isFavorite
     }
 
-    private fun setUpBinding() {
-        binding?.viewModel = viewModel
-    }
-
     private fun businessDetailsResultObserver(): CustomObserverResponse<Business> {
         return CustomObserverResponse(
             this,
@@ -152,10 +161,52 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
     private fun setUpRvFields() {
         businessFieldAdapter = BusinessFieldAdapter(this)
         binding?.layoutBusinessDetails?.rvFields?.adapter = businessFieldAdapter
-        viewModel.businessToView.value?.fields?.let {
-            businessFieldAdapter.submitItems(
-                it
+        viewModel.businessToView.value?.let {
+            businessFieldAdapter.clear()
+            businessFieldAdapter.submitItem(
+                GeneralLookup(name = getString(R.string.date_founded), desc = it.establishedYear)
             )
+            if (!it.categories.isNullOrEmpty())
+                businessFieldAdapter.submitItem(
+                    GeneralLookup(
+                        name = getString(R.string.primary_industry),
+                        desc = it.categories[0].name
+                    )
+                )
+            if (it.categories?.size ?: 0 > 1)
+                businessFieldAdapter.submitItem(
+                    GeneralLookup(
+                        name = getString(R.string.secondry_industry),
+                        desc = it.categories?.get(1)?.name
+                    )
+                )
+            if (it.categories?.size ?: 0 > 2)
+                businessFieldAdapter.submitItem(
+                    GeneralLookup(
+                        name = getString(R.string.secondry_industry),
+                        desc = it.categories?.get(2)?.name
+                    )
+                )
+            if (it.annualNetProfitNA == false)
+                businessFieldAdapter.submitItem(
+                    GeneralLookup(
+                        name = getString(R.string.annual_net_profit),
+                        desc = String.format(
+                            getString(R.string.dollar_sign_concated),
+                            it.annualNetProfit
+                        )
+                    )
+                )
+            if (it.annualTurnoverNA == false)
+                businessFieldAdapter.submitItem(
+                    GeneralLookup(
+                        name = getString(R.string.annual_turnover),
+                        desc = String.format(
+                            getString(R.string.dollar_sign_concated),
+                            it.annualTurnover
+                        )
+                    )
+                )
         }
     }
 

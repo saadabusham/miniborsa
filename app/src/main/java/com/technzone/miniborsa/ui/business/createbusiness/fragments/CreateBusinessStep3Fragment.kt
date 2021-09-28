@@ -126,6 +126,12 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
                     viewModel.addImage(it).observe(this, uploadResultObserver())
                 }
             }
+            REQUEST_CODE_MAIN_IMAGE -> {
+                val fileUri = data.data
+                fileUri?.path?.let {
+                    viewModel.addIconImage(it).observe(this, uploadResultObserver())
+                }
+            }
             REQUEST_CODE_PICK_FILE -> {
                 var realPath = data.data?.getFilePathFromURI(requireContext())
                 if (realPath == null)
@@ -248,7 +254,6 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
                 }
             }
             2, 3 -> {
-//                imageRecyclerAdapter.items.removeAt(imageRecyclerAdapter.itemCount - 1)
                 addImage()
             }
         }
@@ -281,7 +286,6 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
                 }
             }
             2, 3 -> {
-//                documentsAdapter.items.removeAt(documentsAdapter.itemCount - 1)
                 addDocument()
             }
         }
@@ -310,7 +314,10 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
         item as LocaleImage
         if (view?.id == R.id.imgRemove) {
             if (position == 0) {
-                viewModel.deleteCompanyIcon().observe(this, uploadResultObserver())
+                pickImages(
+                    requestCode = REQUEST_CODE_MAIN_IMAGE
+                )
+//                viewModel.deleteCompanyIcon().observe(this, uploadResultObserver())
             } else {
                 item.id?.let { viewModel.deleteImage(it).observe(this, uploadResultObserver()) }
             }
@@ -348,5 +355,6 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
 
     companion object {
         const val REQUEST_CODE_PICK_FILE = 232
+        const val REQUEST_CODE_MAIN_IMAGE = 234
     }
 }

@@ -141,7 +141,7 @@
                     android:visibility="@{viewModel.isInvestor ? View.GONE : View.VISIBLE}"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="@dimen/_10sdp"
-                    app:cardElevation="@dimen/_20sdp"
+                    app:cardElevation="@dimen/_3sdp"
                     app:layout_constraintTop_toBottomOf="@id/layout_business_information"
                     tools:visibility="gone">
 
@@ -187,7 +187,7 @@
 
 
                         <com.technzone.miniborsa.ui.base.views.AppButton
-                            android:id="@+id/btnLogin"
+                            android:id="@+id/btnBecomeInvestor"
                             style="@style/AppTheme.Button"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_38sdp"
@@ -200,6 +200,8 @@
                             android:paddingBottom="@dimen/_7sdp"
                             android:text="@string/become_investor"
                             android:textColor="@color/white"
+                            android:clickable="true"
+                            android:focusable="true"
                             android:textSize="@dimen/_10ssp"
                             app:cornerRadius="@dimen/_5sdp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -247,9 +249,9 @@
                     android:layout_marginStart="@dimen/layouts_margin_start"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginEnd="@dimen/layouts_margin_end"
-                    android:visibility="@{viewModel.isInvestor ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    android:visibility="gone"
                     app:layout_constraintTop_toBottomOf="@id/layout_business_extra_info"
                     tools:visibility="visible" />
 

@@ -202,7 +202,7 @@
                     app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cvSearch"
+                    app:layout_constraintTop_toBottomOf="@id/tvCountries"
                     tools:listitem="@layout/row_selected_general" />
 
                 <TextView

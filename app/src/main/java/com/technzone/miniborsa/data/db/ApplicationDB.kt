@@ -4,9 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.technzone.miniborsa.data.daos.local.searchbusiness.SearchedBusinessLocalDao
-import com.technzone.miniborsa.data.db.typeconverter.FieldsListConverter
-import com.technzone.miniborsa.data.db.typeconverter.MediaListConverter
-import com.technzone.miniborsa.data.db.typeconverter.PropertiesListConverter
+import com.technzone.miniborsa.data.db.typeconverter.*
 import com.technzone.miniborsa.data.models.investor.Business
 
 @Database(
@@ -18,7 +16,9 @@ import com.technzone.miniborsa.data.models.investor.Business
 @TypeConverters(
     MediaListConverter::class,
     PropertiesListConverter::class,
-    FieldsListConverter::class
+    FieldsListConverter::class,
+    CategoriesListConverter::class,
+    LookupListConverter::class
 )
 
 abstract class ApplicationDB : RoomDatabase() {

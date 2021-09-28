@@ -85,7 +85,7 @@ data class BusinessRequest(
     val isNegotiable: Boolean? = null,
 
     @field:SerializedName("countries")
-    val countries: List<Int>? = null,
+    val countries: List<Int?>? = null,
 
     @field:SerializedName("annualNetProfit")
     val annualNetProfit: Int? = null,

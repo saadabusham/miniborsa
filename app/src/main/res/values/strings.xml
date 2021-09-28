@@ -360,4 +360,11 @@
     <!--    Faqs    -->
     <string name="no_faq_s_found">No Faq\'a Found</string>
     <string name="help_center">Help Center</string>
+
+    <string name="asking_price_concated">Asking price $%sk</string>
+
+    <!--    BusinessDetails -->
+    <string name="date_founded">Date Founded</string>
+    <string name="primary_industry">Primary Industry</string>
+    <string name="secondry_industry">Secondary Industy</string>
 </resources>

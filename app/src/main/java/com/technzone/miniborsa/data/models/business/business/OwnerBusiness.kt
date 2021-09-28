@@ -2,6 +2,7 @@ package com.technzone.miniborsa.data.models.business.business
 
 import com.google.gson.annotations.SerializedName
 import com.technzone.miniborsa.data.models.Media
+import com.technzone.miniborsa.data.models.general.GeneralLookup
 import com.technzone.miniborsa.data.models.investor.FieldsItem
 import com.technzone.miniborsa.data.models.investor.investors.CategoriesItem
 import java.io.Serializable
@@ -108,7 +109,7 @@ data class OwnerBusiness(
 	val files: MutableList<Media>? = mutableListOf(),
 
 	@field:SerializedName("countries")
-	val countries: List<Int>? = null,
+	val countries: List<GeneralLookup>? = null,
 
 	@field:SerializedName("categories")
 	val categories: List<CategoriesItem>? = null,
