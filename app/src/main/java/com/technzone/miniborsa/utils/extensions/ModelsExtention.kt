@@ -42,13 +42,13 @@ fun OwnerBusiness.calculateFirstStepPercentage(): Int {
 fun OwnerBusiness.calculateSecondStepPercentage(): Int {
     var percentage = 0
     //step two
-    if (askingPrice ?: 0 > 0 || askingPriceNA == true || askingPriceBoth ?: 0 > 0.0 || askingPriceNABoth == true) {
+    if (askingPrice ?: 0.0 > 0.0 || askingPriceNA == true || askingPriceBoth ?: 0.0 > 0.0 || askingPriceNABoth == true) {
         percentage += 10
     }
-    if (annualNetProfit ?: 0 > 0.0 || annualTurnoverNA == true) {
+    if (annualNetProfit ?: 0.0 > 0.0 || annualTurnoverNA == true) {
         percentage += 5
     }
-    if (annualTurnover ?: 0 > 0.0 || annualTurnoverNA == true) {
+    if (annualTurnover ?: 0.0 > 0.0 || annualTurnoverNA == true) {
         percentage += 5
     }
     return percentage
@@ -116,13 +116,13 @@ fun BusinessRequest.calculateFirstStepPercentage(): Int {
 fun BusinessRequest.calculateSecondStepPercentage(): Int {
     var percentage = 0
     //step two
-    if (askingPrice ?: 0 > 0 || askingPriceNA == true || askingPriceBoth ?: 0 > 0.0 || askingPriceNABoth == true) {
+    if (askingPrice ?: 0.0 > 0 || askingPriceNA == true || askingPriceBoth ?: 0.0 > 0.0 || askingPriceNABoth == true) {
         percentage += 10
     }
-    if (annualNetProfit ?: 0 > 0.0 || annualTurnoverNA == true) {
+    if (annualNetProfit ?: 0.0 > 0.0 || annualTurnoverNA == true) {
         percentage += 5
     }
-    if (annualTurnover ?: 0 > 0.0 || annualTurnoverNA == true) {
+    if (annualTurnover ?: 0.0 > 0.0 || annualTurnoverNA == true) {
         percentage += 5
     }
     return percentage

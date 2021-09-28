@@ -37,6 +37,12 @@ interface BusinessRemoteDao {
     ): ResponseWrapper<Int>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @DELETE("api/owner/Business/request/{id}")
+    suspend fun deleteBusinessRequest(
+        @Path("id") id:Int
+    ): ResponseWrapper<Any>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @PUT("api/owner/Business/request")
     suspend fun updateBusinessRequest(
         @Body businessRequest: BusinessRequest

@@ -62,6 +62,8 @@
             android:textColor="@color/green_color"
             android:textSize="@dimen/_7ssp"
             app:cornerRadius="@dimen/_2sdp"
+            android:paddingStart="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_5sdp"
             app:layout_constraintStart_toEndOf="@id/cvPhoto"
             app:layout_constraintTop_toTopOf="@id/cvPhoto"
             tools:text="Business For Sale" />

@@ -100,18 +100,22 @@
             <com.technzone.miniborsa.ui.base.views.AppTextView
                 android:id="@+id/tvBusinessLocation"
                 style="@style/textview_normal_regular"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_17sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
                 android:drawableStart="@drawable/ic_business_pin"
                 android:drawablePadding="@dimen/_5sdp"
                 tools:text="Amman, Jordan"
                 android:text="@{item.address}"
                 android:textColor="@color/black_alpha"
                 android:textSize="@dimen/_11ssp"
+                android:singleLine="true"
+                android:ellipsize="end"
                 app:layout_constraintBottom_toBottomOf="@id/tvBusinessType"
                 app:layout_constraintStart_toEndOf="@id/tvBusinessType"
-                app:layout_constraintTop_toTopOf="@id/tvBusinessType" />
+                app:layout_constraintTop_toTopOf="@id/tvBusinessType"
+                app:layout_constraintEnd_toEndOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>

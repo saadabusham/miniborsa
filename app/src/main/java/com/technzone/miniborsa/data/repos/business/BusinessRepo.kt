@@ -28,6 +28,10 @@ interface BusinessRepo {
         businessRequest: BusinessRequest
     ): APIResource<ResponseWrapper<Int>>
 
+    suspend fun deleteBusinessRequest(
+        id:Int
+    ): APIResource<ResponseWrapper<Any>>
+
     suspend fun updateBusinessRequest(
         businessRequest: BusinessRequest
     ): APIResource<ResponseWrapper<Any>>

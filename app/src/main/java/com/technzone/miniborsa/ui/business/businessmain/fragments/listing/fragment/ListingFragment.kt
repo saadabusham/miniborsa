@@ -97,8 +97,10 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>(),
             override fun onItemClick(view: View?, position: Int, item: Any) {
                 item as OwnerBusiness
                 if (view?.id == R.id.tvStatus) {
-                    viewModel.deleteCompanyRequest()
-                        .observe(requireActivity(), deleteRequestResultObserver())
+                    item.id?.let {
+                        viewModel.deleteBusinessRequest(it)
+                            .observe(requireActivity(), deleteRequestResultObserver())
+                    }
                 } else {
                     if (item.status == BusinessStatusEnums.DRAFT.value || item.status == BusinessStatusEnums.D.value)
                         CreateBusinessActivity.start(

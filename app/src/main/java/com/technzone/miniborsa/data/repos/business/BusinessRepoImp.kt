@@ -66,6 +66,18 @@ class BusinessRepoImp @Inject constructor(
         }
     }
 
+    override suspend fun deleteBusinessRequest(id: Int): APIResource<ResponseWrapper<Any>> {
+        return try {
+            responseHandle.handleSuccess(
+                businessRemoteDao.deleteBusinessRequest(
+                    id
+                )
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
     override suspend fun updateBusinessRequest(businessRequest: BusinessRequest): APIResource<ResponseWrapper<Any>> {
         return try {
             responseHandle.handleSuccess(

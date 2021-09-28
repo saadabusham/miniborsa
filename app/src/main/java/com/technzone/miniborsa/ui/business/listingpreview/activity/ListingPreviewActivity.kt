@@ -47,7 +47,7 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
         setUpRvExtraInfo()
     }
 
-    private fun handleReceivedData(){
+    private fun handleReceivedData() {
         viewModel.hasBusiness = intent.getBooleanExtra(
             Constants.BundleData.HAS_BUSINESS, false
         )
@@ -57,10 +57,10 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
         viewModel.businessDraft = intent.getBooleanExtra(
             Constants.BundleData.BUSINESS_DRAFT, false
         )
-        intent.getSerializableExtra(Constants.BundleData.OWNER_BUSINESS)?.let { item->
+        intent.getSerializableExtra(Constants.BundleData.OWNER_BUSINESS)?.let { item ->
             item as OwnerBusiness
             item.icon?.let {
-                if(item.images == null)
+                if (item.images == null)
                     item.images = mutableListOf()
                 item.images?.add(0, Media(name = it, id = -1))
             }
@@ -85,7 +85,13 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
             }
         }
         binding?.layoutListingPending?.tvStatus?.setOnClickListener {
-            viewModel.deleteCompanyRequest().observe(this, deleteRequestResultObserver())
+            if (viewModel.hasBusiness)
+                viewModel.business?.id?.let { it1 ->
+                    viewModel.deleteBusinessRequest(it1)
+                        .observe(this, deleteRequestResultObserver())
+                }
+            else
+                viewModel.deleteCompanyRequest().observe(this, deleteRequestResultObserver())
         }
     }
 

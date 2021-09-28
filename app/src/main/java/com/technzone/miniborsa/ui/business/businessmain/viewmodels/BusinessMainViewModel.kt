@@ -44,10 +44,10 @@ class BusinessMainViewModel @Inject constructor(
         emit(response)
     }
 
-    fun deleteCompanyRequest() = liveData {
+    fun deleteBusinessRequest(id:Int) = liveData {
         emit(APIResource.loading())
         val response =
-            businessRepo.deleteCompanyRequest()
+            businessRepo.deleteBusinessRequest(id)
         emit(response)
     }
 }

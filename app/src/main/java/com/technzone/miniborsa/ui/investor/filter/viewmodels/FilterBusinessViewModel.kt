@@ -27,8 +27,8 @@ class FilterBusinessViewModel @Inject constructor(
     var selectedBusinessType: Int? = null
     val searchText: MutableLiveData<String> = MutableLiveData()
     val addressStr: MutableLiveData<String> = MutableLiveData()
-    val filterActive: MutableLiveData<Boolean> = MutableLiveData(true)
-    val maleSelected: MutableLiveData<Boolean> = MutableLiveData(true)
+    val filterActive: MutableLiveData<Boolean> = MutableLiveData()
+    val maleSelected: MutableLiveData<Boolean> = MutableLiveData()
     val itemFoundCount: MutableLiveData<Int> = MutableLiveData(0)
     val min: MutableLiveData<Int> = MutableLiveData(0)
     val max: MutableLiveData<Int> = MutableLiveData(0)
@@ -58,11 +58,11 @@ class FilterBusinessViewModel @Inject constructor(
                 businessType = selectedBusinessType,
                 pageNumber = pageNumber,
                 pageSize = 10,
-                categories = categories,
+                categories = if(categories.isNullOrEmpty()) null else categories,
                 gender = if(maleSelected.value == true ) GenderEnums.MALE.ordinal else GenderEnums.FEMALE.ordinal,
-                active = filterActive.value,
-                askingPriceRangeFrom = min.value,
-                askingPriceRangeTo = max.value,
+                active = if(filterActive.value == null) null else filterActive.value,
+                askingPriceRangeFrom = if(min.value == 0 ) null else min.value ,
+                askingPriceRangeTo = if(max.value == 0) null else max.value,
                 title = searchText.value
             )
         emit(response)
@@ -72,7 +72,7 @@ class FilterBusinessViewModel @Inject constructor(
         emit(APIResource.loading())
         val response =
             configurationRepo.getCategories(
-                    parentId = 0,
+                    parentId = null,
                     pageSize = 1000,
                     pageNumber = 1)
         emit(response)

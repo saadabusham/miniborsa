@@ -7,6 +7,9 @@
 
         <import type="android.view.View" />
 
+        <variable
+            name="viewModel"
+            type="com.technzone.miniborsa.ui.investor.businessdetails.viewmodels.BusinessDetailsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +21,8 @@
             style="@style/textview_normal_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Business For Sale "
+            tools:text="Business For Sale "
+            setTextByBusinessType="@{viewModel.businessToView.businessType}"
             android:textColor="@color/green_color"
             android:textSize="@dimen/_11ssp"
             android:layout_marginEnd="@dimen/_10sdp"
@@ -31,7 +35,8 @@
             style="@style/textview_normal_regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Freehold"
+            tools:text="Freehold"
+            setTextBySaleType="@{viewModel.businessToView.propertyStatus}"
             android:layout_marginTop="@dimen/_5sdp"
             android:textColor="@color/black_alpha"
             android:textSize="@dimen/_11ssp"
@@ -54,7 +59,8 @@
             style="@style/textview_normal_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$340,000"
+            tools:text="$340,000"
+            android:text="@{@string/dollar_sign_concated(viewModel.businessToView.askingPrice)}"
             android:textColor="@color/green_color"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintEnd_toEndOf="parent"

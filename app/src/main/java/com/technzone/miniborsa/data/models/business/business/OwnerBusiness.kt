@@ -40,7 +40,7 @@ data class OwnerBusiness(
 	val isRelocated: Boolean? = null,
 
 	@field:SerializedName("askingPriceBoth")
-	val askingPriceBoth: Int? = null,
+	val askingPriceBoth: Double? = null,
 
 	@field:SerializedName("investmentPercentage")
 	val investmentPercentage: Int? = null,
@@ -58,7 +58,7 @@ data class OwnerBusiness(
 	val askingPriceNABoth: Boolean? = null,
 
 	@field:SerializedName("annualTurnover")
-	val annualTurnover: Int? = null,
+	val annualTurnover: Double? = null,
 
 	@field:SerializedName("listLocation")
 	val listLocation: Boolean? = null,
@@ -82,13 +82,13 @@ data class OwnerBusiness(
 	val isConfidential: Boolean? = null,
 
 	@field:SerializedName("askingPrice")
-	val askingPrice: Int? = null,
+	val askingPrice: Double? = null,
 
 	@field:SerializedName("askingPriceNA")
 	val askingPriceNA: Boolean? = null,
 
 	@field:SerializedName("annualNetProfit")
-	val annualNetProfit: Int? = null,
+	val annualNetProfit: Double? = null,
 
 	@field:SerializedName("annualTurnoverNA")
 	val annualTurnoverNA: Boolean? = null,

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -25,7 +26,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_100sdp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_business_sample"
+                tools:src="@drawable/ic_business_sample"
+                ivImageUrl="@{item.icon}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -41,7 +43,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
             <com.technzone.miniborsa.ui.base.views.AppButton
                 android:id="@+id/tvPrice"
                 style="@style/textview_normal_regular"
@@ -52,7 +53,8 @@
                 android:backgroundTint="@color/light_orange_color"
                 android:padding="@dimen/_5sdp"
                 android:gravity="center"
-                android:text="Asking Price $100k"
+                tools:text="Asking Price $100k"
+                android:text="@{@string/asking_price_concated(item.askingPrice)}"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_7ssp"
                 app:cornerRadius="@dimen/_2sdp"
@@ -67,7 +69,8 @@
                 android:layout_marginStart="@dimen/_7sdp"
                 android:background="@drawable/ic_price_bg"
                 android:padding="@dimen/_5sdp"
-                android:text="Share For Sale"
+                tools:text="Share For Sale"
+                setTextByBusinessType="@{item.businessType}"
                 android:textColor="@color/button_color"
                 android:textSize="@dimen/_7ssp"
                 app:layout_constraintStart_toEndOf="@id/tvPrice"
@@ -80,7 +83,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
-                android:text="The Slebew Residence"
+                tools:text="The Slebew Residence"
+                android:text="@{item.title}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintStart_toStartOf="@id/tvPrice"
@@ -95,7 +99,8 @@
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:drawableStart="@drawable/ic_business_type"
                 android:drawablePadding="@dimen/_5sdp"
-                android:text="Healthtech"
+                tools:text="Healthtech"
+                android:text="@{item.categories.get(0).name}"
                 android:textColor="@color/black_alpha"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -105,15 +110,18 @@
             <com.technzone.miniborsa.ui.base.views.AppTextView
                 android:id="@+id/tvBusinessLocation"
                 style="@style/textview_normal_regular"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_17sdp"
                 android:drawableStart="@drawable/ic_business_pin"
                 android:drawablePadding="@dimen/_5sdp"
-                android:text="Amman, Jordan"
+                tools:text="Amman, Jordan"
+                android:text="@{item.address}"
                 android:textColor="@color/black_alpha"
                 android:textSize="@dimen/_11ssp"
+                android:layout_marginEnd="@dimen/_5sdp"
                 app:layout_constraintBottom_toBottomOf="@id/tvBusinessType"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tvBusinessType"
                 app:layout_constraintTop_toTopOf="@id/tvBusinessType" />
         </androidx.constraintlayout.widget.ConstraintLayout>

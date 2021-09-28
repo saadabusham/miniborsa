@@ -1,7 +1,6 @@
 package com.technzone.miniborsa.ui.business.createbusiness.fragments
 
 import android.view.inputmethod.EditorInfo
-import android.widget.SeekBar
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.common.interfaces.SeekbarCallback
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
@@ -31,44 +30,46 @@ class CreateBusinessStep2ForShareFragment :
     }
 
     private fun setUpListeners() {
-        binding?.seekBarFreeHoldAskingPrice?.setOnSeekBarChangeListener(object : SeekbarCallback{
+        binding?.seekBarFreeHoldAskingPrice?.setOnSeekBarChangeListener(object : SeekbarCallback {
             override fun onFromUserChange(progress: Int) {
-                viewModel.freeHoldAskingPrice.postValue(progress)
+                viewModel.freeHoldAskingPrice.postValue(progress.toDouble())
             }
         })
         binding?.edFreeHoldAskingPrice?.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.freeHoldAskingPrice.postValue(
-                    binding?.edFreeHoldAskingPrice?.text.toString().toLongOrDefault(viewModel.defaultMinValue.toLong()).toInt()
+                    binding?.edFreeHoldAskingPrice?.text.toString()
+                        .toDoubleOrNull()?:viewModel.defaultMinValue.toDouble()
                 )
                 binding?.root.hideKeyboard(requireActivity())
                 true
             } else false
         }
-        binding?.seekBarNetProfit?.setOnSeekBarChangeListener(object : SeekbarCallback{
+        binding?.seekBarNetProfit?.setOnSeekBarChangeListener(object : SeekbarCallback {
             override fun onFromUserChange(progress: Int) {
-                viewModel.netProfit.postValue(progress)
+                viewModel.netProfit.postValue(progress.toDouble())
             }
         })
         binding?.edNetProfit?.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.netProfit.postValue(
                     binding?.edNetProfit?.text.toString()
-                        .toLongOrDefault(viewModel.defaultMinValue.toLong()).toInt()
+                        .toDoubleOrNull()?:viewModel.defaultMinValue.toDouble()
                 )
                 binding?.root.hideKeyboard(requireActivity())
                 true
             } else false
         }
-        binding?.seekBarTurnover?.setOnSeekBarChangeListener(object : SeekbarCallback{
+        binding?.seekBarTurnover?.setOnSeekBarChangeListener(object : SeekbarCallback {
             override fun onFromUserChange(progress: Int) {
-                viewModel.turnOver.postValue(progress)
+                viewModel.turnOver.postValue(progress.toDouble())
             }
         })
         binding?.edTurnover?.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.turnOver.postValue(
-                    binding?.edTurnover?.text.toString().toLongOrDefault(viewModel.defaultMinValue.toLong()).toInt()
+                    binding?.edTurnover?.text.toString()
+                        .toDoubleOrNull()?:viewModel.defaultMinValue.toDouble()
                 )
                 binding?.root.hideKeyboard(requireActivity())
                 true
@@ -77,7 +78,7 @@ class CreateBusinessStep2ForShareFragment :
     }
 
     override fun validateToMoveToNext(callback: (Boolean) -> Unit) {
-        viewModel.updateRequestBusiness().observe(this,updateRequestResultObserver(callback))
+        viewModel.updateRequestBusiness().observe(this, updateRequestResultObserver(callback))
     }
 
     private fun updateRequestResultObserver(

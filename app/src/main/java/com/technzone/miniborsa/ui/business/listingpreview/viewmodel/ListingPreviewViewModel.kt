@@ -46,4 +46,11 @@ class ListingPreviewViewModel @Inject constructor(
         emit(response)
     }
 
+    fun deleteBusinessRequest(id:Int) = liveData {
+        emit(APIResource.loading())
+        val response =
+            businessRepo.deleteBusinessRequest(id)
+        emit(response)
+    }
+
 }

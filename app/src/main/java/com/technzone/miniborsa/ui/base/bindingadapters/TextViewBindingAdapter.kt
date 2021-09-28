@@ -6,6 +6,7 @@ import androidx.databinding.BindingAdapter
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.enums.BusinessTypeEnums
 import com.technzone.miniborsa.data.enums.NewsSectionEnums
+import com.technzone.miniborsa.data.enums.PropertyStatusEnums
 
 @BindingAdapter("setTextBySection")
 fun TextView.setTextBySection(
@@ -41,6 +42,18 @@ fun TextView.setTextByBusinessType(
             BusinessTypeEnums.BUSINESS_FOR_SALE.value -> R.string.businesses_for_sale
             BusinessTypeEnums.BUSINESS_FOR_SHARE.value -> R.string.share_for_sale
             else -> R.string.franchise
+        }
+    )
+}
+@BindingAdapter("setTextBySaleType")
+fun TextView.setTextBySaleType(
+    type: Int
+) {
+    text = context.getString(
+        when (type) {
+            PropertyStatusEnums.FREEHOLD.value -> R.string.freehold
+            PropertyStatusEnums.LEASEHOLD.value -> R.string.leasehold
+            else -> R.string.both
         }
     )
 }

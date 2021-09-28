@@ -61,6 +61,7 @@
             android:layout_marginBottom="@dimen/_10sdp"
             android:drawableStart="@drawable/ic_business_type"
             android:drawablePadding="@dimen/_5sdp"
+            android:text="@{viewModel.businessToView.categories.get(0).name}"
             android:textColor="@color/black_alpha"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintStart_toStartOf="@id/beginGuide"
@@ -242,6 +243,20 @@
                     tools:visibility="visible" />
 
                 <include
+                    android:id="@+id/layout_business_countries"
+                    layout="@layout/layout_business_countries"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:visibility="@{viewModel.businessToView.countries.size() > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layout_business_extra_info"
+                    tools:visibility="visible" />
+
+                <include
                     android:id="@+id/layout_business_documents"
                     layout="@layout/layout_business_documents"
                     android:layout_width="0dp"
@@ -252,7 +267,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     android:visibility="gone"
-                    app:layout_constraintTop_toBottomOf="@id/layout_business_extra_info"
+                    app:layout_constraintTop_toBottomOf="@id/layout_business_countries"
                     tools:visibility="visible" />
 
                 <View

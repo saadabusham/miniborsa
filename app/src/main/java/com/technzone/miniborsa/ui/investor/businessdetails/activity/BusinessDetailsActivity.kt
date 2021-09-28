@@ -40,6 +40,7 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
     private lateinit var businessSliderAdapter: BusinessSliderAdapter
     private lateinit var businessFieldAdapter: BusinessFieldAdapter
     private lateinit var businessExtraInfoAdapter: BusinessExtraInfoAdapter
+    private lateinit var businessCountriesAdapter: BusinessExtraInfoAdapter
     private lateinit var businessDocumentAdapter: BusinessDocumentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,6 +61,7 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
     private fun setUpBinding() {
         binding?.viewModel = viewModel
         binding?.layoutBusinessInformation?.viewModel = viewModel
+        binding?.layoutBusinessPrice?.viewModel = viewModel
     }
 
     private fun initData() {
@@ -82,6 +84,7 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
         setUpRvSlider()
         setUpRvFields()
         setUpRvExtraInfo()
+        setUpRvCountries()
         setUpRvDocuments()
     }
 
@@ -216,6 +219,17 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
         viewModel.businessToView.value?.properties?.map { ExtraInfo(name = it.name, id = it.id) }
             ?.let {
                 businessExtraInfoAdapter.submitItems(
+                    it
+                )
+            }
+    }
+
+    private fun setUpRvCountries() {
+        businessCountriesAdapter = BusinessExtraInfoAdapter(this)
+        binding?.layoutBusinessCountries?.rvCountries?.adapter = businessCountriesAdapter
+        viewModel.businessToView.value?.countries?.map { ExtraInfo(name = it.name, id = it.id) }
+            ?.let {
+                businessCountriesAdapter.submitItems(
                     it
                 )
             }
