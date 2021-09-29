@@ -19,7 +19,8 @@ import javax.inject.Singleton
 class MyApplication @Inject constructor() : Application() {
 
     lateinit var chatClientManager: ChatClientManager
-    public var deeplink_id = ""
+    public var businessIdDeepLink = ""
+    public var newsIdDeepLink = ""
     override fun onCreate() {
         super.onCreate()
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)

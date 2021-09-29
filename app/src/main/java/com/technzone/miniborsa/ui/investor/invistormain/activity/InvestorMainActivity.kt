@@ -7,12 +7,15 @@ import androidx.activity.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.common.MyApplication
 import com.technzone.miniborsa.common.interfaces.BaseActivityCallback
 import com.technzone.miniborsa.common.interfaces.LoginCallBack
 import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.databinding.ActivityInvestorMainBinding
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
+import com.technzone.miniborsa.ui.investor.businessdetails.activity.BusinessDetailsActivity
 import com.technzone.miniborsa.ui.investor.invistormain.viewmodels.InvestorMainViewModel
+import com.technzone.miniborsa.ui.investor.news.activity.NewsActivity
 import com.technzone.miniborsa.utils.extensions.gone
 import com.technzone.miniborsa.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,6 +30,19 @@ class InvestorMainActivity : BaseBindingActivity<ActivityInvestorMainBinding>(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_investor_main, hasToolbar = false)
         setupNavigation()
+        checkDeepLink()
+    }
+
+    private fun checkDeepLink() {
+        if (MyApplication.instance.newsIdDeepLink.isNotEmpty()) {
+            val id = MyApplication.instance.newsIdDeepLink.toIntOrNull()
+            MyApplication.instance.newsIdDeepLink = ""
+            NewsActivity.start(this, id)
+        } else if (MyApplication.instance.businessIdDeepLink.isNotEmpty()) {
+            val id = MyApplication.instance.businessIdDeepLink.toIntOrNull()
+            MyApplication.instance.businessIdDeepLink = ""
+            BusinessDetailsActivity.start(this, businessId = id)
+        }
     }
 
     private fun setupNavigation() {

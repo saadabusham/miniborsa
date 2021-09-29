@@ -2,7 +2,10 @@ package com.technzone.miniborsa.data.common
 
 object Constants {
 
-    const val NEWS_ID: String = "NEWS_ID"
+    object DeepLink{
+        const val NEWS_ID: String = "NEWS_ID"
+        const val BUSINESS_ID: String = "BUSINESS_ID"
+    }
     const val DEVICE_TYPE = 1
     const val APPLICATION_TYPE = 1
     const val MIN_PERCENTAGE_TO_SEND = 80

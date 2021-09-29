@@ -27,6 +27,7 @@ import com.technzone.miniborsa.ui.investor.businessdetails.viewmodels.BusinessDe
 import com.technzone.miniborsa.ui.investor.invistormain.viewmodels.FavoritesViewModel
 import com.technzone.miniborsa.ui.investor.invistorroles.activity.InvestorRolesActivity
 import com.technzone.miniborsa.ui.subscription.activity.SubscriptionActivity
+import com.technzone.miniborsa.utils.DeepLinkUtil.generateDeepLink
 import com.technzone.miniborsa.utils.extensions.getSnapHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_business_details_toolbar.*
@@ -110,8 +111,20 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
             }
         }
         binding?.toolbar?.imgShare?.setOnClickListener {
-
+            generateLink()
         }
+    }
+
+    private fun generateLink() {
+        this.generateDeepLink(
+            key = Constants.DeepLink.BUSINESS_ID,
+            value = viewModel.businessToView.value?.id.toString(),
+            description = viewModel.businessToView.value?.title ?: "",
+            image = viewModel.businessToView?.value?.icon ?: "",
+            socialTag = resources.getString(R.string.business_on_mini_bursa),
+            shareTitle = resources.getString(R.string.share_this_business),
+            title = viewModel.businessToView?.value?.title?:""
+        )
     }
 
     private fun wishListObserver(): CustomObserverResponse<Any> {
@@ -260,8 +273,8 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
     companion object {
         fun start(
             context: Context?,
-            business: Business,
-            businessId: Int = -1
+            business: Business? = null,
+            businessId: Int? = -1
         ) {
             val intent = Intent(context, BusinessDetailsActivity::class.java).apply {
                 putExtra(Constants.BundleData.BUSINESS, business)
