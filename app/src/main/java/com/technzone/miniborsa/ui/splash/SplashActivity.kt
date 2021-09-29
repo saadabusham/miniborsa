@@ -37,6 +37,8 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
             layoutResID = R.layout.activity_splash,
             hasToolbar = false
         )
+
+        SharedPreferencesUtil.getInstance(applicationContext).setIsNewNotifications(true)
         Handler(Looper.getMainLooper()).postDelayed({
             viewModel.getConfigurationData().observe(this, configurationResultObserver())
         }, 3000)
@@ -55,9 +57,28 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
                 ) {
                     SharedPreferencesUtil.getInstance(this@SplashActivity)
                         .setConfigurationPreferences(data)
-                    goToNextPage()
+                    viewModel.getFavorites().observe(this@SplashActivity,favoriteIdsResultObserver())
                 }
             })
+    }
+
+    private fun favoriteIdsResultObserver(): CustomObserverResponse<List<Int>> {
+        return CustomObserverResponse(
+            this,
+            object : CustomObserverResponse.APICallBack<List<Int>> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: List<Int>?
+                ) {
+                    goToNextPage()
+                }
+
+                override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
+                    super.onError(subErrorCode, message)
+                    goToNextPage()
+                }
+            },showError = false)
     }
 
     private fun goToNextPage() {

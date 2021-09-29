@@ -130,7 +130,7 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
     }
 
     private fun updateFavorite() {
-        binding?.layoutBusinessSlider?.favorite = viewModel.businessToView.value?.isFavorite
+        binding?.toolbar?.favorite = viewModel.businessToView.value?.isFavorite
     }
 
     private fun businessDetailsResultObserver(): CustomObserverResponse<Business> {
@@ -144,6 +144,7 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
                 ) {
                     viewModel.businessToView.value = data
                     favoriteViewModel.businessToView.value = data
+                    updateFavorite()
                     handleData()
                 }
             })

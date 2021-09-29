@@ -367,4 +367,13 @@
     <string name="date_founded">Date Founded</string>
     <string name="primary_industry">Primary Industry</string>
     <string name="secondry_industry">Secondary Industy</string>
+
+    <!-- notifications -->
+    <string name="title_notifications">Notifications</string>
+    <string name="label_notifications_empty">No Notifications!</string>
+    <string name="notification_title_key">englishTitle</string>
+    <string name="notification_message_key">englishBody</string>
+    <string name="notification_type_key">notificationType</string>
+    <string name="notification_value_key">Data</string>
+
 </resources>

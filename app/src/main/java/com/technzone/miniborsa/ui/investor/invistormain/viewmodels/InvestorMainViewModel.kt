@@ -7,10 +7,12 @@ import com.technzone.miniborsa.data.enums.NewsSectionEnums
 import com.technzone.miniborsa.data.enums.NewsTypeEnums
 import com.technzone.miniborsa.data.enums.UserEnums
 import com.technzone.miniborsa.data.enums.UserRoleEnums
+import com.technzone.miniborsa.data.pref.favorite.FavoritePref
 import com.technzone.miniborsa.data.repos.common.CommonRepo
 import com.technzone.miniborsa.data.repos.investors.InvestorsRepo
 import com.technzone.miniborsa.data.repos.user.UserRepo
 import com.technzone.miniborsa.ui.base.viewmodel.BaseViewModel
+import com.technzone.miniborsa.utils.pref.SharedPreferencesUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -18,7 +20,9 @@ import javax.inject.Inject
 class InvestorMainViewModel @Inject constructor(
     private val userRepo: UserRepo,
     private val investorsRepo: InvestorsRepo,
-    private val commonRepo: CommonRepo
+    private val commonRepo: CommonRepo,
+    private val sharedPreferencesUtil: SharedPreferencesUtil,
+    private val favoritePref: FavoritePref
 ) : BaseViewModel() {
 
     fun getBusiness(
@@ -31,6 +35,9 @@ class InvestorMainViewModel @Inject constructor(
                 pageNumber = 1,
                 pageSize = Constants.PAGE_SIZE
             )
+        favoritePref.getFavoriteList().forEach { favId ->
+            response.data?.data?.data?.singleOrNull { it.id == favId }?.let { it.isFavorite = true }
+        }
         emit(response)
     }
 
@@ -72,5 +79,9 @@ class InvestorMainViewModel @Inject constructor(
 
     fun setCurrentUserRoles(role: String) {
         return userRepo.setCurrentRole(role)
+    }
+
+    fun isNewNotification():Boolean {
+        return sharedPreferencesUtil.getIsNewNotifications()
     }
 }

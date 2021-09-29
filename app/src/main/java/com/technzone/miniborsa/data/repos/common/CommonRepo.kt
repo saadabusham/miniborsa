@@ -34,6 +34,9 @@ interface CommonRepo {
         pageNumber: Int
     ): APIResource<ResponseWrapper<ListWrapper<Business>>>
 
+    suspend fun getFavoriteIds(
+    ): APIResource<ResponseWrapper<List<Int>>>
+
     suspend fun addFavorite(
         favoriteRequest: FavoriteRequest
     ): APIResource<ResponseWrapper<Any>>

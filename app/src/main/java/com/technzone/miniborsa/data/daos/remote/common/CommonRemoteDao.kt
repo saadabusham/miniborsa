@@ -43,13 +43,19 @@ interface CommonRemoteDao {
     ): ResponseWrapper<ListWrapper<Business>>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
+    @GET("api/user/favorite/FavIds")
+    suspend fun getFavoriteIds(
+    ): ResponseWrapper<List<Int>>
+
+    @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
     @POST("api/user/favorite")
     suspend fun addFavorite(
         @Body favoriteRequest: FavoriteRequest
     ): ResponseWrapper<Any>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @DELETE("api/user/favorite")
+//    @DELETE("api/user/favorite")
+    @HTTP(method = "DELETE", path = "api/user/favorite", hasBody = true)
     suspend fun removeFavorite(
         @Body favoriteRequest: FavoriteRequest
     ): ResponseWrapper<Any>

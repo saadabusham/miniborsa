@@ -15,6 +15,7 @@ object Constants {
 
     object BundleData {
 
+        const val FAVORITE_LIST: String = "favoriteList"
         const val BUSINESS_DRAFT: String ="businessDraft"
         const val COMPANY_DRAFT: String ="comapnyDraft"
         const val HAS_BUSINESS: String = "hasBusiness"
@@ -37,6 +38,7 @@ object Constants {
 
     object NotificationsChannels {
         const val DEFAULT_CHANNEL: String = "Default channel"
+        const val NEW_NOTIFICATIONS: String = "new notifications"
     }
 
     object Twilio {

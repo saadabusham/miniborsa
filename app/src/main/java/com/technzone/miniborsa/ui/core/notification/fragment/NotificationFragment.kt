@@ -38,6 +38,7 @@ class NotificationFragment : BaseBindingFragment<FragmentNotificationBinding>(),
 
     override fun onViewVisible() {
         super.onViewVisible()
+        viewModel.clearNewNotifications()
         handleNavigationView(true)
         setUpBinding()
         setUpListeners()

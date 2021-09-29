@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -55,11 +56,10 @@
                         android:layout_width="@dimen/_19sdp"
                         android:layout_height="@dimen/_22sdp"
                         android:layout_marginEnd="@dimen/_15sdp"
-                        android:src="@drawable/ic_alerts_active"
+                        tools:src="@drawable/ic_alerts_active"
                         app:layout_constraintBottom_toBottomOf="@id/tvWelcome"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/tvWelcome" />
-
 
                     <com.technzone.miniborsa.ui.base.views.AppTextView
                         android:id="@+id/tvHeader"

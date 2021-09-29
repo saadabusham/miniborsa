@@ -1,8 +1,12 @@
 package com.technzone.miniborsa.data.di
 
 import android.content.Context
+import android.content.SharedPreferences
+import androidx.preference.PreferenceManager
 import com.technzone.miniborsa.data.pref.configuration.ConfigurationPref
 import com.technzone.miniborsa.data.pref.configuration.ConfigurationPrefImp
+import com.technzone.miniborsa.data.pref.favorite.FavoritePref
+import com.technzone.miniborsa.data.pref.favorite.FavoritePrefImp
 import com.technzone.miniborsa.data.pref.user.UserPref
 import com.technzone.miniborsa.data.pref.user.UserPrefImp
 import com.technzone.miniborsa.utils.pref.SharedPreferencesUtil
@@ -33,5 +37,17 @@ object PrefModule {
     @Singleton
     fun provideUserPref(preferencesUtil: SharedPreferencesUtil): UserPref {
         return UserPrefImp(preferencesUtil)
+    }
+
+    @Singleton
+    @Provides
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+    }
+
+    @Singleton
+    @Provides
+    fun provideFavoritePreferences(preferencesUtil: SharedPreferencesUtil): FavoritePref {
+        return FavoritePrefImp(preferencesUtil)
     }
 }

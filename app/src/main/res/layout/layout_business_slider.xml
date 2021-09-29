@@ -7,9 +7,6 @@
 
         <import type="android.view.View" />
 
-        <variable
-            name="favorite"
-            type="Boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

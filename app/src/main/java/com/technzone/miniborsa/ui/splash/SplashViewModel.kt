@@ -2,8 +2,11 @@ package com.technzone.miniborsa.ui.splash
 
 import androidx.lifecycle.liveData
 import com.technzone.miniborsa.data.api.response.APIResource
+import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.enums.UserEnums
 import com.technzone.miniborsa.data.models.auth.login.UserDetailsResponseModel
+import com.technzone.miniborsa.data.pref.favorite.FavoritePref
+import com.technzone.miniborsa.data.repos.common.CommonRepo
 import com.technzone.miniborsa.data.repos.configuration.ConfigurationRepo
 import com.technzone.miniborsa.data.repos.user.UserRepo
 import com.technzone.miniborsa.ui.base.viewmodel.BaseViewModel
@@ -15,12 +18,21 @@ import javax.inject.Inject
 class SplashViewModel @Inject constructor(
     private val userRepo: UserRepo,
     private val configurationRepo: ConfigurationRepo,
-    private val sharedPreferencesUtil: SharedPreferencesUtil
+    private val sharedPreferencesUtil: SharedPreferencesUtil,
+    private var favoritePref: FavoritePref,
+    private val commonRepo: CommonRepo
 ) : BaseViewModel() {
 
     fun getConfigurationData() = liveData {
         emit(APIResource.loading())
         val response = configurationRepo.loadConfigurationData()
+        emit(response)
+    }
+
+    fun getFavorites(
+    ) = liveData {
+        emit(APIResource.loading())
+        val response = commonRepo.getFavoriteIds()
         emit(response)
     }
 //    fun updateAccessToken() {

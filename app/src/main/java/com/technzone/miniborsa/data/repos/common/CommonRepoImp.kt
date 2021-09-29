@@ -73,6 +73,16 @@ class CommonRepoImp @Inject constructor(
         }
     }
 
+    override suspend fun getFavoriteIds(): APIResource<ResponseWrapper<List<Int>>> {
+        return try {
+            responseHandle.handleSuccess(
+                commonRemoteDao.getFavoriteIds()
+            )
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
     override suspend fun addFavorite(favoriteRequest: FavoriteRequest): APIResource<ResponseWrapper<Any>> {
         return try {
             responseHandle.handleSuccess(

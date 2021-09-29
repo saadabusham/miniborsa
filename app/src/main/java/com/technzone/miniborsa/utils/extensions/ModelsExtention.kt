@@ -1,5 +1,8 @@
 package com.technzone.miniborsa.utils.extensions
 
+import com.technzone.miniborsa.data.enums.BusinessStatusEnums
+import com.technzone.miniborsa.data.enums.BusinessTypeEnums
+import com.technzone.miniborsa.data.enums.PropertyStatusEnums
 import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.data.models.business.businessrequest.BusinessRequest
 
@@ -42,8 +45,11 @@ fun OwnerBusiness.calculateFirstStepPercentage(): Int {
 fun OwnerBusiness.calculateSecondStepPercentage(): Int {
     var percentage = 0
     //step two
+    if(businessType == BusinessTypeEnums.BUSINESS_FRANCHISE.value && !countries.isNullOrEmpty()){
+        percentage +=5
+    }
     if (askingPrice ?: 0.0 > 0.0 || askingPriceNA == true || askingPriceBoth ?: 0.0 > 0.0 || askingPriceNABoth == true) {
-        percentage += 10
+        percentage += if(businessType == BusinessTypeEnums.BUSINESS_FRANCHISE.value) 5 else 10
     }
     if (annualNetProfit ?: 0.0 > 0.0 || annualTurnoverNA == true) {
         percentage += 5

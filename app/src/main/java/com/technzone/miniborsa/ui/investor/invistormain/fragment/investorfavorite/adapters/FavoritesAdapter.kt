@@ -35,6 +35,7 @@ class FavoritesAdapter(
 
         override fun bind(item: Business) {
             binding.item = item
+            binding.favorite = item.isFavorite
             binding.root.setOnClickListener {
                 itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
             }

@@ -1,5 +1,6 @@
 package com.technzone.miniborsa.ui.investor.invistormain.fragment.search
 
+import android.content.SharedPreferences
 import android.transition.TransitionManager
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +38,7 @@ import com.technzone.miniborsa.utils.extensions.getSnapHelper
 import com.technzone.miniborsa.utils.extensions.gone
 import com.technzone.miniborsa.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding>(),
@@ -51,6 +53,11 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
     lateinit var businessNewsAdapter: BusinessNewsAdapter
 
     var isFullScreen: Boolean = false
+
+    private var prefsChangeListener: SharedPreferences.OnSharedPreferenceChangeListener? = null
+    @Inject
+    lateinit var sharedPrefs: SharedPreferences
+
     override fun getLayoutId(): Int = R.layout.fragment_investor_search
 
     override fun onViewVisible() {
@@ -63,6 +70,8 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
         setUpRvShareForSaleBusiness()
         setUpRvFranchiseBusiness()
         setUpRvBusinessNews()
+        handleNewNotifications()
+        initPreferences()
     }
 
     private fun setUpBinding() {
@@ -340,7 +349,23 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
     override fun loggedInSuccess() {
 
     }
+    private fun handleNewNotifications(){
+        if (viewModel.isNewNotification())
+            binding?.imgNotifications?.setImageResource(R.drawable.ic_alerts_active)
+        else
+            binding?.imgNotifications?.setImageResource(R.drawable.ic_nav_notification)
+    }
 
+    private fun initPreferences() {
+        prefsChangeListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            when (key) {
+                Constants.NotificationsChannels.NEW_NOTIFICATIONS -> {
+                    handleNewNotifications()
+                }
+            }
+        }
+        sharedPrefs.registerOnSharedPreferenceChangeListener(prefsChangeListener)
+    }
     private fun wishListObserver(): CustomObserverResponse<Any> {
         return CustomObserverResponse(
             requireActivity(),
