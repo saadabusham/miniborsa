@@ -53,6 +53,7 @@
     <color name="dark_blue">#012245</color>
     <color name="button_color">#E9591C</color>
     <color name="button_color_alpha">#33FEC031</color>
+    <color name="button_color_alpha5">#0DE9591C</color>
     <color name="yalow">#FEC031</color>
     <color name="blue">#259DDB</color>
     <color name="welcome_back_blue">#0E4A86</color>

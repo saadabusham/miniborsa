@@ -124,6 +124,8 @@
                 android:textColor="@color/black_alpha"
                 android:textSize="@dimen/_11ssp"
                 android:layout_marginEnd="@dimen/_5sdp"
+                android:singleLine="true"
+                android:ellipsize="end"
                 app:layout_constraintBottom_toBottomOf="@id/tvBusinessType"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tvBusinessType"

@@ -18,6 +18,7 @@ class BusinessMainViewModel @Inject constructor(
     private val sharedPreferencesUtil: SharedPreferencesUtil
 ) : BaseViewModel() {
 
+    var promotePrice = 50
 
     fun isNewNotification():Boolean {
         return sharedPreferencesUtil.getIsNewNotifications()

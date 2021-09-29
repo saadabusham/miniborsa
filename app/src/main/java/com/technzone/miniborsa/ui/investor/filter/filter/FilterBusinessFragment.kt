@@ -1,20 +1,27 @@
 package com.technzone.miniborsa.ui.investor.filter.filter
 
+import android.app.Activity
+import android.content.Intent
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
+import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.data.enums.BusinessTypeEnums
 import com.technzone.miniborsa.data.models.general.GeneralLookup
 import com.technzone.miniborsa.data.models.general.ListWrapper
 import com.technzone.miniborsa.data.models.investor.investors.CategoriesItem
+import com.technzone.miniborsa.data.models.map.Address
 import com.technzone.miniborsa.databinding.FragmentFilterBinding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
 import com.technzone.miniborsa.ui.investor.filter.filter.adapters.GeneralLookupRecyclerAdapter
 import com.technzone.miniborsa.ui.investor.filter.viewmodels.FilterBusinessViewModel
+import com.technzone.miniborsa.ui.map.MapActivity
+import com.technzone.miniborsa.utils.getLocationName
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_filter.*
 
@@ -50,6 +57,20 @@ class FilterBusinessFragment : BaseBindingFragment<FragmentFilterBinding>(),
         binding?.btnContinue?.setOnClickListener {
             applyData()
         }
+        binding?.edAddress?.setOnClickListener {
+            MapActivity.start(requireActivity(), resultLauncher)
+        }
+        binding?.tvReset?.setOnClickListener {
+            viewModel.categories = mutableListOf()
+            inustryAdapter.clearSelectedItems()
+            binding?.rangeSeekBar?.setMinValue(viewModel.defaultMinValue.toFloat())?.apply()
+            binding?.rangeSeekBar?.setMaxValue(viewModel.defaultMaxValue.toFloat())?.apply()
+            viewModel.min.value = viewModel.defaultMinValue
+            viewModel.max.value = viewModel.defaultMaxValue
+            viewModel.maleSelected.postValue(true)
+            viewModel.filterActive.postValue(true)
+            viewModel.addressStr.postValue("")
+        }
         binding?.rangeSeekBar?.setOnRangeSeekbarChangeListener { minValue: Number, maxValue: Number ->
             binding?.tvMin?.text = String.format(getString(R.string.price_), minValue.toString())
             binding?.tvMax?.text = String.format(getString(R.string.price_), maxValue.toString())
@@ -60,13 +81,28 @@ class FilterBusinessFragment : BaseBindingFragment<FragmentFilterBinding>(),
 
     private fun applyData() {
         viewModel.apply {
-            categories = inustryAdapter.items.map { it.id ?: 0 }
+            categories = inustryAdapter.getSelectedItems().map { it.id ?: 0 }
             selectedBusinessType = businessTypeAdapter.getSelectedItem()?.id
             min.value = rangeSeekBar.selectedMinValue.toInt()
             max.value = rangeSeekBar.selectedMaxValue.toInt()
         }
         requireActivity().onBackPressed()
     }
+
+    var resultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+                viewModel.address.value =
+                    data?.getSerializableExtra(Constants.BundleData.ADDRESS) as Address
+                getLocationName(
+                    viewModel.address.value?.lat,
+                    viewModel.address.value?.lon
+                ).also {
+                    viewModel.addressStr.postValue(it)
+                }
+            }
+        }
 
     private fun setUpRvIndustries() {
         inustryAdapter = GeneralLookupRecyclerAdapter(requireContext())

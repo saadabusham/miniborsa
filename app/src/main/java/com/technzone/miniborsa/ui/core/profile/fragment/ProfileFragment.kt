@@ -239,8 +239,6 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
                 } else {
                     businessDraftViewModel.getPendingListing()
                         .observe(this, pendingResultObserver())
-//                    viewModel.setCurrentUserRoles(UserRoleEnums.BUSINESS_ROLE.value)
-//                    BusinessMainActivity.start(requireContext())
                 }
             }
             MoreEnums.INVESTORS_LIST -> {

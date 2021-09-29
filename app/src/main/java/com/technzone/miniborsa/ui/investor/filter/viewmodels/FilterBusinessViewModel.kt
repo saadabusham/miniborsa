@@ -8,6 +8,7 @@ import com.technzone.miniborsa.data.enums.GenderEnums
 import com.technzone.miniborsa.data.enums.UserEnums
 import com.technzone.miniborsa.data.models.investor.Business
 import com.technzone.miniborsa.data.models.investor.GeneralRequest
+import com.technzone.miniborsa.data.models.map.Address
 import com.technzone.miniborsa.data.pref.favorite.FavoritePref
 import com.technzone.miniborsa.data.repos.configuration.ConfigurationRepo
 import com.technzone.miniborsa.data.repos.investors.InvestorsRepo
@@ -26,11 +27,14 @@ class FilterBusinessViewModel @Inject constructor(
     private val searchedBusinessRepo: SearchedBusinessRepo,
     private val favoritePref: FavoritePref
 ) : BaseViewModel() {
+    val defaultMinValue: Int = 1000
+    val defaultMaxValue: Int = 1000000
     var selectedBusinessType: Int? = null
     val searchText: MutableLiveData<String> = MutableLiveData()
     val addressStr: MutableLiveData<String> = MutableLiveData()
-    val filterActive: MutableLiveData<Boolean> = MutableLiveData()
-    val maleSelected: MutableLiveData<Boolean> = MutableLiveData()
+    val address: MutableLiveData<Address> = MutableLiveData()
+    val filterActive: MutableLiveData<Boolean> = MutableLiveData(true)
+    val maleSelected: MutableLiveData<Boolean> = MutableLiveData(true)
     val itemFoundCount: MutableLiveData<Int> = MutableLiveData(0)
     val min: MutableLiveData<Int> = MutableLiveData(0)
     val max: MutableLiveData<Int> = MutableLiveData(0)

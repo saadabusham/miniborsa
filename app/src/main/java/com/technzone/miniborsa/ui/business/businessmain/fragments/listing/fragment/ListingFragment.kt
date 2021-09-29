@@ -19,6 +19,7 @@ import com.technzone.miniborsa.ui.business.businessmain.fragments.listing.dialog
 import com.technzone.miniborsa.ui.business.businessmain.viewmodels.BusinessMainViewModel
 import com.technzone.miniborsa.ui.business.createbusiness.activity.CreateBusinessActivity
 import com.technzone.miniborsa.ui.business.listingpreview.activity.ListingPreviewActivity
+import com.technzone.miniborsa.utils.extensions.getSnapHelper
 import com.technzone.miniborsa.utils.extensions.gone
 import com.technzone.miniborsa.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,6 +49,7 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>(),
 
     private fun setUpBinding() {
         binding?.viewModel = viewModel
+        binding?.layoutPromoteBusiness?.viewModel = viewModel
     }
 
     private fun setUpListeners() {
@@ -75,6 +77,9 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>(),
         binding?.imgAddBusiness?.setOnClickListener {
             showSelectTypeDialog()
         }
+        binding?.layoutPromoteBusiness?.btnPromote?.setOnClickListener {
+
+        }
     }
 
     private fun showSelectTypeDialog() {
@@ -92,6 +97,7 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>(),
     private fun setUpListingPending() {
         listingReviewAdapter = ListingReviewAdapter(requireContext())
         binding?.layoutListing?.rvPending?.adapter = listingReviewAdapter
+        getSnapHelper()?.attachToRecyclerView(binding?.layoutListing?.rvPending)
         binding?.layoutListing?.rvPending?.setOnItemClickListener(object :
             BaseBindingRecyclerViewAdapter.OnItemClickListener {
             override fun onItemClick(view: View?, position: Int, item: Any) {

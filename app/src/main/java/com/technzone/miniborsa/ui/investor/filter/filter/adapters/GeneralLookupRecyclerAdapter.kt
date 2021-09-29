@@ -22,6 +22,14 @@ class GeneralLookupRecyclerAdapter constructor(
         return items.filter { it.selected }
     }
 
+    fun clearSelectedItems() {
+        items.withIndex().forEach {
+            if (it.value.selected) {
+                it.value.selected = false
+                notifyItemChanged(it.index)
+            }
+        }
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(
             RowGeneralBinding.inflate(

@@ -14,6 +14,7 @@ import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.data.enums.BusinessTypeEnums
 import com.technzone.miniborsa.data.enums.UserRoleEnums
+import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.data.models.general.ListWrapper
 import com.technzone.miniborsa.data.models.investor.Business
 import com.technzone.miniborsa.data.models.news.BusinessNews
@@ -24,6 +25,7 @@ import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.base.dialogs.DialogsUtil.showLoginDialog
 import com.technzone.miniborsa.ui.base.dialogs.LoginDialog
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
+import com.technzone.miniborsa.ui.business.businessdraft.activity.BusinessDraftActivity
 import com.technzone.miniborsa.ui.business.businessmain.activity.BusinessMainActivity
 import com.technzone.miniborsa.ui.investor.businessdetails.activity.BusinessDetailsActivity
 import com.technzone.miniborsa.ui.investor.filter.activity.FilterActivity
@@ -55,9 +57,14 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
     var isFullScreen: Boolean = false
 
     private var prefsChangeListener: SharedPreferences.OnSharedPreferenceChangeListener? = null
+
     @Inject
     lateinit var sharedPrefs: SharedPreferences
 
+    override fun onResume() {
+        super.onResume()
+        handleStickyBusiness()
+    }
     override fun getLayoutId(): Int = R.layout.fragment_investor_search
 
     override fun onViewVisible() {
@@ -96,15 +103,23 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
         }
         binding?.layoutSwitchBusiness?.layoutListBusiness?.btnListBusiness?.setOnClickListener {
             binding?.layoutSwitchBusiness?.layoutListBusiness?.root?.gone()
+            SubscriptionActivity.start(
+                requireContext(),
+                isBusiness = true,
+                hasBusiness = false
+            )
         }
         binding?.layoutSwitchBusiness?.layoutCompleteListing?.btnCompleteListing?.setOnClickListener {
             binding?.layoutSwitchBusiness?.layoutCompleteListing?.root?.gone()
+            BusinessDraftActivity.start(requireContext())
         }
         binding?.layoutSwitchBusiness?.layoutCompleteListing?.imgClose?.setOnClickListener {
             binding?.layoutSwitchBusiness?.layoutCompleteListing?.root?.gone()
         }
         binding?.layoutSwitchBusiness?.layoutSwitchToBusiness?.btnSwitchToBusiness?.setOnClickListener {
             binding?.layoutSwitchBusiness?.layoutSwitchToBusiness?.root?.gone()
+            viewModel.setCurrentUserRoles(UserRoleEnums.BUSINESS_ROLE.value)
+            BusinessMainActivity.start(requireContext())
         }
         binding?.layoutSwitchBusiness?.layoutSwitchToBusiness?.imgClose?.setOnClickListener {
             binding?.layoutSwitchBusiness?.layoutSwitchToBusiness?.root?.gone()
@@ -115,28 +130,20 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
                 bundleOf(Pair(Constants.BundleData.SHOW_BACK, true))
             )
         }
-        handleStickyBusiness()
     }
 
 
     private fun handleStickyBusiness() {
-        if (viewModel.isInvestor()) {
-            binding?.layoutSwitchBusiness?.layoutListBusiness?.root?.visible()
-        } else if (viewModel.isBusinessOwner()) {
-
-        }
-    }
-
-    private fun removeIsFirstLogin() {
-        viewModel.setIsFirstLogin(false)
-    }
-
-    private fun switchToBusinessOwner() {
-        if (viewModel.isUserHasBusinessRoles()) {
-            viewModel.setCurrentUserRoles(UserRoleEnums.BUSINESS_ROLE.value)
-            BusinessMainActivity.start(requireContext())
-        } else {
-            SubscriptionActivity.start(requireContext(), true)
+        if (!viewModel.isInvestor())
+            return
+        when {
+            viewModel.isBusinessOwner() -> {
+                binding?.layoutSwitchBusiness?.layoutSwitchToBusiness?.root?.visible()
+            }
+            else -> {
+                viewModel.getPendingListing()
+                    .observe(this, pendingResultObserver())
+            }
         }
     }
 
@@ -349,7 +356,8 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
     override fun loggedInSuccess() {
 
     }
-    private fun handleNewNotifications(){
+
+    private fun handleNewNotifications() {
         if (viewModel.isNewNotification())
             binding?.imgNotifications?.setImageResource(R.drawable.ic_alerts_active)
         else
@@ -366,6 +374,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
         }
         sharedPrefs.registerOnSharedPreferenceChangeListener(prefsChangeListener)
     }
+
     private fun wishListObserver(): CustomObserverResponse<Any> {
         return CustomObserverResponse(
             requireActivity(),
@@ -380,6 +389,31 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
             }, false, showError = false
         )
     }
+
+    private fun pendingResultObserver(): CustomObserverResponse<OwnerBusiness> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<OwnerBusiness> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: OwnerBusiness?
+                ) {
+                    data?.let {
+                        binding?.layoutSwitchBusiness?.layoutCompleteListing?.root?.visible()
+                    } ?: also {
+                        binding?.layoutSwitchBusiness?.layoutListBusiness?.root?.visible()
+                    }
+                }
+
+                override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
+                    super.onError(subErrorCode, message)
+                    binding?.layoutSwitchBusiness?.layoutListBusiness?.root?.visible()
+                }
+            }, showError = false
+        )
+    }
+
 
     override fun onItemClick(view: View?, position: Int, item: Any) {
         when (item) {

@@ -8,6 +8,7 @@ import com.technzone.miniborsa.data.enums.NewsTypeEnums
 import com.technzone.miniborsa.data.enums.UserEnums
 import com.technzone.miniborsa.data.enums.UserRoleEnums
 import com.technzone.miniborsa.data.pref.favorite.FavoritePref
+import com.technzone.miniborsa.data.repos.business.BusinessRepo
 import com.technzone.miniborsa.data.repos.common.CommonRepo
 import com.technzone.miniborsa.data.repos.investors.InvestorsRepo
 import com.technzone.miniborsa.data.repos.user.UserRepo
@@ -22,7 +23,8 @@ class InvestorMainViewModel @Inject constructor(
     private val investorsRepo: InvestorsRepo,
     private val commonRepo: CommonRepo,
     private val sharedPreferencesUtil: SharedPreferencesUtil,
-    private val favoritePref: FavoritePref
+    private val favoritePref: FavoritePref,
+    private val businessRepo: BusinessRepo
 ) : BaseViewModel() {
 
     fun getBusiness(
@@ -54,6 +56,12 @@ class InvestorMainViewModel @Inject constructor(
         emit(response)
     }
 
+    fun getPendingListing() = liveData {
+        emit(APIResource.loading())
+        val response =
+            businessRepo.getRequestCompany()
+        emit(response)
+    }
 
     fun isUserLoggedIn() = userRepo.getUserStatus() == UserEnums.UserState.LoggedIn
 

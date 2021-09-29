@@ -190,26 +190,32 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <com.technzone.miniborsa.ui.base.views.AppTextInputLayout
-                    android:id="@+id/tfEmail"
-                    android:layout_width="match_parent"
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    android:id="@+id/tvLocation"
+                    style="@style/textview_normal_medium"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_30sdp"
-                    android:hint="@string/enter_postal_code_or_address"
+                    android:text="@string/location"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvBusinessStatus">
+                    app:layout_constraintTop_toBottomOf="@id/tvBusinessStatus" />
 
-                    <com.technzone.miniborsa.ui.base.views.AppTextInputEditText
-                        android:id="@+id/edEmail"
-                        style="@style/TextInputEditTextStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_business_pin"
-                        android:inputType="textEmailAddress"
-                        android:text="@={viewModel.addressStr}" />
-
-                </com.technzone.miniborsa.ui.base.views.AppTextInputLayout>
+                <com.technzone.miniborsa.ui.base.views.AppTextView
+                    android:id="@+id/edAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/Edittext_height"
+                    android:background="@drawable/edittext_underline_background"
+                    android:drawableEnd="@drawable/ic_business_pin"
+                    android:textAlignment="viewStart"
+                    android:gravity="center|start"
+                    android:hint="@string/enter_postal_code_or_address"
+                    android:text="@{viewModel.addressStr}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvLocation" />
 
                 <TextView
                     android:id="@+id/tvGenderFounder"
@@ -221,7 +227,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tfEmail" />
+                    app:layout_constraintTop_toBottomOf="@id/edAddress" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/toggleGender"

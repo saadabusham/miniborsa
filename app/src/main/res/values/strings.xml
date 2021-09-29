@@ -375,5 +375,8 @@
     <string name="notification_message_key">englishBody</string>
     <string name="notification_type_key">notificationType</string>
     <string name="notification_value_key">Data</string>
+    <string name="get_ready_for_featured">Get ready for Featured?</string>
+    <string name="promote_your_business">Promote your business</string>
+    <string name="promote_50">Promote %s $</string>
 
 </resources>
