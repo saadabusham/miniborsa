@@ -155,11 +155,13 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
         binding?.layoutBusinessSlider?.vpPictures?.adapter = businessSliderAdapter
         getSnapHelper()?.attachToRecyclerView(binding?.layoutBusinessSlider?.vpPictures)
         binding?.layoutBusinessSlider?.vpPictures?.setOnItemClickListener(this)
-        viewModel.businessToView.value?.images?.let {
-            businessSliderAdapter.submitItems(
-                it
-            )
-        }
+        if (viewModel.businessToView.value?.images.isNullOrEmpty())
+            viewModel.businessToView.value?.images = mutableListOf()
+        viewModel.businessToView.value?.images?.add(Media(name = viewModel.businessToView.value?.icon ?: ""))
+        businessSliderAdapter.submitItems(
+            viewModel.businessToView.value?.images ?: mutableListOf()
+        )
+
     }
 
     private fun setUpRvFields() {
