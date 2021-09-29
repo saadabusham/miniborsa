@@ -10,7 +10,7 @@ import com.technzone.miniborsa.data.models.investor.Business
 @Database(
         entities = [
             Business::class
-        ], version = 1
+        ], version = 2
 )
 
 @TypeConverters(

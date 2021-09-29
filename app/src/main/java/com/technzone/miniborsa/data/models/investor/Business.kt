@@ -52,7 +52,7 @@ data class Business(
 
 	@field:SerializedName("askingPriceBoth")
 	@ColumnInfo(name = "askingPriceBoth")
-	val askingPriceBoth: Int? = null,
+	val askingPriceBoth: Double? = null,
 
 	@field:SerializedName("investmentPercentage")
 	@ColumnInfo(name = "investmentPercentage")
@@ -72,7 +72,7 @@ data class Business(
 
 	@field:SerializedName("annualTurnover")
 	@ColumnInfo(name = "annualTurnover")
-	val annualTurnover: Int? = null,
+	val annualTurnover: Double? = null,
 
 	@field:SerializedName("listLocation")
 	@ColumnInfo(name = "listLocation")
@@ -109,7 +109,7 @@ data class Business(
 
 	@field:SerializedName("askingPrice")
 	@ColumnInfo(name = "askingPrice")
-	val askingPrice: Int? = null,
+	val askingPrice: Double? = null,
 
 	@field:SerializedName("askingPriceNA")
 	@ColumnInfo(name = "askingPriceNA")
@@ -117,7 +117,7 @@ data class Business(
 
 	@field:SerializedName("annualNetProfit")
 	@ColumnInfo(name = "annualNetProfit")
-	val annualNetProfit: Int? = null,
+	val annualNetProfit: Double? = null,
 
 	@field:SerializedName("annualTurnoverNA")
 	@ColumnInfo(name = "annualTurnoverNA")

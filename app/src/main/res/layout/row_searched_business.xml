@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="favorite"
+            type="Boolean" />
         <variable
             name="item"
             type="com.technzone.miniborsa.data.models.investor.Business" />
@@ -39,7 +41,9 @@
                 android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_favorite"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@{favorite ? @drawable/ic_favorite : @drawable/ic_unfavorite}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

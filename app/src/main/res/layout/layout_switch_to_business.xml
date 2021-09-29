@@ -16,7 +16,7 @@
         app:cardElevation="0dp"
         app:strokeColor="@color/color_not_valid"
         app:strokeWidth="@dimen/_1sdp"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

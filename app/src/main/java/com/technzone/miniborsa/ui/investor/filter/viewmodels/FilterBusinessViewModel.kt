@@ -8,6 +8,7 @@ import com.technzone.miniborsa.data.enums.GenderEnums
 import com.technzone.miniborsa.data.enums.UserEnums
 import com.technzone.miniborsa.data.models.investor.Business
 import com.technzone.miniborsa.data.models.investor.GeneralRequest
+import com.technzone.miniborsa.data.pref.favorite.FavoritePref
 import com.technzone.miniborsa.data.repos.configuration.ConfigurationRepo
 import com.technzone.miniborsa.data.repos.investors.InvestorsRepo
 import com.technzone.miniborsa.data.repos.searchbusiness.SearchedBusinessRepo
@@ -22,7 +23,8 @@ class FilterBusinessViewModel @Inject constructor(
     private val userRepo: UserRepo,
     private val investorsRepo: InvestorsRepo,
     private val configurationRepo: ConfigurationRepo,
-    private val searchedBusinessRepo: SearchedBusinessRepo
+    private val searchedBusinessRepo: SearchedBusinessRepo,
+    private val favoritePref: FavoritePref
 ) : BaseViewModel() {
     var selectedBusinessType: Int? = null
     val searchText: MutableLiveData<String> = MutableLiveData()
@@ -65,6 +67,9 @@ class FilterBusinessViewModel @Inject constructor(
                 askingPriceRangeTo = if(max.value == 0) null else max.value,
                 title = searchText.value
             )
+        favoritePref.getFavoriteList().forEach { favId ->
+            response.data?.data?.data?.singleOrNull { it.id == favId }?.let { it.isFavorite = true }
+        }
         emit(response)
     }
 

@@ -188,8 +188,8 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
 
     private fun getBusinessDetails() {
         if (viewModel.isHasBusiness())
-            viewModel.getBusinessRequest().observe(this,businessResultObserver())
-        else{
+            viewModel.getBusinessRequest().observe(this, businessResultObserver())
+        else {
             viewModel.getCompanyRequest().observe(this, businessResultObserver())
         }
     }
@@ -229,7 +229,8 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
             business: OwnerBusiness? = null,
             hasBusiness: Boolean = true,
             companyDraft: Boolean = false,
-            businessDraft: Boolean = false
+            businessDraft: Boolean = false,
+            clearTask: Boolean = false
         ) {
             val intent = Intent(context, CreateBusinessActivity::class.java).apply {
                 putExtra(Constants.BundleData.BUSINESS_TYPE, businessType)
@@ -237,6 +238,8 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
                 putExtra(Constants.BundleData.HAS_BUSINESS, hasBusiness)
                 putExtra(Constants.BundleData.COMPANY_DRAFT, companyDraft)
                 putExtra(Constants.BundleData.BUSINESS_DRAFT, businessDraft)
+                if (clearTask)
+                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             }
             context?.startActivity(intent)
         }

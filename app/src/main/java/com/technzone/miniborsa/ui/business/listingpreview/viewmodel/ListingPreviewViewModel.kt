@@ -26,7 +26,7 @@ class ListingPreviewViewModel @Inject constructor(
     var companyDraft: Boolean = false
     var businessDraft: Boolean = false
 
-    private fun isHasBusiness(): Boolean {
+    fun isHasBusiness(): Boolean {
         return hasBusiness && !companyDraft
     }
 

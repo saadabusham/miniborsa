@@ -122,8 +122,12 @@ fun BusinessRequest.calculateFirstStepPercentage(): Int {
 fun BusinessRequest.calculateSecondStepPercentage(): Int {
     var percentage = 0
     //step two
-    if (askingPrice ?: 0.0 > 0 || askingPriceNA == true || askingPriceBoth ?: 0.0 > 0.0 || askingPriceNABoth == true) {
-        percentage += 10
+    //step two
+    if(businessType == BusinessTypeEnums.BUSINESS_FRANCHISE.value && !countries.isNullOrEmpty()){
+        percentage +=5
+    }
+    if (askingPrice ?: 0.0 > 0.0 || askingPriceNA == true || askingPriceBoth ?: 0.0 > 0.0 || askingPriceNABoth == true) {
+        percentage += if(businessType == BusinessTypeEnums.BUSINESS_FRANCHISE.value) 5 else 10
     }
     if (annualNetProfit ?: 0.0 > 0.0 || annualTurnoverNA == true) {
         percentage += 5

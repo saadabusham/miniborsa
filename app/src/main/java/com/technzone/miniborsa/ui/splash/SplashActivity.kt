@@ -37,8 +37,6 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
             layoutResID = R.layout.activity_splash,
             hasToolbar = false
         )
-
-        SharedPreferencesUtil.getInstance(applicationContext).setIsNewNotifications(true)
         Handler(Looper.getMainLooper()).postDelayed({
             viewModel.getConfigurationData().observe(this, configurationResultObserver())
         }, 3000)

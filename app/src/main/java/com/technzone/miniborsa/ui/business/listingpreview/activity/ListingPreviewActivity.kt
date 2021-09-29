@@ -98,7 +98,11 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
     private fun showSubmittedDialog() {
         val dialog = SubmittedDialogFragment(this)
         dialog.setOnDismissListener {
-            BusinessMainActivity.start(this)
+            if (viewModel.isHasBusiness())
+                BusinessMainActivity.start(this)
+            else{
+                InvestorMainActivity.start(this)
+            }
         }
         dialog.show()
     }

@@ -33,7 +33,14 @@ class SearchedBusinessAdapter(
 
         override fun bind(item: Business) {
             binding.item = item
+            binding.favorite = item.isFavorite
             binding.root.setOnClickListener {
+                itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
+            }
+            binding.imgFavorite.setOnClickListener {
+                item.isFavorite =
+                    item.isFavorite == false
+                binding.favorite = item.isFavorite
                 itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
             }
         }

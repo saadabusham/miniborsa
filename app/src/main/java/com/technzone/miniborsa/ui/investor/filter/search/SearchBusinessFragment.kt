@@ -15,6 +15,7 @@ import com.paginate.Paginate
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.common.interfaces.LoginCallBack
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
+import com.technzone.miniborsa.data.api.response.ResponseWrapper
 import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.data.models.general.ListWrapper
 import com.technzone.miniborsa.data.models.investor.Business
@@ -30,6 +31,7 @@ import com.technzone.miniborsa.ui.investor.filter.activity.FilterActivity
 import com.technzone.miniborsa.ui.investor.filter.search.adapters.SearchedBusinessAdapter
 import com.technzone.miniborsa.ui.investor.filter.viewmodels.FilterBusinessViewModel
 import com.technzone.miniborsa.ui.investor.invistormain.adapters.BusinessAdapter
+import com.technzone.miniborsa.ui.investor.invistormain.viewmodels.FavoritesViewModel
 import com.technzone.miniborsa.utils.extensions.gone
 import com.technzone.miniborsa.utils.extensions.setupClearButtonWithAction
 import com.technzone.miniborsa.utils.extensions.visible
@@ -45,6 +47,7 @@ class SearchBusinessFragment : BaseBindingFragment<FragmentSearchBusinessBinding
     BaseBindingRecyclerViewAdapter.OnItemClickListener, LoginCallBack {
 
     private val viewModel: FilterBusinessViewModel by activityViewModels()
+    private val favoriteViewModel: FavoritesViewModel by activityViewModels()
     lateinit var businessAdapter: SearchedBusinessAdapter
     private val loading: MutableLiveData<Boolean> = MutableLiveData(false)
     private var isFinished = false
@@ -258,13 +261,37 @@ class SearchBusinessFragment : BaseBindingFragment<FragmentSearchBusinessBinding
             }
         })
     }
+    private fun wishListObserver(): CustomObserverResponse<Any> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<Any> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: ResponseWrapper<Any>?
+                ) {
 
+                }
+            }, false, showError = false
+        )
+    }
     override fun onItemClick(view: View?, position: Int, item: Any) {
         when (item) {
             is Business -> {
                 if (viewModel.isUserLoggedIn()) {
-                    viewModel.saveSearchBusiness(item)
-                    BusinessDetailsActivity.start(requireContext(), item)
+                    if (view?.id == R.id.imgFavorite) {
+                        if (item.isFavorite == true) {
+                            favoriteViewModel.addToWishList(item.id ?: 0)
+                                .observe(this, wishListObserver())
+                        } else {
+                            favoriteViewModel.removeFromWishList(
+                                item.id
+                                    ?: 0
+                            ).observe(this, wishListObserver())
+                        }
+                    } else {
+                        BusinessDetailsActivity.start(requireContext(), item)
+                    }
                 } else {
                     showLoginDialog()
                 }

@@ -50,10 +50,12 @@ class BusinessSubscriptionFragment : BaseBindingFragment<FragmentBusinessSubscri
     private fun setUpListeners() {
         binding?.btnContinue?.setOnClickListener {
             subscriptionRecyclerAdapter.getSelectedItem().let {
-                if(it == null){
-                    requireActivity().showErrorAlert(getString(R.string.app_name),
-                    getString(R.string.please_select_subscription))
-                }else{
+                if (it == null) {
+                    requireActivity().showErrorAlert(
+                        getString(R.string.app_name),
+                        getString(R.string.please_select_subscription)
+                    )
+                } else {
                     showSelectTypeDialog()
                 }
             }
@@ -66,8 +68,12 @@ class BusinessSubscriptionFragment : BaseBindingFragment<FragmentBusinessSubscri
                 CreateBusinessActivity.start(
                     context = requireContext(),
                     businessType = businessTypeEnums.value,
-                    hasBusiness = requireActivity().intent.getBooleanExtra(Constants.BundleData.HAS_BUSINESS,false),
-                    companyDraft = false
+                    hasBusiness = requireActivity().intent.getBooleanExtra(
+                        Constants.BundleData.HAS_BUSINESS,
+                        false
+                    ),
+                    companyDraft = false,
+                    clearTask = true
                 )
             }
         }).show()
