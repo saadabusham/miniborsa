@@ -4,15 +4,18 @@ import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
+import com.technzone.miniborsa.common.MyApplication
+import com.technzone.miniborsa.data.api.response.APIResource
+import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
+import com.technzone.miniborsa.data.api.response.Result
 import com.technzone.miniborsa.utils.twilio.chat.client.ChatClientManager
 import com.technzone.miniborsa.utils.twilio.chat.client.CustomChannelComparator
 import com.technzone.miniborsa.utils.twilio.chat.listeners.TaskCompletionListener
-import com.technzone.miniborsa.common.MyApplication
 import com.twilio.chat.*
 import com.twilio.chat.Channel.ChannelType
 import com.twilio.chat.ChatClient.ConnectionState
 import java.util.*
-import com.technzone.miniborsa.data.api.response.Result
 
 class ChannelManager private constructor() : ChatClientListener {
     var selectedChannel: Channel? = null
@@ -111,11 +114,12 @@ class ChannelManager private constructor() : ChatClientListener {
                     println("channelStatus1===>" + selectedChannel!!.status.name)
                     if (channel.status != Channel.ChannelStatus.JOINED) {
                         joinChannel(listener)
-                    }else{
-                        object : CountDownTimer(2000,2000){
+                    } else {
+                        object : CountDownTimer(2000, 2000) {
                             override fun onFinish() {
                                 listener.onSuccess()
                             }
+
                             override fun onTick(millisUntilFinished: Long) {
                             }
                         }.start()
@@ -130,6 +134,28 @@ class ChannelManager private constructor() : ChatClientListener {
             })
     }
 
+    fun getAllChannels() = liveData {
+        emit(APIResource.loading())
+        channelsObject = chatClientManager.getChatClient()!!.channels
+        channels = ArrayList()
+        chatClientManager.setClientListener(this@ChannelManager)
+        channelsObject?.subscribedChannels
+        if (channelsObject?.subscribedChannels != null && channelsObject?.subscribedChannels?.size ?: 0 > 0) {
+            kotlinx.coroutines.delay(2000)
+            channelsObject?.subscribedChannels?.sortedByDescending {
+                it.lastMessageDate
+            }
+            APIResource.success(channelsObject?.subscribedChannels, "", 0)
+        }
+        else
+            emit(
+                APIResource.error(
+                    msgs = "", data = null, statusCode = -1,
+                    ResponseSubErrorsCodeEnum.getResponseSubErrorsCodeEnumByValue(-1)
+                )
+            )
+    }
+
     fun getAllChannel(
         channelsResults: MutableLiveData<Result<MutableList<Channel>>>
     ) {
@@ -138,7 +164,7 @@ class ChannelManager private constructor() : ChatClientListener {
             channels = ArrayList()
             chatClientManager.setClientListener(this@ChannelManager)
             channelsObject?.subscribedChannels
-            if (channelsObject?.subscribedChannels != null && channelsObject?.subscribedChannels?.size?:0 > 0)
+            if (channelsObject?.subscribedChannels != null && channelsObject?.subscribedChannels?.size ?: 0 > 0)
                 channelsResults.postValue(Result.Success(channelsObject?.subscribedChannels))
             else
                 channelsResults.postValue(Result.CustomError(0, ""))

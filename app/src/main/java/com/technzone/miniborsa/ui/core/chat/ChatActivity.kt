@@ -1,4 +1,4 @@
-package com.technzone.miniborsa.ui.twilio.chat
+package com.technzone.miniborsa.ui.core.chat
 
 import android.app.Activity
 import android.content.Context
@@ -21,8 +21,8 @@ import com.technzone.miniborsa.databinding.ActivityChatBinding
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
-import com.technzone.miniborsa.ui.twilio.chat.adapters.MessageRecyclerAdapter
-import com.technzone.miniborsa.ui.twilio.chat.viewimage.ViewImageActivity
+import com.technzone.miniborsa.ui.core.chat.adapters.MessageRecyclerAdapter
+import com.technzone.miniborsa.ui.core.chat.viewimage.ViewImageActivity
 import com.technzone.miniborsa.utils.HandleRequestFailedUtil
 import com.technzone.miniborsa.utils.ImagePickerUtil
 import com.technzone.miniborsa.utils.captureImage

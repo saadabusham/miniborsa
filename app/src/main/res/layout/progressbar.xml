@@ -13,9 +13,9 @@
 
         <ProgressBar
             android:id="@+id/progressBar"
-            android:layout_width="@dimen/_60sdp"
-            android:layout_height="@dimen/_60sdp"
-            android:indeterminateTint="@color/blue"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:indeterminateTint="@color/button_color"
             android:layout_centerInParent="true" />
     </RelativeLayout>
 </layout>

@@ -149,9 +149,9 @@ class NotificationFragment : BaseBindingFragment<FragmentNotificationBinding>(),
 
     private fun hideShowNoData() {
         if (notificationsAdapter.itemCount == 0) {
-//            binding?.layoutNoPolicies?.linearNoResult?.visible()
+            binding?.layoutNoData?.root?.visible()
         } else {
-//            binding?.layoutNoPolicies?.linearNoResult?.gone()
+            binding?.layoutNoData?.root?.gone()
         }
     }
 
@@ -160,11 +160,11 @@ class NotificationFragment : BaseBindingFragment<FragmentNotificationBinding>(),
         loading.observe(this, Observer {
             if (it) {
                 binding?.rvNotifications?.gone()
-//                binding?.layoutShimmer?.shimmerViewContainer?.visible()
-//                binding?.layoutShimmer?.shimmerViewContainer?.startShimmer()
+                binding?.layoutShimmer?.shimmerViewContainer?.visible()
+                binding?.layoutShimmer?.shimmerViewContainer?.startShimmer()
             } else {
-//                binding?.layoutShimmer?.shimmerViewContainer?.gone()
-//                binding?.layoutShimmer?.shimmerViewContainer?.stopShimmer()
+                binding?.layoutShimmer?.shimmerViewContainer?.gone()
+                binding?.layoutShimmer?.shimmerViewContainer?.stopShimmer()
                 binding?.rvNotifications?.visible()
             }
         })

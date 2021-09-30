@@ -1,4 +1,4 @@
-package com.technzone.miniborsa.ui.twilio.chat.adapters
+package com.technzone.miniborsa.ui.core.chat.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -84,9 +84,9 @@ class MessageRecyclerAdapter(
         BaseViewHolder<Message>(binding.root) {
 
         override fun bind(item: Message) {
-            binding?.message = item
-            loadMore(adapterPosition)
-            binding?.imgPicture.loadImage(userPicture)
+            binding.message = item
+            loadMore(bindingAdapterPosition)
+            binding.imgPicture.loadImage(userPicture)
         }
     }
 
@@ -95,9 +95,9 @@ class MessageRecyclerAdapter(
 
         @SuppressLint("UnsafeExperimentalUsageError")
         override fun bind(item: Message) {
-            binding?.message = item
-            binding?.imgPicture.loadImage(userPicture)
-            binding?.imgMedia.shapeAppearanceModel = binding?.imgMedia.shapeAppearanceModel
+            binding.message = item
+            binding.imgPicture.loadImage(userPicture)
+            binding.imgMedia.shapeAppearanceModel = binding.imgMedia.shapeAppearanceModel
                 .toBuilder()
                 .setTopRightCorner(
                     CornerFamily.ROUNDED,
@@ -115,14 +115,14 @@ class MessageRecyclerAdapter(
                 .build()
             item.media.getContentTemporaryUrl(object : CallbackListener<String>() {
                 override fun onSuccess(p0: String?) {
-                    binding?.imgMedia?.loadImage(p0)
+                    binding.imgMedia.loadImage(p0)
                 }
             })
-            loadMore(adapterPosition)
-            binding?.imgMedia?.setOnClickListener {
+            loadMore(bindingAdapterPosition)
+            binding.imgMedia.setOnClickListener {
                 itemClickListener?.onItemClick(
-                    binding?.imgMedia,
-                    adapterPosition,
+                    binding.imgMedia,
+                    bindingAdapterPosition,
                     item
                 )
             }
@@ -133,8 +133,8 @@ class MessageRecyclerAdapter(
         BaseViewHolder<Message>(binding.root) {
 
         override fun bind(item: Message) {
-            binding?.message = item
-            loadMore(adapterPosition)
+            binding.message = item
+            loadMore(bindingAdapterPosition)
         }
     }
 
@@ -143,8 +143,8 @@ class MessageRecyclerAdapter(
 
         @SuppressLint("UnsafeExperimentalUsageError")
         override fun bind(item: Message) {
-            binding?.message = item
-            binding?.imgMedia.shapeAppearanceModel = binding?.imgMedia.shapeAppearanceModel
+            binding.message = item
+            binding.imgMedia.shapeAppearanceModel = binding.imgMedia.shapeAppearanceModel
                 .toBuilder()
                 .setTopRightCorner(
                     CornerFamily.ROUNDED,
@@ -162,15 +162,15 @@ class MessageRecyclerAdapter(
                 .build()
             item.media.getContentTemporaryUrl(object : CallbackListener<String>() {
                 override fun onSuccess(p0: String?) {
-                    binding?.imgMedia?.loadImage(p0)
+                    binding.imgMedia.loadImage(p0)
                 }
             })
 
-            loadMore(adapterPosition)
-            binding?.imgMedia?.setOnClickListener {
+            loadMore(bindingAdapterPosition)
+            binding.imgMedia.setOnClickListener {
                 itemClickListener?.onItemClick(
-                    binding?.imgMedia,
-                    adapterPosition,
+                    binding.imgMedia,
+                    bindingAdapterPosition,
                     item
                 )
             }

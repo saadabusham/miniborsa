@@ -1,4 +1,4 @@
-package com.technzone.miniborsa.ui.twilio.chat.viewimage
+package com.technzone.miniborsa.ui.core.chat.viewimage
 
 import android.app.Activity
 import android.content.Intent

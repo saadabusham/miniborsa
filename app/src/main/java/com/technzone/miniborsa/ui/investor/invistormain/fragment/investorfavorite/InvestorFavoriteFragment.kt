@@ -122,22 +122,21 @@ class InvestorFavoriteFragment : BaseBindingFragment<FragmentInvestorFavoriteBin
 
     private fun hideShowNoData() {
         if (favoriteAdapter.itemCount == 0) {
-//            binding?.layoutNoPolicies?.linearNoResult?.visible()
+            binding?.layoutNoData?.root?.visible()
         } else {
-//            binding?.layoutNoPolicies?.linearNoResult?.gone()
+            binding?.layoutNoData?.root?.gone()
         }
     }
 
-
     private fun observeLoading() {
-        loading.observe(this, Observer {
+        loading.observe(this, {
             if (it) {
                 binding?.recyclerView?.gone()
-//                binding?.layoutShimmer?.shimmerViewContainer?.visible()
-//                binding?.layoutShimmer?.shimmerViewContainer?.startShimmer()
+                binding?.layoutShimmer?.shimmerViewContainer?.visible()
+                binding?.layoutShimmer?.shimmerViewContainer?.startShimmer()
             } else {
-//                binding?.layoutShimmer?.shimmerViewContainer?.gone()
-//                binding?.layoutShimmer?.shimmerViewContainer?.stopShimmer()
+                binding?.layoutShimmer?.shimmerViewContainer?.gone()
+                binding?.layoutShimmer?.shimmerViewContainer?.stopShimmer()
                 binding?.recyclerView?.visible()
             }
         })

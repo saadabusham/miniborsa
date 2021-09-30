@@ -1,4 +1,4 @@
-package com.technzone.miniborsa.ui.twilio.chat
+package com.technzone.miniborsa.ui.core.chat
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
