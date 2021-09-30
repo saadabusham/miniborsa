@@ -2,9 +2,12 @@ package com.technzone.miniborsa.utils.extensions
 
 import android.content.Context
 import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.utils.DateTimeUtil
 import com.technzone.miniborsa.utils.validation.Validator
 import com.technzone.miniborsa.utils.validation.ValidatorInputTypesEnums
+import java.lang.NumberFormatException
+import java.math.BigDecimal
 import java.net.URLDecoder
 import java.text.SimpleDateFormat
 import java.util.*
@@ -86,3 +89,23 @@ fun String.checkPhoneNumberFormat(): String {
     }
 }
 
+fun Double.round(digitNum : Int): String {
+    return String.format("%.${digitNum}f",this)
+}
+
+fun String.toPriceOrNull():Double?{
+    if(this.isNullOrEmpty())
+        return null
+    return try {
+        if(this.contains(".")){
+            this.toDoubleOrNull()
+        }else{
+            this.toDouble().roundTo2DecimalPlaces(1)
+        }
+    }catch (e:NumberFormatException){
+         null
+    }
+}
+fun String.fullTrim() = trim().replace("\uFEFF", "")
+fun Double.roundTo2DecimalPlaces(scale:Int) =
+    BigDecimal(this).setScale(scale, BigDecimal.ROUND_HALF_UP).toDouble()

@@ -35,6 +35,7 @@ class UpdateProfileActivity : BaseBindingActivity<ActivityUpdateProfileBinding>(
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_profile, hasToolbar = false)
         init()
+        viewModel.getUser()
     }
 
     private fun init() {

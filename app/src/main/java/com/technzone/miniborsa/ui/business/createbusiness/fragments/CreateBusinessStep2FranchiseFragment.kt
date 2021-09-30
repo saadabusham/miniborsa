@@ -18,8 +18,8 @@ import com.technzone.miniborsa.ui.general.GeneralActivity
 import com.technzone.miniborsa.ui.general.adapters.SelectedGeneralRecyclerAdapter
 import com.technzone.miniborsa.utils.extensions.calculatePercentage
 import com.technzone.miniborsa.utils.extensions.hideKeyboard
+import com.technzone.miniborsa.utils.extensions.toPriceOrNull
 import dagger.hilt.android.AndroidEntryPoint
-import okhttp3.internal.toLongOrDefault
 
 @AndroidEntryPoint
 class CreateBusinessStep2FranchiseFragment :
@@ -53,7 +53,7 @@ class CreateBusinessStep2FranchiseFragment :
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.freeHoldAskingPrice.postValue(
                     binding?.edFreeHoldAskingPrice?.text.toString()
-                        .toDoubleOrNull()?:viewModel.defaultMinValue.toDouble()
+                        .toPriceOrNull()?:viewModel.defaultMinValue.toDouble()
                 )
                 binding?.root.hideKeyboard(requireActivity())
                 true
@@ -68,7 +68,7 @@ class CreateBusinessStep2FranchiseFragment :
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.netProfit.postValue(
                     binding?.edNetProfit?.text.toString()
-                        .toDoubleOrNull()?:viewModel.defaultMinValue.toDouble()
+                        .toPriceOrNull()?:viewModel.defaultMinValue.toDouble()
                 )
                 binding?.root.hideKeyboard(requireActivity())
                 true
@@ -83,7 +83,7 @@ class CreateBusinessStep2FranchiseFragment :
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.turnOver.postValue(
                     binding?.edTurnover?.text.toString()
-                        .toDoubleOrNull()?:viewModel.defaultMinValue.toDouble()
+                        .toPriceOrNull()?:viewModel.defaultMinValue.toDouble()
                 )
                 binding?.root.hideKeyboard(requireActivity())
                 true

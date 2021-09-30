@@ -11,7 +11,7 @@ object Constants {
     const val MIN_PERCENTAGE_TO_SEND = 80
 
     const val PAGE_SIZE = 10
-    const val MAX_PRICE_LENGTH = 10
+    const val MAX_PRICE_LENGTH = 9
     //    Bundle Constants
     const val title: String = "TITLE"
     const val body: String = "BODY"

@@ -145,7 +145,7 @@
                     android:enabled="@{viewModel.freeholdAskingPriceOnRequest == false}"
                     android:focusable="true"
                     android:imeOptions="actionDone"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:maxWidth="@dimen/_120sdp"
                     android:maxLength="@{viewModel.maxLength}"
                     android:maxLines="1"
