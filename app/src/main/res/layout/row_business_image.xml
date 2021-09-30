@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="com.technzone.miniborsa.R"/>
         <variable
             name="data"
             type="String" />
@@ -29,7 +29,9 @@
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
                 ivImageUrl="@{data}"
-                tools:src="@drawable/ic_business_image_sample"
+                ivImagePlaceholder="@{R.drawable.ic_business_place_holder}"
+                ivImageErrorPlaceholder="@{R.drawable.ic_business_place_holder}"
+                tools:src="@drawable/ic_business_place_holder"
                 android:transitionName="image"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

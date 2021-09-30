@@ -38,8 +38,8 @@
 
         <include
             android:id="@+id/layout_no_data"
-            layout="@layout/layout_no_data"
-            android:visibility="gone"/>
+            layout="@layout/layout_no_messages_data"
+            android:visibility="gone" />
         <include
             android:id="@+id/layout_not_logged_in"
             layout="@layout/layout_not_logged_in" />

@@ -366,7 +366,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
         if (viewModel.isNewNotification())
             binding?.imgNotifications?.setImageResource(R.drawable.ic_alerts_active)
         else
-            binding?.imgNotifications?.setImageResource(R.drawable.ic_nav_notification)
+            binding?.imgNotifications?.setImageResource(R.drawable.ic_alerts_unactive)
     }
 
     private fun initPreferences() {

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.technzone.miniborsa.ui.base.views.AppImageView
+            android:id="@+id/imgIcon"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:src="@drawable/ic_no_favorites"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_100sdp"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.technzone.miniborsa.ui.base.views.AppTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_40sdp"
+            app:layout_constraintTop_toBottomOf="@id/imgIcon"
+            style="@style/textview_normal_regular"
+            android:textSize="@dimen/_11ssp"
+            android:textColor="@color/black_alpha75"
+            android:text="@string/no_favorites_found"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnContinue"
+            style="@style/AppTheme.Button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_25sdp"
+            android:layout_marginEnd="@dimen/_25sdp"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            android:text="@string/continue_"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_12ssp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

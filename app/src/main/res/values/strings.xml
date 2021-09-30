@@ -380,5 +380,7 @@
     <string name="get_ready_for_featured">Get ready for Featured?</string>
     <string name="promote_your_business">Promote your business</string>
     <string name="promote_50">Promote %s $</string>
+    <string name="no_favorites_found">No Favorites Found</string>
+    <string name="no_messages_found">No Messages Found</string>
 
 </resources>

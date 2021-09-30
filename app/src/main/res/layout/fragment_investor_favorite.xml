@@ -35,7 +35,7 @@
 
         <include
             android:id="@+id/layout_no_data"
-            layout="@layout/layout_no_data"
+            layout="@layout/layout_no_favorite_data"
             android:visibility="gone"/>
 
         <include
