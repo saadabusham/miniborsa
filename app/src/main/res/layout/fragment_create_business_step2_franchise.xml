@@ -88,9 +88,9 @@
                     android:text="@string/select_country"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_11ssp"
-                    app:layout_constraintStart_toStartOf="@id/freeholdBeginGuide"
                     app:layout_constraintEnd_toEndOf="@id/freeholdEndGuide"
-                    app:layout_constraintTop_toBottomOf="@id/tvTitle"/>
+                    app:layout_constraintStart_toStartOf="@id/freeholdBeginGuide"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvSelectedCountries"
@@ -101,9 +101,9 @@
                     android:nestedScrollingEnabled="false"
                     android:orientation="horizontal"
                     app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
-                    app:layout_constraintTop_toBottomOf="@id/tvCountries"
-                    app:layout_constraintStart_toStartOf="@id/freeholdBeginGuide"
                     app:layout_constraintEnd_toEndOf="@id/freeholdEndGuide"
+                    app:layout_constraintStart_toStartOf="@id/freeholdBeginGuide"
+                    app:layout_constraintTop_toBottomOf="@id/tvCountries"
                     tools:listitem="@layout/row_selected_general" />
 
                 <com.technzone.miniborsa.ui.base.views.AppTextView
@@ -146,6 +146,8 @@
                     android:focusable="true"
                     android:imeOptions="actionDone"
                     android:inputType="number"
+                    android:maxWidth="@dimen/_120sdp"
+                    android:maxLength="@{viewModel.maxLength}"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text="@{viewModel.freeHoldAskingPrice.toString()}"
@@ -291,6 +293,8 @@
                     android:focusable="true"
                     android:imeOptions="actionDone"
                     android:inputType="number"
+                    android:maxWidth="@dimen/_120sdp"
+                    android:maxLength="@{viewModel.maxLength}"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text="@{viewModel.netProfit.toString()}"
@@ -411,6 +415,8 @@
                     android:focusable="true"
                     android:imeOptions="actionDone"
                     android:inputType="number"
+                    android:maxWidth="@dimen/_120sdp"
+                    android:maxLength="@{viewModel.maxLength}"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text="@{viewModel.turnOver.toString()}"

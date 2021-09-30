@@ -3,6 +3,7 @@ package com.technzone.miniborsa.ui.investor.invistorroles.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.technzone.miniborsa.data.api.response.APIResource
+import com.technzone.miniborsa.data.common.Constants.MAX_PRICE_LENGTH
 import com.technzone.miniborsa.data.enums.UserRoleEnums
 import com.technzone.miniborsa.data.models.auth.login.UserRoles
 import com.technzone.miniborsa.data.repos.configuration.ConfigurationRepo
@@ -20,8 +21,9 @@ class InvestorRoleViewModel @Inject constructor(
 ) : BaseViewModel() {
     val defaultMinValue: Int = 1000
     val defaultMaxValue: Int = 1000000
+    val maxLength: Int = MAX_PRICE_LENGTH
     val budgetOnRequest: MutableLiveData<Boolean> = MutableLiveData(false)
-    val investmentPrice: MutableLiveData<Int> = MutableLiveData(1000)
+    val investmentPrice: MutableLiveData<Double> = MutableLiveData(1000.0)
     val jobTitle: MutableLiveData<String> = MutableLiveData("")
     val bio: MutableLiveData<String> = MutableLiveData("")
 
@@ -53,7 +55,7 @@ class InvestorRoleViewModel @Inject constructor(
             investorsRepo.becomeInvestor(
                 jobTitle.value,
                 bio.value,
-                investmentPrice.value?.toDouble() ?: 0.0,
+                investmentPrice.value ?: 0.0,
                 budgetOnRequest.value ?: false,
                 countries,
                 categories,

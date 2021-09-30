@@ -10,7 +10,9 @@ import com.technzone.miniborsa.R
 import com.technzone.miniborsa.common.MyApplication
 import com.technzone.miniborsa.common.interfaces.BaseActivityCallback
 import com.technzone.miniborsa.common.interfaces.LoginCallBack
+import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.Constants
+import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.databinding.ActivityInvestorMainBinding
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
 import com.technzone.miniborsa.ui.investor.businessdetails.activity.BusinessDetailsActivity
@@ -30,6 +32,7 @@ class InvestorMainActivity : BaseBindingActivity<ActivityInvestorMainBinding>(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_investor_main, hasToolbar = false)
         setupNavigation()
+        viewModel.getFavorites().observe(this, favoriteIdsResultObserver())
         checkDeepLink()
     }
 
@@ -71,6 +74,24 @@ class InvestorMainActivity : BaseBindingActivity<ActivityInvestorMainBinding>(),
         super.onActivityResult(requestCode, resultCode, data)
         if (data?.getBooleanExtra(Constants.BundleData.IS_LOGIN_SUCCESS, false) == true)
             loginCallBack?.loggedInSuccess()
+    }
+
+    private fun favoriteIdsResultObserver(): CustomObserverResponse<List<Int>> {
+        return CustomObserverResponse(
+            this,
+            object : CustomObserverResponse.APICallBack<List<Int>> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: List<Int>?
+                ) {
+                }
+
+                override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
+                    super.onError(subErrorCode, message)
+                }
+            }, showError = false
+        )
     }
 
     companion object {

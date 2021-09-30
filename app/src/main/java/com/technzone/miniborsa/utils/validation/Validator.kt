@@ -98,6 +98,9 @@ class Validator() {
             ValidatorInputTypesEnums.SEARCH_TEXT -> {
                 validateSearchText()
             }
+            ValidatorInputTypesEnums.NORMAL_TEXT -> {
+                validateNormalText()
+            }
             else -> ValidatedData(true, "", "")
         }
     }
@@ -342,6 +345,15 @@ class Validator() {
                 errorMessage = context.resources.getString(R.string.text_not_valid_err)
             )
         } else ValidatedData(true, "", "")
+    }
+    private fun validateNormalText(): ValidatedData {
+        return if (textToValidate.isNullOrEmpty()) {
+            return ValidatedData(
+                isValid = false,
+                errorTitle = context.resources.getString(R.string.text),
+                errorMessage = context.resources.getString(R.string.must_not_be_empty)
+            )
+        }else ValidatedData(true, "", "")
     }
 
 }

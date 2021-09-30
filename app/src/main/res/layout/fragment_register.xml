@@ -98,8 +98,8 @@
                         <com.technzone.miniborsa.ui.base.views.AppTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/phone_number"
-                            android:layout_marginTop="@dimen/_10sdp"/>
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:text="@string/phone_number" />
 
                         <LinearLayout
                             android:id="@+id/linearMobile"
@@ -134,19 +134,24 @@
 
                             <com.technzone.miniborsa.ui.base.views.AppEditText
                                 android:id="@+id/edPhoneNumber"
+                                style="@style/textview_normal_regular"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                style="@style/textview_normal_regular"
+                                android:layout_marginStart="@dimen/_3sdp"
                                 android:layout_weight="1"
                                 android:background="@drawable/edittext_underline_background"
                                 android:hint="@string/_700000000"
                                 android:inputType="phone"
-                                android:layout_marginStart="@dimen/_3sdp"
                                 android:text="@={viewModel.phoneNumberWithoutCountryCode}"
                                 android:textSize="@dimen/_11ssp" />
 
                         </LinearLayout>
 
+                        <View
+                            android:id="@+id/divConfidential"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:background="@color/color_not_valid" />
 
                         <com.technzone.miniborsa.ui.base.views.AppTextInputLayout
                             android:id="@+id/tfEmail"

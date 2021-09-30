@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_news_sample"
+                tools:src="@drawable/ic_news_sample"
                 ivImageUrl="@{item.image}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
 
             <com.technzone.miniborsa.ui.base.views.AppImageView
                 android:id="@+id/imgShadow"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="@dimen/_70sdp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_news_shadow"
@@ -64,7 +64,7 @@
             <com.technzone.miniborsa.ui.base.views.AppTextView
                 android:id="@+id/tvName"
                 style="@style/textview_normal_regular"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
@@ -73,7 +73,9 @@
                 android:textSize="@dimen/_13ssp"
                 android:text="@{item.title}"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/tvPrice" />
+                app:layout_constraintStart_toStartOf="@id/tvPrice"
+                android:layout_marginEnd="@dimen/layouts_margin_end"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

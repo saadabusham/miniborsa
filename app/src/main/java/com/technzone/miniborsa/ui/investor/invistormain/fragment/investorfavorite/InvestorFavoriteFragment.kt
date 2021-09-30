@@ -116,7 +116,7 @@ class InvestorFavoriteFragment : BaseBindingFragment<FragmentInvestorFavoriteBin
                     super.onLoading()
                     loading.postValue(true)
                 }
-            }, withProgress = false
+            }, withProgress = false,showError = false
         )
     }
 

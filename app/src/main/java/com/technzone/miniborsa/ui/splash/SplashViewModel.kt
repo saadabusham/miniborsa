@@ -29,12 +29,6 @@ class SplashViewModel @Inject constructor(
         emit(response)
     }
 
-    fun getFavorites(
-    ) = liveData {
-        emit(APIResource.loading())
-        val response = commonRepo.getFavoriteIds()
-        emit(response)
-    }
 //    fun updateAccessToken() {
 //        updateTokenResult.postValue(Result.Loading)
 //        compositeDisposable + userRepo.updateAccessToken(getAccessToken())

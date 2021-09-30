@@ -3,6 +3,7 @@ package com.technzone.miniborsa.ui.business.createbusiness.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.technzone.miniborsa.data.api.response.APIResource
+import com.technzone.miniborsa.data.common.Constants.MAX_PRICE_LENGTH
 import com.technzone.miniborsa.data.enums.BusinessTypeEnums
 import com.technzone.miniborsa.data.enums.PropertyStatusEnums
 import com.technzone.miniborsa.data.models.Media
@@ -33,6 +34,7 @@ class CreateBusinessViewModel @Inject constructor(
     var businessId: Int? = null
     val defaultMinValue: Int = 1000
     val defaultMaxValue: Int = 1000000
+    val maxLength: Int = MAX_PRICE_LENGTH
     var businessType: Int = BusinessTypeEnums.BUSINESS_FOR_SALE.value
     var hasBusiness: Boolean = false
     var companyDraft: Boolean = false

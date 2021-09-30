@@ -65,6 +65,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
         super.onResume()
         handleStickyBusiness()
     }
+
     override fun getLayoutId(): Int = R.layout.fragment_investor_search
 
     override fun onViewVisible() {
@@ -181,10 +182,11 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: ListWrapper<Business>?
                 ) {
-                    if (data?.data != null && data.data.size > 0)
-                        data.data.let {
-                            forSaleBusinessAdapter.submitItems(it)
-                        } else {
+                    if (data?.data != null && data.data.size > 0) {
+                        if (data.data.size == 1)
+                            binding?.layoutForSale?.tvAll?.gone()
+                        forSaleBusinessAdapter.submitItems(data.data)
+                    } else {
                         binding?.layoutForSale?.linearRoot?.gone()
                     }
                 }
@@ -231,10 +233,11 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: ListWrapper<Business>?
                 ) {
-                    if (data?.data != null && data.data.size > 0)
-                        data.data.let {
-                            shareForSaleBusinessAdapter.submitItems(it)
-                        } else {
+                    if (data?.data != null && data.data.size > 0) {
+                        if (data.data.size == 1)
+                            binding?.layoutShareForSale?.tvAll?.gone()
+                        shareForSaleBusinessAdapter.submitItems(data.data)
+                    } else {
                         binding?.layoutShareForSale?.linearRoot?.gone()
                     }
                 }
@@ -280,10 +283,11 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: ListWrapper<Business>?
                 ) {
-                    if (data?.data != null && data.data.size > 0)
-                        data.data.let {
-                            franchiseBusinessAdapter.submitItems(it)
-                        } else {
+                    if (data?.data != null && data.data.size > 0) {
+                        if (data.data.size == 1)
+                            binding?.layoutFranchise?.tvAll?.gone()
+                        franchiseBusinessAdapter.submitItems(data.data)
+                    } else {
                         binding?.layoutFranchise?.linearRoot?.gone()
                     }
                 }
@@ -324,10 +328,11 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: ListWrapper<BusinessNews>?
                 ) {
-                    if (data?.data != null && data.data.size > 0)
-                        data.data.let {
-                            businessNewsAdapter.submitItems(it)
-                        } else {
+                    if (data?.data != null && data.data.size > 0) {
+                        if (data.data.size == 1)
+                            binding?.layoutBusinessNews?.tvAll?.gone()
+                        businessNewsAdapter.submitItems(data.data)
+                    } else {
                         binding?.layoutBusinessNews?.linearRoot?.gone()
                     }
                 }

@@ -157,7 +157,7 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
                             }
                         } else {
                             data?.data?.filter { !viewModel.categories.contains(it.id) }?.let {
-                                it.map { GeneralLookup(id = it.id, name = it.name) }?.let {
+                                it.map { GeneralLookup(id = it.id, name = it.name) }.let {
                                     showCategorySheet(categoryNumber, it)
                                 }
                             }

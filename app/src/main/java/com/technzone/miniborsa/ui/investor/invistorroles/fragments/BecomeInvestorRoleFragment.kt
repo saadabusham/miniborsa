@@ -7,6 +7,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.common.interfaces.SeekbarCallback
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.common.CustomObserverResponse
@@ -28,7 +29,6 @@ import com.technzone.miniborsa.utils.extensions.validate
 import com.technzone.miniborsa.utils.validation.ValidatorInputTypesEnums
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
-import okhttp3.internal.toLongOrDefault
 
 @AndroidEntryPoint
 class BecomeInvestorRoleFragment : BaseBindingFragment<FragmentBecomeInvistorBinding>(),
@@ -74,11 +74,16 @@ class BecomeInvestorRoleFragment : BaseBindingFragment<FragmentBecomeInvistorBin
         binding?.tvCategories?.setOnClickListener {
             viewModel.getCategories().observe(this, categoriesResultObserver())
         }
+        binding?.seekBar?.setOnSeekBarChangeListener(object : SeekbarCallback {
+            override fun onFromUserChange(progress: Int) {
+                viewModel.investmentPrice.postValue(progress.toDouble())
+            }
+        })
         binding?.edBudget?.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.investmentPrice.postValue(
                     binding?.edBudget?.text.toString()
-                        .toLongOrDefault(viewModel.defaultMinValue.toLong()).toInt()
+                        .toDoubleOrNull() ?: viewModel.defaultMinValue.toDouble()
                 )
                 binding?.root.hideKeyboard(requireActivity())
                 true
@@ -87,18 +92,20 @@ class BecomeInvestorRoleFragment : BaseBindingFragment<FragmentBecomeInvistorBin
     }
 
     private fun isDataValid(): Boolean {
-        binding?.edJobTitle?.text?.toString()?.validate(ValidatorInputTypesEnums.TEXT,requireContext())?.let {
-            if(!it.isValid){
-                requireActivity().showErrorAlert(getString(R.string.job_title),it.errorMessage)
+        binding?.edJobTitle?.text?.toString()
+            ?.validate(ValidatorInputTypesEnums.NORMAL_TEXT, requireContext())?.let {
+            if (!it.isValid) {
+                requireActivity().showErrorAlert(getString(R.string.job_title), it.errorMessage)
                 return false
             }
         }
-        binding?.edBio?.text?.toString()?.validate(ValidatorInputTypesEnums.TEXT,requireContext())?.let {
-            if(!it.isValid){
-                requireActivity().showErrorAlert(getString(R.string.bio),it.errorMessage)
-                return false
+        binding?.edBio?.text?.toString()?.validate(ValidatorInputTypesEnums.NORMAL_TEXT, requireContext())
+            ?.let {
+                if (!it.isValid) {
+                    requireActivity().showErrorAlert(getString(R.string.bio), it.errorMessage)
+                    return false
+                }
             }
-        }
         if (selectedCountriesAdapter.getSelectedItems().isNullOrEmpty()) {
             requireActivity().showErrorAlert(
                 getString(R.string.app_name),
@@ -132,13 +139,23 @@ class BecomeInvestorRoleFragment : BaseBindingFragment<FragmentBecomeInvistorBin
                     data: ListWrapper<Country>?
                 ) {
                     if (!data?.data.isNullOrEmpty())
-                        data?.data?.map { GeneralLookup(id = it.id, name = it.name) }.let {
-                            GeneralActivity.start(
-                                requireContext(),
-                                ArrayList(it),
-                                countiesResultLauncher
-                            )
-                        }
+                        data?.data?.map { GeneralLookup(id = it.id, name = it.name) }
+                            .let { countries ->
+                                selectedCountriesAdapter.getSelectedItems()
+                                    .let { selectedCountries ->
+                                        countries?.forEach { count ->
+                                            selectedCountries.singleOrNull { it.id == count.id }
+                                                ?.let {
+                                                    count.selected = true
+                                                }
+                                        }
+                                    }
+                                GeneralActivity.start(
+                                    requireContext(),
+                                    ArrayList(countries),
+                                    countiesResultLauncher
+                                )
+                            }
                 }
             })
     }

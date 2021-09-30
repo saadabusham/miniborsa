@@ -1,5 +1,6 @@
 package com.technzone.miniborsa.ui.auth.forgetpassword.fragments
 
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.navGraphViewModels
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 class VerificationForgetPasswordFragment :
     BaseBindingFragment<FragmentVerificationForgetPasswordBinding>() {
 
-    private val viewModel: ForgetPasswordViewModel by navGraphViewModels(R.id.forget_password_nav_graph) { defaultViewModelProviderFactory }
+    private val viewModel: ForgetPasswordViewModel by activityViewModels()
 
     override fun getLayoutId(): Int = R.layout.fragment_verification_forget_password
 

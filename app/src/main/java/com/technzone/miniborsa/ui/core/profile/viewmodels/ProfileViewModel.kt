@@ -37,10 +37,6 @@ class ProfileViewModel @Inject constructor(
     val emailMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val userImageMutableLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
 
-    init {
-        getUser()
-    }
-
     fun getCurrentUserRoles(): String {
         return userRepo.getCurrentRole()
     }

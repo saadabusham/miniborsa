@@ -19,6 +19,7 @@ import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.countrypicker.adapter.CountriesRecyclerAdapter
 import com.technzone.miniborsa.ui.countrypicker.viewmodels.CountriesViewModel
+import com.technzone.miniborsa.utils.extensions.getDeviceCountryCode
 import com.technzone.miniborsa.utils.extensions.readRawJson
 import com.technzone.miniborsa.utils.extensions.setupClearButtonWithAction
 import com.technzone.miniborsa.utils.extensions.showErrorAlert
@@ -82,6 +83,11 @@ class CountriesPickerActivity : BaseBindingActivity<ActivityCountriesBinding>(),
         binding?.recyclerView?.setOnItemClickListener(this)
         val localData: List<Countries> =
             readRawJson(this, R.raw.countries)
+        getDeviceCountryCode().let{country ->
+            localData.singleOrNull { it.code == country.code }?.let {
+                it.selected = true
+            }
+        }
         countriesAdapter.submitItems(localData)
         originalList.addAll(localData)
 //        viewModel.getCountriesCode().observe(this, countriesCodeResultObserver())

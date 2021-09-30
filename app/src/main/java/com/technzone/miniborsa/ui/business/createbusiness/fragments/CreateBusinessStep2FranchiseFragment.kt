@@ -127,10 +127,19 @@ class CreateBusinessStep2FranchiseFragment :
                     data: ListWrapper<Country>?
                 ) {
                     if (!data?.data.isNullOrEmpty())
-                        data?.data?.map { GeneralLookup(id = it.id, name = it.name) }.let {
+                        data?.data?.map { GeneralLookup(id = it.id, name = it.name) }.let { countries ->
+                            selectedCountriesAdapter.getSelectedItems()
+                                .let { selectedCountries ->
+                                    countries?.forEach { count ->
+                                        selectedCountries.singleOrNull { it.id == count.id }
+                                            ?.let {
+                                                count.selected = true
+                                            }
+                                    }
+                                }
                             GeneralActivity.start(
                                 requireContext(),
-                                ArrayList(it),
+                                ArrayList( countries),
                                 countiesResultLauncher
                             )
                         }

@@ -47,6 +47,10 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
 
     override fun getLayoutId(): Int = R.layout.fragment_profile
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getUser()
+    }
     override fun onViewVisible() {
         super.onViewVisible()
         init()
@@ -233,23 +237,31 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
                 }
             }
             MoreEnums.SWITCH_TO_BUSINESS -> {
-                if (viewModel.isUserHasBusinessRoles()) {
-                    viewModel.setCurrentUserRoles(UserRoleEnums.BUSINESS_ROLE.value)
-                    BusinessMainActivity.start(requireContext())
+                if (viewModel.isUserLoggedIn()) {
+                    if (viewModel.isUserHasBusinessRoles()) {
+                        viewModel.setCurrentUserRoles(UserRoleEnums.BUSINESS_ROLE.value)
+                        BusinessMainActivity.start(requireContext())
+                    } else {
+                        businessDraftViewModel.getPendingListing()
+                            .observe(this, pendingResultObserver())
+                    }
                 } else {
-                    businessDraftViewModel.getPendingListing()
-                        .observe(this, pendingResultObserver())
+                    showLoginDialog()
                 }
             }
             MoreEnums.INVESTORS_LIST -> {
                 InvestorsActivity.start(requireContext())
             }
             MoreEnums.SWITCH_TO_INVESTOR -> {
-                if (viewModel.isUserHasInvestorRoles()) {
-                    viewModel.setCurrentUserRoles(UserRoleEnums.INVESTOR_ROLE.value)
-                    InvestorMainActivity.start(requireContext())
+                if (viewModel.isUserLoggedIn()) {
+                    if (viewModel.isUserHasInvestorRoles()) {
+                        viewModel.setCurrentUserRoles(UserRoleEnums.INVESTOR_ROLE.value)
+                        InvestorMainActivity.start(requireContext())
+                    } else {
+                        InvestorRolesActivity.start(requireContext())
+                    }
                 } else {
-                    InvestorRolesActivity.start(requireContext())
+                    showLoginDialog()
                 }
             }
             MoreEnums.NOTIFICATION -> {

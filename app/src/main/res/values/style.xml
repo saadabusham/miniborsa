@@ -262,6 +262,7 @@
         <item name="android:paddingEnd">0dp</item>
         <item name="paddingStart">0dp</item>
         <item name="paddingEnd">0dp</item>
+        <item name="colorControlActivated">@color/button_color</item>
     </style>
 
     <!-- Dialog Animation Style -->

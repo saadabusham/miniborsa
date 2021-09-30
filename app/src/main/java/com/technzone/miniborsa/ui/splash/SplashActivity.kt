@@ -60,28 +60,9 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
                 ) {
                     SharedPreferencesUtil.getInstance(this@SplashActivity)
                         .setConfigurationPreferences(data)
-                    viewModel.getFavorites().observe(this@SplashActivity,favoriteIdsResultObserver())
+                    goToNextPage()
                 }
             })
-    }
-
-    private fun favoriteIdsResultObserver(): CustomObserverResponse<List<Int>> {
-        return CustomObserverResponse(
-            this,
-            object : CustomObserverResponse.APICallBack<List<Int>> {
-                override fun onSuccess(
-                    statusCode: Int,
-                    subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: List<Int>?
-                ) {
-                    goToNextPage()
-                }
-
-                override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
-                    super.onError(subErrorCode, message)
-                    goToNextPage()
-                }
-            },showError = false)
     }
 
     private fun goToNextPage() {

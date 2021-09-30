@@ -1,18 +1,16 @@
 package com.technzone.miniborsa.ui.auth.forgetpassword.fragments
 
 import androidx.fragment.app.activityViewModels
-import com.technzone.miniborsa.ui.auth.forgetpassword.viewmodels.ForgetPasswordViewModel
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.databinding.FragmentForgetPasswordBinding
+import com.technzone.miniborsa.ui.auth.forgetpassword.viewmodels.ForgetPasswordViewModel
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
 import com.technzone.miniborsa.utils.extensions.showErrorAlert
 import com.technzone.miniborsa.utils.extensions.validate
 import com.technzone.miniborsa.utils.validation.ValidatorInputTypesEnums
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_forget_password.*
-import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
@@ -58,8 +56,8 @@ class ForgetPasswordFragment : BaseBindingFragment<FragmentForgetPasswordBinding
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: String?
                 ) {
-                    viewModel.userIdMutableLiveData.postValue(data)
-//                navigationController.navigate(R.id.action_forgetPassword_to_verificationForgetPassword)
+                    viewModel.userIdMutableLiveData.value = data
+                    navigationController.navigate(R.id.action_forgetPassword_to_verificationForgetPassword)
                 }
             })
     }

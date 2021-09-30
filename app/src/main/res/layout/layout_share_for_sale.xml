@@ -15,8 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingStart="@dimen/layouts_margin_start"
-            android:paddingEnd="@dimen/layouts_margin_end">
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_15sdp">
 
             <com.technzone.miniborsa.ui.base.views.AppTextView
                 style="@style/textview_normal_semibold"
@@ -53,7 +53,7 @@
             android:clipToPadding="false"
             android:nestedScrollingEnabled="false"
             android:orientation="horizontal"
-            android:paddingStart="@dimen/layouts_margin_start"
+            android:paddingStart="@dimen/_15sdp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:spanCount="3"
             tools:listitem="@layout/row_business" />

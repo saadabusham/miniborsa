@@ -63,9 +63,9 @@
                         style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:singleLine="true"
                         android:maxLines="1"
-                        android:text="@={viewModel.jobTitle}"/>
+                        android:singleLine="true"
+                        android:text="@={viewModel.jobTitle}" />
 
                 </com.technzone.miniborsa.ui.base.views.AppTextInputLayout>
 
@@ -82,7 +82,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="1000"
-                        android:text="@={viewModel.bio}"/>
+                        android:text="@={viewModel.bio}" />
 
                 </com.technzone.miniborsa.ui.base.views.AppTextInputLayout>
 
@@ -129,6 +129,8 @@
                         android:focusable="true"
                         android:imeOptions="actionDone"
                         android:inputType="number"
+                        android:maxWidth="@dimen/_120sdp"
+                        android:maxLength="@{viewModel.maxLength}"
                         android:maxLines="1"
                         android:singleLine="true"
                         android:text="@{viewModel.investmentPrice.toString()}"
@@ -137,7 +139,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/tvFreeHoldAskingPriceTxt"
                         app:layout_constraintEnd_toEndOf="@id/freeholdEndGuide"
                         app:layout_constraintTop_toTopOf="@id/tvFreeHoldAskingPriceTxt"
-                        tools:text="400,000" />
+                        tools:text="400,00" />
                 </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatSeekBar
@@ -147,11 +149,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:enabled="@{viewModel.budgetOnRequest == false}"
-                    android:max="@{viewModel.defaultMaxValue}"
-                    android:min="@{viewModel.defaultMinValue}"
+                    android:max="@{Integer.valueOf(String.valueOf(viewModel.defaultMaxValue))}"
+                    android:min="@{Integer.valueOf(String.valueOf(viewModel.defaultMinValue))}"
                     android:paddingStart="@dimen/_9sdp"
                     android:paddingEnd="@dimen/_9sdp"
-                    android:progress="@={viewModel.investmentPrice}"
+                    android:progress="@{viewModel.investmentPrice.intValue()}"
                     android:progressDrawable="@drawable/seekbar_selector"
                     android:thumb="@drawable/seekbar_thumb_selector"
                     tools:max="78"
