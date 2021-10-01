@@ -181,7 +181,7 @@
     <color name="outline_button_text_color">#E9591C</color>
 
 <!--    Business Status colors-->
-    <color name="status_draft">#E9591C</color>
+    <color name="status_draft">#E91C1C</color>
     <color name="status_pending">#33FEC031</color>
     <color name="status_approved">#3300AB6B</color>
     <color name="status_rejected">#33AB0000</color>

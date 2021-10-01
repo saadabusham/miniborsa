@@ -2,15 +2,16 @@ package com.technzone.miniborsa.utils.extensions
 
 import android.content.Context
 import com.prolificinteractive.materialcalendarview.CalendarDay
-import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.utils.DateTimeUtil
 import com.technzone.miniborsa.utils.validation.Validator
 import com.technzone.miniborsa.utils.validation.ValidatorInputTypesEnums
-import java.lang.NumberFormatException
 import java.math.BigDecimal
 import java.net.URLDecoder
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.pow
+import kotlin.math.round
+import kotlin.math.roundToInt
 
 fun String?.toDate(format: String = DateTimeUtil.FULL_DATE_TIME_FORMATTING): Date? {
     if (this == null) return null
@@ -18,11 +19,15 @@ fun String?.toDate(format: String = DateTimeUtil.FULL_DATE_TIME_FORMATTING): Dat
 }
 
 fun String.validate(validatorInputTypesEnums: ValidatorInputTypesEnums, context: Context): Validator.ValidatedData {
-    return Validator().validate(validatorInputTypesEnums,this,context)
+    return Validator().validate(validatorInputTypesEnums, this, context)
 }
 
-fun String.validateConfirmPassword(validatorInputTypesEnums: ValidatorInputTypesEnums, passwordToMatch: String, context: Context): Validator.ValidatedData {
-    return Validator().validate(validatorInputTypesEnums,this,passwordToMatch,context)
+fun String.validateConfirmPassword(
+    validatorInputTypesEnums: ValidatorInputTypesEnums,
+    passwordToMatch: String,
+    context: Context
+): Validator.ValidatedData {
+    return Validator().validate(validatorInputTypesEnums, this, passwordToMatch, context)
 }
 
 fun String?.getCalendarDay(): CalendarDay {
@@ -89,8 +94,8 @@ fun String.checkPhoneNumberFormat(): String {
     }
 }
 
-fun Double.round(digitNum : Int): String {
-    return String.format("%.${digitNum}f",this)
+fun Double.round(digitNum: Int): String {
+    return String.format("%.${digitNum}f", this)
 }
 
 fun String.toPriceOrNull():Double?{
@@ -100,12 +105,17 @@ fun String.toPriceOrNull():Double?{
         if(this.contains(".")){
             this.toDoubleOrNull()
         }else{
-            this.toDouble().roundTo2DecimalPlaces(1)
+            withMathRound(this.toDouble(),this.count { it.equals(".") })
+//            this.toDouble().roundTo2DecimalPlaces(1)
         }
-    }catch (e:NumberFormatException){
+    }catch (e: NumberFormatException){
          null
     }
 }
+fun withMathRound(value: Double, places: Int): Double {
+    val scale = 10.0.pow(places.toDouble())
+    return (value * scale).roundToInt() / scale
+}
 fun String.fullTrim() = trim().replace("\uFEFF", "")
-fun Double.roundTo2DecimalPlaces(scale:Int) =
-    BigDecimal(this).setScale(scale, BigDecimal.ROUND_HALF_UP).toDouble()
+fun Double.roundTo2DecimalPlaces(scale: Int) =
+    BigDecimal(this).setScale(scale, BigDecimal.ROUND_HALF_UP).toPlainString()

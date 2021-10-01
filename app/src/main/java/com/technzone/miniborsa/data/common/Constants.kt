@@ -18,6 +18,7 @@ object Constants {
 
     object BundleData {
 
+        const val CLEAR_TASK: String ="clearTask"
         const val FAVORITE_LIST: String = "favoriteList"
         const val BUSINESS_DRAFT: String ="businessDraft"
         const val COMPANY_DRAFT: String ="comapnyDraft"

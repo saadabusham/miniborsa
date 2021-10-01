@@ -307,7 +307,8 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
                         SubscriptionActivity.start(
                             requireContext(),
                             isBusiness = true,
-                            hasBusiness = false
+                            hasBusiness = false,
+                            clearTask = false
                         )
                     }
                 }
@@ -317,7 +318,8 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
                     SubscriptionActivity.start(
                         requireContext(),
                         isBusiness = true,
-                        hasBusiness = false
+                        hasBusiness = false,
+                        clearTask = false
                     )
                 }
             }, showError = false

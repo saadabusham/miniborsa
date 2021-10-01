@@ -39,11 +39,13 @@ class SubscriptionActivity : BaseBindingActivity<ActivitySubscriptionBinding>() 
         fun start(
             context: Context?,
             isBusiness: Boolean,
-            hasBusiness:Boolean = false
+            hasBusiness:Boolean = false,
+            clearTask: Boolean = false
         ) {
             val intent = Intent(context, SubscriptionActivity::class.java).apply {
                 putExtra(Constants.BundleData.BUSINESS, isBusiness)
                 putExtra(Constants.BundleData.HAS_BUSINESS, hasBusiness)
+                putExtra(Constants.BundleData.CLEAR_TASK, clearTask)
             }
             context?.startActivity(intent)
         }

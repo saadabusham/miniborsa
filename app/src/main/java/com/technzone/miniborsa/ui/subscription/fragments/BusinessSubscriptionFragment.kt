@@ -65,6 +65,9 @@ class BusinessSubscriptionFragment : BaseBindingFragment<FragmentBusinessSubscri
     private fun showSelectTypeDialog() {
         SelectBusinessTypeDialog(requireActivity(), object : SelectBusinessTypeDialog.CallBack {
             override fun callBack(businessTypeEnums: BusinessTypeEnums) {
+                if(requireActivity().intent.getBooleanExtra(Constants.BundleData.CLEAR_TASK,false)){
+                    requireActivity().finish()
+                }
                 CreateBusinessActivity.start(
                     context = requireContext(),
                     businessType = businessTypeEnums.value,
@@ -72,8 +75,7 @@ class BusinessSubscriptionFragment : BaseBindingFragment<FragmentBusinessSubscri
                         Constants.BundleData.HAS_BUSINESS,
                         false
                     ),
-                    companyDraft = false,
-                    clearTask = true
+                    companyDraft = false
                 )
             }
         }).show()

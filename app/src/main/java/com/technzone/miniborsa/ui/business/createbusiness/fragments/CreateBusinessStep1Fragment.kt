@@ -52,22 +52,22 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
         }
         binding?.tvCat1?.setOnClickListener {
             viewModel.getCategories()
-                .observe(this, requestCompanyResultObserver(viewModel.getCategoriesCount(1)))
+                .observe(this, categoriesResultObserver(viewModel.getCategoriesCount(1)))
         }
         binding?.tvCat2?.setOnClickListener {
             viewModel.getCategories()
-                .observe(this, requestCompanyResultObserver(viewModel.getCategoriesCount(2)))
+                .observe(this, categoriesResultObserver(viewModel.getCategoriesCount(2)))
         }
         binding?.tvCat3?.setOnClickListener {
             viewModel.getCategories()
-                .observe(this, requestCompanyResultObserver(viewModel.getCategoriesCount(3)))
+                .observe(this, categoriesResultObserver(viewModel.getCategoriesCount(3)))
         }
     }
     private fun handleBuniness() {
         if (viewModel.hasBusiness && !viewModel.businessDraft) {
             viewModel.requestBusiness().observe(this, requestBusinessResultObserver())
         } else if (viewModel.hasBusiness || viewModel.companyDraft || viewModel.businessDraft) {
-            viewModel.getCategories().observe(this, requestCompanyResultObserver(0, true))
+            viewModel.getCategories().observe(this, categoriesResultObserver(0, true))
         } else {
             showCreateDialog(false)
         }
@@ -80,12 +80,12 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
                     viewModel.requestCompany(name)
                         .observe(
                             this@CreateBusinessStep1Fragment,
-                            requestCompanyResultObserver(dialog = dialog)
+                            categoriesResultObserver(dialog = dialog)
                         )
                 else viewModel.requestBusiness()
                     .observe(
                         this@CreateBusinessStep1Fragment,
-                        requestCompanyResultObserver(dialog = dialog)
+                        categoriesResultObserver(dialog = dialog)
                     )
             }
 
@@ -95,7 +95,7 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
         }).show()
     }
 
-    private fun requestCompanyResultObserver(
+    private fun categoriesResultObserver(
         dialog: CreateCompanyDialog
     ): CustomObserverResponse<Int> {
         return CustomObserverResponse(
@@ -133,7 +133,7 @@ class CreateBusinessStep1Fragment : BaseFormBindingFragment<FragmentCreateBusine
             })
     }
 
-    private fun requestCompanyResultObserver(
+    private fun categoriesResultObserver(
         categoryNumber: Int,
         fillOldData: Boolean = false
     ): CustomObserverResponse<ListWrapper<CategoriesItem>> {
