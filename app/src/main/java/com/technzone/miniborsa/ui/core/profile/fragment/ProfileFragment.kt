@@ -11,6 +11,7 @@ import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.data.enums.MoreEnums
 import com.technzone.miniborsa.data.enums.UserRoleEnums
+import com.technzone.miniborsa.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.data.models.profile.More
 import com.technzone.miniborsa.databinding.FragmentProfileBinding
@@ -49,7 +50,7 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
 
     override fun onResume() {
         super.onResume()
-        viewModel.getUser()
+        viewModel.getMyProfile().observe(this, profileObserver())
     }
     override fun onViewVisible() {
         super.onViewVisible()
@@ -81,6 +82,21 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
         binding?.rvMore?.adapter = moreRecyclerAdapter
         binding?.rvMore?.setOnItemClickListener(this)
         initData()
+    }
+
+    private fun profileObserver(): CustomObserverResponse<UserDetailsResponseModel> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<UserDetailsResponseModel> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: UserDetailsResponseModel?
+                ) {
+                    data?.let { it1 -> viewModel.storeUser(it1) }
+                    viewModel.getUser()
+                }
+            })
     }
 
     private fun initData() {
