@@ -35,6 +35,10 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
 
     override fun getLayoutId(): Int = R.layout.fragment_create_business_step3
 
+    override fun onResume() {
+        super.onResume()
+        loadBusinessData()
+    }
     override fun onViewVisible() {
         super.onViewVisible()
         setUpBinding()
@@ -74,7 +78,7 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
             }
         }
         binding?.rvPhotos?.layoutManager = photosLayoutManager
-        refreshImages()
+//        refreshImages()
     }
 
     private fun setUpRvDocuments() {
@@ -94,7 +98,7 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
                 }
             }
         })
-        refreshDocuments()
+//        refreshDocuments()
     }
 
     private fun openDocumentPicker() {
@@ -150,17 +154,19 @@ class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusine
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: Any?
                 ) {
-                    if (!viewModel.hasBusiness) {
-                        viewModel.getCompanyRequest()
-                            .observe(this@CreateBusinessStep3Fragment, businessResultObserver())
-                    } else {
-                        viewModel.getBusinessRequest()
-                            .observe(this@CreateBusinessStep3Fragment, businessResultObserver())
-                    }
+                   loadBusinessData()
                 }
             })
     }
-
+    private fun loadBusinessData(){
+        if (!viewModel.hasBusiness) {
+            viewModel.getCompanyRequest()
+                .observe(this@CreateBusinessStep3Fragment, businessResultObserver())
+        } else {
+            viewModel.getBusinessRequest()
+                .observe(this@CreateBusinessStep3Fragment, businessResultObserver())
+        }
+    }
     private fun businessResultObserver(): CustomObserverResponse<OwnerBusiness> {
         return CustomObserverResponse(
             requireActivity(),

@@ -17,6 +17,7 @@ import com.technzone.miniborsa.data.repos.business.BusinessRepo
 import com.technzone.miniborsa.data.repos.configuration.ConfigurationRepo
 import com.technzone.miniborsa.data.repos.user.UserRepo
 import com.technzone.miniborsa.ui.base.viewmodel.BaseViewModel
+import com.technzone.miniborsa.utils.extensions.createFileMultipart
 import com.technzone.miniborsa.utils.extensions.createImageMultipart
 import com.technzone.miniborsa.utils.extensions.getCurrentYear
 import com.technzone.miniborsa.utils.pref.SharedPreferencesUtil
@@ -203,11 +204,11 @@ class CreateBusinessViewModel @Inject constructor(
             if (isHasBusiness())
                 businessRepo.addBusinessRequestFiles(
                     businessId,
-                    arrayListOf(file.createImageMultipart("Files"))
+                    arrayListOf(file.createFileMultipart("Files"))
                 )
             else businessRepo.addCompanyRequestFiles(
                 businessId,
-                arrayListOf(file.createImageMultipart("Files"))
+                arrayListOf(file.createFileMultipart("Files"))
             )
         emit(response)
     }

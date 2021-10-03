@@ -74,7 +74,7 @@ class ImageRecyclerAdapter(
                 itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
             }
             binding.relativePreview.setOnClickListener {
-                itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
+                itemClickListener?.onItemClick(binding.imgRemove, bindingAdapterPosition, item)
             }
             binding.relativePreview.setOnLongClickListener {
                 itemClickListener?.onItemLongClick(it, bindingAdapterPosition, item)

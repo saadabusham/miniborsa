@@ -27,7 +27,7 @@ data class OwnerBusiness(
 	@field:SerializedName("canRunfromHome")
 	val canRunfromHome: Boolean? = null,
 
-	@field:SerializedName("businessIcon")
+	@field:SerializedName("businessIcon", alternate = ["icon"])
 	val icon: String? = null,
 
 	@field:SerializedName("training")
