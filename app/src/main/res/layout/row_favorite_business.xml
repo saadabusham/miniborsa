@@ -31,8 +31,8 @@
 
             <com.technzone.miniborsa.ui.base.views.AppImageView
                 android:id="@+id/imgPhoto"
-                ivImageErrorPlaceholder="@{R.drawable.ic_business_place_holder}"
-                ivImagePlaceholder="@{R.drawable.ic_business_place_holder}"
+                ivImageErrorPlaceholder="@{R.drawable.ic_default_image_place_holder}"
+                ivImagePlaceholder="@{R.drawable.ic_default_image_place_holder}"
                 ivImageUrl="@{item.icon}"
                 android:layout_width="@dimen/_110sdp"
                 android:layout_height="@dimen/_113sdp"

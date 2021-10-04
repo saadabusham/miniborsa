@@ -61,20 +61,20 @@ class CountriesPickerActivity : BaseBindingActivity<ActivityCountriesBinding>(),
     }
 
     private fun onDone() {
-        if (countriesAdapter.selectedPosition == -1) {
+        countriesAdapter.getSelectedItem()?.let {
+            val data = Intent()
+            data.putExtra(
+                Constants.BundleData.COUNTRY,
+                it
+            )
+            setResult(RESULT_OK, data)
+            finish()
+        }?:also {
             showErrorAlert(
                 intent.getStringExtra(Constants.BundleData.TITLE)
                     ?: "", getString(R.string.please_select_item)
             )
-            return
         }
-        val data = Intent()
-        data.putExtra(
-            Constants.BundleData.COUNTRY,
-            countriesAdapter.items[countriesAdapter.selectedPosition]
-        )
-        setResult(RESULT_OK, data)
-        finish()
     }
 
     private fun setUpRecyclerView() {
@@ -83,8 +83,9 @@ class CountriesPickerActivity : BaseBindingActivity<ActivityCountriesBinding>(),
         binding?.recyclerView?.setOnItemClickListener(this)
         val localData: List<Countries> =
             readRawJson(this, R.raw.countries)
-        getDeviceCountryCode().let{country ->
-            localData.singleOrNull { it.code == country.code }?.let {
+        intent.getSerializableExtra(Constants.BundleData.COUNTRY)?.let {selectedCountry ->
+            selectedCountry as Countries
+            localData.singleOrNull { it.code == selectedCountry.code }?.let {
                 it.selected = true
             }
         }
@@ -145,23 +146,19 @@ class CountriesPickerActivity : BaseBindingActivity<ActivityCountriesBinding>(),
     }
 
     companion object {
-        fun start(
-            context: Context?
-        ) {
-            val intent = Intent(context, CountriesPickerActivity::class.java)
-            context?.startActivity(intent)
-        }
 
         fun start(
             context: Activity?,
             title: String,
             actonTitle: String,
+            selectedCountry:Countries?,
             resultLauncher: ActivityResultLauncher<Intent>
         ) {
             val intent = Intent(context, CountriesPickerActivity::class.java)
             intent.apply {
                 putExtra(Constants.BundleData.TITLE, title)
                 putExtra(Constants.BundleData.ACTION_TITLE, actonTitle)
+                putExtra(Constants.BundleData.COUNTRY, selectedCountry)
             }
             resultLauncher.launch(intent)
         }

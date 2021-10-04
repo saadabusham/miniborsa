@@ -47,9 +47,10 @@ class UpdateProfileActivity : BaseBindingActivity<ActivityUpdateProfileBinding>(
         binding?.tvCountryCode?.setOnClickListener {
             CountriesPickerActivity.start(
                 this,
+                selectedCountry = viewModel.selectedCountryCode.value,
                 title = getString(R.string.done),
                 actonTitle = getString(R.string.done),
-                resultLauncher
+                resultLauncher = resultLauncher
             )
         }
     }

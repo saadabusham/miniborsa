@@ -12,16 +12,18 @@ import com.technzone.miniborsa.utils.extensions.gone
 import com.technzone.miniborsa.utils.extensions.visible
 
 class CountriesRecyclerAdapter(
-        context: Context
+    context: Context
 ) : BaseBindingRecyclerViewAdapter<Countries>(context) {
 
-    var selectedPosition: Int = -1
+    fun getSelectedItem(): Countries? {
+        return items.singleOrNull { it.selected }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(
-                RowCountryBinding.inflate(
-                        LayoutInflater.from(context), parent, false
-                )
+            RowCountryBinding.inflate(
+                LayoutInflater.from(context), parent, false
+            )
         )
     }
 
@@ -32,19 +34,18 @@ class CountriesRecyclerAdapter(
     }
 
     inner class ViewHolder(private val binding: RowCountryBinding) :
-            BaseViewHolder<Countries>(binding.root) {
+        BaseViewHolder<Countries>(binding.root) {
 
         override fun bind(item: Countries) {
             binding.item = item
             binding.root.setOnClickListener {
-                if (selectedPosition != -1) {
-                    items[selectedPosition].selected = false
-                    notifyItemChanged(selectedPosition)
+                items.withIndex().singleOrNull { it.value.selected }?.let {
+                    it.value.selected = false
+                    notifyItemChanged(it.index)
                 }
-                selectedPosition = bindingAdapterPosition
                 item.selected = true
                 notifyItemChanged(bindingAdapterPosition)
-                itemClickListener?.onItemClick(it,bindingAdapterPosition,item)
+                itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
             }
             if (item.selected) {
                 binding.imgSelected.visible()

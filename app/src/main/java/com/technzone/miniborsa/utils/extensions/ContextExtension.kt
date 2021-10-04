@@ -18,7 +18,7 @@ import com.technzone.miniborsa.R
 import com.technzone.miniborsa.utils.pref.PrefConstants.APP_LANGUAGE_VALUE
 import com.technzone.miniborsa.common.CommonEnums
 import com.technzone.miniborsa.data.models.general.Countries
-import com.technzone.miniborsa.utils.CountryToPhonePrefix.getCountryByCode
+import com.technzone.miniborsa.utils.CountryToPhonePrefix.getCountryByCountryISO
 import com.technzone.miniborsa.utils.pref.SharedPreferencesUtil
 import java.util.*
 
@@ -124,7 +124,7 @@ fun Context.getDeviceCountryCode(): Countries {
     val tm =this.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
     val localData: List<Countries> =
         readRawJson(this, R.raw.countries)
-    return localData.getCountryByCode(tm.networkCountryIso)
+    return localData.getCountryByCountryISO(tm.networkCountryIso)
 }
 
 

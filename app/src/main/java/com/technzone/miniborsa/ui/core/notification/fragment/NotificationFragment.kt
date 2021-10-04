@@ -71,10 +71,6 @@ class NotificationFragment : BaseBindingFragment<FragmentNotificationBinding>(),
     }
 
     private fun setUpListeners() {
-        binding?.layoutToolbarWithAction?.imgAction?.visible()
-        binding?.layoutToolbarWithAction?.imgAction?.setOnClickListener {
-
-        }
         binding?.layoutToolbarWithAction?.imgBack?.setOnClickListener {
             requireActivity().onBackPressed()
         }

@@ -31,8 +31,8 @@
                 android:scaleType="centerCrop"
                 tools:src="@drawable/ic_business_sample"
                 ivImageUrl="@{item.icon}"
-                ivImagePlaceholder="@{R.drawable.ic_business_place_holder}"
-                ivImageErrorPlaceholder="@{R.drawable.ic_business_place_holder}"
+                ivImagePlaceholder="@{R.drawable.ic_default_image_place_holder}"
+                ivImageErrorPlaceholder="@{R.drawable.ic_default_image_place_holder}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

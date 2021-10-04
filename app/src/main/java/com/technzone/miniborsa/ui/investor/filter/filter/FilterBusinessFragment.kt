@@ -46,6 +46,16 @@ class FilterBusinessFragment : BaseBindingFragment<FragmentFilterBinding>(),
         setUpRvBusinessType()
     }
 
+    private fun setUpRangeSeek() {
+        with(viewModel) {
+            val minVal = if (min.value ?: 0 > 0) min.value?.toFloat()
+                ?: defaultMinValue.toFloat() else defaultMinValue.toFloat()
+            val maxVal = if (max.value ?: 0 > 0) max.value?.toFloat()
+                ?: defaultMaxValue.toFloat() else defaultMaxValue.toFloat()
+            rangeSeekBar.setMinStartValue(minVal).setMaxStartValue(maxVal)?.apply()
+        }
+    }
+
     private fun setUpBinding() {
         binding?.viewModel = viewModel
     }
@@ -77,6 +87,8 @@ class FilterBusinessFragment : BaseBindingFragment<FragmentFilterBinding>(),
         }
         binding?.rangeSeekBar?.setMinValue(100000f)?.apply()
         binding?.rangeSeekBar?.setMaxValue(100000000f)?.apply()
+
+        setUpRangeSeek()
     }
 
     private fun applyData() {
@@ -122,8 +134,13 @@ class FilterBusinessFragment : BaseBindingFragment<FragmentFilterBinding>(),
                     data: ListWrapper<CategoriesItem>?
                 ) {
                     if (!data?.data.isNullOrEmpty())
-                        data?.data?.map { GeneralLookup(id = it.id, name = it.name) }?.let {
-                            inustryAdapter.submitItems(it)
+                        data?.data?.map { GeneralLookup(id = it.id, name = it.name) }?.let { list ->
+                            viewModel.categories.withIndex().forEach { cat ->
+                                list.singleOrNull { it.id == cat.value }?.let {
+                                    it.selected = true
+                                }
+                            }
+                            inustryAdapter.submitItems(list)
                         }
                 }
             }, withProgress = false
