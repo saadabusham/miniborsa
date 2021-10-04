@@ -2,15 +2,16 @@ package com.technzone.miniborsa.ui.core.profile.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.technzone.miniborsa.common.CommonEnums
 import com.technzone.miniborsa.data.api.response.APIResource
+import com.technzone.miniborsa.data.daos.local.searchbusiness.SearchedBusinessLocalDao
 import com.technzone.miniborsa.data.enums.UserEnums
 import com.technzone.miniborsa.data.enums.UserRoleEnums
 import com.technzone.miniborsa.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.miniborsa.data.models.general.Countries
 import com.technzone.miniborsa.data.pref.configuration.ConfigurationPref
 import com.technzone.miniborsa.data.pref.user.UserPref
-import com.technzone.miniborsa.data.repos.business.BusinessRepo
 import com.technzone.miniborsa.data.repos.user.UserRepo
 import com.technzone.miniborsa.ui.base.viewmodel.BaseViewModel
 import com.technzone.miniborsa.utils.LocaleUtil
@@ -19,6 +20,7 @@ import com.technzone.miniborsa.utils.extensions.createImageMultipart
 import com.technzone.miniborsa.utils.extensions.getRequestBody
 import com.technzone.miniborsa.utils.pref.SharedPreferencesUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,7 +29,7 @@ class ProfileViewModel @Inject constructor(
     private val userPref: UserPref,
     private val sharedPreferencesUtil: SharedPreferencesUtil,
     private val configurationPref: ConfigurationPref,
-    private val businessRepo: BusinessRepo
+    private val searchedBusinessLocalDao: SearchedBusinessLocalDao
 ) : BaseViewModel() {
 
     val phoneNumberWithoutCountryCode: MutableLiveData<String> by lazy { MutableLiveData<String>() }
@@ -53,8 +55,9 @@ class ProfileViewModel @Inject constructor(
         return userRepo.setCurrentRole(role)
     }
 
-    fun logout() {
+    fun logout() = viewModelScope.launch {
         sharedPreferencesUtil.clearPreference()
+        searchedBusinessLocalDao.clearBusinesses()
         userPref.setIsFirstOpen(false)
         configurationPref.setAppLanguageValue(LocaleUtil.getLanguage())
     }

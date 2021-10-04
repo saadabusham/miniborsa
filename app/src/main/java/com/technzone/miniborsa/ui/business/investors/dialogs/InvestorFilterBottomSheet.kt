@@ -157,6 +157,7 @@ class InvestorFilterBottomSheet(
                             selectedCountriesAdapter.items.filter { it.selected }
                             GeneralActivity.start(
                                 requireContext(),
+                                getString(R.string.countries),
                                 ArrayList(it),
                                 countiesResultLauncher
                             )

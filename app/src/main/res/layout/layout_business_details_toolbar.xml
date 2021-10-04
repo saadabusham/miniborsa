@@ -55,8 +55,9 @@
                 android:layout_toStartOf="@id/imgFavorite"
                 android:background="?selectableItemBackgroundBorderless"
                 android:clickable="true"
+                android:layout_marginEnd="@dimen/_9sdp"
                 android:focusable="true"
-                android:padding="@dimen/_3sdp"
+                android:padding="@dimen/_4sdp"
                 android:src="@drawable/ic_share" />
 
             <ImageView

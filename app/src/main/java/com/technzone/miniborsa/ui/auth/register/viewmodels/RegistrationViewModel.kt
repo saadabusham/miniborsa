@@ -66,7 +66,7 @@ class RegistrationViewModel @Inject constructor(
             }
 
             override fun onFinish() {
-                signUpResendTimer.value = context.resources.getString(R.string.resend_again)
+                signUpResendTimer.value = context.resources.getString(R.string.send_again)
                 signUpResendPinCodeEnabled.value = true
             }
         }

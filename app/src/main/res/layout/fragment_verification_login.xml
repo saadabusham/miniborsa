@@ -79,10 +79,10 @@
                     android:itemBackground="@color/white"
                     android:text="@={viewModel.signUpVerificationCode}"
                     android:textColor="@color/otp_color"
-                    android:textSize="@dimen/_39ssp"
+                    android:textSize="@dimen/_30ssp"
                     app:itemCount="5"
                     app:itemHeight="@dimen/_50sdp"
-                    app:itemSpacing="@dimen/_8sdp"
+                    app:itemSpacing="@dimen/_13sdp"
                     app:itemWidth="@dimen/_43sdp"
                     app:lineColor="@color/otp_outline_color"
                     app:lineWidth="@dimen/_1sdp"
@@ -118,7 +118,7 @@
                         android:text="@{viewModel.signUpResendTimer}"
                         android:textColor="@color/colorAccent"
                         android:textSize="@dimen/_11ssp"
-                        tools:text="@string/resend_again" />
+                        tools:text="@string/send_again" />
 
                 </LinearLayout>
 
@@ -132,15 +132,11 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
             android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
             android:layout_marginStart="@dimen/layouts_margin_start"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/layouts_margin_end"
             android:layout_marginBottom="@dimen/_15sdp"
-            android:text="@string/verify"
-            android:textAppearance="@style/textview_normal_regular"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/_11ssp" />
+            android:text="@string/verify" />
 
     </RelativeLayout>
 

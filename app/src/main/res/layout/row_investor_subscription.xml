@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_25sdp"
         android:background="@{item.selected ? @drawable/ic_rectangle_focused : @drawable/ic_rectangle_unfocused}"
-        android:minHeight="@dimen/_85sdp"
         android:orientation="vertical"
         tools:background="@drawable/ic_rectangle_focused">
 
@@ -24,8 +23,8 @@
             android:layout_width="@dimen/_15sdp"
             android:layout_height="@dimen/_15sdp"
             android:layout_gravity="end"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
             android:src="@{item.selected ? @drawable/ic_circle_check : @drawable/ic_circle_uncheck}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -56,7 +55,7 @@
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_13sdp"
             android:text="The service fees is valid to contact 20\nbusiness owner only."
             android:textColor="@color/black"
             android:textSize="@dimen/_11ssp"

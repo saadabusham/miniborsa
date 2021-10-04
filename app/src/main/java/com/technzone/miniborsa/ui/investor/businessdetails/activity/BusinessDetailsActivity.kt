@@ -170,7 +170,7 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
         binding?.layoutBusinessSlider?.vpPictures?.setOnItemClickListener(this)
         if (viewModel.businessToView.value?.images.isNullOrEmpty())
             viewModel.businessToView.value?.images = mutableListOf()
-        viewModel.businessToView.value?.images?.add(Media(name = viewModel.businessToView.value?.icon ?: ""))
+        viewModel.businessToView.value?.images?.add(0,Media(name = viewModel.businessToView.value?.icon ?: ""))
         businessSliderAdapter.submitItems(
             viewModel.businessToView.value?.images ?: mutableListOf()
         )

@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/btnComplete"
-            android:layout_marginTop="@dimen/_60sdp"
+            android:layout_below="@id/layout_toolbar"
             android:clipToPadding="false"
             android:fillViewport="true"
             android:paddingBottom="@dimen/_30sdp">
@@ -46,7 +46,6 @@
                     style="@style/textview_normal_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_27sdp"
                     android:text="@string/complete_your_investor_profile"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_21ssp" />
@@ -73,7 +72,6 @@
                     android:id="@+id/tfBio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
                     android:hint="@string/bio">
 
                     <com.technzone.miniborsa.ui.base.views.AppTextInputEditText
@@ -89,7 +87,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_18sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -157,7 +155,7 @@
                     android:progressDrawable="@drawable/seekbar_selector"
                     android:thumb="@drawable/seekbar_thumb_selector"
                     tools:max="78"
-                    tools:progress="0" />
+                    tools:progress="50" />
 
 
                 <androidx.appcompat.widget.AppCompatCheckBox
@@ -166,9 +164,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:checked="@={viewModel.budgetOnRequest}"
-                    android:paddingStart="@dimen/_15sdp"
+                    android:paddingStart="@dimen/_10sdp"
                     android:paddingTop="0dp"
+                    style="@style/textview_normal_regular"
                     android:paddingBottom="0dp"
+                    android:textSize="@dimen/_11ssp"
+                    android:textColor="@color/black"
                     android:text="@string/available_on_request" />
 
                 <TextView

@@ -34,38 +34,38 @@
             android:layout_height="@dimen/_90sdp"
             app:cardCornerRadius="@dimen/_4sdp"
             app:cardElevation="0dp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.technzone.miniborsa.ui.base.views.AppImageView
                 android:id="@+id/imgPhoto"
+                ivImageUrl="@{item.icon}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                ivImageUrl="@{item.icon}"
                 tools:src="@drawable/ic_business_sample" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.technzone.miniborsa.ui.base.views.AppButton
             android:id="@+id/tvType"
             style="@style/textview_normal_regular"
+            setTextByBusinessType="@{item.businessType}"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_20sdp"
             android:layout_marginStart="@dimen/_12sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:backgroundTint="@color/green_color_alpha"
             android:gravity="center"
-            android:stateListAnimator="@null"
-            setTextByBusinessType="@{item.businessType}"
-            tools:text="Business For Sale"
-            android:textColor="@color/green_color"
-            android:textSize="@dimen/_7ssp"
             android:paddingStart="@dimen/_5sdp"
             android:paddingEnd="@dimen/_5sdp"
+            android:stateListAnimator="@null"
+            android:textColor="@color/green_color"
+            android:textSize="@dimen/_7ssp"
             app:cornerRadius="@dimen/_2sdp"
             app:layout_constraintStart_toEndOf="@id/cvPhoto"
-            app:layout_constraintTop_toTopOf="@id/cvPhoto" />
+            app:layout_constraintTop_toTopOf="@id/cvPhoto"
+            tools:text="Business For Sale" />
 
         <com.technzone.miniborsa.ui.base.views.AppImageView
             android:layout_width="@dimen/_25sdp"
@@ -88,13 +88,13 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:maxLines="1"
             android:singleLine="true"
-            tools:text="Development House "
             android:text="@{item.title}"
             android:textColor="@color/black"
             android:textSize="@dimen/_13ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tvType"
-            app:layout_constraintTop_toBottomOf="@id/tvType" />
+            app:layout_constraintTop_toBottomOf="@id/tvType"
+            tools:text="Development House " />
 
         <com.technzone.miniborsa.ui.base.views.AppTextView
             android:id="@+id/tvBusinessType"
@@ -105,39 +105,26 @@
             android:layout_marginBottom="@dimen/_10sdp"
             android:drawableStart="@drawable/ic_business_pin"
             android:drawablePadding="@dimen/_5sdp"
-            tools:text="Amman, Jordan"
             android:text="@{item.address}"
             android:textColor="@color/black_alpha"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintStart_toStartOf="@id/tvType"
-            app:layout_constraintTop_toBottomOf="@id/tvName" />
-
-        <com.technzone.miniborsa.ui.base.views.AppTextView
-            android:id="@+id/tvAskingPriceTxt"
-            style="@style/textview_normal_semibold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_7sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:text="@string/asking_price_"
-            android:textColor="@color/button_color"
-            android:textSize="@dimen/_11ssp"
-            app:layout_constraintStart_toStartOf="@id/tvType"
-            app:layout_constraintTop_toBottomOf="@id/tvBusinessType" />
+            app:layout_constraintTop_toBottomOf="@id/tvName"
+            tools:text="Amman, Jordan" />
 
         <com.technzone.miniborsa.ui.base.views.AppTextView
             android:id="@+id/tvAskingPrice"
-            style="@style/textview_normal_regular"
+            style="@style/textview_normal_semibold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:text="@{@string/dollar_sign_concated(item.askingPrice)}"
             android:textColor="@color/textview_text_color"
-            android:textSize="@dimen/_13ssp"
-            app:layout_constraintBottom_toBottomOf="@+id/tvAskingPriceTxt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tvAskingPriceTxt"
-            app:layout_constraintTop_toTopOf="@id/tvAskingPriceTxt"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvType"
+            app:layout_constraintTop_toBottomOf="@id/tvBusinessType"
             tools:text="$400,000" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

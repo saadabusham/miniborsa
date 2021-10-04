@@ -21,7 +21,7 @@
             android:layout_height="match_parent"
             android:layout_above="@id/btnContinue"
             android:layout_marginStart="@dimen/layouts_margin_start"
-            android:layout_marginTop="@dimen/_60sdp"
+            android:layout_marginTop="@dimen/_50sdp"
             android:layout_marginEnd="@dimen/layouts_margin_end"
             android:orientation="vertical">
 
@@ -38,7 +38,7 @@
                 style="@style/textview_normal_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:text="@string/before_continuing_we_want_to_know_what_your_role"
                 android:textColor="@color/black_alpha"
                 android:textSize="@dimen/_11ssp" />
@@ -51,6 +51,7 @@
                 android:clipToPadding="false"
                 android:nestedScrollingEnabled="false"
                 android:orientation="vertical"
+                tools:itemCount="3"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/row_user_role" />
         </LinearLayout>
@@ -61,11 +62,10 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
             android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
             android:layout_marginStart="@dimen/layouts_margin_start"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/layouts_margin_end"
-            android:layout_marginBottom="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_25sdp"
             android:text="@string/continue_"
             android:textSize="@dimen/_11ssp" />
 

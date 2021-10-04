@@ -35,7 +35,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_150sdp"
+                    android:layout_height="@dimen/_135sdp"
                     app:layout_collapseMode="pin">
 
                     <com.technzone.miniborsa.ui.base.views.AppTextView
@@ -66,7 +66,7 @@
                         style="@style/textview_normal_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:text="@string/sell_or_buy_your_business"
                         android:textColor="@color/black_alpha"
                         android:textSize="@dimen/_12ssp"

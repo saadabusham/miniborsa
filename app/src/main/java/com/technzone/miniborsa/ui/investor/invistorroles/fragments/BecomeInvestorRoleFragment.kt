@@ -94,12 +94,13 @@ class BecomeInvestorRoleFragment : BaseBindingFragment<FragmentBecomeInvistorBin
     private fun isDataValid(): Boolean {
         binding?.edJobTitle?.text?.toString()
             ?.validate(ValidatorInputTypesEnums.NORMAL_TEXT, requireContext())?.let {
-            if (!it.isValid) {
-                requireActivity().showErrorAlert(getString(R.string.job_title), it.errorMessage)
-                return false
+                if (!it.isValid) {
+                    requireActivity().showErrorAlert(getString(R.string.job_title), it.errorMessage)
+                    return false
+                }
             }
-        }
-        binding?.edBio?.text?.toString()?.validate(ValidatorInputTypesEnums.NORMAL_TEXT, requireContext())
+        binding?.edBio?.text?.toString()
+            ?.validate(ValidatorInputTypesEnums.NORMAL_TEXT, requireContext())
             ?.let {
                 if (!it.isValid) {
                     requireActivity().showErrorAlert(getString(R.string.bio), it.errorMessage)
@@ -152,6 +153,7 @@ class BecomeInvestorRoleFragment : BaseBindingFragment<FragmentBecomeInvistorBin
                                     }
                                 GeneralActivity.start(
                                     requireContext(),
+                                    getString(R.string.countries),
                                     ArrayList(countries),
                                     countiesResultLauncher
                                 )
@@ -187,6 +189,7 @@ class BecomeInvestorRoleFragment : BaseBindingFragment<FragmentBecomeInvistorBin
                         data?.data?.map { GeneralLookup(id = it.id, name = it.name) }?.let {
                             GeneralActivity.start(
                                 requireContext(),
+                                getString(R.string.choose_sectores_of_specialisations),
                                 ArrayList(it),
                                 categoriesResultLauncher
                             )

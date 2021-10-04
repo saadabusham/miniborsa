@@ -54,7 +54,7 @@
                 android:background="?selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="@dimen/_3sdp"
+                android:padding="@dimen/_4sdp"
                 android:src="@drawable/ic_share" />
 
             <ImageView

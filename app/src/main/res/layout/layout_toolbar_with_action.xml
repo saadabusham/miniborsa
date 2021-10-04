@@ -18,7 +18,8 @@
             android:background="?selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
-            android:padding="@dimen/_11sdp"
+            android:padding="@dimen/_13sdp"
+            android:layout_marginStart="@dimen/_3sdp"
             android:src="@drawable/ic_back"
             tools:visibility="visible"
             android:visibility="invisible"/>
@@ -44,9 +45,10 @@
             android:clickable="true"
             android:focusable="true"
             android:padding="@dimen/_9sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
             android:src="@drawable/ic_setting"
             android:visibility="invisible"
-            tools:visibility="visible" />
+            tools:visibility="invisible" />
 
     </LinearLayout>
 </layout>

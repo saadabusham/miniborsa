@@ -1,13 +1,7 @@
 package com.technzone.miniborsa.ui.investor.news.news
 
-import android.content.Intent
-import android.net.Uri
 import android.view.View
 import androidx.fragment.app.activityViewModels
-import com.google.android.gms.tasks.Task
-import com.google.firebase.dynamiclinks.DynamicLink
-import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
-import com.google.firebase.dynamiclinks.ShortDynamicLink
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.Constants
@@ -16,9 +10,9 @@ import com.technzone.miniborsa.data.models.investor.ExtraInfo
 import com.technzone.miniborsa.data.models.news.BusinessNews
 import com.technzone.miniborsa.databinding.FragmentNewsDetailsBinding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
-import com.technzone.miniborsa.ui.base.bindingadapters.getFullUrl
 import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
+import com.technzone.miniborsa.ui.dataview.viewimage.ViewImageActivity
 import com.technzone.miniborsa.ui.investor.businessdetails.adapters.BusinessExtraInfoAdapter
 import com.technzone.miniborsa.ui.investor.news.adapters.NewsAdapter
 import com.technzone.miniborsa.ui.investor.news.viewmodels.NewsViewModel
@@ -60,6 +54,9 @@ class NewsDetailsFragment : BaseBindingFragment<FragmentNewsDetailsBinding>(),
     private fun setUpListeners() {
         binding?.layoutToolbar?.imgShare?.setOnClickListener {
             generateLink()
+        }
+        binding?.imgPhoto?.setOnClickListener {
+            ViewImageActivity.start(requireActivity(), viewModel.blogToView?.value?.image ?: "", it)
         }
     }
 
@@ -130,7 +127,7 @@ class NewsDetailsFragment : BaseBindingFragment<FragmentNewsDetailsBinding>(),
             image = viewModel.blogToView?.value?.image ?: "",
             socialTag = resources.getString(R.string.news_on_mini_bursa),
             shareTitle = resources.getString(R.string.share_this_news),
-            title = viewModel.blogToView?.value?.title?:""
+            title = viewModel.blogToView?.value?.title ?: ""
         )
     }
 

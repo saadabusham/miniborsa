@@ -21,7 +21,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_15sdp"
         app:cardCornerRadius="@dimen/_5sdp"
-        app:cardElevation="@dimen/_3sdp">
+        app:cardElevation="@dimen/_3sdp"
+        app:strokeWidth="@dimen/_1sdp"
+        app:strokeColor="@color/color_not_valid">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -39,6 +41,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <View
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="@color/color_not_valid"
+                app:layout_constraintStart_toEndOf="@id/imgPhoto"
+                app:layout_constraintTop_toTopOf="@id/imgPhoto"
+                app:layout_constraintBottom_toBottomOf="@id/imgPhoto"/>
             <com.technzone.miniborsa.ui.base.views.AppImageView
                 android:id="@+id/imgFavorite"
                 android:layout_width="@dimen/_20sdp"
@@ -56,7 +65,7 @@
 
             <com.technzone.miniborsa.ui.base.views.AppButton
                 android:id="@+id/tvPrice"
-                style="@style/textview_normal_regular"
+                style="@style/textview_normal_medium"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_22sdp"
                 android:layout_marginTop="@dimen/_7sdp"
@@ -79,7 +88,7 @@
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:text="Share For Saled"
                 android:textColor="@color/green_color"
-                android:textSize="@dimen/_7ssp"
+                android:textSize="@dimen/_8ssp"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imgPhoto"
@@ -101,7 +110,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvPrice" />
 
             <com.technzone.miniborsa.ui.base.views.AppTextView
-                android:id="@+id/tvBusinessType"
+                android:id="@+id/tvBusinessLocation"
                 style="@style/textview_normal_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -116,21 +125,36 @@
                 app:layout_constraintStart_toStartOf="@id/tvPrice"
                 app:layout_constraintTop_toBottomOf="@id/tvName" />
 
+            <com.technzone.miniborsa.ui.base.views.AppImageView
+                android:id="@+id/imgCatIcon"
+                android:layout_width="@dimen/_12sdp"
+                android:layout_height="@dimen/_12sdp"
+                android:src="@drawable/ic_business_type"
+                ivImageUrl="@{item.categories.get(0).icon}"
+                android:layout_marginStart="@dimen/_8sdp"
+                app:layout_constraintBottom_toBottomOf="@id/tvBusinessLocation"
+                app:layout_constraintStart_toEndOf="@id/tvBusinessLocation"
+                app:layout_constraintTop_toTopOf="@id/tvBusinessLocation"/>
+
             <com.technzone.miniborsa.ui.base.views.AppTextView
-                android:id="@+id/tvBusinessLocation"
+                android:id="@+id/tvBusinessType"
                 style="@style/textview_normal_regular"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_17sdp"
-                android:drawableStart="@drawable/ic_business_type"
-                android:drawablePadding="@dimen/_5sdp"
-                android:text="Healthtech"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                tools:text="Healthtech"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:text="@{item.categories.get(0).name}"
                 android:textColor="@color/black_alpha"
                 android:textSize="@dimen/_11ssp"
-                app:layout_constraintBottom_toBottomOf="@id/tvBusinessType"
-                app:layout_constraintEnd_toEndOf="@id/tvType"
-                app:layout_constraintStart_toEndOf="@id/tvBusinessType"
-                app:layout_constraintTop_toTopOf="@id/tvBusinessType" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imgCatIcon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvName" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>

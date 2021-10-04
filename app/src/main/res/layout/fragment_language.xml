@@ -9,14 +9,16 @@
             type="com.technzone.miniborsa.ui.auth.language.LanguageViewModel" />
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
@@ -91,14 +93,13 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvArabic"
-                        style="@style/textview_normal_regular"
+                        style="@style/textview_ar_normal_medium"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_40sdp"
                         android:gravity="center"
-                        android:layoutDirection="ltr"
                         android:text="@string/arabic"
                         android:textColor="@{viewModel.englishSelected ? @color/text_gray_color : @color/button_color}"
-                        android:textSize="@dimen/_12ssp"
+                        android:textSize="@dimen/_14ssp"
                         tools:textColor="@color/text_gray_color" />
                 </LinearLayout>
 
@@ -108,7 +109,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/button_height"
                     android:layout_gravity="bottom"
-                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_50sdp"
                     android:layout_marginBottom="@dimen/_15sdp"
                     android:text="@string/continue_"
                     android:textAppearance="@style/normalMediumFontStyle"
@@ -117,6 +118,5 @@
             </LinearLayout>
         </LinearLayout>
 
-
-    </LinearLayout>
+    </ScrollView>
 </layout>

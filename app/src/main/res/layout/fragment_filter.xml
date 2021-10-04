@@ -62,7 +62,7 @@
             android:id="@+id/div"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:background="@color/color_not_valid"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"/>
 
@@ -341,9 +341,7 @@
                     android:id="@+id/rangeSeekBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/layouts_margin_start"
                     android:layout_marginTop="@dimen/_35sdp"
-                    android:layout_marginEnd="@dimen/layouts_margin_end"
                     app:bar_color="@color/color_not_valid"
                     app:bar_highlight_color="@color/button_color"
                     app:corner_radius="10"

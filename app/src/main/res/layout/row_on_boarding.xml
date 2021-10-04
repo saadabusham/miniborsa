@@ -57,18 +57,18 @@
             android:id="@+id/tvDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_25sdp"
             android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_25sdp"
             android:text="@{data.body}"
             android:textAlignment="center"
             android:textAppearance="@style/textview_normal_regular"
-            android:textColor="@color/defaultTextColor"
+            android:textColor="@color/copy_right_color"
             android:textSize="@dimen/_14ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cvDiv"
             tools:lines="3"
-            tools:text="Build your startup with Mini Bursa." />
+            tools:text="Connecting the most promising\nstartups with investors to create\nimpactful change." />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

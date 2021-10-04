@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_on_boarding.*
 class OnBoardingFragment : BaseBindingFragment<FragmentOnBoardingBinding>() {
 
     override fun getLayoutId(): Int = R.layout.fragment_on_boarding
+    lateinit var onBoardingAdapter: OnBoardingAdapter
     lateinit var indecatorRecyclerAdapter: IndecatorRecyclerAdapter
     private var indecatorPosition = 0
     override fun onViewVisible() {
@@ -38,7 +39,6 @@ class OnBoardingFragment : BaseBindingFragment<FragmentOnBoardingBinding>() {
     }
 
     private fun setUpPager() {
-
         val items = arrayOf(
             OnBoardingItem(
                 icon = R.drawable.ic_on_boarding_1,
@@ -56,10 +56,20 @@ class OnBoardingFragment : BaseBindingFragment<FragmentOnBoardingBinding>() {
                 body = R.string.description_on_boarding_3
             )
         )
-        binding?.vpOnBoarding?.adapter =
-            OnBoardingAdapter(requireContext()).apply { submitItems(items.toList()) }
-        binding?.vpOnBoarding?.registerOnPageChangeCallback(pagerCallback)
+        onBoardingAdapter = OnBoardingAdapter(requireContext()).apply { submitItems(items.toList()) }
+        binding?.vpOnBoarding?.adapter = onBoardingAdapter
+        setUpIndicator()
+    }
 
+    private fun setUpIndicator() {
+        indecatorRecyclerAdapter = IndecatorRecyclerAdapter(requireContext())
+        binding?.recyclerViewImagesDot?.adapter = indecatorRecyclerAdapter
+        onBoardingAdapter.items.let {
+            it.withIndex().forEach {
+                indecatorRecyclerAdapter.submitItem(it.index == 0)
+            }
+        }
+        binding?.vpOnBoarding?.registerOnPageChangeCallback(pagerCallback)
     }
 
 
@@ -76,9 +86,6 @@ class OnBoardingFragment : BaseBindingFragment<FragmentOnBoardingBinding>() {
     }
 
     private fun updateIndicator(position: Int) {
-        if (!::indecatorRecyclerAdapter.isInitialized) {
-            return
-        }
         indecatorRecyclerAdapter.items[indecatorPosition] = false
         indecatorRecyclerAdapter.items[position] = true
         indecatorRecyclerAdapter.notifyDataSetChanged()

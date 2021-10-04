@@ -139,7 +139,8 @@ class CreateBusinessStep2FranchiseFragment :
                                 }
                             GeneralActivity.start(
                                 requireContext(),
-                                ArrayList( countries),
+                                getString(R.string.countries),
+                                ArrayList(countries),
                                 countiesResultLauncher
                             )
                         }

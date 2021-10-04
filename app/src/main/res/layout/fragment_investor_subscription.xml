@@ -53,7 +53,7 @@
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_18sdp"
+                    android:layout_marginTop="@dimen/_7sdp"
                     android:text="@string/to_ensure_seriousness_and_preserve_the_privacy_of_the_business_owner_contact_information_form_sharing_it"
                     android:textColor="@color/black_alpha"
                     android:textSize="@dimen/_11ssp" />

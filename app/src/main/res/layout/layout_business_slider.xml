@@ -19,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false"
-            android:layout_marginTop="@dimen/_17sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             android:paddingStart="@dimen/layouts_margin_start"
             android:orientation="horizontal"

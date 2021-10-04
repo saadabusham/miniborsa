@@ -11,18 +11,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_95sdp"
+        android:layout_height="@dimen/_85sdp"
         tools:background="@drawable/ic_rectangle_focused"
         android:background="@{item.selected ? @drawable/ic_rectangle_focused : @drawable/ic_rectangle_unfocused}"
         android:orientation="vertical"
-        android:layout_marginBottom="@dimen/_25sdp">
+        android:layout_marginBottom="@dimen/_20sdp">
 
         <ImageView
             android:layout_width="@dimen/_15sdp"
             android:layout_height="@dimen/_15sdp"
             android:layout_gravity="end"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:src="@{item.selected ? @drawable/ic_circle_check : @drawable/ic_circle_uncheck}"

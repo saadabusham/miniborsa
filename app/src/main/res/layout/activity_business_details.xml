@@ -101,7 +101,7 @@
             android:fillViewport="true"
             android:paddingBottom="@dimen/_35sdp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvBusinessType">
+            app:layout_constraintTop_toBottomOf="@id/tvBusinessLocation">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -121,6 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/layouts_margin_start"
                     android:layout_marginTop="@dimen/_15sdp"
+                    android:visibility="@{viewModel.isInvestor ? View.VISIBLE : View.GONE}"
                     android:layout_marginEnd="@dimen/layouts_margin_end"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -259,7 +260,7 @@
                     android:layout_marginStart="@dimen/layouts_margin_start"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginEnd="@dimen/layouts_margin_end"
-                    android:visibility="@{viewModel.businessToView.countries.size() > 0 ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{viewModel.isInvestor &amp;&amp; viewModel.businessToView.countries.size() > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/layout_business_extra_info"

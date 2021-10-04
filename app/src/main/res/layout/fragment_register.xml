@@ -90,8 +90,7 @@
                                 style="@style/TextInputEditTextStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@={viewModel.lastNameMutableLiveData}"
-                                android:textSize="@dimen/_10ssp" />
+                                android:text="@={viewModel.lastNameMutableLiveData}"/>
 
                         </com.technzone.miniborsa.ui.base.views.AppTextInputLayout>
 
@@ -114,6 +113,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
                                 android:layout_marginEnd="@dimen/_10sdp"
+                                style="@style/textview_normal_regular"
                                 android:background="?selectableItemBackgroundBorderless"
                                 android:clickable="true"
                                 android:drawableEnd="@drawable/ic_dropdown_arrow"
@@ -122,7 +122,7 @@
                                 android:gravity="center"
                                 android:text="@{viewModel.selectedCountryCode.code}"
                                 android:textColor="@color/text_color"
-                                android:textSize="@dimen/_10ssp"
+                                android:textSize="@dimen/_11ssp"
                                 tools:text="+962" />
 
                             <View
@@ -143,7 +143,7 @@
                                 android:hint="@string/_700000000"
                                 android:inputType="phone"
                                 android:text="@={viewModel.phoneNumberWithoutCountryCode}"
-                                android:textSize="@dimen/_11ssp" />
+                                android:textSize="@dimen/_11ssp"  />
 
                         </LinearLayout>
 
@@ -157,6 +157,7 @@
                             android:id="@+id/tfEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_7sdp"
                             android:hint="@string/email">
 
                             <com.technzone.miniborsa.ui.base.views.AppTextInputEditText
@@ -164,8 +165,9 @@
                                 style="@style/TextInputEditTextStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@={viewModel.emailMutableLiveData}"
-                                android:textSize="@dimen/_10ssp" />
+                                android:singleLine="true"
+                                android:maxLines="1"
+                                android:text="@={viewModel.emailMutableLiveData}"/>
 
                         </com.technzone.miniborsa.ui.base.views.AppTextInputLayout>
 
@@ -190,7 +192,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/button_height"
                             android:layout_gravity="bottom"
-                            android:layout_marginTop="@dimen/_100sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
                             android:layout_marginBottom="@dimen/_15sdp"
                             android:text="@string/sign_up"
                             android:textSize="@dimen/_11ssp" />

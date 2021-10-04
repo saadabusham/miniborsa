@@ -15,7 +15,7 @@
     <!-- Views Default colors -->
     <color name="text_default_color">#7f8592</color>
     <color name="text_dark_color">#1A1A1A</color>
-    <color name="text_gray_color">#606060</color>
+    <color name="text_gray_color">#9B9B9B</color>
     <color name="text_header_dark_gray">#8C8896</color>
     <!--    divider color-->
     <color name="divider_color">#f0f1f2</color>
@@ -119,7 +119,7 @@
     <color name="textview_header_gray_alpha">#99202224</color>
     <color name="textview_number_black">#1E1F20</color>
 
-    <color name="defaultTextColor">#2F2C37</color>
+    <color name="defaultTextColor">#1F2128</color>
     <color name="indecator_active">#4A4A4A</color>
     <color name="indecator_diactive">#29000000</color>
     <!-- InputLayout Color -->
@@ -185,4 +185,8 @@
     <color name="status_pending">#33FEC031</color>
     <color name="status_approved">#3300AB6B</color>
     <color name="status_rejected">#33AB0000</color>
+
+
+    <color name="copy_right_color">#4C4D53</color>
+    <color name="profile_corner">#B7B7B7</color>
 </resources>

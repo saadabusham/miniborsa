@@ -54,21 +54,41 @@
                 app:layout_constraintEnd_toEndOf="@id/imgPhoto"
                 app:layout_constraintTop_toTopOf="@id/imgPhoto" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.miniborsa.ui.base.views.AppButton
                 android:id="@+id/tvPrice"
-                style="@style/textview_normal_bold"
+                style="@style/textview_normal_semibold"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:backgroundTint="@color/light_orange_color"
+                android:padding="@dimen/_5sdp"
+                android:gravity="center"
+                tools:text="Asking Price $100k"
+                android:text="@{@string/asking_price_concated(item.askingPrice)}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_7ssp"
+                app:cornerRadius="@dimen/_2sdp"
+                android:stateListAnimator="@null"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgPhoto" />
+
+            <com.technzone.miniborsa.ui.base.views.AppTextView
+                android:id="@+id/tvType"
+                style="@style/textview_normal_semibold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_7sdp"
-                android:layout_marginTop="@dimen/_7sdp"
                 android:background="@drawable/ic_price_bg"
                 android:padding="@dimen/_5sdp"
-                tools:text="Asking Price $100k"
-                android:text="@{@string/asking_price_concated(item.askingPrice)}"
+                tools:text="Share For Sale"
+                setTextByBusinessType="@{item.businessType}"
                 android:textColor="@color/button_color"
                 android:textSize="@dimen/_7ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imgPhoto" />
+                app:layout_constraintStart_toEndOf="@id/tvPrice"
+                app:layout_constraintTop_toTopOf="@id/tvPrice"
+                app:layout_constraintBottom_toBottomOf="@id/tvPrice"/>
+
 
             <com.technzone.miniborsa.ui.base.views.AppTextView
                 android:id="@+id/tvName"
@@ -79,6 +99,8 @@
                 tools:text="The Slebew Residence"
                 android:text="@{item.title}"
                 android:textColor="@color/black"
+                android:singleLine="true"
+                android:maxLines="1"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintStart_toStartOf="@id/tvPrice"
                 app:layout_constraintTop_toBottomOf="@id/tvPrice" />

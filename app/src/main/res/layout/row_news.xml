@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.technzone.miniborsa.utils.extensions.DataTimeExtensionsKt"/>
+
+        <import type="com.technzone.miniborsa.utils.extensions.DataTimeExtensionsKt" />
+
         <variable
             name="item"
             type="com.technzone.miniborsa.data.models.news.BusinessNews" />
@@ -12,7 +14,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_100sdp">
+        android:layout_height="@dimen/_110sdp"
+        android:background="?selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cvImage"
@@ -37,38 +42,44 @@
         <com.technzone.miniborsa.ui.base.views.AppButton
             android:id="@+id/tvPrice"
             style="@style/textview_normal_regular"
+            setColorBySection="@{item.section}"
+            setTextBySection="@{item.section}"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_18sdp"
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_10sdp"
+            android:clickable="false"
+            android:focusable="false"
             android:gravity="center"
             android:padding="@dimen/_5sdp"
-            tools:text="Startup News"
-            setTextBySection="@{item.section}"
-            setColorBySection="@{item.section}"
+            android:stateListAnimator="@null"
             android:textColor="@color/white"
             android:textSize="@dimen/_7ssp"
             app:cornerRadius="@dimen/_2sdp"
             app:layout_constraintStart_toEndOf="@id/cvImage"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Startup News" />
 
         <com.technzone.miniborsa.ui.base.views.AppTextView
             android:id="@+id/tvDate"
             style="@style/textview_normal_medium"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             android:drawableStart="@drawable/ic_calendar"
             android:drawablePadding="@dimen/_3sdp"
             android:ellipsize="end"
-            android:gravity="end|center"
+            android:gravity="start|center"
             android:maxLines="2"
             android:text="@{DataTimeExtensionsKt.getDateFormattedForNews(item.createdAt)}"
             android:textColor="@color/black"
             android:textSize="@dimen/_7ssp"
+            android:layout_marginStart="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="@id/tvPrice"
+            app:layout_constraintStart_toEndOf="@id/tvPrice"
             app:layout_constraintEnd_toEndOf="parent"
+            android:textAlignment="viewStart"
             app:layout_constraintTop_toTopOf="@id/tvPrice"
             tools:text="02/04/2021" />
 
@@ -107,6 +118,11 @@
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
             tools:text="Egypt-based grocery delivery platform GoodsMart recently secured $3.6M in a funding round led by" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/toggle_inactive_background"
+            app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

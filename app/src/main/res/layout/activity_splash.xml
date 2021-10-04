@@ -36,7 +36,7 @@
 
         <TextView
             android:id="@+id/tvName"
-            style="@style/normalMediumFontStyle"
+            style="@style/textview_normal_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -50,15 +50,16 @@
 
         <TextView
             android:id="@+id/tv_license"
-            style="@style/normalMediumFontStyle"
+            style="@style/textview_normal_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
             android:gravity="center"
             android:paddingBottom="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
             android:text="@string/app_license"
-            android:textColor="@color/white"
+            android:textColor="@color/copy_right_color"
             android:textSize="@dimen/_10ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

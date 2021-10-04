@@ -21,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.layout_toolbar.*
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
@@ -37,7 +38,14 @@ class GeneralActivity : BaseBindingActivity<ActivityChooseGeneralBinding>(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_choose_general, hasToolbar = false)
+        setContentView(
+            R.layout.activity_choose_general,
+            hasToolbar = true,
+            toolbarView = toolbar,
+            hasBackButton = true,
+            showBackArrow = true
+        )
+        binding?.tvTitle?.text = intent.getStringExtra(Constants.BundleData.TITLE)
         setAdapter()
         initSearch()
         setUpListeners()
@@ -52,7 +60,10 @@ class GeneralActivity : BaseBindingActivity<ActivityChooseGeneralBinding>(),
                     })
                     finish()
                 } else {
-                    showErrorAlert(getString(R.string.app_name), getString(R.string.please_select_item))
+                    showErrorAlert(
+                        getString(R.string.app_name),
+                        getString(R.string.please_select_item)
+                    )
                 }
             }
         }
@@ -61,7 +72,7 @@ class GeneralActivity : BaseBindingActivity<ActivityChooseGeneralBinding>(),
     private fun setAdapter() {
         adapter = ChooseGeneralRecyclerAdapter(this)
         binding?.rvItems?.adapter = adapter
-        selectedGeneralRecyclerAdapter = SelectedGeneralRecyclerAdapter(this,true)
+        selectedGeneralRecyclerAdapter = SelectedGeneralRecyclerAdapter(this, true)
         binding?.rvSelectedItems?.adapter = selectedGeneralRecyclerAdapter
         adapter.submitNewItems((intent.getSerializableExtra(Constants.BundleData.GENERAL_LIST) as ArrayList<GeneralLookup>).also {
             list = it
@@ -86,7 +97,9 @@ class GeneralActivity : BaseBindingActivity<ActivityChooseGeneralBinding>(),
                 if (it.text.isNotEmpty()) {
                     searchList.clear()
                     list.forEach { generalLookUp ->
-                        if (generalLookUp.name?.toUpperCase()?.contains(it.text.toString().toUpperCase()) == true) {
+                        if (generalLookUp.name?.toUpperCase()
+                                ?.contains(it.text.toString().toUpperCase()) == true
+                        ) {
                             searchList.add(generalLookUp)
                         }
                     }
@@ -135,11 +148,13 @@ class GeneralActivity : BaseBindingActivity<ActivityChooseGeneralBinding>(),
     companion object {
         fun start(
             context: Context?,
+            title: String,
             list: ArrayList<GeneralLookup>,
             resultLauncher: ActivityResultLauncher<Intent>
         ) {
             val intent = Intent(context, GeneralActivity::class.java).apply {
                 putExtra(Constants.BundleData.GENERAL_LIST, list)
+                putExtra(Constants.BundleData.TITLE, title)
             }
             resultLauncher.launch(intent)
         }

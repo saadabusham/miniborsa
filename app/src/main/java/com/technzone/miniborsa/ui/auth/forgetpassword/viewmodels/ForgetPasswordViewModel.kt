@@ -59,7 +59,7 @@ class ForgetPasswordViewModel @Inject constructor(
 
             override fun onFinish() {
                 signUpResendPinCodeEnabled.value = true
-                signUpResendTimer.value = context.resources.getString(R.string.resend_again)
+                signUpResendTimer.value = context.resources.getString(R.string.send_again)
             }
         }
     }

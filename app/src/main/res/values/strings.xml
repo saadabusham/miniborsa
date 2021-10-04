@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Mini Bursa</string>
-    <string name="app_license">Copyright@Technzone Company</string>
+    <string name="app_license">copyright @minbursa 2021</string>
 
     <!-- SelectLanguageFragment-->
     <string name="welcome">Welcome</string>
@@ -78,6 +78,7 @@
     <string name="hint_date">Date</string>
     <string name="time">Time</string>
     <string name="email">Email</string>
+    <string name="email_address">Email Address</string>
     <string name="password">Password</string>
     <string name="phone_number">Phone number</string>
     <string name="otp">OTP</string>
@@ -103,7 +104,7 @@
     <string name="title_on_boarding_1">Build</string>
     <string name="description_on_boarding_1">Build your startup with Mini Bursa.</string>
     <string name="title_on_boarding_2">Connect</string>
-    <string name="description_on_boarding_2">Connecting the most promising startups\nwith investors to create impactful change.</string>
+    <string name="description_on_boarding_2">Connecting the most promising\nstartups with investors to create\nimpactful change.</string>
     <string name="title_on_boarding_3">Invest</string>
     <string name="description_on_boarding_3">Invest in a Better Tomorrow!</string>
     <string name="skip">Skip</string>
@@ -116,7 +117,7 @@
     <string name="dont_have_an_account">Don\'t have account?</string>
     <string name="or_sign_in_with">Or sign in with</string>
     <string name="reset_password">Reset password?</string>
-    <string name="resend_again">Resend again</string>
+    <string name="send_again">Send again</string>
     <string name="didn_t_receive_the_code">Didn\'t receive your code?</string>
     <string name="verify_your_account">Verify your account</string>
     <string name="enter_the_verification_code_we_sent_to_your">Enter the verification code we sent to your</string>
@@ -150,7 +151,7 @@
     <string name="user_role">User Role</string>
     <string name="please_select_your_role">Please select your role</string>
     <string name="what_is_your_role">What is your Role?</string>
-    <string name="before_continuing_we_want_to_know_what_your_role">Before continuing we want to know what your role.</string>
+    <string name="before_continuing_we_want_to_know_what_your_role">Before continuing we want to know what\nyour role.</string>
     <string name="i_am_an_business_owner">I am an Business Owner</string>
     <string name="i_am_an_investor">I am an Investor</string>
     <string name="continue_as_visitor">Continue as Visitor</string>
@@ -162,6 +163,7 @@
     <string name="investment_budget">Investment Budget</string>
     <string name="countries_">Countries:</string>
     <string name="countries">Countries</string>
+    <string name="choose_sectores_of_specialisations">Choose Sectors of Specialisations:</string>
     <string name="select_country">Select Country</string>
     <string name="sectors_of_specialisation">Sectors of Specialisation</string>
     <string name="select_specialisation">Select Specialisation</string>
@@ -219,7 +221,7 @@
     <string name="connect">Connect</string>
     <string name="interested_contact_nbusiness_owners_now">Interested ? Contact\nbusiness owners now.</string>
     <string name="to_ensure_seriousness_and_preserve_the_privacy_of_the_business_owner_contact_information_form_sharing_it">To ensure seriousness and preserve the privacy of the business owner contact information form sharing it</string>
-    <string name="by_clicking_on_continue_you_agree_on_the_terms_conditions"><![CDATA[By clicking on continue , you agree on the terms & conditions]]></string>
+    <string name="by_clicking_on_continue_you_agree_on_the_terms_conditions"><![CDATA[By clicking on continue , you agree on the\nterms & conditions]]></string>
     <string name="start_subscription">Start subscription</string>
     <string name="subscription">Subscription</string>
     <string name="tags">Tags</string>

@@ -115,31 +115,17 @@
             tools:text="Amman, Jordan" />
 
         <com.technzone.miniborsa.ui.base.views.AppTextView
-            android:id="@+id/tvAskingPriceTxt"
+            android:id="@+id/tvAskingPrice"
             style="@style/textview_normal_semibold"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_7sdp"
             android:layout_marginBottom="@dimen/_10sdp"
-            android:text="@string/asking_price_"
-            android:textColor="@color/button_color"
-            android:textSize="@dimen/_11ssp"
-            app:layout_constraintStart_toStartOf="@id/tvType"
-            app:layout_constraintTop_toBottomOf="@id/tvBusinessType" />
-
-        <com.technzone.miniborsa.ui.base.views.AppTextView
-            android:id="@+id/tvAskingPrice"
-            style="@style/textview_normal_regular"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
             android:text="@{@string/dollar_sign_concated(item.askingPrice)}"
             android:textColor="@color/textview_text_color"
-            android:textSize="@dimen/_13ssp"
-            app:layout_constraintBottom_toBottomOf="@+id/tvAskingPriceTxt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tvAskingPriceTxt"
-            app:layout_constraintTop_toTopOf="@id/tvAskingPriceTxt"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="@id/tvType"
+            app:layout_constraintTop_toBottomOf="@id/tvBusinessType"
             tools:text="$400,000" />
 
         <com.technzone.miniborsa.ui.base.views.AppButton
@@ -171,7 +157,7 @@
             android:gravity="end"
             android:text="@string/date_submit"
             android:textColor="@color/black"
-            android:textSize="@dimen/_9ssp"
+            android:textSize="@dimen/_7ssp"
             app:layout_constraintBottom_toBottomOf="@id/tvStatus"
             app:layout_constraintEnd_toStartOf="@id/tvDate"
             app:layout_constraintStart_toEndOf="@id/tvStatus"
@@ -179,13 +165,13 @@
 
         <com.technzone.miniborsa.ui.base.views.AppTextView
             android:id="@+id/tvDate"
-            style="@style/textview_normal_regular"
+            style="@style/textview_normal_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_calendar"
             android:drawablePadding="@dimen/_2sdp"
             android:text="@{DataTimeExtensionsKt.getDateFormattedForNews(item.createdAt)}"
-            android:textColor="@color/black_alpha"
+            android:textColor="@color/black"
             android:textSize="@dimen/_7ssp"
             app:layout_constraintBottom_toBottomOf="@+id/tvDateTxt"
             app:layout_constraintEnd_toEndOf="parent"
