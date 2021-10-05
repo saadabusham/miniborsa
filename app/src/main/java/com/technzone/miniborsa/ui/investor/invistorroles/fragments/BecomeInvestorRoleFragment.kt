@@ -11,6 +11,7 @@ import com.technzone.miniborsa.common.interfaces.SeekbarCallback
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.common.CustomObserverResponse
+import com.technzone.miniborsa.data.enums.UserRoleEnums
 import com.technzone.miniborsa.data.models.country.Country
 import com.technzone.miniborsa.data.models.general.GeneralLookup
 import com.technzone.miniborsa.data.models.general.ListWrapper
@@ -217,6 +218,7 @@ class BecomeInvestorRoleFragment : BaseBindingFragment<FragmentBecomeInvistorBin
                     data: Int?
                 ) {
                     viewModel.addInvestorRole()
+                    viewModel.setUserRole(UserRoleEnums.INVESTOR_ROLE.value)
                     InvestorMainActivity.start(requireContext())
                 }
             })

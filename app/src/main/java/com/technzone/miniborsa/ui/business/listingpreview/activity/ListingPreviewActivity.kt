@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.Constants
+import com.technzone.miniborsa.data.common.Constants.MIN_PERCENTAGE_TO_SEND
 import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.data.models.Media
 import com.technzone.miniborsa.data.models.business.ListingItem
@@ -76,7 +77,7 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
 
     private fun setUpListeners() {
         binding?.btnSubmit?.setOnClickListener {
-            if (viewModel.percentage.value ?: 0 > 85)
+            if (viewModel.percentage.value ?: 0 > MIN_PERCENTAGE_TO_SEND)
                 viewModel.business?.id?.let { it1 ->
                     viewModel.sendRequestBusiness(it1).observe(this, sendRequestResultObserver())
                 }

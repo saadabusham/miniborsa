@@ -73,4 +73,9 @@ class InvestorRoleViewModel @Inject constructor(
             )
         }
     }
+
+    fun setUserRole(role: String) {
+        return userRepo.setCurrentRole(role)
+    }
+
 }

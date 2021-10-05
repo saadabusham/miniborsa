@@ -8,7 +8,7 @@ object Constants {
     }
     const val DEVICE_TYPE = 1
     const val APPLICATION_TYPE = 1
-    const val MIN_PERCENTAGE_TO_SEND = 80
+    const val MIN_PERCENTAGE_TO_SEND = 88
 
     const val PAGE_SIZE = 10
     const val MAX_PRICE_LENGTH = 9
