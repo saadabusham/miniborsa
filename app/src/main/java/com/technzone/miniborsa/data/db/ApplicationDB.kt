@@ -5,12 +5,13 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.technzone.miniborsa.data.daos.local.searchbusiness.SearchedBusinessLocalDao
 import com.technzone.miniborsa.data.db.typeconverter.*
+import com.technzone.miniborsa.data.models.general.Countries
 import com.technzone.miniborsa.data.models.investor.Business
 
 @Database(
         entities = [
             Business::class
-        ], version = 2
+        ], version = 1
 )
 
 @TypeConverters(
@@ -18,7 +19,8 @@ import com.technzone.miniborsa.data.models.investor.Business
     PropertiesListConverter::class,
     FieldsListConverter::class,
     CategoriesListConverter::class,
-    LookupListConverter::class
+    LookupListConverter::class,
+    CountriesListConverter::class
 )
 
 abstract class ApplicationDB : RoomDatabase() {

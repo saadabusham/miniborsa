@@ -14,8 +14,7 @@ import com.technzone.miniborsa.ui.base.adapters.BaseViewHolder
 
 class BusinessAdapter(
     context: Context
-) :
-    BaseBindingRecyclerViewAdapter<Business>(context) {
+) : BaseBindingRecyclerViewAdapter<Business>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(

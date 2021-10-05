@@ -230,6 +230,7 @@
     <string name="more_edit_profile">Edit Profile</string>
     <string name="more_switch_to_business_owner">Switch to business owner</string>
     <string name="more_notification">Notification</string>
+    <string name="more_settings">Settings</string>
     <string name="more_recent_viewed">Recent Viewed</string>
     <string name="more_languange">Languange</string>
     <string name="more_help">Get Help</string>
@@ -365,7 +366,8 @@
     <string name="no_faq_s_found">No Faq\'a Found</string>
     <string name="help_center">Help Center</string>
 
-    <string name="asking_price_concated">Asking price $%sk</string>
+    <string name="asking_price_concated_k">Asking price $%sk</string>
+    <string name="asking_price_concated_na">Asking price N/A</string>
 
     <!--    BusinessDetails -->
     <string name="date_founded">Date Founded</string>
@@ -385,4 +387,11 @@
     <string name="no_favorites_found">No Favorites Found</string>
     <string name="no_messages_found">No Messages Found</string>
 
+    <string name="na">N/A</string>
+    <string name="settings">Settings</string>
+
+    <!--    App Settings -->
+    <string name="use_high_priority_notifications">Use high priority notifications</string>
+    <string name="show_previews_of_notifications_at_the_top_of_the_screen">Show previews of notifications at the top\nof the screen</string>
+    <string name="language">Language</string>
 </resources>

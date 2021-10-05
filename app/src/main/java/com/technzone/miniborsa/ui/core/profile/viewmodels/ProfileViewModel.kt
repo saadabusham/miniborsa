@@ -12,6 +12,7 @@ import com.technzone.miniborsa.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.miniborsa.data.models.general.Countries
 import com.technzone.miniborsa.data.pref.configuration.ConfigurationPref
 import com.technzone.miniborsa.data.pref.user.UserPref
+import com.technzone.miniborsa.data.repos.searchbusiness.SearchedBusinessRepo
 import com.technzone.miniborsa.data.repos.user.UserRepo
 import com.technzone.miniborsa.ui.base.viewmodel.BaseViewModel
 import com.technzone.miniborsa.utils.LocaleUtil
@@ -29,7 +30,7 @@ class ProfileViewModel @Inject constructor(
     private val userPref: UserPref,
     private val sharedPreferencesUtil: SharedPreferencesUtil,
     private val configurationPref: ConfigurationPref,
-    private val searchedBusinessLocalDao: SearchedBusinessLocalDao
+    private val searchedBusinessRepo: SearchedBusinessRepo
 ) : BaseViewModel() {
 
     val phoneNumberWithoutCountryCode: MutableLiveData<String> by lazy { MutableLiveData<String>() }
@@ -57,7 +58,7 @@ class ProfileViewModel @Inject constructor(
 
     fun logout() = viewModelScope.launch {
         sharedPreferencesUtil.clearPreference()
-        searchedBusinessLocalDao.clearBusinesses()
+        searchedBusinessRepo.clearBusinesses()
         userPref.setIsFirstOpen(false)
         configurationPref.setAppLanguageValue(LocaleUtil.getLanguage())
     }

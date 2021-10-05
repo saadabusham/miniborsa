@@ -5,6 +5,7 @@
 
     <data>
 
+        <import type="com.technzone.miniborsa.utils.extensions.StringExtensionKt"/>
         <import type="com.technzone.miniborsa.R" />
 
         <variable
@@ -22,8 +23,8 @@
         android:layout_marginBottom="@dimen/_15sdp"
         app:cardCornerRadius="@dimen/_5sdp"
         app:cardElevation="@dimen/_3sdp"
-        app:strokeWidth="@dimen/_1sdp"
-        app:strokeColor="@color/color_not_valid">
+        app:strokeColor="@color/color_not_valid"
+        app:strokeWidth="@dimen/_1sdp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -45,9 +46,10 @@
                 android:layout_width="1dp"
                 android:layout_height="0dp"
                 android:background="@color/color_not_valid"
+                app:layout_constraintBottom_toBottomOf="@id/imgPhoto"
                 app:layout_constraintStart_toEndOf="@id/imgPhoto"
-                app:layout_constraintTop_toTopOf="@id/imgPhoto"
-                app:layout_constraintBottom_toBottomOf="@id/imgPhoto"/>
+                app:layout_constraintTop_toTopOf="@id/imgPhoto" />
+
             <com.technzone.miniborsa.ui.base.views.AppImageView
                 android:id="@+id/imgFavorite"
                 android:layout_width="@dimen/_20sdp"
@@ -71,7 +73,8 @@
                 android:layout_marginTop="@dimen/_7sdp"
                 android:backgroundTint="@color/green_color"
                 android:gravity="center"
-                android:text="$340,000"
+                tools:text="$340,000"
+                android:text="@{item.askingPriceNA ? @string/na : @string/price_(StringExtensionKt.round(item.askingPrice,2))}"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_11ssp"
                 app:cornerRadius="@dimen/_2sdp"
@@ -127,33 +130,33 @@
 
             <com.technzone.miniborsa.ui.base.views.AppImageView
                 android:id="@+id/imgCatIcon"
+                ivImageUrl="@{item.categories.get(0).icon}"
                 android:layout_width="@dimen/_12sdp"
                 android:layout_height="@dimen/_12sdp"
-                android:src="@drawable/ic_business_type"
-                ivImageUrl="@{item.categories.get(0).icon}"
                 android:layout_marginStart="@dimen/_8sdp"
+                android:src="@drawable/ic_business_type"
                 app:layout_constraintBottom_toBottomOf="@id/tvBusinessLocation"
                 app:layout_constraintStart_toEndOf="@id/tvBusinessLocation"
-                app:layout_constraintTop_toTopOf="@id/tvBusinessLocation"/>
+                app:layout_constraintTop_toTopOf="@id/tvBusinessLocation" />
 
             <com.technzone.miniborsa.ui.base.views.AppTextView
                 android:id="@+id/tvBusinessType"
                 style="@style/textview_normal_regular"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_5sdp"
-                tools:text="Healthtech"
-                android:singleLine="true"
                 android:maxLines="1"
+                android:singleLine="true"
                 android:text="@{item.categories.get(0).name}"
                 android:textColor="@color/black_alpha"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/imgCatIcon"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvName" />
+                app:layout_constraintStart_toEndOf="@id/imgCatIcon"
+                app:layout_constraintTop_toBottomOf="@id/tvName"
+                tools:text="Healthtech" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

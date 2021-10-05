@@ -64,6 +64,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
     override fun onResume() {
         super.onResume()
         handleStickyBusiness()
+        loadAllData()
     }
 
     override fun getLayoutId(): Int = R.layout.fragment_investor_search
@@ -133,6 +134,11 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
         }
     }
 
+    private fun loadAllData() {
+        loadBusinessForSale()
+        loadBusinessShareForSale()
+        loadBusinessFranchise()
+    }
 
     private fun handleStickyBusiness() {
         if (!viewModel.isInvestor())
@@ -155,7 +161,6 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
         binding?.layoutForSale?.recyclerView.setOnItemClickListener(this)
         getSnapHelper()
             ?.attachToRecyclerView(binding?.layoutForSale?.recyclerView)
-        loadBusinessForSale()
     }
 
     private fun handleForSaleSelected(fullScreen: Boolean) {
@@ -169,6 +174,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
     }
 
     private fun loadBusinessForSale() {
+        forSaleBusinessAdapter.clear()
         viewModel.getBusiness(BusinessTypeEnums.BUSINESS_FOR_SALE.value)
             .observe(this, forSaleResultObserver())
     }
@@ -206,7 +212,6 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
         binding?.layoutShareForSale?.recyclerView.setOnItemClickListener(this)
         getSnapHelper()
             ?.attachToRecyclerView(binding?.layoutShareForSale?.recyclerView)
-        loadBusinessShareForSale()
     }
 
     private fun handleShareForSaleSelected(fullScreen: Boolean) {
@@ -220,6 +225,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
     }
 
     private fun loadBusinessShareForSale() {
+        shareForSaleBusinessAdapter.clear()
         viewModel.getBusiness(BusinessTypeEnums.BUSINESS_FOR_SHARE.value)
             .observe(this, forShareResultObserver())
     }
@@ -256,7 +262,6 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
         binding?.layoutFranchise?.recyclerView.setOnItemClickListener(this)
         getSnapHelper()
             ?.attachToRecyclerView(binding?.layoutFranchise?.recyclerView)
-        loadBusinessFranchise()
     }
 
     private fun handleFranchiseSelected(fullScreen: Boolean) {
@@ -270,6 +275,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
     }
 
     private fun loadBusinessFranchise() {
+        franchiseBusinessAdapter.clear()
         viewModel.getBusiness(BusinessTypeEnums.BUSINESS_FRANCHISE.value)
             .observe(this, franchiseResultObserver())
     }

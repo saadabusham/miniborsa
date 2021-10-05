@@ -5,6 +5,7 @@
 
     <data>
 
+        <import type="com.technzone.miniborsa.utils.extensions.StringExtensionKt"/>
         <import type="android.view.View" />
 
         <variable
@@ -151,7 +152,7 @@
                     android:maxLength="@{viewModel.maxLength}"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="@{viewModel.freeHoldAskingPrice.toString()}"
+                    android:text="@{StringExtensionKt.round(viewModel.freeHoldAskingPrice,2)}"
                     android:textColor="@color/textview_text_color"
                     android:textSize="@dimen/_13ssp"
                     app:layout_constraintBottom_toBottomOf="@+id/tvFreeHoldAskingPriceTxt"
@@ -298,7 +299,7 @@
                     android:maxLength="@{viewModel.maxLength}"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="@{viewModel.netProfit.toString()}"
+                    android:text="@{StringExtensionKt.round(viewModel.netProfit,2)}"
                     android:textColor="@color/textview_text_color"
                     android:textSize="@dimen/_13ssp"
                     app:layout_constraintBottom_toBottomOf="@+id/tvNetProfitTxt"
@@ -420,7 +421,7 @@
                     android:maxLength="@{viewModel.maxLength}"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="@{viewModel.turnOver.toString()}"
+                    android:text="@{StringExtensionKt.round(viewModel.turnOver,2)}"
                     android:textColor="@color/textview_text_color"
                     android:textSize="@dimen/_13ssp"
                     app:layout_constraintBottom_toBottomOf="@+id/tvTurnoverTxt"

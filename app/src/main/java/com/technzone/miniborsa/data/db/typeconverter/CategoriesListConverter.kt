@@ -11,7 +11,7 @@ class CategoriesListConverter {
 
     @TypeConverter
     fun storedStringToObject(value: String?): List<CategoriesItem>? {
-        val listType: Type = object : TypeToken<List<PropertiesItem>?>() {}.type
+        val listType: Type = object : TypeToken<List<CategoriesItem>?>() {}.type
         return Gson().fromJson(value, listType)
     }
 

@@ -7,6 +7,7 @@
 
         <import type="android.view.View" />
         <import type="com.technzone.miniborsa.utils.extensions.DataTimeExtensionsKt"/>
+        <import type="com.technzone.miniborsa.utils.extensions.StringExtensionKt"/>
 
         <variable
             name="item"
@@ -129,7 +130,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
-            android:text="@{@string/dollar_sign_concated(item.askingPrice)}"
+            android:text="@{item.askingPriceNA ? @string/na : @string/dollar_sign_concated(StringExtensionKt.round(item.askingPrice,2))}"
             android:textColor="@color/textview_text_color"
             android:textSize="@dimen/_13ssp"
             app:layout_constraintBottom_toBottomOf="@+id/tvAskingPriceTxt"

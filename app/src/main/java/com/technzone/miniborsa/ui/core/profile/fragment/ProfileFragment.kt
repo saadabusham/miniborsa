@@ -29,6 +29,7 @@ import com.technzone.miniborsa.ui.business.investors.activity.InvestorsActivity
 import com.technzone.miniborsa.ui.core.faqs.FaqsActivity
 import com.technzone.miniborsa.ui.core.profile.adapters.MoreRecyclerAdapter
 import com.technzone.miniborsa.ui.core.profile.viewmodels.ProfileViewModel
+import com.technzone.miniborsa.ui.core.settings.SettingsActivity
 import com.technzone.miniborsa.ui.core.updateprofile.UpdateProfileActivity
 import com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity
 import com.technzone.miniborsa.ui.investor.invistorroles.activity.InvestorRolesActivity
@@ -111,11 +112,18 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
         addItemsDependOnUserRoles(itemList)
         itemList.add(
             More(
-                resources.getString(R.string.more_languange),
-                R.drawable.ic_more_languange,
-                MoreEnums.LANGUAGE
+                resources.getString(R.string.more_settings),
+                R.drawable.ic_more_setting,
+                MoreEnums.SETTINGS
             )
         )
+//        itemList.add(
+//            More(
+//                resources.getString(R.string.more_languange),
+//                R.drawable.ic_more_languange,
+//                MoreEnums.LANGUAGE
+//            )
+//        )
         itemList.add(
             More(
                 resources.getString(R.string.more_help),
@@ -136,13 +144,13 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
                         MoreEnums.SWITCH_TO_BUSINESS
                     )
                 )
-                itemList.add(
-                    More(
-                        resources.getString(R.string.more_notification),
-                        R.drawable.ic_more_notifications,
-                        MoreEnums.NOTIFICATION
-                    )
-                )
+//                itemList.add(
+//                    More(
+//                        resources.getString(R.string.more_notification),
+//                        R.drawable.ic_more_notifications,
+//                        MoreEnums.NOTIFICATION
+//                    )
+//                )
                 itemList.add(
                     More(
                         resources.getString(R.string.more_recent_viewed),
@@ -182,13 +190,13 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
                         MoreEnums.SWITCH_TO_INVESTOR
                     )
                 )
-                itemList.add(
-                    More(
-                        resources.getString(R.string.more_notification),
-                        R.drawable.ic_more_notifications,
-                        MoreEnums.NOTIFICATION
-                    )
-                )
+//                itemList.add(
+//                    More(
+//                        resources.getString(R.string.more_notification),
+//                        R.drawable.ic_more_notifications,
+//                        MoreEnums.NOTIFICATION
+//                    )
+//                )
                 itemList.add(
                     More(
                         resources.getString(R.string.more_recent_viewed),
@@ -212,13 +220,13 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
                         MoreEnums.SWITCH_TO_INVESTOR
                     )
                 )
-                itemList.add(
-                    More(
-                        resources.getString(R.string.more_notification),
-                        R.drawable.ic_more_notifications,
-                        MoreEnums.NOTIFICATION
-                    )
-                )
+//                itemList.add(
+//                    More(
+//                        resources.getString(R.string.more_notification),
+//                        R.drawable.ic_more_notifications,
+//                        MoreEnums.NOTIFICATION
+//                    )
+//                )
             }
         }
     }
@@ -301,6 +309,9 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
 
             MoreEnums.LANGUAGE -> {
                 switchLanguage()
+            }
+            MoreEnums.SETTINGS -> {
+                SettingsActivity.start(requireContext())
             }
             MoreEnums.GET_HELP -> {
                 FaqsActivity.start(requireContext())

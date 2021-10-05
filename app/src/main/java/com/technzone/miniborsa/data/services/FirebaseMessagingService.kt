@@ -15,10 +15,15 @@ import com.technzone.miniborsa.ui.splash.SplashActivity
 import com.technzone.miniborsa.utils.pref.SharedPreferencesUtil
 import com.twilio.voice.*
 import com.technzone.miniborsa.R
+import com.technzone.miniborsa.data.pref.user.UserPref
+import com.technzone.miniborsa.data.repos.user.UserRepo
+import javax.inject.Inject
 
 class FirebaseMessagingService :
     FirebaseMessagingService() {
 
+    @Inject
+    lateinit var userRepo: UserRepo
 
     override fun onNewToken(p0: String) {
         super.onNewToken(p0)
@@ -32,6 +37,8 @@ class FirebaseMessagingService :
         // Check if message contains a data payload.
         if (data.data.isNotEmpty()) {
             SharedPreferencesUtil.getInstance(applicationContext).setIsNewNotifications(true)
+            if (!userRepo.getNotificationStatus())
+                return
             val message = data.data
 
             val intent = Intent(this, SplashActivity::class.java)

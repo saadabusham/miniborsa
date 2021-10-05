@@ -290,6 +290,7 @@ class SearchBusinessFragment : BaseBindingFragment<FragmentSearchBusinessBinding
                             ).observe(this, wishListObserver())
                         }
                     } else {
+                        viewModel.saveSearchBusiness(item)
                         BusinessDetailsActivity.start(requireContext(), item)
                     }
                 } else {

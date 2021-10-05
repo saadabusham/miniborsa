@@ -123,7 +123,7 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
             image = viewModel.businessToView?.value?.icon ?: "",
             socialTag = resources.getString(R.string.business_on_mini_bursa),
             shareTitle = resources.getString(R.string.share_this_business),
-            title = viewModel.businessToView?.value?.title?:""
+            title = viewModel.businessToView?.value?.title ?: ""
         )
     }
 
@@ -170,7 +170,10 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
         binding?.layoutBusinessSlider?.vpPictures?.setOnItemClickListener(this)
         if (viewModel.businessToView.value?.images.isNullOrEmpty())
             viewModel.businessToView.value?.images = mutableListOf()
-        viewModel.businessToView.value?.images?.add(0,Media(name = viewModel.businessToView.value?.icon ?: ""))
+        viewModel.businessToView.value?.images?.add(
+            0,
+            Media(name = viewModel.businessToView.value?.icon ?: "")
+        )
         businessSliderAdapter.submitItems(
             viewModel.businessToView.value?.images ?: mutableListOf()
         )
@@ -206,26 +209,46 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
                         desc = it.categories?.get(2)?.name
                     )
                 )
-            if (it.annualNetProfitNA == false)
+            if (it.askingPrice != null && it.askingPrice > 0)
                 businessFieldAdapter.submitItem(
                     GeneralLookup(
-                        name = getString(R.string.annual_net_profit),
-                        desc = String.format(
+                        name = getString(R.string.asking_price),
+                        desc = if (it.askingPriceNA == true) getString(R.string.na) else String.format(
                             getString(R.string.dollar_sign_concated),
-                            it.annualNetProfit
+                            it.askingPrice
                         )
                     )
                 )
-            if (it.annualTurnoverNA == false)
+            if (it.askingPriceBoth != null && it.askingPriceBoth > 0)
                 businessFieldAdapter.submitItem(
                     GeneralLookup(
-                        name = getString(R.string.annual_turnover),
-                        desc = String.format(
+                        name = getString(R.string.leasehold),
+                        desc = if (it.askingPriceNABoth == true) getString(R.string.na) else String.format(
                             getString(R.string.dollar_sign_concated),
-                            it.annualTurnover
+                            it.askingPriceBoth
                         )
                     )
                 )
+
+            businessFieldAdapter.submitItem(
+                GeneralLookup(
+                    name = getString(R.string.annual_net_profit),
+                    desc = if (it.annualNetProfitNA == true) getString(R.string.na) else String.format(
+                        getString(R.string.dollar_sign_concated),
+                        it.annualNetProfit
+                    )
+                )
+            )
+
+            businessFieldAdapter.submitItem(
+                GeneralLookup(
+                    name = getString(R.string.annual_turnover),
+                    desc = if (it.annualTurnoverNA == true) getString(R.string.na) else String.format(
+                        getString(R.string.dollar_sign_concated),
+                        it.annualTurnover
+                    )
+                )
+            )
         }
     }
 

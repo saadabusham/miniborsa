@@ -11,8 +11,7 @@ import com.technzone.miniborsa.ui.base.adapters.BaseViewHolder
 
 class RecentViewAdapter(
     context: Context
-) :
-    BaseBindingRecyclerViewAdapter<Business>(context) {
+) : BaseBindingRecyclerViewAdapter<Business>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(
@@ -36,6 +35,7 @@ class RecentViewAdapter(
             binding.root.setOnClickListener {
                 itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
             }
+            binding.favorite = item.isFavorite
             binding.imgFavorite.setOnClickListener {
                 item.isFavorite =
                     item.isFavorite == false

@@ -8,5 +8,6 @@ enum class MoreEnums {
     LANGUAGE,
     GET_HELP,
     INVESTORS_LIST,
-    SWITCH_TO_INVESTOR
+    SWITCH_TO_INVESTOR,
+    SETTINGS
 }

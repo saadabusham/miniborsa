@@ -246,7 +246,7 @@
                     android:layout_marginStart="@dimen/layouts_margin_start"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:layout_marginEnd="@dimen/layouts_margin_end"
-                    android:visibility="@{viewModel.isInvestor ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{viewModel.isInvestor &amp;&amp; viewModel.businessToView.properties.size() > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/layout_business_details"

@@ -5,6 +5,7 @@
 
     <data>
 
+        <import type="com.technzone.miniborsa.utils.extensions.StringExtensionKt"/>
         <variable
             name="viewModel"
             type="com.technzone.miniborsa.ui.investor.invistorroles.viewmodels.InvestorRoleViewModel" />
@@ -131,7 +132,7 @@
                         android:maxLength="@{viewModel.maxLength}"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:text="@{viewModel.investmentPrice.toString()}"
+                        android:text="@{StringExtensionKt.round(viewModel.investmentPrice,2)}"
                         android:textColor="@color/textview_text_color"
                         android:textSize="@dimen/_13ssp"
                         app:layout_constraintBottom_toBottomOf="@+id/tvFreeHoldAskingPriceTxt"

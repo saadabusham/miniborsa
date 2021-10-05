@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="com.technzone.miniborsa.utils.extensions.StringExtensionKt"/>
         <import type="com.technzone.miniborsa.R"/>
         <variable
             name="item"
@@ -65,7 +66,7 @@
                 android:padding="@dimen/_5sdp"
                 android:gravity="center"
                 tools:text="Asking Price $100k"
-                android:text="@{@string/asking_price_concated(item.askingPrice)}"
+                android:text="@{item.askingPriceNA ? @string/asking_price_concated_na : @string/asking_price_concated_k(StringExtensionKt.round(item.askingPrice,2))}"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_7ssp"
                 app:cornerRadius="@dimen/_2sdp"

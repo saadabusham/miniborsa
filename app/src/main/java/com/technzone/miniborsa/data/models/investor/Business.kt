@@ -140,15 +140,19 @@ data class Business(
 	val properties: List<PropertiesItem>? = null,
 
 	@field:SerializedName("images")
+	@ColumnInfo(name = "images")
 	var images: MutableList<Media>? = mutableListOf(),
 
 	@field:SerializedName("files")
+	@ColumnInfo(name = "files")
 	val files: MutableList<Media>? = mutableListOf(),
 
 	@field:SerializedName("countries")
+	@ColumnInfo(name = "countries")
 	val countries: List<GeneralLookup>? = null,
 
 	@field:SerializedName("categories")
+	@ColumnInfo(name = "categories")
 	val categories: List<CategoriesItem>? = null
 
 ) : Serializable

@@ -6,6 +6,7 @@
     <data>
 
         <import type="android.view.View" />
+        <import type="com.technzone.miniborsa.utils.extensions.StringExtensionKt"/>
 
         <variable
             name="viewModel"
@@ -60,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="$340,000"
-            android:text="@{@string/dollar_sign_concated(viewModel.businessToView.askingPrice)}"
+            android:text="@{viewModel.businessToView.askingPriceNA ? @string/na : @string/dollar_sign_concated(StringExtensionKt.round(viewModel.businessToView.askingPrice,2))}"
             android:textColor="@color/green_color"
             android:textSize="@dimen/_16ssp"
             app:layout_constraintEnd_toEndOf="parent"

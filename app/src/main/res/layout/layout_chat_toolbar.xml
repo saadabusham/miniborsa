@@ -45,7 +45,7 @@
             android:clickable="true"
             android:focusable="true"
             android:padding="@dimen/_9sdp"
-            android:src="@drawable/ic_setting"
+            android:src="@drawable/ic_more_setting"
             android:visibility="invisible"/>
 
     </LinearLayout>
