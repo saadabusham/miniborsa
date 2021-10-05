@@ -14,10 +14,7 @@ import com.technzone.miniborsa.databinding.FragmentRegisterBinding
 import com.technzone.miniborsa.ui.auth.register.viewmodels.RegistrationViewModel
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
 import com.technzone.miniborsa.ui.countrypicker.activity.CountriesPickerActivity
-import com.technzone.miniborsa.utils.extensions.getDeviceCountryCode
-import com.technzone.miniborsa.utils.extensions.readRawJson
-import com.technzone.miniborsa.utils.extensions.showErrorAlert
-import com.technzone.miniborsa.utils.extensions.validate
+import com.technzone.miniborsa.utils.extensions.*
 import com.technzone.miniborsa.utils.validation.ValidatorInputTypesEnums
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -130,6 +127,20 @@ class RegistrationFragment :
                         return false
                     }
                 }
+        binding?.etConfirmPassword?.text.toString()
+            .validateConfirmPassword(
+                ValidatorInputTypesEnums.CONFIRM_PASSWORD,
+                binding?.etPassword?.text.toString(),
+                requireContext()
+            ).let {
+                if (!it.isValid) {
+                    requireActivity().showErrorAlert(
+                        title = it.errorTitle,
+                        message = it.errorMessage
+                    )
+                    return false
+                }
+            }
         return valid
     }
 

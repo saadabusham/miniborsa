@@ -24,7 +24,7 @@
             app:cardCornerRadius="@dimen/_35sdp"
             app:cardElevation="0dp"
             app:strokeWidth="1dp"
-            app:strokeColor="@color/button_color"
+            app:strokeColor="@color/profile_corner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">

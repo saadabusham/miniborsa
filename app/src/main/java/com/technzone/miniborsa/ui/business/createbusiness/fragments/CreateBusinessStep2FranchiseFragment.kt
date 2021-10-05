@@ -53,7 +53,7 @@ class CreateBusinessStep2FranchiseFragment :
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.freeHoldAskingPrice.postValue(
                     binding?.edFreeHoldAskingPrice?.text.toString()
-                        .toPriceOrNull()?:viewModel.defaultMinValue.toDouble()
+                        .toDoubleOrNull()?:viewModel.defaultMinValue.toDouble()
                 )
                 binding?.root.hideKeyboard(requireActivity())
                 true
@@ -68,7 +68,7 @@ class CreateBusinessStep2FranchiseFragment :
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.netProfit.postValue(
                     binding?.edNetProfit?.text.toString()
-                        .toPriceOrNull()?:viewModel.defaultMinValue.toDouble()
+                        .toDoubleOrNull()?:viewModel.defaultMinValue.toDouble()
                 )
                 binding?.root.hideKeyboard(requireActivity())
                 true
@@ -83,7 +83,7 @@ class CreateBusinessStep2FranchiseFragment :
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.turnOver.postValue(
                     binding?.edTurnover?.text.toString()
-                        .toPriceOrNull()?:viewModel.defaultMinValue.toDouble()
+                        .toDoubleOrNull()?:viewModel.defaultMinValue.toDouble()
                 )
                 binding?.root.hideKeyboard(requireActivity())
                 true

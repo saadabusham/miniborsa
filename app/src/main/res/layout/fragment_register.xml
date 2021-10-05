@@ -186,6 +186,21 @@
                                 android:text="@={viewModel.passwordMutableLiveData}" />
                         </com.google.android.material.textfield.TextInputLayout>
 
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:passwordToggleEnabled="true">
+
+                            <com.technzone.miniborsa.ui.base.views.AppEditText
+                                android:id="@+id/et_confirm_password"
+                                style="@style/TextInputEditTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/confirm_password"
+                                android:inputType="textPassword"
+                                android:text="@={viewModel.confirmPasswordMutableLiveData}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnSignUp"
                             style="@style/AppTheme.Button"

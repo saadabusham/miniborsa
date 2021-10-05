@@ -132,6 +132,7 @@
                     app:layout_constraintEnd_toStartOf="@id/edFreeHoldAskingPrice"
                     app:layout_constraintTop_toTopOf="@id/tvFreeHoldAskingPriceTxt" />
 
+<!--                Handle the views text from 5.555555F4-->
                 <com.technzone.miniborsa.ui.base.views.AppEditText
                     android:id="@+id/edFreeHoldAskingPrice"
                     style="@style/textview_normal_regular"
