@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,67 +11,73 @@
             type="com.technzone.miniborsa.data.models.auth.onboarding.OnBoardingItem" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/transparent">
+        android:fillViewport="true"
+        android:clipToPadding="false">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivOnBoarding"
-            ivSetSrcImageFromResources="@{data.icon}"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_280sdp"
-            android:layout_marginTop="@dimen/_40sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_on_boarding_1" />
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvTitle"
-            style="@style/textview_normal_regular"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_30sdp"
-            android:layout_marginEnd="@dimen/_16sdp"
-            android:text="@{data.title}"
-            android:textAlignment="center"
-            android:textColor="@color/defaultTextColor"
-            android:textSize="@dimen/_19ssp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivOnBoarding"
-            tools:text="Build" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivOnBoarding"
+                ivSetSrcImageFromResources="@{data.icon}"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_250sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_on_boarding_1" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cvDiv"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_2sdp"
-            android:layout_marginTop="@dimen/_7sdp"
-            app:cardBackgroundColor="@color/button_color"
-            app:layout_constraintEnd_toEndOf="@id/tvTitle"
-            app:layout_constraintStart_toStartOf="@id/tvTitle"
-            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTitle"
+                style="@style/textview_normal_regular"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:text="@{data.title}"
+                android:textAlignment="center"
+                android:textColor="@color/defaultTextColor"
+                android:textSize="@dimen/_19ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivOnBoarding"
+                tools:text="Build" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvDescription"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_25sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginEnd="@dimen/_25sdp"
-            android:text="@{data.body}"
-            android:textAlignment="center"
-            android:textAppearance="@style/textview_normal_regular"
-            android:textColor="@color/copy_right_color"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cvDiv"
-            tools:lines="3"
-            tools:text="Connecting the most promising\nstartups with investors to create\nimpactful change." />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvDiv"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_2sdp"
+                android:layout_marginTop="@dimen/_7sdp"
+                app:cardBackgroundColor="@color/button_color"
+                app:layout_constraintEnd_toEndOf="@id/tvTitle"
+                app:layout_constraintStart_toStartOf="@id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:text="@{data.body}"
+                android:textAlignment="center"
+                android:textAppearance="@style/textview_normal_regular"
+                android:textColor="@color/copy_right_color"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cvDiv"
+                tools:lines="3"
+                tools:text="Connecting the most promising\nstartups with investors to create\nimpactful change." />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </layout>
