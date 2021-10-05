@@ -27,7 +27,7 @@
             app:cardElevation="0dp"
             app:shapeAppearanceOverlay="@style/bottom_right_cardview_no_corner">
 
-            <TextView
+            <com.technzone.miniborsa.ui.base.views.AppTextView
                 style="@style/outcoming_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <TextView
+        <com.technzone.miniborsa.ui.base.views.AppTextView
             style="@style/outcoming_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

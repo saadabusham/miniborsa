@@ -91,7 +91,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <com.technzone.miniborsa.ui.base.views.AppTextView
                         style="@style/textview_normal_medium"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -173,7 +173,7 @@
                     android:textColor="@color/black"
                     android:text="@string/available_on_request" />
 
-                <TextView
+                <com.technzone.miniborsa.ui.base.views.AppTextView
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -182,7 +182,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp" />
 
-                <TextView
+                <com.technzone.miniborsa.ui.base.views.AppTextView
                     android:id="@+id/tvCountries"
                     style="@style/textview_normal_regular"
                     android:layout_width="match_parent"
@@ -209,7 +209,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tvCountries"
                     tools:listitem="@layout/row_selected_general" />
 
-                <TextView
+                <com.technzone.miniborsa.ui.base.views.AppTextView
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -218,7 +218,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp" />
 
-                <TextView
+                <com.technzone.miniborsa.ui.base.views.AppTextView
                     android:id="@+id/tvCategories"
                     style="@style/textview_normal_regular"
                     android:layout_width="match_parent"

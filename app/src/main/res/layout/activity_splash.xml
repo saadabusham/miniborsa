@@ -34,7 +34,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginBottom="@dimen/_50sdp"/>
 
-        <TextView
+        <com.technzone.miniborsa.ui.base.views.AppTextView
             android:id="@+id/tvName"
             style="@style/textview_normal_medium"
             android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             app:layout_constraintTop_toBottomOf="@id/ivLogo" />
 
-        <TextView
+        <com.technzone.miniborsa.ui.base.views.AppTextView
             android:id="@+id/tv_license"
             style="@style/textview_normal_regular"
             android:layout_width="wrap_content"

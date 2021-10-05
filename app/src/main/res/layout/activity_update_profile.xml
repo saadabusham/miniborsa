@@ -30,7 +30,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvTitle" />
 
-        <TextView
+        <com.technzone.miniborsa.ui.base.views.AppTextView
             android:id="@+id/tvTitle"
             style="@style/textview_normal_bold"
             android:layout_width="match_parent"
@@ -47,7 +47,7 @@
             android:textSize="@dimen/_13ssp"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <com.technzone.miniborsa.ui.base.views.AppTextView
             android:id="@+id/tvSave"
             style="@style/textview_normal_bold"
             android:layout_width="wrap_content"

@@ -40,7 +40,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:src="@drawable/ic_logo" />
 
-            <TextView
+            <com.technzone.miniborsa.ui.base.views.AppTextView
                 android:id="@+id/tvFillField"
                 style="@style/textview_normal_semibold"
                 android:layout_width="wrap_content"

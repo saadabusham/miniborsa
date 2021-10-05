@@ -31,7 +31,7 @@
                 android:layout_height="@dimen/_40sdp"
                 tools:src="@drawable/ic_completed" />
 
-            <TextView
+            <com.technzone.miniborsa.ui.base.views.AppTextView
                 style="@style/textview_normal_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

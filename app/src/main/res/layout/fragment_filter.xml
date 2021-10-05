@@ -27,7 +27,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvTitle" />
 
-        <TextView
+        <com.technzone.miniborsa.ui.base.views.AppTextView
             android:id="@+id/tvTitle"
             style="@style/textview_normal_bold"
             android:layout_width="match_parent"
@@ -44,7 +44,7 @@
             android:textSize="@dimen/_13ssp"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <com.technzone.miniborsa.ui.base.views.AppTextView
             android:id="@+id/tvReset"
             style="@style/textview_normal_bold"
             android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
                 android:paddingStart="@dimen/layouts_margin_start"
                 android:paddingEnd="@dimen/layouts_margin_end">
 
-                <TextView
+                <com.technzone.miniborsa.ui.base.views.AppTextView
                     android:id="@+id/tvIndustry"
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
@@ -98,13 +98,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:orientation="horizontal"
+                    tools:itemCount="2"
                     app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvIndustry"
                     tools:listitem="@layout/row_general" />
 
-                <TextView
+                <com.technzone.miniborsa.ui.base.views.AppTextView
                     android:id="@+id/tvBusinessType"
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
@@ -125,10 +126,11 @@
                     app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    tools:itemCount="2"
                     app:layout_constraintTop_toBottomOf="@id/tvBusinessType"
                     tools:listitem="@layout/row_general" />
 
-                <TextView
+                <com.technzone.miniborsa.ui.base.views.AppTextView
                     android:id="@+id/tvBusinessStatus"
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
@@ -217,7 +219,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvLocation" />
 
-                <TextView
+                <com.technzone.miniborsa.ui.base.views.AppTextView
                     android:id="@+id/tvGenderFounder"
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
@@ -279,7 +281,7 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <TextView
+                <com.technzone.miniborsa.ui.base.views.AppTextView
                     android:id="@+id/tvPriceRange"
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
@@ -291,14 +293,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvGenderFounder" />
 
-                <TextView
+                <com.technzone.miniborsa.ui.base.views.AppTextView
                     android:id="@+id/tvMin"
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/layouts_margin_start"
                     android:layout_marginEnd="@dimen/layouts_margin_end"
-                    android:text="@string/selling_price"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_11ssp"
                     app:layout_constraintBottom_toBottomOf="@id/tvPriceRange"
@@ -306,7 +307,7 @@
                     app:layout_constraintTop_toTopOf="@id/tvPriceRange"
                     tools:text="$200,000" />
 
-                <TextView
+                <com.technzone.miniborsa.ui.base.views.AppTextView
                     android:id="@+id/tvDiv"
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
@@ -319,17 +320,15 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp"
                     app:layout_constraintBottom_toBottomOf="@id/tvPriceRange"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/tvMax"
                     app:layout_constraintTop_toTopOf="@id/tvPriceRange" />
 
-                <TextView
+                <com.technzone.miniborsa.ui.base.views.AppTextView
                     android:id="@+id/tvMax"
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/layouts_margin_start"
-                    android:text="@string/selling_price"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_11ssp"
                     app:layout_constraintBottom_toBottomOf="@id/tvPriceRange"
@@ -351,6 +350,7 @@
                     app:left_thumb_image_pressed="@drawable/ic_thumb"
                     app:right_thumb_image="@drawable/ic_thumb"
                     app:right_thumb_image_pressed="@drawable/ic_thumb"
+                    android:visibility="visible"
                     app:steps="1" />
 
                 <com.google.android.material.button.MaterialButton

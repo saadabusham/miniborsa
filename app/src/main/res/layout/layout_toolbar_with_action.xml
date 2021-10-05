@@ -24,7 +24,7 @@
             tools:visibility="visible"
             android:visibility="invisible"/>
 
-        <TextView
+        <com.technzone.miniborsa.ui.base.views.AppTextView
             style="@style/textview_normal_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

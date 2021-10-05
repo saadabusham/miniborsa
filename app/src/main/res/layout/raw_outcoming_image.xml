@@ -29,7 +29,7 @@
             android:transitionName="media_image"
             app:srcCompat="@mipmap/ic_launcher"/>
 
-        <TextView
+        <com.technzone.miniborsa.ui.base.views.AppTextView
             style="@style/outcoming_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

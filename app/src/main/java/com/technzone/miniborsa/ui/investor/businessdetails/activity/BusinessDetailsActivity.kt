@@ -29,6 +29,7 @@ import com.technzone.miniborsa.ui.investor.invistorroles.activity.InvestorRolesA
 import com.technzone.miniborsa.ui.subscription.activity.SubscriptionActivity
 import com.technzone.miniborsa.utils.DeepLinkUtil.generateDeepLink
 import com.technzone.miniborsa.utils.extensions.getSnapHelper
+import com.technzone.miniborsa.utils.extensions.round
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_business_details_toolbar.*
 
@@ -215,7 +216,7 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
                         name = getString(R.string.asking_price),
                         desc = if (it.askingPriceNA == true) getString(R.string.na) else String.format(
                             getString(R.string.dollar_sign_concated),
-                            it.askingPrice
+                            it.askingPrice.round(2)
                         )
                     )
                 )
@@ -225,7 +226,7 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
                         name = getString(R.string.leasehold),
                         desc = if (it.askingPriceNABoth == true) getString(R.string.na) else String.format(
                             getString(R.string.dollar_sign_concated),
-                            it.askingPriceBoth
+                            it.askingPriceBoth.round(2)
                         )
                     )
                 )
@@ -235,7 +236,7 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
                     name = getString(R.string.annual_net_profit),
                     desc = if (it.annualNetProfitNA == true) getString(R.string.na) else String.format(
                         getString(R.string.dollar_sign_concated),
-                        it.annualNetProfit
+                        it.annualNetProfit?.round(2)
                     )
                 )
             )
@@ -245,7 +246,7 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
                     name = getString(R.string.annual_turnover),
                     desc = if (it.annualTurnoverNA == true) getString(R.string.na) else String.format(
                         getString(R.string.dollar_sign_concated),
-                        it.annualTurnover
+                        it.annualTurnover?.round(2)
                     )
                 )
             )

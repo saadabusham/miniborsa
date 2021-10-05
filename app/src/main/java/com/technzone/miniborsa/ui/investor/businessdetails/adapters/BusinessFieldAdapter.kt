@@ -11,6 +11,7 @@ import com.technzone.miniborsa.databinding.RowBusinessDetailsBinding
 import com.technzone.miniborsa.databinding.RowBusinessImageBinding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.adapters.BaseViewHolder
+import com.technzone.miniborsa.utils.extensions.visible
 
 class BusinessFieldAdapter(
     context: Context
@@ -36,6 +37,11 @@ class BusinessFieldAdapter(
 
         override fun bind(item: GeneralLookup) {
             binding.item = item
+            if(bindingAdapterPosition % 2 == 0){
+                binding.div.visible()
+            }else{
+                binding.divStart.visible()
+            }
             binding.root.setOnClickListener {
                 itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
             }

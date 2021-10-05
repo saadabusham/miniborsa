@@ -95,7 +95,7 @@ fun String.checkPhoneNumberFormat(): String {
 }
 
 fun Double.round(digitNum: Int): String {
-    return String.format("%.${digitNum}f", this)
+    return String.format(Locale.ENGLISH,"%.${digitNum}f", this)
 }
 
 fun String.toPriceOrNull():Double?{

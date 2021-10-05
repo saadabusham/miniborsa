@@ -35,7 +35,7 @@
                     app:cardCornerRadius="@dimen/_3sdp"
                     app:cardElevation="0dp" />
 
-                <TextView
+                <com.technzone.miniborsa.ui.base.views.AppTextView
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp" />
 
-                <TextView
+                <com.technzone.miniborsa.ui.base.views.AppTextView
                     android:id="@+id/tvCountries"
                     style="@style/textview_normal_regular"
                     android:layout_width="match_parent"
@@ -73,7 +73,7 @@
                     tools:listitem="@layout/row_selected_general" />
 
 
-                <TextView
+                <com.technzone.miniborsa.ui.base.views.AppTextView
                     android:id="@+id/tvHeader"
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
