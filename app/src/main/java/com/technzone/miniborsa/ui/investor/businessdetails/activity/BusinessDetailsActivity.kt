@@ -17,6 +17,7 @@ import com.technzone.miniborsa.data.models.investor.ExtraInfo
 import com.technzone.miniborsa.databinding.ActivityBusinessDetailsBinding
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
+import com.technzone.miniborsa.ui.base.bindingadapters.getPropertyStatus
 import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.dataview.viewimage.ViewImageActivity
 import com.technzone.miniborsa.ui.investor.businessdetails.adapters.BusinessDocumentAdapter
@@ -250,6 +251,31 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
                     )
                 )
             )
+
+
+            if (it.investmentPercentage != null && it.investmentPercentage > 0)
+                businessFieldAdapter.submitItem(
+                    GeneralLookup(
+                        name = getString(R.string.investment_percentage),
+                        desc = String.format(
+                            getString(R.string.percentage_),
+                            it.investmentPercentage
+                        )
+                    )
+                )
+
+            businessFieldAdapter.submitItem(
+                GeneralLookup(
+                    name = getString(R.string.can_run_from_home),
+                    desc = it.canRunfromHome.toString()
+                ))
+
+            businessFieldAdapter.submitItem(
+                GeneralLookup(
+                    name = getString(R.string.can_relocated),
+                    desc = it.isRelocated.toString()
+                ))
+
         }
     }
 

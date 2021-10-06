@@ -20,7 +20,7 @@
             style="@style/textview_normal_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/business_information"
+            android:text="@string/website_link"
             android:textColor="@color/black"
             android:textSize="@dimen/_13ssp"
             android:layout_marginEnd="@dimen/_10sdp"
@@ -29,14 +29,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.technzone.miniborsa.ui.base.views.AppTextView
-            android:id="@+id/tvType"
+            android:id="@+id/tvLink"
             style="@style/textview_normal_regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.businessToView.englishDescription}"
-            tools:text="Aumet is the first marketplace to sell SME's medical\nnmanufacturers' products directly to healthcare\nproviders.\n\n
-Aumet disrupts the market by automating assigning\ndistributors to the medical manufacturer and sell the\nproduct directly to healthcare providers getting the\nbest price directly from manufacturers."
+            android:text="@{viewModel.businessToView.websiteLink}"
+            tools:text="https://www.google.com"
             android:layout_marginTop="@dimen/_5sdp"
+            android:autoLink="web"
+            android:textIsSelectable="true"
+            android:clickable="true"
+            android:focusable="true"
             android:textColor="@color/black_alpha"
             android:textSize="@dimen/_11ssp"
             android:lineSpacingExtra="@dimen/_3sdp"

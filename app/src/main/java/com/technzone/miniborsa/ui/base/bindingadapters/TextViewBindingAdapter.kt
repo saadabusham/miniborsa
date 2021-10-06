@@ -1,5 +1,6 @@
 package com.technzone.miniborsa.ui.base.bindingadapters
 
+import android.content.Context
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
@@ -20,11 +21,13 @@ fun TextView.setTextBySection(
         }
     )
 }
+
 @BindingAdapter("setColorBySection")
 fun TextView.setColorBySection(
     type: Int
 ) {
-    backgroundTintList = ContextCompat.getColorStateList(context,
+    backgroundTintList = ContextCompat.getColorStateList(
+        context,
         when (type) {
             NewsSectionEnums.START_UP_NEWS.value -> R.color.startup_news
             NewsSectionEnums.INVESTMENT.value -> R.color.investment
@@ -45,11 +48,16 @@ fun TextView.setTextByBusinessType(
         }
     )
 }
+
 @BindingAdapter("setTextBySaleType")
 fun TextView.setTextBySaleType(
     type: Int
 ) {
-    text = context.getString(
+    text = context.getPropertyStatus(type)
+}
+
+fun Context.getPropertyStatus(type: Int): String {
+    return getString(
         when (type) {
             PropertyStatusEnums.FREEHOLD.value -> R.string.freehold
             PropertyStatusEnums.LEASEHOLD.value -> R.string.leasehold

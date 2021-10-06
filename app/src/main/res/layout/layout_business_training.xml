@@ -20,7 +20,7 @@
             style="@style/textview_normal_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/business_information"
+            android:text="@string/training"
             android:textColor="@color/black"
             android:textSize="@dimen/_13ssp"
             android:layout_marginEnd="@dimen/_10sdp"
@@ -33,7 +33,7 @@
             style="@style/textview_normal_regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.businessToView.englishDescription}"
+            android:text="@{viewModel.businessToView.training}"
             tools:text="Aumet is the first marketplace to sell SME's medical\nnmanufacturers' products directly to healthcare\nproviders.\n\n
 Aumet disrupts the market by automating assigning\ndistributors to the medical manufacturer and sell the\nproduct directly to healthcare providers getting the\nbest price directly from manufacturers."
             android:layout_marginTop="@dimen/_5sdp"

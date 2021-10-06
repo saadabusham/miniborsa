@@ -3,6 +3,8 @@ package com.technzone.miniborsa.ui.business.createbusiness.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.technzone.miniborsa.data.api.response.APIResource
+import com.technzone.miniborsa.data.common.Constants.DEFAULT_MAX_VALUE
+import com.technzone.miniborsa.data.common.Constants.DEFAULT_MIN_VALUE
 import com.technzone.miniborsa.data.common.Constants.MAX_PRICE_LENGTH
 import com.technzone.miniborsa.data.enums.BusinessTypeEnums
 import com.technzone.miniborsa.data.enums.PropertyStatusEnums
@@ -33,8 +35,8 @@ class CreateBusinessViewModel @Inject constructor(
     private val businessRepo: BusinessRepo
 ) : BaseViewModel() {
     var businessId: Int? = null
-    val defaultMinValue: Int = 1000
-    val defaultMaxValue: Int = 1000000
+    val defaultMinValue: Double = DEFAULT_MIN_VALUE
+    val defaultMaxValue: Double = DEFAULT_MAX_VALUE
     val maxLength: Int = MAX_PRICE_LENGTH
     var businessType: Int = BusinessTypeEnums.BUSINESS_FOR_SALE.value
     var hasBusiness: Boolean = false
@@ -58,11 +60,11 @@ class CreateBusinessViewModel @Inject constructor(
     val netProfitOnRequest: MutableLiveData<Boolean> = MutableLiveData(false)
     val turnoverOnRequest: MutableLiveData<Boolean> = MutableLiveData(false)
 
-    val freeHoldAskingPrice: MutableLiveData<Double> = MutableLiveData(1000.0)
-    val leaseHoldAskingPrice: MutableLiveData<Double> = MutableLiveData(1000.0)
-    val netProfit: MutableLiveData<Double> = MutableLiveData(1000.0)
-    val turnOver: MutableLiveData<Double> = MutableLiveData(1000.0)
-    val sharePercentage: MutableLiveData<Int> = MutableLiveData(1000)
+    val freeHoldAskingPrice: MutableLiveData<Double> = MutableLiveData(DEFAULT_MIN_VALUE)
+    val leaseHoldAskingPrice: MutableLiveData<Double> = MutableLiveData(DEFAULT_MIN_VALUE)
+    val netProfit: MutableLiveData<Double> = MutableLiveData(DEFAULT_MIN_VALUE)
+    val turnOver: MutableLiveData<Double> = MutableLiveData(DEFAULT_MIN_VALUE)
+    val sharePercentage: MutableLiveData<Int> = MutableLiveData(100)
     val selectedItemsCount: MutableLiveData<Int> = MutableLiveData(0)
 
     val listLocation: MutableLiveData<Boolean> = MutableLiveData(false)

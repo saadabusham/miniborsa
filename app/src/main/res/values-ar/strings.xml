@@ -394,4 +394,6 @@
     <string name="use_high_priority_notifications">Use high priority notifications</string>
     <string name="show_previews_of_notifications_at_the_top_of_the_screen">Show previews of notifications at the top\nof the screen</string>
     <string name="language">Language</string>
+    <string name="can_run_from_home">Can run from home</string>
+    <string name="can_relocated">Can Relocated</string>
 </resources>
