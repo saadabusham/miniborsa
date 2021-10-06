@@ -47,7 +47,7 @@
                 android:id="@+id/tvPrice"
                 style="@style/textview_normal_regular"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_18sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:gravity="center"

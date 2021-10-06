@@ -43,6 +43,7 @@
     <color name="divider_black">#1A000000</color>
 
     <color name="dashStrokeColor">#EBEBEB</color>
+    <color name="steps_edittext_color">#BFBFBF</color>
     <!-- Gray -->
     <color name="default_gary">#dfe0e5</color>
     <color name="lite_gray">#f4f5f7</color>
@@ -185,6 +186,11 @@
     <color name="status_pending">#33FEC031</color>
     <color name="status_approved">#3300AB6B</color>
     <color name="status_rejected">#33AB0000</color>
+
+    <color name="status_draft_text">#ffffff</color>
+    <color name="status_pending_text">#FEC031</color>
+    <color name="status_approved_text">#00AB6B</color>
+    <color name="status_rejected_text">#AB0000</color>
 
 
     <color name="copy_right_color">#4C4D53</color>

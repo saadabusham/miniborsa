@@ -62,7 +62,7 @@ class FilterBusinessFragment : BaseBindingFragment<FragmentFilterBinding>(),
 
     private fun setUpListeners() {
         binding?.imgBack?.setOnClickListener {
-            applyData()
+            requireActivity().onBackPressed()
         }
         binding?.btnContinue?.setOnClickListener {
             applyData()
@@ -73,6 +73,7 @@ class FilterBusinessFragment : BaseBindingFragment<FragmentFilterBinding>(),
         binding?.tvReset?.setOnClickListener {
             viewModel.categories = mutableListOf()
             inustryAdapter.clearSelectedItems()
+            businessTypeAdapter.clearSelectedItems()
             binding?.rangeSeekBar?.setMinValue(viewModel.defaultMinValue.toFloat())?.apply()
             binding?.rangeSeekBar?.setMaxValue(viewModel.defaultMaxValue.toFloat())?.apply()
             viewModel.min.value = viewModel.defaultMinValue
@@ -80,6 +81,7 @@ class FilterBusinessFragment : BaseBindingFragment<FragmentFilterBinding>(),
             viewModel.maleSelected.postValue(true)
             viewModel.filterActive.postValue(true)
             viewModel.addressStr.postValue("")
+            viewModel.selectedBusinessType.postValue(null)
         }
         binding?.rangeSeekBar?.setOnRangeSeekbarChangeListener { minValue: Number, maxValue: Number ->
             binding?.tvMin?.text = String.format(getString(R.string.price_), minValue.toString())
@@ -94,7 +96,7 @@ class FilterBusinessFragment : BaseBindingFragment<FragmentFilterBinding>(),
     private fun applyData() {
         viewModel.apply {
             categories = inustryAdapter.getSelectedItems().map { it.id ?: 0 }
-            selectedBusinessType = businessTypeAdapter.getSelectedItem()?.id
+            selectedBusinessType.value = businessTypeAdapter.getSelectedItem()?.id
             min.value = rangeSeekBar.selectedMinValue.toInt()
             max.value = rangeSeekBar.selectedMaxValue.toInt()
         }
@@ -161,24 +163,24 @@ class FilterBusinessFragment : BaseBindingFragment<FragmentFilterBinding>(),
                 GeneralLookup(
                     name = getString(R.string.businesses_for_sale),
                     id = BusinessTypeEnums.BUSINESS_FOR_SALE.value,
-                    selected = viewModel.selectedBusinessType == BusinessTypeEnums.BUSINESS_FOR_SALE.value
+                    selected = viewModel.selectedBusinessType.value == BusinessTypeEnums.BUSINESS_FOR_SALE.value
                 ),
                 GeneralLookup(
                     name = getString(R.string.businesses_for_sale),
                     id = BusinessTypeEnums.BUSINESS_FOR_SHARE.value,
-                    selected = viewModel.selectedBusinessType == BusinessTypeEnums.BUSINESS_FOR_SHARE.value
+                    selected = viewModel.selectedBusinessType.value == BusinessTypeEnums.BUSINESS_FOR_SHARE.value
                 ),
                 GeneralLookup(
                     name = getString(R.string.franchise),
                     id = BusinessTypeEnums.BUSINESS_FRANCHISE.value,
-                    selected = viewModel.selectedBusinessType == BusinessTypeEnums.BUSINESS_FRANCHISE.value
+                    selected = viewModel.selectedBusinessType.value == BusinessTypeEnums.BUSINESS_FRANCHISE.value
                 )
             )
         )
-        if (businessTypeAdapter.items.singleOrNull { it.selected } == null) {
-            businessTypeAdapter.items[0].selected = true
-            businessTypeAdapter.notifyItemChanged(0)
-        }
+//        if (businessTypeAdapter.items.singleOrNull { it.selected } == null) {
+//            businessTypeAdapter.items[0].selected = true
+//            businessTypeAdapter.notifyItemChanged(0)
+//        }
     }
 
     override fun onItemClick(view: View?, position: Int, item: Any) {

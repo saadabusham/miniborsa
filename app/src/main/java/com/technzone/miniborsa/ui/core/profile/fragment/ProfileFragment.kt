@@ -53,6 +53,7 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
         super.onResume()
         viewModel.getMyProfile().observe(this, profileObserver())
     }
+
     override fun onViewVisible() {
         super.onViewVisible()
         init()
@@ -97,7 +98,8 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
                     data?.let { it1 -> viewModel.storeUser(it1) }
                     viewModel.getUser()
                 }
-            })
+            }, showError = false
+        )
     }
 
     private fun initData() {

@@ -91,7 +91,7 @@
                     android:text="@string/cancel"
                     android:textAllCaps="true"
                     android:textAppearance="@style/textview_normal_semibold"
-                    android:textSize="@dimen/_9ssp" />
+                    android:textSize="@dimen/_10ssp" />
 
                 <com.technzone.miniborsa.ui.base.views.AppMaterialButton
                     android:id="@+id/btnAddMarkets"
@@ -101,6 +101,9 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_weight="1"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/_10ssp"
+                    android:textAppearance="@style/textview_normal_semibold"
                     android:onClick="@{()->viewModel.onSaveClicked()}"
                     android:text="@string/create" />
             </LinearLayout>

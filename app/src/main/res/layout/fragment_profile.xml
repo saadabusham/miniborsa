@@ -7,6 +7,8 @@
 
         <import type="com.technzone.miniborsa.R" />
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.technzone.miniborsa.ui.core.profile.viewmodels.ProfileViewModel" />
@@ -23,11 +25,11 @@
             android:layout_marginTop="@dimen/_50sdp"
             app:cardCornerRadius="@dimen/_35sdp"
             app:cardElevation="0dp"
-            app:strokeWidth="1dp"
-            app:strokeColor="@color/profile_corner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/profile_corner"
+            app:strokeWidth="1dp">
 
             <com.technzone.miniborsa.ui.base.views.AppImageView
                 ivImageErrorPlaceholder="@{R.drawable.ic_profile_place_holder}"
@@ -127,9 +129,11 @@
             android:text="@string/sign_out"
             android:textColor="@color/black_alpha"
             android:textSize="@dimen/_11ssp"
+            android:visibility="@{viewModel.userLoggedIn ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/div2" />
+            app:layout_constraintTop_toBottomOf="@id/div2"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -29,7 +29,7 @@ class FilterBusinessViewModel @Inject constructor(
 ) : BaseViewModel() {
     val defaultMinValue: Int = 1000
     val defaultMaxValue: Int = 1000000
-    var selectedBusinessType: Int? = null
+    var selectedBusinessType: MutableLiveData<Int> = MutableLiveData()
     val searchText: MutableLiveData<String> = MutableLiveData()
     val addressStr: MutableLiveData<String> = MutableLiveData()
     val address: MutableLiveData<Address> = MutableLiveData()
@@ -61,7 +61,7 @@ class FilterBusinessViewModel @Inject constructor(
         emit(APIResource.loading())
         val response =
             investorsRepo.getBusinessByType(
-                businessType = selectedBusinessType,
+                businessType = selectedBusinessType.value,
                 pageNumber = pageNumber,
                 pageSize = 10,
                 categories = if(categories.isNullOrEmpty()) null else categories,

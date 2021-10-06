@@ -36,15 +36,20 @@ class BusinessSubscriptionRecyclerAdapter constructor(
 
         override fun bind(item: Subscription) {
             binding.item = item
-//            binding.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
-//                itemClickListener?.onItemChecked(isChecked, item, bindingAdapterPosition)
-//                item.promote = isChecked
-//            }
+            binding.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
+                itemClickListener?.onItemChecked(isChecked, item, bindingAdapterPosition)
+                item.promote = isChecked
+                if(isChecked){
+                    binding.root.callOnClick()
+                }
+            }
             binding.root.setOnClickListener {
                 items.withIndex().singleOrNull { it.value.selected }?.let {
-                    it.value.selected = false
-                    it.value.promote = false
-                    notifyItemChanged(it.index)
+                    if (it.index != bindingAdapterPosition) {
+                        it.value.selected = false
+                        it.value.promote = false
+                        notifyItemChanged(it.index)
+                    }
                 }
                 item.selected = true
                 notifyItemChanged(bindingAdapterPosition)

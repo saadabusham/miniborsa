@@ -249,6 +249,7 @@
                         android:layout_marginEnd="@dimen/_10sdp"
                         android:background="?selectableItemBackgroundBorderless"
                         android:clickable="true"
+                        android:enabled="false"
                         android:drawableEnd="@drawable/ic_dropdown_arrow"
                         android:drawablePadding="@dimen/_7sdp"
                         android:focusable="true"
@@ -275,6 +276,7 @@
                         android:drawableEnd="@drawable/ic_phone"
                         android:hint="@string/_700000000"
                         android:inputType="phone"
+                        android:enabled="false"
                         android:text="@={viewModel.phoneNumberWithoutCountryCode}"
                         android:textSize="@dimen/_11ssp" />
 

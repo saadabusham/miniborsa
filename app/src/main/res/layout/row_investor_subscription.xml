@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_25sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
         android:background="@{item.selected ? @drawable/ic_rectangle_focused : @drawable/ic_rectangle_unfocused}"
         android:orientation="vertical"
         tools:background="@drawable/ic_rectangle_focused">

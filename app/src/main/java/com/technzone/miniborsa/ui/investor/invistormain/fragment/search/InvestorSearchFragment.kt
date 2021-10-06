@@ -156,7 +156,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
 
     //    ForSale
     private fun setUpRvForSaleBusiness() {
-        forSaleBusinessAdapter = BusinessAdapter(requireContext())
+        forSaleBusinessAdapter = BusinessAdapter(requireContext(), viewModel.isUserLoggedIn())
         binding?.layoutForSale?.recyclerView?.adapter = forSaleBusinessAdapter
         binding?.layoutForSale?.recyclerView.setOnItemClickListener(this)
         getSnapHelper()
@@ -207,7 +207,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
 
     //    ShareForSale
     private fun setUpRvShareForSaleBusiness() {
-        shareForSaleBusinessAdapter = BusinessAdapter(requireContext())
+        shareForSaleBusinessAdapter = BusinessAdapter(requireContext(), viewModel.isUserLoggedIn())
         binding?.layoutShareForSale?.recyclerView?.adapter = shareForSaleBusinessAdapter
         binding?.layoutShareForSale?.recyclerView.setOnItemClickListener(this)
         getSnapHelper()
@@ -257,7 +257,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
 
     //    ShareForSale
     private fun setUpRvFranchiseBusiness() {
-        franchiseBusinessAdapter = BusinessAdapter(requireContext())
+        franchiseBusinessAdapter = BusinessAdapter(requireContext(), viewModel.isUserLoggedIn())
         binding?.layoutFranchise?.recyclerView?.adapter = franchiseBusinessAdapter
         binding?.layoutFranchise?.recyclerView.setOnItemClickListener(this)
         getSnapHelper()

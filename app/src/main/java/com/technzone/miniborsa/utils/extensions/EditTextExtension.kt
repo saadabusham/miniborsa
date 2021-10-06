@@ -1,9 +1,11 @@
 package com.technzone.miniborsa.utils.extensions
 
+import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import com.technzone.miniborsa.R
 
@@ -28,4 +30,8 @@ fun EditText.setupClearButtonWithAction() {
         }
         return@OnTouchListener false
     })
+}
+fun EditText.focus(){
+    this.requestFocus()
+    (context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
 }

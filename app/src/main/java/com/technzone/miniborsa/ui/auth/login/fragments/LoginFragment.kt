@@ -128,6 +128,10 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding>() {
                                         false
                                     )
                                 ) {
+                                    it.roles?.singleOrNull { it.role == UserRoleEnums.INVESTOR_ROLE.value }
+                                        ?.let {
+                                            viewModel.setUserRole(UserRoleEnums.INVESTOR_ROLE.value)
+                                        }
                                     requireActivity().setResult(Activity.RESULT_OK, Intent().apply {
                                         this.putExtra(Constants.BundleData.IS_LOGIN_SUCCESS, true)
                                     })
@@ -146,8 +150,8 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding>() {
         if (data.roles.isNullOrEmpty() || (data.roles[0].role == UserRoleEnums.VISITOR_ROLE.value && data.roles.size == 1))
             UserRolesActivity.start(requireContext())
         else {
-            InvestorMainActivity.start(requireContext())
             viewModel.setUserRole(UserRoleEnums.INVESTOR_ROLE.value)
+            InvestorMainActivity.start(requireContext())
         }
     }
 

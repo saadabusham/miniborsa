@@ -71,7 +71,8 @@
             android:layout_height="0dp"
             android:clipToPadding="false"
             android:fillViewport="true"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btnContinue"
+            android:layout_marginBottom="@dimen/_10sdp"
             app:layout_constraintTop_toBottomOf="@id/div">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -135,7 +136,7 @@
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
                     android:text="@string/business_status"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp"
@@ -197,7 +198,7 @@
                     style="@style/textview_normal_medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:text="@string/location"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp"
@@ -353,23 +354,24 @@
                     android:visibility="visible"
                     app:steps="1" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnContinue"
-                    style="@style/AppTheme.Button"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/button_height"
-                    android:layout_gravity="bottom"
-                    android:layout_marginTop="@dimen/_17sdp"
-                    android:layout_marginBottom="@dimen/_20sdp"
-                    android:text="@string/show_properties"
-                    android:textAppearance="@style/normalMediumFontStyle"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/_14ssp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rangeSeekBar" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnContinue"
+            style="@style/AppTheme.Button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/layouts_margin_start"
+            android:layout_marginEnd="@dimen/layouts_margin_end"
+            android:layout_marginTop="@dimen/_17sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:text="@string/show_properties"
+            android:textAppearance="@style/normalMediumFontStyle"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

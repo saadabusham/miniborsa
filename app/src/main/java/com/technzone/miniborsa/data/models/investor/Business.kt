@@ -16,7 +16,7 @@ data class Business(
 
 	@field:SerializedName("websiteLink")
 	@ColumnInfo(name = "websiteLink")
-	val websiteLink: String? = null,
+    var websiteLink: String? = null,
 
 	@field:SerializedName("counrty")
 	@ColumnInfo(name = "counrty")

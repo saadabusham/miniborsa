@@ -145,23 +145,23 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
         listingItemAdapter.submitItems(
             arrayListOf(
                 ListingItem(
-                    title = "Title",
-                    description = "Lorem ipsum dolor sit amet.",
+                    title = "Step 1",
+                    description = "Title, General Summary, Category, Year & Location",
                     percent = viewModel.business?.calculateFirstStepPercentage() ?: 0
                 ),
                 ListingItem(
-                    title = "Location Info",
-                    description = "Lorem ipsum dolor sit amet.",
+                    title = "Step 2",
+                    description = "Asking Price, Annual Net Profit & Annual Turnover",
                     percent = viewModel.business?.calculateSecondStepPercentage() ?: 0
                 ),
                 ListingItem(
-                    title = "Media",
-                    description = "Lorem ipsum dolor sit amet.",
+                    title = "Step 3",
+                    description = "Two Uploaded Photos & Two Attachments",
                     percent = viewModel.business?.calculateThirdPercentage() ?: 0
                 ),
                 ListingItem(
-                    title = "More Details",
-                    description = "Lorem ipsum dolor sit amet.",
+                    title = "Step 4",
+                    description = "Website Link, Traning Description & More Informations",
                     percent = viewModel.business?.calculateFourthPercentage() ?: 0
                 )
             )

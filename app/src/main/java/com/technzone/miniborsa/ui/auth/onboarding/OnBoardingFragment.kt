@@ -7,6 +7,8 @@ import com.technzone.miniborsa.databinding.FragmentOnBoardingBinding
 import com.technzone.miniborsa.ui.auth.onboarding.adapters.IndecatorRecyclerAdapter
 import com.technzone.miniborsa.ui.auth.onboarding.adapters.OnBoardingAdapter
 import com.technzone.miniborsa.ui.base.fragment.BaseBindingFragment
+import com.technzone.miniborsa.utils.extensions.gone
+import com.technzone.miniborsa.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_on_boarding.*
 
@@ -79,8 +81,10 @@ class OnBoardingFragment : BaseBindingFragment<FragmentOnBoardingBinding>() {
             updateIndicator(position)
             if (position == 2) {
                 btnNextOnBoarding.text = getString(R.string.get_started)
+                binding?.ivClose?.gone()
             } else {
                 btnNextOnBoarding.text = getString(R.string.next)
+                binding?.ivClose?.visible()
             }
         }
     }

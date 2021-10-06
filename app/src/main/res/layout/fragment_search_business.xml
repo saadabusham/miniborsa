@@ -60,6 +60,7 @@
                         android:background="@android:color/transparent"
                         android:hint="@string/begin_search"
                         android:focusedByDefault="true"
+                        android:focusableInTouchMode="true"
                         android:paddingStart="@dimen/_10sdp"
                         android:paddingEnd="@dimen/_7sdp"
                         android:singleLine="true"
@@ -99,6 +100,7 @@
                     android:paddingStart="@dimen/_10sdp"
                     android:paddingEnd="@dimen/_7sdp"
                     android:singleLine="true"
+                    setTextByBusinessType="@{viewModel.selectedBusinessType}"
                     android:text="@{viewModel.selectedBusinessType == BusinessTypeEnums.BUSINESS_FOR_SALE.value ? @string/businesses_for_sale : viewModel.selectedBusinessType == BusinessTypeEnums.BUSINESS_FOR_SHARE.value ? @string/share_for_sale : @string/franchise}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp" />

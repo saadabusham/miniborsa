@@ -151,7 +151,7 @@
                             android:id="@+id/divConfidential"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_1sdp"
-                            android:background="@color/color_not_valid" />
+                            android:background="@color/unfocused_color" />
 
                         <com.technzone.miniborsa.ui.base.views.AppTextInputLayout
                             android:id="@+id/tfEmail"

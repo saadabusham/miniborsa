@@ -1,8 +1,6 @@
 package com.technzone.miniborsa.utils.extensions
 
-import com.technzone.miniborsa.data.enums.BusinessStatusEnums
 import com.technzone.miniborsa.data.enums.BusinessTypeEnums
-import com.technzone.miniborsa.data.enums.PropertyStatusEnums
 import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.data.models.business.businessrequest.BusinessRequest
 

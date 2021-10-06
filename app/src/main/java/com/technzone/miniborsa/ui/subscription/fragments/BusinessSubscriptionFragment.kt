@@ -16,6 +16,7 @@ import com.technzone.miniborsa.ui.subscription.adapter.BusinessSubscriptionRecyc
 import com.technzone.miniborsa.ui.subscription.viewmodel.SubscriptionViewModel
 import com.technzone.miniborsa.utils.extensions.showErrorAlert
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.dialog_ios.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
@@ -87,9 +88,8 @@ class BusinessSubscriptionFragment : BaseBindingFragment<FragmentBusinessSubscri
         binding?.recyclerView?.setOnItemClickListener(this)
         subscriptionRecyclerAdapter.submitItems(
             arrayListOf(
-                Subscription(),
-                Subscription(),
-                Subscription()
+                Subscription(name ="Monthly",subscribe = "10,00\$ /month"),
+                Subscription(name ="Annual",subscribe = "8,99\$ /month")
             )
         )
     }

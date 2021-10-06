@@ -65,6 +65,7 @@
             android:textColor="@color/green_color"
             android:textSize="@dimen/_16ssp"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/_17sdp"
             app:layout_constraintTop_toTopOf="@id/tvType"
             app:layout_constraintBottom_toBottomOf="@id/tvType"/>
 

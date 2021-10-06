@@ -35,8 +35,8 @@ class CreateBusinessViewModel @Inject constructor(
     private val businessRepo: BusinessRepo
 ) : BaseViewModel() {
     var businessId: Int? = null
-    val defaultMinValue: Double = DEFAULT_MIN_VALUE
-    val defaultMaxValue: Double = DEFAULT_MAX_VALUE
+    val defaultMinValue: Int = DEFAULT_MIN_VALUE
+    val defaultMaxValue: Int = DEFAULT_MAX_VALUE
     val maxLength: Int = MAX_PRICE_LENGTH
     var businessType: Int = BusinessTypeEnums.BUSINESS_FOR_SALE.value
     var hasBusiness: Boolean = false
@@ -60,10 +60,10 @@ class CreateBusinessViewModel @Inject constructor(
     val netProfitOnRequest: MutableLiveData<Boolean> = MutableLiveData(false)
     val turnoverOnRequest: MutableLiveData<Boolean> = MutableLiveData(false)
 
-    val freeHoldAskingPrice: MutableLiveData<Double> = MutableLiveData(DEFAULT_MIN_VALUE)
-    val leaseHoldAskingPrice: MutableLiveData<Double> = MutableLiveData(DEFAULT_MIN_VALUE)
-    val netProfit: MutableLiveData<Double> = MutableLiveData(DEFAULT_MIN_VALUE)
-    val turnOver: MutableLiveData<Double> = MutableLiveData(DEFAULT_MIN_VALUE)
+    val freeHoldAskingPrice: MutableLiveData<Double> = MutableLiveData(DEFAULT_MIN_VALUE.toDouble())
+    val leaseHoldAskingPrice: MutableLiveData<Double> = MutableLiveData(DEFAULT_MIN_VALUE.toDouble())
+    val netProfit: MutableLiveData<Double> = MutableLiveData(DEFAULT_MIN_VALUE.toDouble())
+    val turnOver: MutableLiveData<Double> = MutableLiveData(DEFAULT_MIN_VALUE.toDouble())
     val sharePercentage: MutableLiveData<Int> = MutableLiveData(100)
     val selectedItemsCount: MutableLiveData<Int> = MutableLiveData(0)
 

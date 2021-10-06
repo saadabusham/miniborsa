@@ -7,6 +7,7 @@ import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.common.CustomObserverResponse
+import com.technzone.miniborsa.data.enums.UserRoleEnums
 import com.technzone.miniborsa.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.miniborsa.data.pref.user.UserPref
 import com.technzone.miniborsa.databinding.FragmentVerificationLoginBinding
@@ -65,6 +66,10 @@ class VerificationLoginFragment : BaseBindingFragment<FragmentVerificationLoginB
                                 false
                             )
                         ) {
+                            it.roles?.singleOrNull { it.role == UserRoleEnums.INVESTOR_ROLE.value }
+                                ?.let {
+                                    viewModel.setUserRole(UserRoleEnums.INVESTOR_ROLE.value)
+                                }
                             requireActivity().setResult(Activity.RESULT_OK, Intent().apply {
                                 this.putExtra(Constants.BundleData.IS_LOGIN_SUCCESS, true)
                             })

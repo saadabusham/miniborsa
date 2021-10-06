@@ -62,12 +62,12 @@
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
                     android:clipToPadding="false"
                     android:nestedScrollingEnabled="false"
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:itemCount="1"
+                    tools:itemCount="3"
                     tools:listitem="@layout/row_investor_subscription" />
                 <com.technzone.miniborsa.ui.base.views.AppTextView
                     style="@style/textview_normal_regular"

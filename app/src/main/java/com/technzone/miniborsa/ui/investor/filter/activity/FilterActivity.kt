@@ -24,7 +24,7 @@ class FilterActivity : BaseBindingActivity<ActivityFilterBinding>() {
         super.onCreate(savedInstanceState)
         intent.getIntExtra(Constants.BundleData.BUSINESS_TYPE, -1).let {
             if (it != -1)
-                viewModel.selectedBusinessType = it
+                viewModel.selectedBusinessType.value = it
         }
         setContentView(R.layout.activity_filter, hasToolbar = false)
         postponeEnterTransition()

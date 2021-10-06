@@ -17,7 +17,6 @@ import com.technzone.miniborsa.data.models.investor.ExtraInfo
 import com.technzone.miniborsa.databinding.ActivityBusinessDetailsBinding
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
-import com.technzone.miniborsa.ui.base.bindingadapters.getPropertyStatus
 import com.technzone.miniborsa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.miniborsa.ui.dataview.viewimage.ViewImageActivity
 import com.technzone.miniborsa.ui.investor.businessdetails.adapters.BusinessDocumentAdapter
@@ -30,6 +29,7 @@ import com.technzone.miniborsa.ui.investor.invistorroles.activity.InvestorRolesA
 import com.technzone.miniborsa.ui.subscription.activity.SubscriptionActivity
 import com.technzone.miniborsa.utils.DeepLinkUtil.generateDeepLink
 import com.technzone.miniborsa.utils.extensions.getSnapHelper
+import com.technzone.miniborsa.utils.extensions.openUrl
 import com.technzone.miniborsa.utils.extensions.round
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_business_details_toolbar.*
@@ -65,6 +65,8 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
         binding?.viewModel = viewModel
         binding?.layoutBusinessInformation?.viewModel = viewModel
         binding?.layoutBusinessPrice?.viewModel = viewModel
+        binding?.layoutBusinessTraining?.viewModel = viewModel
+        binding?.layoutBusinessWebsiteLink?.viewModel = viewModel
     }
 
     private fun initData() {
@@ -114,6 +116,11 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
         }
         binding?.toolbar?.imgShare?.setOnClickListener {
             generateLink()
+        }
+        binding?.layoutBusinessWebsiteLink?.tvLink?.setOnClickListener {
+            viewModel.businessToView.value?.websiteLink?.let {
+                openUrl(it)
+            }
         }
     }
 
@@ -268,13 +275,15 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
                 GeneralLookup(
                     name = getString(R.string.can_run_from_home),
                     desc = it.canRunfromHome.toString()
-                ))
+                )
+            )
 
             businessFieldAdapter.submitItem(
                 GeneralLookup(
                     name = getString(R.string.can_relocated),
                     desc = it.isRelocated.toString()
-                ))
+                )
+            )
 
         }
     }

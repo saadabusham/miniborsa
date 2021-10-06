@@ -64,7 +64,7 @@
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text="@={viewModel.title}"
-                android:textColor="@color/black_alpha"
+                android:textColor="@color/steps_edittext_color"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintEnd_toStartOf="@id/tvTitleCount"
                 app:layout_constraintStart_toStartOf="@id/beginGuide"
@@ -76,7 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{@string/title_count(viewModel.title.length)}"
-                android:textColor="@color/black_alpha25"
+                android:textColor="@color/steps_edittext_color"
                 android:textSize="@dimen/_7ssp"
                 app:layout_constraintBottom_toBottomOf="@id/edTitle"
                 app:layout_constraintEnd_toEndOf="@id/endGuide"
@@ -117,7 +117,7 @@
                 android:maxLines="1000"
                 android:singleLine="false"
                 android:text="@={viewModel.summery}"
-                android:textColor="@color/black_alpha"
+                android:textColor="@color/steps_edittext_color"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintEnd_toStartOf="@id/tvSummeryCount"
                 app:layout_constraintStart_toStartOf="@id/beginGuide"
@@ -129,7 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{@string/summery_count(viewModel.summery.length)}"
-                android:textColor="@color/black_alpha25"
+                android:textColor="@color/steps_edittext_color"
                 android:textSize="@dimen/_7ssp"
                 app:layout_constraintEnd_toEndOf="@id/endGuide"
                 app:layout_constraintTop_toTopOf="@id/edSummery"
@@ -168,7 +168,7 @@
                     android:layout_marginStart="@dimen/_7sdp"
                     android:gravity="center|start"
                     android:text="@string/please_do_not_add_phone_numbers_or_email_addresses_to_the_description_we_will_remove_them_as_they_cannot_be_tracked"
-                    android:textColor="@color/black_alpha"
+                    android:textColor="@color/steps_edittext_color"
                     android:textSize="@dimen/_9ssp" />
 
             </LinearLayout>
@@ -352,6 +352,7 @@
                 android:gravity="center|start"
                 android:hint="@string/enter_postal_code_or_address"
                 android:text="@={viewModel.addressStr}"
+                android:textColor="@color/steps_edittext_color"
                 app:layout_constraintEnd_toEndOf="@id/endGuide"
                 app:layout_constraintStart_toStartOf="@id/beginGuide"
                 app:layout_constraintTop_toBottomOf="@id/divLocation" />

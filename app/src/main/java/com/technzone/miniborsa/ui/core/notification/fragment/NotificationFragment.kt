@@ -127,12 +127,21 @@ class NotificationFragment : BaseBindingFragment<FragmentNotificationBinding>(),
                     }
                     loading.postValue(false)
                     hideShowNoData()
+
+                    notificationsAdapter.submitItem(Notification())
+                    notificationsAdapter.submitItem(Notification())
+                    notificationsAdapter.submitItem(Notification())
+                    notificationsAdapter.submitItem(Notification())
                 }
 
                 override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
                     super.onError(subErrorCode, message)
                     loading.postValue(false)
                     hideShowNoData()
+                    notificationsAdapter.submitItem(Notification())
+                    notificationsAdapter.submitItem(Notification())
+                    notificationsAdapter.submitItem(Notification())
+                    notificationsAdapter.submitItem(Notification())
                 }
 
                 override fun onLoading() {

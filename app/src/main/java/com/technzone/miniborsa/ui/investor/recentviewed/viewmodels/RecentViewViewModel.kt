@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.technzone.miniborsa.data.api.response.APIResource
 import com.technzone.miniborsa.data.enums.UserEnums
 import com.technzone.miniborsa.data.models.investor.Business
+import com.technzone.miniborsa.data.pref.favorite.FavoritePref
 import com.technzone.miniborsa.data.repos.searchbusiness.SearchedBusinessRepo
 import com.technzone.miniborsa.data.repos.user.UserRepo
 import com.technzone.miniborsa.ui.base.viewmodel.BaseViewModel
@@ -15,7 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class RecentViewViewModel @Inject constructor(
     private val userRepo: UserRepo,
-    private val searchedBusinessRepo: SearchedBusinessRepo
+    private val searchedBusinessRepo: SearchedBusinessRepo,
+    private var favoritePref: FavoritePref
 ) : BaseViewModel() {
 
     fun saveSearchBusinesses(list: List<Business>) = viewModelScope.launch {
@@ -27,7 +29,11 @@ class RecentViewViewModel @Inject constructor(
     }
 
     fun getSearchedBusiness() = liveData {
-        emit(searchedBusinessRepo.getBusiness())
+        emit(searchedBusinessRepo.getBusiness().apply {
+            favoritePref.getFavoriteList().forEach { favId ->
+                singleOrNull { it.id == favId }?.let { it.isFavorite = true }
+            }
+        })
     }
 
     fun isUserLoggedIn() = userRepo.getUserStatus() == UserEnums.UserState.LoggedIn

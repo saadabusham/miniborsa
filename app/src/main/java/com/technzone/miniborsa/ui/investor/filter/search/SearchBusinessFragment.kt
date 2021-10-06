@@ -32,6 +32,7 @@ import com.technzone.miniborsa.ui.investor.filter.search.adapters.SearchedBusine
 import com.technzone.miniborsa.ui.investor.filter.viewmodels.FilterBusinessViewModel
 import com.technzone.miniborsa.ui.investor.invistormain.adapters.BusinessAdapter
 import com.technzone.miniborsa.ui.investor.invistormain.viewmodels.FavoritesViewModel
+import com.technzone.miniborsa.utils.extensions.focus
 import com.technzone.miniborsa.utils.extensions.gone
 import com.technzone.miniborsa.utils.extensions.setupClearButtonWithAction
 import com.technzone.miniborsa.utils.extensions.visible
@@ -71,7 +72,7 @@ class SearchBusinessFragment : BaseBindingFragment<FragmentSearchBusinessBinding
 
     override fun onResume() {
         super.onResume()
-        if (firstIn && viewModel.selectedBusinessType == null) {
+        if (firstIn && viewModel.selectedBusinessType.value == null) {
             loadData()
         } else {
             applyFilter()
@@ -88,9 +89,10 @@ class SearchBusinessFragment : BaseBindingFragment<FragmentSearchBusinessBinding
     override fun onViewVisible() {
         super.onViewVisible()
 
-        if (viewModel.selectedBusinessType == null) {
+        if (viewModel.selectedBusinessType.value == null) {
             binding?.linToolbar?.gone()
             binding?.cvSearch?.visible()
+            binding?.edSearch?.focus()
         } else {
             binding?.linToolbar?.visible()
             binding?.cvSearch?.gone()
@@ -120,7 +122,7 @@ class SearchBusinessFragment : BaseBindingFragment<FragmentSearchBusinessBinding
 
     private fun setUpListeners() {
         binding?.imgBack?.setOnClickListener {
-            if (viewModel.selectedBusinessType == null) {
+            if (viewModel.selectedBusinessType.value == null) {
                 requireActivity().onBackPressed()
             } else {
                 TransitionManager.beginDelayedTransition(binding?.linTools as ViewGroup)

@@ -3,9 +3,7 @@ package com.technzone.miniborsa.ui.investor.invistormain.adapters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.card.MaterialCardView
 import com.technzone.miniborsa.R
 import com.technzone.miniborsa.data.models.investor.Business
 import com.technzone.miniborsa.databinding.RowBusinessBinding
@@ -13,7 +11,8 @@ import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.adapters.BaseViewHolder
 
 class BusinessAdapter(
-    context: Context
+    context: Context,
+    private val loggedIn: Boolean = true
 ) : BaseBindingRecyclerViewAdapter<Business>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -35,8 +34,11 @@ class BusinessAdapter(
 
         override fun bind(item: Business) {
             binding.item = item
-            if(itemCount == 1){
-                binding.root.layoutParams = ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT).apply {
+            if (itemCount == 1) {
+                binding.root.layoutParams = ViewGroup.MarginLayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                ).apply {
                     marginEnd = context.resources.getDimension(R.dimen._10sdp).toInt()
                     bottomMargin = context.resources.getDimension(R.dimen._5sdp).toInt()
                     topMargin = context.resources.getDimension(R.dimen._5sdp).toInt()
@@ -47,9 +49,11 @@ class BusinessAdapter(
                 itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
             }
             binding.imgFavorite.setOnClickListener {
-                item.isFavorite =
-                    item.isFavorite == false
-                binding.favorite = item.isFavorite
+                if (loggedIn) {
+                    item.isFavorite =
+                        item.isFavorite == false
+                    binding.favorite = item.isFavorite
+                }
                 itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
             }
         }

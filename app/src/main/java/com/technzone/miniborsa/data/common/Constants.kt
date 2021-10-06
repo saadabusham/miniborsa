@@ -12,8 +12,8 @@ object Constants {
 
     const val PAGE_SIZE = 10
     const val MAX_PRICE_LENGTH = 9
-    const val DEFAULT_MIN_VALUE = 1000.0
-    const val DEFAULT_MAX_VALUE = 1000000.0
+    const val DEFAULT_MIN_VALUE = 1000
+    const val DEFAULT_MAX_VALUE = 1000000
     //    Bundle Constants
     const val title: String = "TITLE"
     const val body: String = "BODY"

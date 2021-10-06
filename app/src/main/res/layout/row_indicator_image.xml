@@ -9,13 +9,13 @@
     </data>
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/imgDotImage"
-        android:layout_width="@dimen/_10sdp"
-        android:layout_height="@dimen/_10sdp"
+        android:layout_width="@dimen/_8sdp"
+        android:layout_height="@dimen/_8sdp"
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginBottom="@dimen/_5sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
         app:cardElevation="0dp"
         app:cardBackgroundColor="@color/indicator_selected_color"
-        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_4sdp"
         app:strokeColor="@color/white"/>
 </layout>
