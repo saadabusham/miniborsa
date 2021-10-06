@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <import type="com.technzone.miniborsa.R" />
 
         <variable
@@ -210,6 +212,7 @@
                     android:text="@string/countries"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp"
+                    android:visibility="@{viewModel.investorToView.countries.size() > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvDescription" />
 
@@ -220,6 +223,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:nestedScrollingEnabled="false"
+                    android:visibility="@{viewModel.investorToView.countries.size() > 0 ? View.VISIBLE : View.GONE}"
                     app:chainUseRtl="true"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -238,6 +242,7 @@
                     android:text="@string/sectors_of_specialisation"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp"
+                    android:visibility="@{viewModel.investorToView.categories.size() > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/rvCountries" />
 
@@ -248,6 +253,7 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
                     android:nestedScrollingEnabled="false"
+                    android:visibility="@{viewModel.investorToView.categories.size() > 0 ? View.VISIBLE : View.GONE}"
                     app:chainUseRtl="true"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"

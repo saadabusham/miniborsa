@@ -16,6 +16,7 @@ import com.technzone.miniborsa.data.common.CustomObserverResponse
 import com.technzone.miniborsa.databinding.ActivityInvestorMainBinding
 import com.technzone.miniborsa.ui.base.activity.BaseBindingActivity
 import com.technzone.miniborsa.ui.investor.businessdetails.activity.BusinessDetailsActivity
+import com.technzone.miniborsa.ui.investor.invistormain.viewmodels.FavoritesViewModel
 import com.technzone.miniborsa.ui.investor.invistormain.viewmodels.InvestorMainViewModel
 import com.technzone.miniborsa.ui.investor.news.activity.NewsActivity
 import com.technzone.miniborsa.utils.extensions.gone
@@ -28,11 +29,13 @@ class InvestorMainActivity : BaseBindingActivity<ActivityInvestorMainBinding>(),
 
     var loginCallBack: LoginCallBack? = null
     private val viewModel: InvestorMainViewModel by viewModels()
+    private val favoriteViewModel: FavoritesViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_investor_main, hasToolbar = false)
         setupNavigation()
-        viewModel.getFavorites().observe(this, favoriteIdsResultObserver())
+        favoriteViewModel.getFavoritesIds().observe(this, favoriteIdsResultObserver())
         checkDeepLink()
     }
 
@@ -85,6 +88,7 @@ class InvestorMainActivity : BaseBindingActivity<ActivityInvestorMainBinding>(),
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: List<Int>?
                 ) {
+                    data?.let { favoriteViewModel.setFavoriteList(it) }
                 }
 
                 override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {

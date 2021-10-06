@@ -147,7 +147,7 @@
             app:layout_constraintStart_toStartOf="@id/cvPhoto"
             app:layout_constraintTop_toBottomOf="@id/cvPhoto" />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <TextView
             android:id="@+id/tvDateTxt"
             style="@style/textview_normal_regular"
             android:layout_width="0dp"
@@ -155,7 +155,7 @@
             android:layout_marginTop="@dimen/_7sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_10sdp"
-            android:gravity="end"
+            android:textAlignment="viewEnd"
             android:text="@string/date_submit"
             android:textColor="@color/black"
             android:textSize="@dimen/_7ssp"

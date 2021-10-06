@@ -38,8 +38,6 @@ class BusinessFieldAdapter(
         override fun bind(item: GeneralLookup) {
             binding.item = item
             if(bindingAdapterPosition % 2 == 0){
-                binding.div.visible()
-            }else{
                 binding.divStart.visible()
             }
             binding.root.setOnClickListener {

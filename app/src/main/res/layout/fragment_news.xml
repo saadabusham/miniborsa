@@ -62,11 +62,11 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:clipToPadding="false"
             android:layout_marginTop="@dimen/_13sdp"
-            app:layout_constraintTop_toBottomOf="@id/cvSearch"
+            android:clipToPadding="false"
+            android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:fillViewport="true">
+            app:layout_constraintTop_toBottomOf="@id/cvSearch">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvTabs"
@@ -93,10 +93,10 @@
                     android:orientation="horizontal"
                     android:paddingStart="@dimen/layouts_margin_start"
                     android:paddingEnd="@dimen/_6sdp"
+                    android:visibility="visible"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/layout_business_news"
                     tools:itemCount="4"
-                    android:visibility="visible"
                     tools:listitem="@layout/row_news_tab" />
 
                 <include

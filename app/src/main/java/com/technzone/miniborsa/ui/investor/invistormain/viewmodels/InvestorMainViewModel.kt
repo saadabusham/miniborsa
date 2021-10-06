@@ -43,13 +43,6 @@ class InvestorMainViewModel @Inject constructor(
         emit(response)
     }
 
-    fun getFavorites(
-    ) = liveData {
-        emit(APIResource.loading())
-        val response = commonRepo.getFavoriteIds()
-        emit(response)
-    }
-
     fun getBlogs(
     ) = liveData {
         emit(APIResource.loading())

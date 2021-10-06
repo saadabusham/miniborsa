@@ -21,25 +21,30 @@
 
         <View
             android:id="@+id/divStart"
-            android:layout_width="@dimen/_7sdp"
+            android:layout_width="0.5dp"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:background="@color/divider_gray"
             android:visibility="gone"
-            tools:visibility="visible"
+            app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@id/tvTitle"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
 
         <com.technzone.miniborsa.ui.base.views.AppTextView
             android:id="@+id/tvTitle"
             style="@style/textview_normal_medium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|start"
             android:layout_marginEnd="@dimen/_5sdp"
             android:text="@{item.name}"
             android:textColor="@color/black_alpha"
             android:textSize="@dimen/_11ssp"
-            app:layout_constraintEnd_toStartOf="@id/div"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/divStart"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Date Founded" />
@@ -53,22 +58,10 @@
             android:text="@{item.desc}"
             android:textColor="@color/black"
             android:textSize="@dimen/_11ssp"
-            app:layout_constraintEnd_toStartOf="@id/div"
-            app:layout_constraintStart_toEndOf="@id/divStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvTitle"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
             tools:text="2015" />
 
-        <View
-            android:id="@+id/div"
-            android:layout_width="0.5dp"
-            android:layout_height="0dp"
-            android:background="@color/divider_gray"
-            android:visibility="gone"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_5sdp"
-            tools:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

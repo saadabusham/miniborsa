@@ -40,19 +40,28 @@ class FavoritesViewModel @Inject constructor(
         pageNumber: Int
     ) = liveData {
         emit(APIResource.loading())
-        val response = commonRepo.getFavorites(pageNumber = pageNumber, pageSize = Constants.PAGE_SIZE)
+        val response =
+            commonRepo.getFavorites(pageNumber = pageNumber, pageSize = Constants.PAGE_SIZE)
         favoritePref.getFavoriteList().forEach { favId ->
             response.data?.data?.data?.singleOrNull { it.id == favId }?.let { it.isFavorite = true }
         }
         emit(response)
     }
+
+    fun getFavoritesIds(
+    ) = liveData {
+        emit(APIResource.loading())
+        val response = commonRepo.getFavoriteIds()
+        emit(response)
+    }
+
     fun addToWishList(
         businessId: Int
     ) = liveData {
         emit(APIResource.loading())
         val response =
             commonRepo.addFavorite(FavoriteRequest(businessId, userRepo.getUser()?.id))
-        if(response.status == RequestStatusEnum.SUCCESS){
+        if (response.status == RequestStatusEnum.SUCCESS) {
             addFavorite(businessId)
         }
         emit(response)
@@ -64,18 +73,24 @@ class FavoritesViewModel @Inject constructor(
         emit(APIResource.loading())
         val response =
             commonRepo.removeFavorite(FavoriteRequest(businessId, userRepo.getUser()?.id))
-        if(response.status == RequestStatusEnum.SUCCESS){
+        if (response.status == RequestStatusEnum.SUCCESS) {
             removeFavorite(businessId)
         }
         emit(response)
     }
 
-    fun addFavorite(id : Int){
+    fun setFavoriteList(list: List<Int>) {
+        favoritePref.setFavoriteList(list)
+    }
+
+    fun addFavorite(id: Int) {
         favoritePref.addFavorite(id)
     }
-    fun removeFavorite(id : Int){
+
+    fun removeFavorite(id: Int) {
         favoritePref.removeFavorite(id)
     }
+
     fun getIsInvestor() =
         userRepo.getUser()?.roles?.singleOrNull { it.role == UserRoleEnums.INVESTOR_ROLE.value } != null
 }
