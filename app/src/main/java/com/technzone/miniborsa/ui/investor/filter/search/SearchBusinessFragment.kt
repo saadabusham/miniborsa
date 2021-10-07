@@ -88,7 +88,6 @@ class SearchBusinessFragment : BaseBindingFragment<FragmentSearchBusinessBinding
 
     override fun onViewVisible() {
         super.onViewVisible()
-
         if (viewModel.selectedBusinessType.value == null) {
             binding?.linToolbar?.gone()
             binding?.cvSearch?.visible()

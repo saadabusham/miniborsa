@@ -142,6 +142,7 @@
                                 android:background="@drawable/edittext_underline_background"
                                 android:hint="@string/_700000000"
                                 android:inputType="phone"
+                                android:textColor="@color/black"
                                 android:text="@={viewModel.phoneNumberWithoutCountryCode}"
                                 android:textSize="@dimen/_11ssp"  />
 

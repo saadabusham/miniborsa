@@ -193,20 +193,22 @@ class Validator() {
                 errorTitle = context.resources.getString(R.string.phone_number),
                 errorMessage = context.resources.getString(R.string.must_not_be_empty)
             )
-        } else if (textToValidate.length < PHONE_MIN_LENGTH) {
-            ValidatedData(
-                isValid = false,
-                errorTitle = context.resources.getString(R.string.phone_number),
-                errorMessage = context.resources.getString(R.string.must_be_at_least) + " " +
-                        PHONE_MIN_LENGTH + " " + context.resources.getString(R.string.numbers)
-            )
-        } else if (!textToValidate.matches(Regex(JORDANIAN_PHONE_NUMBER_WITHOUT_COUNTRY_CODE_REGEX))) {
-            ValidatedData(
-                isValid = false,
-                errorTitle = context.resources.getString(R.string.phone_number),
-                errorMessage = context.resources.getString(R.string.phone_not_valid_err)
-            )
-        } else ValidatedData(true, "", "")
+        }
+//        else if (textToValidate.length < PHONE_MIN_LENGTH) {
+//            ValidatedData(
+//                isValid = false,
+//                errorTitle = context.resources.getString(R.string.phone_number),
+//                errorMessage = context.resources.getString(R.string.must_be_at_least) + " " +
+//                        PHONE_MIN_LENGTH + " " + context.resources.getString(R.string.numbers)
+//            )
+//        } else if (!textToValidate.matches(Regex(JORDANIAN_PHONE_NUMBER_WITHOUT_COUNTRY_CODE_REGEX))) {
+//            ValidatedData(
+//                isValid = false,
+//                errorTitle = context.resources.getString(R.string.phone_number),
+//                errorMessage = context.resources.getString(R.string.phone_not_valid_err)
+//            )
+//        }
+        else ValidatedData(true, "", "")
     }
 
     private fun validatePassword(): ValidatedData {

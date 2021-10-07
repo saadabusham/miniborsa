@@ -73,7 +73,7 @@
                 android:id="@+id/linToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_41sdp"
-                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/layouts_margin_start"
                 android:layout_marginTop="@dimen/_18sdp"
                 android:layout_marginEnd="@dimen/layouts_margin_end"
                 android:layout_marginBottom="@dimen/_10sdp"

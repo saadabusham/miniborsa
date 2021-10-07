@@ -41,7 +41,10 @@ class RecentViewActivity : BaseBindingActivity<ActivityRecentviewBinding>(),
     private val favoriteViewModel: FavoritesViewModel by viewModels()
     private lateinit var recentViewAdapter: RecentViewAdapter
     private val originalList: MutableList<Business> = mutableListOf()
-
+    override fun onResume() {
+        super.onResume()
+        loadData()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(
@@ -63,16 +66,21 @@ class RecentViewActivity : BaseBindingActivity<ActivityRecentviewBinding>(),
         recentViewAdapter = RecentViewAdapter(this)
         binding?.recyclerView?.adapter = recentViewAdapter
         binding?.recyclerView?.setOnItemClickListener(this)
+    }
+
+    private fun loadData(){
         viewModel.getSearchedBusiness().observe(this, {
             if (it.isNotEmpty()) {
-                recentViewAdapter.submitItems(it)
-                originalList.addAll(it)
+                recentViewAdapter.submitNewItems(it)
+                originalList.apply {
+                    clear()
+                    addAll(it)
+                }
             } else {
                 binding?.layoutNoData?.root?.visible()
             }
         })
     }
-
     private fun initSearch() {
         binding?.edSearch?.setupClearButtonWithAction()
         viewModel.compositeDisposable + binding?.edSearch?.textChangeEvents()

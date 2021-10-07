@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/layouts_margin_start"
-                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/layouts_margin_end"
                 android:text="@string/upload_photos"
                 android:textColor="@color/black"

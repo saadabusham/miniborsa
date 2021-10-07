@@ -66,18 +66,14 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
-            android:id="@+id/tvNoData"
-            style="@style/textview_normal_bold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:text="@string/no_available_data"
-            android:textSize="@dimen/_12ssp"
+        <include
+            android:id="@+id/layout_no_data"
+            layout="@layout/layout_no_data"
             android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_centerInParent="true"/>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvHelpCenter"
             android:layout_width="match_parent"

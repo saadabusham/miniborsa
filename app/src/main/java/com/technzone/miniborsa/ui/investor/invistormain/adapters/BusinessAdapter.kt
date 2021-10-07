@@ -39,7 +39,7 @@ class BusinessAdapter(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 ).apply {
-                    marginEnd = context.resources.getDimension(R.dimen._10sdp).toInt()
+                    marginEnd = context.resources.getDimension(R.dimen.layouts_margin_start).toInt()
                     bottomMargin = context.resources.getDimension(R.dimen._5sdp).toInt()
                     topMargin = context.resources.getDimension(R.dimen._5sdp).toInt()
                 }

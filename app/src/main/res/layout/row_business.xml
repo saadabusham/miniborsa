@@ -138,7 +138,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_17sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
                 android:drawableStart="@drawable/ic_business_pin"
                 android:drawablePadding="@dimen/_5sdp"
                 tools:text="Amman, Jordan"
