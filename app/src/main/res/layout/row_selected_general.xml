@@ -23,6 +23,7 @@
         android:textAppearance="@style/textview_normal_medium"
         android:textSize="@dimen/_10ssp"
         app:cornerRadius="@dimen/_8sdp"
+        app:iconPadding="@dimen/_5sdp"
         app:icon="@{canDeleteItem==true ? @drawable/ic_remove : @drawable/tab_un_selected}"
         app:iconGravity="end"
         tools:text="Heat" />

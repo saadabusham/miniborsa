@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_10sdp"
         android:background="@drawable/ic_rectangle_unfocused"
-        android:backgroundTint="@{item.selected ? @color/button_color : @color/color_not_valid ,default = @color/color_not_valid}"
+        android:backgroundTint="@{item.selected ? @color/button_color : @color/cardview_stroke_gray ,default = @color/cardview_stroke_gray}"
         android:gravity="center"
         android:padding="@dimen/_10sdp"
         android:paddingStart="@dimen/_3sdp"

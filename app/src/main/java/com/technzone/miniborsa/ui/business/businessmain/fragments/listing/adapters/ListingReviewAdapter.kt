@@ -9,6 +9,7 @@ import com.technzone.miniborsa.data.models.business.business.OwnerBusiness
 import com.technzone.miniborsa.databinding.RowListingPendingBinding
 import com.technzone.miniborsa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.miniborsa.ui.base.adapters.BaseViewHolder
+import com.technzone.miniborsa.ui.base.bindingadapters.setButtonDataByStatus
 
 class ListingReviewAdapter(
     context: Context,

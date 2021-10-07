@@ -40,6 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_18sdp"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
                     android:text="@string/countries_"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp" />
@@ -50,6 +51,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/button_height"
                     android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
                     android:background="@drawable/ic_rectangle_unfocused"
                     android:drawableEnd="@drawable/ic_arrow_next"
                     android:onClick="@{() -> viewModel.onCountriesClicked()}"
@@ -65,7 +68,9 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:clipToPadding="false"
                     android:nestedScrollingEnabled="false"
+                    android:paddingEnd="@dimen/layouts_margin_end"
                     android:orientation="horizontal"
+                    android:paddingStart="@dimen/layouts_margin_start"
                     app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +89,7 @@
                     android:gravity="center|start"
                     android:text="@string/alphabetical"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14ssp" />
+                    android:textSize="@dimen/_13ssp"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
@@ -130,7 +135,6 @@
                         style="@style/Widget.App.Switch"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/_25sdp"
-                        android:layout_marginEnd="@dimen/_10sdp"
                         android:background="?selectableItemBackgroundBorderless"
                         android:checked="@={viewModel.isShowFeatured}" />
 

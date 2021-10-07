@@ -73,7 +73,7 @@
             tools:text="Promote 50 $"
             android:textColor="@color/white"
             android:textSize="@dimen/_9ssp"
-            app:cornerRadius="@dimen/_15sdp"
+            app:cornerRadius="@dimen/_5sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>

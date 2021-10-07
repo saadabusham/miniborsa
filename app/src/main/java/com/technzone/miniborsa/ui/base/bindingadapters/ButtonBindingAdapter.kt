@@ -17,11 +17,11 @@ fun AppButton.setButtonDataByStatus(
         BusinessStatusEnums.DRAFT.value -> {
             this.text = context.getString(R.string.remove_draft)
             this.textColor = resources.getColor(R.color.status_draft_text)
+            this.icon = null
             backgroundTintList =
                 ColorStateList.valueOf(context.resources.getColor(R.color.status_draft))
             this.stateListAnimator = StateListAnimator()
             this.elevation = resources.getDimension(R.dimen._1sdp)
-            this.invalidate()
         }
         BusinessStatusEnums.NEW.value -> {
             this.text = context.getString(R.string.pending_for_review)
@@ -30,6 +30,7 @@ fun AppButton.setButtonDataByStatus(
                 ColorStateList.valueOf(context.resources.getColor(R.color.status_pending))
             this.icon = resources.getDrawable(R.drawable.ic_pending)
             this.stateListAnimator = null
+            this.elevation = resources.getDimension(R.dimen.dimen_zero)
             this.isClickable = false
             this.isFocusable = false
         }
@@ -39,6 +40,7 @@ fun AppButton.setButtonDataByStatus(
             backgroundTintList = ContextCompat.getColorStateList(context, R.color.status_approved)
             this.icon = resources.getDrawable(R.drawable.ic_approved)
             this.stateListAnimator = null
+            this.elevation = resources.getDimension(R.dimen.dimen_zero)
             this.isClickable = false
             this.isFocusable = false
         }
@@ -49,6 +51,7 @@ fun AppButton.setButtonDataByStatus(
                 ColorStateList.valueOf(context.resources.getColor(R.color.status_rejected))
             this.icon = resources.getDrawable(R.drawable.ic_rejected)
             this.stateListAnimator = null
+            this.elevation = resources.getDimension(R.dimen.dimen_zero)
             this.isClickable = false
             this.isFocusable = false
         }

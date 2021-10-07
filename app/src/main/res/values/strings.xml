@@ -319,7 +319,7 @@
     <string name="only_show_featured_investors">Only Show Featured Investors</string>
 
     <!--    Sorting-->
-    <string name="alphabetical">Alphabetical</string>
+    <string name="alphabetical">Alphabetical : </string>
     <string name="sort_a_z">Sort by A-Z</string>
     <string name="sort_by_default">Sort by Default</string>
     <string name="sort_by_investments">Sort by investments</string>
