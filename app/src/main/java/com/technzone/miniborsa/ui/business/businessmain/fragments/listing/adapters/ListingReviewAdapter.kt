@@ -35,7 +35,7 @@ class ListingReviewAdapter(
 
         override fun bind(item: OwnerBusiness) {
             binding.item = item
-            binding.editable = editable
+            binding.editable = editable && item.status == BusinessStatusEnums.DRAFT.value
             binding.imgEdit.setOnClickListener {
                 itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
             }

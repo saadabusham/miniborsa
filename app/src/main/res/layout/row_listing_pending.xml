@@ -6,7 +6,8 @@
     <data>
 
         <import type="com.technzone.miniborsa.utils.extensions.DataTimeExtensionsKt" />
-        <import type="com.technzone.miniborsa.utils.extensions.StringExtensionKt"/>
+
+        <import type="com.technzone.miniborsa.utils.extensions.StringExtensionKt" />
 
         <import type="android.view.View" />
 
@@ -59,12 +60,12 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:backgroundTint="@color/green_color_alpha"
             android:gravity="center"
+            android:paddingStart="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_5sdp"
             android:stateListAnimator="@null"
             android:textColor="@color/green_color"
             android:textSize="@dimen/_7ssp"
             app:cornerRadius="@dimen/_2sdp"
-            android:paddingStart="@dimen/_5sdp"
-            android:paddingEnd="@dimen/_5sdp"
             app:layout_constraintStart_toEndOf="@id/cvPhoto"
             app:layout_constraintTop_toTopOf="@id/cvPhoto"
             tools:text="Business For Sale" />
@@ -138,6 +139,7 @@
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_3sdp"
             android:gravity="center"
+            android:stateListAnimator="@null"
             android:text="@string/remove_draft"
             android:textColor="@color/white"
             android:textSize="@dimen/_9ssp"
@@ -146,22 +148,20 @@
             app:iconPadding="@dimen/_7sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/cvPhoto"
-            app:layout_constraintTop_toBottomOf="@id/cvPhoto" />
-
+            app:layout_constraintTop_toBottomOf="@id/tvAskingPrice" />
         <TextView
             android:id="@+id/tvDateTxt"
             style="@style/textview_normal_regular"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_7sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_10sdp"
-            android:textAlignment="viewEnd"
             android:text="@string/date_submit"
+            android:textAlignment="viewEnd"
             android:textColor="@color/black"
             android:textSize="@dimen/_7ssp"
             app:layout_constraintBottom_toBottomOf="@id/tvStatus"
-            app:layout_constraintEnd_toStartOf="@id/tvDate"
             app:layout_constraintStart_toEndOf="@id/tvStatus"
             app:layout_constraintTop_toTopOf="@id/tvStatus" />
 
@@ -170,13 +170,14 @@
             style="@style/textview_normal_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
             android:drawableStart="@drawable/ic_calendar"
             android:drawablePadding="@dimen/_2sdp"
             android:text="@{DataTimeExtensionsKt.getDateFormattedForNews(item.createdAt)}"
             android:textColor="@color/black"
             android:textSize="@dimen/_7ssp"
             app:layout_constraintBottom_toBottomOf="@+id/tvDateTxt"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvDateTxt"
             app:layout_constraintTop_toTopOf="@id/tvDateTxt"
             tools:text="02/26/20" />
 

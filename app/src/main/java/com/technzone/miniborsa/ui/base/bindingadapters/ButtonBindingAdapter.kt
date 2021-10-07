@@ -1,5 +1,6 @@
 package com.technzone.miniborsa.ui.base.bindingadapters
 
+import android.animation.StateListAnimator
 import android.content.res.ColorStateList
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
@@ -18,6 +19,9 @@ fun AppButton.setButtonDataByStatus(
             this.textColor = resources.getColor(R.color.status_draft_text)
             backgroundTintList =
                 ColorStateList.valueOf(context.resources.getColor(R.color.status_draft))
+            this.stateListAnimator = StateListAnimator()
+            this.elevation = resources.getDimension(R.dimen._1sdp)
+            this.invalidate()
         }
         BusinessStatusEnums.NEW.value -> {
             this.text = context.getString(R.string.pending_for_review)

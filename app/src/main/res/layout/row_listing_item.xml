@@ -29,7 +29,6 @@
             android:textSize="@dimen/_9ssp"
             app:cornerRadius="@dimen/_15sdp"
             android:backgroundTint="@color/listing_bg"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="78" />
@@ -56,11 +55,12 @@
             android:text="@{item.description}"
             android:textColor="@color/black"
             android:textSize="@dimen/_9ssp"
-            app:layout_constraintBottom_toBottomOf="@id/progressBar"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tvTitle"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
-            tools:text="Lorem ipsum dolor sit amet." />
+            tools:text="Lorem ipsum dolor sit amet" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
