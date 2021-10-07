@@ -53,7 +53,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/layouts_margin_end"
-            android:text="@string/buyers_will_be_more_interested_in_seeing_your_listing"
+            android:text="@{item.description}"
             android:textColor="@color/black"
             android:textSize="@dimen/_9ssp"
             app:layout_constraintBottom_toBottomOf="@id/progressBar"

@@ -19,7 +19,7 @@
                 android:shape="ring"
                 android:thicknessRatio="16"
                 android:useLevel="true">
-                <solid android:color="@color/chart_color_2" />
+                <solid android:color="@color/chart_color_6" />
             </shape>
         </rotate>
     </item>

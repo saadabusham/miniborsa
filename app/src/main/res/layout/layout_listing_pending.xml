@@ -87,7 +87,7 @@
             android:maxLines="1"
             android:singleLine="true"
             tools:text="Development House "
-            android:text="@{item.title}"
+            android:text="@{item.title == null || item.title.empty ? @string/empty_data : item.title}"
             android:textColor="@color/black"
             android:textSize="@dimen/_13ssp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -97,18 +97,20 @@
         <com.technzone.miniborsa.ui.base.views.AppTextView
             android:id="@+id/tvBusinessType"
             style="@style/textview_normal_regular"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             android:drawableStart="@drawable/ic_business_pin"
             android:drawablePadding="@dimen/_5sdp"
             tools:text="Amman, Jordan"
-            android:text="@{item.address}"
+            android:text="@{item.address == null || item.address.empty ? @string/empty_data : item.address}"
             android:textColor="@color/black_alpha"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintStart_toStartOf="@id/tvType"
-            app:layout_constraintTop_toBottomOf="@id/tvName" />
+            app:layout_constraintTop_toBottomOf="@id/tvName"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/_10sdp"/>
 
         <com.technzone.miniborsa.ui.base.views.AppTextView
             android:id="@+id/tvAskingPrice"
@@ -168,6 +170,7 @@
             android:drawablePadding="@dimen/_2sdp"
             android:text="@{DataTimeExtensionsKt.getDateFormattedForNews(item.createdAt)}"
             android:textColor="@color/black_alpha"
+            android:layout_marginEnd="@dimen/_10sdp"
             android:textSize="@dimen/_7ssp"
             app:layout_constraintBottom_toBottomOf="@+id/tvDateTxt"
             app:layout_constraintEnd_toEndOf="parent"

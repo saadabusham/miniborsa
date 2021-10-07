@@ -10,6 +10,7 @@ import com.technzone.miniborsa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.miniborsa.data.api.response.ResponseWrapper
 import com.technzone.miniborsa.data.common.Constants
 import com.technzone.miniborsa.data.common.CustomObserverResponse
+import com.technzone.miniborsa.data.enums.PropertyStatusEnums
 import com.technzone.miniborsa.data.models.Media
 import com.technzone.miniborsa.data.models.general.GeneralLookup
 import com.technzone.miniborsa.data.models.investor.Business
@@ -218,23 +219,23 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
                         desc = it.categories?.get(2)?.name
                     )
                 )
-            if (it.askingPrice != null && it.askingPrice > 0)
+            if ((it.propertyStatus == PropertyStatusEnums.FREEHOLD.value || it.propertyStatus == PropertyStatusEnums.BOTH.value ))
                 businessFieldAdapter.submitItem(
                     GeneralLookup(
                         name = getString(R.string.asking_price),
                         desc = if (it.askingPriceNA == true) getString(R.string.na) else String.format(
                             getString(R.string.dollar_sign_concated),
-                            it.askingPrice.round(2)
+                            it.askingPrice?.round(2)
                         )
                     )
                 )
-            if (it.askingPriceBoth != null && it.askingPriceBoth > 0)
+            if ((it.propertyStatus == PropertyStatusEnums.LEASEHOLD.value || it.propertyStatus == PropertyStatusEnums.BOTH.value ))
                 businessFieldAdapter.submitItem(
                     GeneralLookup(
                         name = getString(R.string.leasehold),
                         desc = if (it.askingPriceNABoth == true) getString(R.string.na) else String.format(
                             getString(R.string.dollar_sign_concated),
-                            it.askingPriceBoth.round(2)
+                            it.askingPriceBoth?.round(2)
                         )
                     )
                 )

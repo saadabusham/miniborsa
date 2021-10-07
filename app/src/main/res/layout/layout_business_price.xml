@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="com.technzone.miniborsa.data.enums.PropertyStatusEnums"/>
         <import type="android.view.View" />
         <import type="com.technzone.miniborsa.utils.extensions.StringExtensionKt"/>
 
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="$340,000"
-            android:text="@{viewModel.businessToView.askingPriceNA ? @string/na : @string/dollar_sign_concated(StringExtensionKt.round(viewModel.businessToView.askingPrice,2))}"
+            android:text="@{viewModel.businessToView.propertyStatus == PropertyStatusEnums.LEASEHOLD.value ? (viewModel.businessToView.askingPriceNA ? @string/na : @string/dollar_sign_concated(StringExtensionKt.round(viewModel.businessToView.askingPriceBoth,2))) : (viewModel.businessToView.askingPriceNA ? @string/na : @string/dollar_sign_concated(StringExtensionKt.round(viewModel.businessToView.askingPrice,2)))}"
             android:textColor="@color/green_color"
             android:textSize="@dimen/_16ssp"
             app:layout_constraintEnd_toEndOf="parent"

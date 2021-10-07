@@ -161,6 +161,7 @@
     <color name="chart_color_3">#FEC031</color>
     <color name="chart_color_4">#00AB6B</color>
     <color name="chart_color_5">#E9591C</color>
+    <color name="chart_color_6">#E9591C</color>
 
     <color name="switch_thumb_active">#00AA6A</color>
     <color name="switch_thumb_unactive">#7E7E7E</color>

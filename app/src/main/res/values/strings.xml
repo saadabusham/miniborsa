@@ -396,4 +396,7 @@
     <string name="language">Language</string>
     <string name="can_run_from_home">Can run from home</string>
     <string name="can_relocated">Can Relocated</string>
+
+
+    <string name="empty_data">------</string>
 </resources>
