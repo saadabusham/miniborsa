@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.base.sheet.lookupselector.LookupSelectorBottomSheet" />
+            type="com.technzone.minibursa.ui.base.sheet.lookupselector.LookupSelectorBottomSheet" />
     </data>
 
     <LinearLayout
@@ -21,7 +21,7 @@
             layout="@layout/layout_toolbar"
             android:visibility="visible" />
 
-        <com.technzone.miniborsa.ui.base.views.AppEditText
+        <com.technzone.minibursa.ui.base.views.AppEditText
             android:id="@+id/edSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
             android:hint="@string/search_hint"
             android:visibility="visible" />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvHeader"
             style="@style/textview_normal_semibold"
             android:layout_width="wrap_content"

@@ -9,7 +9,7 @@
 
         <variable
             name="data"
-            type="com.technzone.miniborsa.data.models.general.GeneralLookup" />
+            type="com.technzone.minibursa.data.models.general.GeneralLookup" />
 
         <variable
             name="language"
@@ -24,7 +24,7 @@
         android:orientation="vertical"
         android:paddingTop="@dimen/_5sdp">
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvTitle"
             style="@style/textview_normal_medium"
             android:textSize="@dimen/_11ssp"
@@ -51,7 +51,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <com.technzone.miniborsa.ui.base.views.AppImageView
+        <com.technzone.minibursa.ui.base.views.AppImageView
             android:layout_width="0dp"
             android:layout_height="@dimen/_2sdp"
             android:layout_marginTop="@dimen/_5sdp"

@@ -7,7 +7,7 @@
 
         <variable
             name="dialog"
-            type="com.technzone.miniborsa.ui.base.dialogs.CompletedDialog" />
+            type="com.technzone.minibursa.ui.base.dialogs.CompletedDialog" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -31,7 +31,7 @@
                 android:layout_height="@dimen/_40sdp"
                 tools:src="@drawable/ic_completed" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 style="@style/textview_normal_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

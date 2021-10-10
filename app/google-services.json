@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1013162126158",
+    "project_id": "mini-bursa",
+    "storage_bucket": "mini-bursa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013162126158:android:b633c7f1f2f5713078cc1f",
+        "android_client_info": {
+          "package_name": "com.technzone.minibursa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013162126158-u8cea8610hq3n0uu3unc19ekugjbn031.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD25L4z1lS-s0HXrbkCAdZkIaNGqEoYIzY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013162126158-u8cea8610hq3n0uu3unc19ekugjbn031.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1013162126158-ubc4ai68ptb9pho16sa59r679gjha23r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.technzone.minibursa",
+                "app_store_id": "1588147998"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

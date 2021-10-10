@@ -13,7 +13,7 @@
         android:visibility="visible">
 
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvTitle"
             style="@style/textview_normal_bold"
             android:layout_width="0dp"
@@ -26,7 +26,7 @@
             app:layout_constraintEnd_toStartOf="@id/imgIcon"
             app:layout_constraintTop_toTopOf="@id/imgIcon" />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvDescription"
             style="@style/textview_normal_regular"
             android:layout_width="0dp"
@@ -40,7 +40,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
             app:layout_constraintStart_toStartOf="@id/tvTitle" />
 
-        <com.technzone.miniborsa.ui.base.views.AppImageView
+        <com.technzone.minibursa.ui.base.views.AppImageView
             android:id="@+id/imgIcon"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_48sdp"

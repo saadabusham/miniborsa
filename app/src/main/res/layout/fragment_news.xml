@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.investor.news.viewmodels.NewsViewModel" />
+            type="com.technzone.minibursa.ui.investor.news.viewmodels.NewsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,7 +43,7 @@
                     android:padding="@dimen/_10sdp"
                     android:src="@drawable/ic_back" />
 
-                <com.technzone.miniborsa.ui.base.views.AppEditText
+                <com.technzone.minibursa.ui.base.views.AppEditText
                     android:id="@+id/etSearch"
                     style="@style/textview_normal_medium"
                     android:layout_width="match_parent"

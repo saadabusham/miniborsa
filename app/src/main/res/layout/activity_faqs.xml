@@ -42,7 +42,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.technzone.miniborsa.ui.base.views.AppEditText
+                <com.technzone.minibursa.ui.base.views.AppEditText
                     android:id="@+id/etSearch"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_38sdp"

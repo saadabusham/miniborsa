@@ -5,7 +5,7 @@
 
         <variable
             name="document"
-            type="com.technzone.miniborsa.data.models.createbusiness.LocaleImage" />
+            type="com.technzone.minibursa.data.models.createbusiness.LocaleImage" />
     </data>
 
     <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -33,7 +33,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/fileNameTxt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

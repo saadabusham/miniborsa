@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.technzone.miniborsa.data.common.Constants"/>
+        <import type="com.technzone.minibursa.data.common.Constants"/>
         <import type="android.view.View" />
-        <import type="com.technzone.miniborsa.data.enums.BusinessStatusEnums"/>
+        <import type="com.technzone.minibursa.data.enums.BusinessStatusEnums"/>
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.business.listingpreview.viewmodel.ListingPreviewViewModel" />
+            type="com.technzone.minibursa.ui.business.listingpreview.viewmodel.ListingPreviewViewModel" />
     </data>
 
     <LinearLayout
@@ -82,7 +82,7 @@
                         app:layout_constraintTop_toBottomOf="@id/layout_listing_pending"
                         tools:progress="35" />
 
-                    <com.technzone.miniborsa.ui.base.views.AppTextView
+                    <com.technzone.minibursa.ui.base.views.AppTextView
                         android:id="@+id/tvPercent"
                         style="@style/textview_normal_medium"
                         android:layout_width="wrap_content"
@@ -96,7 +96,7 @@
                         app:layout_constraintTop_toTopOf="@id/progressBar"
                         tools:text="10" />
 
-                    <com.technzone.miniborsa.ui.base.views.AppTextView
+                    <com.technzone.minibursa.ui.base.views.AppTextView
                         android:id="@+id/tvTitle"
                         style="@style/textview_normal_bold"
                         android:layout_width="0dp"
@@ -108,7 +108,7 @@
                         app:layout_constraintStart_toEndOf="@id/progressBar"
                         app:layout_constraintTop_toTopOf="@id/progressBar" />
 
-                    <com.technzone.miniborsa.ui.base.views.AppTextView
+                    <com.technzone.minibursa.ui.base.views.AppTextView
                         android:id="@+id/tvPercentTxt"
                         style="@style/textview_normal_semibold"
                         android:layout_width="wrap_content"
@@ -122,7 +122,7 @@
                         app:layout_constraintTop_toTopOf="@id/tvTitle"
                         tools:text="88" />
 
-                    <com.technzone.miniborsa.ui.base.views.AppTextView
+                    <com.technzone.minibursa.ui.base.views.AppTextView
                         style="@style/textview_normal_regular"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"

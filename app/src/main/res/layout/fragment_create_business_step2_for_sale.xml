@@ -5,14 +5,14 @@
 
     <data>
 
-        <import type="com.technzone.miniborsa.data.enums.PropertyStatusEnums" />
-        <import type="com.technzone.miniborsa.utils.extensions.StringExtensionKt"/>
+        <import type="com.technzone.minibursa.data.enums.PropertyStatusEnums" />
+        <import type="com.technzone.minibursa.utils.extensions.StringExtensionKt"/>
 
         <import type="android.view.View" />
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.business.createbusiness.viewmodels.CreateBusinessViewModel" />
+            type="com.technzone.minibursa.ui.business.createbusiness.viewmodels.CreateBusinessViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -43,7 +43,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintGuide_end="@dimen/layouts_margin_end" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvPropertyStatus"
                 style="@style/textview_normal_medium"
                 android:layout_width="wrap_content"
@@ -121,7 +121,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintGuide_end="@dimen/layouts_margin_end" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvFreeHoldAskingPriceTxt"
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
@@ -134,7 +134,7 @@
                     app:layout_constraintStart_toStartOf="@id/freeholdBeginGuide"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvAskingPrice"
                     style="@style/textview_normal_medium"
                     android:layout_width="0dp"
@@ -151,7 +151,7 @@
                     tools:visibility="visible" />
 
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvFreeHoldAskingPrice"
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
@@ -164,7 +164,7 @@
                     app:layout_constraintEnd_toStartOf="@id/edFreeHoldAskingPrice"
                     app:layout_constraintTop_toTopOf="@id/tvFreeHoldAskingPriceTxt" />
 
-                <com.technzone.miniborsa.ui.base.views.AppEditText
+                <com.technzone.minibursa.ui.base.views.AppEditText
                     android:id="@+id/edFreeHoldAskingPrice"
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
@@ -251,7 +251,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintGuide_end="@dimen/layouts_margin_end" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvLeaseHoldAskingPriceTxt"
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
@@ -264,7 +264,7 @@
                     app:layout_constraintStart_toStartOf="@id/leaseHoldBeginGuide"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvLeaseholdAskingPrice"
                     style="@style/textview_normal_medium"
                     android:layout_width="0dp"
@@ -281,7 +281,7 @@
                     tools:visibility="visible" />
 
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvLeaseHoldAskingPrice"
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
@@ -294,7 +294,7 @@
                     app:layout_constraintEnd_toStartOf="@id/edLeaseHoldAskingPrice"
                     app:layout_constraintTop_toTopOf="@id/tvLeaseholdAskingPrice" />
 
-                <com.technzone.miniborsa.ui.base.views.AppEditText
+                <com.technzone.minibursa.ui.base.views.AppEditText
                     android:id="@+id/edLeaseHoldAskingPrice"
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
@@ -366,7 +366,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvFreeholdIsNegotiable"
                 style="@style/textview_normal_regular"
                 android:layout_width="0dp"
@@ -429,7 +429,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintGuide_end="@dimen/layouts_margin_end" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvNetProfitTxt"
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
@@ -443,7 +443,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvNetProfit"
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
@@ -456,7 +456,7 @@
                     app:layout_constraintEnd_toStartOf="@id/edNetProfit"
                     app:layout_constraintTop_toTopOf="@id/tvNetProfitTxt" />
 
-                <com.technzone.miniborsa.ui.base.views.AppEditText
+                <com.technzone.minibursa.ui.base.views.AppEditText
                     android:id="@+id/edNetProfit"
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
@@ -551,7 +551,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintGuide_end="@dimen/layouts_margin_end" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvTurnoverTxt"
                     style="@style/textview_normal_medium"
                     android:layout_width="0dp"
@@ -565,7 +565,7 @@
                     app:layout_constraintStart_toStartOf="@id/turnoverBeginGuide"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvTurnover"
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
@@ -578,7 +578,7 @@
                     app:layout_constraintEnd_toStartOf="@id/edTurnover"
                     app:layout_constraintTop_toTopOf="@id/tvTurnoverTxt" />
 
-                <com.technzone.miniborsa.ui.base.views.AppEditText
+                <com.technzone.minibursa.ui.base.views.AppEditText
                     android:id="@+id/edTurnover"
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.core.chat.ChatViewModel" />
+            type="com.technzone.minibursa.ui.core.chat.ChatViewModel" />
     </data>
 
     <RelativeLayout
@@ -108,7 +108,7 @@
                             android:padding="@dimen/_5sdp"
                             app:srcCompat="@drawable/ic_cam" />
 
-                        <com.technzone.miniborsa.ui.base.views.AppEditText
+                        <com.technzone.minibursa.ui.base.views.AppEditText
                             android:id="@+id/ed_message"
                             style="@style/twillio_input_edittext"
                             android:layout_width="match_parent"

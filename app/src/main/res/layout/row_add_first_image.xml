@@ -19,7 +19,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/descriptionTxt"
             style="@style/textview_normal_semibold"
             android:layout_width="@dimen/_200sdp"

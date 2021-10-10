@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="com.technzone.miniborsa.ui.auth.register.fragments.RegistrationFragment"
+        android:name="com.technzone.minibursa.ui.auth.register.fragments.RegistrationFragment"
         android:label="RegistrationFragment">
         <action
             android:id="@+id/action_registrationFragment_to_verificationSignUpFragment"
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/verificationSignUpFragment"
-        android:name="com.technzone.miniborsa.ui.auth.register.fragments.VerificationSignUpFragment"
+        android:name="com.technzone.minibursa.ui.auth.register.fragments.VerificationSignUpFragment"
         android:label="VerificationSignUpFragment">
         <action
             android:id="@+id/action_verificationSignUpFragment_to_registerSuccessFragment"
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerSuccessFragment"
-        android:name="com.technzone.miniborsa.ui.auth.register.fragments.RegisterSuccessFragment"
+        android:name="com.technzone.minibursa.ui.auth.register.fragments.RegisterSuccessFragment"
         android:label="RegisterSuccessFragment" />
 
 </navigation>

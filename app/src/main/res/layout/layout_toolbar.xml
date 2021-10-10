@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_50sdp">
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvTitle"
                     style="@style/textview_normal_bold"
                     android:layout_width="wrap_content"

@@ -8,7 +8,7 @@
         <variable
             name="message"
             type="com.twilio.chat.Message" />
-        <import type="com.technzone.miniborsa.utils.extensions.DataTimeExtensionsKt" />
+        <import type="com.technzone.minibursa.utils.extensions.DataTimeExtensionsKt" />
     </data>
 
     <LinearLayout
@@ -27,7 +27,7 @@
             app:cardElevation="0dp"
             app:shapeAppearanceOverlay="@style/bottom_right_cardview_no_corner">
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 style="@style/outcoming_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             style="@style/outcoming_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

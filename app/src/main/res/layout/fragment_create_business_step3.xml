@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.business.createbusiness.viewmodels.CreateBusinessViewModel" />
+            type="com.technzone.minibursa.ui.business.createbusiness.viewmodels.CreateBusinessViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvImages"
                 style="@style/textview_normal_medium"
                 android:layout_width="wrap_content"
@@ -55,7 +55,7 @@
                 tools:listitem="@layout/row_add_first_image" />
 
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvDocs"
                 style="@style/textview_normal_medium"
                 android:layout_width="wrap_content"
@@ -85,7 +85,7 @@
                 tools:itemCount="1"
                 tools:listitem="@layout/row_add_first_document" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvTitle"
                 style="@style/textview_normal_medium"
                 android:layout_width="wrap_content"
@@ -100,7 +100,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rvDocuments" />
 
-            <com.technzone.miniborsa.ui.base.views.AppEditText
+            <com.technzone.minibursa.ui.base.views.AppEditText
                 android:id="@+id/edTitle"
                 style="@style/textview_normal_regular"
                 android:layout_width="0dp"

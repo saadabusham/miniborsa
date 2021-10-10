@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.business.businessmain.viewmodels.BusinessMainViewModel" />
+            type="com.technzone.minibursa.ui.business.businessmain.viewmodels.BusinessMainViewModel" />
     </data>
 
 
@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:background="@color/button_color_alpha5">
 
-        <com.technzone.miniborsa.ui.base.views.AppImageView
+        <com.technzone.minibursa.ui.base.views.AppImageView
             android:id="@+id/imgVerified"
             android:layout_width="@dimen/_16sdp"
             android:layout_height="@dimen/_22sdp"
@@ -25,7 +25,7 @@
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginStart="@dimen/_15sdp"/>
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvTitle"
             style="@style/textview_normal_regular"
             android:layout_width="0dp"
@@ -40,7 +40,7 @@
             app:layout_constraintStart_toEndOf="@id/imgVerified"
             app:layout_constraintTop_toTopOf="@id/imgVerified" />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvDescription"
             style="@style/textview_normal_bold"
             android:layout_width="0dp"
@@ -54,7 +54,7 @@
             app:layout_constraintStart_toStartOf="@id/tvTitle"
             app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
-        <com.technzone.miniborsa.ui.base.views.AppButton
+        <com.technzone.minibursa.ui.base.views.AppButton
             android:id="@+id/btnPromote"
             style="@style/textview_normal_regular"
             android:layout_width="wrap_content"

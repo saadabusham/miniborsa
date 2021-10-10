@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.core.notification.viewmodels.NotificationsViewModel" />
+            type="com.technzone.minibursa.ui.core.notification.viewmodels.NotificationsViewModel" />
     </data>
 
     <LinearLayout

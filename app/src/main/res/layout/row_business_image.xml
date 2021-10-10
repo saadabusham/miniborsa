@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.technzone.miniborsa.R"/>
+        <import type="com.technzone.minibursa.R"/>
         <variable
             name="data"
             type="String" />

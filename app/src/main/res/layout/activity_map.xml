@@ -43,7 +43,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvSearch"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"

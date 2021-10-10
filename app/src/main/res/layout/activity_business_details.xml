@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.investor.businessdetails.viewmodels.BusinessDetailsViewModel" />
+            type="com.technzone.minibursa.ui.investor.businessdetails.viewmodels.BusinessDetailsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,7 +38,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintGuide_end="@dimen/layouts_margin_end" />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvName"
             style="@style/textview_normal_bold"
             android:layout_width="0dp"
@@ -52,7 +52,7 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar"
             tools:text="The Slebew Residence" />
 
-        <com.technzone.miniborsa.ui.base.views.AppImageView
+        <com.technzone.minibursa.ui.base.views.AppImageView
             android:id="@+id/imgCatIcon"
             ivImageUrl="@{viewModel.businessToView.categories.get(0).icon}"
             android:layout_width="@dimen/_12sdp"
@@ -62,7 +62,7 @@
             app:layout_constraintStart_toStartOf="@id/beginGuide"
             app:layout_constraintTop_toTopOf="@id/tvBusinessType" />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvBusinessType"
             style="@style/textview_normal_regular"
             android:layout_width="wrap_content"
@@ -77,18 +77,18 @@
             app:layout_constraintTop_toBottomOf="@id/tvName"
             tools:text="Healthtech" />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvBusinessLocation"
             style="@style/textview_normal_regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:drawableStart="@drawable/ic_business_pin"
             android:drawablePadding="@dimen/_5sdp"
-            android:text="@{viewModel.businessToView.address}"
+            android:text="@{@string/address_string(viewModel.businessToView.counrty,viewModel.businessToView.city)}"
             android:textColor="@color/black_alpha"
             android:textSize="@dimen/_11ssp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="@id/endGuide"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvBusinessType"
@@ -140,6 +140,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/layout_business_price" />
 
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cvBecomeInvestor"
                     android:layout_width="match_parent"
@@ -163,7 +164,7 @@
                         android:layout_margin="@dimen/_15sdp"
                         android:orientation="vertical">
 
-                        <com.technzone.miniborsa.ui.base.views.AppTextView
+                        <com.technzone.minibursa.ui.base.views.AppTextView
                             android:id="@+id/tvTitle"
                             style="@style/textview_normal_semibold"
                             android:layout_width="0dp"
@@ -180,7 +181,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <com.technzone.miniborsa.ui.base.views.AppTextView
+                        <com.technzone.minibursa.ui.base.views.AppTextView
                             android:id="@+id/tvDescription"
                             style="@style/textview_normal_regular"
                             android:layout_width="0dp"
@@ -198,7 +199,7 @@
                             app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
 
-                        <com.technzone.miniborsa.ui.base.views.AppButton
+                        <com.technzone.minibursa.ui.base.views.AppButton
                             android:id="@+id/btnBecomeInvestor"
                             style="@style/AppTheme.Button"
                             android:layout_width="match_parent"
@@ -225,6 +226,33 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+                <include
+                    android:id="@+id/layout_business_countries"
+                    layout="@layout/layout_business_countries"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:visibility="@{viewModel.isInvestor &amp;&amp; viewModel.businessToView.countries.size() > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cvBecomeInvestor"
+                    tools:visibility="visible" />
+
+                <include
+                    android:id="@+id/layout_business_details"
+                    layout="@layout/layout_business_details"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layouts_margin_start"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/layouts_margin_end"
+                    android:visibility="@{viewModel.isInvestor ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layout_business_countries"
+                    tools:visibility="visible" />
 
                 <include
                     android:id="@+id/layout_business_training"
@@ -237,7 +265,7 @@
                     android:visibility="@{viewModel.isInvestor &amp;&amp; viewModel.businessToView.training.empty == false ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cvBecomeInvestor" />
+                    app:layout_constraintTop_toBottomOf="@id/layout_business_details" />
 
                 <include
                     android:id="@+id/layout_business_website_link"
@@ -253,20 +281,6 @@
                     app:layout_constraintTop_toBottomOf="@id/layout_business_training" />
 
                 <include
-                    android:id="@+id/layout_business_details"
-                    layout="@layout/layout_business_details"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/layouts_margin_start"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:layout_marginEnd="@dimen/layouts_margin_end"
-                    android:visibility="@{viewModel.isInvestor ? View.VISIBLE : View.GONE}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layout_business_website_link"
-                    tools:visibility="visible" />
-
-                <include
                     android:id="@+id/layout_business_extra_info"
                     layout="@layout/layout_business_extra_info"
                     android:layout_width="0dp"
@@ -277,21 +291,7 @@
                     android:visibility="@{viewModel.isInvestor &amp;&amp; viewModel.businessToView.properties.size() > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layout_business_details"
-                    tools:visibility="visible" />
-
-                <include
-                    android:id="@+id/layout_business_countries"
-                    layout="@layout/layout_business_countries"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/layouts_margin_start"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:layout_marginEnd="@dimen/layouts_margin_end"
-                    android:visibility="@{viewModel.isInvestor &amp;&amp; viewModel.businessToView.countries.size() > 0 ? View.VISIBLE : View.GONE}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layout_business_extra_info"
+                    app:layout_constraintTop_toBottomOf="@id/layout_business_website_link"
                     tools:visibility="visible" />
 
                 <include
@@ -305,7 +305,7 @@
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layout_business_countries"
+                    app:layout_constraintTop_toBottomOf="@id/layout_business_extra_info"
                     tools:visibility="visible" />
 
                 <View
@@ -334,8 +334,8 @@
                     android:textSize="@dimen/_14ssp"
                     app:icon="@drawable/ic_connect"
                     app:iconGravity="textStart"
-                    app:iconSize="@dimen/_20sdp"
                     app:iconPadding="@dimen/_9sdp"
+                    app:iconSize="@dimen/_20sdp"
                     app:iconTint="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

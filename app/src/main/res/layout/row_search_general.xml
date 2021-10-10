@@ -4,7 +4,7 @@
 
         <variable
             name="item"
-            type="com.technzone.miniborsa.data.models.general.GeneralLookup" />
+            type="com.technzone.minibursa.data.models.general.GeneralLookup" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

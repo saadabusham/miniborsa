@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.auth.language.LanguageViewModel" />
+            type="com.technzone.minibursa.ui.auth.language.LanguageViewModel" />
     </data>
 
     <ScrollView
@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_logo" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
                 android:layout_marginEnd="@dimen/layouts_margin_end"
                 android:orientation="vertical">
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -68,8 +68,7 @@
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:background="@{viewModel.englishSelected ? @drawable/shape_button_selected :  @drawable/shape_button_unselected}"
-                    android:gravity="center"
-                    android:onClick="@{()->viewModel.onEnglishClicked()}">
+                    android:gravity="center">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvEnglish"
@@ -89,8 +88,7 @@
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@{viewModel.englishSelected ? @drawable/shape_button_unselected :  @drawable/shape_button_selected}"
-                    android:gravity="center"
-                    android:onClick="@{()->viewModel.onArabicClicked()}">
+                    android:gravity="center">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvArabic"

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.technzone.miniborsa">
+    package="com.technzone.minibursa">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:name="com.technzone.miniborsa.common.MyApplication"
+        android:name="com.technzone.minibursa.common.MyApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,7 +20,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name="com.technzone.miniborsa.ui.splash.SplashActivity">
+        <activity android:name="com.technzone.minibursa.ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,103 +28,103 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.technzone.miniborsa.ui.auth.AuthActivity"
+            android:name="com.technzone.minibursa.ui.auth.AuthActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.investor.invistormain.activity.InvestorMainActivity"
+            android:name="com.technzone.minibursa.ui.investor.invistormain.activity.InvestorMainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.auth.register.RegisterActivity"
+            android:name="com.technzone.minibursa.ui.auth.register.RegisterActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.auth.forgetpassword.ForgetPasswordActivity"
+            android:name="com.technzone.minibursa.ui.auth.forgetpassword.ForgetPasswordActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.userrole.activity.UserRolesActivity"
+            android:name="com.technzone.minibursa.ui.userrole.activity.UserRolesActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.general.GeneralActivity"
+            android:name="com.technzone.minibursa.ui.general.GeneralActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.subscription.activity.SubscriptionActivity"
+            android:name="com.technzone.minibursa.ui.subscription.activity.SubscriptionActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.business.businessmain.activity.BusinessMainActivity"
+            android:name="com.technzone.minibursa.ui.business.businessmain.activity.BusinessMainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.investor.filter.activity.FilterActivity"
+            android:name="com.technzone.minibursa.ui.investor.filter.activity.FilterActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.investor.businessdetails.activity.BusinessDetailsActivity"
+            android:name="com.technzone.minibursa.ui.investor.businessdetails.activity.BusinessDetailsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.dataview.viewimage.ViewImageActivity"
+            android:name="com.technzone.minibursa.ui.dataview.viewimage.ViewImageActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.investor.news.activity.NewsActivity"
+            android:name="com.technzone.minibursa.ui.investor.news.activity.NewsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.business.createbusiness.activity.CreateBusinessActivity"
+            android:name="com.technzone.minibursa.ui.business.createbusiness.activity.CreateBusinessActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.core.chat.ChatActivity"
+            android:name="com.technzone.minibursa.ui.core.chat.ChatActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.countrypicker.activity.CountriesPickerActivity"
+            android:name="com.technzone.minibursa.ui.countrypicker.activity.CountriesPickerActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.map.MapActivity"
+            android:name="com.technzone.minibursa.ui.map.MapActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.business.listingpreview.activity.ListingPreviewActivity"
+            android:name="com.technzone.minibursa.ui.business.listingpreview.activity.ListingPreviewActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.business.investors.activity.InvestorsActivity"
+            android:name="com.technzone.minibursa.ui.business.investors.activity.InvestorsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.investor.invistorroles.activity.InvestorRolesActivity"
+            android:name="com.technzone.minibursa.ui.investor.invistorroles.activity.InvestorRolesActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.core.updateprofile.UpdateProfileActivity"
+            android:name="com.technzone.minibursa.ui.core.updateprofile.UpdateProfileActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.core.changepassword.ChangePasswordActivity"
+            android:name="com.technzone.minibursa.ui.core.changepassword.ChangePasswordActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.investor.recentviewed.activity.RecentViewActivity"
+            android:name="com.technzone.minibursa.ui.investor.recentviewed.activity.RecentViewActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.business.businessdraft.activity.BusinessDraftActivity"
+            android:name="com.technzone.minibursa.ui.business.businessdraft.activity.BusinessDraftActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.core.faqs.FaqsActivity"
+            android:name="com.technzone.minibursa.ui.core.faqs.FaqsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.technzone.miniborsa.ui.core.settings.SettingsActivity"
+            android:name="com.technzone.minibursa.ui.core.settings.SettingsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
 

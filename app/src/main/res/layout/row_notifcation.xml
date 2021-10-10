@@ -5,7 +5,7 @@
     <data>
         <variable
             name="item"
-            type="com.technzone.miniborsa.data.models.notification.Notification" />
+            type="com.technzone.minibursa.data.models.notification.Notification" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +17,7 @@
         android:focusable="true"
         android:background="?selectableItemBackground">
 
-        <com.technzone.miniborsa.ui.base.views.AppImageView
+        <com.technzone.minibursa.ui.base.views.AppImageView
             android:id="@+id/imgAction"
             android:layout_width="@dimen/_27sdp"
             android:layout_height="@dimen/_27sdp"
@@ -25,7 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

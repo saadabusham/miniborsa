@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/languageFragment"
-        android:name="com.technzone.miniborsa.ui.auth.language.LanguageFragment"
+        android:name="com.technzone.minibursa.ui.auth.language.LanguageFragment"
         android:label="LanguageFragment"
         tools:layout="@layout/fragment_language">
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/onBoardingFragment"
-        android:name="com.technzone.miniborsa.ui.auth.onboarding.OnBoardingFragment"
+        android:name="com.technzone.minibursa.ui.auth.onboarding.OnBoardingFragment"
         android:label="OnBoardingFragment"
         tools:layout="@layout/fragment_on_boarding">
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.technzone.miniborsa.ui.auth.login.fragments.LoginFragment"
+        android:name="com.technzone.minibursa.ui.auth.login.fragments.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/verificationLoginFragment"
-        android:name="com.technzone.miniborsa.ui.auth.login.fragments.VerificationLoginFragment"
+        android:name="com.technzone.minibursa.ui.auth.login.fragments.VerificationLoginFragment"
         android:label="VerificationLoginFragment"
         tools:layout="@layout/fragment_verification_login"/>
 </navigation>

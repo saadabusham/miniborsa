@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.core.settings.SettingsViewModel" />
+            type="com.technzone.minibursa.ui.core.settings.SettingsViewModel" />
     </data>
 
     <LinearLayout
@@ -51,7 +51,7 @@
                         android:layout_toStartOf="@id/switchNotifications"
                         android:orientation="vertical">
 
-                        <com.technzone.miniborsa.ui.base.views.AppTextView
+                        <com.technzone.minibursa.ui.base.views.AppTextView
                             style="@style/textview_normal_regular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/_13ssp" />
 
-                        <com.technzone.miniborsa.ui.base.views.AppTextView
+                        <com.technzone.minibursa.ui.base.views.AppTextView
                             style="@style/textview_normal_regular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
                         android:orientation="vertical">
 
 
-                        <com.technzone.miniborsa.ui.base.views.AppTextView
+                        <com.technzone.minibursa.ui.base.views.AppTextView
                             style="@style/textview_normal_regular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -113,7 +113,7 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/_13ssp" />
 
-                        <com.technzone.miniborsa.ui.base.views.AppTextView
+                        <com.technzone.minibursa.ui.base.views.AppTextView
                             style="@style/normalRegularFontStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

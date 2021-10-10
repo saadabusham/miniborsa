@@ -17,7 +17,7 @@
             android:paddingStart="@dimen/_15sdp"
             android:paddingEnd="@dimen/_15sdp">
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 style="@style/textview_normal_semibold"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14ssp" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvAll"
                 style="@style/textview_normal_medium"
                 android:layout_width="wrap_content"

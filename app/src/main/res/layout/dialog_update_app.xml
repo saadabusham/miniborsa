@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.base.dialogs.appupdate.UpdateAppDialog" />
+            type="com.technzone.minibursa.ui.base.dialogs.appupdate.UpdateAppDialog" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -30,7 +30,7 @@
             android:layout_margin="@dimen/_15sdp"
             android:orientation="vertical">
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 style="@style/HeaderSemiBoldFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                 android:textSize="@dimen/_18ssp"
                 tools:text="@string/new_update" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvFillField"
                 style="@style/textview_normal_regular"
                 android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
                     android:textSize="@dimen/_11ssp" />
             </RelativeLayout>
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvRemindMeLater"
                 style="@style/textview_normal_medium"
                 android:layout_width="wrap_content"
@@ -97,7 +97,7 @@
                 android:textSize="@dimen/_9ssp"
                 android:visibility="@{viewModel.updateStatus.isMandatory() ? View.GONE : View.VISIBLE}" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvCloseApp"
                 style="@style/textview_normal_medium"
                 android:layout_width="wrap_content"

@@ -3,10 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-        <import type="com.technzone.miniborsa.R"/>
+        <import type="com.technzone.minibursa.R"/>
         <variable
             name="item"
-            type="com.technzone.miniborsa.data.models.SortModel" />
+            type="com.technzone.minibursa.data.models.SortModel" />
     </data>
 
     <LinearLayout
@@ -24,7 +24,7 @@
             android:layout_weight="1"
             android:background="@{item.selected ? @color/light_orange_color_alpha20 : @color/white}">
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

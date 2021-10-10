@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="com.technzone.miniborsa.data.models.auth.login.UserRoles" />
+            type="com.technzone.minibursa.data.models.auth.login.UserRoles" />
     </data>
 
     <RelativeLayout
@@ -28,7 +28,7 @@
             android:src="@{item.selected ? @drawable/ic_circle_check : @drawable/ic_circle_uncheck}"
             tools:src="@drawable/ic_circle_check" />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_15sdp"

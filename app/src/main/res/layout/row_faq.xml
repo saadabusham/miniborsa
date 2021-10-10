@@ -14,7 +14,7 @@
         android:paddingStart="@dimen/_12sdp"
         android:paddingEnd="@dimen/_12sdp">
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvTitle"
             style="@style/textview_normal_bold"
             android:layout_width="match_parent"
@@ -37,7 +37,7 @@
             android:src="@drawable/ic_arrow_down"
             android:tint="@color/black" />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvDesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -7,11 +7,11 @@
 
         <import type="android.view.View" />
 
-        <import type="com.technzone.miniborsa.R" />
+        <import type="com.technzone.minibursa.R" />
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.business.investors.viewmodels.InvestorsViewModel" />
+            type="com.technzone.minibursa.ui.business.investors.viewmodels.InvestorsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,7 +37,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintGuide_end="@dimen/layouts_margin_end" />
 
-        <com.technzone.miniborsa.ui.base.views.AppImageView
+        <com.technzone.minibursa.ui.base.views.AppImageView
             android:id="@+id/imgBack"
             android:layout_width="@dimen/_32sdp"
             android:layout_height="@dimen/_32sdp"
@@ -51,7 +51,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.technzone.miniborsa.ui.base.views.AppImageView
+        <com.technzone.minibursa.ui.base.views.AppImageView
             android:id="@+id/imgFilter"
             android:layout_width="@dimen/_32sdp"
             android:layout_height="@dimen/_32sdp"
@@ -77,7 +77,7 @@
             app:layout_constraintStart_toStartOf="@id/beginGuide"
             app:layout_constraintTop_toBottomOf="@id/imgBack">
 
-            <com.technzone.miniborsa.ui.base.views.AppImageView
+            <com.technzone.minibursa.ui.base.views.AppImageView
                 ivImageErrorPlaceholder="@{R.drawable.ic_profile_place_holder}"
                 ivImagePlaceholder="@{R.drawable.ic_profile_place_holder}"
                 ivImageUrl="@{viewModel.investorToView.picture}"
@@ -87,7 +87,7 @@
                 android:src="@drawable/ic_profile_place_holder" />
         </com.google.android.material.card.MaterialCardView>
 
-        <com.technzone.miniborsa.ui.base.views.AppImageView
+        <com.technzone.minibursa.ui.base.views.AppImageView
             android:id="@+id/imgVerified"
             android:layout_width="@dimen/_12sdp"
             android:layout_height="@dimen/_22sdp"
@@ -97,7 +97,7 @@
             app:layout_constraintStart_toStartOf="@id/cvPhoto"
             app:layout_constraintTop_toBottomOf="@id/imgBack" />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvName"
             style="@style/textview_normal_bold"
             android:layout_width="0dp"
@@ -112,7 +112,7 @@
             app:layout_constraintTop_toTopOf="@id/cvPhoto"
             tools:text="Angelina Jora" />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvTitle"
             style="@style/textview_normal_regular"
             android:layout_width="0dp"
@@ -141,7 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvAbout"
                     style="@style/textview_normal_bold"
                     android:layout_width="match_parent"
@@ -153,7 +153,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvEmail"
                     style="@style/textview_normal_regular"
                     android:layout_width="match_parent"
@@ -179,7 +179,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvEmail" />
 
-                <com.technzone.miniborsa.ui.base.views.AppImageView
+                <com.technzone.minibursa.ui.base.views.AppImageView
                     android:id="@+id/imgDesc"
                     android:layout_width="@dimen/_17sdp"
                     android:layout_height="@dimen/_17sdp"
@@ -188,7 +188,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/div" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvDescription"
                     style="@style/textview_normal_regular"
                     android:layout_width="0dp"
@@ -203,7 +203,7 @@
                     app:layout_constraintTop_toBottomOf="@id/div"
                     tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra quam ac lectus luctus tincidunt." />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvCountries"
                     style="@style/textview_normal_bold"
                     android:layout_width="match_parent"
@@ -233,7 +233,7 @@
                     tools:itemCount="5"
                     tools:listitem="@layout/row_business_extra_info" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvCategories"
                     style="@style/textview_normal_bold"
                     android:layout_width="match_parent"
@@ -263,7 +263,7 @@
                     tools:itemCount="5"
                     tools:listitem="@layout/row_business_extra_info" />
 
-                <com.technzone.miniborsa.ui.base.views.AppButton
+                <com.technzone.minibursa.ui.base.views.AppButton
                     android:id="@+id/btnMessage"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_35sdp"

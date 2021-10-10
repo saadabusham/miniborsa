@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.core.messages.viewmodels.MessagesViewModel" />
+            type="com.technzone.minibursa.ui.core.messages.viewmodels.MessagesViewModel" />
     </data>
     <RelativeLayout
         android:layout_width="match_parent"

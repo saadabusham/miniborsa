@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:visibility="visible">
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvPending"
             style="@style/textview_normal_bold"
             android:layout_width="0dp"
@@ -47,7 +47,7 @@
             tools:itemCount="5"
             tools:listitem="@layout/row_listing_pending" />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvListing"
             style="@style/textview_normal_bold"
             android:layout_width="0dp"

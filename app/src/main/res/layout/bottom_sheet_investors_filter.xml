@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.business.investors.dialogs.InvestorFilterBottomSheet" />
+            type="com.technzone.minibursa.ui.business.investors.dialogs.InvestorFilterBottomSheet" />
     </data>
 
     <RelativeLayout
@@ -35,7 +35,7 @@
                     app:cardCornerRadius="@dimen/_3sdp"
                     app:cardElevation="0dp" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvCountries"
                     style="@style/textview_normal_regular"
                     android:layout_width="match_parent"
@@ -78,7 +78,7 @@
                     tools:listitem="@layout/row_selected_general" />
 
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvHeader"
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"
@@ -119,7 +119,7 @@
                     android:layout_marginEnd="@dimen/layouts_margin_end"
                     android:orientation="horizontal">
 
-                    <com.technzone.miniborsa.ui.base.views.AppTextView
+                    <com.technzone.minibursa.ui.base.views.AppTextView
                         android:id="@+id/tvFreeholdIsNegotiable"
                         style="@style/textview_normal_medium"
                         android:layout_width="0dp"

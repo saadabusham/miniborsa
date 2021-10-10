@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/investorsFragment"
-        android:name="com.technzone.miniborsa.ui.business.investors.fragments.InvestorsFragment"
+        android:name="com.technzone.minibursa.ui.business.investors.fragments.InvestorsFragment"
         android:label="InvestorsFragment"
         tools:layout="@layout/fragment_investors">
         <action
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/investorDetailsFragment"
-        android:name="com.technzone.miniborsa.ui.business.investors.fragments.InvestorDetailsFragment"
+        android:name="com.technzone.minibursa.ui.business.investors.fragments.InvestorDetailsFragment"
         android:label="InvestorDetailsFragment"
         tools:layout="@layout/fragment_investor_details" />
 </navigation>

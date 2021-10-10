@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_search"
-        android:name="com.technzone.miniborsa.ui.investor.invistormain.fragment.search.InvestorSearchFragment"
+        android:name="com.technzone.minibursa.ui.investor.invistormain.fragment.search.InvestorSearchFragment"
         android:label="BusnissSearchFragment"
         tools:layout="@layout/fragment_investor_search">
         <action
@@ -27,17 +27,17 @@
     </fragment>
     <fragment
         android:id="@+id/nav_favorite"
-        android:name="com.technzone.miniborsa.ui.investor.invistormain.fragment.investorfavorite.InvestorFavoriteFragment"
+        android:name="com.technzone.minibursa.ui.investor.invistormain.fragment.investorfavorite.InvestorFavoriteFragment"
         android:label="BusinessFavoriteFragment"
         tools:layout="@layout/fragment_investor_favorite" />
     <fragment
         android:id="@+id/nav_messages"
-        android:name="com.technzone.miniborsa.ui.core.messages.MessagesFragment"
+        android:name="com.technzone.minibursa.ui.core.messages.MessagesFragment"
         android:label="BusnissMessagesFragment"
         tools:layout="@layout/fragment_messages" />
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.technzone.miniborsa.ui.core.profile.fragment.ProfileFragment"
+        android:name="com.technzone.minibursa.ui.core.profile.fragment.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -50,13 +50,13 @@
     </fragment>
     <fragment
         android:id="@+id/searchBusinessFragment"
-        android:name="com.technzone.miniborsa.ui.investor.filter.search.SearchBusinessFragment"
+        android:name="com.technzone.minibursa.ui.investor.filter.search.SearchBusinessFragment"
         android:label="SearchBusinessFragment"
         tools:layout="@layout/fragment_search_business">
     </fragment>
     <fragment
         android:id="@+id/notificationFragment"
-        android:name="com.technzone.miniborsa.ui.core.notification.fragment.NotificationFragment"
+        android:name="com.technzone.minibursa.ui.core.notification.fragment.NotificationFragment"
         android:label="NotificationFragment"
         tools:layout="@layout/fragment_notification"/>
 

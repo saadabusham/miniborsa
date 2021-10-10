@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.business.businessdraft.viewmodels.BusinessDraftViewModel" />
+            type="com.technzone.minibursa.ui.business.businessdraft.viewmodels.BusinessDraftViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

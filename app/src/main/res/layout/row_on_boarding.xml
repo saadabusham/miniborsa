@@ -8,7 +8,7 @@
 
         <variable
             name="data"
-            type="com.technzone.miniborsa.data.models.auth.onboarding.OnBoardingItem" />
+            type="com.technzone.minibursa.data.models.auth.onboarding.OnBoardingItem" />
     </data>
 
     <androidx.core.widget.NestedScrollView

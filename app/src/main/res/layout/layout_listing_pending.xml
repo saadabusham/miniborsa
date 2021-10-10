@@ -7,17 +7,17 @@
 
         <import type="android.view.View" />
 
-        <import type="com.technzone.miniborsa.utils.extensions.DataTimeExtensionsKt" />
+        <import type="com.technzone.minibursa.utils.extensions.DataTimeExtensionsKt" />
 
-        <import type="com.technzone.miniborsa.utils.extensions.StringExtensionKt" />
+        <import type="com.technzone.minibursa.utils.extensions.StringExtensionKt" />
 
         <variable
             name="item"
-            type="com.technzone.miniborsa.data.models.business.business.OwnerBusiness" />
+            type="com.technzone.minibursa.data.models.business.business.OwnerBusiness" />
 
         <variable
             name="image"
-            type="com.technzone.miniborsa.data.models.Media" />
+            type="com.technzone.minibursa.data.models.Media" />
 
         <variable
             name="editable"
@@ -40,7 +40,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.technzone.miniborsa.ui.base.views.AppImageView
+            <com.technzone.minibursa.ui.base.views.AppImageView
                 android:id="@+id/imgPhoto"
                 ivImageUrl="@{item.icon}"
                 android:layout_width="match_parent"
@@ -49,7 +49,7 @@
                 tools:src="@drawable/ic_business_sample" />
         </com.google.android.material.card.MaterialCardView>
 
-        <com.technzone.miniborsa.ui.base.views.AppButton
+        <com.technzone.minibursa.ui.base.views.AppButton
             android:id="@+id/tvType"
             style="@style/textview_normal_regular"
             setTextByBusinessType="@{item.businessType}"
@@ -67,7 +67,7 @@
             app:layout_constraintTop_toTopOf="@id/cvPhoto"
             tools:text="Business For Sale" />
 
-        <com.technzone.miniborsa.ui.base.views.AppImageView
+        <com.technzone.minibursa.ui.base.views.AppImageView
             android:layout_width="@dimen/_25sdp"
             android:layout_height="@dimen/_25sdp"
             android:background="?selectableItemBackgroundBorderless"
@@ -80,7 +80,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvType" />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvName"
             style="@style/textview_normal_bold"
             android:layout_width="0dp"
@@ -96,7 +96,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvType"
             tools:text="Development House " />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvBusinessType"
             style="@style/textview_normal_regular"
             android:layout_width="0dp"
@@ -106,7 +106,7 @@
             android:layout_marginBottom="@dimen/_10sdp"
             android:drawableStart="@drawable/ic_business_pin"
             android:drawablePadding="@dimen/_5sdp"
-            android:text="@{item.address == null || item.address.empty ? @string/empty_data : item.address}"
+            android:text="@{item.address == null || item.address.empty ? @string/empty_data : @string/address_string(item.counrty,item.city)}"
             android:textColor="@color/black_alpha"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -114,7 +114,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvName"
             tools:text="Amman, Jordan" />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvAskingPrice"
             style="@style/textview_normal_semibold"
             android:layout_width="0dp"
@@ -129,7 +129,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvBusinessType"
             tools:text="$400,0000000" />
 
-        <com.technzone.miniborsa.ui.base.views.AppButton
+        <com.technzone.minibursa.ui.base.views.AppButton
             android:id="@+id/tvStatus"
             style="@style/textview_normal_medium"
             setButtonDataByStatus="@{item.status}"
@@ -165,7 +165,7 @@
             app:layout_constraintStart_toEndOf="@id/tvStatus"
             app:layout_constraintTop_toTopOf="@id/tvStatus" />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvDate"
             style="@style/textview_normal_regular"
             android:layout_width="wrap_content"

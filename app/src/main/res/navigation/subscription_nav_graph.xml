@@ -6,13 +6,13 @@
 
     <fragment
         android:id="@+id/businessSubscriptionFragment"
-        android:name="com.technzone.miniborsa.ui.subscription.fragments.BusinessSubscriptionFragment"
+        android:name="com.technzone.minibursa.ui.subscription.fragments.BusinessSubscriptionFragment"
         android:label="SubscriptionFragment"
         tools:layout="@layout/fragment_business_subscription" />
 
     <fragment
         android:id="@+id/investorSubscriptionFragment"
-        android:name="com.technzone.miniborsa.ui.subscription.fragments.InvestorSubscriptionFragment"
+        android:name="com.technzone.minibursa.ui.subscription.fragments.InvestorSubscriptionFragment"
         android:label="InvestorSubscriptionFragment"
         tools:layout="@layout/fragment_investor_subscription" />
 </navigation>

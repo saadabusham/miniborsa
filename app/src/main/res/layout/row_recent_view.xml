@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.technzone.miniborsa.utils.extensions.StringExtensionKt"/>
-        <import type="com.technzone.miniborsa.R"/>
+        <import type="com.technzone.minibursa.utils.extensions.StringExtensionKt"/>
+        <import type="com.technzone.minibursa.R"/>
         <variable
             name="item"
-            type="com.technzone.miniborsa.data.models.investor.Business" />
+            type="com.technzone.minibursa.data.models.investor.Business" />
         <variable
             name="favorite"
             type="Boolean" />
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.technzone.miniborsa.ui.base.views.AppImageView
+            <com.technzone.minibursa.ui.base.views.AppImageView
                 android:id="@+id/imgPhoto"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_100sdp"
@@ -40,7 +40,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.technzone.miniborsa.ui.base.views.AppImageView
+            <com.technzone.minibursa.ui.base.views.AppImageView
                 android:id="@+id/imgFavorite"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
@@ -55,7 +55,7 @@
                 app:layout_constraintEnd_toEndOf="@id/imgPhoto"
                 app:layout_constraintTop_toTopOf="@id/imgPhoto" />
 
-            <com.technzone.miniborsa.ui.base.views.AppButton
+            <com.technzone.minibursa.ui.base.views.AppButton
                 android:id="@+id/tvPrice"
                 style="@style/textview_normal_semibold"
                 android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/imgPhoto" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvType"
                 style="@style/textview_normal_semibold"
                 android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
                 app:layout_constraintTop_toTopOf="@id/tvPrice"
                 app:layout_constraintBottom_toBottomOf="@id/tvPrice"/>
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvName"
                 style="@style/textview_normal_bold"
                 android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
                 app:layout_constraintStart_toStartOf="@id/tvPrice"
                 app:layout_constraintTop_toBottomOf="@id/tvPrice" />
 
-            <com.technzone.miniborsa.ui.base.views.AppImageView
+            <com.technzone.minibursa.ui.base.views.AppImageView
                 android:id="@+id/imgCatIcon"
                 android:layout_width="@dimen/_12sdp"
                 android:layout_height="@dimen/_12sdp"
@@ -113,7 +113,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/tvBusinessType"
                 app:layout_constraintTop_toTopOf="@id/tvBusinessType"/>
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvBusinessType"
                 style="@style/textview_normal_regular"
                 android:layout_width="wrap_content"
@@ -129,7 +129,7 @@
                 app:layout_constraintStart_toEndOf="@id/imgCatIcon"
                 app:layout_constraintTop_toBottomOf="@id/tvName" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvBusinessLocation"
                 style="@style/textview_normal_regular"
                 android:layout_width="0dp"

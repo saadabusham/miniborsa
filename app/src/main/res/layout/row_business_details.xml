@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.technzone.miniborsa.data.models.general.GeneralLookup" />
+            type="com.technzone.minibursa.data.models.general.GeneralLookup" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,7 +35,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:visibility="visible" />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvTitle"
             style="@style/textview_normal_medium"
             android:layout_width="0dp"
@@ -49,7 +49,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Date Founded" />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             style="@style/textview_normal_medium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

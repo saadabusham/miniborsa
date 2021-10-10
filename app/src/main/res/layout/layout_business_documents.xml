@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvTitle"
             style="@style/textview_normal_bold"
             android:layout_width="0dp"

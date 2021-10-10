@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.business.businessmain.fragments.listing.dialogs.SelectBusinessTypeDialog" />
+            type="com.technzone.minibursa.ui.business.businessmain.fragments.listing.dialogs.SelectBusinessTypeDialog" />
     </data>
 
     <RelativeLayout
@@ -49,7 +49,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tvTitle" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvTitle"
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
@@ -64,7 +64,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.technzone.miniborsa.ui.base.views.AppButton
+                <com.technzone.minibursa.ui.base.views.AppButton
                     android:id="@+id/btnBusinessForSale"
                     style="@style/textview_normal_regular"
                     android:layout_width="match_parent"
@@ -90,7 +90,7 @@
                     app:rippleColor="@color/button_color"
                     app:strokeWidth="@dimen/_1sdp" />
 
-                <com.technzone.miniborsa.ui.base.views.AppButton
+                <com.technzone.minibursa.ui.base.views.AppButton
                     android:id="@+id/btnBusinessForShare"
                     style="@style/textview_normal_regular"
                     android:layout_width="match_parent"
@@ -116,7 +116,7 @@
                     app:strokeWidth="@dimen/_1sdp"
                     app:rippleColor="@color/button_color"/>
 
-                <com.technzone.miniborsa.ui.base.views.AppButton
+                <com.technzone.minibursa.ui.base.views.AppButton
                     android:id="@+id/btnBusinessFranchise"
                     style="@style/textview_normal_regular"
                     android:layout_width="match_parent"

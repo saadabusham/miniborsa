@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.subscription.viewmodel.SubscriptionViewModel" />
+            type="com.technzone.minibursa.ui.subscription.viewmodel.SubscriptionViewModel" />
     </data>
 
     <RelativeLayout
@@ -40,7 +40,7 @@
                 android:layout_marginEnd="@dimen/layouts_margin_end"
                 android:orientation="vertical">
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvHeader"
                     style="@style/textview_normal_bold"
                     android:layout_width="wrap_content"
@@ -49,7 +49,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/_19ssp" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:itemCount="3"
                     tools:listitem="@layout/row_investor_subscription" />
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     style="@style/textview_normal_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

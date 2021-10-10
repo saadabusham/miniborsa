@@ -5,9 +5,9 @@
 
     <data>
 
-        <import type="com.technzone.miniborsa.R" />
+        <import type="com.technzone.minibursa.R" />
 
-        <import type="com.technzone.miniborsa.utils.extensions.DataTimeExtensionsKt" />
+        <import type="com.technzone.minibursa.utils.extensions.DataTimeExtensionsKt" />
 
         <variable
             name="message"
@@ -54,7 +54,7 @@
                 android:transitionName="media_image"
                 tools:src="@drawable/ic_logo" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 style="@style/outcoming_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

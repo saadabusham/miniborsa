@@ -6,10 +6,10 @@
 
         <variable
             name="item"
-            type="com.technzone.miniborsa.data.models.Media" />
+            type="com.technzone.minibursa.data.models.Media" />
     </data>
 
-    <com.technzone.miniborsa.ui.base.views.AppButton
+    <com.technzone.minibursa.ui.base.views.AppButton
         android:id="@+id/tvPrice"
         style="@style/textview_normal_medium"
         android:layout_width="match_parent"

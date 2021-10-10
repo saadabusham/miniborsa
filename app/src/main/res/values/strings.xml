@@ -338,6 +338,7 @@
     <string name="save">Save</string>
 
     <string name="concat_string">%s %s</string>
+    <string name="address_string">%s,%s</string>
     <string name="job_title">Job Title</string>
     <string name="bio">Bio</string>
     <string name="no_available_data">-- No Available Data --</string>
@@ -395,8 +396,12 @@
     <string name="show_previews_of_notifications_at_the_top_of_the_screen">Show previews of notifications at the top\nof the screen</string>
     <string name="language">Language</string>
     <string name="can_run_from_home">Can run from home</string>
-    <string name="can_relocated">Can Relocated</string>
+    <string name="relocatable">Relocatable</string>
+    <string name="investment_percentage_">Investment Percentage : %s%%</string>
 
 
     <string name="empty_data">------</string>
+    <string name="asking_freehold">Asking Freehold</string>
+    <string name="asking_leasehold">Asking Leasehold</string>
+    <string name="franchise_countries">Franchise Countries</string>
 </resources>

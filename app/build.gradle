@@ -10,7 +10,7 @@ android {
     buildToolsVersion "30.0.0"
 
     defaultConfig {
-        applicationId "com.technzone.miniborsa"
+        applicationId "com.technzone.minibursa"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 23
@@ -285,5 +285,5 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:26.7.0')
 
 }
-//apply plugin: 'com.google.gms.google-services'
-//apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'

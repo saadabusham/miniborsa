@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.technzone.miniborsa.data.models.createbusiness.LocaleImage" />
+            type="com.technzone.minibursa.data.models.createbusiness.LocaleImage" />
     </data>
 
     <RelativeLayout

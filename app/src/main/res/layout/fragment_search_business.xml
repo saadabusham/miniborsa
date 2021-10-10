@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.technzone.miniborsa.data.enums.BusinessTypeEnums"/>
+        <import type="com.technzone.minibursa.data.enums.BusinessTypeEnums"/>
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.investor.filter.viewmodels.FilterBusinessViewModel" />
+            type="com.technzone.minibursa.ui.investor.filter.viewmodels.FilterBusinessViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -51,7 +51,7 @@
                         android:padding="@dimen/_10sdp"
                         android:src="@drawable/ic_back" />
 
-                    <com.technzone.miniborsa.ui.base.views.AppEditText
+                    <com.technzone.minibursa.ui.base.views.AppEditText
                         android:id="@+id/edSearch"
                         style="@style/textview_normal_medium"
                         android:layout_width="match_parent"
@@ -89,7 +89,7 @@
                     android:padding="@dimen/_10sdp"
                     android:src="@drawable/ic_back" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvTitle"
                     style="@style/textview_normal_bold"
                     android:layout_width="0dp"
@@ -115,7 +115,7 @@
 
         </LinearLayout>
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvSearchResult"
             style="@style/textview_normal_bold"
             android:layout_width="wrap_content"
@@ -127,7 +127,7 @@
             app:layout_constraintStart_toStartOf="@id/linTools"
             app:layout_constraintTop_toTopOf="@id/tvFilter" />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvResult"
             style="@style/textview_normal_regular"
             android:layout_width="wrap_content"
@@ -142,7 +142,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvSearchResult"
             tools:text="94 Startups Found" />
 
-        <com.technzone.miniborsa.ui.base.views.AppMaterialButton
+        <com.technzone.minibursa.ui.base.views.AppMaterialButton
             android:id="@+id/tvFilter"
             style="@style/textview_normal_regular"
             android:layout_width="wrap_content"

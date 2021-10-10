@@ -12,7 +12,7 @@
             android:id="@+id/layout_toolbar"
             layout="@layout/layout_toolbar" />
 
-        <com.technzone.miniborsa.ui.base.views.AppEditText
+        <com.technzone.minibursa.ui.base.views.AppEditText
             android:id="@+id/edTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

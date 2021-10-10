@@ -7,10 +7,10 @@
 
         <variable
             name="item"
-            type="com.technzone.miniborsa.data.models.general.GeneralLookup" />
+            type="com.technzone.minibursa.data.models.general.GeneralLookup" />
     </data>
 
-    <com.technzone.miniborsa.ui.base.views.AppTextView
+    <com.technzone.minibursa.ui.base.views.AppTextView
         android:id="@+id/tvPrice"
         style="@style/textview_normal_regular"
         android:layout_width="wrap_content"

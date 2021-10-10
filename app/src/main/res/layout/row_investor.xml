@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.technzone.miniborsa.R"/>
+        <import type="com.technzone.minibursa.R"/>
         <variable
             name="item"
-            type="com.technzone.miniborsa.data.models.investor.investors.Investor" />
+            type="com.technzone.minibursa.data.models.investor.investors.Investor" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -34,7 +34,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <com.technzone.miniborsa.ui.base.views.AppImageView
+                <com.technzone.minibursa.ui.base.views.AppImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     ivImageUrl="@{item.picture}"
@@ -44,7 +44,7 @@
                     android:src="@drawable/ic_profile_place_holder" />
             </com.google.android.material.card.MaterialCardView>
 
-            <com.technzone.miniborsa.ui.base.views.AppImageView
+            <com.technzone.minibursa.ui.base.views.AppImageView
                 android:id="@+id/imgVerified"
                 android:layout_width="@dimen/_12sdp"
                 android:layout_height="@dimen/_22sdp"
@@ -54,7 +54,7 @@
                 app:layout_constraintStart_toStartOf="@id/cvPhoto"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvName"
                 style="@style/textview_normal_bold"
                 android:layout_width="0dp"
@@ -69,7 +69,7 @@
                 app:layout_constraintTop_toTopOf="@id/cvPhoto"
                 tools:text="Angelina Jora" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvTitle"
                 style="@style/textview_normal_regular"
                 android:layout_width="0dp"
@@ -84,7 +84,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvName"
                 tools:text="Featured Investor" />
 
-            <com.technzone.miniborsa.ui.base.views.AppButton
+            <com.technzone.minibursa.ui.base.views.AppButton
                 android:id="@+id/btnViewProfile"
                 android:layout_width="@dimen/_135sdp"
                 android:layout_height="@dimen/_35sdp"
@@ -94,7 +94,7 @@
                 app:layout_constraintStart_toStartOf="@id/imgVerified"
                 app:layout_constraintTop_toBottomOf="@id/imgVerified" />
 
-            <com.technzone.miniborsa.ui.base.views.AppButton
+            <com.technzone.minibursa.ui.base.views.AppButton
                 android:id="@+id/btnMessage"
                 android:layout_width="@dimen/_95sdp"
                 android:layout_height="@dimen/_35sdp"

@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_12sdp">
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvTitle"
                     style="@style/textview_normal_bold"
                     android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
                     android:textColor="@color/textview_header_gray"
                     android:textSize="@dimen/_11ssp" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvAction"
                     style="@style/textview_normal_medium"
                     android:layout_width="wrap_content"

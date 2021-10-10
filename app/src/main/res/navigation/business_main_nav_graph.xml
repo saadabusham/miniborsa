@@ -8,31 +8,31 @@
 
     <fragment
         android:id="@+id/nav_listing"
-        android:name="com.technzone.miniborsa.ui.business.businessmain.fragments.listing.fragment.ListingFragment"
+        android:name="com.technzone.minibursa.ui.business.businessmain.fragments.listing.fragment.ListingFragment"
         android:label="ListingFragment"
         tools:layout="@layout/fragment_listing" />
 
     <fragment
         android:id="@+id/nav_notification"
-        android:name="com.technzone.miniborsa.ui.core.notification.fragment.NotificationFragment"
+        android:name="com.technzone.minibursa.ui.core.notification.fragment.NotificationFragment"
         android:label="NotificationFragment"
         tools:layout="@layout/fragment_notification" />
 
     <fragment
         android:id="@+id/nav_messages"
-        android:name="com.technzone.miniborsa.ui.core.messages.MessagesFragment"
+        android:name="com.technzone.minibursa.ui.core.messages.MessagesFragment"
         android:label="BusnissMessagesFragment"
         tools:layout="@layout/fragment_messages" />
 
 <!--    <fragment-->
 <!--        android:id="@+id/nav_statistics"-->
-<!--        android:name="com.technzone.miniborsa.ui.business.businessmain.fragments.StatisticsFragment"-->
+<!--        android:name="minibursa.ui.business.businessmain.fragments.StatisticsFragment"-->
 <!--        android:label="StatisticsFragment"-->
 <!--        tools:layout="@layout/fragment_statistics" />-->
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.technzone.miniborsa.ui.core.profile.fragment.ProfileFragment"
+        android:name="com.technzone.minibursa.ui.core.profile.fragment.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" />
 </navigation>

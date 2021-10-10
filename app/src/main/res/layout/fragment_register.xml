@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.auth.register.viewmodels.RegistrationViewModel" />
+            type="com.technzone.minibursa.ui.auth.register.viewmodels.RegistrationViewModel" />
     </data>
 
     <RelativeLayout
@@ -55,7 +55,7 @@
                         android:layout_weight="1"
                         android:orientation="vertical">
 
-                        <com.technzone.miniborsa.ui.base.views.AppTextView
+                        <com.technzone.minibursa.ui.base.views.AppTextView
                             style="@style/textview_normal_bold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -63,38 +63,38 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/_21ssp" />
 
-                        <com.technzone.miniborsa.ui.base.views.AppTextInputLayout
+                        <com.technzone.minibursa.ui.base.views.AppTextInputLayout
                             android:id="@+id/tfFirstName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_15sdp"
                             android:hint="@string/first_name">
 
-                            <com.technzone.miniborsa.ui.base.views.AppTextInputEditText
+                            <com.technzone.minibursa.ui.base.views.AppTextInputEditText
                                 android:id="@+id/edFirstName"
                                 style="@style/TextInputEditTextStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@={viewModel.firstNameMutableLiveData}" />
 
-                        </com.technzone.miniborsa.ui.base.views.AppTextInputLayout>
+                        </com.technzone.minibursa.ui.base.views.AppTextInputLayout>
 
-                        <com.technzone.miniborsa.ui.base.views.AppTextInputLayout
+                        <com.technzone.minibursa.ui.base.views.AppTextInputLayout
                             android:id="@+id/tfLastName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/last_name">
 
-                            <com.technzone.miniborsa.ui.base.views.AppTextInputEditText
+                            <com.technzone.minibursa.ui.base.views.AppTextInputEditText
                                 android:id="@+id/edLastName"
                                 style="@style/TextInputEditTextStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@={viewModel.lastNameMutableLiveData}"/>
 
-                        </com.technzone.miniborsa.ui.base.views.AppTextInputLayout>
+                        </com.technzone.minibursa.ui.base.views.AppTextInputLayout>
 
-                        <com.technzone.miniborsa.ui.base.views.AppTextView
+                        <com.technzone.minibursa.ui.base.views.AppTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_10sdp"
@@ -107,7 +107,7 @@
                             android:layout_marginTop="@dimen/_5sdp"
                             android:orientation="horizontal">
 
-                            <com.technzone.miniborsa.ui.base.views.AppTextView
+                            <com.technzone.minibursa.ui.base.views.AppTextView
                                 android:id="@+id/tvCountryCode"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
@@ -132,7 +132,7 @@
                                 android:background="@color/edit_text_unfocused_color"
                                 android:visibility="gone" />
 
-                            <com.technzone.miniborsa.ui.base.views.AppEditText
+                            <com.technzone.minibursa.ui.base.views.AppEditText
                                 android:id="@+id/edPhoneNumber"
                                 style="@style/textview_normal_regular"
                                 android:layout_width="match_parent"
@@ -154,14 +154,14 @@
                             android:layout_height="@dimen/_1sdp"
                             android:background="@color/unfocused_color" />
 
-                        <com.technzone.miniborsa.ui.base.views.AppTextInputLayout
+                        <com.technzone.minibursa.ui.base.views.AppTextInputLayout
                             android:id="@+id/tfEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_7sdp"
                             android:hint="@string/email">
 
-                            <com.technzone.miniborsa.ui.base.views.AppTextInputEditText
+                            <com.technzone.minibursa.ui.base.views.AppTextInputEditText
                                 android:id="@+id/edEmail"
                                 style="@style/TextInputEditTextStyle"
                                 android:layout_width="match_parent"
@@ -170,14 +170,14 @@
                                 android:maxLines="1"
                                 android:text="@={viewModel.emailMutableLiveData}"/>
 
-                        </com.technzone.miniborsa.ui.base.views.AppTextInputLayout>
+                        </com.technzone.minibursa.ui.base.views.AppTextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:passwordToggleEnabled="true">
 
-                            <com.technzone.miniborsa.ui.base.views.AppEditText
+                            <com.technzone.minibursa.ui.base.views.AppEditText
                                 android:id="@+id/et_password"
                                 style="@style/TextInputEditTextStyle"
                                 android:layout_width="match_parent"
@@ -192,7 +192,7 @@
                             android:layout_height="wrap_content"
                             app:passwordToggleEnabled="true">
 
-                            <com.technzone.miniborsa.ui.base.views.AppEditText
+                            <com.technzone.minibursa.ui.base.views.AppEditText
                                 android:id="@+id/et_confirm_password"
                                 style="@style/TextInputEditTextStyle"
                                 android:layout_width="match_parent"
@@ -227,7 +227,7 @@
                                 android:layout_height="1dp"
                                 android:background="@color/divider_gray" />
 
-                            <com.technzone.miniborsa.ui.base.views.AppTextView
+                            <com.technzone.minibursa.ui.base.views.AppTextView
                                 style="@style/textview_normal_regular"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -260,7 +260,7 @@
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                        <com.technzone.miniborsa.ui.base.views.AppTextView
+                        <com.technzone.minibursa.ui.base.views.AppTextView
                             style="@style/textview_normal_medium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -269,7 +269,7 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/_11ssp" />
 
-                        <com.technzone.miniborsa.ui.base.views.AppTextView
+                        <com.technzone.minibursa.ui.base.views.AppTextView
                             android:id="@+id/tvSignIn"
                             style="@style/textview_normal_medium"
                             android:layout_width="wrap_content"

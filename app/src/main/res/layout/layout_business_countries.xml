@@ -10,6 +10,10 @@
         <variable
             name="favorite"
             type="Boolean" />
+
+        <variable
+            name="viewModel"
+            type="com.technzone.minibursa.ui.investor.businessdetails.viewmodels.BusinessDetailsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,12 +21,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvTitle"
             style="@style/textview_normal_bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/countries"
+            android:text="@string/franchise_countries"
             android:textColor="@color/black"
             android:textSize="@dimen/_13ssp"
             android:layout_marginEnd="@dimen/_10sdp"
@@ -30,6 +34,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <com.technzone.minibursa.ui.base.views.AppTextView
+            android:id="@+id/tvCountries"
+            style="@style/textview_normal_regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="@{viewModel.businessToView.countriesFormatted}"
+            android:textColor="@color/black_alpha"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            tools:text="UK , Jordan , Saudi Arabia , USA " />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCountries"
@@ -39,6 +56,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             app:chainUseRtl="true"
+            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

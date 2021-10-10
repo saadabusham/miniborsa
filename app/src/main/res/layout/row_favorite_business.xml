@@ -5,12 +5,12 @@
 
     <data>
 
-        <import type="com.technzone.miniborsa.utils.extensions.StringExtensionKt"/>
-        <import type="com.technzone.miniborsa.R" />
+        <import type="com.technzone.minibursa.utils.extensions.StringExtensionKt"/>
+        <import type="com.technzone.minibursa.R" />
 
         <variable
             name="item"
-            type="com.technzone.miniborsa.data.models.investor.Business" />
+            type="com.technzone.minibursa.data.models.investor.Business" />
 
         <variable
             name="favorite"
@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.technzone.miniborsa.ui.base.views.AppImageView
+            <com.technzone.minibursa.ui.base.views.AppImageView
                 android:id="@+id/imgPhoto"
                 ivImageErrorPlaceholder="@{R.drawable.ic_default_image_place_holder}"
                 ivImagePlaceholder="@{R.drawable.ic_default_image_place_holder}"
@@ -50,7 +50,7 @@
                 app:layout_constraintStart_toEndOf="@id/imgPhoto"
                 app:layout_constraintTop_toTopOf="@id/imgPhoto" />
 
-            <com.technzone.miniborsa.ui.base.views.AppImageView
+            <com.technzone.minibursa.ui.base.views.AppImageView
                 android:id="@+id/imgFavorite"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
@@ -65,7 +65,7 @@
                 app:layout_constraintTop_toTopOf="@id/imgPhoto"
                 tools:src="@drawable/ic_favorite" />
 
-            <com.technzone.miniborsa.ui.base.views.AppButton
+            <com.technzone.minibursa.ui.base.views.AppButton
                 android:id="@+id/tvPrice"
                 style="@style/textview_normal_medium"
                 android:layout_width="wrap_content"
@@ -82,7 +82,7 @@
                 app:layout_constraintStart_toStartOf="@id/tvType"
                 app:layout_constraintTop_toBottomOf="@id/tvType" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvType"
                 style="@style/textview_normal_medium"
                 android:layout_width="0dp"
@@ -90,7 +90,8 @@
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_13sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:text="Share For Saled"
+                tools:text="Share For Saled"
+                setTextByBusinessType="@{item.businessType}"
                 android:textColor="@color/green_color"
                 android:textSize="@dimen/_8ssp"
                 app:layout_constrainedWidth="true"
@@ -98,7 +99,7 @@
                 app:layout_constraintStart_toEndOf="@id/imgPhoto"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvName"
                 style="@style/textview_normal_medium"
                 android:layout_width="0dp"
@@ -106,14 +107,14 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="Darga Mawijaya Tower..."
+                android:text="@{item.title}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintEnd_toEndOf="@id/tvType"
                 app:layout_constraintStart_toStartOf="@id/tvPrice"
                 app:layout_constraintTop_toBottomOf="@id/tvPrice" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvBusinessLocation"
                 style="@style/textview_normal_regular"
                 android:layout_width="wrap_content"
@@ -122,14 +123,15 @@
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:drawableStart="@drawable/ic_business_pin"
                 android:drawablePadding="@dimen/_5sdp"
-                android:text="Jordan"
+                android:text="@{@string/address_string(item.counrty,item.city)}"
                 android:textColor="@color/black_alpha"
                 android:textSize="@dimen/_11ssp"
+                tools:text="Jordan, amman"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@id/tvPrice"
                 app:layout_constraintTop_toBottomOf="@id/tvName" />
 
-            <com.technzone.miniborsa.ui.base.views.AppImageView
+            <com.technzone.minibursa.ui.base.views.AppImageView
                 android:id="@+id/imgCatIcon"
                 ivImageUrl="@{item.categories.get(0).icon}"
                 android:layout_width="@dimen/_12sdp"
@@ -140,7 +142,7 @@
                 app:layout_constraintStart_toEndOf="@id/tvBusinessLocation"
                 app:layout_constraintTop_toTopOf="@id/tvBusinessLocation" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvBusinessType"
                 style="@style/textview_normal_regular"
                 android:layout_width="0dp"

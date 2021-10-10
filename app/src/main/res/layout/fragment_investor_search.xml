@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.investor.invistormain.viewmodels.InvestorMainViewModel" />
+            type="com.technzone.minibursa.ui.investor.invistormain.viewmodels.InvestorMainViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -38,7 +38,7 @@
                     android:layout_height="@dimen/_135sdp"
                     app:layout_collapseMode="pin">
 
-                    <com.technzone.miniborsa.ui.base.views.AppTextView
+                    <com.technzone.minibursa.ui.base.views.AppTextView
                         android:id="@+id/tvWelcome"
                         style="@style/textview_normal_bold"
                         android:layout_width="wrap_content"
@@ -51,7 +51,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.technzone.miniborsa.ui.base.views.AppImageView
+                    <com.technzone.minibursa.ui.base.views.AppImageView
                         android:id="@+id/imgNotifications"
                         android:layout_width="@dimen/_19sdp"
                         android:layout_height="@dimen/_22sdp"
@@ -61,7 +61,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/tvWelcome" />
 
-                    <com.technzone.miniborsa.ui.base.views.AppTextView
+                    <com.technzone.minibursa.ui.base.views.AppTextView
                         android:id="@+id/tvHeader"
                         style="@style/textview_normal_regular"
                         android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
                         app:layout_constraintStart_toStartOf="@id/tvWelcome"
                         app:layout_constraintTop_toBottomOf="@id/tvHeader">
 
-                        <com.technzone.miniborsa.ui.base.views.AppTextView
+                        <com.technzone.minibursa.ui.base.views.AppTextView
                             android:id="@+id/etSearch"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"

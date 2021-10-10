@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.technzone.miniborsa.data.models.news.BusinessNews" />
+            type="com.technzone.minibursa.data.models.news.BusinessNews" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.technzone.miniborsa.ui.base.views.AppImageView
+            <com.technzone.minibursa.ui.base.views.AppImageView
                 android:id="@+id/imgPhoto"
                 ivImageUrl="@{item.image}"
                 android:layout_width="match_parent"
@@ -33,7 +33,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.technzone.miniborsa.ui.base.views.AppImageView
+            <com.technzone.minibursa.ui.base.views.AppImageView
                 android:id="@+id/imgShadow"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_70sdp"
@@ -43,7 +43,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <com.technzone.miniborsa.ui.base.views.AppButton
+            <com.technzone.minibursa.ui.base.views.AppButton
                 android:id="@+id/tvPrice"
                 style="@style/textview_normal_regular"
                 android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvName"
                 style="@style/textview_normal_regular"
                 android:layout_width="wrap_content"

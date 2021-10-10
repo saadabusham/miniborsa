@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.technzone.miniborsa.data.models.general.GeneralLookup" />
+            type="com.technzone.minibursa.data.models.general.GeneralLookup" />
     </data>
 
     <RelativeLayout
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_42sdp">
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvTitle"
             style="@style/textview_normal_regular"
             android:layout_width="match_parent"

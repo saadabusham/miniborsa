@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.business.createbusiness.viewmodels.CreateBusinessViewModel" />
+            type="com.technzone.minibursa.ui.business.createbusiness.viewmodels.CreateBusinessViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -40,7 +40,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintGuide_end="@dimen/layouts_margin_end" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvTitle"
                 style="@style/textview_normal_medium"
                 android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
                 app:layout_constraintStart_toStartOf="@id/beginGuide"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.technzone.miniborsa.ui.base.views.AppEditText
+            <com.technzone.minibursa.ui.base.views.AppEditText
                 android:id="@+id/edWebLink"
                 style="@style/textview_normal_regular"
                 android:layout_width="0dp"
@@ -71,7 +71,7 @@
                 app:layout_constraintStart_toStartOf="@id/beginGuide"
                 app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvWebLinkCount"
                 style="@style/textview_normal_medium"
                 android:layout_width="wrap_content"
@@ -94,7 +94,7 @@
                 app:layout_constraintStart_toStartOf="@id/beginGuide"
                 app:layout_constraintTop_toBottomOf="@id/edWebLink" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvTraining"
                 style="@style/textview_normal_medium"
                 android:layout_width="wrap_content"
@@ -106,7 +106,7 @@
                 app:layout_constraintStart_toStartOf="@id/beginGuide"
                 app:layout_constraintTop_toTopOf="@id/divWebLink" />
 
-            <com.technzone.miniborsa.ui.base.views.AppEditText
+            <com.technzone.minibursa.ui.base.views.AppEditText
                 android:id="@+id/edTraining"
                 style="@style/textview_normal_regular"
                 android:layout_width="0dp"
@@ -125,7 +125,7 @@
                 app:layout_constraintStart_toStartOf="@id/beginGuide"
                 app:layout_constraintTop_toBottomOf="@id/tvTraining" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvTrainingCount"
                 style="@style/textview_normal_medium"
                 android:layout_width="wrap_content"
@@ -147,7 +147,7 @@
                 app:layout_constraintStart_toStartOf="@id/beginGuide"
                 app:layout_constraintTop_toBottomOf="@id/edTraining" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvMoreInfo"
                 style="@style/textview_normal_medium"
                 android:layout_width="wrap_content"
@@ -159,7 +159,7 @@
                 app:layout_constraintStart_toStartOf="@id/beginGuide"
                 app:layout_constraintTop_toBottomOf="@id/divTraining" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvMoreInfoCount"
                 style="@style/textview_normal_medium"
                 android:layout_width="wrap_content"

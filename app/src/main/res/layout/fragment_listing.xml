@@ -6,14 +6,14 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.business.businessmain.viewmodels.BusinessMainViewModel" />
+            type="com.technzone.minibursa.ui.business.businessmain.viewmodels.BusinessMainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvTitle"
             style="@style/textview_normal_bold"
             android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.technzone.miniborsa.ui.base.views.AppImageView
+        <com.technzone.minibursa.ui.base.views.AppImageView
             android:id="@+id/imgAddBusiness"
             android:layout_width="@dimen/_32sdp"
             android:layout_height="@dimen/_32sdp"

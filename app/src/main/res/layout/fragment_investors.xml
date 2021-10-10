@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.business.investors.viewmodels.InvestorsViewModel" />
+            type="com.technzone.minibursa.ui.business.investors.viewmodels.InvestorsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -51,7 +51,7 @@
                         android:padding="@dimen/_10sdp"
                         android:src="@drawable/ic_back" />
 
-                    <com.technzone.miniborsa.ui.base.views.AppEditText
+                    <com.technzone.minibursa.ui.base.views.AppEditText
                         android:id="@+id/edSearch"
                         style="@style/textview_normal_medium"
                         android:layout_width="match_parent"
@@ -77,7 +77,7 @@
                 android:transitionName="search_transition"
                 android:visibility="visible">
 
-                <com.technzone.miniborsa.ui.base.views.AppImageView
+                <com.technzone.minibursa.ui.base.views.AppImageView
                     android:id="@+id/imgBack2"
                     android:layout_width="@dimen/_32sdp"
                     android:layout_height="@dimen/_32sdp"
@@ -90,7 +90,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tvTitle" />
 
-                <com.technzone.miniborsa.ui.base.views.AppTextView
+                <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvTitle"
                     style="@style/textview_normal_bold"
                     android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.technzone.miniborsa.ui.base.views.AppImageView
+                <com.technzone.minibursa.ui.base.views.AppImageView
                     android:id="@+id/imgSearch"
                     android:layout_width="@dimen/_32sdp"
                     android:layout_height="@dimen/_32sdp"
@@ -117,7 +117,7 @@
                     app:layout_constraintEnd_toStartOf="@id/imgFilter"
                     app:layout_constraintTop_toTopOf="@id/tvTitle" />
 
-                <com.technzone.miniborsa.ui.base.views.AppImageView
+                <com.technzone.minibursa.ui.base.views.AppImageView
                     android:id="@+id/imgFilter"
                     android:layout_width="@dimen/_32sdp"
                     android:layout_height="@dimen/_32sdp"

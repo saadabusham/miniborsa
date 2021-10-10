@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.business.createbusiness.viewmodels.CreateBusinessViewModel" />
+            type="com.technzone.minibursa.ui.business.createbusiness.viewmodels.CreateBusinessViewModel" />
     </data>
 
     <LinearLayout
@@ -53,7 +53,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:progress="35" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvPercent"
                 style="@style/textview_normal_medium"
                 android:layout_width="wrap_content"
@@ -67,7 +67,7 @@
                 app:layout_constraintTop_toTopOf="@id/progressBar"
                 tools:text="10" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvTitle"
                 style="@style/textview_normal_bold"
                 android:layout_width="0dp"
@@ -80,7 +80,7 @@
                 app:layout_constraintStart_toEndOf="@id/progressBar"
                 app:layout_constraintTop_toTopOf="@id/progressBar" />
 
-            <com.technzone.miniborsa.ui.base.views.AppTextView
+            <com.technzone.minibursa.ui.base.views.AppTextView
                 style="@style/textview_normal_regular"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

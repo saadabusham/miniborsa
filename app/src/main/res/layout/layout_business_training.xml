@@ -8,14 +8,14 @@
         <import type="android.view.View" />
         <variable
             name="viewModel"
-            type="com.technzone.miniborsa.ui.investor.businessdetails.viewmodels.BusinessDetailsViewModel" />
+            type="com.technzone.minibursa.ui.investor.businessdetails.viewmodels.BusinessDetailsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvName"
             style="@style/textview_normal_bold"
             android:layout_width="0dp"
@@ -28,7 +28,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.technzone.miniborsa.ui.base.views.AppTextView
+        <com.technzone.minibursa.ui.base.views.AppTextView
             android:id="@+id/tvType"
             style="@style/textview_normal_regular"
             android:layout_width="0dp"
