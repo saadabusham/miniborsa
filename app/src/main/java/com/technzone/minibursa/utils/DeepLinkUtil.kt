@@ -25,7 +25,7 @@ object DeepLinkUtil {
             val dynamicLink: Task<ShortDynamicLink> =
                 FirebaseDynamicLinks.getInstance().createDynamicLink()
                     .setLink(Uri.parse("https://www.minibursa.com/?$key=$value"))
-                    .setDomainUriPrefix("https://minibursa.page.link")
+                    .setDomainUriPrefix("https://minibursaapp.page.link")
                     .setAndroidParameters(
                         DynamicLink.AndroidParameters.Builder("com.technzone.minibursa")
                             .setFallbackUrl(Uri.parse("www.minibursa.com"))

@@ -40,7 +40,7 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
             layoutResID = R.layout.activity_splash,
             hasToolbar = false
         )
-//        checkDeepLink()
+        checkDeepLink()
         Handler(Looper.getMainLooper()).postDelayed({
             viewModel.getConfigurationData().observe(this, configurationResultObserver())
         }, 3000)
@@ -104,10 +104,12 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
                     deepLink = pendingDynamicLinkData.link
                 }
                 if (deepLink != null) {
-                    if(deepLink.getQueryParameter(Constants.BundleData.BUSINESS_ID) != null){
-                        MyApplication.instance.businessIdDeepLink = deepLink.getQueryParameter(Constants.DeepLink.BUSINESS_ID)?:""
-                    }else{
-                        MyApplication.instance.newsIdDeepLink = deepLink.getQueryParameter(Constants.DeepLink.NEWS_ID)?:""
+                    if (deepLink.getQueryParameter(Constants.DeepLink.BUSINESS_ID) != null) {
+                        MyApplication.instance.businessIdDeepLink =
+                            deepLink.getQueryParameter(Constants.DeepLink.BUSINESS_ID) ?: ""
+                    } else if (deepLink.getQueryParameter(Constants.DeepLink.NEWS_ID) != null) {
+                        MyApplication.instance.newsIdDeepLink =
+                            deepLink.getQueryParameter(Constants.DeepLink.NEWS_ID) ?: ""
                     }
                 }
             }
