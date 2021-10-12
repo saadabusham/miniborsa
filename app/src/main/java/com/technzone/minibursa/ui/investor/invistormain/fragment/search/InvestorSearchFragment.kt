@@ -27,6 +27,8 @@ import com.technzone.minibursa.ui.base.dialogs.LoginDialog
 import com.technzone.minibursa.ui.base.fragment.BaseBindingFragment
 import com.technzone.minibursa.ui.business.businessdraft.activity.BusinessDraftActivity
 import com.technzone.minibursa.ui.business.businessmain.activity.BusinessMainActivity
+import com.technzone.minibursa.ui.business.businessmain.fragments.listing.dialogs.SelectBusinessTypeDialog
+import com.technzone.minibursa.ui.business.createbusiness.activity.CreateBusinessActivity
 import com.technzone.minibursa.ui.investor.businessdetails.activity.BusinessDetailsActivity
 import com.technzone.minibursa.ui.investor.filter.activity.FilterActivity
 import com.technzone.minibursa.ui.investor.invistormain.activity.InvestorMainActivity
@@ -105,11 +107,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
         }
         binding?.layoutSwitchBusiness?.layoutListBusiness?.btnListBusiness?.setOnClickListener {
             binding?.layoutSwitchBusiness?.layoutListBusiness?.root?.gone()
-            SubscriptionActivity.start(
-                requireContext(),
-                isBusiness = true,
-                hasBusiness = false
-            )
+            showSelectTypeDialog()
         }
         binding?.layoutSwitchBusiness?.layoutCompleteListing?.btnCompleteListing?.setOnClickListener {
             binding?.layoutSwitchBusiness?.layoutCompleteListing?.root?.gone()
@@ -133,6 +131,20 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
             )
         }
     }
+
+    private fun showSelectTypeDialog() {
+        SelectBusinessTypeDialog(requireActivity(), object : SelectBusinessTypeDialog.CallBack {
+            override fun callBack(businessTypeEnums: BusinessTypeEnums) {
+                CreateBusinessActivity.start(
+                    context = requireContext(),
+                    businessType = businessTypeEnums.value,
+                    hasBusiness = false,
+                    companyDraft = false
+                )
+            }
+        }).show()
+    }
+
 
     private fun loadAllData() {
         loadBusinessForSale()

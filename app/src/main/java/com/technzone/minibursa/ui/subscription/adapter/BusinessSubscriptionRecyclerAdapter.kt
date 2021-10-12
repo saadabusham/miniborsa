@@ -4,16 +4,16 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.technzone.minibursa.data.models.subscrption.Subscription
+import com.technzone.minibursa.data.models.plan.Plan
 import com.technzone.minibursa.databinding.RowBusinessSubscriptionBinding
 import com.technzone.minibursa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.minibursa.ui.base.adapters.BaseViewHolder
 
 class BusinessSubscriptionRecyclerAdapter constructor(
     context: Context
-) : BaseBindingRecyclerViewAdapter<Subscription>(context) {
+) : BaseBindingRecyclerViewAdapter<Plan>(context) {
 
-    fun getSelectedItem(): Subscription? {
+    fun getSelectedItem(): Plan? {
         return items.singleOrNull { it.selected }
     }
 
@@ -32,22 +32,22 @@ class BusinessSubscriptionRecyclerAdapter constructor(
     }
 
     inner class ViewHolder(private val binding: RowBusinessSubscriptionBinding) :
-        BaseViewHolder<Subscription>(binding.root) {
+        BaseViewHolder<Plan>(binding.root) {
 
-        override fun bind(item: Subscription) {
+        override fun bind(item: Plan) {
             binding.item = item
-            binding.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
-                itemClickListener?.onItemChecked(isChecked, item, bindingAdapterPosition)
-                item.promote = isChecked
-                if(isChecked){
-                    binding.root.callOnClick()
-                }
-            }
+//            binding.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
+//                itemClickListener?.onItemChecked(isChecked, item, bindingAdapterPosition)
+//                item.promote = isChecked
+//                if(isChecked){
+//                    binding.root.callOnClick()
+//                }
+//            }
             binding.root.setOnClickListener {
                 items.withIndex().singleOrNull { it.value.selected }?.let {
                     if (it.index != bindingAdapterPosition) {
                         it.value.selected = false
-                        it.value.promote = false
+//                        it.value.promote = false
                         notifyItemChanged(it.index)
                     }
                 }

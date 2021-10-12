@@ -1,14 +1,17 @@
 package com.technzone.minibursa.ui.business.listingpreview.activity
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.technzone.minibursa.R
 import com.technzone.minibursa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.minibursa.data.common.Constants
 import com.technzone.minibursa.data.common.Constants.MIN_PERCENTAGE_TO_SEND
 import com.technzone.minibursa.data.common.CustomObserverResponse
+import com.technzone.minibursa.data.enums.PaymentStatusEnums
 import com.technzone.minibursa.data.models.Media
 import com.technzone.minibursa.data.models.business.ListingItem
 import com.technzone.minibursa.data.models.business.business.OwnerBusiness
@@ -19,6 +22,7 @@ import com.technzone.minibursa.ui.business.listingpreview.adapters.ListingItemAd
 import com.technzone.minibursa.ui.business.listingpreview.dialog.SubmittedDialogFragment
 import com.technzone.minibursa.ui.business.listingpreview.viewmodel.ListingPreviewViewModel
 import com.technzone.minibursa.ui.investor.invistormain.activity.InvestorMainActivity
+import com.technzone.minibursa.ui.subscription.activity.BusinessSubscriptionActivity
 import com.technzone.minibursa.utils.extensions.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -48,6 +52,50 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
         setUpRvExtraInfo()
     }
 
+    private fun setUpBinding() {
+        binding?.viewModel = viewModel
+        binding?.layoutListingPending?.item = viewModel.business
+    }
+
+    private fun setUpListeners() {
+        binding?.btnSubmit?.setOnClickListener {
+            if (viewModel.percentage.value ?: 0 > MIN_PERCENTAGE_TO_SEND)
+                handleSend()
+            else {
+                InvestorMainActivity.start(this)
+            }
+        }
+        binding?.layoutListingPending?.tvStatus?.setOnClickListener {
+            if (viewModel.hasBusiness)
+                viewModel.business?.id?.let { it1 ->
+                    viewModel.deleteBusinessRequest(it1)
+                        .observe(this, deleteRequestResultObserver())
+                }
+            else
+                viewModel.deleteCompanyRequest().observe(this, deleteRequestResultObserver())
+        }
+    }
+
+    private fun handleSend() {
+        viewModel.business?.id?.let { it1 ->
+            if (viewModel.business?.subscription == null || viewModel.business?.subscription?.status == PaymentStatusEnums.WAITING_PAYMENT.value) {
+                BusinessSubscriptionActivity.start(this, it1, subscriptionResultLauncher)
+            } else if (viewModel.business?.subscription?.status == PaymentStatusEnums.COMPLETED.value) {
+                viewModel.sendRequestBusiness(it1).observe(this, sendRequestResultObserver())
+            }
+        }
+    }
+
+    var subscriptionResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+                viewModel.business?.id?.let { it1 ->
+                    viewModel.sendRequestBusiness(it1).observe(this, sendRequestResultObserver())
+                }
+            }
+        }
+
     private fun handleReceivedData() {
         viewModel.hasBusiness = intent.getBooleanExtra(
             Constants.BundleData.HAS_BUSINESS, false
@@ -70,38 +118,12 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
         }
     }
 
-    private fun setUpBinding() {
-        binding?.viewModel = viewModel
-        binding?.layoutListingPending?.item = viewModel.business
-    }
-
-    private fun setUpListeners() {
-        binding?.btnSubmit?.setOnClickListener {
-            if (viewModel.percentage.value ?: 0 > MIN_PERCENTAGE_TO_SEND)
-                viewModel.business?.id?.let { it1 ->
-                    viewModel.sendRequestBusiness(it1).observe(this, sendRequestResultObserver())
-                }
-            else {
-                InvestorMainActivity.start(this)
-            }
-        }
-        binding?.layoutListingPending?.tvStatus?.setOnClickListener {
-            if (viewModel.hasBusiness)
-                viewModel.business?.id?.let { it1 ->
-                    viewModel.deleteBusinessRequest(it1)
-                        .observe(this, deleteRequestResultObserver())
-                }
-            else
-                viewModel.deleteCompanyRequest().observe(this, deleteRequestResultObserver())
-        }
-    }
-
     private fun showSubmittedDialog() {
         val dialog = SubmittedDialogFragment(this)
         dialog.setOnDismissListener {
             if (viewModel.isHasBusiness())
                 BusinessMainActivity.start(this)
-            else{
+            else {
                 InvestorMainActivity.start(this)
             }
         }

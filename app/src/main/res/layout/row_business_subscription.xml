@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.technzone.minibursa.data.models.subscrption.Subscription" />
+            type="com.technzone.minibursa.data.models.plan.Plan" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,7 +41,7 @@
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_3sdp"
             android:layout_marginEnd="@dimen/_15sdp"
-            android:text="@{item.name}"
+            android:text="@{item.planName}"
             android:textColor="@color/black"
             android:textSize="@dimen/_15ssp"
             app:layout_constraintEnd_toStartOf="@id/imgSelected"
@@ -58,12 +58,14 @@
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_15sdp"
-            android:text="@{item.name}"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:text="@{item.planFor}"
             android:textColor="@color/black"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintEnd_toStartOf="@id/imgSelected"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:text="8,99$ /month" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
@@ -74,10 +76,11 @@
             android:layout_marginTop="@dimen/_12sdp"
             android:layout_marginEnd="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_10sdp"
-            android:checked="@{item.promote}"
+            android:checked="@{item.isPromoted}"
             android:paddingStart="@dimen/_10sdp"
             android:paddingTop="0dp"
             android:paddingBottom="0dp"
+            android:visibility="gone"
             android:text="Add 50$ /month to promote your business"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

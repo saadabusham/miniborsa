@@ -6,6 +6,8 @@ object Constants {
         const val NEWS_ID: String = "NEWS_ID"
         const val BUSINESS_ID: String = "BUSINESS_ID"
     }
+
+    const val PAYMENT_URL: String = "com.minibursa.eaig.payments"
     const val DEVICE_TYPE = 1
     const val APPLICATION_TYPE = 1
     const val MIN_PERCENTAGE_TO_SEND = 88
@@ -28,6 +30,7 @@ object Constants {
         const val HAS_BUSINESS: String = "hasBusiness"
         const val OWNER_BUSINESS: String = "ownerBusiness"
         const val BUSINESS_ID: String = "businessId"
+        const val SUBSCRIPTION_ID: String = "subscriptionId"
         const val SHOW_BACK: String = "showBack"
         const val INVESTOR_ID: String = "investorId"
         const val ADDRESS: String = "address"

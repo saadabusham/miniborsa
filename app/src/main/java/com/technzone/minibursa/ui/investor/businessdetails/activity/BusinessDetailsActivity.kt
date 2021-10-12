@@ -26,6 +26,7 @@ import com.technzone.minibursa.ui.investor.businessdetails.adapters.BusinessSlid
 import com.technzone.minibursa.ui.investor.businessdetails.viewmodels.BusinessDetailsViewModel
 import com.technzone.minibursa.ui.investor.invistormain.viewmodels.FavoritesViewModel
 import com.technzone.minibursa.ui.investor.invistorroles.activity.InvestorRolesActivity
+import com.technzone.minibursa.ui.subscription.activity.InvestorSubscriptionActivity
 import com.technzone.minibursa.ui.subscription.activity.SubscriptionActivity
 import com.technzone.minibursa.utils.DeepLinkUtil.generateDeepLink
 import com.technzone.minibursa.utils.extensions.getSnapHelper
@@ -96,7 +97,7 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
 
     private fun setUpListeners() {
         binding?.btnConnect?.setOnClickListener {
-            SubscriptionActivity.start(this, false)
+            InvestorSubscriptionActivity.start(this)
         }
         binding?.btnBecomeInvestor?.setOnClickListener {
             InvestorRolesActivity.start(this)

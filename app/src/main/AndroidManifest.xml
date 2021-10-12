@@ -144,6 +144,16 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
 
+        <activity
+            android:name="com.technzone.minibursa.ui.subscription.activity.BusinessSubscriptionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name="com.technzone.minibursa.ui.subscription.activity.InvestorSubscriptionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+
     </application>
 
 </manifest>

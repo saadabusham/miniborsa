@@ -11,6 +11,8 @@ import com.technzone.minibursa.data.repos.investors.InvestorsRepo
 import com.technzone.minibursa.data.repos.investors.InvestorsRepoImp
 import com.technzone.minibursa.data.repos.searchbusiness.SearchedBusinessRepo
 import com.technzone.minibursa.data.repos.searchbusiness.SearchedBusinessRepoImp
+import com.technzone.minibursa.data.repos.subscription.SubscriptionRepo
+import com.technzone.minibursa.data.repos.subscription.SubscriptionRepoImp
 import com.technzone.minibursa.data.repos.twilio.TwilioRepo
 import com.technzone.minibursa.data.repos.twilio.TwilioRepoImp
 import com.technzone.minibursa.data.repos.user.UserRepo
@@ -51,6 +53,6 @@ abstract class RepoModule {
 
     @Singleton
     @Binds
-    abstract fun bindSearchedBusinessRepo(searchedBusinessRepoImp: SearchedBusinessRepoImp): SearchedBusinessRepo
+    abstract fun bindSubscriptionRepo(subscriptionRepoImp: SubscriptionRepoImp): SubscriptionRepo
 
 }

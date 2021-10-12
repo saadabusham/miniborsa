@@ -9,6 +9,7 @@ import com.technzone.minibursa.common.interfaces.LoginCallBack
 import com.technzone.minibursa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.minibursa.data.common.Constants
 import com.technzone.minibursa.data.common.CustomObserverResponse
+import com.technzone.minibursa.data.enums.BusinessTypeEnums
 import com.technzone.minibursa.data.enums.MoreEnums
 import com.technzone.minibursa.data.enums.UserRoleEnums
 import com.technzone.minibursa.data.models.auth.login.UserDetailsResponseModel
@@ -25,6 +26,8 @@ import com.technzone.minibursa.ui.base.fragment.BaseBindingFragment
 import com.technzone.minibursa.ui.business.businessdraft.activity.BusinessDraftActivity
 import com.technzone.minibursa.ui.business.businessdraft.viewmodels.BusinessDraftViewModel
 import com.technzone.minibursa.ui.business.businessmain.activity.BusinessMainActivity
+import com.technzone.minibursa.ui.business.businessmain.fragments.listing.dialogs.SelectBusinessTypeDialog
+import com.technzone.minibursa.ui.business.createbusiness.activity.CreateBusinessActivity
 import com.technzone.minibursa.ui.business.investors.activity.InvestorsActivity
 import com.technzone.minibursa.ui.core.faqs.FaqsActivity
 import com.technzone.minibursa.ui.core.profile.adapters.MoreRecyclerAdapter
@@ -34,7 +37,6 @@ import com.technzone.minibursa.ui.core.updateprofile.UpdateProfileActivity
 import com.technzone.minibursa.ui.investor.invistormain.activity.InvestorMainActivity
 import com.technzone.minibursa.ui.investor.invistorroles.activity.InvestorRolesActivity
 import com.technzone.minibursa.ui.investor.recentviewed.activity.RecentViewActivity
-import com.technzone.minibursa.ui.subscription.activity.SubscriptionActivity
 import com.technzone.minibursa.utils.LocaleUtil
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -333,26 +335,29 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
                     data?.let {
                         BusinessDraftActivity.start(requireContext())
                     } ?: also {
-                        SubscriptionActivity.start(
-                            requireContext(),
-                            isBusiness = true,
-                            hasBusiness = false,
-                            clearTask = false
-                        )
+                        showSelectTypeDialog()
                     }
                 }
 
                 override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
                     super.onError(subErrorCode, message)
-                    SubscriptionActivity.start(
-                        requireContext(),
-                        isBusiness = true,
-                        hasBusiness = false,
-                        clearTask = false
-                    )
+                    showSelectTypeDialog()
                 }
             }, showError = false
         )
+    }
+
+    private fun showSelectTypeDialog() {
+        SelectBusinessTypeDialog(requireActivity(), object : SelectBusinessTypeDialog.CallBack {
+            override fun callBack(businessTypeEnums: BusinessTypeEnums) {
+                CreateBusinessActivity.start(
+                    context = requireContext(),
+                    businessType = businessTypeEnums.value,
+                    hasBusiness = false,
+                    companyDraft = false
+                )
+            }
+        }).show()
     }
 
     override fun loggedInSuccess() {

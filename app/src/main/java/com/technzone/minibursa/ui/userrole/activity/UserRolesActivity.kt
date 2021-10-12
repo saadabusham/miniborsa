@@ -7,11 +7,14 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.MutableLiveData
 import com.technzone.minibursa.R
+import com.technzone.minibursa.data.enums.BusinessTypeEnums
 import com.technzone.minibursa.data.enums.UserRoleEnums
 import com.technzone.minibursa.data.models.auth.login.UserRoles
 import com.technzone.minibursa.databinding.ActivityUserRoleBinding
 import com.technzone.minibursa.ui.base.activity.BaseBindingActivity
 import com.technzone.minibursa.ui.base.adapters.BaseBindingRecyclerViewAdapter
+import com.technzone.minibursa.ui.business.businessmain.fragments.listing.dialogs.SelectBusinessTypeDialog
+import com.technzone.minibursa.ui.business.createbusiness.activity.CreateBusinessActivity
 import com.technzone.minibursa.ui.investor.invistormain.activity.InvestorMainActivity
 import com.technzone.minibursa.ui.investor.invistorroles.activity.InvestorRolesActivity
 import com.technzone.minibursa.ui.subscription.activity.SubscriptionActivity
@@ -46,7 +49,7 @@ class UserRolesActivity : BaseBindingActivity<ActivityUserRoleBinding>(),
             adapter.getSelectedItem()?.let {
                 when (it.role) {
                     UserRoleEnums.BUSINESS_ROLE.value -> {
-                        SubscriptionActivity.start(this, isBusiness = true, hasBusiness = false)
+                        showSelectTypeDialog()
                     }
                     UserRoleEnums.INVESTOR_ROLE.value -> {
                         InvestorRolesActivity.start(this)
@@ -63,6 +66,19 @@ class UserRolesActivity : BaseBindingActivity<ActivityUserRoleBinding>(),
                 )
             }
         }
+    }
+
+    private fun showSelectTypeDialog() {
+        SelectBusinessTypeDialog(this, object : SelectBusinessTypeDialog.CallBack {
+            override fun callBack(businessTypeEnums: BusinessTypeEnums) {
+                CreateBusinessActivity.start(
+                    context = this@UserRolesActivity,
+                    businessType = businessTypeEnums.value,
+                    hasBusiness = false,
+                    companyDraft = false
+                )
+            }
+        }).show()
     }
 
     private fun setUpAdapter() {
