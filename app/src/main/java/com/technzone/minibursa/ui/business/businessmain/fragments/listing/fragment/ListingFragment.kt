@@ -94,7 +94,7 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>() {
     }
 
     private fun setUpListingPending() {
-        listingReviewAdapter = ListingReviewAdapter(requireContext())
+        listingReviewAdapter = ListingReviewAdapter(requireContext(),true)
         binding?.layoutListing?.rvPending?.adapter = listingReviewAdapter
         getSnapHelper()?.attachToRecyclerView(binding?.layoutListing?.rvPending)
         binding?.layoutListing?.rvPending?.setOnItemClickListener(object :
