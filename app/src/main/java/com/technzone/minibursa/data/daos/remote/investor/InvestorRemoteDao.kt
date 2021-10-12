@@ -6,6 +6,7 @@ import com.technzone.minibursa.data.models.general.ListWrapper
 import com.technzone.minibursa.data.models.investor.Business
 import com.technzone.minibursa.data.models.investor.investors.Investor
 import com.technzone.minibursa.data.models.investor.investors.InvestorFilter
+import com.technzone.minibursa.data.models.investor.request.BecomeInvestorRequest
 import retrofit2.http.*
 
 interface InvestorRemoteDao {
@@ -28,16 +29,9 @@ interface InvestorRemoteDao {
     ): ResponseWrapper<Investor>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")
-    @FormUrlEncoded
     @POST("api/Investors")
     suspend fun becomeInvestor(
-        @Field("JobTitle") jobTitle: String?,
-        @Field("Bio") bio: String?,
-        @Field("InvestmentBudget") investmentBudget: Double,
-        @Field("InvestmentBudgetNA") InvestmentBudgetNA: Boolean,
-        @Field("Countries") countries: List<Int>,
-        @Field("Categories") categories: List<Int>,
-        @Field("IsOnline") isOnline: Boolean
+     @Body becomeInvestorRequest: BecomeInvestorRequest
     ): ResponseWrapper<Int>
 
     @Headers("${NetworkConstants.SKIP_AUTHORIZATION_HEADER}:false")

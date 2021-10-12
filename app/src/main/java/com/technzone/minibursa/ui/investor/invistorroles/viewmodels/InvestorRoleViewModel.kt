@@ -39,7 +39,7 @@ class InvestorRoleViewModel @Inject constructor(
     fun getCategories() = liveData {
         emit(APIResource.loading())
         val response =
-            configurationRepo.getInvestorCategories(
+            configurationRepo.getCategories(
                 pageSize = 1000,
                 pageNumber = 1
             )

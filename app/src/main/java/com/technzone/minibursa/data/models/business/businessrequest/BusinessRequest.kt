@@ -27,6 +27,9 @@ data class BusinessRequest(
     @field:SerializedName("businessId")
     val businessId: Int? = null,
 
+    @field:SerializedName("id")
+    val id: Int? = null,
+
     @field:SerializedName("training")
     val training: String? = null,
 

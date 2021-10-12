@@ -8,6 +8,7 @@ import com.technzone.minibursa.data.models.general.ListWrapper
 import com.technzone.minibursa.data.models.investor.Business
 import com.technzone.minibursa.data.models.investor.investors.Investor
 import com.technzone.minibursa.data.models.investor.investors.InvestorFilter
+import com.technzone.minibursa.data.models.investor.request.BecomeInvestorRequest
 import com.technzone.minibursa.data.repos.base.BaseRepo
 import javax.inject.Inject
 
@@ -48,7 +49,7 @@ class InvestorsRepoImp @Inject constructor(
     }
 
     override suspend fun becomeInvestor(
-        jobTitle:String?,
+        jobTitle: String?,
         bio: String?,
         investmentBudget: Double,
         InvestmentBudgetNA: Boolean,
@@ -59,13 +60,15 @@ class InvestorsRepoImp @Inject constructor(
         return try {
             responseHandle.handleSuccess(
                 investorRemoteDao.becomeInvestor(
-                    jobTitle,
-                    bio,
-                    investmentBudget,
-                    InvestmentBudgetNA,
-                    countries,
-                    categories,
-                    isOnline
+                    BecomeInvestorRequest(
+                        jobTitle = jobTitle,
+                        bio = bio,
+                        investmentBudget = investmentBudget,
+                        investmentBudgetNA = InvestmentBudgetNA,
+                        countries = countries,
+                        categories = categories,
+                        isOnline = isOnline
+                    )
                 )
             )
         } catch (e: Exception) {
