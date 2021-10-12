@@ -63,7 +63,8 @@ class CreateBusinessViewModel @Inject constructor(
     val turnoverOnRequest: MutableLiveData<Boolean> = MutableLiveData(false)
 
     val freeHoldAskingPrice: MutableLiveData<Double> = MutableLiveData(DEFAULT_MIN_VALUE.toDouble())
-    val leaseHoldAskingPrice: MutableLiveData<Double> = MutableLiveData(DEFAULT_MIN_VALUE.toDouble())
+    val leaseHoldAskingPrice: MutableLiveData<Double> =
+        MutableLiveData(DEFAULT_MIN_VALUE.toDouble())
     val netProfit: MutableLiveData<Double> = MutableLiveData(DEFAULT_MIN_VALUE.toDouble())
     val turnOver: MutableLiveData<Double> = MutableLiveData(DEFAULT_MIN_VALUE.toDouble())
     val sharePercentage: MutableLiveData<Int> = MutableLiveData(100)
@@ -88,6 +89,7 @@ class CreateBusinessViewModel @Inject constructor(
     fun buildBusinessRequest(): BusinessRequest {
         return BusinessRequest(
             businessId = businessId,
+            id = businessId,
             websiteLink = webLink.value,
             counrty = country.value,
             city = city.value,
@@ -97,7 +99,7 @@ class CreateBusinessViewModel @Inject constructor(
             training = training.value,
             title = title.value,
             isRelocated = relocated.value,
-            askingPriceBoth =leaseHoldAskingPrice.value,
+            askingPriceBoth = leaseHoldAskingPrice.value,
             askingPriceNABoth = leaseHoldAskingPriceOnRequest.value,
             investmentPercentage = percentage.value,
             propertyStatus = propertyStatus.value?.value,

@@ -78,7 +78,7 @@
     <string name="hint_date">التاريخ</string>
     <string name="time">الوقت</string>
     <string name="email">البريد الالكتروني</string>
-    <string name="email_address">Email Address</string>
+    <string name="email_address">البريد الالكتروني</string>
     <string name="password">كلمة السر</string>
     <string name="phone_number">رقم الهاتف</string>
     <string name="otp">OTP</string>
@@ -86,10 +86,10 @@
 
     <!--    Update App-->
     <string name="new_update">تحديث جديد!</string>
-    <string name="there_s_a_new_update_available_for_fly_us_vip">يوجد تحديث جديد متوفر \nFLY US VIP</string>
+    <string name="there_s_a_new_update_available_for_fly_us_vip">يوجد تحديث جديد متوفر \n</string>
     <string name="update_now">تحديث الان</string>
     <string name="remind_me_later">ذكرني لاحقا</string>
-    <string name="close_app">اغلاق APP</string>
+    <string name="close_app">اغلاق التطبيق</string>
     <string name="important_update">!تحديث هام</string>
 
     <!--    Completed dialog-->
@@ -118,7 +118,7 @@
     <string name="or_sign_in_with">أو قم بتسجيل الدخول باستخدام</string>
     <string name="reset_password">إعادة تعيين كلمة المرور؟</string>
     <string name="send_again">أعد الإرسال</string>
-    <string name="didn_t_receive_the_code">Didn\'t receive your code?</string>
+    <string name="didn_t_receive_the_code">لم يصلك الرمز؟</string>
     <string name="verify_your_account">تحقق من حسابك</string>
     <string name="enter_the_verification_code_we_sent_to_your">أدخل رمز التحقق الذي أرسلناه إلىك</string>
     <string name="verify">التحقق</string>
@@ -131,7 +131,7 @@
     <string name="enable_touch_id">متاح بصمتك</string>
     <string name="touch_id_for_faster_login">بصمتك لتسجيل الدخول بشكل أسرع</string>
     <string name="enable_face_id_to_let_you_login_proceed_your_insurance_faster"><![CDATA[Enable Face ID to let you login & proceed your insurance faster.]]></string>
-    <string name="skip_i_ll_do_this_later">Skip, I’ll do this later</string>
+    <string name="skip_i_ll_do_this_later">تخطي ، سأفعل هذا لاحقًا</string>
     <string name="go_to_home">الذهاب للصفحة الرئيسية</string>
 
     <!--    Forget password-->
@@ -148,11 +148,11 @@
     <string name="change_password">تغير كلمة السر</string>
 
     <!--    User Role-->
-    <string name="user_role">User Role</string>
+    <string name="user_role">دور المستخدم</string>
     <string name="please_select_your_role">الرجاء تحديد دورك</string>
-    <string name="what_is_your_role">What is your Role?</string>
-    <string name="before_continuing_we_want_to_know_what_your_role">Before continuing we want to know what\nyour role.</string>
-    <string name="i_am_an_business_owner">I am an Business Owner</string>
+    <string name="what_is_your_role">ما هو دورك؟</string>
+    <string name="before_continuing_we_want_to_know_what_your_role">قبل المتابعة نريد أن نعرف ما هو دورك .</string>
+    <string name="i_am_an_business_owner">أنا صاحب عمل</string>
     <string name="i_am_an_investor">انا مستثمر</string>
     <string name="continue_as_visitor">تواصل كزائر</string>
 
@@ -160,7 +160,7 @@
     <string name="complete_your_investor_profile">أكمل ملف تعريف المستثمر الخاص بك</string>
     <string name="complete">اكتمل</string>
     <string name="available_on_request">متوفرة عند الطلب</string>
-    <string name="investment_budget">Investment Budget</string>
+    <string name="investment_budget">ميزانية الاستثمار</string>
     <string name="countries_">الدول:</string>
     <string name="countries">الدول</string>
     <string name="choose_sectores_of_specialisations">اختر قطاعات التخصصات:</string>
@@ -204,11 +204,11 @@
     <string name="business_status">حالة العمل</string>
     <string name="active">نشط</string>
     <string name="not_active">غير نشط</string>
-    <string name="founder_gender">Founder Gender</string>
+    <string name="founder_gender">جنس المؤسس</string>
     <string name="enter_postal_code_or_address">ادخل رمز البريد او العنوان</string>
     <string name="selling_price">سعر البيع</string>
 
-    <string name="price_">$%s</string>
+    <string name="price_">%s$</string>
     <string name="percentage_">%s %%</string>
     <string name="business_type">نوع العمل</string>
     <string name="industry">الصناعة</string>
@@ -219,9 +219,9 @@
     <string name="documents">وثائق</string>
     <string name="more_information">معلومات اكثر</string>
     <string name="connect">اتصال</string>
-    <string name="interested_contact_nbusiness_owners_now">Interested ? Contact\nbusiness owners now.</string>
-    <string name="to_ensure_seriousness_and_preserve_the_privacy_of_the_business_owner_contact_information_form_sharing_it">To ensure seriousness and preserve the privacy of the business owner contact information form sharing it</string>
-    <string name="by_clicking_on_continue_you_agree_on_the_terms_conditions"><![CDATA[By clicking on continue , you agree on the\nterms & conditions]]></string>
+    <string name="interested_contact_nbusiness_owners_now">مهتم ؟ اتصل ب \n أصحاب الأعمال الآن</string>
+    <string name="to_ensure_seriousness_and_preserve_the_privacy_of_the_business_owner_contact_information_form_sharing_it">لضمان الجدية والحفاظ على خصوصية صاحب العمل استمارة معلومات الاتصال بمشاركتها</string>
+    <string name="by_clicking_on_continue_you_agree_on_the_terms_conditions">بالنقر فوق "متابعة" ، فإنك توافق على \ n البنود والشروط</string>
     <string name="start_subscription">بدأ الاشتراك</string>
     <string name="subscription">الاشتراك</string>
     <string name="tags">Tags</string>
@@ -240,11 +240,11 @@
     <string name="list_your_home_with_simple_steps">ضع القائمة بمنزلك بخطوات بسيطة.</string>
     <string name="business_for_franchise">الأعمال للحصول على الامتياز</string>
     <string name="my_listing">قائمتي</string>
-    <string name="steps_number">STEP %s OF 4</string>
+    <string name="steps_number">الخطوة %s من 4</string>
     <string name="messages">الرسائل</string>
     <string name="chat_with_invistor">تحدث مع المستثمر</string>
     <string name="investor">مستثمر</string>
-    <string name="type_a_message">Type a message … </string>
+    <string name="type_a_message">اكتب رسالة ...</string>
     <string name="_700000000">xxxxxxxxx</string>
     <string name="done">تم</string>
     <string name="please_select_item">الرجاء تحديد الحقل</string>
@@ -255,8 +255,8 @@
     <!--    Add Business-->
     <string name="tittle_your_listing">قلل من قائمتك</string>
     <string name="use_words_to_describe_your_business">استخدم كلمات لوصف عملك</string>
-    <string name="title_count">%s OF 35</string>
-    <string name="summery_count">%s OF 1000</string>
+    <string name="title_count">%s من 35</string>
+    <string name="summery_count">%s من 1000</string>
     <string name="general_summary">الملخص العام</string>
     <string name="highlight_the_selling_points_of_the_business_for_sale">تسليط الضوء على نقاط بيع الأعمال للبيع.</string>
     <string name="please_do_not_add_phone_numbers_or_email_addresses_to_the_description_we_will_remove_them_as_they_cannot_be_tracked">يرجى عدم إضافة أرقام الهواتف أو عناوين البريد الإلكتروني إلى الوصف\سنقوم بإزالتها لأنه لا يمكن تعقبها</string>
@@ -268,8 +268,7 @@
     <string name="location">الموقع</string>
     <string name="move_the_map_and_set_the_pin_location">حرك الخريطة وقم بتعيين موقع الاشارة</string>
     <string name="the_business_can_be_run_from_home">يمكن إدارة العمل من المنزل.</string>
-    <string name="can_the_business_be_relocated">هل يمكن نقل العمل؟
-hal yumkin</string>
+    <string name="can_the_business_be_relocated">هل يمكن نقل العمل؟</string>
     <string name="don_t_list_under_a_location">لا تسرد تحت موقع</string>
     <string name="build_your_listing">بناء قائمتك</string>
     <string name="freehold">عقد مجاني</string>
@@ -278,8 +277,7 @@ hal yumkin</string>
     <string name="property_status">حالة الملكية</string>
     <string name="asking_price">طلب السعر</string>
     <string name="are_the_asking_price_is_negotiable">هل السعر المطلوب قابل للتفاوض؟</string>
-    <string name="annual_net_profit">صافي الربح السنوي
-safi alribh alsa</string>
+    <string name="annual_net_profit">صافي الربح السنوي</string>
     <string name="annual_turnover">المردود السنوي</string>
     <string name="freehold_parentheses">(عقد حر)</string>
     <string name="leasehold_parentheses">(عقد مستاجر)</string>
@@ -294,7 +292,7 @@ safi alribh alsa</string>
     <string name="embed_video">تضمين الفيديو</string>
     <string name="video_url">Video URL</string>
     <string name="dollar_sign">$</string>
-    <string name="dollar_sign_concated">$%s</string>
+    <string name="dollar_sign_concated">%s$</string>
     <string name="website_link">رابط الموقع</string>
     <string name="enter_web">أدخل الويب</string>
     <string name="training">تدريب</string>
@@ -305,11 +303,11 @@ safi alribh alsa</string>
     <string name="preview_listing">عرض القائمة</string>
     <string name="submit_listing">إرسال القائمة</string>
     <string name="your_listing_score_is">نقاط الإدراج الخاصة بك هي :</string>
-    <string name="buyers_will_be_more_interested_in_seeing_your_listing">Buyers will be more interested in seeing your listing</string>
+    <string name="buyers_will_be_more_interested_in_seeing_your_listing">سيكون المشترون أكثر اهتمامًا برؤية قائمتك</string>
     <string name="next_step">الخطوة التالية</string>
     <string name="asking_price_">طلب السعر :</string>
     <string name="date_submit">تاريخ الإرسال : </string>
-    <string name="thank_you_for_submitting_there_notification_when_your_listing_was_active">Thank you for submitting.\nThere notification when your Listing \nwas active</string>
+    <string name="thank_you_for_submitting_there_notification_when_your_listing_was_active">شكرًا لك على الإرسال. \nسيصلك إشعار عندما تكون بطاقة التعريف الخاصة بك \n نشطة</string>
     <string name="pending">قيد الانتظار</string>
     <string name="view_profile">عرض الصفحة الشخصية</string>
     <string name="message">رسالة</string>
@@ -367,10 +365,10 @@ aistithmar</string>
     <string name="rejected_business">الأعمال المرفوضة</string>
 
     <!--    Faqs    -->
-    <string name="no_faq_s_found">No Faq\'a Found</string>
+    <string name="no_faq_s_found">لا يوجد أسئلة وأجوبة</string>
     <string name="help_center">مركز المساعدة</string>
 
-    <string name="asking_price_concated_k">طلب السعر $%sk</string>
+    <string name="asking_price_concated_k">طلب السعر $%s</string>
     <string name="asking_price_concated_na">طلب السعر N/A</string>
 
     <!--    BusinessDetails -->
@@ -387,7 +385,7 @@ aistithmar</string>
     <string name="notification_value_key">بيانات</string>
     <string name="get_ready_for_featured">الاستعداد للمميزة؟</string>
     <string name="promote_your_business">للاعلام عن اعمالك</string>
-    <string name="promote_50">Promote %s $</string>
+    <string name="promote_50">قم بترقية %s</string>
     <string name="no_favorites_found">لم يتم العثور على مفضلات</string>
     <string name="no_messages_found">لا يوجد رسائل</string>
 
@@ -399,7 +397,7 @@ aistithmar</string>
     <string name="show_previews_of_notifications_at_the_top_of_the_screen">إظهار معاينات الإشعارات في أعلى الشاشة</string>
     <string name="language">اللغة</string>
     <string name="can_run_from_home">يمكن أن تعمل من المنزل</string>
-    <string name="relocatable">Relocatable</string>
+    <string name="relocatable">قابلة للانتقال</string>
     <string name="investment_percentage_">نسبة الاستثمار : %s%%</string>
-    <string name="franchise_countries">الدول المتميزة</string>
+    <string name="franchise_countries">الدول</string>
 </resources>
