@@ -86,12 +86,7 @@ class BusinessSubscriptionFragment : BaseBindingFragment<FragmentBusinessSubscri
         subscriptionRecyclerAdapter = BusinessSubscriptionRecyclerAdapter(requireContext())
         binding?.recyclerView?.adapter = subscriptionRecyclerAdapter
         binding?.recyclerView?.setOnItemClickListener(this)
-        subscriptionRecyclerAdapter.submitItems(
-            arrayListOf(
-                Subscription(name ="Monthly",subscribe = "10,00\$ /month"),
-                Subscription(name ="Annual",subscribe = "8,99\$ /month")
-            )
-        )
+
     }
 
     override fun onItemClick(view: View?, position: Int, item: Any) {

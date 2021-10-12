@@ -53,6 +53,10 @@ abstract class RepoModule {
 
     @Singleton
     @Binds
+    abstract fun bindSearchedBusinessRepo(searchedBusinessRepoImp: SearchedBusinessRepoImp): SearchedBusinessRepo
+
+    @Singleton
+    @Binds
     abstract fun bindSubscriptionRepo(subscriptionRepoImp: SubscriptionRepoImp): SubscriptionRepo
 
 }

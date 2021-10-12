@@ -97,7 +97,11 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
 
     private fun setUpListeners() {
         binding?.btnConnect?.setOnClickListener {
-            InvestorSubscriptionActivity.start(this)
+            viewModel.businessToView.value?.id?.let { it1 ->
+                InvestorSubscriptionActivity.start(this,
+                    it1
+                )
+            }
         }
         binding?.btnBecomeInvestor?.setOnClickListener {
             InvestorRolesActivity.start(this)

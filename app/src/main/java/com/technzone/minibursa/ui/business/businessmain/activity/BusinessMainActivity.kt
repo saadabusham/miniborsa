@@ -1,10 +1,12 @@
 package com.technzone.minibursa.ui.business.businessmain.activity
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.PorterDuff
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.view.MenuItemCompat
 import androidx.navigation.findNavController
@@ -15,6 +17,7 @@ import com.technzone.minibursa.data.common.Constants
 import com.technzone.minibursa.databinding.ActivityBusinessMainBinding
 import com.technzone.minibursa.ui.base.activity.BaseBindingActivity
 import com.technzone.minibursa.ui.business.businessmain.viewmodels.BusinessMainViewModel
+import com.technzone.minibursa.ui.subscription.activity.BusinessSubscriptionActivity
 import com.technzone.minibursa.utils.extensions.gone
 import com.technzone.minibursa.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,8 +38,14 @@ class BusinessMainActivity : BaseBindingActivity<ActivityBusinessMainBinding>(),
         setupNavigation()
         handleNewNotifications()
         initPreferences()
+        BusinessSubscriptionActivity.start(this,0,subscriptionResultLauncher)
     }
-
+    var subscriptionResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+            }
+        }
     private fun setupNavigation() {
         val navController = findNavController(R.id.main_nav_host_fragment)
         navController.saveState()

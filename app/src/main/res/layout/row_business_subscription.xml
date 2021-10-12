@@ -59,7 +59,7 @@
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_10sdp"
-            android:text="@{item.planFor}"
+            android:text="@{@string/subscription_per(item.price,item.planFor)}"
             android:textColor="@color/black"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintEnd_toStartOf="@id/imgSelected"

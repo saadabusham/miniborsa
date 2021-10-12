@@ -400,4 +400,8 @@ aistithmar</string>
     <string name="relocatable">قابلة للانتقال</string>
     <string name="investment_percentage_">نسبة الاستثمار : %s%%</string>
     <string name="franchise_countries">الدول</string>
+    <string name="asking_freehold">(عقد حر)</string>
+    <string name="asking_leasehold">(عقد مستاجر)</string>
+
+    <string name="subscription_per">%s$ / %s</string>
 </resources>

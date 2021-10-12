@@ -404,4 +404,6 @@
     <string name="asking_freehold">Asking Freehold</string>
     <string name="asking_leasehold">Asking Leasehold</string>
     <string name="franchise_countries">Franchise Countries</string>
+
+    <string name="subscription_per">%s$ /%s</string>
 </resources>

@@ -6,6 +6,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
+import com.oppwa.mobile.connect.checkout.dialog.CheckoutActivity
+import com.oppwa.mobile.connect.checkout.meta.CheckoutSettings
+import com.oppwa.mobile.connect.exception.PaymentError
+import com.oppwa.mobile.connect.provider.Connect
+import com.oppwa.mobile.connect.provider.Transaction
+import com.oppwa.mobile.connect.provider.TransactionType
 import com.technzone.minibursa.R
 import com.technzone.minibursa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.minibursa.data.common.Constants
@@ -83,7 +89,16 @@ class BusinessSubscriptionActivity : BaseBindingActivity<FragmentBusinessSubscri
                     data: Int?
                 ) {
                     subscriptionId = data
-                    checkout()
+                    subscriptionRecyclerAdapter.getSelectedItem()?.let {
+                        if(it.selected){
+                            checkout()
+                        }else{
+                            setResult(RESULT_OK, Intent().apply {
+                                putExtra(Constants.BundleData.SUBSCRIPTION_ID, subscriptionId)
+                            })
+                            finish()
+                        }
+                    }
                 }
             })
     }
@@ -104,58 +119,58 @@ class BusinessSubscriptionActivity : BaseBindingActivity<FragmentBusinessSubscri
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: String?
                 ) {
-//                    showCheckoutUI(data ?: "")
+                    showCheckoutUI(data ?: "")
                 }
             }
         )
     }
-//
-//    fun showCheckoutUI(checkoutId: String) {
-//        val paymentBrands: MutableSet<String> =
-//            LinkedHashSet()
-//
-//        paymentBrands.add("VISA")
-//        paymentBrands.add("MASTER")
-////        paymentBrands.add("GOOGLEPAY")
-//
-//        val checkoutSettings =
-//            CheckoutSettings(checkoutId, paymentBrands, Connect.ProviderMode.TEST)
-//
-//        checkoutSettings.themeResId = R.style.checkoutTheme
-//
-//        checkoutSettings.shopperResultUrl = Constants.PAYMENT_URL + "://result"
-//
-//        val intent = checkoutSettings.createCheckoutActivityIntent(this)
-//
-//        startActivityForResult(intent, CheckoutActivity.REQUEST_CODE_CHECKOUT)
-//    }
-//
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        when (requestCode) {
-//            CheckoutActivity.RESULT_OK -> {
-//                /* transaction completed */
-//                val transaction: Transaction? =
-//                    data?.getParcelableExtra(CheckoutActivity.CHECKOUT_RESULT_TRANSACTION)
-//
-//                /* resource path if needed */
-//                val resourcePath =
-//                    data?.getStringExtra(CheckoutActivity.CHECKOUT_RESULT_RESOURCE_PATH)
-//                if (transaction?.transactionType === TransactionType.SYNC) {
-//                    viewModel.getPaymentStatus(transaction.paymentParams.checkoutId)
-//                        .observe(this, observePaymentStatus())
-//                } else {
-//                    /* wait for the asynchronous transaction callback in the onNewIntent() */
-//                }
-//            }
-//            CheckoutActivity.RESULT_CANCELED -> {
-//            }
-//            CheckoutActivity.RESULT_ERROR -> {         /* error occurred */
-//                val error: PaymentError? =
-//                    data?.getParcelableExtra(CheckoutActivity.CHECKOUT_RESULT_ERROR)
-//            }
-//        }
-//    }
+
+    fun showCheckoutUI(checkoutId: String) {
+        val paymentBrands: MutableSet<String> =
+            LinkedHashSet()
+
+        paymentBrands.add("VISA")
+        paymentBrands.add("MASTER")
+//        paymentBrands.add("GOOGLEPAY")
+
+        val checkoutSettings =
+            CheckoutSettings(checkoutId, paymentBrands, Connect.ProviderMode.TEST)
+
+        checkoutSettings.themeResId = R.style.checkoutTheme
+
+        checkoutSettings.shopperResultUrl = Constants.PAYMENT_URL + "://result"
+
+        val intent = checkoutSettings.createCheckoutActivityIntent(this)
+
+        startActivityForResult(intent, CheckoutActivity.REQUEST_CODE_CHECKOUT)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            CheckoutActivity.RESULT_OK -> {
+                /* transaction completed */
+                val transaction: Transaction? =
+                    data?.getParcelableExtra(CheckoutActivity.CHECKOUT_RESULT_TRANSACTION)
+
+                /* resource path if needed */
+                val resourcePath =
+                    data?.getStringExtra(CheckoutActivity.CHECKOUT_RESULT_RESOURCE_PATH)
+                if (transaction?.transactionType === TransactionType.SYNC) {
+                    viewModel.getPaymentStatus(transaction.paymentParams.checkoutId)
+                        .observe(this, observePaymentStatus())
+                } else {
+                    /* wait for the asynchronous transaction callback in the onNewIntent() */
+                }
+            }
+            CheckoutActivity.RESULT_CANCELED -> {
+            }
+            CheckoutActivity.RESULT_ERROR -> {         /* error occurred */
+                val error: PaymentError? =
+                    data?.getParcelableExtra(CheckoutActivity.CHECKOUT_RESULT_ERROR)
+            }
+        }
+    }
 
     private fun observePaymentStatus(): CustomObserverResponse<Any> {
         return CustomObserverResponse(

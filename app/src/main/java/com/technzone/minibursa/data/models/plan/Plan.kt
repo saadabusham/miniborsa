@@ -31,6 +31,9 @@ data class Plan(
 	@field:SerializedName("is_deleted")
 	val isDeleted: Boolean? = null,
 
+	@field:SerializedName("isFree")
+	val isFree: Boolean? = null,
+
 	@field:SerializedName("createdDate")
 	val createdDate: String? = null,
 
