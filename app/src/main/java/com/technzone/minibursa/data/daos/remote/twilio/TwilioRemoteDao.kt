@@ -21,7 +21,7 @@ interface TwilioRemoteDao {
     @GET("api/chat")
     suspend fun getChannelId(
         @Query("businessId") businessId: Int?,
-        @Query("InvestorId") InvestorId: Int?
+        @Query("investorId") InvestorId: Int?
     ): ResponseWrapper<String>
 
 }
