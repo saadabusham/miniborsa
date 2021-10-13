@@ -7,7 +7,8 @@ enum class ResponseSubErrorsCodeEnum(val value: Int) {
     InvalidModel(1),
     Unauthorized(401),
     Forbidden(403),
-    NotFound(404);
+    NotFound(404),
+    NOT_SUBSCRIBED(111);
 
     companion object {
         fun getResponseSubErrorsCodeEnumByValue(value: Int): ResponseSubErrorsCodeEnum {

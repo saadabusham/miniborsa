@@ -79,7 +79,8 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
     private fun handleSend() {
         viewModel.business?.id?.let { it1 ->
             if (viewModel.business?.subscription == null || viewModel.business?.subscription?.status == PaymentStatusEnums.WAITING_PAYMENT.value) {
-                BusinessSubscriptionActivity.start(this, it1, subscriptionResultLauncher)
+//                BusinessSubscriptionActivity.start(this, it1, subscriptionResultLauncher)
+                viewModel.sendRequestBusiness(it1).observe(this, sendRequestResultObserver())
             } else if (viewModel.business?.subscription?.status == PaymentStatusEnums.COMPLETED.value) {
                 viewModel.sendRequestBusiness(it1).observe(this, sendRequestResultObserver())
             }

@@ -127,7 +127,7 @@ class ChatActivity : BaseBindingActivity<ActivityChatBinding>(),
     }
 
     private fun twilioLogin() {
-        viewModel.getAccessToken().observe(this,accessTokenResultObserver())
+        viewModel.getAccessToken().observe(this, accessTokenResultObserver())
     }
 
     private fun accessTokenResultObserver(): CustomObserverResponse<String> {
@@ -302,24 +302,6 @@ class ChatActivity : BaseBindingActivity<ActivityChatBinding>(),
         )
     }
 
-    companion object {
-
-        fun start(
-            context: Context?,
-            channelId: String,
-            userId: String,
-            userName: String,
-            userPicture: String
-        ) {
-            val intent = Intent(context, ChatActivity::class.java)
-            intent.putExtra(Constants.Twilio.CHANNEL_ID, channelId)
-            intent.putExtra(Constants.Twilio.USER_ID, userId)
-            intent.putExtra(Constants.Twilio.USER_NAME, userName)
-            intent.putExtra(Constants.Twilio.USER_PICTURE, userPicture)
-            context?.startActivity(intent)
-        }
-    }
-
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as Message
         view?.let {
@@ -491,5 +473,20 @@ class ChatActivity : BaseBindingActivity<ActivityChatBinding>(),
 
     override fun onMemberUpdated(p0: Member?, p1: Member.UpdateReason?) {
 
+    }
+
+
+    companion object {
+
+        fun start(
+            context: Context?,
+            channelId: String,
+            userPicture: String? = ""
+        ) {
+            val intent = Intent(context, ChatActivity::class.java)
+            intent.putExtra(Constants.Twilio.CHANNEL_ID, channelId)
+            intent.putExtra(Constants.Twilio.USER_PICTURE, userPicture)
+            context?.startActivity(intent)
+        }
     }
 }

@@ -8,6 +8,7 @@ import com.technzone.minibursa.data.models.investor.investors.InvestorFilter
 import com.technzone.minibursa.data.repos.business.BusinessRepo
 import com.technzone.minibursa.data.repos.configuration.ConfigurationRepo
 import com.technzone.minibursa.data.repos.investors.InvestorsRepo
+import com.technzone.minibursa.data.repos.twilio.TwilioRepo
 import com.technzone.minibursa.ui.base.viewmodel.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -16,7 +17,8 @@ import javax.inject.Inject
 class InvestorsViewModel @Inject constructor(
     private val businessRepo: BusinessRepo,
     private val investorsRepo: InvestorsRepo,
-    private val configurationRepo: ConfigurationRepo
+    private val configurationRepo: ConfigurationRepo,
+    private val twilioRepo: TwilioRepo
 ) : BaseViewModel() {
 
     var investorFilter: InvestorFilter = InvestorFilter()
@@ -42,4 +44,15 @@ class InvestorsViewModel @Inject constructor(
         )
         emit(response)
     }
+
+
+    fun getChanelId(
+        investorId:Int
+    ) = liveData {
+        emit(APIResource.loading())
+        val response =
+            twilioRepo.getChannelId(investorId)
+        emit(response)
+    }
+
 }

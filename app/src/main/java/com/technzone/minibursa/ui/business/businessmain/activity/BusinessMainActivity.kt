@@ -38,14 +38,8 @@ class BusinessMainActivity : BaseBindingActivity<ActivityBusinessMainBinding>(),
         setupNavigation()
         handleNewNotifications()
         initPreferences()
-        BusinessSubscriptionActivity.start(this,0,subscriptionResultLauncher)
     }
-    var subscriptionResultLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data: Intent? = result.data
-            }
-        }
+
     private fun setupNavigation() {
         val navController = findNavController(R.id.main_nav_host_fragment)
         navController.saveState()

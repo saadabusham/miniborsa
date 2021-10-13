@@ -18,6 +18,7 @@ import com.technzone.minibursa.databinding.ActivityBusinessDetailsBinding
 import com.technzone.minibursa.ui.base.activity.BaseBindingActivity
 import com.technzone.minibursa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.minibursa.ui.base.bindingadapters.setOnItemClickListener
+import com.technzone.minibursa.ui.core.chat.ChatActivity
 import com.technzone.minibursa.ui.dataview.viewimage.ViewImageActivity
 import com.technzone.minibursa.ui.investor.businessdetails.adapters.BusinessDocumentAdapter
 import com.technzone.minibursa.ui.investor.businessdetails.adapters.BusinessExtraInfoAdapter
@@ -27,11 +28,11 @@ import com.technzone.minibursa.ui.investor.businessdetails.viewmodels.BusinessDe
 import com.technzone.minibursa.ui.investor.invistormain.viewmodels.FavoritesViewModel
 import com.technzone.minibursa.ui.investor.invistorroles.activity.InvestorRolesActivity
 import com.technzone.minibursa.ui.subscription.activity.InvestorSubscriptionActivity
-import com.technzone.minibursa.ui.subscription.activity.SubscriptionActivity
 import com.technzone.minibursa.utils.DeepLinkUtil.generateDeepLink
 import com.technzone.minibursa.utils.extensions.getSnapHelper
 import com.technzone.minibursa.utils.extensions.openUrl
 import com.technzone.minibursa.utils.extensions.round
+import com.technzone.minibursa.utils.extensions.showErrorAlert
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_business_details_toolbar.*
 
@@ -97,11 +98,7 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
 
     private fun setUpListeners() {
         binding?.btnConnect?.setOnClickListener {
-            viewModel.businessToView.value?.id?.let { it1 ->
-                InvestorSubscriptionActivity.start(this,
-                    it1
-                )
-            }
+            viewModel.getChanelId().observe(this, chanelIdObserver())
         }
         binding?.btnBecomeInvestor?.setOnClickListener {
             InvestorRolesActivity.start(this)
@@ -157,6 +154,36 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
         )
     }
 
+    private fun chanelIdObserver(): CustomObserverResponse<String> {
+        return CustomObserverResponse(
+            this,
+            object : CustomObserverResponse.APICallBack<String> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: String?
+                ) {
+                    data?.let {
+                        ChatActivity.start(this@BusinessDetailsActivity, channelId = it)
+                    }
+                }
+
+                override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
+                    if (subErrorCode == ResponseSubErrorsCodeEnum.NOT_SUBSCRIBED) {
+                        viewModel.businessToView.value?.id?.let { it1 ->
+                            InvestorSubscriptionActivity.start(
+                                this@BusinessDetailsActivity,
+                                it1
+                            )
+                        }
+                    } else {
+                        showErrorAlert(getString(R.string.app_name), message)
+                    }
+                }
+            }, showError = false
+        )
+    }
+
     private fun updateFavorite() {
         binding?.toolbar?.favorite = viewModel.businessToView.value?.isFavorite
     }
@@ -201,7 +228,10 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
         viewModel.businessToView.value?.let {
             businessFieldAdapter.clear()
             businessFieldAdapter.submitItem(
-                GeneralLookup(name = getString(R.string.established_year), desc = it.establishedYear)
+                GeneralLookup(
+                    name = getString(R.string.established_year),
+                    desc = it.establishedYear
+                )
             )
             if (!it.categories.isNullOrEmpty())
                 businessFieldAdapter.submitItem(

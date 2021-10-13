@@ -30,4 +30,15 @@ class TwilioRepoImp @Inject constructor(
         }
     }
 
+    override suspend fun getChannelId(
+        businessId: Int?,
+        InvestorId: Int?
+    ): APIResource<ResponseWrapper<String>> {
+        return try {
+            responseHandle.handleSuccess(twilioRemoteDao.getChannelId(businessId, InvestorId))
+        } catch (e: Exception) {
+            responseHandle.handleException(e)
+        }
+    }
+
 }

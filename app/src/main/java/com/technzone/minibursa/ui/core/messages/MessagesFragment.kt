@@ -278,8 +278,8 @@ class MessagesFragment : BaseBindingFragment<FragmentMessagesBinding>(),
                 requireContext(),
                 item.sid,
                 item.attributes.jsonObject?.optString("userId", "") ?: "",
-                item.attributes.jsonObject?.optString("fullName", "") ?: "",
-                item.attributes.jsonObject?.optString("picture", "") ?: ""
+//                item.attributes.jsonObject?.optString("fullName", "") ?: "",
+//                item.attributes.jsonObject?.optString("picture", "") ?: ""
             )
     }
 

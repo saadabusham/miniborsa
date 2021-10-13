@@ -1,6 +1,5 @@
 package com.technzone.minibursa.ui.business.investors.fragments
 
-import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.technzone.minibursa.R
 import com.technzone.minibursa.data.api.response.ResponseSubErrorsCodeEnum
@@ -8,15 +7,14 @@ import com.technzone.minibursa.data.common.CustomObserverResponse
 import com.technzone.minibursa.data.models.investor.ExtraInfo
 import com.technzone.minibursa.data.models.investor.investors.Investor
 import com.technzone.minibursa.databinding.FragmentInvestorDetailsBinding
-import com.technzone.minibursa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.minibursa.ui.base.fragment.BaseBindingFragment
 import com.technzone.minibursa.ui.business.investors.viewmodels.InvestorsViewModel
+import com.technzone.minibursa.ui.core.chat.ChatActivity
 import com.technzone.minibursa.ui.investor.businessdetails.adapters.BusinessExtraInfoAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class InvestorDetailsFragment : BaseBindingFragment<FragmentInvestorDetailsBinding>(),
-    BaseBindingRecyclerViewAdapter.OnItemClickListener {
+class InvestorDetailsFragment : BaseBindingFragment<FragmentInvestorDetailsBinding>() {
 
     private val viewModel: InvestorsViewModel by activityViewModels()
 
@@ -40,12 +38,17 @@ class InvestorDetailsFragment : BaseBindingFragment<FragmentInvestorDetailsBindi
         binding?.imgBack?.setOnClickListener {
             requireActivity().onBackPressed()
         }
+        binding?.btnMessage?.setOnClickListener {
+            viewModel.investorToView?.value?.id?.let { it1 ->
+                viewModel.getChanelId(it1).observe(this, chanelIdObserver())
+            }
+        }
     }
 
     private fun initData() {
         if (viewModel.investorId != null) {
             loadData()
-        } else if(viewModel.investorToView?.value != null) {
+        } else if (viewModel.investorToView?.value != null) {
             setData()
         }
     }
@@ -56,7 +59,9 @@ class InvestorDetailsFragment : BaseBindingFragment<FragmentInvestorDetailsBindi
     }
 
     private fun loadData() {
-        viewModel.investorId?.let { viewModel.getInvestorById(it).observe(this, investorDetailsResultObserver()) }
+        viewModel.investorId?.let {
+            viewModel.getInvestorById(it).observe(this, investorDetailsResultObserver())
+        }
     }
 
     private fun setUpRvCountries() {
@@ -98,9 +103,21 @@ class InvestorDetailsFragment : BaseBindingFragment<FragmentInvestorDetailsBindi
             })
     }
 
-    override fun onItemClick(view: View?, position: Int, item: Any) {
-
-
+    private fun chanelIdObserver(): CustomObserverResponse<String> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<String> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: String?
+                ) {
+                    data?.let {
+                        ChatActivity.start(requireContext(), channelId = it)
+                    }
+                }
+            }
+        )
     }
 
 }

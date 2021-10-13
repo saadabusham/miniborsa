@@ -22,6 +22,8 @@ import com.technzone.minibursa.ui.base.fragment.BaseBindingFragment
 import com.technzone.minibursa.ui.business.investors.adapters.InvestorsRecyclerAdapter
 import com.technzone.minibursa.ui.business.investors.dialogs.InvestorFilterBottomSheet
 import com.technzone.minibursa.ui.business.investors.viewmodels.InvestorsViewModel
+import com.technzone.minibursa.ui.core.chat.ChatActivity
+import com.technzone.minibursa.ui.subscription.activity.InvestorSubscriptionActivity
 import com.technzone.minibursa.utils.extensions.gone
 import com.technzone.minibursa.utils.extensions.setupClearButtonWithAction
 import com.technzone.minibursa.utils.extensions.visible
@@ -209,6 +211,23 @@ class InvestorsFragment : BaseBindingFragment<FragmentInvestorsBinding>(),
         })
     }
 
+    private fun chanelIdObserver(): CustomObserverResponse<String> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<String> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: String?
+                ) {
+                    data?.let {
+                        ChatActivity.start(requireContext(), channelId = it)
+                    }
+                }
+            }
+        )
+    }
+
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as Investor
         viewModel.investorToView?.value = item
@@ -216,7 +235,7 @@ class InvestorsFragment : BaseBindingFragment<FragmentInvestorsBinding>(),
         if (view?.id == R.id.btnViewProfile) {
             navigationController.navigate(R.id.action_investorsFragment_to_investorDetailsFragment)
         } else if (view?.id == R.id.btnMessage) {
-
+            item.id?.let { viewModel.getChanelId(it).observe(this, chanelIdObserver()) }
         }
 
     }
