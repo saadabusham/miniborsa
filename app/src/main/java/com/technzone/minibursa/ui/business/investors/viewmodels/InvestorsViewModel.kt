@@ -47,11 +47,11 @@ class InvestorsViewModel @Inject constructor(
 
 
     fun getChanelId(
-        investorId:Int
+        investorId:String
     ) = liveData {
         emit(APIResource.loading())
         val response =
-            twilioRepo.getChannelId(investorId)
+            twilioRepo.getInvestorChannelId(investorId)
         emit(response)
     }
 

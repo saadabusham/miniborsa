@@ -1,10 +1,7 @@
 package com.technzone.minibursa.data.daos.remote.twilio
 
 import com.technzone.minibursa.data.api.response.ResponseWrapper
-import retrofit2.http.Field
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface TwilioRemoteDao {
 
@@ -13,15 +10,21 @@ interface TwilioRemoteDao {
         @Path("pushCredentials") pushCredentials: String
     ): ResponseWrapper<String>
 
-    @GET("api/twilio/voice/token/{pushCredentials}")
+    @POST("api/twilio/chat/token")
+    @FormUrlEncoded
     suspend fun getTwilioToken(
-        @Path("pushCredentials") pushCredentials: String
+        @Field("pushCredentials") pushCredentials: String,
+        @Field("businessId") businessId: Int?
     ): ResponseWrapper<String>
 
-    @GET("api/chat")
-    suspend fun getChannelId(
-        @Query("businessId") businessId: Int?,
-        @Query("investorId") InvestorId: Int?
+    @POST("api/ChatChannels/business/{id}")
+    suspend fun getBusinessChannelId(
+        @Path("id") businessId: Int?
+    ): ResponseWrapper<String>
+
+    @POST("api/ChatChannels/{id}")
+    suspend fun getInvestorChannelId(
+        @Path("id") InvestorId: String?
     ): ResponseWrapper<String>
 
 }

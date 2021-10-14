@@ -39,7 +39,7 @@ class InvestorDetailsFragment : BaseBindingFragment<FragmentInvestorDetailsBindi
             requireActivity().onBackPressed()
         }
         binding?.btnMessage?.setOnClickListener {
-            viewModel.investorToView?.value?.id?.let { it1 ->
+            viewModel.investorToView?.value?.userId?.let { it1 ->
                 viewModel.getChanelId(it1).observe(this, chanelIdObserver())
             }
         }

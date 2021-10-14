@@ -6,6 +6,7 @@ import androidx.lifecycle.liveData
 import com.technzone.flyus_owner.data.models.twilio.chat.ChatChannel
 import com.technzone.minibursa.R
 import com.technzone.minibursa.data.api.response.APIResource
+import com.technzone.minibursa.data.common.Constants
 import com.technzone.minibursa.data.enums.UserEnums
 import com.technzone.minibursa.data.enums.UserRoleEnums
 import com.technzone.minibursa.data.repos.twilio.TwilioRepo
@@ -32,9 +33,9 @@ class MessagesViewModel @Inject constructor(
     lateinit var token: String
     val tokenResult: MutableLiveData<Result<String>> = MutableLiveData()
 
-    fun getAccessToken() = liveData {
+    fun getAccessToken(businessId: Int? = null) = liveData {
         emit(APIResource.loading())
-        val response = clientRepo.getAccessToken()
+        val response = clientRepo.getTwilioToken(Constants.Twilio.CHAT_PUSH_CREDENTIALS, businessId)
         emit(response)
     }
 

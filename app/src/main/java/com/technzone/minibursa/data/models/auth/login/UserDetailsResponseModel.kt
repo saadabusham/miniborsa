@@ -47,5 +47,8 @@ data class UserDetailsResponseModel(
 	val refreshToken: RefreshToken? = null,
 
 	@field:SerializedName("username")
-	val username: String? = null
+	val username: String? = null,
+
+	@field:SerializedName("companyId")
+	val companyId: Int? = null
 )

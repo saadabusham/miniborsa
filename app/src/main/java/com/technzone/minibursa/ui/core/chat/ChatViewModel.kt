@@ -6,8 +6,9 @@ import androidx.lifecycle.liveData
 import com.technzone.minibursa.R
 import com.technzone.minibursa.data.api.response.APIResource
 import com.technzone.minibursa.data.api.response.Result
-import com.technzone.minibursa.data.repos.user.UserRepo
+import com.technzone.minibursa.data.common.Constants
 import com.technzone.minibursa.data.repos.twilio.TwilioRepo
+import com.technzone.minibursa.data.repos.user.UserRepo
 import com.technzone.minibursa.ui.base.viewmodel.BaseViewModel
 import com.twilio.chat.CallbackListener
 import com.twilio.chat.ErrorInfo
@@ -23,10 +24,12 @@ class ChatViewModel @Inject constructor(
     private val userRepo: UserRepo,
     @ApplicationContext context: Context
 ) : BaseViewModel() {
-    val toolbarTitle :MutableLiveData<String> = MutableLiveData()
+    val toolbarTitle: MutableLiveData<String> = MutableLiveData()
+
     init {
         toolbarTitle.postValue(context.resources.getString(R.string.app_name))
     }
+
     var last_loaded_message_index: Long = 0
     lateinit var token: String
     val tokenResult: MutableLiveData<Result<String>> = MutableLiveData()
@@ -34,7 +37,7 @@ class ChatViewModel @Inject constructor(
 
     fun getAccessToken() = liveData {
         emit(APIResource.loading())
-        val response = clientRepo.getAccessToken()
+        val response = clientRepo.getTwilioToken(Constants.Twilio.CHAT_PUSH_CREDENTIALS, null)
         emit(response)
     }
 
@@ -112,7 +115,7 @@ class ChatViewModel @Inject constructor(
     }
 
     fun getMyId(): String {
-        return userRepo.getUser()?.id?:""
+        return userRepo.getUser()?.id ?: ""
     }
 
 //

@@ -182,13 +182,13 @@ class ChatActivity : BaseBindingActivity<ActivityChatBinding>(),
         channelManager.setChannelListener(this)
         channelManager.defaultChannelName = channelHash
         channelManager.defaultChannelUniqueName = channelHash
-        channelManager.populateChannels(LoadChannelListener {
+        channelManager.populateChannels {
             this@ChatActivity.channelManager
                 .getChannel(
                     this@ChatActivity.channelHash,
                     statusListener
                 )
-        })
+        }
     }
 
     private val statusListener = object : StatusListener() {

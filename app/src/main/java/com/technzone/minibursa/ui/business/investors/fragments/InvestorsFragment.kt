@@ -235,7 +235,7 @@ class InvestorsFragment : BaseBindingFragment<FragmentInvestorsBinding>(),
         if (view?.id == R.id.btnViewProfile) {
             navigationController.navigate(R.id.action_investorsFragment_to_investorDetailsFragment)
         } else if (view?.id == R.id.btnMessage) {
-            item.id?.let { viewModel.getChanelId(it).observe(this, chanelIdObserver()) }
+            item.userId?.let { viewModel.getChanelId(it).observe(this, chanelIdObserver()) }
         }
 
     }

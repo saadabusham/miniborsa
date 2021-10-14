@@ -2,6 +2,9 @@ package com.technzone.minibursa.data.repos.twilio
 
 import com.technzone.minibursa.data.api.response.APIResource
 import com.technzone.minibursa.data.api.response.ResponseWrapper
+import retrofit2.http.Field
+import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 
@@ -11,10 +14,15 @@ interface TwilioRepo {
     ): APIResource<ResponseWrapper<String>>
 
     suspend fun getTwilioToken(
+        pushCredentials: String,
+        businessId: Int?
     ): APIResource<ResponseWrapper<String>>
 
-    suspend fun getChannelId(
-        businessId: Int? = null,
-        InvestorId: Int? = null
+    suspend fun getBusinessChannelId(
+        businessId: Int?
+    ): APIResource<ResponseWrapper<String>>
+
+    suspend fun getInvestorChannelId(
+        InvestorId: String?
     ): APIResource<ResponseWrapper<String>>
 }

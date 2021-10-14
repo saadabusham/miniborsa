@@ -40,7 +40,7 @@ class BusinessDetailsViewModel @Inject constructor(
     ) = liveData {
         emit(APIResource.loading())
         val response =
-            twilioRepo.getChannelId(businessToView.value?.id ?: 0)
+            twilioRepo.getBusinessChannelId(businessToView.value?.id ?: 0)
         emit(response)
     }
 
