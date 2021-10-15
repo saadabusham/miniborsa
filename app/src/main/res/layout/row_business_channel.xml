@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.technzone.minibursa.R" />
+        <variable
+            name="item"
+            type="com.technzone.minibursa.data.models.business.business.OwnerBusiness" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/_65sdp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvImage"
+            android:layout_width="@dimen/_44sdp"
+            android:layout_height="@dimen/_44sdp"
+            android:layout_marginStart="@dimen/layouts_margin_start"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/div"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="@dimen/_22sdp">
+
+            <com.technzone.minibursa.ui.base.views.AppImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:id="@+id/imgPhoto"
+                tools:src="@drawable/ic_default_image_place_holder"
+                ivImageErrorPlaceholder="@{R.drawable.ic_default_image_place_holder}"
+                ivImagePlaceholder="@{R.drawable.ic_default_image_place_holder}"
+                ivImageUrl="@{item.icon}" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.technzone.minibursa.ui.base.views.AppTextView
+            android:id="@+id/tvName"
+            style="@style/textview_normal_bold"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:text="@{item.title == null || item.title.empty ? @string/empty_data : item.title}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/div"
+            app:layout_constraintBottom_toBottomOf="@id/cvImage"
+            app:layout_constraintTop_toTopOf="@id/cvImage"
+            android:drawableEnd="@drawable/ic_arrow_next"
+            android:drawablePadding="@dimen/_5sdp"
+            tools:text="The Slebew Residence" />
+
+        <View
+            android:id="@+id/div"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/color_not_valid"
+            android:layout_marginStart="@dimen/_15sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cvImage"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

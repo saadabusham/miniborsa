@@ -4,11 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.technzone.minibursa.utils.extensions.StringExtensionKt"/>
-        <import type="com.technzone.minibursa.R"/>
+
+        <import type="com.technzone.minibursa.utils.extensions.StringExtensionKt" />
+
+        <import type="com.technzone.minibursa.R" />
+
         <variable
             name="item"
             type="com.technzone.minibursa.data.models.investor.Business" />
+
         <variable
             name="favorite"
             type="Boolean" />
@@ -17,9 +21,9 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="@dimen/_250sdp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginBottom="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_5sdp"
         app:cardCornerRadius="@dimen/_5sdp"
         app:cardElevation="@dimen/_3sdp">
 
@@ -29,16 +33,16 @@
 
             <com.technzone.minibursa.ui.base.views.AppImageView
                 android:id="@+id/imgPhoto"
+                ivImageErrorPlaceholder="@{R.drawable.ic_default_image_place_holder}"
+                ivImagePlaceholder="@{R.drawable.ic_default_image_place_holder}"
+                ivImageUrl="@{item.icon}"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_100sdp"
                 android:scaleType="centerCrop"
-                ivImageUrl="@{item.icon}"
-                ivImagePlaceholder="@{R.drawable.ic_default_image_place_holder}"
-                ivImageErrorPlaceholder="@{R.drawable.ic_default_image_place_holder}"
-                tools:src="@drawable/ic_default_image_place_holder"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_default_image_place_holder" />
 
             <com.technzone.minibursa.ui.base.views.AppImageView
                 android:id="@+id/imgFavorite"
@@ -46,14 +50,14 @@
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_5sdp"
-                android:scaleType="centerCrop"
-                tools:src="@drawable/ic_favorite"
+                android:background="?selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true"
+                android:scaleType="centerCrop"
                 android:src="@{favorite ? @drawable/ic_favorite : @drawable/ic_unfavorite}"
-                android:background="?selectableItemBackgroundBorderless"
                 app:layout_constraintEnd_toEndOf="@id/imgPhoto"
-                app:layout_constraintTop_toTopOf="@id/imgPhoto" />
+                app:layout_constraintTop_toTopOf="@id/imgPhoto"
+                tools:src="@drawable/ic_favorite" />
 
             <com.technzone.minibursa.ui.base.views.AppButton
                 android:id="@+id/tvPrice"
@@ -63,74 +67,75 @@
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:backgroundTint="@color/light_orange_color"
-                android:padding="@dimen/_5sdp"
                 android:gravity="center"
-                tools:text="Asking Price $100k"
+                android:padding="@dimen/_5sdp"
+                android:stateListAnimator="@null"
                 android:text="@{item.askingPriceNA ? @string/asking_price_concated_na : @string/asking_price_concated_k(StringExtensionKt.round(item.askingPrice,2))}"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_7ssp"
                 app:cornerRadius="@dimen/_2sdp"
-                android:stateListAnimator="@null"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imgPhoto" />
+                app:layout_constraintTop_toBottomOf="@id/imgPhoto"
+                tools:text="Asking Price $100k" />
 
             <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvType"
                 style="@style/textview_normal_semibold"
+                setTextByBusinessType="@{item.businessType}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_7sdp"
                 android:background="@drawable/ic_price_bg"
                 android:padding="@dimen/_5sdp"
-                tools:text="Share For Sale"
-                setTextByBusinessType="@{item.businessType}"
                 android:textColor="@color/button_color"
                 android:textSize="@dimen/_7ssp"
+                app:layout_constraintBottom_toBottomOf="@id/tvPrice"
                 app:layout_constraintStart_toEndOf="@id/tvPrice"
                 app:layout_constraintTop_toTopOf="@id/tvPrice"
-                app:layout_constraintBottom_toBottomOf="@id/tvPrice"/>
-
+                tools:text="Share For Sale" />
 
             <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvName"
                 style="@style/textview_normal_bold"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
-                tools:text="The Slebew Residence"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:maxLines="1"
+                android:singleLine="true"
                 android:text="@{item.title}"
                 android:textColor="@color/black"
-                android:singleLine="true"
-                android:maxLines="1"
                 android:textSize="@dimen/_13ssp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/tvPrice"
-                app:layout_constraintTop_toBottomOf="@id/tvPrice" />
+                app:layout_constraintTop_toBottomOf="@id/tvPrice"
+                tools:text="The Slebew Residence" />
 
             <com.technzone.minibursa.ui.base.views.AppImageView
                 android:id="@+id/imgCatIcon"
+                ivImageUrl="@{item.categories.get(0).icon}"
                 android:layout_width="@dimen/_12sdp"
                 android:layout_height="@dimen/_12sdp"
                 android:src="@drawable/ic_business_type"
-                ivImageUrl="@{item.categories.get(0).icon}"
-                app:layout_constraintStart_toStartOf="@id/tvPrice"
                 app:layout_constraintBottom_toBottomOf="@id/tvBusinessType"
-                app:layout_constraintTop_toTopOf="@id/tvBusinessType"/>
+                app:layout_constraintStart_toStartOf="@id/tvPrice"
+                app:layout_constraintTop_toTopOf="@id/tvBusinessType" />
 
             <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvBusinessType"
                 style="@style/textview_normal_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                android:layout_marginStart="@dimen/_5sdp"
-                tools:text="Healthtech"
                 android:text="@{item.categories.get(0).name}"
                 android:textColor="@color/black_alpha"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imgCatIcon"
-                app:layout_constraintTop_toBottomOf="@id/tvName" />
+                app:layout_constraintTop_toBottomOf="@id/tvName"
+                tools:text="Healthtech" />
 
             <com.technzone.minibursa.ui.base.views.AppTextView
                 android:id="@+id/tvBusinessLocation"
@@ -141,16 +146,16 @@
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:drawableStart="@drawable/ic_business_pin"
                 android:drawablePadding="@dimen/_5sdp"
-                tools:text="Amman, Jordan"
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:text="@{@string/address_string(item.counrty,item.city)}"
                 android:textColor="@color/black_alpha"
                 android:textSize="@dimen/_11ssp"
-                android:singleLine="true"
-                android:ellipsize="end"
                 app:layout_constraintBottom_toBottomOf="@id/tvBusinessType"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tvBusinessType"
                 app:layout_constraintTop_toTopOf="@id/tvBusinessType"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                tools:text="Amman, Jordan" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>

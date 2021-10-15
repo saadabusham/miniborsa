@@ -8,13 +8,16 @@ import com.technzone.minibursa.common.MyApplication
 import com.technzone.minibursa.common.interfaces.LoginCallBack
 import com.technzone.minibursa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.minibursa.data.api.response.Result
+import com.technzone.minibursa.data.common.Constants
 import com.technzone.minibursa.data.common.CustomObserverResponse
+import com.technzone.minibursa.data.models.business.business.OwnerBusiness
 import com.technzone.minibursa.databinding.FragmentMessagesBinding
 import com.technzone.minibursa.ui.auth.AuthActivity
 import com.technzone.minibursa.ui.base.activity.BaseBindingActivity
 import com.technzone.minibursa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.minibursa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.minibursa.ui.base.fragment.BaseBindingFragment
+import com.technzone.minibursa.ui.business.businessmain.activity.BusinessMainActivity
 import com.technzone.minibursa.ui.core.chat.ChatActivity
 import com.technzone.minibursa.ui.core.messages.adapters.ChannelsRecyclerAdapter
 import com.technzone.minibursa.ui.core.messages.viewmodels.MessagesViewModel
@@ -40,6 +43,7 @@ class MessagesFragment : BaseBindingFragment<FragmentMessagesBinding>(),
     private val loading: MutableLiveData<Boolean> = MutableLiveData(false)
     private val channelsMutableLiveData: MutableLiveData<Result<MutableList<Channel>>> =
         MutableLiveData()
+    private var business: OwnerBusiness? = null
 
     override fun getLayoutId(): Int = R.layout.fragment_messages
 
@@ -48,8 +52,20 @@ class MessagesFragment : BaseBindingFragment<FragmentMessagesBinding>(),
         init()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        handleNavigationView(false)
+    }
+
     override fun onViewVisible() {
         super.onViewVisible()
+        arguments?.getSerializable(Constants.BundleData.BUSINESS)?.let {
+            it as OwnerBusiness?
+            business = it
+            binding?.imgBack?.visible()
+            binding?.tvTitle?.text = it.title
+        }
+        handleNavigationView(true)
         setUpBinding()
         setUpListeners()
         observeLoading()
@@ -87,7 +103,26 @@ class MessagesFragment : BaseBindingFragment<FragmentMessagesBinding>(),
         binding?.layoutNotAuthorized?.btnBecomeInvestor?.setOnClickListener {
             InvestorRolesActivity.start(requireContext())
         }
+        binding?.imgBack?.setOnClickListener {
+            navigationController.navigateUp()
+        }
     }
+
+    private fun handleNavigationView(hide: Boolean) {
+        arguments?.getBoolean(Constants.BundleData.SHOW_BACK)?.let {
+            if (it) {
+                when (val activity = requireActivity()) {
+                    is BusinessMainActivity -> {
+                        if (hide) activity.hideBottomSheet() else activity.showBottomSheet()
+                    }
+                    is InvestorMainActivity -> {
+                        if (hide) activity.hideBottomSheet() else activity.showBottomSheet()
+                    }
+                }
+            }
+        }
+    }
+
 
     private fun hideShowLoginLayouts(show: Boolean) {
         if (!show) {
@@ -107,7 +142,8 @@ class MessagesFragment : BaseBindingFragment<FragmentMessagesBinding>(),
 
     private fun getChannels() {
         chatClientManager = MyApplication.instance.chatClientManager
-        viewModel.getAccessToken().observe(this, accessTokenResultObserver())
+        viewModel.getAccessToken(businessId = business?.id)
+            .observe(this, accessTokenResultObserver())
     }
 
     private fun accessTokenResultObserver(): CustomObserverResponse<String> {
@@ -201,7 +237,7 @@ class MessagesFragment : BaseBindingFragment<FragmentMessagesBinding>(),
                     loading.postValue(false)
                     hideShowNoData()
                 }
-            }, withProgress = false,showError = false
+            }, withProgress = false, showError = false
         )
     }
 
