@@ -54,21 +54,21 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>() {
     private fun setUpListeners() {
         binding?.layoutAddBusiness?.btnBusinessForSale?.setOnClickListener {
             CreateBusinessActivity.start(
-                requireContext(),
+                requireActivity(),
                 BusinessTypeEnums.BUSINESS_FOR_SALE.value,
                 hasBusiness = true
             )
         }
         binding?.layoutAddBusiness?.btnBusinessForShare?.setOnClickListener {
             CreateBusinessActivity.start(
-                requireContext(),
+                requireActivity(),
                 BusinessTypeEnums.BUSINESS_FOR_SHARE.value,
                 hasBusiness = true
             )
         }
         binding?.layoutAddBusiness?.btnBusinessFranchise?.setOnClickListener {
             CreateBusinessActivity.start(
-                requireContext(),
+                requireActivity(),
                 BusinessTypeEnums.BUSINESS_FRANCHISE.value,
                 hasBusiness = true
             )
@@ -85,7 +85,7 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>() {
         SelectBusinessTypeDialog(requireActivity(), object : SelectBusinessTypeDialog.CallBack {
             override fun callBack(businessTypeEnums: BusinessTypeEnums) {
                 CreateBusinessActivity.start(
-                    context = requireContext(),
+                    context = requireActivity(),
                     businessType = businessTypeEnums.value,
                     hasBusiness = true
                 )
@@ -109,7 +109,7 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>() {
                 } else {
                     if (item.status == BusinessStatusEnums.DRAFT.value)
                         CreateBusinessActivity.start(
-                            requireContext(),
+                            requireActivity(),
                             businessType = -1,
                             business = item,
                             hasBusiness = true,
@@ -198,7 +198,7 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>() {
             override fun onItemClick(view: View?, position: Int, item: Any) {
                 item as OwnerBusiness
                 CreateBusinessActivity.start(
-                    requireContext(),
+                    requireActivity(),
                     businessType = -1,
                     business = item,
                     hasBusiness = true,

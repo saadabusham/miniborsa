@@ -333,7 +333,7 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
                     data: OwnerBusiness?
                 ) {
                     data?.let {
-                        BusinessDraftActivity.start(requireContext())
+                        BusinessDraftActivity.start(requireActivity())
                     } ?: also {
                         showSelectTypeDialog()
                     }
@@ -351,7 +351,7 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
         SelectBusinessTypeDialog(requireActivity(), object : SelectBusinessTypeDialog.CallBack {
             override fun callBack(businessTypeEnums: BusinessTypeEnums) {
                 CreateBusinessActivity.start(
-                    context = requireContext(),
+                    context = requireActivity(),
                     businessType = businessTypeEnums.value,
                     hasBusiness = false,
                     companyDraft = false

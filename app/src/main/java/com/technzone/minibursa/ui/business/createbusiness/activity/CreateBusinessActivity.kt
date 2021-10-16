@@ -1,6 +1,6 @@
 package com.technzone.minibursa.ui.business.createbusiness.activity
 
-import android.content.Context
+import android.app.Activity
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -24,7 +24,6 @@ import com.technzone.minibursa.utils.extensions.gone
 import com.technzone.minibursa.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
-import kotlinx.coroutines.delay
 import org.jetbrains.anko.textColor
 
 @AndroidEntryPoint
@@ -225,14 +224,15 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
 
     companion object {
         fun start(
-            context: Context?,
+            context: Activity?,
             businessType: Int,
             business: OwnerBusiness? = null,
             hasBusiness: Boolean = true,
             companyDraft: Boolean = false,
             businessDraft: Boolean = false,
             updateBusiness: Boolean = false,
-            clearTask: Boolean = false
+            clearTask: Boolean = false,
+            forResult: Boolean = false
         ) {
             val intent = Intent(context, CreateBusinessActivity::class.java).apply {
                 putExtra(Constants.BundleData.BUSINESS_TYPE, businessType)
@@ -244,7 +244,11 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
                 if (clearTask)
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             }
-            context?.startActivity(intent)
+            if (forResult) {
+                context?.startActivityForResult(intent, 0)
+            } else {
+                context?.startActivity(intent)
+            }
         }
     }
 

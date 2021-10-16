@@ -1,5 +1,6 @@
 package com.technzone.minibursa.ui.business.businessdraft.activity
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -157,11 +158,17 @@ class BusinessDraftActivity : BaseBindingActivity<ActivityBusinessDraftBinding>(
 
     companion object {
         fun start(
-            context: Context?
+            context: Activity?,
+            forResult: Boolean = false
         ) {
             val intent = Intent(context, BusinessDraftActivity::class.java)
 //            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-            context?.startActivity(intent)
+
+            if (forResult) {
+                context?.startActivityForResult(intent, 0)
+            } else {
+                context?.startActivity(intent)
+            }
         }
     }
 

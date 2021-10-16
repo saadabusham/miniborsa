@@ -111,7 +111,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
         }
         binding?.layoutSwitchBusiness?.layoutCompleteListing?.btnCompleteListing?.setOnClickListener {
             binding?.layoutSwitchBusiness?.layoutCompleteListing?.root?.gone()
-            BusinessDraftActivity.start(requireContext())
+            BusinessDraftActivity.start(requireActivity())
         }
         binding?.layoutSwitchBusiness?.layoutCompleteListing?.imgClose?.setOnClickListener {
             binding?.layoutSwitchBusiness?.layoutCompleteListing?.root?.gone()
@@ -136,7 +136,7 @@ class InvestorSearchFragment : BaseBindingFragment<FragmentInvestorSearchBinding
         SelectBusinessTypeDialog(requireActivity(), object : SelectBusinessTypeDialog.CallBack {
             override fun callBack(businessTypeEnums: BusinessTypeEnums) {
                 CreateBusinessActivity.start(
-                    context = requireContext(),
+                    context = requireActivity(),
                     businessType = businessTypeEnums.value,
                     hasBusiness = false,
                     companyDraft = false
