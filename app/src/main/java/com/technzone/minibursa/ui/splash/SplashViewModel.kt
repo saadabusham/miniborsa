@@ -28,6 +28,15 @@ class SplashViewModel @Inject constructor(
         emit(response)
     }
 
+    fun getMyProfile() = liveData {
+        emit(APIResource.loading())
+        val response = userRepo.refreshToken(userRepo.getUser()?.refreshToken?.refreshToken?:"")
+        emit(response)
+    }
+
+    fun storeUser(user: UserDetailsResponseModel) {
+        userRepo.setUser(user)
+    }
 //    fun updateAccessToken() {
 //        updateTokenResult.postValue(Result.Loading)
 //        compositeDisposable + userRepo.updateAccessToken(getAccessToken())

@@ -24,6 +24,7 @@ import com.technzone.minibursa.utils.extensions.gone
 import com.technzone.minibursa.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_toolbar.*
+import kotlinx.coroutines.delay
 import org.jetbrains.anko.textColor
 
 @AndroidEntryPoint
@@ -230,6 +231,7 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
             hasBusiness: Boolean = true,
             companyDraft: Boolean = false,
             businessDraft: Boolean = false,
+            updateBusiness: Boolean = false,
             clearTask: Boolean = false
         ) {
             val intent = Intent(context, CreateBusinessActivity::class.java).apply {
@@ -238,6 +240,7 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
                 putExtra(Constants.BundleData.HAS_BUSINESS, hasBusiness)
                 putExtra(Constants.BundleData.COMPANY_DRAFT, companyDraft)
                 putExtra(Constants.BundleData.BUSINESS_DRAFT, businessDraft)
+                putExtra(Constants.BundleData.UPDATE_BUSINESS, updateBusiness)
                 if (clearTask)
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             }

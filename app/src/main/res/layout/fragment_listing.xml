@@ -35,7 +35,7 @@
             android:clickable="true"
             android:focusable="true"
             android:padding="@dimen/_7sdp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:src="@drawable/ic_add_business"
             app:layout_constraintBottom_toBottomOf="@id/tvTitle"
             app:layout_constraintEnd_toEndOf="parent"

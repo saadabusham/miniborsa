@@ -1,7 +1,13 @@
 package com.technzone.minibursa.ui.business.createbusiness.viewmodels
 
+import android.content.Context
+import android.graphics.drawable.Drawable
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.technzone.minibursa.data.api.response.APIResource
 import com.technzone.minibursa.data.common.Constants.DEFAULT_MAX_VALUE
 import com.technzone.minibursa.data.common.Constants.DEFAULT_MIN_VALUE
@@ -18,16 +24,21 @@ import com.technzone.minibursa.data.pref.user.UserPref
 import com.technzone.minibursa.data.repos.business.BusinessRepo
 import com.technzone.minibursa.data.repos.configuration.ConfigurationRepo
 import com.technzone.minibursa.data.repos.user.UserRepo
+import com.technzone.minibursa.ui.base.bindingadapters.getLoadingUrl
 import com.technzone.minibursa.ui.base.viewmodel.BaseViewModel
 import com.technzone.minibursa.utils.extensions.createFileMultipart
 import com.technzone.minibursa.utils.extensions.createImageMultipart
 import com.technzone.minibursa.utils.extensions.getCurrentYear
 import com.technzone.minibursa.utils.pref.SharedPreferencesUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.launch
+import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
 class CreateBusinessViewModel @Inject constructor(
+    @ApplicationContext private val context: Context,
     private val userRepo: UserRepo,
     private val userPref: UserPref,
     private val sharedPreferencesUtil: SharedPreferencesUtil,
@@ -61,6 +72,7 @@ class CreateBusinessViewModel @Inject constructor(
     val leaseHoldAskingPriceOnRequest: MutableLiveData<Boolean> = MutableLiveData(false)
     val netProfitOnRequest: MutableLiveData<Boolean> = MutableLiveData(false)
     val turnoverOnRequest: MutableLiveData<Boolean> = MutableLiveData(false)
+    val propertyStatusNa: MutableLiveData<Boolean> = MutableLiveData(false)
 
     val freeHoldAskingPrice: MutableLiveData<Double> = MutableLiveData(DEFAULT_MIN_VALUE.toDouble())
     val leaseHoldAskingPrice: MutableLiveData<Double> =
@@ -102,6 +114,7 @@ class CreateBusinessViewModel @Inject constructor(
             askingPriceBoth = leaseHoldAskingPrice.value,
             askingPriceNABoth = leaseHoldAskingPriceOnRequest.value,
             investmentPercentage = percentage.value,
+            propertyStatusNa = propertyStatusNa.value,
             propertyStatus = propertyStatus.value?.value,
             annualTurnover = turnOver.value,
             annualTurnoverNA = turnoverOnRequest.value,
@@ -139,6 +152,7 @@ class CreateBusinessViewModel @Inject constructor(
             leaseHoldAskingPrice.postValue(it.askingPriceBoth)
             leaseHoldAskingPriceOnRequest.postValue(it.askingPriceNABoth)
             percentage.postValue(it.investmentPercentage)
+            propertyStatusNa.postValue(it.propertyStatusNa)
             propertyStatus.value = (PropertyStatusEnums.getStatusByValue(
                 it.propertyStatus
             ))
@@ -307,4 +321,94 @@ class CreateBusinessViewModel @Inject constructor(
         emit(response)
     }
 
+    fun reUploadBusinessImageAndFiles() = liveData {
+        emit(APIResource.loading())
+        images.withIndex().forEach {
+            loadImagesAndUpload(it.value.name ?: "", it.index == 0)
+        }
+        files.withIndex().forEach {
+            loadFileAndUpload(it.value.name ?: "")
+        }
+        emit(APIResource.success(null, messages = null, statusCode = 0))
+    }
+
+    private suspend fun loadImagesAndUpload(image: String, mainImage: Boolean) {
+        Glide.with(context)
+            .asFile()
+            .load(getLoadingUrl(image ?: "").toString())
+            .into(object : CustomTarget<File>() {
+                override fun onLoadCleared(placeholder: Drawable?) {
+
+                }
+
+                override fun onResourceReady(
+                    resource: File,
+                    transition: Transition<in File>?
+                ) {
+                    viewModelScope.launch {
+                        if (mainImage) {
+                            reUploadIconImage(resource.path)
+                        } else
+                            reUploadImage(resource.path)
+                    }
+                }
+
+            })
+    }
+
+    private suspend fun loadFileAndUpload(file: String) {
+        Glide.with(context)
+            .asFile()
+            .load(getLoadingUrl(file ?: "").toString())
+            .into(object : CustomTarget<File>() {
+                override fun onLoadCleared(placeholder: Drawable?) {
+
+                }
+
+                override fun onResourceReady(
+                    resource: File,
+                    transition: Transition<in File>?
+                ) {
+                    viewModelScope.launch {
+                        reUploadFiles(resource.path)
+                    }
+                }
+            })
+    }
+
+    suspend fun reUploadIconImage(file: String) = viewModelScope.launch {
+        if (isHasBusiness())
+            businessRepo.addBusinessIcon(
+                businessId,
+                file.createImageMultipart("Icon")
+            )
+        else businessRepo.addCompanyIcon(
+            businessId,
+            file.createImageMultipart("Icon")
+        )
+    }
+
+    suspend fun reUploadImage(file: String) = viewModelScope.launch {
+        if (isHasBusiness())
+            businessRepo.addBusinessRequestImage(
+                businessId,
+                arrayListOf(file.createImageMultipart("Files"))
+            )
+        else businessRepo.addCompanyRequestImage(
+            businessId,
+            arrayListOf(file.createImageMultipart("Files"))
+        )
+    }
+
+    suspend fun reUploadFiles(file: String) = viewModelScope.launch {
+        if (isHasBusiness())
+            businessRepo.addBusinessRequestFiles(
+                businessId,
+                arrayListOf(file.createFileMultipart("Files"))
+            )
+        else businessRepo.addCompanyRequestFiles(
+            businessId,
+            arrayListOf(file.createFileMultipart("Files"))
+        )
+    }
 }

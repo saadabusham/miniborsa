@@ -6,7 +6,8 @@
     <data>
 
         <import type="com.technzone.minibursa.data.enums.PropertyStatusEnums" />
-        <import type="com.technzone.minibursa.utils.extensions.StringExtensionKt"/>
+
+        <import type="com.technzone.minibursa.utils.extensions.StringExtensionKt" />
 
         <import type="android.view.View" />
 
@@ -60,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@null"
-                android:checked="true"
+                android:checked="@{viewModel.propertyStatusNa}"
                 android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
                 android:paddingStart="@dimen/_15sdp"
                 android:paddingTop="0dp"
@@ -77,6 +78,7 @@
                 android:layout_marginStart="@dimen/layouts_margin_start"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/layouts_margin_end"
+                app:cardBackgroundColor="@{viewModel.propertyStatusNa ? @color/color_not_valid : @color/black}"
                 app:cardCornerRadius="@dimen/_7sdp"
                 app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -89,7 +91,7 @@
                     android:id="@+id/tab_layout"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_35sdp"
-                    android:background="@color/white"
+                    android:background="@{viewModel.propertyStatusNa ? @color/color_not_valid : @color/white}"
                     app:tabBackground="@drawable/tab_color_selector"
                     app:tabTextAppearance="@style/tablayout_item" />
 
@@ -99,7 +101,6 @@
                 android:id="@+id/freehold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="@{viewModel.propertyStatus == PropertyStatusEnums.FREEHOLD || viewModel.propertyStatus == PropertyStatusEnums.BOTH ? View.VISIBLE : View.GONE}"
                 app:layout_constraintTop_toBottomOf="@id/cvTabs"
                 tools:visibility="visible">
 
@@ -229,7 +230,7 @@
                 android:id="@+id/leaseHold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="@{viewModel.propertyStatus == PropertyStatusEnums.LEASEHOLD || viewModel.propertyStatus == PropertyStatusEnums.BOTH ? View.VISIBLE : View.GONE}"
+                android:visibility="@{viewModel.propertyStatus == PropertyStatusEnums.BOTH ? View.VISIBLE : View.GONE}"
                 app:layout_constraintTop_toBottomOf="@id/freehold"
                 tools:visibility="visible">
 

@@ -10,6 +10,7 @@ import com.technzone.minibursa.data.common.CustomObserverResponse
 import com.technzone.minibursa.data.enums.PropertyStatusEnums
 import com.technzone.minibursa.databinding.FragmentCreateBusinessStep2ForSaleBinding
 import com.technzone.minibursa.ui.base.fragment.BaseFormBindingFragment
+import com.technzone.minibursa.utils.TabLayoutUtils.enableTabs
 import com.technzone.minibursa.utils.extensions.calculatePercentage
 import com.technzone.minibursa.utils.extensions.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +30,10 @@ class CreateBusinessStep2ForSaleFragment :
     }
 
     private fun setUpListeners() {
+        binding?.checkboxPropertyStatus?.setOnCheckedChangeListener { buttonView, isChecked ->
+            viewModel.propertyStatusNa.postValue(isChecked)
+            binding?.tabLayout?.enableTabs(!isChecked)
+        }
         binding?.seekBarFreeHoldAskingPrice?.setOnSeekBarChangeListener(object : SeekbarCallback {
             override fun onFromUserChange(progress: Int) {
                 viewModel.freeHoldAskingPrice.postValue(progress.toDouble())
@@ -38,7 +43,7 @@ class CreateBusinessStep2ForSaleFragment :
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.freeHoldAskingPrice.postValue(
                     binding?.edFreeHoldAskingPrice?.text.toString()
-                        .toDoubleOrNull()?:viewModel.defaultMinValue.toDouble()
+                        .toDoubleOrNull() ?: viewModel.defaultMinValue.toDouble()
                 )
                 binding?.root.hideKeyboard(requireActivity())
                 true
@@ -53,7 +58,7 @@ class CreateBusinessStep2ForSaleFragment :
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.leaseHoldAskingPrice.postValue(
                     binding?.edLeaseHoldAskingPrice?.text.toString()
-                        .toDoubleOrNull()?:viewModel.defaultMinValue.toDouble()
+                        .toDoubleOrNull() ?: viewModel.defaultMinValue.toDouble()
                 )
                 binding?.root.hideKeyboard(requireActivity())
                 true
@@ -69,7 +74,7 @@ class CreateBusinessStep2ForSaleFragment :
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.netProfit.postValue(
                     binding?.edNetProfit?.text.toString()
-                        .toDoubleOrNull()?:viewModel.defaultMinValue.toDouble()
+                        .toDoubleOrNull() ?: viewModel.defaultMinValue.toDouble()
                 )
                 binding?.root.hideKeyboard(requireActivity())
                 true
@@ -84,7 +89,7 @@ class CreateBusinessStep2ForSaleFragment :
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 viewModel.turnOver.postValue(
                     binding?.edTurnover?.text.toString()
-                        .toDoubleOrNull()?:viewModel.defaultMinValue.toDouble()
+                        .toDoubleOrNull() ?: viewModel.defaultMinValue.toDouble()
                 )
                 binding?.root.hideKeyboard(requireActivity())
                 true

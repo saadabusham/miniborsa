@@ -49,6 +49,9 @@ data class OwnerBusiness(
 	@field:SerializedName("propertyStatus")
 	val propertyStatus: Int? = null,
 
+	@field:SerializedName("propertyStatusNa")
+	val propertyStatusNa: Boolean? = null,
+
 	@field:SerializedName("status")
 	val status: Int? = null,
 

@@ -184,7 +184,6 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>() {
             binding?.layoutListing?.constraintRoot?.visible()
             binding?.layoutListing?.tvPending?.visible()
             binding?.layoutListing?.rvPending?.visible()
-            binding?.imgAddBusiness?.visible()
         } else {
             binding?.layoutListing?.tvPending?.gone()
             binding?.layoutListing?.rvPending?.gone()
@@ -203,7 +202,8 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>() {
                     businessType = -1,
                     business = item,
                     hasBusiness = true,
-                    businessDraft = false
+                    businessDraft = true,
+                    updateBusiness = false
                 )
             }
         })
@@ -236,7 +236,6 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>() {
             binding?.layoutListing?.constraintRoot?.visible()
             binding?.layoutListing?.tvListing?.visible()
             binding?.layoutListing?.rvListing?.visible()
-            binding?.imgAddBusiness?.visible()
         } else {
             binding?.layoutListing?.tvListing?.gone()
             binding?.layoutListing?.rvListing?.gone()

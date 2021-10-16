@@ -79,7 +79,7 @@ class ProfileViewModel @Inject constructor(
 
     fun getMyProfile() = liveData {
         emit(APIResource.loading())
-        val response = userRepo.getProfile()
+        val response = userRepo.refreshToken(userRepo.getUser()?.refreshToken?.refreshToken?:"")
         emit(response)
     }
 

@@ -48,6 +48,10 @@ data class BusinessRequest(
     @field:SerializedName("propertyStatus")
     val propertyStatus: Int? = null,
 
+
+    @field:SerializedName("propertyStatusNa")
+    val propertyStatusNa: Boolean? = null,
+
     @field:SerializedName("rate")
     val rate: Int? = null,
 

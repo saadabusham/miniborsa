@@ -26,7 +26,7 @@ data class UserDetailsResponseModel(
 	val picture: String? = null,
 
 	@field:SerializedName("token")
-	val token: String? = null,
+	var token: String? = null,
 
 	@field:SerializedName("firstName")
 	val firstName: String? = null,
@@ -44,7 +44,7 @@ data class UserDetailsResponseModel(
 	val email: String? = null,
 
 	@field:SerializedName("refreshToken")
-	val refreshToken: RefreshToken? = null,
+	var refreshToken: RefreshToken? = null,
 
 	@field:SerializedName("username")
 	val username: String? = null,

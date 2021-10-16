@@ -15,6 +15,7 @@ import com.technzone.minibursa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.minibursa.data.common.Constants
 import com.technzone.minibursa.data.common.CustomObserverResponse
 import com.technzone.minibursa.data.enums.UserRoleEnums
+import com.technzone.minibursa.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.minibursa.data.models.configuration.ConfigurationWrapperResponse
 import com.technzone.minibursa.databinding.ActivitySplashBinding
 import com.technzone.minibursa.ui.auth.AuthActivity
@@ -64,12 +65,31 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
             })
     }
 
+    private fun profileObserver(): CustomObserverResponse<UserDetailsResponseModel> {
+        return CustomObserverResponse(
+            this,
+            object : CustomObserverResponse.APICallBack<UserDetailsResponseModel> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: UserDetailsResponseModel?
+                ) {
+                    data?.let { it1 -> viewModel.storeUser(it1) }
+                    openMainActivity()
+                }
+
+                override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
+                    AuthActivity.start(this@SplashActivity)
+                }
+            }, showError = false
+        )
+    }
+
     private fun goToNextPage() {
         if (!viewModel.isUserLoggedIn()) {
             AuthActivity.start(this)
         } else
-            openMainActivity()
-
+            viewModel.getMyProfile().observe(this@SplashActivity, profileObserver())
     }
 
     private fun openMainActivity() {
