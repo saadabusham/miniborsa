@@ -55,9 +55,12 @@ class AuthActivity : BaseBindingActivity<ActivityAuthBinding>() {
             context: Activity?,
             isActivityResult: Boolean
         ) {
+//            val intent = Intent(context, AuthActivity::class.java)
+//            intent.putExtra(Constants.BundleData.IS_ACTIVITY_RESULT, isActivityResult)
+//            context?.startActivityForResult(intent, REQUEST_CODE)
             val intent = Intent(context, AuthActivity::class.java)
-            intent.putExtra(Constants.BundleData.IS_ACTIVITY_RESULT, isActivityResult)
-            context?.startActivityForResult(intent, REQUEST_CODE)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            context?.startActivity(intent)
         }
     }
 }
