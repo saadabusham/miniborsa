@@ -10,7 +10,7 @@ object Constants {
     const val PAYMENT_URL: String = "com.minibursa.eaig.payments"
     const val DEVICE_TYPE = 1
     const val APPLICATION_TYPE = 1
-    const val MIN_PERCENTAGE_TO_SEND = 88
+    const val MIN_PERCENTAGE_TO_SEND = 90
 
     const val PAGE_SIZE = 10
     const val MAX_PRICE_LENGTH = 9

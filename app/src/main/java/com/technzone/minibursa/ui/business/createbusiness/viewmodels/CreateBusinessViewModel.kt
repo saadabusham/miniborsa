@@ -39,9 +39,6 @@ import javax.inject.Inject
 @HiltViewModel
 class CreateBusinessViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val userRepo: UserRepo,
-    private val userPref: UserPref,
-    private val sharedPreferencesUtil: SharedPreferencesUtil,
     private val configurationRepo: ConfigurationRepo,
     private val businessRepo: BusinessRepo
 ) : BaseViewModel() {
@@ -60,7 +57,7 @@ class CreateBusinessViewModel @Inject constructor(
     val country: MutableLiveData<String> = MutableLiveData("")
     val city: MutableLiveData<String> = MutableLiveData("")
     val address: MutableLiveData<Address> = MutableLiveData()
-    val date: MutableLiveData<String> = MutableLiveData(getCurrentYear())
+    val date: MutableLiveData<String> = MutableLiveData("")
     val isNegotiable: MutableLiveData<Boolean> = MutableLiveData()
     val propertyStatus: MutableLiveData<PropertyStatusEnums> =
         MutableLiveData(PropertyStatusEnums.FREEHOLD)
@@ -74,11 +71,11 @@ class CreateBusinessViewModel @Inject constructor(
     val turnoverOnRequest: MutableLiveData<Boolean> = MutableLiveData(false)
     val propertyStatusNa: MutableLiveData<Boolean> = MutableLiveData(false)
 
-    val freeHoldAskingPrice: MutableLiveData<Double> = MutableLiveData(DEFAULT_MIN_VALUE.toDouble())
+    val freeHoldAskingPrice: MutableLiveData<Double> = MutableLiveData()
     val leaseHoldAskingPrice: MutableLiveData<Double> =
-        MutableLiveData(DEFAULT_MIN_VALUE.toDouble())
-    val netProfit: MutableLiveData<Double> = MutableLiveData(DEFAULT_MIN_VALUE.toDouble())
-    val turnOver: MutableLiveData<Double> = MutableLiveData(DEFAULT_MIN_VALUE.toDouble())
+        MutableLiveData()
+    val netProfit: MutableLiveData<Double> = MutableLiveData()
+    val turnOver: MutableLiveData<Double> = MutableLiveData()
     val sharePercentage: MutableLiveData<Int> = MutableLiveData(100)
     val selectedItemsCount: MutableLiveData<Int> = MutableLiveData(0)
 
@@ -114,8 +111,7 @@ class CreateBusinessViewModel @Inject constructor(
             askingPriceBoth = leaseHoldAskingPrice.value,
             askingPriceNABoth = leaseHoldAskingPriceOnRequest.value,
             investmentPercentage = percentage.value,
-            propertyStatusNa = propertyStatusNa.value,
-            propertyStatus = propertyStatus.value?.value,
+            propertyStatus = if(propertyStatusNa.value == true) PropertyStatusEnums.NA.value else propertyStatus.value?.value,
             annualTurnover = turnOver.value,
             annualTurnoverNA = turnoverOnRequest.value,
             listLocation = listLocation.value,
@@ -156,6 +152,7 @@ class CreateBusinessViewModel @Inject constructor(
             propertyStatus.value = (PropertyStatusEnums.getStatusByValue(
                 it.propertyStatus
             ))
+            propertyStatusNa.postValue(propertyStatus.value == PropertyStatusEnums.NA)
             turnOver.postValue(it.annualTurnover)
             turnoverOnRequest.postValue(it.annualTurnoverNA)
             listLocation.postValue(it.listLocation)

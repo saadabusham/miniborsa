@@ -33,6 +33,12 @@ class CreateBusinessStep2ForSaleFragment :
         binding?.checkboxPropertyStatus?.setOnCheckedChangeListener { buttonView, isChecked ->
             viewModel.propertyStatusNa.postValue(isChecked)
             binding?.tabLayout?.enableTabs(!isChecked)
+            viewModel.freeholdAskingPriceOnRequest.postValue(true)
+            viewModel.leaseHoldAskingPriceOnRequest.postValue(true)
+            viewModel.turnoverOnRequest.postValue(true)
+            viewModel.netProfitOnRequest.postValue(true)
+            viewModel.propertyStatus.value = (PropertyStatusEnums.FREEHOLD)
+            updateTap()
         }
         binding?.seekBarFreeHoldAskingPrice?.setOnSeekBarChangeListener(object : SeekbarCallback {
             override fun onFromUserChange(progress: Int) {
@@ -130,6 +136,11 @@ class CreateBusinessStep2ForSaleFragment :
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
 
+        updateTap()
+
+    }
+
+    private fun updateTap(){
         when (viewModel.propertyStatus.value) {
             PropertyStatusEnums.FREEHOLD -> {
                 binding?.tabLayout?.selectTab(binding?.tabLayout?.getTabAt(0))
@@ -141,7 +152,6 @@ class CreateBusinessStep2ForSaleFragment :
                 binding?.tabLayout?.selectTab(binding?.tabLayout?.getTabAt(2))
             }
         }
-
     }
 
     override fun validateToMoveToNext(callback: (Boolean) -> Unit) {

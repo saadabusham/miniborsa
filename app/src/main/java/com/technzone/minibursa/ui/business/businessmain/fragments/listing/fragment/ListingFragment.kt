@@ -202,8 +202,8 @@ class ListingFragment : BaseBindingFragment<FragmentListingBinding>() {
                     businessType = -1,
                     business = item,
                     hasBusiness = true,
-                    businessDraft = true,
-                    updateBusiness = false
+                    businessDraft = false,
+                    updateBusiness = true
                 )
             }
         })

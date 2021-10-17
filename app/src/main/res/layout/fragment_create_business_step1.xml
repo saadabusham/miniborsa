@@ -305,7 +305,7 @@
                 android:background="?selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="@{viewModel.date}"
+                android:text="@{viewModel.date.empty ? @string/select : viewModel.date}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintEnd_toEndOf="@id/endGuide"
