@@ -13,6 +13,7 @@ import com.technzone.minibursa.utils.DateTimeUtil.TWILIO_FULL_DATE_TIME_FORMATTI
 import com.technzone.minibursa.utils.extensions.getFullDate
 import com.technzone.minibursa.utils.extensions.getNotificationDateForamteed
 import com.technzone.minibursa.utils.extensions.toDate
+import com.technzone.minibursa.utils.extensions.toMillieSecconds
 import com.twilio.chat.CallbackListener
 import com.twilio.chat.Channel
 import com.twilio.chat.ErrorInfo
@@ -109,7 +110,7 @@ class ChannelsRecyclerAdapter constructor(
         }
 
         fun getDateFormated(date: String): String {
-            return date.getFullDate(TWILIO_FULL_DATE_TIME_FORMATTING).toDate()?.time?.getNotificationDateForamteed()
+            return date.toMillieSecconds(TWILIO_FULL_DATE_TIME_FORMATTING).getNotificationDateForamteed()
                 ?: ""
         }
 
