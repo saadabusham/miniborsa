@@ -276,7 +276,7 @@ class ChatActivity : BaseBindingActivity<ActivityChatBinding>(),
         messageRecycleAdapter =
             MessageRecyclerAdapter(
                 this,
-                viewModel.getMyId(),
+                if(intent.getIntExtra(Constants.BundleData.BUSINESS_ID,-1) == -1) viewModel.getMyId() else intent.getIntExtra(Constants.BundleData.BUSINESS_ID,-1).toString(),
                 intent.getStringExtra(Constants.Twilio.USER_PICTURE) ?: "",
                 object : Paginate.Callbacks {
                     override fun onLoadMore() {
@@ -481,11 +481,13 @@ class ChatActivity : BaseBindingActivity<ActivityChatBinding>(),
         fun start(
             context: Context?,
             channelId: String,
-            userPicture: String? = ""
+            userPicture: String? = "",
+            businessId: Int? = null
         ) {
             val intent = Intent(context, ChatActivity::class.java)
             intent.putExtra(Constants.Twilio.CHANNEL_ID, channelId)
             intent.putExtra(Constants.Twilio.USER_PICTURE, userPicture)
+            intent.putExtra(Constants.BundleData.BUSINESS_ID, businessId)
             context?.startActivity(intent)
         }
     }

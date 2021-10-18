@@ -10,6 +10,7 @@ import kotlin.math.absoluteValue
 object DateTimeUtil {
 
     const val FULL_DATE_TIME_FORMATTING = "dd-MM-yyyy HH:mm:ss"
+    const val TWILIO_FULL_DATE_TIME_FORMATTING = "yyyy-MM-dd'T'HH:mm:ss"
     const val FULL_DATE_AT_TIME_FORMATTING = "dd MMM yyyy | HH:mm"
     const val FULL_DATE_TIME_With_dash_FORMATTING = "dd - MM - yyyy | HH:mm"
     const val MESSAGE_DATE_FORMATE = "MMM/dd HH:mm"

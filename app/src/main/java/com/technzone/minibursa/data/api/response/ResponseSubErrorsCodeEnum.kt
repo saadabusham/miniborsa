@@ -8,7 +8,7 @@ enum class ResponseSubErrorsCodeEnum(val value: Int) {
     Unauthorized(401),
     Forbidden(403),
     NotFound(404),
-    NOT_SUBSCRIBED(111);
+    NOT_SUBSCRIBED(113);
 
     companion object {
         fun getResponseSubErrorsCodeEnumByValue(value: Int): ResponseSubErrorsCodeEnum {
@@ -19,6 +19,7 @@ enum class ResponseSubErrorsCodeEnum(val value: Int) {
                 401 -> Unauthorized
                 403 -> Forbidden
                 404 -> NotFound
+                113 -> NOT_SUBSCRIBED
                 else -> GENERAL_FAILED
             }
         }

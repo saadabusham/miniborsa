@@ -311,9 +311,10 @@ class MessagesFragment : BaseBindingFragment<FragmentMessagesBinding>(),
     override fun onItemClick(view: View?, position: Int, item: Any) {
         if (item is Channel)
             ChatActivity.start(
-                requireContext(),
-                item.sid,
-                item.attributes.jsonObject?.optString("userId", "") ?: "",
+                context = requireContext(),
+                channelId = item.sid,
+                userPicture = item.attributes.jsonObject?.optString("picture", "") ?: "",
+                businessId = if(business !=null) business?.businessId else null
 //                item.attributes.jsonObject?.optString("fullName", "") ?: "",
 //                item.attributes.jsonObject?.optString("picture", "") ?: ""
             )

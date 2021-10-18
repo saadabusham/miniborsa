@@ -8,6 +8,7 @@ import androidx.lifecycle.liveData
 import com.technzone.minibursa.common.MyApplication
 import com.technzone.minibursa.data.api.response.APIResource
 import com.technzone.minibursa.data.api.response.ResponseSubErrorsCodeEnum
+import com.technzone.minibursa.data.api.response.ResponseWrapper
 import com.technzone.minibursa.data.api.response.Result
 import com.technzone.minibursa.utils.twilio.chat.client.ChatClientManager
 import com.technzone.minibursa.utils.twilio.chat.client.CustomChannelComparator
@@ -15,6 +16,7 @@ import com.technzone.minibursa.utils.twilio.chat.listeners.TaskCompletionListene
 import com.twilio.chat.*
 import com.twilio.chat.Channel.ChannelType
 import com.twilio.chat.ChatClient.ConnectionState
+import kotlinx.coroutines.delay
 import java.util.*
 
 class ChannelManager private constructor() : ChatClientListener {
@@ -141,11 +143,12 @@ class ChannelManager private constructor() : ChatClientListener {
         chatClientManager.setClientListener(this@ChannelManager)
         channelsObject?.subscribedChannels
         if (channelsObject?.subscribedChannels != null && channelsObject?.subscribedChannels?.size ?: 0 > 0) {
-            kotlinx.coroutines.delay(2000)
+            delay(2000)
             channelsObject?.subscribedChannels?.sortedByDescending {
                 it.lastMessageDate
             }
-            APIResource.success(channelsObject?.subscribedChannels, "", 0)
+            val list : MutableList<Channel>? = channelsObject?.subscribedChannels?.toMutableList()
+            emit(APIResource.success(ResponseWrapper(data = list, message = "", code = 0,success = true)))
         }
         else
             emit(

@@ -163,25 +163,34 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: String?
                 ) {
-                    data?.let {
-                        ChatActivity.start(this@BusinessDetailsActivity, channelId = it)
+                    if (subErrorCode == ResponseSubErrorsCodeEnum.NOT_SUBSCRIBED) {
+                        subscribe()
+                    } else {
+                        data?.let {
+                            ChatActivity.start(this@BusinessDetailsActivity, channelId = it)
+                        }
                     }
                 }
 
+
                 override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
                     if (subErrorCode == ResponseSubErrorsCodeEnum.NOT_SUBSCRIBED) {
-                        viewModel.businessToView.value?.id?.let { it1 ->
-                            InvestorSubscriptionActivity.start(
-                                this@BusinessDetailsActivity,
-                                it1
-                            )
-                        }
+                        subscribe()
                     } else {
                         showErrorAlert(getString(R.string.app_name), message)
                     }
                 }
             }, showError = false
         )
+    }
+
+    private fun subscribe() {
+        viewModel.businessToView.value?.id?.let { it1 ->
+            InvestorSubscriptionActivity.start(
+                this@BusinessDetailsActivity,
+                it1
+            )
+        }
     }
 
     private fun updateFavorite() {

@@ -9,6 +9,7 @@ import com.technzone.minibursa.databinding.RowChannelBinding
 import com.technzone.minibursa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.minibursa.ui.base.adapters.BaseViewHolder
 import com.technzone.minibursa.ui.base.bindingadapters.loadImage
+import com.technzone.minibursa.utils.DateTimeUtil.TWILIO_FULL_DATE_TIME_FORMATTING
 import com.technzone.minibursa.utils.extensions.getFullDate
 import com.technzone.minibursa.utils.extensions.getNotificationDateForamteed
 import com.technzone.minibursa.utils.extensions.toDate
@@ -108,7 +109,7 @@ class ChannelsRecyclerAdapter constructor(
         }
 
         fun getDateFormated(date: String): String {
-            return date?.getFullDate().toDate()?.time?.getNotificationDateForamteed()
+            return date.getFullDate(TWILIO_FULL_DATE_TIME_FORMATTING).toDate()?.time?.getNotificationDateForamteed()
                 ?: ""
         }
 
