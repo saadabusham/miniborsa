@@ -23,7 +23,7 @@
             android:id="@+id/cvProfileImage"
             android:layout_width="@dimen/_32sdp"
             android:layout_height="@dimen/_32sdp"
-            app:cardCornerRadius="@dimen/_5sdp"
+            app:cardCornerRadius="@dimen/_16sdp"
             app:cardElevation="0dp">
 
             <ImageView
@@ -65,7 +65,7 @@
                 android:drawablePadding="@dimen/_5sdp"
                 android:text="@{DataTimeExtensionsKt.getMessageDate(message.dateCreatedAsDate)}"
                 android:textColor="@color/incoming_date_color"
-                android:textSize="@dimen/_10ssp"
+                android:textSize="@dimen/_7ssp"
                 tools:text="3.23 AM" />
 
         </LinearLayout>

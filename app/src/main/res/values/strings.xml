@@ -243,6 +243,7 @@
     <string name="steps_number">STEP %s OF 4</string>
     <string name="messages">Messages</string>
     <string name="chat_with_invistor">Chat with investor</string>
+    <string name="image">Image</string>
     <string name="investor">Investor</string>
     <string name="type_a_message">Type a message … </string>
     <string name="_700000000">xxxxxxxxx</string>

@@ -85,8 +85,9 @@
                     android:clickable="false"
                     android:focusable="false"
                     android:minHeight="@dimen/_40sdp"
+                    app:cardElevation="0dp"
                     app:cardBackgroundColor="@color/input_background_color"
-                    app:cardCornerRadius="@dimen/_13sdp">
+                    app:cardCornerRadius="@dimen/_5sdp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -140,8 +141,8 @@
                     android:layout_marginStart="@dimen/_10sdp"
                     android:clickable="true"
                     android:focusable="true"
-                    app:cardBackgroundColor="@color/outgoing_bubble_color"
-                    app:cardCornerRadius="@dimen/_11sdp"
+                    app:cardBackgroundColor="@color/send_color"
+                    app:cardCornerRadius="@dimen/_5sdp"
                     app:cardElevation="0dp">
 
                     <ImageView

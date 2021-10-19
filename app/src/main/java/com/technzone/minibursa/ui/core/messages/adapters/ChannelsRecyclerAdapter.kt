@@ -5,14 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.technzone.minibursa.R
+import com.technzone.minibursa.data.common.Constants
 import com.technzone.minibursa.databinding.RowChannelBinding
 import com.technzone.minibursa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.minibursa.ui.base.adapters.BaseViewHolder
 import com.technzone.minibursa.ui.base.bindingadapters.loadImage
 import com.technzone.minibursa.utils.DateTimeUtil.TWILIO_FULL_DATE_TIME_FORMATTING
-import com.technzone.minibursa.utils.extensions.getFullDate
 import com.technzone.minibursa.utils.extensions.getNotificationDateForamteed
-import com.technzone.minibursa.utils.extensions.toDate
 import com.technzone.minibursa.utils.extensions.toMillieSecconds
 import com.twilio.chat.CallbackListener
 import com.twilio.chat.Channel
@@ -21,7 +20,8 @@ import com.twilio.chat.Message
 import org.json.JSONException
 
 class ChannelsRecyclerAdapter constructor(
-    context: Context
+    context: Context,
+    private val business: Boolean
 ) : BaseBindingRecyclerViewAdapter<Channel>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -44,12 +44,12 @@ class ChannelsRecyclerAdapter constructor(
         override fun bind(item: Channel) {
             try {
                 binding.tvName.text = item.attributes.jsonObject?.optString(
-                    "fullName",
+                    if (business) Constants.Twilio.TWILIO_USERNAME2 else Constants.Twilio.TWILIO_USERNAME,
                     context.resources.getString(R.string.investor)
                 )
                 binding.ivProfileImage.loadImage(
                     item.attributes.jsonObject?.optString(
-                        "picture",
+                        if (business) Constants.Twilio.TWILIO_PICTURE2 else Constants.Twilio.TWILIO_PICTURE,
                         ""
                     ), R.drawable.ic_profile_place_holder
                 )
@@ -104,13 +104,18 @@ class ChannelsRecyclerAdapter constructor(
         private fun getLastMessage(message: Message?): String {
             return if (message?.type == Message.Type.TEXT && !message.messageBody.isNullOrEmpty())
                 message.messageBody
-            else context.resources.getString(
+            else if (message?.type == Message.Type.MEDIA) {
+                context.resources.getString(
+                    R.string.image
+                )
+            } else context.resources.getString(
                 R.string.chat_with_invistor
             )
         }
 
         fun getDateFormated(date: String): String {
-            return date.toMillieSecconds(TWILIO_FULL_DATE_TIME_FORMATTING).getNotificationDateForamteed()
+            return date.toMillieSecconds(TWILIO_FULL_DATE_TIME_FORMATTING)
+                .getNotificationDateForamteed()
                 ?: ""
         }
 

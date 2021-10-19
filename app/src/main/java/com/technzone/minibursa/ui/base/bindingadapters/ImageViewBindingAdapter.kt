@@ -41,19 +41,19 @@ fun ImageView.setImageFromResources(@DrawableRes imageRes: Int) {
 )
 fun ImageView.setImageFromUrl(
     imageUrl: String?,
-    @DrawableRes imagePlaceholder: Int?,
-    @DrawableRes imageErrorPlaceholder: Int?,
-    @IdRes imageProgressId: Int,
+    @DrawableRes imagePlaceholder: Int? = R.drawable.ic_default_image_place_holder,
+    @DrawableRes imageErrorPlaceholder: Int? = R.drawable.ic_default_image_place_holder,
+    @IdRes imageProgressId: Int? = null,
     imageIsCircle: Boolean = false,
     imageIsRoundedCorners: Boolean = false,
-    roundingRadius: Int?
+    roundingRadius: Int? = null
 ) {
     if (imageUrl.isNullOrEmpty()) {
         setImageResource(imageErrorPlaceholder ?: R.drawable.ic_default_image_place_holder)
         return
     }
 
-    val progressView: ProgressBar? = findViewById(imageProgressId)
+    val progressView: ProgressBar? = imageProgressId?.let { findViewById(it) }
     progressView?.visibility = View.VISIBLE
 
     Glide.with(context)

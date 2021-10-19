@@ -74,6 +74,7 @@ class ChatActivity : BaseBindingActivity<ActivityChatBinding>(),
         setUpBinding()
         channelHash = intent.getStringExtra(Constants.Twilio.CHANNEL_ID) ?: ""
         chatClientManager = MyApplication.instance.chatClientManager
+        viewModel.toolbarTitle.postValue(intent.getStringExtra(Constants.Twilio.USER_NAME))
         init()
         messagesResultObserver()
         setUpListeners()
@@ -96,7 +97,6 @@ class ChatActivity : BaseBindingActivity<ActivityChatBinding>(),
                 sendMessage()
             }
         }
-
         binding?.imgAttachment?.setOnClickListener {
             refreshDataOnResume = false
             captureImage(
@@ -482,11 +482,13 @@ class ChatActivity : BaseBindingActivity<ActivityChatBinding>(),
             context: Context?,
             channelId: String,
             userPicture: String? = "",
+            name:String? = "",
             businessId: Int? = null
         ) {
             val intent = Intent(context, ChatActivity::class.java)
             intent.putExtra(Constants.Twilio.CHANNEL_ID, channelId)
             intent.putExtra(Constants.Twilio.USER_PICTURE, userPicture)
+            intent.putExtra(Constants.Twilio.USER_NAME, name)
             intent.putExtra(Constants.BundleData.BUSINESS_ID, businessId)
             context?.startActivity(intent)
         }

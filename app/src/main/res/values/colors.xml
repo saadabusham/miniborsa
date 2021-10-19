@@ -142,6 +142,7 @@
 
     <!--    Chat   -->
     <color name="outgoing_bubble_color">#E9591C</color>
+    <color name="send_color">#00AB6B</color>
     <color name="incoming_bubble_color">#F5F5F5</color>
     <color name="progress_load_more_color">#F5F5F5</color>
     <color name="attachment_background_color">#3AA7DE</color>

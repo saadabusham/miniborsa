@@ -9,6 +9,10 @@ import com.technzone.minibursa.common.interfaces.LoginCallBack
 import com.technzone.minibursa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.minibursa.data.api.response.Result
 import com.technzone.minibursa.data.common.Constants
+import com.technzone.minibursa.data.common.Constants.Twilio.TWILIO_PICTURE
+import com.technzone.minibursa.data.common.Constants.Twilio.TWILIO_PICTURE2
+import com.technzone.minibursa.data.common.Constants.Twilio.TWILIO_USERNAME
+import com.technzone.minibursa.data.common.Constants.Twilio.TWILIO_USERNAME2
 import com.technzone.minibursa.data.common.CustomObserverResponse
 import com.technzone.minibursa.data.models.business.business.OwnerBusiness
 import com.technzone.minibursa.databinding.FragmentMessagesBinding
@@ -296,7 +300,7 @@ class MessagesFragment : BaseBindingFragment<FragmentMessagesBinding>(),
     }
 
     private fun setUpRecyclerView() {
-        channelsRecyclerAdapter = ChannelsRecyclerAdapter(requireContext())
+        channelsRecyclerAdapter = ChannelsRecyclerAdapter(requireContext(), business != null)
         binding?.recyclerView?.adapter = channelsRecyclerAdapter
         binding?.recyclerView?.setOnItemClickListener(this)
         binding?.recyclerView?.addItemDecoration(
@@ -313,10 +317,21 @@ class MessagesFragment : BaseBindingFragment<FragmentMessagesBinding>(),
             ChatActivity.start(
                 context = requireContext(),
                 channelId = item.sid,
-                userPicture = item.attributes.jsonObject?.optString("picture", "") ?: "",
-                businessId = if(business !=null) business?.businessId else null
-//                item.attributes.jsonObject?.optString("fullName", "") ?: "",
-//                item.attributes.jsonObject?.optString("picture", "") ?: ""
+                userPicture = if (business != null) item.attributes.jsonObject?.optString(
+                    TWILIO_PICTURE2,
+                    ""
+                ) ?: "" else item.attributes.jsonObject?.optString(
+                    TWILIO_PICTURE,
+                    ""
+                ) ?: "",
+                businessId = if (business != null) business?.id else null,
+                name = if (business != null) item.attributes.jsonObject?.optString(
+                    TWILIO_USERNAME2,
+                    ""
+                ) ?: "" else item.attributes.jsonObject?.optString(
+                    TWILIO_USERNAME,
+                    ""
+                ) ?: "",
             )
     }
 

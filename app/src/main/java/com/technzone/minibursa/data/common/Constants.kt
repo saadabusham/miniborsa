@@ -60,5 +60,9 @@ object Constants {
         const val USER_NAME: String = "user_name"
         const val USER_PICTURE: String = "user_picture"
         const val CHANNEL_ID: String = "channelId"
+        const val TWILIO_USERNAME = "ToFullName"
+        const val TWILIO_PICTURE = "ToPicture"
+        const val TWILIO_USERNAME2 = "fullName"
+        const val TWILIO_PICTURE2 = "picture"
     }
 }

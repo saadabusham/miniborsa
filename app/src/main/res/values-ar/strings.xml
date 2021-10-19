@@ -243,6 +243,7 @@
     <string name="steps_number">الخطوة %s من 4</string>
     <string name="messages">الرسائل</string>
     <string name="chat_with_invistor">تحدث مع المستثمر</string>
+    <string name="image">صوره</string>
     <string name="investor">مستثمر</string>
     <string name="type_a_message">اكتب رسالة ...</string>
     <string name="_700000000">xxxxxxxxx</string>

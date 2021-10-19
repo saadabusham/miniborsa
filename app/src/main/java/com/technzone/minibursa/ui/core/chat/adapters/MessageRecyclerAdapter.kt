@@ -15,7 +15,7 @@ import com.technzone.minibursa.databinding.RawOutcomingImageBinding
 import com.technzone.minibursa.databinding.RawOutcomingTextBinding
 import com.technzone.minibursa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.minibursa.ui.base.adapters.BaseViewHolder
-import com.technzone.minibursa.utils.extensions.loadImage
+import com.technzone.minibursa.ui.base.bindingadapters.setImageFromUrl
 import com.twilio.chat.CallbackListener
 import com.twilio.chat.Message
 
@@ -86,7 +86,11 @@ class MessageRecyclerAdapter(
         override fun bind(item: Message) {
             binding.message = item
             loadMore(bindingAdapterPosition)
-            binding.imgPicture.loadImage(userPicture)
+            binding.imgPicture.setImageFromUrl(
+                userPicture,
+                imageErrorPlaceholder = R.drawable.ic_profile_place_holder,
+                imagePlaceholder = R.drawable.ic_profile_place_holder
+            )
         }
     }
 
@@ -96,7 +100,11 @@ class MessageRecyclerAdapter(
         @SuppressLint("UnsafeExperimentalUsageError")
         override fun bind(item: Message) {
             binding.message = item
-            binding.imgPicture.loadImage(userPicture)
+            binding.imgPicture.setImageFromUrl(
+                userPicture,
+                imageErrorPlaceholder = R.drawable.ic_profile_place_holder,
+                imagePlaceholder = R.drawable.ic_profile_place_holder
+            )
             binding.imgMedia.shapeAppearanceModel = binding.imgMedia.shapeAppearanceModel
                 .toBuilder()
                 .setTopRightCorner(
@@ -115,7 +123,9 @@ class MessageRecyclerAdapter(
                 .build()
             item.media.getContentTemporaryUrl(object : CallbackListener<String>() {
                 override fun onSuccess(p0: String?) {
-                    binding.imgMedia.loadImage(p0)
+                    binding.imgMedia.setImageFromUrl(
+                        p0
+                    )
                 }
             })
             loadMore(bindingAdapterPosition)
@@ -162,7 +172,7 @@ class MessageRecyclerAdapter(
                 .build()
             item.media.getContentTemporaryUrl(object : CallbackListener<String>() {
                 override fun onSuccess(p0: String?) {
-                    binding.imgMedia.loadImage(p0)
+                    binding.imgMedia.setImageFromUrl(p0, R.drawable.ic_profile_place_holder)
                 }
             })
 
