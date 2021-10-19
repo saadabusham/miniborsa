@@ -22,7 +22,7 @@ import com.twilio.chat.Message
 class MessageRecyclerAdapter(
     context: Context,
     val myId: String,
-    val userPicture: String,
+    var userPicture: String,
     private val paginate: Paginate.Callbacks
 ) : BaseBindingRecyclerViewAdapter<Message>(context) {
 

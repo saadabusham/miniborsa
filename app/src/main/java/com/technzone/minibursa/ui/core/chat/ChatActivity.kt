@@ -204,6 +204,20 @@ class ChatActivity : BaseBindingActivity<ActivityChatBinding>(),
 
     private fun loadData(selectedChannel: Channel) {
         currentChannel = selectedChannel
+        messageRecycleAdapter.userPicture = if(intent.getIntExtra(Constants.BundleData.BUSINESS_ID,-1) != -1) selectedChannel.attributes.jsonObject?.optString(
+            Constants.Twilio.TWILIO_PICTURE2,
+            ""
+        ) ?: "" else selectedChannel.attributes.jsonObject?.optString(
+            Constants.Twilio.TWILIO_PICTURE,
+            ""
+        ) ?: ""
+        viewModel.toolbarTitle.postValue(if(intent.getIntExtra(Constants.BundleData.BUSINESS_ID,-1) != -1) selectedChannel.attributes.jsonObject?.optString(
+            Constants.Twilio.TWILIO_USERNAME2,
+            ""
+        ) ?: "" else selectedChannel.attributes.jsonObject?.optString(
+            Constants.Twilio.TWILIO_USERNAME,
+            ""
+        ) ?: "")
         messagesObject = currentChannel?.messages
         currentChannel?.addListener(this)
         binding?.layoutShimmer?.shimmerViewContainer?.gone()
