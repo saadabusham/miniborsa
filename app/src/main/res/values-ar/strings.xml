@@ -405,4 +405,6 @@ aistithmar</string>
     <string name="asking_leasehold">(عقد مستاجر)</string>
 
     <string name="subscription_per">%s$ / %s</string>
+    <string name="no_notifications_found">لا يوجد اشعارات</string>
+    <string name="your_received_notifications_will_appear_here">ستظهر إشعاراتك المستلمة هنا</string>
 </resources>

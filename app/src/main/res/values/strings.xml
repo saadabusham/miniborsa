@@ -401,10 +401,12 @@
     <string name="investment_percentage_">Investment Percentage : %s%%</string>
 
 
-    <string name="empty_data">------</string>
+    <string name="empty_data" translatable="false">------</string>
     <string name="asking_freehold">Asking Freehold</string>
     <string name="asking_leasehold">Asking Leasehold</string>
     <string name="franchise_countries">Franchise Countries</string>
 
     <string name="subscription_per">%s$ /%s</string>
+    <string name="no_notifications_found">No Notifications found</string>
+    <string name="your_received_notifications_will_appear_here">Your received notifications will appear here</string>
 </resources>
