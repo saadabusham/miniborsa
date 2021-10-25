@@ -27,7 +27,12 @@ class TwilioRepoImp @Inject constructor(
         businessId: Int?
     ): APIResource<ResponseWrapper<String>> {
         return try {
-            responseHandle.handleSuccess(twilioRemoteDao.getTwilioToken(Constants.Twilio.CHAT_PUSH_CREDENTIALS,businessId))
+            responseHandle.handleSuccess(
+                twilioRemoteDao.getTwilioToken(
+                    Constants.Twilio.CHAT_PUSH_CREDENTIALS,
+                    businessId
+                )
+            )
         } catch (e: Exception) {
             responseHandle.handleException(e)
         }
@@ -41,9 +46,17 @@ class TwilioRepoImp @Inject constructor(
         }
     }
 
-    override suspend fun getInvestorChannelId(InvestorId: String?): APIResource<ResponseWrapper<String>> {
+    override suspend fun getInvestorChannelId(
+        InvestorId: String?,
+        businessId: Int?
+    ): APIResource<ResponseWrapper<String>> {
         return try {
-            responseHandle.handleSuccess(twilioRemoteDao.getInvestorChannelId(InvestorId))
+            responseHandle.handleSuccess(
+                twilioRemoteDao.getInvestorChannelId(
+                    InvestorId,
+                    businessId
+                )
+            )
         } catch (e: Exception) {
             responseHandle.handleException(e)
         }

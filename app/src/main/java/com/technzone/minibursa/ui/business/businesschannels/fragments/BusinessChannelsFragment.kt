@@ -21,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class BusinessChannelsFragment : BaseBindingFragment<FragmentBusinessChannelsBinding>() {
 
     private val viewModel: BusinessMainViewModel by activityViewModels()
+
     private lateinit var listingAdapter: BusinessChannelsAdapter
 
     override fun getLayoutId(): Int = R.layout.fragment_business_channels

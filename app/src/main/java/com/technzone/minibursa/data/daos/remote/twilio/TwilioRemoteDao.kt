@@ -22,9 +22,10 @@ interface TwilioRemoteDao {
         @Path("id") businessId: Int?
     ): ResponseWrapper<String>
 
-    @POST("api/ChatChannels/{id}")
+    @POST("api/ChatChannels/{id}/{businessId}")
     suspend fun getInvestorChannelId(
-        @Path("id") InvestorId: String?
+        @Path("id") InvestorId: String?,
+        @Path("businessId") businessId: Int?
     ): ResponseWrapper<String>
 
 }

@@ -47,11 +47,19 @@ class InvestorsViewModel @Inject constructor(
 
 
     fun getChanelId(
-        investorId:String
+        investorId:String,
+        businessId: Int
     ) = liveData {
         emit(APIResource.loading())
         val response =
-            twilioRepo.getInvestorChannelId(investorId)
+            twilioRepo.getInvestorChannelId(investorId,businessId)
+        emit(response)
+    }
+
+    fun getListing() = liveData {
+        emit(APIResource.loading())
+        val response =
+            businessRepo.getOwnerBusiness(pageSize = 1000, pageNumber = 1)
         emit(response)
     }
 

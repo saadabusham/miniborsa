@@ -23,6 +23,7 @@ interface TwilioRepo {
     ): APIResource<ResponseWrapper<String>>
 
     suspend fun getInvestorChannelId(
-        InvestorId: String?
+        InvestorId: String?,
+        businessId: Int?
     ): APIResource<ResponseWrapper<String>>
 }

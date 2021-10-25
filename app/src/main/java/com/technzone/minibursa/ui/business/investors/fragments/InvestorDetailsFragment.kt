@@ -4,14 +4,18 @@ import androidx.fragment.app.activityViewModels
 import com.technzone.minibursa.R
 import com.technzone.minibursa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.minibursa.data.common.CustomObserverResponse
+import com.technzone.minibursa.data.models.business.business.OwnerBusiness
+import com.technzone.minibursa.data.models.general.ListWrapper
 import com.technzone.minibursa.data.models.investor.ExtraInfo
 import com.technzone.minibursa.data.models.investor.investors.Investor
 import com.technzone.minibursa.databinding.FragmentInvestorDetailsBinding
 import com.technzone.minibursa.ui.base.fragment.BaseBindingFragment
+import com.technzone.minibursa.ui.business.investors.dialogs.BusinessBottomSheet
 import com.technzone.minibursa.ui.business.investors.viewmodels.InvestorsViewModel
 import com.technzone.minibursa.ui.core.chat.ChatActivity
 import com.technzone.minibursa.ui.investor.businessdetails.adapters.BusinessExtraInfoAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 @AndroidEntryPoint
 class InvestorDetailsFragment : BaseBindingFragment<FragmentInvestorDetailsBinding>() {
@@ -40,7 +44,7 @@ class InvestorDetailsFragment : BaseBindingFragment<FragmentInvestorDetailsBindi
         }
         binding?.btnMessage?.setOnClickListener {
             viewModel.investorToView?.value?.userId?.let { it1 ->
-                viewModel.getChanelId(it1).observe(this, chanelIdObserver())
+                viewModel.getListing().observe(this,listingResultObserver(it1))
             }
         }
     }
@@ -101,6 +105,31 @@ class InvestorDetailsFragment : BaseBindingFragment<FragmentInvestorDetailsBindi
                     setData()
                 }
             })
+    }
+
+    private fun listingResultObserver(investorId: String): CustomObserverResponse<ListWrapper<OwnerBusiness>> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<ListWrapper<OwnerBusiness>> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: ListWrapper<OwnerBusiness>?
+                ) {
+                    data?.data?.let { showBusinessBottomSheet(it, investorId) }
+                }
+            })
+    }
+
+    private fun showBusinessBottomSheet(data: ArrayList<OwnerBusiness>, investorId: String) {
+        BusinessBottomSheet(data, object : BusinessBottomSheet.BusinessCallBack {
+            override fun callBack(business: OwnerBusiness) {
+                business.id?.let {
+                    viewModel.getChanelId(investorId, it)
+                        .observe(this@InvestorDetailsFragment, chanelIdObserver())
+                }
+            }
+        }).show(childFragmentManager, "BusinessList")
     }
 
     private fun chanelIdObserver(): CustomObserverResponse<String> {

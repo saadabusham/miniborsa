@@ -12,6 +12,7 @@ import com.paginate.Paginate
 import com.technzone.minibursa.R
 import com.technzone.minibursa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.minibursa.data.common.CustomObserverResponse
+import com.technzone.minibursa.data.models.business.business.OwnerBusiness
 import com.technzone.minibursa.data.models.general.ListWrapper
 import com.technzone.minibursa.data.models.investor.investors.Investor
 import com.technzone.minibursa.data.models.investor.investors.InvestorFilter
@@ -20,10 +21,10 @@ import com.technzone.minibursa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.minibursa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.minibursa.ui.base.fragment.BaseBindingFragment
 import com.technzone.minibursa.ui.business.investors.adapters.InvestorsRecyclerAdapter
+import com.technzone.minibursa.ui.business.investors.dialogs.BusinessBottomSheet
 import com.technzone.minibursa.ui.business.investors.dialogs.InvestorFilterBottomSheet
 import com.technzone.minibursa.ui.business.investors.viewmodels.InvestorsViewModel
 import com.technzone.minibursa.ui.core.chat.ChatActivity
-import com.technzone.minibursa.ui.subscription.activity.InvestorSubscriptionActivity
 import com.technzone.minibursa.utils.extensions.gone
 import com.technzone.minibursa.utils.extensions.setupClearButtonWithAction
 import com.technzone.minibursa.utils.extensions.visible
@@ -31,6 +32,7 @@ import com.technzone.minibursa.utils.plus
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.util.ArrayList
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
@@ -228,6 +230,28 @@ class InvestorsFragment : BaseBindingFragment<FragmentInvestorsBinding>(),
         )
     }
 
+    private fun listingResultObserver(investorId: String): CustomObserverResponse<ListWrapper<OwnerBusiness>> {
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<ListWrapper<OwnerBusiness>> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: ListWrapper<OwnerBusiness>?
+                ) {
+                    data?.data?.let { showBusinessBottomSheet(it,investorId) }
+                }
+            })
+    }
+
+    private fun showBusinessBottomSheet(data: ArrayList<OwnerBusiness>,investorId: String) {
+        BusinessBottomSheet(data,object : BusinessBottomSheet.BusinessCallBack{
+            override fun callBack(business: OwnerBusiness) {
+                business.id?.let { viewModel.getChanelId(investorId, it).observe(this@InvestorsFragment,chanelIdObserver()) }
+            }
+        }).show(childFragmentManager,"BusinessList")
+    }
+
     override fun onItemClick(view: View?, position: Int, item: Any) {
         item as Investor
         viewModel.investorToView?.value = item
@@ -235,7 +259,7 @@ class InvestorsFragment : BaseBindingFragment<FragmentInvestorsBinding>(),
         if (view?.id == R.id.btnViewProfile) {
             navigationController.navigate(R.id.action_investorsFragment_to_investorDetailsFragment)
         } else if (view?.id == R.id.btnMessage) {
-            item.userId?.let { viewModel.getChanelId(it).observe(this, chanelIdObserver()) }
+            item.userId?.let { viewModel.getListing().observe(this,listingResultObserver(it))}
         }
 
     }
