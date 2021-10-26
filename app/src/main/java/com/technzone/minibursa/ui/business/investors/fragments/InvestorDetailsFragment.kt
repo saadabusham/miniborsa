@@ -44,7 +44,7 @@ class InvestorDetailsFragment : BaseBindingFragment<FragmentInvestorDetailsBindi
         }
         binding?.btnMessage?.setOnClickListener {
             viewModel.investorToView?.value?.userId?.let { it1 ->
-                viewModel.getListing().observe(this,listingResultObserver(it1))
+                viewModel.getListing().observe(this, listingResultObserver(it1))
             }
         }
     }
@@ -126,13 +126,13 @@ class InvestorDetailsFragment : BaseBindingFragment<FragmentInvestorDetailsBindi
             override fun callBack(business: OwnerBusiness) {
                 business.id?.let {
                     viewModel.getChanelId(investorId, it)
-                        .observe(this@InvestorDetailsFragment, chanelIdObserver())
+                        .observe(this@InvestorDetailsFragment, chanelIdObserver(it))
                 }
             }
         }).show(childFragmentManager, "BusinessList")
     }
 
-    private fun chanelIdObserver(): CustomObserverResponse<String> {
+    private fun chanelIdObserver(businessId: Int): CustomObserverResponse<String> {
         return CustomObserverResponse(
             requireActivity(),
             object : CustomObserverResponse.APICallBack<String> {
@@ -142,7 +142,11 @@ class InvestorDetailsFragment : BaseBindingFragment<FragmentInvestorDetailsBindi
                     data: String?
                 ) {
                     data?.let {
-                        ChatActivity.start(requireContext(), channelId = it)
+                        ChatActivity.start(
+                            requireContext(),
+                            channelId = it,
+                            businessId = businessId
+                        )
                     }
                 }
             }

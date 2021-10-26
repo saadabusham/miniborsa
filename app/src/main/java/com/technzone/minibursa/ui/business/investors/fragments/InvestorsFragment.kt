@@ -32,7 +32,7 @@ import com.technzone.minibursa.utils.plus
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import java.util.ArrayList
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
@@ -213,7 +213,7 @@ class InvestorsFragment : BaseBindingFragment<FragmentInvestorsBinding>(),
         })
     }
 
-    private fun chanelIdObserver(): CustomObserverResponse<String> {
+    private fun chanelIdObserver(businessId: Int): CustomObserverResponse<String> {
         return CustomObserverResponse(
             requireActivity(),
             object : CustomObserverResponse.APICallBack<String> {
@@ -223,7 +223,11 @@ class InvestorsFragment : BaseBindingFragment<FragmentInvestorsBinding>(),
                     data: String?
                 ) {
                     data?.let {
-                        ChatActivity.start(requireContext(), channelId = it)
+                        ChatActivity.start(
+                            requireContext(),
+                            channelId = it,
+                            businessId = businessId
+                        )
                     }
                 }
             }
@@ -239,17 +243,20 @@ class InvestorsFragment : BaseBindingFragment<FragmentInvestorsBinding>(),
                     subErrorCode: ResponseSubErrorsCodeEnum,
                     data: ListWrapper<OwnerBusiness>?
                 ) {
-                    data?.data?.let { showBusinessBottomSheet(it,investorId) }
+                    data?.data?.let { showBusinessBottomSheet(it, investorId) }
                 }
             })
     }
 
-    private fun showBusinessBottomSheet(data: ArrayList<OwnerBusiness>,investorId: String) {
-        BusinessBottomSheet(data,object : BusinessBottomSheet.BusinessCallBack{
+    private fun showBusinessBottomSheet(data: ArrayList<OwnerBusiness>, investorId: String) {
+        BusinessBottomSheet(data, object : BusinessBottomSheet.BusinessCallBack {
             override fun callBack(business: OwnerBusiness) {
-                business.id?.let { viewModel.getChanelId(investorId, it).observe(this@InvestorsFragment,chanelIdObserver()) }
+                business.id?.let {
+                    viewModel.getChanelId(investorId, it)
+                        .observe(this@InvestorsFragment, chanelIdObserver(it))
+                }
             }
-        }).show(childFragmentManager,"BusinessList")
+        }).show(childFragmentManager, "BusinessList")
     }
 
     override fun onItemClick(view: View?, position: Int, item: Any) {
@@ -259,7 +266,7 @@ class InvestorsFragment : BaseBindingFragment<FragmentInvestorsBinding>(),
         if (view?.id == R.id.btnViewProfile) {
             navigationController.navigate(R.id.action_investorsFragment_to_investorDetailsFragment)
         } else if (view?.id == R.id.btnMessage) {
-            item.userId?.let { viewModel.getListing().observe(this,listingResultObserver(it))}
+            item.userId?.let { viewModel.getListing().observe(this, listingResultObserver(it)) }
         }
 
     }
