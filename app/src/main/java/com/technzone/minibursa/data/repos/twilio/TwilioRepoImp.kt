@@ -38,21 +38,21 @@ class TwilioRepoImp @Inject constructor(
         }
     }
 
-    override suspend fun getBusinessChannelId(businessId: Int?): APIResource<ResponseWrapper<String>> {
+    override suspend fun getInvestorToBusinessChannelId(businessId: Int?): APIResource<ResponseWrapper<String>> {
         return try {
-            responseHandle.handleSuccess(twilioRemoteDao.getBusinessChannelId(businessId))
+            responseHandle.handleSuccess(twilioRemoteDao.getInvestorToBusinessChannelId(businessId))
         } catch (e: Exception) {
             responseHandle.handleException(e)
         }
     }
 
-    override suspend fun getInvestorChannelId(
+    override suspend fun getBusinessToInvestorChannelId(
         InvestorId: String?,
         businessId: Int?
     ): APIResource<ResponseWrapper<String>> {
         return try {
             responseHandle.handleSuccess(
-                twilioRemoteDao.getInvestorChannelId(
+                twilioRemoteDao.getBusinessToInvestorChannelId(
                     InvestorId,
                     businessId
                 )

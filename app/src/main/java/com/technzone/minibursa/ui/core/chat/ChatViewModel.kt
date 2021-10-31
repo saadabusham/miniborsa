@@ -35,9 +35,9 @@ class ChatViewModel @Inject constructor(
     val tokenResult: MutableLiveData<Result<String>> = MutableLiveData()
     val messagesResult: MutableLiveData<Result<List<Message>>> = MutableLiveData()
 
-    fun getAccessToken() = liveData {
+    fun getAccessToken(businessId: Int? = null) = liveData {
         emit(APIResource.loading())
-        val response = clientRepo.getTwilioToken(Constants.Twilio.CHAT_PUSH_CREDENTIALS, null)
+        val response = clientRepo.getTwilioToken(Constants.Twilio.CHAT_PUSH_CREDENTIALS, businessId)
         emit(response)
     }
 

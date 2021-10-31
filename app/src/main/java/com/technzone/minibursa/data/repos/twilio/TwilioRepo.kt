@@ -18,11 +18,11 @@ interface TwilioRepo {
         businessId: Int?
     ): APIResource<ResponseWrapper<String>>
 
-    suspend fun getBusinessChannelId(
+    suspend fun getInvestorToBusinessChannelId(
         businessId: Int?
     ): APIResource<ResponseWrapper<String>>
 
-    suspend fun getInvestorChannelId(
+    suspend fun getBusinessToInvestorChannelId(
         InvestorId: String?,
         businessId: Int?
     ): APIResource<ResponseWrapper<String>>

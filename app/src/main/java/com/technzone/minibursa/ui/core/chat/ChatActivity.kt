@@ -127,7 +127,8 @@ class ChatActivity : BaseBindingActivity<ActivityChatBinding>(),
     }
 
     private fun twilioLogin() {
-        viewModel.getAccessToken().observe(this, accessTokenResultObserver())
+        val businessId = if(intent.getIntExtra(Constants.BundleData.BUSINESS_ID,-1) != -1) intent.getIntExtra(Constants.BundleData.BUSINESS_ID,-1) else null
+        viewModel.getAccessToken(businessId).observe(this, accessTokenResultObserver())
     }
 
     private fun accessTokenResultObserver(): CustomObserverResponse<String> {
@@ -146,11 +147,12 @@ class ChatActivity : BaseBindingActivity<ActivityChatBinding>(),
     }
 
     private fun checkTwilioClient() {
-        if (chatClientManager!!.getChatClient() == null) {
-            initializeClient()
-        } else {
-            handleChannel()
-        }
+        initializeClient()
+//        if (chatClientManager!!.getChatClient() == null) {
+//            initializeClient()
+//        } else {
+//            handleChannel()
+//        }
     }
 
     private fun initializeClient() {

@@ -178,11 +178,12 @@ class MessagesFragment : BaseBindingFragment<FragmentMessagesBinding>(),
     }
 
     private fun checkTwilioClient() {
-        if (chatClientManager!!.getChatClient() == null) {
-            initializeClient()
-        } else {
-            handleChannel()
-        }
+        initializeClient()
+//        if (chatClientManager!!.getChatClient() == null) {
+//            initializeClient()
+//        } else {
+//            handleChannel()
+//        }
     }
 
     private fun initializeClient() {
@@ -272,7 +273,15 @@ class MessagesFragment : BaseBindingFragment<FragmentMessagesBinding>(),
     }
 
     private fun setData(data: MutableList<Channel>?) {
-        data?.toMutableList()?.let { channelsRecyclerAdapter.submitItems(it) }
+        data?.toMutableList()
+            ?.let {
+                channelsRecyclerAdapter.submitItems(
+                    it.sortedByDescending {
+                        val data = it.lastMessageDate
+                        if(data != null) data.time else 0
+                    }
+                )
+            }
     }
 
     private fun hideShowNoData() {
