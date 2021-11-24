@@ -17,12 +17,12 @@ interface TwilioRemoteDao {
         @Field("businessId") businessId: Int?
     ): ResponseWrapper<String>
 
-    @POST("api/ChatChannels/investor/{id}")
+    @GET("api/ChatChannels/investor/{id}")
     suspend fun getInvestorToBusinessChannelId(
         @Path("id") businessId: Int?
     ): ResponseWrapper<String>
 
-    @POST("api/ChatChannels/businessOwner/{id}/{businessId}")
+    @GET("api/ChatChannels/businessOwner/{id}/{businessId}")
     suspend fun getBusinessToInvestorChannelId(
         @Path("id") InvestorId: String?,
         @Path("businessId") businessId: Int?
