@@ -17,15 +17,17 @@ interface TwilioRemoteDao {
         @Field("businessId") businessId: Int?
     ): ResponseWrapper<String>
 
-    @GET("api/ChatChannels/investor/{id}")
+    @POST("api/ChatChannels/investor")
+    @FormUrlEncoded
     suspend fun getInvestorToBusinessChannelId(
-        @Path("id") businessId: Int?
+        @Field("id") businessId: Int?
     ): ResponseWrapper<String>
 
-    @GET("api/ChatChannels/businessOwner/{id}/{businessId}")
+    @POST("api/ChatChannels/businessOwner")
+    @FormUrlEncoded
     suspend fun getBusinessToInvestorChannelId(
-        @Path("id") InvestorId: String?,
-        @Path("businessId") businessId: Int?
+        @Field("id") InvestorId: String?,
+        @Field("businessId") businessId: Int?
     ): ResponseWrapper<String>
 
 }
