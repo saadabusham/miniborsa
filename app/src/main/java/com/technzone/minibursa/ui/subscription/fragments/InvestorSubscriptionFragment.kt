@@ -52,13 +52,6 @@ class InvestorSubscriptionFragment : BaseBindingFragment<FragmentInvestorSubscri
         subscriptionRecyclerAdapter = InvestorSubscriptionRecyclerAdapter(requireContext())
         binding?.recyclerView?.adapter = subscriptionRecyclerAdapter
         binding?.recyclerView?.setOnItemClickListener(this)
-        subscriptionRecyclerAdapter.submitItems(
-            arrayListOf(
-                Subscription(),
-                Subscription(),
-                Subscription()
-            )
-        )
     }
 
     override fun onItemClick(view: View?, position: Int, item: Any) {

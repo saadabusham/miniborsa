@@ -8,6 +8,7 @@ import retrofit2.http.Field
 interface SubscriptionRepo {
 
     suspend fun getSubscription(
+        planFor: Int
     ): APIResource<ResponseWrapper<List<Plan>>>
 
     suspend fun createSubscription(

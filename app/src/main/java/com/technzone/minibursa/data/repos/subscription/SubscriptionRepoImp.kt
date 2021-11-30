@@ -13,10 +13,12 @@ class SubscriptionRepoImp @Inject constructor(
     private val subscriptionRemoteDao: SubscriptionRemoteDao
 ) : BaseRepo(responseHandler), SubscriptionRepo {
 
-    override suspend fun getSubscription(): APIResource<ResponseWrapper<List<Plan>>> {
+    override suspend fun getSubscription(
+        planFor: Int
+    ): APIResource<ResponseWrapper<List<Plan>>> {
         return try {
             responseHandle.handleSuccess(
-                subscriptionRemoteDao.getSubscription()
+                subscriptionRemoteDao.getSubscription(planFor)
             )
         } catch (e: Exception) {
             responseHandle.handleException(e)

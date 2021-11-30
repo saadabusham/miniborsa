@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.technzone.minibursa.data.models.plan.Plan
 import com.technzone.minibursa.data.models.subscrption.Subscription
 import com.technzone.minibursa.databinding.RowInvestorSubscriptionBinding
 import com.technzone.minibursa.ui.base.adapters.BaseBindingRecyclerViewAdapter
@@ -11,9 +12,9 @@ import com.technzone.minibursa.ui.base.adapters.BaseViewHolder
 
 class InvestorSubscriptionRecyclerAdapter constructor(
     context: Context
-) : BaseBindingRecyclerViewAdapter<Subscription>(context) {
+) : BaseBindingRecyclerViewAdapter<Plan>(context) {
 
-    fun getSelectedItem(): Subscription? {
+    fun getSelectedItem(): Plan? {
         return items.singleOrNull { it.selected }
     }
 
@@ -32,9 +33,9 @@ class InvestorSubscriptionRecyclerAdapter constructor(
     }
 
     inner class ViewHolder(private val binding: RowInvestorSubscriptionBinding) :
-        BaseViewHolder<Subscription>(binding.root) {
+        BaseViewHolder<Plan>(binding.root) {
 
-        override fun bind(item: Subscription) {
+        override fun bind(item: Plan) {
             binding.item = item
             binding.root.setOnClickListener {
                 items.withIndex().singleOrNull { it.value.selected }?.let {

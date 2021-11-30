@@ -12,10 +12,10 @@ class SubscriptionViewModel @Inject constructor(
     private val subscriptionRepo: SubscriptionRepo
 ) : BaseViewModel() {
 
-    fun getSubscription() = liveData {
+    fun getSubscription(planFor: Int) = liveData {
         emit(APIResource.loading())
         val response =
-            subscriptionRepo.getSubscription()
+            subscriptionRepo.getSubscription(planFor)
         emit(response)
     }
 

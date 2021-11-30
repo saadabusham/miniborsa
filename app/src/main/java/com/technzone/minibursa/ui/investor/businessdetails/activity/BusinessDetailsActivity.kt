@@ -98,7 +98,8 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
 
     private fun setUpListeners() {
         binding?.btnConnect?.setOnClickListener {
-            viewModel.getChanelId().observe(this, chanelIdObserver())
+//            viewModel.getChanelId().observe(this, chanelIdObserver())
+            subscribe()
         }
         binding?.btnBecomeInvestor?.setOnClickListener {
             InvestorRolesActivity.start(this)

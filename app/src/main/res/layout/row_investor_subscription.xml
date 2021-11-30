@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.technzone.minibursa.data.models.subscrption.Subscription" />
+            type="com.technzone.minibursa.data.models.plan.Plan" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,7 +39,7 @@
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_3sdp"
             android:layout_marginEnd="@dimen/_15sdp"
-            android:text="10.00 / month"
+            android:text="@{item.planName}"
             android:textColor="@color/black"
             android:textSize="@dimen/_15ssp"
             app:layout_constraintEnd_toStartOf="@id/imgSelected"

@@ -16,6 +16,7 @@ import com.technzone.minibursa.R
 import com.technzone.minibursa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.minibursa.data.common.Constants
 import com.technzone.minibursa.data.common.CustomObserverResponse
+import com.technzone.minibursa.data.enums.SubscriptionTypeEnums
 import com.technzone.minibursa.data.models.plan.Plan
 import com.technzone.minibursa.databinding.FragmentBusinessSubscriptionBinding
 import com.technzone.minibursa.ui.base.activity.BaseBindingActivity
@@ -203,7 +204,7 @@ class BusinessSubscriptionActivity : BaseBindingActivity<FragmentBusinessSubscri
         subscriptionRecyclerAdapter = BusinessSubscriptionRecyclerAdapter(this)
         binding?.recyclerView?.adapter = subscriptionRecyclerAdapter
         binding?.recyclerView?.setOnItemClickListener(this)
-        viewModel.getSubscription().observe(this, subscriptionResultObserver())
+        viewModel.getSubscription(SubscriptionTypeEnums.BUSINESS_OWNER.value).observe(this, subscriptionResultObserver())
     }
 
     private fun subscriptionResultObserver(): CustomObserverResponse<List<Plan>> {
