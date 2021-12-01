@@ -52,7 +52,7 @@ class BusinessSubscriptionActivity : BaseBindingActivity<FragmentBusinessSubscri
         )
         setUpBinding()
         setUpListeners()
-        setUpSelectedCountriesAdapter()
+        setUpSubscriptionAdapter()
     }
 
     private fun setUpBinding() {
@@ -200,7 +200,7 @@ class BusinessSubscriptionActivity : BaseBindingActivity<FragmentBusinessSubscri
         }
     }
 
-    private fun setUpSelectedCountriesAdapter() {
+    private fun setUpSubscriptionAdapter() {
         subscriptionRecyclerAdapter = BusinessSubscriptionRecyclerAdapter(this)
         binding?.recyclerView?.adapter = subscriptionRecyclerAdapter
         binding?.recyclerView?.setOnItemClickListener(this)
