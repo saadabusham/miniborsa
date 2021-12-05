@@ -172,10 +172,9 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
                     if (subErrorCode == ResponseSubErrorsCodeEnum.NOT_SUBSCRIBED) {
                         subscribe()
                     } else {
-//                        data?.let {
-//                            ChatActivity.start(this@BusinessDetailsActivity, channelId = it)
-//                        }
-                        subscribe()
+                        data?.let {
+                            ChatActivity.start(this@BusinessDetailsActivity, channelId = it)
+                        }
                     }
                 }
 

@@ -127,7 +127,7 @@ class BusinessSubscriptionActivity : BaseBindingActivity<FragmentBusinessSubscri
 
     private fun checkout() {
         subscriptionRecyclerAdapter.getSelectedItem()?.let {
-            viewModel.generateCheckoutId(it.price ?: 0.0, "USD", it.id ?: 0)
+            viewModel.generateCheckoutId(it.price ?: 0.0, "JOD", subscriptionId?:0)
                 .observe(this, observeCheckOutId())
         }
     }
