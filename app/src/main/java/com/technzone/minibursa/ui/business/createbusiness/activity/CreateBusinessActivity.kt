@@ -144,19 +144,15 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
             when (position) {
                 0 -> {
                     binding?.tvTitle?.text = getString(R.string.build_your_listing)
-//                    viewModel.percentage.postValue(25)
                 }
                 1 -> {
                     binding?.tvTitle?.text = getString(R.string.listing_score)
-//                    viewModel.percentage.postValue(50)
                 }
                 2 -> {
                     binding?.tvTitle?.text = getString(R.string.listing_score)
-//                    viewModel.percentage.postValue(75)
                 }
                 3 -> {
                     binding?.tvTitle?.text = getString(R.string.listing_score)
-//                    viewModel.percentage.postValue(100)
                     showHeaderPercent()
                 }
             }

@@ -1,9 +1,11 @@
 package com.technzone.minibursa.ui.investor.businessdetails.activity
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.technzone.minibursa.R
 import com.technzone.minibursa.data.api.response.ResponseSubErrorsCodeEnum
@@ -98,8 +100,7 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
 
     private fun setUpListeners() {
         binding?.btnConnect?.setOnClickListener {
-//            viewModel.getChanelId().observe(this, chanelIdObserver())
-            subscribe()
+            loadChannelId()
         }
         binding?.btnBecomeInvestor?.setOnClickListener {
             InvestorRolesActivity.start(this)
@@ -126,6 +127,10 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
                 openUrl(it)
             }
         }
+    }
+
+    private fun loadChannelId() {
+        viewModel.getChanelId().observe(this, chanelIdObserver())
     }
 
     private fun generateLink() {
@@ -173,7 +178,6 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
                     }
                 }
 
-
                 override fun onError(subErrorCode: ResponseSubErrorsCodeEnum, message: String) {
                     if (subErrorCode == ResponseSubErrorsCodeEnum.NOT_SUBSCRIBED) {
                         subscribe()
@@ -189,10 +193,18 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
         viewModel.businessToView.value?.id?.let { it1 ->
             InvestorSubscriptionActivity.start(
                 this@BusinessDetailsActivity,
-                it1
+                it1, subscriptionResultLauncher
             )
         }
     }
+
+    var subscriptionResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+                loadChannelId()
+            }
+        }
 
     private fun updateFavorite() {
         binding?.toolbar?.favorite = viewModel.businessToView.value?.isFavorite

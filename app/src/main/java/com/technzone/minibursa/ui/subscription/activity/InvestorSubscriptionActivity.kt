@@ -1,9 +1,11 @@
 package com.technzone.minibursa.ui.subscription.activity
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
 import com.oppwa.mobile.connect.checkout.dialog.CheckoutActivity
 import com.oppwa.mobile.connect.checkout.meta.CheckoutSettings
@@ -17,7 +19,6 @@ import com.technzone.minibursa.data.common.Constants
 import com.technzone.minibursa.data.common.CustomObserverResponse
 import com.technzone.minibursa.data.enums.SubscriptionTypeEnums
 import com.technzone.minibursa.data.models.plan.Plan
-import com.technzone.minibursa.data.models.subscrption.Subscription
 import com.technzone.minibursa.databinding.FragmentInvestorSubscriptionBinding
 import com.technzone.minibursa.ui.base.activity.BaseBindingActivity
 import com.technzone.minibursa.ui.base.adapters.BaseBindingRecyclerViewAdapter
@@ -35,7 +36,7 @@ class InvestorSubscriptionActivity : BaseBindingActivity<FragmentInvestorSubscri
     lateinit var subscriptionRecyclerAdapter: InvestorSubscriptionRecyclerAdapter
     private val viewModel: SubscriptionViewModel by viewModels()
 
-    var subscriptionId : Int? = null
+    var subscriptionId: Int? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(
@@ -81,7 +82,8 @@ class InvestorSubscriptionActivity : BaseBindingActivity<FragmentInvestorSubscri
         subscriptionRecyclerAdapter = InvestorSubscriptionRecyclerAdapter(this)
         binding?.recyclerView?.adapter = subscriptionRecyclerAdapter
         binding?.recyclerView?.setOnItemClickListener(this)
-        viewModel.getSubscription(SubscriptionTypeEnums.INVESTOR.value).observe(this, subscriptionResultObserver())
+        viewModel.getSubscription(SubscriptionTypeEnums.INVESTOR.value)
+            .observe(this, subscriptionResultObserver())
     }
 
     private fun subscriptionResultObserver(): CustomObserverResponse<List<Plan>> {
@@ -97,6 +99,7 @@ class InvestorSubscriptionActivity : BaseBindingActivity<FragmentInvestorSubscri
                 }
             })
     }
+
     private fun createSubscriptionResultObserver(): CustomObserverResponse<Int> {
         return CustomObserverResponse(
             this,
@@ -108,9 +111,9 @@ class InvestorSubscriptionActivity : BaseBindingActivity<FragmentInvestorSubscri
                 ) {
                     subscriptionId = data
                     subscriptionRecyclerAdapter.getSelectedItem()?.let {
-                        if(it.selected){
+                        if (it.selected) {
                             checkout()
-                        }else{
+                        } else {
                             setResult(RESULT_OK, Intent().apply {
                                 putExtra(Constants.BundleData.SUBSCRIPTION_ID, subscriptionId)
                             })
@@ -142,6 +145,7 @@ class InvestorSubscriptionActivity : BaseBindingActivity<FragmentInvestorSubscri
             }
         )
     }
+
     fun showCheckoutUI(checkoutId: String) {
         val paymentBrands: MutableSet<String> =
             LinkedHashSet()
@@ -222,13 +226,15 @@ class InvestorSubscriptionActivity : BaseBindingActivity<FragmentInvestorSubscri
 
     companion object {
         fun start(
-            context: Context?,
-            businessId: Int
+            context: Activity?,
+            businessId: Int,
+            resultLauncher: ActivityResultLauncher<Intent>
         ) {
             val intent = Intent(context, InvestorSubscriptionActivity::class.java).apply {
                 putExtra(Constants.BundleData.BUSINESS_ID, businessId)
             }
-            context?.startActivity(intent)
+//            context?.startActivity(intent)
+            resultLauncher.launch(intent)
         }
     }
 

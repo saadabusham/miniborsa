@@ -61,11 +61,11 @@
             android:layout_marginEnd="@dimen/_7sdp"
             android:layout_marginBottom="@dimen/_20sdp"
             android:orientation="horizontal"
-            tools:itemCount="3"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/btnNextOnBoarding"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            tools:itemCount="3"
             tools:listitem="@layout/row_indecator" />
 
         <com.google.android.material.button.MaterialButton

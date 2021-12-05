@@ -80,6 +80,27 @@ class BusinessSubscriptionActivity : BaseBindingActivity<FragmentBusinessSubscri
         }
     }
 
+    private fun setUpSubscriptionAdapter() {
+        subscriptionRecyclerAdapter = BusinessSubscriptionRecyclerAdapter(this)
+        binding?.recyclerView?.adapter = subscriptionRecyclerAdapter
+        binding?.recyclerView?.setOnItemClickListener(this)
+        viewModel.getSubscription(SubscriptionTypeEnums.BUSINESS_OWNER.value).observe(this, subscriptionResultObserver())
+    }
+
+    private fun subscriptionResultObserver(): CustomObserverResponse<List<Plan>> {
+        return CustomObserverResponse(
+            this,
+            object : CustomObserverResponse.APICallBack<List<Plan>> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: List<Plan>?
+                ) {
+                    data?.let { subscriptionRecyclerAdapter.submitItems(it) }
+                }
+            })
+    }
+
     private fun createSubscriptionResultObserver(): CustomObserverResponse<Int> {
         return CustomObserverResponse(
             this,
@@ -200,26 +221,6 @@ class BusinessSubscriptionActivity : BaseBindingActivity<FragmentBusinessSubscri
         }
     }
 
-    private fun setUpSubscriptionAdapter() {
-        subscriptionRecyclerAdapter = BusinessSubscriptionRecyclerAdapter(this)
-        binding?.recyclerView?.adapter = subscriptionRecyclerAdapter
-        binding?.recyclerView?.setOnItemClickListener(this)
-        viewModel.getSubscription(SubscriptionTypeEnums.BUSINESS_OWNER.value).observe(this, subscriptionResultObserver())
-    }
-
-    private fun subscriptionResultObserver(): CustomObserverResponse<List<Plan>> {
-        return CustomObserverResponse(
-            this,
-            object : CustomObserverResponse.APICallBack<List<Plan>> {
-                override fun onSuccess(
-                    statusCode: Int,
-                    subErrorCode: ResponseSubErrorsCodeEnum,
-                    data: List<Plan>?
-                ) {
-                    data?.let { subscriptionRecyclerAdapter.submitItems(it) }
-                }
-            })
-    }
 
     override fun onItemClick(view: View?, position: Int, item: Any) {
 //        item as GeneralLookup
