@@ -95,7 +95,6 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding>() {
             } else {
                 RegisterActivity.startForResult(requireActivity(), false)
             }
-
         }
         tvForgetPassword?.setOnClickListener {
             ForgetPasswordActivity.start(context)

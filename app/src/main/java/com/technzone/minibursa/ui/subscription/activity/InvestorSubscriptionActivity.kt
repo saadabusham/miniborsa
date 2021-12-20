@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
@@ -147,6 +148,7 @@ class InvestorSubscriptionActivity : BaseBindingActivity<FragmentInvestorSubscri
     }
 
     fun showCheckoutUI(checkoutId: String) {
+        Log.d("showCheckoutUI", "showCheckoutUI: $checkoutId")
         val paymentBrands: MutableSet<String> =
             LinkedHashSet()
 
@@ -233,8 +235,8 @@ class InvestorSubscriptionActivity : BaseBindingActivity<FragmentInvestorSubscri
             val intent = Intent(context, InvestorSubscriptionActivity::class.java).apply {
                 putExtra(Constants.BundleData.BUSINESS_ID, businessId)
             }
-//            context?.startActivity(intent)
-            resultLauncher.launch(intent)
+            context?.startActivity(intent)
+//            resultLauncher.launch(intent)
         }
     }
 

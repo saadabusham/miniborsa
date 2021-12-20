@@ -3,7 +3,7 @@ package com.technzone.minibursa.ui.core.messages.viewmodels
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
-import com.technzone.flyus_owner.data.models.twilio.chat.ChatChannel
+import com.technzone.minibursa.data.models.twilio.chat.ChatChannel
 import com.technzone.minibursa.R
 import com.technzone.minibursa.data.api.response.APIResource
 import com.technzone.minibursa.data.common.Constants

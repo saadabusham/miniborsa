@@ -7,7 +7,7 @@ object Constants {
         const val BUSINESS_ID: String = "BUSINESS_ID"
     }
 
-    const val PAYMENT_URL: String = "com.minibursa.eaig.payments"
+    const val PAYMENT_URL: String = "com.technzone.minibursa.payments"
     const val DEVICE_TYPE = 1
     const val APPLICATION_TYPE = 1
     const val MIN_PERCENTAGE_TO_SEND = 90
