@@ -912,6 +912,6 @@
         <item name="cardCornerRadius">@dimen/_17sdp</item>
     </style>
     <style name="checkoutTheme" parent="Theme.Checkout.Light">
-        <item name="headerBackground">@color/blue</item>
+        <item name="headerBackground">@color/button_color</item>
     </style>
 </resources>

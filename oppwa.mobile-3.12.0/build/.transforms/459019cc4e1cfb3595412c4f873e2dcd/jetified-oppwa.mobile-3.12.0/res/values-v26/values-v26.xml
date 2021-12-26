@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Checkout.Button" parent="android:Widget.Button">
+        <item name="android:background">@drawable/opp_btn_selector_checkout</item>
+        <item name="android:textSize">@dimen/checkout_button_text_size</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
+    <style name="Checkout.Button.Light">
+        <item name="android:textColor">@color/checkout_button_text_color_light</item>
+    </style>
+    <style name="Checkout.Button.Small">
+        <item name="android:background">@drawable/opp_btn_selector_checkout_small</item>
+        <item name="android:textSize">@dimen/checkout_button_small_text_size</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="Checkout.DropDown" parent="Widget.AppCompat.Spinner.Underlined">
+        <item name="android:popupBackground">@color/checkout_background_color_light</item>
+    </style>
+    <style name="Checkout.DropDown.Dark">
+        <item name="android:popupBackground">@color/checkout_background_color_dark</item>
+    </style>
+    <style name="Checkout.DropDownItem" parent="Widget.AppCompat.ListView.DropDown">
+        <item name="android:dividerHeight">@dimen/checkout_divider_height</item>
+        <item name="android:divider">@color/checkout_list_divider_color</item>
+    </style>
+    <style name="Checkout.DropDownItem.Dark">
+        <item name="android:divider">@color/checkout_list_divider_color_dark</item>
+    </style>
+    <style name="Checkout.EditText" parent="android:Widget.EditText">
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:textSize">@dimen/checkout_input_layout_text_size</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
+    <style name="Checkout.EditText.Dark">
+        <item name="android:textColor">@color/checkout_text_color_dark</item>
+    </style>
+    <style name="Checkout.EditText.Light">
+        <item name="android:textColor">@color/checkout_edit_text_color_light</item>
+    </style>
+    <style name="Checkout.ErrorTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/error_color</item>
+        <item name="android:textSize">@dimen/checkout_error_text_appearance_text_size</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
+    <style name="Checkout.HintTextAppearance" parent="@style/TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/checkout_color_accent</item>
+        <item name="android:textSize">@dimen/checkout_input_layout_hint_text_size</item>
+    </style>
+    <style name="Checkout.ListView" parent="android:Widget.ListView">
+        <item name="android:listSelector">@drawable/opp_item_background_checkout</item>
+        <item name="android:divider">@color/checkout_list_divider_color</item>
+        <item name="android:dividerHeight">@dimen/checkout_divider_height</item>
+    </style>
+    <style name="Checkout.ListView.Dark">
+        <item name="android:divider">@color/checkout_list_divider_color_dark</item>
+    </style>
+    <style name="Checkout.PaymentButton" parent="android:Widget.ImageButton">
+        <item name="android:background">@drawable/opp_btn_background_payment</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+    <style name="Checkout.PaymentMethodImageView" parent="android:Widget">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+    <style name="Checkout.PaymentMethodImageView.Dark">
+        <item name="android:background">@drawable/opp_item_background_checkout_payment_method</item>
+    </style>
+    <style name="Checkout.PaymentTokenImageView" parent="android:Widget">
+        <item name="android:background">@drawable/opp_token_background_payment</item>
+    </style>
+    <style name="Checkout.PaymentTokenImageView.Dark" parent="android:Widget">
+        <item name="android:background">@drawable/opp_item_background_checkout_payment_method</item>
+    </style>
+    <style name="Checkout.Progress" parent="android:Widget.Holo.ProgressBar"/>
+    <style name="Checkout.TextAppearance" parent="@android:style/TextAppearance.DeviceDefault">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+    <style name="Checkout.TextAppearance.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/checkout_text_appearance_button_text_size</item>
+    </style>
+    <style name="Checkout.TextAppearance.Title">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="Checkout.TextView" parent="android:Widget.TextView">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textSize">@dimen/checkout_text_view_text_size</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
+    <style name="Checkout.TextView.Agreement">
+        <item name="android:textSize">@dimen/checkout_text_view_agreement_text_size</item>
+    </style>
+    <style name="Checkout.TextView.Agreement.Dark">
+        <item name="android:textColor">@color/checkout_text_color_dark</item>
+    </style>
+    <style name="Checkout.TextView.Dark">
+        <item name="android:textColor">@color/checkout_text_color_dark</item>
+    </style>
+    <style name="Checkout.TextView.FingerprintStatus">
+        <item name="android:textSize">@dimen/checkout_text_view_fingerprint_status_text_size</item>
+    </style>
+    <style name="Checkout.TextView.FingerprintTitle">
+        <item name="android:textSize">@dimen/checkout_text_view_fingerprint_title_text_size</item>
+    </style>
+    <style name="Checkout.TextView.Helper">
+        <item name="android:textSize">@dimen/checkout_input_layout_helper_text_size</item>
+        <item name="android:textColor">@color/checkout_helper_text_color</item>
+    </style>
+    <style name="Checkout.TextView.Helper.Label">
+        <item name="android:textColor">@color/checkout_color_accent</item>
+        <item name="android:textSize">@dimen/checkout_input_layout_helper_text_size</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">0dp</item>
+    </style>
+    <style name="Checkout.TextView.KlarnaTitle">
+        <item name="android:textSize">@dimen/checkout_text_view_klarna_title_text_size</item>
+    </style>
+    <style name="Checkout.TextView.KlarnaTitle.Dark">
+        <item name="android:textColor">@color/checkout_text_color_dark</item>
+    </style>
+    <style name="Checkout.TextView.OrderTotal">
+        <item name="android:textSize">@dimen/checkout_text_view_order_total_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/checkout_text_color</item>
+    </style>
+    <style name="Checkout.TextView.OrderTotal.Dark">
+        <item name="android:textColor">@color/checkout_text_color_dark</item>
+    </style>
+    <style name="Checkout.TextView.PaymentAmount">
+        <item name="android:textSize">@dimen/checkout_text_view_payment_amount_text_size</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:gravity">end</item>
+    </style>
+    <style name="Checkout.TextView.PaymentAmount.Dark">
+        <item name="android:textColor">@color/checkout_amount_text_color_light</item>
+    </style>
+    <style name="Checkout.TextView.PaymentAmount.Light">
+        <item name="android:textColor">@color/checkout_amount_text_color_light</item>
+    </style>
+    <style name="Checkout.TextView.PaymentAmountHeader">
+        <item name="android:textSize">@dimen/checkout_text_view_payment_amount_header_text_size</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:gravity">end</item>
+    </style>
+    <style name="Checkout.TextView.PaymentAmountHeader.Dark">
+        <item name="android:textColor">@color/checkout_amount_text_color_light</item>
+    </style>
+    <style name="Checkout.TextView.PaymentAmountHeader.Light">
+        <item name="android:textColor">@color/checkout_amount_text_color_light</item>
+    </style>
+    <style name="Checkout.TextView.PaymentProgress">
+        <item name="android:textSize">@dimen/checkout_text_view_payment_progress_text_size</item>
+    </style>
+    <style name="Checkout.TextView.PaymentProgress.Dark">
+        <item name="android:textColor">@color/checkout_text_color_dark</item>
+    </style>
+    <style name="Checkout.TextView.PaymentTitle">
+        <item name="android:textSize">@dimen/header_text_size</item>
+    </style>
+    <style name="Checkout.TextView.PaymentTitle.Dark">
+        <item name="android:textColor">@color/checkout_title_text_color_light</item>
+    </style>
+    <style name="Checkout.TextView.PaymentTitle.Light">
+        <item name="android:textColor">@color/checkout_title_text_color_light</item>
+    </style>
+    <style name="Checkout.TextView.Secondary">
+        <item name="android:textSize">@dimen/checkout_text_view_secondary_text_size</item>
+        <item name="android:textColor">@color/checkout_text_color</item>
+    </style>
+    <style name="Checkout.TextView.Secondary.Dark">
+        <item name="android:textColor">@color/checkout_text_color_dark</item>
+    </style>
+    <style name="Checkout.TextView.SectionTitle">
+        <item name="android:textSize">@dimen/checkout_text_view_section_title_text_size</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingBottom">7dp</item>
+    </style>
+    <style name="Checkout.TextView.SectionTitle.Dark">
+        <item name="android:textColor">@color/checkout_section_title_text_color_dark</item>
+        <item name="android:background">@color/checkout_section_background_color_dark</item>
+    </style>
+    <style name="Checkout.TextView.SectionTitle.Light">
+        <item name="android:textColor">@color/checkout_section_title_text_color_light</item>
+        <item name="android:background">@color/checkout_section_background_color_light</item>
+    </style>
+    <style name="Checkout.TextView.Token">
+        <item name="android:textSize">@dimen/checkout_text_view_token_text_size</item>
+    </style>
+    <style name="Checkout.TextView.Token.Dark">
+        <item name="android:textColor">@color/checkout_text_color_dark</item>
+    </style>
+    <style name="ConnectCheckout.Button.Dark" parent="Checkout.Button">
+        <item name="android:textColor">@color/checkout_button_text_color_dark</item>
+    </style>
+    <style name="MposDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/checkout_color_accent</item>
+    </style>
+    <style name="MposHintTextAppearance" parent="@style/TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">@dimen/checkout_mpos_hint_text_appearance_text_size</item>
+        <item name="android:textColor">@color/checkout_color_accent</item>
+    </style>
+    <style name="MposTextInputLayout">
+        <item name="hintTextAppearance">@style/MposHintTextAppearance</item>
+    </style>
+    <style name="TextInputLayout">
+        <item name="errorTextAppearance">@style/Checkout.ErrorTextAppearance</item>
+        <item name="hintTextAppearance">@style/Checkout.HintTextAppearance</item>
+    </style>
+    <style name="Theme.Checkout" parent="Theme.AppCompat">
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="colorPrimary">@color/checkout_color_accent</item>
+        <item name="android:textColor">@color/checkout_text_color</item>
+        <item name="android:textColorHint">@color/checkout_text_color_hint</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:dropDownListViewStyle">@style/Checkout.DropDownItem</item>
+        <item name="android:dropDownSpinnerStyle">@style/Checkout.DropDown</item>
+        <item name="colorAccent">@color/checkout_color_accent</item>
+        <item name="colorControlHighlight">@color/checkout_color_accent</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="cancelButtonDrawable">@drawable/ic_close</item>
+        <item name="cameraTintColor">@color/checkout_color_accent</item>
+        <item name="cameraDrawable">@drawable/ic_camera</item>
+        <item name="listDisclosureTintColor">#9e9e9e</item>
+        <item name="listDisclosureDrawable">@drawable/checkout_list_disclosure</item>
+        <item name="listMarkDrawable">@drawable/checkout_list_mark</item>
+        <item name="listMarkTintColor">@color/checkout_color_accent</item>
+        <item name="checkboxButtonTintColor">@color/checkout_color_accent</item>
+        <item name="paymentMethodListDividerColor">@color/checkout_list_divider_color</item>
+
+        <item name="paymentMethodListItemSelector">@drawable/opp_item_selector</item>
+
+        <item name="checkoutTextViewStyle">@style/Checkout.TextView</item>
+        <item name="checkoutSecondaryTextViewStyle">@style/Checkout.TextView.Secondary</item>
+        <item name="checkoutTokenTextViewStyle">@style/Checkout.TextView.Token</item>
+        <item name="checkoutAgreementTextViewStyle">@style/Checkout.TextView.Agreement</item>
+        <item name="checkoutHelperTextViewStyle">@style/Checkout.TextView.Helper</item>
+        <item name="checkoutEditTextStyle">@style/Checkout.EditText</item>
+        <item name="checkoutTitleTextViewStyle">@style/Checkout.TextView.PaymentTitle</item>
+        <item name="checkoutMethodImageViewStyle">@style/Checkout.PaymentMethodImageView</item>
+        <item name="checkoutTokenImageViewStyle">@style/Checkout.PaymentTokenImageView</item>
+        <item name="checkoutListViewStyle">@style/Checkout.ListView</item>
+        <item name="checkoutSectionTitleTextViewStyle">@style/Checkout.TextView.SectionTitle</item>
+        <item name="checkoutAmountHeaderTextViewStyle">@style/Checkout.TextView.PaymentAmountHeader</item>
+        <item name="checkoutAmountTextViewStyle">@style/Checkout.TextView.PaymentAmount</item>
+        <item name="checkoutOrderTotalTextViewStyle">@style/Checkout.TextView.OrderTotal</item>
+        <item name="checkoutButtonStyle">@style/Checkout.Button</item>
+        <item name="checkoutProgressTextViewStyle">@style/Checkout.TextView.PaymentProgress</item>
+        <item name="checkoutFingerprintTitleTextViewStyle">@style/Checkout.TextView.FingerprintTitle</item>
+        <item name="checkoutFingerprintStatusTextViewStyle">@style/Checkout.TextView.FingerprintStatus</item>
+        <item name="checkoutKlarnaTitleTextViewStyle">@style/Checkout.TextView.KlarnaTitle</item>
+    </style>
+    <style name="Theme.Checkout.Dark">
+        <item name="android:dropDownSpinnerStyle">@style/Checkout.DropDown.Dark</item>
+        <item name="android:dropDownListViewStyle">@style/Checkout.DropDownItem.Dark</item>
+        <item name="headerBackground">@color/checkout_header_background_color_dark</item>
+        <item name="windowBackground">@color/checkout_background_color_dark</item>
+
+        <item name="android:textColorHint">@color/checkout_text_color_hint_dark</item>
+
+        <item name="cancelButtonTintColor">@android:color/white</item>
+        <item name="listDisclosureTintColor">@color/checkout_list_disclosure_tint_color_dark</item>
+        <item name="cameraTintColor">@color/checkout_color_accent</item>
+        <item name="paymentMethodListDividerColor">@color/checkout_list_divider_color_dark</item>
+
+        <item name="checkoutTextViewStyle">@style/Checkout.TextView.Dark</item>
+        <item name="checkoutAgreementTextViewStyle">@style/Checkout.TextView.Agreement.Dark</item>
+        <item name="checkoutKlarnaTitleTextViewStyle">@style/Checkout.TextView.KlarnaTitle.Dark</item>
+        <item name="checkoutTokenTextViewStyle">@style/Checkout.TextView.Token.Dark</item>
+        <item name="checkoutSecondaryTextViewStyle">@style/Checkout.TextView.Secondary.Dark</item>
+        <item name="checkoutTokenImageViewStyle">@style/Checkout.PaymentTokenImageView.Dark</item>
+        <item name="checkoutTitleTextViewStyle">@style/Checkout.TextView.PaymentTitle.Dark</item>
+        <item name="checkoutAmountHeaderTextViewStyle">@style/Checkout.TextView.PaymentAmountHeader.Dark</item>
+        <item name="checkoutAmountTextViewStyle">@style/Checkout.TextView.PaymentAmount.Dark</item>
+        <item name="checkoutOrderTotalTextViewStyle">@style/Checkout.TextView.OrderTotal.Dark</item>
+        <item name="checkoutSectionTitleTextViewStyle">@style/Checkout.TextView.SectionTitle.Dark</item>
+
+        <item name="checkoutEditTextStyle">@style/Checkout.EditText.Dark</item>
+
+        <item name="checkoutMethodImageViewStyle">@style/Checkout.PaymentMethodImageView.Dark</item>
+        <item name="checkoutListViewStyle">@style/Checkout.ListView.Dark</item>
+
+        <item name="checkoutButtonStyle">@style/ConnectCheckout.Button.Dark</item>
+
+        <item name="checkoutProgressTextViewStyle">@style/Checkout.TextView.PaymentProgress.Dark</item>
+    </style>
+    <style name="Theme.Checkout.Light">
+        <item name="headerBackground">@color/checkout_header_background_color_light</item>
+        <item name="windowBackground">@color/checkout_background_color_light</item>
+
+        <item name="cancelButtonTintColor">@android:color/white</item>
+
+        <item name="colorControlNormal">#e0e0e0</item>
+
+        <item name="checkoutTitleTextViewStyle">@style/Checkout.TextView.PaymentTitle.Light</item>
+        <item name="checkoutAmountHeaderTextViewStyle">@style/Checkout.TextView.PaymentAmountHeader.Light</item>
+        <item name="checkoutAmountTextViewStyle">@style/Checkout.TextView.PaymentAmount.Light</item>
+        <item name="checkoutEditTextStyle">@style/Checkout.EditText.Light</item>
+        <item name="checkoutSectionTitleTextViewStyle">@style/Checkout.TextView.SectionTitle.Light</item>
+        <item name="checkoutButtonStyle">@style/Checkout.Button.Light</item>
+
+        <item name="checkoutProgressTextViewStyle">@style/Checkout.TextView.PaymentProgress</item>
+    </style>
+</resources>

@@ -35,12 +35,12 @@ allprojects {
             url "https://dl.bintray.com/mnayef95/WinValidation"
         }
 
-        flatDir {
-            dirs("lib")
-        }
-        flatDir {
-            dirs("lib1", "lib2")
-        }
+//        flatDir {
+//            dirs("lib")
+//        }
+//        flatDir {
+//            dirs("lib1", "lib2")
+//        }
     }
 }
 

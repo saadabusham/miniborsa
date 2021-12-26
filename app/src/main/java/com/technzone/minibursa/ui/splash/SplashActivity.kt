@@ -116,30 +116,30 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
     }
 
     private fun checkDeepLink() {
-        FirebaseDynamicLinks.getInstance()
-            .getDynamicLink(intent)
-            .addOnSuccessListener(this) { pendingDynamicLinkData ->
-                var deepLink: Uri? = null
-                if (pendingDynamicLinkData != null) {
-                    deepLink = pendingDynamicLinkData.link
-                }
-                if (deepLink != null) {
-                    if (deepLink.getQueryParameter(Constants.DeepLink.BUSINESS_ID) != null) {
-                        MyApplication.instance.businessIdDeepLink =
-                            deepLink.getQueryParameter(Constants.DeepLink.BUSINESS_ID) ?: ""
-                    } else if (deepLink.getQueryParameter(Constants.DeepLink.NEWS_ID) != null) {
-                        MyApplication.instance.newsIdDeepLink =
-                            deepLink.getQueryParameter(Constants.DeepLink.NEWS_ID) ?: ""
-                    }
-                }
-            }
-            .addOnFailureListener(this) { e ->
-                Log.w(
-                    "",
-                    "getDynamicLink:onFailure",
-                    e
-                )
-            }
+//        FirebaseDynamicLinks.getInstance()
+//            .getDynamicLink(intent)
+//            .addOnSuccessListener(this) { pendingDynamicLinkDatBa ->
+//                var deepLink: Uri? = null
+//                if (pendingDynamicLinkData != null) {
+//                    deepLink = pendingDynamicLinkData.link
+//                }
+//                if (deepLink != null) {
+//                    if (deepLink.getQueryParameter(Constants.DeepLink.BUSINESS_ID) != null) {
+//                        MyApplication.instance.businessIdDeepLink =
+//                            deepLink.getQueryParameter(Constants.DeepLink.BUSINESS_ID) ?: ""
+//                    } else if (deepLink.getQueryParameter(Constants.DeepLink.NEWS_ID) != null) {
+//                        MyApplication.instance.newsIdDeepLink =
+//                            deepLink.getQueryParameter(Constants.DeepLink.NEWS_ID) ?: ""
+//                    }
+//                }
+//            }
+//            .addOnFailureListener(this) { e ->
+//                Log.w(
+//                    "",
+//                    "getDynamicLink:onFailure",
+//                    e
+//                )
+//            }
     }
 
     companion object {

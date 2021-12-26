@@ -172,7 +172,7 @@ class MapActivity : BaseBindingActivity<ActivityMapBinding>(), OnMapReadyCallbac
         }
     }
 
-    override fun onMapReady(p0: GoogleMap?) {
+    override fun onMapReady(p0: GoogleMap) {
         googleMap = p0
         googleMap?.uiSettings?.isCompassEnabled = false
     }
@@ -192,12 +192,16 @@ class MapActivity : BaseBindingActivity<ActivityMapBinding>(), OnMapReadyCallbac
                     RESULT_OK -> {
                         val place = Autocomplete.getPlaceFromIntent(data!!)
                         val address = place.address ?: ""
-                        googleMap?.animateCamera(
+                        place?.latLng?.let {
                             CameraUpdateFactory.newLatLngZoom(
-                                place?.latLng,
+                                it,
                                 14f
                             )
-                        )
+                        }?.let {
+                            googleMap?.animateCamera(
+                                it
+                            )
+                        }
                         place.latLng?.latitude?.let {
                             place.latLng?.longitude?.let { it1 ->
                                 zoomToLocation(

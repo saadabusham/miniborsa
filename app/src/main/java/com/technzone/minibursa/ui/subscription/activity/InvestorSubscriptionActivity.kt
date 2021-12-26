@@ -1,7 +1,6 @@
 package com.technzone.minibursa.ui.subscription.activity
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -161,7 +160,7 @@ class InvestorSubscriptionActivity : BaseBindingActivity<FragmentInvestorSubscri
 
         checkoutSettings.themeResId = R.style.checkoutTheme
 
-        checkoutSettings.shopperResultUrl = Constants.PAYMENT_URL + "://result"
+        checkoutSettings.shopperResultUrl = Constants.PAYMENT_URL_INVESTOR + "://result"
 
         val intent = checkoutSettings.createCheckoutActivityIntent(this)
 
@@ -187,6 +186,7 @@ class InvestorSubscriptionActivity : BaseBindingActivity<FragmentInvestorSubscri
                 }
             }
             CheckoutActivity.RESULT_CANCELED -> {
+                Log.d("", "")
             }
             CheckoutActivity.RESULT_ERROR -> {         /* error occurred */
                 val error: PaymentError? =
@@ -216,7 +216,7 @@ class InvestorSubscriptionActivity : BaseBindingActivity<FragmentInvestorSubscri
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        if (intent.scheme == Constants.PAYMENT_URL) {
+        if (intent.scheme == Constants.PAYMENT_URL_INVESTOR) {
             val checkoutId = intent.data!!.getQueryParameter("id")
             checkoutId?.let { viewModel.getPaymentStatus(it).observe(this, observePaymentStatus()) }
         }

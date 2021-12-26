@@ -161,7 +161,7 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
             <intent-filter>
-                <data android:scheme="com.technzone.minibursa.payments" />
+                <data android:scheme="com.technzone.minibursa.business.payments" />
 
                 <action android:name="android.intent.action.VIEW" />
 
@@ -175,7 +175,7 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
             <intent-filter>
-                <data android:scheme="com.technzone.minibursa.payments" />
+                <data android:scheme="com.technzone.minibursa.investor.payments" />
 
                 <action android:name="android.intent.action.VIEW" />
 
