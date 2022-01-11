@@ -201,6 +201,11 @@
 
         </activity>
 
+        <activity
+            android:name=".ui.dataview.dataviewer.DataViewerActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+
         <service
             android:name=".data.services.FirebaseMessagingService"
             android:exported="false">

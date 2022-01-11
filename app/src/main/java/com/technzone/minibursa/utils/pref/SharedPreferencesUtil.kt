@@ -106,7 +106,7 @@ class SharedPreferencesUtil private constructor() {
         oEditor.putStringSet(key, value).apply()
     }
 
-    fun getConfigurationPreferences(): ConfigurationWrapperResponse {
+    fun getConfigurationPreferences(): ConfigurationWrapperResponse? {
         val gson = Gson()
         val json: String = oSharedPreferences.getString("config", "") ?: " "
         return gson.fromJson(json, ConfigurationWrapperResponse::class.java)

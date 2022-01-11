@@ -9,5 +9,6 @@ enum class MoreEnums {
     GET_HELP,
     INVESTORS_LIST,
     SWITCH_TO_INVESTOR,
-    SETTINGS
+    SETTINGS,
+    TERMS_AND_CONDITIONS
 }

@@ -34,6 +34,7 @@ import com.technzone.minibursa.ui.core.profile.adapters.MoreRecyclerAdapter
 import com.technzone.minibursa.ui.core.profile.viewmodels.ProfileViewModel
 import com.technzone.minibursa.ui.core.settings.SettingsActivity
 import com.technzone.minibursa.ui.core.updateprofile.UpdateProfileActivity
+import com.technzone.minibursa.ui.dataview.dataviewer.DataViewerActivity
 import com.technzone.minibursa.ui.investor.invistormain.activity.InvestorMainActivity
 import com.technzone.minibursa.ui.investor.invistorroles.activity.InvestorRolesActivity
 import com.technzone.minibursa.ui.investor.recentviewed.activity.RecentViewActivity
@@ -133,6 +134,13 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
                 resources.getString(R.string.more_help),
                 R.drawable.ic_more_help,
                 MoreEnums.GET_HELP
+            )
+        )
+        itemList.add(
+            More(
+                resources.getString(R.string.more_terms_and_conditions),
+                R.drawable.ic_more_terms_conditions,
+                MoreEnums.TERMS_AND_CONDITIONS
             )
         )
         moreRecyclerAdapter.submitItems(itemList)
@@ -319,6 +327,13 @@ class ProfileFragment : BaseBindingFragment<FragmentProfileBinding>(),
             }
             MoreEnums.GET_HELP -> {
                 FaqsActivity.start(requireContext())
+            }
+            MoreEnums.TERMS_AND_CONDITIONS -> {
+                DataViewerActivity.start(
+                    requireContext(),
+                    resources.getString(R.string.more_terms_and_conditions),
+                    viewModel.getTermsAndConditions()
+                )
             }
         }
     }

@@ -109,4 +109,14 @@ class ProfileViewModel @Inject constructor(
         )
         emit(response)
     }
+
+
+    fun getTermsAndConditions(): String {
+        return if (configurationPref.getAppLanguageValue() == CommonEnums.Languages.English.value)
+            sharedPreferencesUtil.getConfigurationPreferences()?.configString?.englishTermsAndConditions
+                ?: ""
+        else sharedPreferencesUtil.getConfigurationPreferences()?.configString?.arabicTermsAndConditions
+            ?: ""
+    }
+
 }
