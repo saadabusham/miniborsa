@@ -127,6 +127,12 @@
     <string name="sign_in_here">Sign in here</string>
     <string name="sign_up">Sign up</string>
     <string name="thousands_of_business_nwaiting_for_you">Thousands of business\nwaiting for you</string>
+    <string name="by_creating_an_account_you_have_to_agree">By creating an account you have to agree</string>
+    <string name="with_our">with our</string>
+    <string name="terms_and_conditions">Terms &amp; Conditions</string>
+    <string name="agreement">Agreement</string>
+    <string name="please_accept_the_terms_and_conditions">Please accept the terms and conditions</string>
+
     <!--    TouchId     -->
     <string name="enable_touch_id">Enable Touch ID</string>
     <string name="touch_id_for_faster_login">Touch ID for faster login</string>

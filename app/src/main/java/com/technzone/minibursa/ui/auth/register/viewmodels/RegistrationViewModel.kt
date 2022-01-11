@@ -6,11 +6,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import co.infinum.goldfinger.Goldfinger
 import com.technzone.minibursa.R
+import com.technzone.minibursa.common.CommonEnums
 import com.technzone.minibursa.data.api.response.APIResource
 import com.technzone.minibursa.data.common.Constants
 import com.technzone.minibursa.data.enums.UserEnums
 import com.technzone.minibursa.data.models.auth.login.UserDetailsResponseModel
 import com.technzone.minibursa.data.models.general.Countries
+import com.technzone.minibursa.data.pref.configuration.ConfigurationPref
 import com.technzone.minibursa.data.repos.user.UserRepo
 import com.technzone.minibursa.ui.base.viewmodel.BaseViewModel
 import com.technzone.minibursa.utils.DateTimeUtil
@@ -18,6 +20,7 @@ import com.technzone.minibursa.utils.extensions.checkPhoneNumberFormat
 import com.technzone.minibursa.utils.extensions.millisecondFormatting
 import com.technzone.minibursa.utils.extensions.minToMillisecond
 import com.technzone.minibursa.utils.extensions.secondToMillisecond
+import com.technzone.minibursa.utils.pref.SharedPreferencesUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -25,7 +28,9 @@ import javax.inject.Inject
 @HiltViewModel
 class RegistrationViewModel @Inject constructor(
     private val userRepo: UserRepo,
-    @ApplicationContext val context: Context
+    @ApplicationContext val context: Context,
+    private val sharedPreferencesUtil: SharedPreferencesUtil,
+    private val configurationPref: ConfigurationPref,
 ) : BaseViewModel() {
 
     companion object {
@@ -121,6 +126,14 @@ class RegistrationViewModel @Inject constructor(
 
     fun isTouchIdShouldVisible(): Boolean {
         return Goldfinger.Builder(context).build().canAuthenticate()
+    }
+
+    fun getTermsAndConditions(): String {
+        return if (configurationPref.getAppLanguageValue() == CommonEnums.Languages.English.value)
+            sharedPreferencesUtil.getConfigurationPreferences()?.configString?.englishTermsAndConditions
+                ?: ""
+        else sharedPreferencesUtil.getConfigurationPreferences()?.configString?.arabicTermsAndConditions
+            ?: ""
     }
 
 }

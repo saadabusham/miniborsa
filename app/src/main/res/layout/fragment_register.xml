@@ -202,6 +202,69 @@
                                 android:text="@={viewModel.confirmPasswordMutableLiveData}" />
                         </com.google.android.material.textfield.TextInputLayout>
 
+
+                        <RelativeLayout
+                            android:id="@+id/linearAgreement"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:gravity="center|start"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatCheckBox
+                                android:id="@+id/checkboxAgreement"
+                                android:layout_width="@dimen/_17sdp"
+                                android:layout_height="@dimen/_17sdp"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:button="@drawable/checkbox_selector"
+                                android:checked="false" />
+
+                            <com.technzone.minibursa.ui.base.views.AppTextView
+                                android:id="@+id/tvAgreement"
+                                style="@style/textview_normal_regular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_toEndOf="@id/checkboxAgreement"
+                                android:text="@string/by_creating_an_account_you_have_to_agree"
+                                android:textColor="@color/defaultTextColor"
+                                android:textSize="@dimen/_11ssp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tvAgreement"
+                                android:layout_toEndOf="@id/checkboxAgreement"
+                                android:orientation="horizontal">
+
+                                <com.technzone.minibursa.ui.base.views.AppTextView
+                                    style="@style/textview_normal_regular"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_5sdp"
+                                    android:text="@string/with_our"
+                                    android:textColor="@color/defaultTextColor"
+                                    android:textSize="@dimen/_10ssp" />
+
+                                <com.technzone.minibursa.ui.base.views.AppTextView
+                                    android:id="@+id/tvTermsAndConditions"
+                                    style="@style/textview_normal_regular"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_2sdp"
+                                    android:background="?android:selectableItemBackground"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:text="@string/terms_and_conditions"
+                                    android:textColor="@color/button_color"
+                                    android:textSize="@dimen/_10ssp" />
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnSignUp"
                             style="@style/AppTheme.Button"

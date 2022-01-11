@@ -14,6 +14,7 @@ import com.technzone.minibursa.databinding.FragmentRegisterBinding
 import com.technzone.minibursa.ui.auth.register.viewmodels.RegistrationViewModel
 import com.technzone.minibursa.ui.base.fragment.BaseBindingFragment
 import com.technzone.minibursa.ui.countrypicker.activity.CountriesPickerActivity
+import com.technzone.minibursa.ui.dataview.dataviewer.DataViewerActivity
 import com.technzone.minibursa.utils.extensions.*
 import com.technzone.minibursa.utils.validation.ValidatorInputTypesEnums
 import dagger.hilt.android.AndroidEntryPoint
@@ -66,6 +67,15 @@ class RegistrationFragment :
                 resultLauncher = resultLauncher
             )
         }
+
+        binding?.tvTermsAndConditions?.setOnClickListener {
+            DataViewerActivity.start(
+                requireContext(),
+                resources.getString(R.string.terms_and_conditions),
+                viewModel.getTermsAndConditions()
+            )
+        }
+
     }
 
     var resultLauncher =
@@ -141,6 +151,13 @@ class RegistrationFragment :
                     return false
                 }
             }
+        if (binding?.checkboxAgreement?.isChecked == false) {
+            requireActivity().showErrorAlert(
+                title = getString(R.string.agreement),
+                message = getString(R.string.please_accept_the_terms_and_conditions)
+            )
+            return false
+        }
         return valid
     }
 

@@ -127,6 +127,11 @@
     <string name="sign_in_here">تسجيل الدخول هنا</string>
     <string name="sign_up">الاشتراك</string>
     <string name="thousands_of_business_nwaiting_for_you">آلاف الأعمال\في انتظارك</string>
+    <string name="by_creating_an_account_you_have_to_agree">من خلال إنشاء حساب عليك أن توافق</string>
+    <string name="with_our">على</string>
+    <string name="terms_and_conditions">الأحكام والشروط</string>
+    <string name="agreement">الاتفاق</string>
+    <string name="please_accept_the_terms_and_conditions">الرجاء قبول الشروط والأحكام</string>
     <!--    TouchId     -->
     <string name="enable_touch_id">متاح بصمتك</string>
     <string name="touch_id_for_faster_login">بصمتك لتسجيل الدخول بشكل أسرع</string>
