@@ -170,7 +170,7 @@ class BusinessSubscriptionActivity : BaseBindingActivity<FragmentBusinessSubscri
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        when (requestCode) {
+        when (resultCode) {
             CheckoutActivity.RESULT_OK -> {
                 /* transaction completed */
                 val transaction: Transaction? =
