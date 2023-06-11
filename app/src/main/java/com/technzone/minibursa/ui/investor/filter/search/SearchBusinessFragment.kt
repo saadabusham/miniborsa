@@ -80,7 +80,7 @@ class SearchBusinessFragment : BaseBindingFragment<FragmentSearchBusinessBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val transition: Transition = TransitionInflater.from(context)
+        val transition: Transition = TransitionInflater.from(requireContext())
             .inflateTransition(R.transition.image_shared_element_transition)
         sharedElementEnterTransition = transition
     }
@@ -168,7 +168,7 @@ class SearchBusinessFragment : BaseBindingFragment<FragmentSearchBusinessBinding
     }
 
     private fun observeLoading() {
-        loading.observe(this, {
+        loading.observe(this) {
             if (it) {
                 binding?.recyclerView?.gone()
                 binding?.layoutShimmer?.shimmerViewContainer?.visible()
@@ -178,7 +178,7 @@ class SearchBusinessFragment : BaseBindingFragment<FragmentSearchBusinessBinding
                 binding?.layoutShimmer?.shimmerViewContainer?.stopShimmer()
                 binding?.recyclerView?.visible()
             }
-        })
+        }
     }
 
     private fun initSearch() {

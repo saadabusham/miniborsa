@@ -8,11 +8,14 @@ import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
 import com.oppwa.mobile.connect.checkout.dialog.CheckoutActivity
+import com.oppwa.mobile.connect.checkout.meta.CheckoutActivityResult
+import com.oppwa.mobile.connect.checkout.meta.CheckoutActivityResultContract
 import com.oppwa.mobile.connect.checkout.meta.CheckoutSettings
 import com.oppwa.mobile.connect.exception.PaymentError
 import com.oppwa.mobile.connect.provider.Connect
 import com.oppwa.mobile.connect.provider.Transaction
 import com.oppwa.mobile.connect.provider.TransactionType
+import com.technzone.minibursa.BuildConfig
 import com.technzone.minibursa.R
 import com.technzone.minibursa.data.api.response.ResponseSubErrorsCodeEnum
 import com.technzone.minibursa.data.common.Constants
@@ -27,7 +30,7 @@ import com.technzone.minibursa.ui.subscription.adapter.InvestorSubscriptionRecyc
 import com.technzone.minibursa.ui.subscription.viewmodel.SubscriptionViewModel
 import com.technzone.minibursa.utils.extensions.showErrorAlert
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.layout_toolbar.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @AndroidEntryPoint
 class InvestorSubscriptionActivity : BaseBindingActivity<FragmentInvestorSubscriptionBinding>(),
@@ -41,8 +44,12 @@ class InvestorSubscriptionActivity : BaseBindingActivity<FragmentInvestorSubscri
         super.onCreate(savedInstanceState)
         setContentView(
             R.layout.fragment_investor_subscription,
+            hasToolbar = true
+        )
+        addToolbar(
+            toolbarView = binding?.layoutToolbar?.toolbar,
+            tvToolbarTitleView = binding?.layoutToolbar?.tvToolbarTitle,
             hasToolbar = true,
-            toolbarView = toolbar,
             hasBackButton = true,
             showBackArrow = true,
             hasTitle = true,
@@ -126,7 +133,7 @@ class InvestorSubscriptionActivity : BaseBindingActivity<FragmentInvestorSubscri
 
     private fun checkout() {
         subscriptionRecyclerAdapter.getSelectedItem()?.let {
-            viewModel.generateCheckoutId(it.price ?: 0.0, "USD", subscriptionId?:0)
+            viewModel.generateCheckoutId(it.price ?: 0.0, "USD", subscriptionId ?: 0)
                 .observe(this, observeCheckOutId())
         }
     }
@@ -156,42 +163,54 @@ class InvestorSubscriptionActivity : BaseBindingActivity<FragmentInvestorSubscri
 //        paymentBrands.add("GOOGLEPAY")
 
         val checkoutSettings =
-            CheckoutSettings(checkoutId, paymentBrands, Connect.ProviderMode.TEST)
+            CheckoutSettings(checkoutId, paymentBrands, if(BuildConfig.DEBUG) Connect.ProviderMode.TEST else Connect.ProviderMode.LIVE)
 
         checkoutSettings.themeResId = R.style.checkoutTheme
 
         checkoutSettings.shopperResultUrl = Constants.PAYMENT_URL_INVESTOR + "://result"
 
-        val intent = checkoutSettings.createCheckoutActivityIntent(this)
-
-        startActivityForResult(intent, CheckoutActivity.REQUEST_CODE_CHECKOUT)
+        checkoutLauncher.launch(checkoutSettings)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        when (resultCode) {
-            CheckoutActivity.RESULT_OK -> {
-                /* transaction completed */
-                val transaction: Transaction? =
-                    data?.getParcelableExtra(CheckoutActivity.CHECKOUT_RESULT_TRANSACTION)
+    private val checkoutLauncher = registerForActivityResult(
+        CheckoutActivityResultContract()
+    ) { result: CheckoutActivityResult ->
+        this.handleCheckoutActivityResult(result)
+    }
 
-                /* resource path if needed */
-                val resourcePath =
-                    data?.getStringExtra(CheckoutActivity.CHECKOUT_RESULT_RESOURCE_PATH)
-                if (transaction?.transactionType === TransactionType.SYNC) {
+    private fun handleCheckoutActivityResult(result: CheckoutActivityResult) {
+        runOnUiThread {
+            if (result.isCanceled) {
+                return@runOnUiThread
+            }
+
+            if (result.isErrored) {
+                val error: PaymentError? = result.paymentError
+                showErrorAlert(message = error?.errorMessage ?: getString(R.string.error_msg))
+                return@runOnUiThread
+            }
+
+            /* Transaction completed */
+            val transaction: Transaction? = result.transaction
+
+            /* Check the transaction type */
+            if (transaction != null) {
+                if (transaction.transactionType === TransactionType.SYNC) {
                     viewModel.getPaymentStatus(transaction.paymentParams.checkoutId)
                         .observe(this, observePaymentStatus())
                 } else {
                     /* wait for the asynchronous transaction callback in the onNewIntent() */
                 }
             }
-            CheckoutActivity.RESULT_CANCELED -> {
-                Log.d("", "")
-            }
-            CheckoutActivity.RESULT_ERROR -> {         /* error occurred */
-                val error: PaymentError? =
-                    data?.getParcelableExtra(CheckoutActivity.CHECKOUT_RESULT_ERROR)
-            }
+        }
+    }
+
+    @ExperimentalCoroutinesApi
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        if (intent.scheme == Constants.PAYMENT_URL_INVESTOR) {
+            val checkoutId = intent.data!!.getQueryParameter("id")
+            checkoutId?.let { viewModel.getPaymentStatus(it).observe(this, observePaymentStatus()) }
         }
     }
 
@@ -212,14 +231,6 @@ class InvestorSubscriptionActivity : BaseBindingActivity<FragmentInvestorSubscri
 
             }
         )
-    }
-
-    override fun onNewIntent(intent: Intent) {
-        super.onNewIntent(intent)
-        if (intent.scheme == Constants.PAYMENT_URL_INVESTOR) {
-            val checkoutId = intent.data!!.getQueryParameter("id")
-            checkoutId?.let { viewModel.getPaymentStatus(it).observe(this, observePaymentStatus()) }
-        }
     }
 
     override fun onItemClick(view: View?, position: Int, item: Any) {

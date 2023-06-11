@@ -22,8 +22,6 @@ import com.technzone.minibursa.ui.userrole.activity.UserRolesActivity
 import com.technzone.minibursa.utils.extensions.*
 import com.technzone.minibursa.utils.validation.ValidatorInputTypesEnums
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_login.*
-import kotlinx.android.synthetic.main.layout_toolbar_with_skip.*
 import javax.inject.Inject
 
 
@@ -40,7 +38,8 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding>() {
         super.onViewVisible()
         prefs.setIsFirstOpen(false)
         addToolbar(
-            toolbarView = toolbar,
+            toolbarView =  binding?.layoutToolbar?.toolbar,
+            tvToolbarTitleView = binding?.layoutToolbar?.tvToolbarTitle,
             hasToolbar = true,
             hasBackButton = requireActivity().intent.getBooleanExtra(
                 Constants.BundleData.IS_ACTIVITY_RESULT,
@@ -85,7 +84,7 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding>() {
                 InvestorMainActivity.start(requireContext())
             }
         }
-        tvSignUp?.setOnClickListener {
+        binding?.tvSignUp?.setOnClickListener {
             if (requireActivity().intent.getBooleanExtra(
                     Constants.BundleData.IS_ACTIVITY_RESULT,
                     false
@@ -96,7 +95,7 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding>() {
                 RegisterActivity.startForResult(requireActivity(), false)
             }
         }
-        tvForgetPassword?.setOnClickListener {
+        binding?.tvForgetPassword?.setOnClickListener {
             ForgetPasswordActivity.start(context)
         }
 
@@ -216,7 +215,7 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding>() {
 
     private fun validateInput(): Boolean {
         var valid = true
-        edEmail.text.toString().validate(
+        binding?.edEmail?.text.toString().validate(
             ValidatorInputTypesEnums.EMAIL,
             requireContext()
         )

@@ -10,7 +10,6 @@ import com.technzone.minibursa.ui.base.fragment.BaseBindingFragment
 import com.technzone.minibursa.utils.extensions.invisible
 import com.technzone.minibursa.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_on_boarding.*
 
 @AndroidEntryPoint
 class OnBoardingFragment : BaseBindingFragment<FragmentOnBoardingBinding>() {
@@ -80,10 +79,10 @@ class OnBoardingFragment : BaseBindingFragment<FragmentOnBoardingBinding>() {
             super.onPageSelected(position)
             updateIndicator(position)
             if (position == 2) {
-                btnNextOnBoarding.text = getString(R.string.get_started)
+                binding?.btnNextOnBoarding?.text = getString(R.string.get_started)
                 binding?.ivClose?.invisible()
             } else {
-                btnNextOnBoarding.text = getString(R.string.next)
+                binding?.btnNextOnBoarding?.text = getString(R.string.next)
                 binding?.ivClose?.visible()
             }
         }

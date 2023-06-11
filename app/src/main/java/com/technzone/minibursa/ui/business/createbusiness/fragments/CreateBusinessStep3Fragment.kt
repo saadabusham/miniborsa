@@ -18,12 +18,11 @@ import com.technzone.minibursa.ui.base.fragment.BaseFormBindingFragment
 import com.technzone.minibursa.ui.business.createbusiness.adapters.DocumentsRecyclerAdapter
 import com.technzone.minibursa.ui.business.createbusiness.adapters.ImageRecyclerAdapter
 import com.technzone.minibursa.utils.ContentUriUtils.getFilePathFromURI
-import com.technzone.minibursa.utils.ImagePickerUtil.Companion.TAKE_USER_IMAGE_REQUEST_CODE
+import com.technzone.minibursa.utils.TAKE_USER_IMAGE_REQUEST_CODE
 import com.technzone.minibursa.utils.extensions.calculatePercentage
 import com.technzone.minibursa.utils.pickImages
 import com.technzone.minibursa.utils.recycleviewutils.VerticalSpaceDecoration
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.row_sort.*
 
 @AndroidEntryPoint
 class CreateBusinessStep3Fragment : BaseFormBindingFragment<FragmentCreateBusinessStep3Binding>(),

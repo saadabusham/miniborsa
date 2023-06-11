@@ -25,14 +25,14 @@
                 android:layout_marginEnd="@dimen/_12sdp">
 
                 <com.technzone.minibursa.ui.base.views.AppTextView
-                    android:id="@+id/tvTitle"
+                    android:id="@+id/tvToolbarTitle"
                     style="@style/textview_normal_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    tools:text="Title"
                     android:textColor="@color/textview_header_gray"
-                    android:textSize="@dimen/_11ssp" />
+                    android:textSize="@dimen/_11ssp"
+                    tools:text="Title" />
 
                 <com.technzone.minibursa.ui.base.views.AppTextView
                     android:id="@+id/tvAction"

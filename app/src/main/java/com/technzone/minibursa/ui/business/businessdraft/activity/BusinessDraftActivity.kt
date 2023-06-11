@@ -1,7 +1,6 @@
 package com.technzone.minibursa.ui.business.businessdraft.activity
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -24,7 +23,6 @@ import com.technzone.minibursa.ui.investor.invistormain.activity.InvestorMainAct
 import com.technzone.minibursa.utils.extensions.gone
 import com.technzone.minibursa.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
 class BusinessDraftActivity : BaseBindingActivity<ActivityBusinessDraftBinding>(),
@@ -42,7 +40,8 @@ class BusinessDraftActivity : BaseBindingActivity<ActivityBusinessDraftBinding>(
         setContentView(
             R.layout.activity_business_draft,
             hasToolbar = true,
-            toolbarView = toolbar,
+            toolbarView =  binding?.layoutToolbar?.toolbar,
+            tvTitle = binding?.layoutToolbar?.tvToolbarTitle,
             hasBackButton = true,
             showBackArrow = true,
             hasTitle = true,

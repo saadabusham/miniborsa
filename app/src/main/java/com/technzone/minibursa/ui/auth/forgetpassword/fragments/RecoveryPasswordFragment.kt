@@ -13,7 +13,6 @@ import com.technzone.minibursa.utils.extensions.validate
 import com.technzone.minibursa.utils.extensions.validateConfirmPassword
 import com.technzone.minibursa.utils.validation.ValidatorInputTypesEnums
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
 class RecoveryPasswordFragment : BaseBindingFragment<FragmentRecoveryPasswordBinding>() {
@@ -26,7 +25,8 @@ class RecoveryPasswordFragment : BaseBindingFragment<FragmentRecoveryPasswordBin
         super.onViewVisible()
         addToolbar(
             hasToolbar = true,
-            toolbarView = toolbar,
+            toolbarView =  binding?.layoutToolbar?.toolbar,
+            tvToolbarTitleView = binding?.layoutToolbar?.tvToolbarTitle,
             hasBackButton = true,
             showBackArrow = true,
             hasTitle = false,

@@ -12,8 +12,6 @@ import com.technzone.minibursa.utils.extensions.showErrorAlert
 import com.technzone.minibursa.utils.extensions.validate
 import com.technzone.minibursa.utils.validation.ValidatorInputTypesEnums
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_verification_login.*
-import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
 class VerificationForgetPasswordFragment :
@@ -27,7 +25,8 @@ class VerificationForgetPasswordFragment :
         super.onViewVisible()
         addToolbar(
             hasToolbar = true,
-            toolbarView = toolbar,
+            toolbarView = binding?.layoutToolbar?.toolbar,
+            tvToolbarTitleView = binding?.layoutToolbar?.tvToolbarTitle,
             hasBackButton = true,
             showBackArrow = true,
             hasTitle = true,
@@ -58,17 +57,23 @@ class VerificationForgetPasswordFragment :
     }
 
     private fun verifyOtpResultObserver(): CustomObserverResponse<UserDetailsResponseModel> {
-        return CustomObserverResponse(requireActivity(), object : CustomObserverResponse.APICallBack<UserDetailsResponseModel> {
-            override fun onSuccess(statusCode: Int, subErrorCode: ResponseSubErrorsCodeEnum, data: UserDetailsResponseModel?) {
-                data?.let {
-                    navigationController.navigate(R.id.action_verificationForgetPassword_to_recoveryPasswordFragment)
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<UserDetailsResponseModel> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: UserDetailsResponseModel?
+                ) {
+                    data?.let {
+                        navigationController.navigate(R.id.action_verificationForgetPassword_to_recoveryPasswordFragment)
+                    }
                 }
-            }
-        })
+            })
     }
 
     private fun setUpViewsListeners() {
-        otp_view.setAnimationEnable(true)
+        binding?.otpView?.setAnimationEnable(true)
         binding?.tvTimeToResend?.setOnClickListener {
             if (viewModel.signUpResendPinCodeEnabled.value == true) {
                 viewModel.resendVerificationCode().observe(this, sendOtpResultObserver())
@@ -76,13 +81,13 @@ class VerificationForgetPasswordFragment :
         }
         binding?.btnConfirm?.setOnClickListener {
             if (validateInput()) {
-                viewModel.verifyCode().observe(this,verifyOtpResultObserver())
+                viewModel.verifyCode().observe(this, verifyOtpResultObserver())
             }
         }
     }
 
     private fun validateInput(): Boolean {
-        otp_view.text.toString().validate(ValidatorInputTypesEnums.OTP, requireContext()).let {
+        binding?.otpView?.text.toString().validate(ValidatorInputTypesEnums.OTP, requireContext()).let {
             if (!it.isValid) {
                 activity.showErrorAlert(it.errorTitle, it.errorMessage)
                 return false

@@ -3,7 +3,6 @@ package com.technzone.minibursa.ui.subscription.fragments
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.technzone.minibursa.R
-import com.technzone.minibursa.data.models.subscrption.Subscription
 import com.technzone.minibursa.databinding.FragmentInvestorSubscriptionBinding
 import com.technzone.minibursa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.minibursa.ui.base.bindingadapters.setOnItemClickListener
@@ -11,7 +10,6 @@ import com.technzone.minibursa.ui.base.fragment.BaseBindingFragment
 import com.technzone.minibursa.ui.subscription.adapter.InvestorSubscriptionRecyclerAdapter
 import com.technzone.minibursa.ui.subscription.viewmodel.SubscriptionViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
 class InvestorSubscriptionFragment : BaseBindingFragment<FragmentInvestorSubscriptionBinding>(),
@@ -27,7 +25,8 @@ class InvestorSubscriptionFragment : BaseBindingFragment<FragmentInvestorSubscri
         super.onViewVisible()
         addToolbar(
             hasToolbar = true,
-            toolbarView = toolbar,
+            toolbarView =  binding?.layoutToolbar?.toolbar,
+            tvToolbarTitleView = binding?.layoutToolbar?.tvToolbarTitle,
             hasBackButton = true,
             showBackArrow = true,
             hasTitle = true,

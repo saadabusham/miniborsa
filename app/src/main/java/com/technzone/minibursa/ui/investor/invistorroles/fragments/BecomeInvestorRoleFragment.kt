@@ -29,7 +29,6 @@ import com.technzone.minibursa.utils.extensions.showErrorAlert
 import com.technzone.minibursa.utils.extensions.validate
 import com.technzone.minibursa.utils.validation.ValidatorInputTypesEnums
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
 class BecomeInvestorRoleFragment : BaseBindingFragment<FragmentBecomeInvistorBinding>(),
@@ -46,7 +45,8 @@ class BecomeInvestorRoleFragment : BaseBindingFragment<FragmentBecomeInvistorBin
         super.onViewVisible()
         addToolbar(
             hasToolbar = true,
-            toolbarView = toolbar,
+            toolbarView =  binding?.layoutToolbar?.toolbar,
+            tvToolbarTitleView = binding?.layoutToolbar?.tvToolbarTitle,
             hasBackButton = true,
             showBackArrow = true
         )
@@ -108,14 +108,14 @@ class BecomeInvestorRoleFragment : BaseBindingFragment<FragmentBecomeInvistorBin
                     return false
                 }
             }
-        if (selectedCountriesAdapter.getSelectedItems().isNullOrEmpty()) {
+        if (selectedCountriesAdapter.getSelectedItems().isEmpty()) {
             requireActivity().showErrorAlert(
                 getString(R.string.app_name),
                 getString(R.string.please_select_your_countries)
             )
             return false
         }
-        if (selectedSpecialisationAdapter.getSelectedItems().isNullOrEmpty()) {
+        if (selectedSpecialisationAdapter.getSelectedItems().isEmpty()) {
             requireActivity().showErrorAlert(
                 getString(R.string.app_name),
                 getString(R.string.please_select_your_specialisations)
@@ -152,12 +152,14 @@ class BecomeInvestorRoleFragment : BaseBindingFragment<FragmentBecomeInvistorBin
                                                 }
                                         }
                                     }
-                                GeneralActivity.start(
-                                    requireContext(),
-                                    getString(R.string.countries),
-                                    ArrayList(countries),
-                                    countiesResultLauncher
-                                )
+                                countries?.let { ArrayList(it) }?.let {
+                                    GeneralActivity.start(
+                                        requireContext(),
+                                        getString(R.string.countries),
+                                        it,
+                                        countiesResultLauncher
+                                    )
+                                }
                             }
                 }
             })

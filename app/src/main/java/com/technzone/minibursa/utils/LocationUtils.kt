@@ -67,7 +67,7 @@ fun Fragment.displayLocationSettingsRequest(activity: Activity, requestCode: Int
 fun Fragment.getLocationName(latitude: Double?, longitude: Double?): String {
     try {
 
-        val address = Geocoder(context, Locale.ENGLISH).getFromLocation(
+        val address = Geocoder(requireContext(), Locale.ENGLISH).getFromLocation(
             latitude ?: 0.0,
             longitude ?: 0.0,
             1
@@ -98,7 +98,7 @@ fun Fragment.getLocationName(latitude: Double?, longitude: Double?): String {
 fun Fragment.getLocationAddress(latitude: Double?, longitude: Double?): Address {
     try {
 
-        val address = Geocoder(context, Locale.ENGLISH).getFromLocation(
+        val address = Geocoder(requireContext(), Locale.ENGLISH).getFromLocation(
             latitude ?: 0.0,
             longitude ?: 0.0,
             1
@@ -135,7 +135,7 @@ fun Fragment.getLocationAddress(latitude: Double?, longitude: Double?): Address 
 }
 
 fun Context.getDistance(fromLocation: Location?, toLocation: Location?): String? {
-    val distance: Float = fromLocation?.distanceTo(toLocation) ?: 0f
+    val distance: Float = toLocation?.let { fromLocation?.distanceTo(it) } ?: 0f
     val distanceInKM = distance / 1000
     return if (distanceInKM != 0f) {
         java.lang.String.format(Locale.ENGLISH, "%.2f %s", distanceInKM, getString(R.string.km))
@@ -190,7 +190,7 @@ fun Activity.displayLocationSettingsRequest(requestCode: Int) {
 }
 
 fun Context.getDistanceInKM(fromLocation: Location?, toLocation: Location?): Float? {
-    val distance: Float = fromLocation?.distanceTo(toLocation) ?: 0f
+    val distance: Float = toLocation?.let { fromLocation?.distanceTo(it) } ?: 0f
     return distance / 1000
 }
 

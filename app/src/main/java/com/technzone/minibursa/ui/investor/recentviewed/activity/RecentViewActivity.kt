@@ -29,7 +29,6 @@ import com.technzone.minibursa.utils.plus
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.layout_toolbar.*
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -69,7 +68,7 @@ class RecentViewActivity : BaseBindingActivity<ActivityRecentviewBinding>(),
     }
 
     private fun loadData(){
-        viewModel.getSearchedBusiness().observe(this, {
+        viewModel.getSearchedBusiness().observe(this) {
             if (it.isNotEmpty()) {
                 recentViewAdapter.submitNewItems(it)
                 originalList.apply {
@@ -79,7 +78,7 @@ class RecentViewActivity : BaseBindingActivity<ActivityRecentviewBinding>(),
             } else {
                 binding?.layoutNoData?.root?.visible()
             }
-        })
+        }
     }
     private fun initSearch() {
         binding?.edSearch?.setupClearButtonWithAction()

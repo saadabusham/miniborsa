@@ -36,7 +36,6 @@ import com.technzone.minibursa.utils.extensions.openUrl
 import com.technzone.minibursa.utils.extensions.round
 import com.technzone.minibursa.utils.extensions.showErrorAlert
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.layout_business_details_toolbar.*
 
 @AndroidEntryPoint
 class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBinding>(),
@@ -54,8 +53,12 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
         super.onCreate(savedInstanceState)
         setContentView(
             R.layout.activity_business_details,
+            hasToolbar = true
+        )
+        addToolbar(
+            toolbarView = binding?.toolbar?.toolbar,
+            tvToolbarTitleView = binding?.toolbar?.tvToolbarTitle,
             hasToolbar = true,
-            toolbarView = toolbar,
             hasBackButton = true,
             showBackArrow = true,
             hasTitle = false
@@ -172,10 +175,10 @@ class BusinessDetailsActivity : BaseBindingActivity<ActivityBusinessDetailsBindi
                     if (subErrorCode == ResponseSubErrorsCodeEnum.NOT_SUBSCRIBED) {
                         subscribe()
                     } else {
-//                        data?.let {
-//                            ChatActivity.start(this@BusinessDetailsActivity, channelId = it)
-//                        }
-                        subscribe()
+                        data?.let {
+                            ChatActivity.start(this@BusinessDetailsActivity, channelId = it)
+                        }
+//                        subscribe()
                     }
                 }
 

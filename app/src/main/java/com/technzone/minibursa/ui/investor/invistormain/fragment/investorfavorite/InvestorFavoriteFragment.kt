@@ -128,7 +128,7 @@ class InvestorFavoriteFragment : BaseBindingFragment<FragmentInvestorFavoriteBin
     }
 
     private fun observeLoading() {
-        loading.observe(this, {
+        loading.observe(this) {
             if (it) {
                 binding?.recyclerView?.gone()
                 binding?.layoutShimmer?.shimmerViewContainer?.visible()
@@ -138,7 +138,7 @@ class InvestorFavoriteFragment : BaseBindingFragment<FragmentInvestorFavoriteBin
                 binding?.layoutShimmer?.shimmerViewContainer?.stopShimmer()
                 binding?.recyclerView?.visible()
             }
-        })
+        }
     }
 
     private fun wishListObserver(): CustomObserverResponse<Any> {

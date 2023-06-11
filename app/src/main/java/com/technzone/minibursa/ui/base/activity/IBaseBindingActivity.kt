@@ -1,6 +1,7 @@
 package com.technzone.minibursa.ui.base.activity
 
 import android.content.pm.ActivityInfo
+import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -13,6 +14,7 @@ interface IBaseBindingActivity {
     fun addToolbar(
         hasToolbar: Boolean,
         toolbarView: Toolbar? = null,
+        tvToolbarTitleView: TextView? = null,
         hasBackButton: Boolean,
         @ColorRes backArrowTint: Int? = null,
         hasTitle: Boolean = false,

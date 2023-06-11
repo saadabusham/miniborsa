@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -81,24 +82,24 @@ abstract class BaseBindingFragment<BINDING : ViewDataBinding> : Fragment(),
 
             }
     }
-
-
-    override fun startActivity(intent: Intent?) =
-        super.startActivity(
-            intent, ActivityOptions.makeCustomAnimation(
-                context,
-                R.anim.slide_in_end, R.anim.slide_out_left
-            ).toBundle()
-        )
-
-
-    override fun startActivityForResult(intent: Intent?, requestCode: Int) =
-        super.startActivityForResult(
-            intent, requestCode, ActivityOptions.makeCustomAnimation(
-                context,
-                R.anim.slide_in_end, R.anim.slide_out_left
-            ).toBundle()
-        )
+//
+//
+//    override fun startActivity(intent: Intent?) =
+//        super.startActivity(
+//            intent, ActivityOptions.makeCustomAnimation(
+//                context,
+//                R.anim.slide_in_end, R.anim.slide_out_left
+//            ).toBundle()
+//        )
+//
+//
+//    override fun startActivityForResult(intent: Intent?, requestCode: Int) =
+//        super.startActivityForResult(
+//            intent, requestCode, ActivityOptions.makeCustomAnimation(
+//                context,
+//                R.anim.slide_in_end, R.anim.slide_out_left
+//            ).toBundle()
+//        )
 
     override fun showLoadingView() {
         customDialogUtils.showProgress()
@@ -130,6 +131,7 @@ abstract class BaseBindingFragment<BINDING : ViewDataBinding> : Fragment(),
 
     override fun addToolbar(
         toolbarView: Toolbar?,
+        tvToolbarTitleView: TextView?,
         hasToolbar: Boolean,
         hasBackButton: Boolean,
         hasTitle: Boolean,
@@ -143,6 +145,7 @@ abstract class BaseBindingFragment<BINDING : ViewDataBinding> : Fragment(),
         if (activity is IBaseBindingActivity) {
             (activity as IBaseBindingActivity).addToolbar(
                 toolbarView = toolbarView,
+                tvToolbarTitleView = tvToolbarTitleView,
                 hasToolbar = hasToolbar,
                 hasBackButton = hasBackButton,
                 hasTitle = hasTitle,

@@ -43,7 +43,7 @@ class ViewImageActivity : BaseBindingActivity<ActivityViewImageBinding>() {
                 override fun onSuccess(p0: String?) {
                     val intent = Intent(context, ViewImageActivity::class.java)
                     intent.putExtra(Constants.BundleData.IMAGE, p0)
-                    context?.startActivity(intent, options.toBundle())
+                    context.startActivity(intent, options.toBundle())
                 }
             })
 

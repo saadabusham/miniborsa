@@ -1,2 +1,2 @@
-include ":app", ":oppwa.mobile-3.12.0"
+include ":app"
 rootProject.name = "MiniBorsa"

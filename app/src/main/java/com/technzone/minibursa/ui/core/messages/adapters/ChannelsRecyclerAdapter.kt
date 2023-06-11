@@ -56,24 +56,24 @@ class ChannelsRecyclerAdapter constructor(
             } catch (e: JSONException) {
 
             }
-            item?.messages?.getLastMessages(1, object : CallbackListener<List<Message>>() {
+            item.messages?.getLastMessages(1, object : CallbackListener<List<Message>>() {
                 override fun onSuccess(p0: List<Message>?) {
-                    when (p0?.size ?: 0 > 0) {
+                    when ((p0?.size ?: 0) > 0) {
                         true -> {
-                            binding?.tvMessage.text = getLastMessage(p0?.get(0))
-                            binding?.tvTime?.text = p0?.get(0)?.dateCreated?.let {
-                                getDateFormated(
+                            binding.tvMessage.text = getLastMessage(p0?.get(0))
+                            binding.tvTime.text = p0?.get(0)?.dateCreated?.let {
+                                getDateFormatted(
                                     it
                                 )
                             }
                         }
                         else -> {
-                            binding?.tvMessage.text = context.resources.getString(
+                            binding.tvMessage.text = context.resources.getString(
                                 R.string.chat_with_invistor
                             )
-                            binding?.tvTime?.text =
+                            binding.tvTime.text =
                                 item.attributes.jsonObject?.optString("createdAt")?.let {
-                                    getDateFormated(
+                                    getDateFormatted(
                                         it
                                     )
                                 }
@@ -83,20 +83,20 @@ class ChannelsRecyclerAdapter constructor(
 
                 override fun onError(errorInfo: ErrorInfo?) {
                     super.onError(errorInfo)
-                    binding?.tvMessage.text = context.resources.getString(
+                    binding.tvMessage.text = context.resources.getString(
                         R.string.chat_with_invistor
                     )
-                    binding?.tvTime?.text =
+                    binding.tvTime.text =
                         item.attributes.jsonObject?.optString("createdAt")?.let {
-                            getDateFormated(
+                            getDateFormatted(
                                 it
                             )
                         }
                 }
             })
 
-            binding?.root?.setOnClickListener {
-                itemClickListener?.onItemClick(it, adapterPosition, item)
+            binding.root.setOnClickListener {
+                itemClickListener?.onItemClick(it, bindingAdapterPosition, item)
             }
 
         }
@@ -113,10 +113,9 @@ class ChannelsRecyclerAdapter constructor(
             )
         }
 
-        fun getDateFormated(date: String): String {
+        fun getDateFormatted(date: String): String {
             return date.toMillieSecconds(TWILIO_FULL_DATE_TIME_FORMATTING)
                 .getNotificationDateForamteed()
-                ?: ""
         }
 
     }

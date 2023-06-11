@@ -8,7 +8,6 @@ import com.technzone.minibursa.data.common.Constants
 import com.technzone.minibursa.databinding.ActivityDataviewerBinding
 import com.technzone.minibursa.ui.base.activity.BaseBindingActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
 class DataViewerActivity : BaseBindingActivity<ActivityDataviewerBinding>() {
@@ -16,14 +15,17 @@ class DataViewerActivity : BaseBindingActivity<ActivityDataviewerBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(
-                layoutResID = R.layout.activity_dataviewer,
-                hasToolbar = true,
-                toolbarView = toolbar,
-                hasBackButton = true,
-                showBackArrow = true,
-                hasTitle = true,
-                titleString = intent.getStringExtra(Constants.title)
-
+            R.layout.activity_dataviewer,
+            hasToolbar = true
+        )
+        addToolbar(
+            toolbarView = binding?.toolbarLayout?.toolbar,
+            tvToolbarTitleView = binding?.toolbarLayout?.tvToolbarTitle,
+            hasToolbar = true,
+            hasBackButton = true,
+            showBackArrow = true,
+            hasTitle = true,
+            titleString = intent.getStringExtra(Constants.title)
         )
         binding?.body = intent.getStringExtra(Constants.body)
     }

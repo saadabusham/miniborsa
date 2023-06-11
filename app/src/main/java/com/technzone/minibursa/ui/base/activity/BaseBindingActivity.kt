@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
@@ -20,7 +21,6 @@ import com.technzone.minibursa.ui.base.dialogs.CustomDialogUtils
 import com.technzone.minibursa.utils.HandleRequestFailedUtil
 import com.technzone.minibursa.utils.extensions.longToast
 import com.technzone.minibursa.utils.pref.SharedPreferencesUtil
-import kotlinx.android.synthetic.main.layout_toolbar.view.*
 import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
@@ -30,6 +30,8 @@ abstract class BaseBindingActivity<BINDING : ViewDataBinding> : LocalizationActi
 
     var binding: BINDING? = null
     private var toolbar: Toolbar? = null
+    private var tvToolbarTitle: TextView? = null
+
 
 
     lateinit var customDialogUtils: CustomDialogUtils
@@ -54,6 +56,7 @@ abstract class BaseBindingActivity<BINDING : ViewDataBinding> : LocalizationActi
         hasToolbar: Boolean = false,
         hasBackButton: Boolean = false,
         toolbarView: Toolbar? = null,
+        tvTitle: TextView? = null,
         backArrowTint: Int? = null,
         hasTitle: Boolean = false,
         title: Int = R.string.empty_string,
@@ -76,6 +79,7 @@ abstract class BaseBindingActivity<BINDING : ViewDataBinding> : LocalizationActi
         addToolbar(
             hasToolbar,
             toolbarView,
+            tvToolbarTitle,
             hasBackButton,
             backArrowTint,
             hasTitle,
@@ -91,6 +95,7 @@ abstract class BaseBindingActivity<BINDING : ViewDataBinding> : LocalizationActi
     override fun addToolbar(
         hasToolbar: Boolean,
         toolbarView: Toolbar?,
+        tvToolbarTitleView: TextView?,
         hasBackButton: Boolean,
         backArrowTint: Int?,
         hasTitle: Boolean,
@@ -104,6 +109,7 @@ abstract class BaseBindingActivity<BINDING : ViewDataBinding> : LocalizationActi
         if (!hasToolbar) return
 
         toolbar = toolbarView ?: findViewById(R.id.toolbar)
+        tvToolbarTitle = tvToolbarTitleView ?: findViewById(R.id.tvToolbarTitle)
 
         if (toolbar == null) return
 
@@ -111,11 +117,12 @@ abstract class BaseBindingActivity<BINDING : ViewDataBinding> : LocalizationActi
 
         if (hasTitle) {
             supportActionBar?.title = ""
-            toolbar?.tvTitle?.text =
+            tvToolbarTitle?.text =
                 if (titleString.isNullOrEmpty()) getString(title) else titleString
         } else {
             supportActionBar?.setDisplayShowTitleEnabled(false)
         }
+
 
         if (hasSubTitle) {
             supportActionBar?.subtitle = getString(subTitle)
@@ -146,8 +153,11 @@ abstract class BaseBindingActivity<BINDING : ViewDataBinding> : LocalizationActi
         supportActionBar.let {
             if (hasTitle) {
                 supportActionBar?.title = ""
-                toolbar?.tvTitle?.text =
-                    if (titleString.isNullOrEmpty()) getString(title) else titleString
+                if (titleString == null) {
+                    tvToolbarTitle?.text = getString(title)
+                } else {
+                    tvToolbarTitle?.text = titleString
+                }
             } else {
                 supportActionBar?.setDisplayShowTitleEnabled(false)
             }
@@ -232,14 +242,14 @@ abstract class BaseBindingActivity<BINDING : ViewDataBinding> : LocalizationActi
             ).toBundle()
         )
 
-
-    override fun startActivityForResult(intent: Intent?, requestCode: Int) =
-        super.startActivityForResult(
-            intent, requestCode, ActivityOptions.makeCustomAnimation(
-                this,
-                R.anim.slide_in_end, R.anim.slide_out_left
-            ).toBundle()
-        )
+//
+//    override fun startActivityForResult(intent: Intent?, requestCode: Int) =
+//        super.startActivityForResult(
+//            intent, requestCode, ActivityOptions.makeCustomAnimation(
+//                this,
+//                R.anim.slide_in_end, R.anim.slide_out_left
+//            ).toBundle()
+//        )
 
     fun handleError(throwable: Throwable?) {
         when (throwable) {

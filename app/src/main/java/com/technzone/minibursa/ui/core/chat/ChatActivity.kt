@@ -24,7 +24,7 @@ import com.technzone.minibursa.ui.base.bindingadapters.setOnItemClickListener
 import com.technzone.minibursa.ui.core.chat.adapters.MessageRecyclerAdapter
 import com.technzone.minibursa.ui.core.chat.viewimage.ViewImageActivity
 import com.technzone.minibursa.utils.HandleRequestFailedUtil
-import com.technzone.minibursa.utils.ImagePickerUtil
+import com.technzone.minibursa.utils.TAKE_USER_IMAGE_REQUEST_CODE
 import com.technzone.minibursa.utils.captureImage
 import com.technzone.minibursa.utils.extensions.gone
 import com.technzone.minibursa.utils.extensions.longToast
@@ -33,12 +33,10 @@ import com.technzone.minibursa.utils.extensions.visible
 import com.technzone.minibursa.utils.recycleviewutils.VerticalSpaceDecoration
 import com.technzone.minibursa.utils.twilio.chat.channels.ChannelExtractor
 import com.technzone.minibursa.utils.twilio.chat.channels.ChannelManager
-import com.technzone.minibursa.utils.twilio.chat.channels.LoadChannelListener
 import com.technzone.minibursa.utils.twilio.chat.client.ChatClientManager
 import com.technzone.minibursa.utils.twilio.chat.listeners.TaskCompletionListener
 import com.twilio.chat.*
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_chat.*
 import java.io.FileInputStream
 
 @AndroidEntryPoint
@@ -100,7 +98,7 @@ class ChatActivity : BaseBindingActivity<ActivityChatBinding>(),
         binding?.imgAttachment?.setOnClickListener {
             refreshDataOnResume = false
             captureImage(
-                requestCode = ImagePickerUtil.TAKE_USER_IMAGE_REQUEST_CODE
+                requestCode = TAKE_USER_IMAGE_REQUEST_CODE
             )
         }
 
@@ -271,10 +269,10 @@ class ChatActivity : BaseBindingActivity<ActivityChatBinding>(),
         loading.observe(this, Observer {
             when (it) {
                 true -> {
-                    layout_loadmore?.visible()
+                    binding?.layoutLoadmore?.visible()
                 }
                 false -> {
-                    layout_loadmore?.gone()
+                    binding?.layoutLoadmore?.gone()
                 }
             }
         })
@@ -330,7 +328,7 @@ class ChatActivity : BaseBindingActivity<ActivityChatBinding>(),
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode != Activity.RESULT_OK) return
         when (requestCode) {
-            ImagePickerUtil.TAKE_USER_IMAGE_REQUEST_CODE -> {
+            TAKE_USER_IMAGE_REQUEST_CODE -> {
                 data?.data?.let { sendImage(it) }
             }
 

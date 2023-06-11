@@ -9,7 +9,6 @@ import com.technzone.minibursa.data.common.Constants
 import com.technzone.minibursa.databinding.ActivitySubscriptionBinding
 import com.technzone.minibursa.ui.base.activity.BaseBindingActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_subscription.*
 
 @AndroidEntryPoint
 class SubscriptionActivity : BaseBindingActivity<ActivitySubscriptionBinding>() {
@@ -22,14 +21,14 @@ class SubscriptionActivity : BaseBindingActivity<ActivitySubscriptionBinding>() 
 
     private fun setStartDestination() {
 
-        val navHostFragment = subscription_nav_host_fragment as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.subscription_nav_host_fragment) as NavHostFragment
         val inflater = navHostFragment.navController.navInflater
         val graph = inflater.inflate(R.navigation.subscription_nav_graph)
 
         if (intent.getBooleanExtra(Constants.BundleData.BUSINESS, false)) {
-            graph.startDestination = R.id.businessSubscriptionFragment
+            graph.setStartDestination(R.id.businessSubscriptionFragment)
         } else {
-            graph.startDestination = R.id.investorSubscriptionFragment
+            graph.setStartDestination(R.id.investorSubscriptionFragment)
         }
 
         navHostFragment.navController.graph = graph

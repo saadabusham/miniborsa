@@ -151,6 +151,7 @@ class CreateBusinessStep2ForSaleFragment :
             PropertyStatusEnums.BOTH -> {
                 binding?.tabLayout?.selectTab(binding?.tabLayout?.getTabAt(2))
             }
+            else -> {}
         }
     }
 

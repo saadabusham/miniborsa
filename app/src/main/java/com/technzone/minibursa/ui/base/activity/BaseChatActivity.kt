@@ -74,14 +74,14 @@ abstract class BaseChatActivity<BINDING : ViewDataBinding> : LocalizationActivit
             ).toBundle()
         )
 
-
-    override fun startActivityForResult(intent: Intent?, requestCode: Int) =
-        super.startActivityForResult(
-            intent, requestCode, ActivityOptions.makeCustomAnimation(
-                this,
-                R.anim.slide_in_end, R.anim.slide_out_left
-            ).toBundle()
-        )
+//
+//    override fun startActivityForResult(intent: Intent?, requestCode: Int) =
+//        super.startActivityForResult(
+//            intent, requestCode, ActivityOptions.makeCustomAnimation(
+//                this,
+//                R.anim.slide_in_end, R.anim.slide_out_left
+//            ).toBundle()
+//        )
 
     fun handleError(throwable: Throwable?) {
         when (throwable) {

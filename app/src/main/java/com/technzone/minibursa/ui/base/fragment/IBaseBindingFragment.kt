@@ -1,5 +1,6 @@
 package com.technzone.minibursa.ui.base.fragment
 
+import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -42,6 +43,7 @@ interface IBaseBindingFragment {
 
     fun addToolbar(
         toolbarView: Toolbar? = null,
+        tvToolbarTitleView: TextView?=null,
         hasToolbar: Boolean,
         hasBackButton: Boolean,
         hasTitle: Boolean = false,

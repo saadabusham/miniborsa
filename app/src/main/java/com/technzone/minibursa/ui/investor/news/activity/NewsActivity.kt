@@ -11,7 +11,6 @@ import com.technzone.minibursa.databinding.ActivityNewsBinding
 import com.technzone.minibursa.ui.base.activity.BaseBindingActivity
 import com.technzone.minibursa.ui.investor.news.viewmodels.NewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_news.*
 
 @AndroidEntryPoint
 class NewsActivity : BaseBindingActivity<ActivityNewsBinding>() {
@@ -25,15 +24,15 @@ class NewsActivity : BaseBindingActivity<ActivityNewsBinding>() {
     }
 
     private fun setStartDestination() {
-        val navHostFragment = news_nav_host_fragment as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.news_nav_host_fragment) as NavHostFragment
         val inflater = navHostFragment.navController.navInflater
         val graph = inflater.inflate(R.navigation.news_nav_graph)
         intent.getIntExtra(Constants.BundleData.NEWS_ID, -1).let {
             if (it == -1) {
-                graph.startDestination = R.id.newsFragment
+                graph.setStartDestination(R.id.newsFragment)
             } else {
                 viewModel.blogId = it
-                graph.startDestination = R.id.newsDetailsFragment
+                graph.setStartDestination(R.id.newsDetailsFragment)
             }
         }
 

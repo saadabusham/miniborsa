@@ -18,8 +18,6 @@ import com.technzone.minibursa.utils.extensions.showErrorAlert
 import com.technzone.minibursa.utils.extensions.validate
 import com.technzone.minibursa.utils.validation.ValidatorInputTypesEnums
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_verification_login.*
-import kotlinx.android.synthetic.main.layout_toolbar.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -35,7 +33,8 @@ class VerificationLoginFragment : BaseBindingFragment<FragmentVerificationLoginB
         super.onViewVisible()
         addToolbar(
             hasToolbar = true,
-            toolbarView = toolbar,
+            toolbarView =  binding?.layoutToolbar?.toolbar,
+            tvToolbarTitleView = binding?.layoutToolbar?.tvToolbarTitle,
             hasBackButton = true,
             showBackArrow = true,
             hasTitle = true,
@@ -98,7 +97,7 @@ class VerificationLoginFragment : BaseBindingFragment<FragmentVerificationLoginB
     }
 
     private fun setUpViewsListeners() {
-        otp_view.setAnimationEnable(true)
+        binding?.otpView?.setAnimationEnable(true)
         binding?.tvTimeToResend?.setOnClickListener {
             if (viewModel.signUpResendPinCodeEnabled.value == true) {
                 viewModel.resendVerificationCode().observe(this, sendOtpResultObserver())
@@ -112,7 +111,7 @@ class VerificationLoginFragment : BaseBindingFragment<FragmentVerificationLoginB
     }
 
     private fun validateInput(): Boolean {
-        otp_view.text.toString().validate(ValidatorInputTypesEnums.OTP, requireContext()).let {
+        binding?.otpView?.text.toString().validate(ValidatorInputTypesEnums.OTP, requireContext()).let {
             if (!it.isValid) {
                 activity.showErrorAlert(it.errorTitle, it.errorMessage)
                 return false

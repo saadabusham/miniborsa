@@ -25,7 +25,6 @@ import com.technzone.minibursa.ui.investor.invistormain.activity.InvestorMainAct
 import com.technzone.minibursa.ui.subscription.activity.BusinessSubscriptionActivity
 import com.technzone.minibursa.utils.extensions.*
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
 class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding>() {
@@ -40,8 +39,12 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
         handleReceivedData()
         setContentView(
             R.layout.activity_listing_preview,
+            hasToolbar = true
+        )
+        addToolbar(
+            toolbarView =  binding?.layoutToolbar?.toolbar,
+            tvToolbarTitleView = binding?.layoutToolbar?.tvToolbarTitle,
             hasToolbar = true,
-            toolbarView = toolbar,
             hasBackButton = true,
             showBackArrow = true,
             hasTitle = true,
@@ -59,7 +62,7 @@ class ListingPreviewActivity : BaseBindingActivity<ActivityListingPreviewBinding
 
     private fun setUpListeners() {
         binding?.btnSubmit?.setOnClickListener {
-            if (viewModel.percentage.value ?: 0 > MIN_PERCENTAGE_TO_SEND)
+            if ((viewModel.percentage.value ?: 0) > MIN_PERCENTAGE_TO_SEND)
                 handleSend()
             else {
                 InvestorMainActivity.start(this)

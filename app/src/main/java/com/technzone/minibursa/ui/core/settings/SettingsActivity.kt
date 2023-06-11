@@ -9,8 +9,6 @@ import com.technzone.minibursa.common.CommonEnums
 import com.technzone.minibursa.databinding.ActivitySettingsBinding
 import com.technzone.minibursa.ui.base.activity.BaseBindingActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_settings.*
-import kotlinx.android.synthetic.main.layout_toolbar.*
 
 
 @AndroidEntryPoint
@@ -21,14 +19,17 @@ class SettingsActivity : BaseBindingActivity<ActivitySettingsBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(
-                layoutResID = R.layout.activity_settings,
-                hasToolbar = true,
-                toolbarView = toolbar,
-                hasBackButton = true,
-                showBackArrow = true,
-                hasTitle = true,
-                titleString = resources.getString(R.string.settings)
-
+            R.layout.activity_settings,
+            hasToolbar = true
+        )
+        addToolbar(
+            toolbarView = binding?.toolbarLayout?.toolbar,
+            tvToolbarTitleView = binding?.toolbarLayout?.tvToolbarTitle,
+            hasToolbar = true,
+            hasBackButton = true,
+            showBackArrow = true,
+            hasTitle = true,
+            title = R.string.settings
         )
         binding?.viewModel = viewModel
         setUpListeners()
@@ -38,13 +39,15 @@ class SettingsActivity : BaseBindingActivity<ActivitySettingsBinding>() {
         binding?.switchNotifications?.setOnCheckedChangeListener { buttonView, isChecked ->
             viewModel.setIsNotificationsIsEnabled(isChecked)
         }
-        linearLanguage?.setOnClickListener {
-            viewModel.saveLanguage().observe(this, {
+        binding?.linearLanguage?.setOnClickListener {
+            viewModel.saveLanguage().observe(this) {
                 (this as BaseBindingActivity<*>)
-                        .setLanguage(if (viewModel.englishSelected.value!!)
+                    .setLanguage(
+                        if (viewModel.englishSelected.value!!)
                             CommonEnums.Languages.English.value
-                        else CommonEnums.Languages.Arabic.value)
-            })
+                        else CommonEnums.Languages.Arabic.value
+                    )
+            }
         }
     }
 

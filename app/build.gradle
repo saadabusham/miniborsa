@@ -1,26 +1,36 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'androidx.navigation.safeargs.kotlin'
 apply plugin: 'dagger.hilt.android.plugin'
-
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
     buildToolsVersion "30.0.3"
 
-//    signingConfigs {
-//        config {
-//            storeFile file("${project.rootDir}/MiniBursaKeyStore")
-//            storePassword "TechnZone2021"
-//            keyAlias "Technzone"
-//            keyPassword "TechnZone2021"
-//        }
-//    }
+    signingConfigs {
+        release {
+            storeFile file("${project.rootDir}/keystore/MiniBursaKeyStore.jks")
+            storePassword "TechnZone2021"
+            keyAlias "Technzone"
+            keyPassword "TechnZone2021"
+        }
+        client {
+            storeFile file("${project.rootDir}/keystore/MiniBursaKeyStore.jks")
+            storePassword "TechnZone2021"
+            keyAlias "Technzone"
+            keyPassword "TechnZone2021"
+        }
+        debug {
+            storeFile file("${project.rootDir}/keystore/MiniBursaKeyStore.jks")
+            storePassword "TechnZone2021"
+            keyAlias "Technzone"
+            keyPassword "TechnZone2021"
+        }
+    }
     defaultConfig {
         applicationId "com.technzone.minibursa"
-        minSdkVersion 23
-        targetSdkVersion 30
+        minSdkVersion 26
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -42,7 +52,7 @@ android {
             buildConfigField("String", "ImageSubUrl", imageSubUrl)
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.config
+            signingConfig signingConfigs.release
         }
 
         debug {
@@ -50,7 +60,7 @@ android {
             buildConfigField("String", "ImageSubUrl", imageSubUrl)
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.config
+            signingConfig signingConfigs.debug
         }
     }
 
@@ -59,19 +69,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    androidExtensions {
-        experimental = true
-    }
-
     lintOptions {
         checkReleaseBuilds false
         // Or, if you prefer, you can continue to check for errors in release builds,
         // but continue the build even when errors are found:
         abortOnError false
-    }
-
-    androidExtensions {
-        experimental = true
     }
 
     kotlinOptions {
@@ -92,37 +94,33 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.aar"])
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation fileTree(include: ["*.aar"], dir: "libs")
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'androidx.core:core-ktx:1.5.0'
-    testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.core:core-ktx:1.10.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     // Androidx
-    implementation "androidx.preference:preference-ktx:1.1.1"
+    implementation "androidx.preference:preference-ktx:1.2.0"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     // HILT
-    def hilt_version = "2.35"
+    def hilt_version = "2.44"
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 //    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
 //    kapt 'androidx.hilt:hilt-compiler:1.0.0'
 
     // Androidx Views
-    def androidx_views_version = "1.1.3"
-    implementation "androidx.constraintlayout:constraintlayout:$androidx_views_version"
-    implementation "androidx.recyclerview:recyclerview:1.2.1"
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
+    implementation "androidx.recyclerview:recyclerview:1.3.0"
 
     // Material Components
-    def material_components_version = "1.2.0-alpha03"
-    implementation "androidx.appcompat:appcompat:$material_components_version"
-    implementation "com.google.android.material:material:$material_components_version"
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation "com.google.android.material:material:1.10.0-alpha03"
 
     // location
-    implementation "com.google.android.gms:play-services-location:18.0.0"
+    implementation "com.google.android.gms:play-services-location:21.0.1"
     implementation('io.nlopez.smartlocation:library:3.3.3') {
         exclude group: 'com.google.android.gms', module: 'play-services-location'
     }
@@ -131,7 +129,7 @@ dependencies {
     implementation 'com.akexorcist:localization:1.2.6'
 
     // Navigation Jetpack
-    def nav_version = "2.2.1"
+    def nav_version = "2.6.0"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
@@ -142,13 +140,10 @@ dependencies {
     implementation 'com.eftimoff:android-viewpager-transformers:1.0.1@aar'
 
     // Image Picker
-    def image_picker_version = "1.4.3"
-    implementation "com.github.nguyenhoanglam:ImagePicker:$image_picker_version"
-
-    implementation 'com.github.dhaval2404:imagepicker:1.7.5'
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
 
     // Glide Image Loader
-    def glide_image_loader_version = "4.11.0"
+    def glide_image_loader_version = "4.12.0"
     implementation "com.github.bumptech.glide:glide:$glide_image_loader_version"
     kapt "com.github.bumptech.glide:compiler:$glide_image_loader_version"
 
@@ -157,7 +152,7 @@ dependencies {
     implementation "com.github.Ilhasoft:data-binding-validator:$edittext_validation_version"
 
     // Permission Util
-    def permission_util_version = "6.0.2"
+    def permission_util_version = "6.2.3"
     implementation "com.karumi:dexter:$permission_util_version"
 
     // Event Bus
@@ -170,23 +165,23 @@ dependencies {
     implementation "android.arch.lifecycle:viewmodel:$viewmodel_version"
 
     // Coroutine Scopes
-    def coroutine_scopes_version = "2.2.0"
+    def coroutine_scopes_version = "2.5.0"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$coroutine_scopes_version"
 
     // Retrofit
     def retrofit_version = "2.7.2"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-moshi:2.7.1"
+    implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
 
     // Ok Http Interceptor
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.8.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.11.0'
     implementation 'com.readystatesoftware.chuck:library:1.1.0'
 
     // Country Code Picker
     implementation 'com.github.joielechong:countrycodepicker:2.4.1'
 
     // Room
-    def room_version = "2.2.5"
+    def room_version = "2.5.1"
     implementation "androidx.room:room-runtime:$room_version"
     // For Kotlin use kapt instead of annotationProcessor
     kapt "androidx.room:room-compiler:$room_version"
@@ -198,11 +193,11 @@ dependencies {
     implementation "com.facebook.stetho:stetho:$stetho_version"
 
     // Map
-    implementation 'com.google.android.gms:play-services-maps:17.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
 
     // search location
     implementation 'com.google.android.gms:play-services-places:17.0.0'
-    implementation 'com.google.android.libraries.places:places:2.4.0'
+    implementation 'com.google.android.libraries.places:places:3.1.0'
 
     //Sweet Alert
     implementation 'com.github.f0ris.sweetalert:library:1.5.5'
@@ -222,16 +217,13 @@ dependencies {
 
 
     //crashlytics
-    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.0.1'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.3.7'
 
     //rx
     implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0"
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
-    implementation "androidx.fragment:fragment-ktx:1.4.0-alpha02"
-
-    //screenshot
-    implementation 'com.github.Mika-89:Screenshot:master-SNAPSHOT'
+    implementation "androidx.fragment:fragment-ktx:1.6.0"
 
     //For android permissions
     implementation "org.permissionsdispatcher:permissionsdispatcher:4.7.0"
@@ -239,7 +231,7 @@ dependencies {
 
     implementation 'com.mikhaellopez:circularimageview:4.2.0'
 
-    implementation 'com.google.android.gms:play-services-maps:17.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
 
     implementation 'com.google.android:flexbox:2.0.1'
     implementation 'com.github.markomilos:paginate:1.0.0'
@@ -249,8 +241,8 @@ dependencies {
     implementation 'com.jakewharton.rxbinding3:rxbinding:3.1.0'
 
     //firebase
-    implementation 'com.google.firebase:firebase-core:19.0.0'
-    implementation 'com.google.firebase:firebase-messaging:22.0.0'
+    implementation 'com.google.firebase:firebase-core:21.1.1'
+    implementation 'com.google.firebase:firebase-messaging:23.1.2'
 
     //fab
     implementation 'com.github.clans:fab:1.6.4'
@@ -269,8 +261,7 @@ dependencies {
     implementation "com.tapadoo.android:alerter:6.2.1"
 
     // Calendar library
-    def calendarview_version = "2.0.0"
-    implementation "com.github.prolificinteractive:material-calendarview:${calendarview_version}"
+    implementation "com.github.prolificinteractive:material-calendarview:2.0.1"
 
     //Shimmer facebook
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
@@ -289,15 +280,14 @@ dependencies {
 
 
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation "com.github.skydoves:powerspinner:1.1.7"
+    implementation "com.github.skydoves:powerspinner:1.2.6"
 
     implementation 'com.google.firebase:firebase-dynamic-links'
     implementation platform('com.google.firebase:firebase-bom:26.7.0')
 
-    //hyber pay
-    implementation project(path: ':oppwa.mobile-3.12.0')
-    implementation 'com.google.android.gms:play-services-wallet:19.0.0'
-    implementation "androidx.browser:browser:1.4.0"
+    //payment
+    implementation 'com.google.android.gms:play-services-wallet:19.1.0'
+    implementation "androidx.browser:browser:1.5.0"
 }
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'

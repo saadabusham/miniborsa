@@ -20,8 +20,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.layout_toolbar.*
-import java.util.*
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
@@ -37,13 +35,17 @@ class FaqsActivity : BaseBindingActivity<ActivityFaqsBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(
-            layoutResID = R.layout.activity_faqs,
+            R.layout.activity_faqs,
+            hasToolbar = true
+        )
+        addToolbar(
+            toolbarView = binding?.toolbarLayout?.toolbar,
+            tvToolbarTitleView = binding?.toolbarLayout?.tvToolbarTitle,
             hasToolbar = true,
-            toolbarView = toolbar,
             hasBackButton = true,
             showBackArrow = true,
             hasTitle = true,
-            titleString = resources.getString(R.string.help_center)
+            title = R.string.help_center
         )
         init()
     }

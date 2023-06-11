@@ -18,7 +18,7 @@ class CustomObserverResponse<T>(
     Observer<APIResource<ResponseWrapper<T>>> {
 
     override fun onChanged(responseWrapperResponse: APIResource<ResponseWrapper<T>>) {
-        when (responseWrapperResponse?.status) {
+        when (responseWrapperResponse.status) {
             RequestStatusEnum.SUCCESS -> {
                 if (withProgress) {
                     hideProgress()
@@ -84,6 +84,7 @@ class CustomObserverResponse<T>(
                 }
                 apiCallBack.onLoading()
             }
+            else -> {}
         }
     }
 
@@ -107,11 +108,11 @@ class CustomObserverResponse<T>(
         fun onLoading() {}
     }
 
-    fun handleRequestFailedMessages(
+    private fun handleRequestFailedMessages(
         subErrorCode: ResponseSubErrorsCodeEnum?,
         requestMessage: String?
     ) {
-        activity?.let {
+        activity.let {
             HandleRequestFailedUtil.handleRequestFailedMessages(
                 it,
                 subErrorCode,

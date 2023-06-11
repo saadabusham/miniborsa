@@ -12,7 +12,6 @@ import com.technzone.minibursa.ui.base.fragment.BaseBindingFragment
 import com.technzone.minibursa.ui.investor.invistormain.activity.InvestorMainActivity
 import com.technzone.minibursa.ui.userrole.activity.UserRolesActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.layout_toolbar.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -28,7 +27,8 @@ class RegisterSuccessFragment : BaseBindingFragment<FragmentRegisterSuccessBindi
         super.onViewVisible()
         addToolbar(
             hasToolbar = true,
-            toolbarView = toolbar,
+            toolbarView =  binding?.layoutToolbar?.toolbar,
+            tvToolbarTitleView = binding?.layoutToolbar?.tvToolbarTitle,
             hasBackButton = true,
             showBackArrow = true,
             hasTitle = true,

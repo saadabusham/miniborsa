@@ -23,7 +23,6 @@ import com.technzone.minibursa.ui.investor.filter.viewmodels.FilterBusinessViewM
 import com.technzone.minibursa.ui.map.MapActivity
 import com.technzone.minibursa.utils.getLocationName
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_filter.*
 
 
 @AndroidEntryPoint
@@ -48,11 +47,11 @@ class FilterBusinessFragment : BaseBindingFragment<FragmentFilterBinding>(),
 
     private fun setUpRangeSeek() {
         with(viewModel) {
-            val minVal = if (min.value ?: 0 > 0) min.value?.toFloat()
+            val minVal = if ((min.value ?: 0) > 0) min.value?.toFloat()
                 ?: defaultMinValue.toFloat() else defaultMinValue.toFloat()
-            val maxVal = if (max.value ?: 0 > 0) max.value?.toFloat()
+            val maxVal = if ((max.value ?: 0) > 0) max.value?.toFloat()
                 ?: defaultMaxValue.toFloat() else defaultMaxValue.toFloat()
-            rangeSeekBar.setMinStartValue(minVal).setMaxStartValue(maxVal)?.apply()
+            binding?.rangeSeekBar?.setMinStartValue(minVal)?.setMaxStartValue(maxVal)?.apply()
         }
     }
 
@@ -97,8 +96,8 @@ class FilterBusinessFragment : BaseBindingFragment<FragmentFilterBinding>(),
         viewModel.apply {
             categories = inustryAdapter.getSelectedItems().map { it.id ?: 0 }
             selectedBusinessType.value = businessTypeAdapter.getSelectedItem()?.id
-            min.value = rangeSeekBar.selectedMinValue.toInt()
-            max.value = rangeSeekBar.selectedMaxValue.toInt()
+            min.value = binding?.rangeSeekBar?.selectedMinValue?.toInt()
+            max.value = binding?.rangeSeekBar?.selectedMaxValue?.toInt()
         }
         requireActivity().onBackPressed()
     }

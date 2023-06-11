@@ -18,11 +18,10 @@ import com.technzone.minibursa.ui.dataview.dataviewer.DataViewerActivity
 import com.technzone.minibursa.utils.extensions.*
 import com.technzone.minibursa.utils.validation.ValidatorInputTypesEnums
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
 class RegistrationFragment :
-        BaseBindingFragment<FragmentRegisterBinding>() {
+    BaseBindingFragment<FragmentRegisterBinding>() {
 
     private val viewModel: RegistrationViewModel by activityViewModels()
 
@@ -31,11 +30,12 @@ class RegistrationFragment :
     override fun onViewVisible() {
         super.onViewVisible()
         addToolbar(
-                toolbarView = toolbar,
-                hasToolbar = true,
-                hasBackButton = true,
-                hasTitle = false,
-                showBackArrow = true
+            toolbarView = binding?.layoutToolbar?.toolbar,
+            tvToolbarTitleView = binding?.layoutToolbar?.tvToolbarTitle,
+            hasToolbar = true,
+            hasBackButton = true,
+            hasTitle = false,
+            showBackArrow = true
         )
         binding?.viewModel = viewModel
         setUpData()
@@ -92,51 +92,72 @@ class RegistrationFragment :
     }
 
     private fun registerResultObserver(): CustomObserverResponse<String> {
-        return CustomObserverResponse(requireActivity(), object : CustomObserverResponse.APICallBack<String> {
-            override fun onSuccess(statusCode: Int, subErrorCode: ResponseSubErrorsCodeEnum, data: String?) {
-                viewModel.userIdMutableLiveData.value = data
-                navigationController.navigate(R.id.action_registrationFragment_to_verificationSignUpFragment)
-            }
-        })
+        return CustomObserverResponse(
+            requireActivity(),
+            object : CustomObserverResponse.APICallBack<String> {
+                override fun onSuccess(
+                    statusCode: Int,
+                    subErrorCode: ResponseSubErrorsCodeEnum,
+                    data: String?
+                ) {
+                    viewModel.userIdMutableLiveData.value = data
+                    navigationController.navigate(R.id.action_registrationFragment_to_verificationSignUpFragment)
+                }
+            })
     }
 
     private fun isDataValidate(): Boolean {
         var valid = true
         binding?.edFirstName?.text.toString()
-                .validate(ValidatorInputTypesEnums.FIRST_NAME, requireContext()).let {
-                    if (!it.isValid) {
-                        requireActivity().showErrorAlert(title = it.errorTitle,message = it.errorMessage)
-                        return false
-                    }
+            .validate(ValidatorInputTypesEnums.FIRST_NAME, requireContext()).let {
+                if (!it.isValid) {
+                    requireActivity().showErrorAlert(
+                        title = it.errorTitle,
+                        message = it.errorMessage
+                    )
+                    return false
                 }
+            }
         binding?.edLastName?.text.toString()
-                .validate(ValidatorInputTypesEnums.LAST_NAME, requireContext()).let {
-                    if (!it.isValid) {
-                        requireActivity().showErrorAlert(title = it.errorTitle,message = it.errorMessage)
-                        return false
-                    }
+            .validate(ValidatorInputTypesEnums.LAST_NAME, requireContext()).let {
+                if (!it.isValid) {
+                    requireActivity().showErrorAlert(
+                        title = it.errorTitle,
+                        message = it.errorMessage
+                    )
+                    return false
                 }
+            }
         binding?.edPhoneNumber?.text.toString()
-                .validate(ValidatorInputTypesEnums.PHONE_NUMBER, requireContext()).let {
-                    if (!it.isValid) {
-                        requireActivity().showErrorAlert(title = it.errorTitle,message = it.errorMessage)
-                        return false
-                    }
+            .validate(ValidatorInputTypesEnums.PHONE_NUMBER, requireContext()).let {
+                if (!it.isValid) {
+                    requireActivity().showErrorAlert(
+                        title = it.errorTitle,
+                        message = it.errorMessage
+                    )
+                    return false
                 }
+            }
         binding?.edEmail?.text.toString()
-                .validate(ValidatorInputTypesEnums.EMAIL, requireContext()).let {
-                    if (!it.isValid) {
-                        requireActivity().showErrorAlert(title = it.errorTitle,message = it.errorMessage)
-                        return false
-                    }
+            .validate(ValidatorInputTypesEnums.EMAIL, requireContext()).let {
+                if (!it.isValid) {
+                    requireActivity().showErrorAlert(
+                        title = it.errorTitle,
+                        message = it.errorMessage
+                    )
+                    return false
                 }
+            }
         binding?.etPassword?.text.toString()
-                .validate(ValidatorInputTypesEnums.PASSWORD, requireContext()).let {
-                    if (!it.isValid) {
-                        requireActivity().showErrorAlert(title = it.errorTitle,message = it.errorMessage)
-                        return false
-                    }
+            .validate(ValidatorInputTypesEnums.PASSWORD, requireContext()).let {
+                if (!it.isValid) {
+                    requireActivity().showErrorAlert(
+                        title = it.errorTitle,
+                        message = it.errorMessage
+                    )
+                    return false
                 }
+            }
         binding?.etConfirmPassword?.text.toString()
             .validateConfirmPassword(
                 ValidatorInputTypesEnums.CONFIRM_PASSWORD,

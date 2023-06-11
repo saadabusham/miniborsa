@@ -16,8 +16,6 @@ import com.technzone.minibursa.utils.extensions.validate
 import com.technzone.minibursa.utils.extensions.validateConfirmPassword
 import com.technzone.minibursa.utils.validation.ValidatorInputTypesEnums
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_change_password.*
-import kotlinx.android.synthetic.main.layout_toolbar.*
 
 
 @AndroidEntryPoint
@@ -27,11 +25,14 @@ class ChangePasswordActivity : BaseBindingActivity<ActivityChangePasswordBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(
-            layoutResID = R.layout.activity_change_password,
+            R.layout.activity_change_password,
+            hasToolbar = true
+        )
+        addToolbar(
+            toolbarView = binding?.layoutToolbar?.toolbar,
+            tvToolbarTitleView = binding?.layoutToolbar?.tvToolbarTitle,
             hasToolbar = true,
-            toolbarView = toolbar,
             hasBackButton = true,
             showBackArrow = true,
             hasTitle = true,

@@ -5,7 +5,6 @@ import androidx.fragment.app.activityViewModels
 import com.technzone.minibursa.R
 import com.technzone.minibursa.data.common.Constants
 import com.technzone.minibursa.data.enums.BusinessTypeEnums
-import com.technzone.minibursa.data.models.subscrption.Subscription
 import com.technzone.minibursa.databinding.FragmentBusinessSubscriptionBinding
 import com.technzone.minibursa.ui.base.adapters.BaseBindingRecyclerViewAdapter
 import com.technzone.minibursa.ui.base.bindingadapters.setOnItemClickListener
@@ -16,8 +15,6 @@ import com.technzone.minibursa.ui.subscription.adapter.BusinessSubscriptionRecyc
 import com.technzone.minibursa.ui.subscription.viewmodel.SubscriptionViewModel
 import com.technzone.minibursa.utils.extensions.showErrorAlert
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.dialog_ios.*
-import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
 class BusinessSubscriptionFragment : BaseBindingFragment<FragmentBusinessSubscriptionBinding>(),
@@ -33,7 +30,8 @@ class BusinessSubscriptionFragment : BaseBindingFragment<FragmentBusinessSubscri
         super.onViewVisible()
         addToolbar(
             hasToolbar = true,
-            toolbarView = toolbar,
+            toolbarView =  binding?.layoutToolbar?.toolbar,
+            tvToolbarTitleView = binding?.layoutToolbar?.tvToolbarTitle,
             hasBackButton = true,
             showBackArrow = true,
             hasTitle = true,

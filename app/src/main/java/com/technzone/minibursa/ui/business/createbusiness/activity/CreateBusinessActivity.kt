@@ -23,7 +23,6 @@ import com.technzone.minibursa.utils.extensions.findCurrentFragment
 import com.technzone.minibursa.utils.extensions.gone
 import com.technzone.minibursa.utils.extensions.visible
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.layout_toolbar.*
 import org.jetbrains.anko.textColor
 
 @AndroidEntryPoint
@@ -54,8 +53,12 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
         }
         setContentView(
             R.layout.activity_create_business,
+            hasToolbar = true
+        )
+        addToolbar(
+            toolbarView =  binding?.layoutToolbar?.toolbar,
+            tvToolbarTitleView = binding?.layoutToolbar?.tvToolbarTitle,
             hasToolbar = true,
-            toolbarView = toolbar,
             hasBackButton = true,
             showBackArrow = true,
             titleString = String.format(getString(R.string.steps_number), 1)
@@ -66,7 +69,7 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
         setUpListeners()
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (binding?.formsViewPager?.currentItem ?: 0 > 0) {
+                if ((binding?.formsViewPager?.currentItem ?: 0) > 0) {
                     goToPrevious()
                 } else {
                     finish()
@@ -94,7 +97,7 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
     }
 
     private fun observePercentage() {
-        viewModel.percentage.observe(this, {
+        viewModel.percentage.observe(this) {
             when {
                 it <= 25 -> {
                     binding?.progressBar?.progressTintList =
@@ -121,7 +124,7 @@ class CreateBusinessActivity : BaseBindingActivity<ActivityCreateBusinessBinding
                     binding?.tvPercent?.textColor = getColor(R.color.chart_color_5)
                 }
             }
-        })
+        }
     }
 
     private fun setUpPager() {

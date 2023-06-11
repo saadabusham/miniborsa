@@ -21,14 +21,13 @@ import com.technzone.minibursa.ui.countrypicker.viewmodels.CountriesViewModel
 import com.technzone.minibursa.utils.extensions.readRawJson
 import com.technzone.minibursa.utils.extensions.setupClearButtonWithAction
 import com.technzone.minibursa.utils.extensions.showErrorAlert
+import com.technzone.minibursa.utils.plus
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.layout_toolbar.*
 import java.util.*
 import java.util.concurrent.TimeUnit
-import com.technzone.minibursa.utils.plus
 
 @AndroidEntryPoint
 class CountriesPickerActivity : BaseBindingActivity<ActivityCountriesBinding>(),
@@ -43,8 +42,12 @@ class CountriesPickerActivity : BaseBindingActivity<ActivityCountriesBinding>(),
         super.onCreate(savedInstanceState)
         setContentView(
             R.layout.activity_countries,
+            hasToolbar = true
+        )
+        addToolbar(
+            toolbarView = binding?.layoutToolbar?.toolbar,
+            tvToolbarTitleView = binding?.layoutToolbar?.tvToolbarTitle,
             hasToolbar = true,
-            toolbarView = toolbar,
             hasBackButton = true,
             showBackArrow = true,
             hasTitle = true,

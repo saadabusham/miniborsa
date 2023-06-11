@@ -11,7 +11,6 @@ import com.technzone.minibursa.utils.extensions.showErrorAlert
 import com.technzone.minibursa.utils.extensions.validate
 import com.technzone.minibursa.utils.validation.ValidatorInputTypesEnums
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.layout_toolbar.*
 
 @AndroidEntryPoint
 class ForgetPasswordFragment : BaseBindingFragment<FragmentForgetPasswordBinding>() {
@@ -24,7 +23,8 @@ class ForgetPasswordFragment : BaseBindingFragment<FragmentForgetPasswordBinding
         super.onViewVisible()
         addToolbar(
             hasToolbar = true,
-            toolbarView = toolbar,
+            toolbarView =  binding?.layoutToolbar?.toolbar,
+            tvToolbarTitleView = binding?.layoutToolbar?.tvToolbarTitle,
             hasBackButton = true,
             showBackArrow = true,
             hasTitle = false,

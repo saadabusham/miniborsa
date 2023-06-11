@@ -180,7 +180,6 @@ class MapActivity : BaseBindingActivity<ActivityMapBinding>(), OnMapReadyCallbac
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
             REQUEST_CODE_LOCATION -> {
-                val states = LocationSettingsStates.fromIntent(data)
                 when (resultCode) {
                     RESULT_OK -> {
                         initWithPermissionCheck()

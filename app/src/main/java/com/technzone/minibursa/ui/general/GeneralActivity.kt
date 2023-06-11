@@ -21,7 +21,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.layout_toolbar.*
 import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
@@ -40,8 +39,12 @@ class GeneralActivity : BaseBindingActivity<ActivityChooseGeneralBinding>(),
         super.onCreate(savedInstanceState)
         setContentView(
             R.layout.activity_choose_general,
+            hasToolbar = true
+        )
+        addToolbar(
+            toolbarView = binding?.layoutToolbar?.toolbar,
+            tvToolbarTitleView = binding?.layoutToolbar?.tvToolbarTitle,
             hasToolbar = true,
-            toolbarView = toolbar,
             hasBackButton = true,
             showBackArrow = true
         )

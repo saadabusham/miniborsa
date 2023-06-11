@@ -30,7 +30,7 @@
                 android:paddingEnd="@dimen/_50sdp">
 
                 <com.technzone.minibursa.ui.base.views.AppTextView
-                    android:id="@+id/tvTitle"
+                    android:id="@+id/tvToolbarTitle"
                     style="@style/textview_normal_bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

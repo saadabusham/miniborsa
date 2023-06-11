@@ -163,7 +163,7 @@ class NewsFragment : BaseBindingFragment<FragmentNewsBinding>(),
     }
 
     private fun observeLoading() {
-        loading.observe(this, {
+        loading.observe(this) {
             if (it) {
                 binding?.rvNews?.gone()
                 binding?.layoutShimmer?.shimmerViewContainer?.visible()
@@ -173,7 +173,7 @@ class NewsFragment : BaseBindingFragment<FragmentNewsBinding>(),
                 binding?.layoutShimmer?.shimmerViewContainer?.stopShimmer()
                 binding?.rvNews?.visible()
             }
-        })
+        }
     }
 
     private fun initSearch() {

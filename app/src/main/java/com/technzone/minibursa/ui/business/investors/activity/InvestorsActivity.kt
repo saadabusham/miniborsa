@@ -9,7 +9,6 @@ import com.technzone.minibursa.data.common.Constants
 import com.technzone.minibursa.databinding.ActivityInvestorsBinding
 import com.technzone.minibursa.ui.base.activity.BaseBindingActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_investors.*
 
 @AndroidEntryPoint
 class InvestorsActivity : BaseBindingActivity<ActivityInvestorsBinding>() {
@@ -23,14 +22,14 @@ class InvestorsActivity : BaseBindingActivity<ActivityInvestorsBinding>() {
 
     private fun setStartDestination() {
 
-        val navHostFragment = investors_nav_host_fragment as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.investors_nav_host_fragment) as NavHostFragment
         val inflater = navHostFragment.navController.navInflater
         val graph = inflater.inflate(R.navigation.investors_nav_graph)
 
         if (intent.getIntExtra(Constants.BundleData.INVESTOR_ID,-1) == -1) {
-            graph.startDestination = R.id.investorsFragment
+            graph.setStartDestination(R.id.investorsFragment)
         } else {
-            graph.startDestination = R.id.investorsFragment
+            graph.setStartDestination(R.id.investorsFragment)
         }
 
         navHostFragment.navController.graph = graph

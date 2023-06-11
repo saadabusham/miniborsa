@@ -18,7 +18,7 @@ import com.technzone.minibursa.ui.base.dialogs.CompletedDialog
 import com.technzone.minibursa.ui.core.changepassword.ChangePasswordActivity
 import com.technzone.minibursa.ui.core.profile.viewmodels.ProfileViewModel
 import com.technzone.minibursa.ui.countrypicker.activity.CountriesPickerActivity
-import com.technzone.minibursa.utils.ImagePickerUtil.Companion.TAKE_USER_IMAGE_REQUEST_CODE
+import com.technzone.minibursa.utils.TAKE_USER_IMAGE_REQUEST_CODE
 import com.technzone.minibursa.utils.extensions.getDeviceCountryCode
 import com.technzone.minibursa.utils.extensions.showErrorAlert
 import com.technzone.minibursa.utils.extensions.validate
